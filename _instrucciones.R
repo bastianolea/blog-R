@@ -1,5 +1,4 @@
 # previsualizar sitio
-
 blogdown::serve_site()
 blogdown::stop_server()
 blogdown::build_site()
@@ -13,10 +12,10 @@ abrir_post_reciente()
 
 
 # crear un post normal
-blogdown::new_post(title = "Renombrar muchos archivos desde R", 
+blogdown::new_post(title = "Primera reunión: grupo de usuari@s de R, Santiago de Chile", 
                    file = paste0("blog/", lubridate::today(), "/index.md"),
                    author = "Bastián Olea Herrera",
-                   tags = c("automatización")
+                   tags = c("blog", "Chile")
 )
 
 # crear un post tutorial
@@ -67,6 +66,7 @@ blogdown::new_post(title = "Extracción de datos estructurados desde texto usand
 # constantes
 "content/blog/mapas_sf/mapas_sf.qmd"
 "content/blog/git_comandos/index.md"
+"content/blog/r_introduccion/recursos_r/index.md" # enlaces
 
 # en construcción
 "content/blog/mapas_sf/mapas_sf.qmd"
@@ -94,6 +94,9 @@ blogdown::new_post(title = "Extracción de datos estructurados desde texto usand
 # {{< info "x" >}}
 # {{< detalles "Hola" >}} {{< /detalles >}}
 # {{< boton "Buscador" "https://bastianoleah.shinyapps.io/buscador/" "fas fa-search" >}}
+# <i class='fas fa-chalkboard-user'></i>
+# <i class='fas fa-chalkboard-user' style='font-size: 200%'></i>
+
 
 
 

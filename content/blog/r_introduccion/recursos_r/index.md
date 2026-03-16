@@ -14,10 +14,13 @@ excerpt: Colección de sitios web y recursos útiles para usuarios de R. Incluye
 En esta página voy guardando enlaces a sitios web útiles para otros usuarios de R. Si quieres que incluya tu sitio o iniciativa, [puedes escribirme.](/contact/)
 
 
-## Aprender
+
+
+## <i class='fas fa-chalkboard-user'></i> Aprender R
 _Sitios con contenido educacional para que aprendas R._
 
-### Recursos para aprender R
+### <i class='fas fa-book'></i> Recursos para aprender R
+- En mi sitio **[Aprende R](https://bastianolea.github.io/aprende_r/)** encontrarás todo lo necesario para aprender R de manera autodidacta, incluyendo cuross, tutoriales, libros, y más.
 - [Ciencia de Datos para Gente Sociable](https://bitsandbricks.github.io/ciencia_de_datos_gente_sociable/) 📚 libro introductorio de R enfocado en personas de las ciencias sociales
 - [Taller de Métodos y Técnicas de Investigación I](https://fransofia.github.io/metodos-mgsocio-uah/), materiales de un curso de sociología sobre aplicación práctica de técnicas estadísticas usando R
 - [Tutorial de R desde cero](https://bastianolea.rbind.io/blog/r_introduccion/), con niveles [básico](/blog/r_introduccion/r_basico/), [intermedio](/blog/r_introduccion/r_intermedio/), y foco en [`aprender {dplyr}`](/blog/r_introduccion/dplyr_intro/)
@@ -32,13 +35,13 @@ _Sitios con contenido educacional para que aprendas R._
 - [Learning statistics with R: A tutorial for psychology students and other beginners](https://learningstatisticswithr.com/book/) (en inglés)
 - [Atelier de código](https://atelierdecodigo.com), sitio para el aprendizaje de ciencia de datos con foco en investigación y docencia
 
-### Visualización de datos en R
+### <i class='fas fa-chart-line'></i> Visualización de datos en R
 - [R Graph Gallery](https://www.r-graph-gallery.com/), galería de gráficos y visualizaciones de datos hechas con R
 - [R Charts](https://r-charts.com/es/), galería de gráficos y visualizaciones de datos hechas con R
 - [Tutorial de visualización de datos con `{ggplot2}`](/blog/r_introduccion/tutorial_visualizacion_ggplot/)
 - [A ggplot2 Tutorial for Beautiful Plotting in R](https://cedricscherer.netlify.app/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/), tutorial recomendado de `{ggplot2}` (en inglés)
 
-### Desarrollo de apps en R
+### <i class='fas fa-sitemap'></i> Desarrollo de apps en R
 - [Shiny Assistant](https://shiny.posit.co/blog/posts/shiny-assistant/), asistente de inteligencia artificial para desarrollar, corregir y revisar aplicaciones Shiny
 - [Galería de Shiny Widgets](http://shinyapps.dreamrs.fr/shinyWidgets/), paquete que ofrece muchas inputs nuevos para Shiny
 - [Extensiones de Shiny](https://github.com/nanxstats/awesome-shiny-extensions), colección de paquetes que extienden Shiny
@@ -70,15 +73,16 @@ _Sitios con contenido educacional para que aprendas R._
 ----
 
 
-## Conectar
+## <i class='fas fa-people-arrows'></i> Conectar
 _Conoce a otras personas que usan R o únete a una comunidad de usuarios/as!_
 
-### Comunidades de R
+### <i class='fas fa-people-group'></i> Comunidades de R
 
 #### Comunidades de R en Chile 🇨🇱
+- [Grupo de Usuarias y Usuarios de R de Santiago de Chile](https://santiagorusers.github.io/) ⭐️ **nuevo grupo** para compartir con otras personas que usan R!
 - [RLadies Santiago](https://www.meetup.com/rladies-scl/), grupo por la diversidad de género en la comunidad R
 - [RLadies Chile](https://linktr.ee/rladieschile) 
-
+- [RLadies Temuco](https://www.meetup.com/es-es/rladies-temuco/)
 
 #### Comunidades de R en Latinoamérica o hipanohablantes
 - [Latin R](https://latinr.org), Conferencia Latinoamericana de R para investigación y desarrollo
@@ -89,30 +93,29 @@ _Conoce a otras personas que usan R o únete a una comunidad de usuarios/as!_
 
 #### Otras comunidades de R
 - [rainbowR](https://rainbowr.org) 🏳️‍🌈 comunidad de usuarixs de R enfocada en diversidad y disidencias sexo-genéricas y activismo de datos
+- [Data Science Learning Community](https://dslc.io)
 
-### Usuarios de R
-- [Julia Silge](https://juliasilge.com) (análisis de texto, machine learning)
-- [Yanina Bellini Saibene](https://yabellini.netlify.app) 🇦🇷 (organizadora, traductora)
-- [Josiah Parry](https://josiahparry.com) (geoespacial, Rust)
-- [Danielle Navarro](https://blog.djnavarro.net) (data scientist, arte generativo)
-- [Nicola Rennie](https://nrennie.rbind.io) (visualización de datos, salud)
-- [Deepali Kank](https://deepalikank.in) (visualización de datos)
-- [Yan Holtz](https://blog.yan-holtz.com) (visualización de datos)
-- [Georgios Karamanis](https://karaman.is) (visualización de datos y mapas)
-- [Kyle Walker](https://walker-data.com) (desarrollador del paquete [mapGL](https://github.com/walkerke/mapgl) para mapas interactivos)
-- [Dominic Royé](https://dominicroye.github.io) (mapas y datos geoespaciales)
-- [Albert Rapp](https://albert-rapp.de/blog) (tips y tutoriales)
-- [Mauricio "Pacha" Vargas](https://pacha.dev/blog/) 🇨🇱 (estadística, econometría)
-- [Rosana Ferrero](https://x.com/RosanaFerrero) 🇪🇸 (comparte mucho contenido sobre estadísticas y R)
-- [Lesly Flores](https://x.com/lesssflo) 🇲🇽 (comparte contenido de estadísticas en R)
-- [Riva Quiroga](https://rivaquiroga.cl/ahora/) 🇨🇱 (humanidades computacionales, lingüística)
-- [Bruno Rodrigues](https://www.brodrigues.co) (reproducibilidad)
-- [Luis D. Verde Arregoitia](https://luisdva.github.io) 🇲🇽 (biólogo)
-- [Joachim Schork](https://statisticsglobe.com)
+### <i class='fas fa-person-dress'></i> Usuari@s de R
+- [Julia Silge](https://juliasilge.com), análisis de texto, machine learning
+- [Yanina Bellini Saibene](https://yabellini.netlify.app) 🇦🇷, organizadora, traductora
+- [Josiah Parry](https://josiahparry.com), geoespacial, Rust
+- [Danielle Navarro](https://blog.djnavarro.net), data scientist, arte generativo
+- [Nicola Rennie](https://nrennie.rbind.io), visualización de datos, salud
+- [Joachim Schork](https://statisticsglobe.com), estadísticas con R
+- [Luis D. Verde Arregoitia](https://luisdva.github.io) 🇲🇽 biólogo, inteligencia artificial
+- [Rosana Ferrero](https://x.com/RosanaFerrero) 🇪🇸 comparte mucho contenido sobre estadísticas y R
+- [Lesly Flores](https://x.com/lesssflo) 🇲🇽 comparte contenido de estadísticas en R
+- [Kyle Walker](https://walker-data.com), desarrollador del paquete [mapGL](https://github.com/walkerke/mapgl) para mapas interactivos
+- [Dominic Royé](https://dominicroye.github.io) 🇪🇸 mapas, datos geoespaciales, clima
+- [Albert Rapp](https://albert-rapp.de/blog), tips y tutoriales
+- [Deepali Kank](https://deepalikank.in), visualización de datos
+- [Yan Holtz](https://blog.yan-holtz.com), visualización de datos
+- [Georgios Karamanis](https://karaman.is), visualización de datos y mapas
+- [Mauricio "Pacha" Vargas](https://pacha.dev/blog/) 🇨🇱 estadística, econometría
+- [Riva Quiroga](https://rivaquiroga.cl/ahora/) 🇨🇱 humanidades computacionales, lingüística
+- [Bruno Rodrigues](https://www.brodrigues.co), reproducibilidad
 - [Kennedy Mwavu](https://x.com/kennedymwavu)
 - [Rony Rodríguez-Ramírez](https://rrmaximiliano.github.io) 🇳🇮
-
-
 
 #### Blogs sobre R
 - [R-Bloggers](https://www.r-bloggers.com/), blog que reúne cientos de posts desde blogs de usuarios y desarrolladores de R
@@ -134,7 +137,7 @@ _Conoce a otras personas que usan R o únete a una comunidad de usuarios/as!_
 ----
 
 
-## Datos
+## <i class='fas fa-database'></i> Datos
 _Sitios donde puedes encontrar datos que puedes usar para explorar o aprender._
 
 ### Iniciativas sobre datos en Latinoamérica
@@ -169,7 +172,7 @@ _Sitios donde puedes encontrar datos que puedes usar para explorar o aprender._
 ----
 
 
-## Otros recursos
+## <i class='fas fa-link'></i> Otros recursos
 
 #### Imágenes de código
 Crear capturas de código en imágenes para compartir
