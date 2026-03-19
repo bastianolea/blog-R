@@ -7,8 +7,8 @@ show_social_links: true
 
 link_list_label: "Enlaces"
 link_list:
-- name: Sitio web académico
-  url: https://bastian.olea.biz
+- name: Sitio web personal
+  url: https://bastimapache.cl
 - name: Clases
   url: /clases/
 - name: Escríbeme

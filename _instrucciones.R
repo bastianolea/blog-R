@@ -12,10 +12,10 @@ abrir_post_reciente()
 
 
 # crear un post normal
-blogdown::new_post(title = "Primera reunión: grupo de usuari@s de R, Santiago de Chile", 
+blogdown::new_post(title = "Nuevo sitio web personal", 
                    file = paste0("blog/", lubridate::today(), "/index.md"),
                    author = "Bastián Olea Herrera",
-                   tags = c("blog", "Chile")
+                   tags = c("blog")
 )
 
 # crear un post tutorial

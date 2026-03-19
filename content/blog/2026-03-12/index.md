@@ -23,6 +23,8 @@ links:
 excerpt: "La próxima semana tendremos la primera reunión del grupo de usuari@s de R de Santiago, Chile. La idea es crear un espacio de aprendizaje y apoyo entre personas que usan R en el país, para compartir lo que hacemos, aprender de lo que hacen otras personas, y apoyarnos en conjunto."
 ---
 
+{{< info "La reunión ya fue, y salió super bien! [Revisa lo que hicimos en esta publicación](https://santiagorusers.github.io/posts/2026-03-18/) del sitio del grupo de usuarios." >}}
+
 Hace tiempo que estamos coordinando un espacio de colaboración entre **usuari@s de R en Chile**, y pronto verá la luz!
 
 La próxima semana tendremos la **primera reunión del grupo de usuari@s de R de Santiago, Chile.** La idea es crear un espacio de **aprendizaje y apoyo** entre personas que usan R en el país, para **compartir lo que hacemos**, aprender de lo que hacen otras personas, y apoyarnos en conjunto.
