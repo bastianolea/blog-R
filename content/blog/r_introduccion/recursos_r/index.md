@@ -116,6 +116,7 @@ _Conoce a otras personas que usan R o únete a una comunidad de usuarios/as!_
 - [Bruno Rodrigues](https://www.brodrigues.co), reproducibilidad
 - [Kennedy Mwavu](https://x.com/kennedymwavu)
 - [Rony Rodríguez-Ramírez](https://rrmaximiliano.github.io) 🇳🇮
+- [Alejandro Romero González](https://alejandroromerog.github.io) 🇲🇽
 
 #### Blogs sobre R
 - [R-Bloggers](https://www.r-bloggers.com/), blog que reúne cientos de posts desde blogs de usuarios y desarrolladores de R
