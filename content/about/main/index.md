@@ -24,7 +24,7 @@ intro: |
   {{< imagen "bastian_olea_1.jpg" >}}
 
 
-show_outro: false
+show_outro: true
 outro: |
   <div>
     <div style="display: flex;

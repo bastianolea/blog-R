@@ -19,10 +19,10 @@ blogdown::new_post(title = "Nuevo sitio web personal",
 )
 
 # crear un post tutorial
-blogdown::new_post(title = "Extracción de datos estructurados desde texto usando IA", 
-                   file = "blog/datos_estructurados_llm/index.qmd",
+blogdown::new_post(title = "Carcgar y explorar datos del Censo 2024 con R", 
+                   file = "blog/datos_censo_2024/index.qmd",
                    author = "Bastián Olea Herrera",
-                   tags = c("inteligencia artificial", "texto", "datos"),
+                   tags = c("chile", "datos", "dplyr"),
                    categories = c("Tutoriales") 
 )
 
