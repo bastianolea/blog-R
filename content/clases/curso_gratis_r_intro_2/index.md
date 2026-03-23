@@ -9,11 +9,10 @@ excerpt: "Segundo curso gratuito de introducción a R enfocados en ciencias soci
 layout: single
 location: Online
 links:
-- icon: file-pen
+- icon: video
   icon_pack: fas
-  name: inscripciones abiertas
-  # url: https://bastianolea.rbind.io
-  url: https://bastianoleah.shinyapps.io/inscripcion_curso_gratis_r_intro_2/
+  name: streaming
+  url: https://www.youtube.com/live/zQdTn8O82zo?si=I4bqKansqueLiFRA
 # - icon: video
 #   icon_pack: fas
 #   name: grabaciones
@@ -34,6 +33,8 @@ links:
 {{< imagen "curso_r_featured.png" >}}
 
 <!-- {{< aviso "Muchas gracias a todas las personas que participaron 🤍 Fue un placer poder enseñarles lo básico de estas herramientas a un curso mayoritariamente conformado por mujeres y personas LBGTIQ. Las [grabaciones](#grabaciones) y las [diapositivas](#diapositivas) están disponibles en este post!" >}} -->
+
+{{< aviso "Las inscripciones se encuentran cerradas, y se envió acceso a 150 personas por correo, pero podrás ver el curso por [streaming](#streaming)" >}}
 
 ## Sobre el curso
 
@@ -64,7 +65,7 @@ El curso va dirigido a **profesionales o estudiantes de las ciencias sociales** 
 Los **cupos** son limitados, y se aplicarán **criterios de inclusión** para la participación de grupos minoritarios (mujeres, disidencias de sexo y género, personas con discapacidad). 
 
 <!-- A diferencia del primer curso, **sólo podrán participar personas de Chile**[^1]. -->
-De todas maneras, cualquier persona podrá ver el **streaming en vivo** de las clases, que se transmitirá por Youtube.
+De todas maneras, [cualquier persona podrá ver el **streaming en vivo** de las clases](#streaming), que [se transmitirá por Youtube](https://www.youtube.com/live/zQdTn8O82zo?si=I4bqKansqueLiFRA).
 
 <!--[^1]: Lamento tener que cerrar la posibilidad, pero el esfuerzo de impartir cursos gratuitos es alto, y necesito generar conexiones laborales y de colaboración centradas en mi territorio. -->
 
@@ -79,8 +80,12 @@ Las clases serán **online** los días 25 y 30 de marzo, y 1 de abril a las 7:30
 
 Su experiencia consiste principalmente en [visualización de datos](/tags/gráficos/) y desarrollo de [aplicaciones interactivas](/shiny_apps/) con R. También se dedica a escribir [tutoriales](/categories/tutoriales/) para ayudar a otr@s a [aprender R](https://bastianolea.github.io/aprende_r/).
 
+
+
 ## Inscripciones
 
+¡Las inscripciones se encuentran cerradas! Se enviaron correos a **150 personas** con cupos para participar en el curso. Pero **cualquier persona podrá [ver el curso en vivo](#streaming)** y acceder a los [materiales](#materiales).
+<!--
 Para inscribirte, rellena el siguiente formulario[^2] y te contactaré en caso de que hayas obtenido un cupo. 
 
 [^2]: Los datos no se usarán para ningún otro fin fuera de otorgar los cupos según características sociodemográficas, y el correo se usará solamente para fines de contacto.
@@ -88,6 +93,21 @@ Para inscribirte, rellena el siguiente formulario[^2] y te contactaré en caso d
 {{< boton "Inscripciones abiertas" "https://bastianoleah.shinyapps.io/inscripcion_curso_gratis_r_intro_2/" "fas fa-file-pen" >}}
 
 {{< info "Se recomienda **experiencia mínima** con R, pero si no tienes experiencia igual podrás aprender! Revisa los [contenidos del primer curso gratuito de R](/blog/curso_gratis_r_intro_1/) que organicé para tener una base de conocimientos básicos." >}}
+-->
+
+## Streaming
+
+Puedes ver las clases **en vivo** y **en tiempo real** por Youtube:
+
+{{< boton "Streaming en vivo" "https://www.youtube.com/live/zQdTn8O82zo?si=I4bqKansqueLiFRA" "fab fa-youtube" >}}
+
+<iframe width="100%" height="480" 
+src="https://www.youtube.com/embed/zQdTn8O82zo?si=I4bqKansqueLiFRA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+## Materiales
+
+Pronto subiré las diapositivas y el código del curso!
 
 <!--
 {{< boton "Inscripciones cerradas" "https://bastianolea.rbind.io" "fas fa-file-pen" >}}
