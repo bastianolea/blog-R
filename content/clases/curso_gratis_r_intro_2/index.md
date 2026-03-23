@@ -17,14 +17,14 @@ links:
 #   icon_pack: fas
 #   name: grabaciones
 #   url: https://www.youtube.com/@bastianolea/streams
-# - icon: chalkboard-user
-#   icon_pack: fas
-#   name: diapositivas
-#   url: https://bastianolea.github.io/curso_intro_R_gratis
-# - icon: file-code
-#   icon_pack: fas
-#   name: código
-#   url: https://github.com/bastianolea/curso_intro_R_gratis
+- icon: chalkboard-user
+  icon_pack: fas
+  name: diapositivas
+  url: https://bastianolea.github.io/curso_intro_R_gratis_v2
+- icon: file-code
+  icon_pack: fas
+  name: código
+  url: https://github.com/bastianolea/curso_intro_R_gratis_v2
 
 ---
 

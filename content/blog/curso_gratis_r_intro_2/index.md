@@ -19,14 +19,14 @@ links:
   icon_pack: fas
   name: streaming
   url: https://www.youtube.com/live/zQdTn8O82zo?si=I4bqKansqueLiFRA
-# - icon: chalkboard-user
-#   icon_pack: fas
-#   name: diapositivas
-#   url: https://bastianolea.github.io/curso_intro_R_gratis
-# - icon: file-code
-#   icon_pack: fas
-#   name: código
-#   url: https://github.com/bastianolea/curso_intro_R_gratis
+- icon: chalkboard-user
+  icon_pack: fas
+  name: diapositivas
+  url: https://bastianolea.github.io/curso_intro_R_gratis_v2
+- icon: file-code
+  icon_pack: fas
+  name: código
+  url: https://github.com/bastianolea/curso_intro_R_gratis_v2
 
 ---
 
