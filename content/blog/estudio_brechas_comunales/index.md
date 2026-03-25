@@ -85,10 +85,13 @@ Todas las **visualizaciones de datos** del [informe de resultados del Estudio](h
 
 ### Reportes
 
-Al producir los resultados del estudio, resultaba crucial poder disponibilizar reportes breves de **resultados para cada comuna del país**. Este trabajo se optimizó generando los reportes con Quarto y R, lo que permitió diseñar un sólo reporte y programar la presentación de sus resultados, para luego **replicar automáticamente 345 reportes** sin tener que hacerlos a mano.
+Al producir los resultados del estudio, resultaba crucial poder disponibilizar reportes breves de **resultados para cada comuna del país**. En proyectos anteriores, reportes comunales de este tipo eran _hechos a mano;_ es decir, 345 reportes individuales. Este trabajo se optimizó [generando los reportes con **Quarto y R**,](https://bastianolea.rbind.io/blog/quarto_reportes/) lo que permitió diseñar un sólo reporte y programar la disposición de los resultados de una comuna tipo dentro del reporte, para luego **replicar automáticamente 345 reportes** sin tener que hacerlos a mano.
+
 
 {{< imagen_alto "reporte_ebc_subdere.jpg" "340px" >}}
 {{< bajada "Reporte comunal descargable" >}}
+
+El [documento Quarto parametrizado](https://bastianolea.rbind.io/blog/quarto_params/) `reportes/reporte_comuna.qmd` genera un reporte para la comuna deseada en formato HTML. El script `reportes/generar_reporte_comuna.R` usa el mismo reporte dentro de un loop para generar 345 reportes individuales sin intervención alguna. Luego, el script `reportes/convertir_reportes_pdf.R` toma los resultados y los convierte en PDF, y finalmente `reportes/combinar_reportes_pdf.R` combina los archivos PDF en uno solo, incluyendo agregarle la portada diseñada por el equipo de Comunicaciones. Naturalmente, todo esto se ejecuta desde un sólo script que ejecuta el resto de los scripts: `reportes/reportes.R`, de modo que si se requiere aplicar una modificación al diseño de los reportes, se aplica en el documento Quarto y se ejecuta `reportes.R` para obtener en segundos el cambio aplicado a los más de 300 reportes.
 
 {{< aviso "Pronto liberaremos el **código** del procesamiento de datos y de desarrollo de la plataforma!" >}}
 
