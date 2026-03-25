@@ -39,7 +39,7 @@ https://indrajeetpatil.github.io/ggstatsplot/index.html
 
 
 ## Escalas y leyendas
-https://github.com/eliocamp/ggnewscale/
+https://eliocamp.github.io/ggnewscale/
 
 https://teunbrand.github.io/teunbrand_blog/posts/2024-11-01-legendry-0-1-0/
 

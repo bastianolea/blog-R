@@ -40,6 +40,7 @@ blogdown::new_post(title = "Extensiones recomendadas para mejorar tus gráficos 
 
 
 ## borradores ----
+# tutorial mapas: poner puntos a partir de tablas de datos en centroides
 "content/blog/ggplot_extensiones/index.qmd"
 "content/blog/ggplot_numeros/index.qmd"
 "content/blog/ggplot_ordenar/index.qmd" #unir estos dos en ggplot_ajustes o algo así
