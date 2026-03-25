@@ -19,8 +19,8 @@ blogdown::new_post(title = "Nuevo sitio web personal",
 )
 
 # crear un post tutorial
-blogdown::new_post(title = "Cómo dar formato a los números de ejes de los gráficos `{ggplot2}`", 
-                   file = "blog/ggplot_formato_numeros/index.qmd",
+blogdown::new_post(title = "Extensiones recomendadas para mejorar tus gráficos de `{ggplot2}`", 
+                   file = "blog/ggplot_extensiones/index.qmd",
                    author = "Bastián Olea Herrera",
                    tags = c("visualización de datos", "ggplot2"),
                    # categories = c("Tutoriales", "Aplicaciones") 
@@ -40,8 +40,9 @@ blogdown::new_post(title = "Cómo dar formato a los números de ejes de los grá
 
 
 ## borradores ----
+"content/blog/ggplot_extensiones/index.qmd"
 "content/blog/ggplot_numeros/index.qmd"
-"content/blog/ggplot_ordenar/index.qmd"
+"content/blog/ggplot_ordenar/index.qmd" #unir estos dos en ggplot_ajustes o algo así
 "content/blog/ggplot_variacion/index.qmd"
 "content/blog/ggplot_sankey/index.qmd"
 
