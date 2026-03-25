@@ -1167,6 +1167,8 @@ grafico_delincuencia_2
 
 También podemos cambiar el tema de todos los gráficos que hagamos en la sesión (hasta que reiniciemos R o cambiemos el tema) ejecutando la función `theme_set()` con el tema (como `theme_minimal()` o `theme()` que queramos aplicar dentro.
 
+{{< info "Para saber más sobre aplicar **temas de colores** a tus gráficos, [revisa este tutorial](/blog/ggplot_temas/)" >}}
+
 ## Tipografías
 
 Existen muchos métodos distintos para usar tipografías personalizadas en nuestros gráficos de `{ggplot2}`. Debido a que obtener, instalar y activar tipografías suele ser algo complejo, una solución sencilla y compatible es utilizar tipografía web, como las ofrecidas por [Google Fonts.](https://fonts.google.com) puedes navegar a ese sitio y encontrar una tipografía que te interese, y descargarla por medio del paquete `{showtext}`:
@@ -1195,6 +1197,8 @@ grafico_delincuencia_2 +
 <img src="tutorial_ggplot.markdown_strict_files/figure-markdown_strict/unnamed-chunk-65-1.png" width="768" />
 
 Vale mencionar que el tipo grafías descargadas por este método solamente estarán disponibles durante la sesión de R, por lo que la próxima vez que quieras usarlas deberán ser descargadas de la misma manera. Si tienes algún problema con esas tipografías, basta con reiniciar la sesión de R para dejar de utilizarlas.
+
+{{< info "Para más información sobre **tipografías personalizadas** en tus gráficos, [revisa este tutorial](/blog/ggplot_tipografias/)" >}}
 
 ## Guardar gráficos
 

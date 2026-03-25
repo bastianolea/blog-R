@@ -1,0 +1,15 @@
+---
+title: Cómo ordenar las barras de tus gráficos `{ggplot2}`
+author: Bastián Olea Herrera
+date: '2026-03-25'
+slug: []
+categories: []
+draft: true
+tags:
+  - visualización de datos
+  - ggplot2
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+---

@@ -19,11 +19,11 @@ blogdown::new_post(title = "Nuevo sitio web personal",
 )
 
 # crear un post tutorial
-blogdown::new_post(title = "Plataforma: Estudio de Brechas Comunales", 
-                   file = "blog/estudio_brechas_comunales/index.md",
+blogdown::new_post(title = "Cómo dar formato a los números de ejes de los gráficos `{ggplot2}`", 
+                   file = "blog/ggplot_formato_numeros/index.qmd",
                    author = "Bastián Olea Herrera",
-                   tags = c("chile", "datos", "apps", "blog", "Quarto", "shiny"),
-                   categories = c("Tutoriales", "Aplicaciones") 
+                   tags = c("visualización de datos", "ggplot2"),
+                   # categories = c("Tutoriales", "Aplicaciones") 
 )
 
 # draft: true
@@ -40,8 +40,11 @@ blogdown::new_post(title = "Plataforma: Estudio de Brechas Comunales",
 
 
 ## borradores ----
+"content/blog/ggplot_numeros/index.qmd"
+"content/blog/ggplot_ordenar/index.qmd"
 "content/blog/ggplot_variacion/index.qmd"
 "content/blog/ggplot_sankey/index.qmd"
+
 "content/blog/googledrive/index.qmd"
 
 # ideas ----
