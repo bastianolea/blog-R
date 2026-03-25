@@ -19,11 +19,11 @@ blogdown::new_post(title = "Nuevo sitio web personal",
 )
 
 # crear un post tutorial
-blogdown::new_post(title = "Carcgar y explorar datos del Censo 2024 con R", 
-                   file = "blog/datos_censo_2024/index.qmd",
+blogdown::new_post(title = "Plataforma: Estudio de Brechas Comunales", 
+                   file = "blog/estudio_brechas_comunales/index.md",
                    author = "Bastián Olea Herrera",
-                   tags = c("chile", "datos", "dplyr"),
-                   categories = c("Tutoriales") 
+                   tags = c("chile", "datos", "apps", "blog", "Quarto", "shiny"),
+                   categories = c("Tutoriales", "Aplicaciones") 
 )
 
 # draft: true
