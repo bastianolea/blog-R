@@ -1,0 +1,57 @@
+---
+title: Gráficos con texto enriquecido en `{ggplot2}`
+author: Bastián Olea Herrera
+date: '2026-03-26'
+slug: []
+draft: true
+categories: []
+tags:
+  - visualización de datos
+  - ggplot2
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+---
+
+
+https://wilkelab.org/ggtext/articles/plotting_text.html
+
+``` r
+datos |> 
+  group_by(categoria_ide) |> 
+  summarize(valor = sum(total_transferido),
+            n = n()) |> 
+  mutate(categoria_ide = fct_reorder(categoria_ide, valor)) |>
+  # pivot_longer(cols = where(is.numeric), names_to = "tipo", values_to = "valor") |>
+  # mutate(valor = case_when(tipo == "monto" ~ valor / 1e6,
+  # TRUE ~ valor)) |>
+  # mutate(tipo = "monto") |> 
+  mutate(etiqueta_valor = dollar_format(scale = 1e-6, suffix = "M", big.mark = ".", decimal.mark = ",")(valor),
+         etiqueta_n = number_format(big.mark = ".", decimal.mark = ",")(n),
+         etiqueta = glue('<b>{etiqueta_valor}</b>
+                          <br>
+                          {etiqueta_n} proyectos')) |>
+   ggplot() +
+    aes(x = valor, y = categoria_ide) +
+    geom_col(width = 0.7, 
+             position = position_dodge()) +
+    geom_richtext(
+      aes(label = etiqueta),
+      fill = color$fondo, color = color$texto, label.size = 0, 
+      family = "Manrope", vjust = 0.55, hjust = -0.04, size = 3) +
+    scale_x_continuous(labels = dollar_format(scale = 1e-6, suffix = "M", big.mark = ".", decimal.mark = ","), #scales::number_format(big.mark = ".", decimal.mark = ","),
+                       expand = expansion(c(0, 0.4))) +
+    scale_y_discrete(labels = ~stringr::str_wrap(.x, 30)) +
+    # scale_fill_manual(values = c("Monto transferido" = color$principal, 
+    # "Número de proyectos" = color$secundario)) +
+    coord_cartesian(clip = "off") +
+    # facet_wrap(~tipo, scales = "free_x") +
+    guides(fill = guide_none()) +
+    labs(y = "Categoría de proyectos", x = NULL) +
+    theme(#axis.text.x = element_text(angle = 45, hjust = 1),
+      axis.text.y = element_text(margin = margin(r = 6))) +
+    theme(axis.ticks.y = element_blank(),
+          panel.grid.major.x = element_line(color = color$detalle, linewidth = 0.5),
+          panel.grid.minor.x = element_line(color = color$detalle, linewidth = 0.25))
+```

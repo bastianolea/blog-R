@@ -40,6 +40,9 @@ El instrumento además se caracteriza por presentar brechas de género que afect
 
 La lógica de presentación de los resultados va desde una exploración desde lo general a lo particular: las y los usuarios empiezan eligiendo el aspecto más general del estudio, la **dimensión**, para luego elegir un **indicador** de la dimensión elegida y recibir resultados generales, con la posibilidad de continuar bajando por la plataforma para indagar en resultados **regionales** y finalmente **comunales.** De este modo, la plataforma entrega un análisis de brechas de género en múltiples niveles de detalle.
 
+{{< imagen_tamaño "ibg_diagrama.png" "400px" >}}
+{{< bajada "Diagrama de desarrollo del proyecto IBG" >}}
+
 
 ## Desarrollo del estudio
 
@@ -64,3 +67,5 @@ La base de datos resultante está diseñada para contener toda la metadata neces
 El estudio se centra en su presentación por medio de la plataforma interactiva, siendo su [informe de resultados](https://proactiva.subdere.gov.cl/handle/123456789/677) un complemento de la plataforma y no el producto central.
 
 La plataforma fue desarrollada en R y Shiny, y presenta una serie de visualizaciones interactivas que permiten explorar los resultados del estudio. 
+
+{{< aviso "Pronto liberaremos el **código** del procesamiento de datos y de desarrollo de la plataforma!" >}}

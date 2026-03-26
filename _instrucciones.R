@@ -19,8 +19,8 @@ blogdown::new_post(title = "Galería de libros de _Goodreads_ con R y Quarto",
 )
 
 # crear un post tutorial
-blogdown::new_post(title = "Extensiones recomendadas para mejorar tus gráficos de `{ggplot2}`", 
-                   file = "blog/ggplot_extensiones/index.qmd",
+blogdown::new_post(title = "Gráficos con texto enriquecido en `{ggplot2}`", 
+                   file = "blog/ggtext/index.qmd",
                    author = "Bastián Olea Herrera",
                    tags = c("visualización de datos", "ggplot2"),
                    # categories = c("Tutoriales", "Aplicaciones") 
@@ -41,6 +41,7 @@ blogdown::new_post(title = "Extensiones recomendadas para mejorar tus gráficos 
 
 ## borradores ----
 # tutorial mapas: poner puntos a partir de tablas de datos en centroides
+"content/blog/ggtext/index.qmd"
 "content/blog/ggplot_extensiones/index.qmd"
 "content/blog/ggplot_numeros/index.qmd"
 "content/blog/ggplot_ordenar/index.qmd" #unir estos dos en ggplot_ajustes o algo así
