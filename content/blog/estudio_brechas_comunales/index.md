@@ -5,7 +5,6 @@ author: Bastián Olea Herrera
 date: '2026-03-24'
 slug: []
 categories:
-  - Tutoriales
   - Aplicaciones
 tags:
   - chile
