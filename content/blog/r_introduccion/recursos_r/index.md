@@ -41,6 +41,7 @@ _Sitios con contenido educacional para que aprendas R._
 - [Tutorial de visualización de datos con `{ggplot2}`](/blog/r_introduccion/tutorial_visualizacion_ggplot/)
 - [A ggplot2 Tutorial for Beautiful Plotting in R](https://cedricscherer.netlify.app/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/), tutorial recomendado de `{ggplot2}` (en inglés)
 - [Galería de extensiones de `{ggplot2}`](https://exts.ggplot2.tidyverse.org/gallery/)
+- [Data Folks: Galería de profesionales de la visualización de datos](https://juanchiparra.github.io/data-folks/), para encontrar inspiración y referentes
 
 ### <i class='fas fa-sitemap'></i> Desarrollo de apps en R
 - [Shiny Assistant](https://shiny.posit.co/blog/posts/shiny-assistant/), asistente de inteligencia artificial para desarrollar, corregir y revisar aplicaciones Shiny

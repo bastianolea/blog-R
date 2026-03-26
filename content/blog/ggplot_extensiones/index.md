@@ -1,0 +1,54 @@
+---
+title: Extensiones recomendadas para mejorar tus gráficos de `{ggplot2}`
+author: Bastián Olea Herrera
+date: '2026-03-25'
+slug: []
+draft: true
+categories: []
+tags:
+  - visualización de datos
+  - ggplot2
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+---
+
+
+https://jbengler.github.io/tidyplots/
+
+https://thebioengineer.github.io/camcorder/
+
+https://github.com/idmn/ggview
+
+https://ggfx.data-imaginist.com
+
+## Geometrías
+
+https://jurjoroa.github.io/ggpop/
+
+https://github.com/R-CoderDotCom/calendR
+
+https://yonicd.github.io/ggalt/articles/splines.html
+
+https://r-graph-gallery.com/web-bump-plot-with-highlights.html
+
+https://chop-cgtinformatics.github.io/ggswim/
+
+https://indrajeetpatil.github.io/ggstatsplot/index.html
+
+## Escalas y leyendas
+
+https://eliocamp.github.io/ggnewscale/
+
+https://teunbrand.github.io/teunbrand_blog/posts/2024-11-01-legendry-0-1-0/
+
+## Paletas de colores
+
+https://nanx.me/ggsci/
+
+https://github.com/thomasp85/scico
+
+## Mapas
+
+https://dieghernan.github.io/tidyterra/
