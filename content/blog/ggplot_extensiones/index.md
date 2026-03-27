@@ -18,7 +18,7 @@ excerpt: "Existen muchas extensiones para `{ggplot2}` desarrolladas por la comun
 
 {{< aviso "Publicación en construcción! A medida que encuentre (y recuerde) más extensiones las iré listando aquí." >}}
 
-{{< imagen_lateral "ggplot2_extensiones_featured.png" "300px" >}}
+{{< imagen_lateral "ggplot2_extensiones_featured.png" "260px" >}}
 
 Una de las ventajas de usar `{ggplot2}` para visualización de datos en R es su **flexibilidad** y capacidad de **personalización**. Existen [muchas extensiones desarrolladas por la comunidad](https://exts.ggplot2.tidyverse.org) para agregar nuevas funcionalidades, formas de visualizar datos, mejoras, paletas de colores y más.
 
@@ -56,12 +56,6 @@ Paquete que simplifica la creación de gráficos atractivos y simples de hacer e
   "Al activarlo, empieza a _grabar_ todos los pasos de las visualizaciones que hagas, de manera que al terminar la visualización puedes obtener una animación del proceso de su desarrollo. Muy entretenido para poder compartir videos de cómo hiciste un gráfico! [Tutorial de uso aquí.](/blog/camcorder/)" >}}
 
 {{< extension 
-  "ggview" 
-  "https://github.com/idmn/ggview" 
-  "https://raw.githubusercontent.com/idmn/ggview/refs/heads/master/man/figures/logo.svg" 
-  "Permite poner la función `canvas()` al final de tus gráficos para delimitar el tamaño de los mismos, y que así el tamaño de la previsualización del gráfico no dependa de tu ventana. Sirve mucho para desarrollar las visualizaciones considerando el tamaño específico con el que vas a guardarlas. [Tutorial de uso aquí.](/blog/ggview/)" >}}
-
-{{< extension 
   "patchwork"
   "https://patchwork.data-imaginist.com/"
   "https://patchwork.data-imaginist.com/logo.svg"
@@ -84,26 +78,68 @@ Paquete que simplifica la creación de gráficos atractivos y simples de hacer e
 - https://nrennie.rbind.io/blog/introducing-ggauto/
 -->
 
-## Geometrías nuevas o mejoradas
-
+## Geometrías
 
 {{< extension 
   "ggrepel"
   "https://ggrepel.slowkow.com"
   "https://github.com/slowkow/ggrepel/raw/master/man/figures/logo.svg"
   "Este paquete agrega geometrías como `geom_text_repel()` que permiten que las etiquetas de texto en tus visualizaciones no se sobrepongan, haciendo que se muevan para mantenerlas visibles. Muy útil para gráficos de dispersión con demasiados textos." >}}
+
+{{< extension
+  "corrr"
+  "https://corrr.tidymodels.org"
+  "https://corrr.tidymodels.org/logo.png"
+  "Agrega la función `ggcor()` para crear gráficos de correlaciones, que muestran las relaciones entre variables en una de matriz de colores. [Tutorial de uso aquí.](/blog/correlaciones/)" >}}
+
+{{< extension
+  "ggwordcloud"
+  "https://lepennec.github.io/ggwordcloud/"
+  "https://lepennec.github.io/ggwordcloud/reference/figures/logo.png"
+  "Agrega la geometría `geom_text_wordcloud()` para crear nubes de palabras, que muestran las palabras más frecuentes en un texto, con tamaños y colores que representan su frecuencia. [Tutorial de uso aquí.](https://bastianolea.rbind.io/blog/nubes_de_palabras/#nube-de-palabras-con-ggplot2-y-ggwordcloud)" >}}
   
+{{< extension 
+  "geomtextpath"
+  "https://allancameron.github.io/geomtextpath/"
+  "https://allancameron.github.io/geomtextpath/logo.png"
+  "Agrega geometrías como `geom_textpath()` que permiten colocar texto que siga una cirva o cualquier tipo de línea." >}}
+
+{{< extension 
+  "ggbump"
+  "https://github.com/davidsjoberg/ggbump"
+  "https://github.com/davidsjoberg/ggbump/raw/master/man/figures/logo.png"
+  "Agrega la geometría `geom_bump()` para crear gráficos de ranking o cambio de posiciones." >}}
+
+{{< extension 
+  "ggbeeswarm"
+  "https://github.com/eclarke/ggbeeswarm"
+  "/ggplot2_empty_hex.png"
+  "Agrega la geometría `geom_beeswarm()` para crear gráficos de enjambre, que muestran distribuciones de datos (como gráficos de densidad o violín) pero por medio de puntos que representan las observaciones." >}}
+
+
 {{< extension 
   "ggtext"
   "https://github.com/wilkelab/ggtext/"
   "/ggplot2_empty_hex.png"
   "Este paquete agrega geometrías como `geom_richtext()` que permiten darle estilo personalizado a los textos de tus gráficos: agregar colores, negritas, itálicas, personalizar tamaños y espaciados, y más usando `HTML`." >}}
 
+{{< extension   
+  "ggridges"
+  "https://wilkelab.org/ggridges/"
+  "/ggplot2_empty_hex.png"
+  "Agrega la geometría `geom_density_ridges()` para crear gráficos de densidad apilados, que tienen la apariencia de cordilleras, y permiten mostrar distribuciones de datos desagregados por categorías." >}}
+
 {{< extension
   "ggstream"
   "https://github.com/davidsjoberg/ggstream"
   "/ggplot2_empty_hex.png"
   "Agrega la geometría `geom_stream()` para crear gráficos de flujo o de corrientes, que muestran cómo cambian las proporciones de distintas categorías a lo largo del tiempo u otra variable. [Ejemplo de uso.](/blog/2025-07-28/)" >}}
+  
+{{< extension
+  "ggalluvial"
+  "https://corybrunson.github.io/ggalluvial/"
+  "/ggplot2_empty_hex.png"
+  "Gráficos de flujos o aluviales, que muestran cómo cambian las proporciones de distintas categorías a lo largo del tiempo u otra variable. [Ejemplo de uso.](/blog/2025-07-28/)" >}}
 
   <!--
 **Otras:**
@@ -128,14 +164,45 @@ Paquete que simplifica la creación de gráficos atractivos y simples de hacer e
   "https://teunbrand.github.io/legendry/logo.png"
   "Expande las posibilidades de las leyendas y escalas de tus gráficos, agregando rangos encima de los ejes, varias guías simultáneas, corchetes que explican aspectos de los ejes, y más." >}}
 
-<!--
-## Paletas de colores
-- https://nanx.me/ggsci/
-- https://github.com/thomasp85/scico
 
+## Paletas de colores
+{{< extension
+  "viridis"
+  "https://github.com/sjmgarnier/viridis"
+  "https://github.com/sjmgarnier/viridis/raw/master/man/figures/logo.png"
+  "Colección de paletas de colores perceptualmente uniformes, accesibles para personas con daltonismo, y que también funcionan en blanco y negro." >}}
+
+{{< extension
+  "ggsci"
+  "https://nanx.me/ggsci/"
+  "https://nanx.me/ggsci/logo.png"
+  "Colección de paletas de colores científicas, inspiradas en revistas académicas y cultura pop" >}}
+
+{{< extension
+  "scico"
+  "https://github.com/thomasp85/scico"
+  "https://github.com/thomasp85/scico/raw/main/man/figures/logo.png"
+  "Paletas de colores científicas caracterizadas por ser perceptualmente uniformes y accesibles para personas con daltonismo." >}}
+
+<!--
 ## Mapas
 - https://dieghernan.github.io/tidyterra/
 -->
+
+## Utilidades
+
+{{< extension 
+  "ggview" 
+  "https://github.com/idmn/ggview" 
+  "https://raw.githubusercontent.com/idmn/ggview/refs/heads/master/man/figures/logo.svg" 
+  "Permite poner la función `canvas()` al final de tus gráficos para delimitar el tamaño de los mismos, y que así el tamaño de la previsualización del gráfico no dependa de tu ventana. Sirve mucho para desarrollar las visualizaciones considerando el tamaño específico con el que vas a guardarlas. [Tutorial de uso aquí.](/blog/ggview/)" >}}
+
+{{< extension 
+  "gghighlight"
+  "https://yutannihilation.github.io/gghighlight/"
+  "/ggplot2_empty_hex.png"
+  "Permite resaltar valores específicos de tus gráficos, como ciertos puntos, líneas o áreas, para llamar la atención a ciertos datos o simplificar visualizaciones complejas." >}}
+
 
 ## Avanzadas
 
@@ -144,6 +211,13 @@ Paquete que simplifica la creación de gráficos atractivos y simples de hacer e
   "https://mjskay.github.io/ggblend/"
   "https://mjskay.github.io/ggblend/logo.svg"
   "Permite mezclar capas de tus gráficos usando distintos modos de mezcla, como multiplicar, superponer, oscurecer, aclarar, y más. Esto te permitirá crear visualizaciones con efectos visuales interesantes y resaltar ciertas partes de tus gráficos." >}}
+  
+{{< extension
+  "gganimate"
+  "https://gganimate.com"
+  "https://gganimate.com/reference/figures/logo.png"
+  "Ofrece la capacidad de crear visualizaciones de datos animadas con `{ggplot2}`, usando variables que especifican cómo cambia el gráfico a través del tiempo." >}}
+
 
 ## Más extensiones
 
