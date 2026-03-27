@@ -198,4 +198,5 @@ Sitios para encontrar combinaciones de colores para tus gráficos o aplicaciones
 - [Palette Visualizer](https://coolors.co/visualizer/cdb4db-ffc8dd-ffafcc-bde0fe-a2d2ff), previsualiza paletas con ejemplos de cómo se verían aplicadas 
 - [Realtime Colors](https://www.realtimecolors.com), simulador de interfaz web con paletas de colores
 - [Color Buddy](https://color-buddy.netlify.app/)
+- [Paletas de colores de Paul Tol](https://sronpersonalpages.nl/~pault/), extensa investigación sobre paletas de colores inclusivas
 

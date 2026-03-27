@@ -1,5 +1,5 @@
 ---
-title: Unir y combinar gráficos {ggplot2} con {patchwork}
+title: Unir y combinar gráficos `{ggplot2}` con `{patchwork}`
 author: Bastián Olea Herrera
 date: '2025-03-08'
 draft: false
@@ -27,14 +27,9 @@ links:
 excerpt: El paquete `{patchwork}` ayuda a unir y combinar múltiples gráficos de {ggplot2}. En esta guía veremos los principios del uso de este paquete, que nos permitirá construir visualizaciones más densas, por medio de la combinación de gráficos en una sola visualización, y la inserción de gráficos dentro de otros.
 ---
 
-
-
 [El paquete `{patchwork}`](https://patchwork.data-imaginist.com/articles/patchwork.html) ayuda a **unir y combinar gráficos** de `{ggplot2}`. En esta guía veremos los principios del uso de este paquete, que nos permitirá construir visualizaciones más complejas
 
-
-
 {{< indice >}}
-
 
 
 ``` r
@@ -63,11 +58,7 @@ library(ggplot2)
 library(patchwork)
 ```
 
-
-
 Primero crearemos dos gráficos de muestra, a partir del dataset `iris`.
-
-
 
 
 ``` r
@@ -82,6 +73,8 @@ grafico_a <- iris |>
   geom_col(fill = "darkslategray3", width = 0.6) +
   theme_void()
 ```
+
+
 
 
 ``` r
@@ -102,12 +95,8 @@ grafico_b <- iris |>
   guides(fill = guide_legend(title = NULL))
 ```
 
-
-
 ### Combinar dos gráficos lado a lado
 Gracias a `{patchwork}`, unir dos gráficos uno al lado del otro es tan sencillo como ”sumarlos”:
-
-
 
 ``` r
 grafico_a + grafico_b
@@ -115,11 +104,7 @@ grafico_a + grafico_b
 
 <img src="/blog/patchwork/patchwork_files/figure-html/plot1-1.png" width="672" />
 
-
-
 Si queremos ajustar las proporciones de los gráficos, agregamos la función `plot_layout()` para especificar las proporciones. Haremos que uno de los gráficos sea el doble de ancho que el otro:
-
-
 
 
 ``` r
@@ -128,13 +113,9 @@ grafico_a + grafico_b + plot_layout(widths = c(1, 2))
 
 <img src="/blog/patchwork/patchwork_files/figure-html/plot2-1.png" width="672" />
 
-
-
 ### Combinar dos gráficos uno arriba del otro
 
 Para combinar dos gráficos en disposición vertical; es decir, uno arriba del otro, bsata con ”dividir” los dos gráficos:
-
-
 
 
 ``` r
@@ -143,12 +124,8 @@ grafico_a / grafico_b
 
 <img src="/blog/patchwork/patchwork_files/figure-html/plot3-1.png" width="672" />
 
-
-
 ### Combinar más de dos gráficos
 Creemos un tercer gráfico de nuestra para probar la combinación de tres gráficos en uno solo:
-
-
 
 
 ``` r
@@ -161,11 +138,7 @@ grafico_c <- iris |>
   guides(fill = guide_legend(title = NULL))
 ```
 
-
-
 Teniendo dos gráficos, podemos disponerlos uno al lado dle otro, y el tercer gráfico debajo de los dos primeros; es decir, sumar `a` + `b` y luego dividirlos por `c`:
-
-
 
 
 ``` r
@@ -174,13 +147,9 @@ Teniendo dos gráficos, podemos disponerlos uno al lado dle otro, y el tercer gr
 ```
 
 <img src="/blog/patchwork/patchwork_files/figure-html/plot5-1.png" width="672" />
-
-
 En este caso agregamos una función `plot_layout()` para combinar las leyendas de dos de los gráficos, dado que las leyendas son iguales y sería redundante que cada gráfico las presente por separado.
 
 Para ajustar las proporciones en este caso, podemos primero crear la fila 1 del gráfico final, ajustando su proporción, y luego a esta fila agregarle el gráfico de abajo:
-
-
 
 
 ``` r
@@ -192,11 +161,7 @@ fila_1 / grafico_c + plot_layout(guides = "collect")
 <img src="/blog/patchwork/patchwork_files/figure-html/plot6-1.png" width="672" />
 
 
-
-
 ## Poner un gráfico dentro de otro
-
-
 
 
 ``` r
@@ -207,15 +172,11 @@ grafico_d <- iris |>
   theme_void()
 ```
 
-
-
 También podemos necesitar insertar un gráfico dentro de otro, quizás porque uno de los gráficos representa un detalle del otro, y como tal puede que sea más conveniente disponerlo dentro del primero.
 
 Para insertar un gráfico dentro de otro, se agrega a un gráfico la función `inset_element()` con el gráfico que queremos insertar. Dentro de esta función hay que definir los argumentos `top`, `bottom`, `left` y `right`, que corresponden al perímetro en el que se ubicará el gráfico insertado.
 
 Para ubicar el gráfico dentro, debemos entender que el límite superior del gráfico corresponde a `top = 1`, y el inferior a `bottom = 0`, mientras que el límite izquierdo es `left = 0` y el derecho es `right = 1`. Si usamos estos argumentos, el gráfico insertado usaría la totalidad del espacio del gráfico base:
-
-
 
 
 ``` r
@@ -231,13 +192,9 @@ grafico_c + inset_element(grafico_d,
 ```
 
 <img src="/blog/patchwork/patchwork_files/figure-html/plot7-1.png" width="672" />
-
-
 Notemos que las coordenadas corresponden con el _centro_ del área del gráfico, excluyendo el área de la leyenda.
 
 Si ponemos que `top = 0.5`y `right = 0.5`, entonces el borde superior del gráfico insertado estará en la mitad del alto del gráfico base, y el borde derecho en la mitad del ancho; es decir, ubicándolo en la esquina inferior izquierda.
-
-
 
 
 ``` r
@@ -254,11 +211,7 @@ grafico_c + inset_element(grafico_d,
 
 <img src="/blog/patchwork/patchwork_files/figure-html/plot8-1.png" width="672" />
 
-
-
 Sabiendo esto, podemos ajustar los argumentos de `inset_element()` para poner el gráfico exactamente donde queremos:
-
-
 
 
 ``` r
@@ -269,11 +222,7 @@ grafico_c + inset_element(grafico_b + guides(fill = guide_none()),
 
 <img src="/blog/patchwork/patchwork_files/figure-html/plot9-1.png" width="672" />
 
-
-
 Naturalmente, podríamos combinar este gráfico con un gráfico insertado con otro gráfico más, o con la cantidad que se nos ocurra:
-
-
 
 
 ``` r
@@ -288,11 +237,7 @@ grafico_c +
 
 <img src="/blog/patchwork/patchwork_files/figure-html/plot10-1.png" width="672" />
 
-
-
 Otra forma de insertar un gráfico dentro de otro es ubicándolo a una cierta distancia desde un borde; en este caso, insertaremos un gráfico que solo contiene un texto (el año) en al esquina superior derecha, y para ello, definiremos que el borde izquierdo de la figura insertada `inset_element()` se ubique en el borde izquierdo del gráfico menos 3 centímetros, el borde derecho de la figura insertada en el límite derecho del gráfico, el borde superior en el límite superior del gráfico, y el borde inferior de la figura a 2 centímetros menos del límite superior del gráfico. 
-
-
 
 
 ``` r
@@ -311,15 +256,10 @@ grafico_c +
 
 <img src="/blog/patchwork/patchwork_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
-
-
 Podemos usar esta técnica para insertar cualquier texto en cualquier posición de un gráfico, incluso fuera de los límites de las escalas (que sería una limitación de hacer lo mismo con `annotate()`.
 
 La gracia de usar `inset_element()` es que posicionamos los elementos con respecto al tamaño del gráfico (donde el borde izquierdo es 0 y el derecho es 1, y el borde inferior es 0 y el superior es 1) y no a las coordenadas de las variables `x` e `y`, lo que nos permite ubicar los elementos de forma independiente al sistema de coordenadas del gráfico.
 
 
 
-
-
 {{< cafecito >}}
-

@@ -1,0 +1,18 @@
+<div class="contenedor-extension">
+
+  <div class="contendor-imagen">
+    <a href={{.Get 1 | default "https://jbengler.github.io/tidyplots/"}}>
+    <img src={{.Get 2 | default "/ggplot2_empty_hex.png"}} class="imagen-extension">
+    </a>
+  </div>
+  
+  <div>
+    <h3 class="titulo-extension">
+      <a href={{.Get 1 | default "https://jbengler.github.io/tidyplots/"}}>
+      {{.Get 0 | default "Título"}}</a>
+      </h3>
+  
+    <p>{{ (.Get 3 | default "Descripción") | markdownify }}</p>
+  </div>
+
+</div>

@@ -1,5 +1,5 @@
 ---
-title: Graba el proceso de tus visualizaciones de datos con {camcorder}
+title: Graba el proceso de tus visualizaciones de datos con `{camcorder}`
 author: Bastián Olea Herrera
 date: '2025-01-11'
 slug: []

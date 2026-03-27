@@ -1,5 +1,5 @@
 ---
-title: Unir y combinar gráficos {ggplot2} con {patchwork}
+title: Unir y combinar gráficos `{ggplot2}` con `{patchwork}`
 author: Bastián Olea Herrera
 date: '2025-03-08'
 draft: false

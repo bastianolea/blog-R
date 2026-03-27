@@ -1,5 +1,5 @@
 ---
-title: Convierte gráficos {ggplot2} en visualizaciones interactivas con {ggiraph}
+title: Convierte gráficos `{ggplot2}` en visualizaciones interactivas con `{ggiraph}`
 author: Bastián Olea Herrera
 date: '2025-11-07'
 draft: false
@@ -28,7 +28,7 @@ excerpt: "`{ggiraph}` es un paquete de R que permite agregar interactividad a gr
 
 {{< imagen "featured.png" >}}
 
-`{ggiraph}` es un paquete de R que permite agregar **interactividad** a gráficos `{ggplot2}`. Esto significa que tus gráficos podrán mostrar información extra al pasar el cursor encima (_tooltips_), hacer que se destaquen u oculten elementos al pasar el cursor, hacer clic en elementos del gráfico para generar cambios en aplicaciones, y más.
+[`{ggiraph}` es un paquete de R](https://davidgohel.github.io/ggiraph/) que permite agregar **interactividad** a gráficos `{ggplot2}`. Esto significa que tus gráficos podrán mostrar información extra al pasar el cursor encima (_tooltips_), hacer que se destaquen u oculten elementos al pasar el cursor, hacer clic en elementos del gráfico para generar cambios en aplicaciones, y más.
 
 Un beneficio de `{ggiraph}` es que, a diferencia de alternativas como `{plotly}` o `{highcharter}`, **no necesitas aprender a usar un paquete de visualización nuevo**, porque `{ggiraph}` usa los gráficos generados por `{ggplot2}` y **mantiene al 100% su apariencia**. Esto significa que tu gráfico interactivo se verá idéntico a tu gráfico de `{ggplot2}` (a diferencia de con `ggplotly()` 😒). Esto es gracias a que `{ggiraph}` toma el gráfico que hiciste y lo convierte a `SVG`, un formato de imagen vectorial que es compatible con HTML y CSS, lo que permite la interactividad.
 
