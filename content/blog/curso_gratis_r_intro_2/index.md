@@ -18,7 +18,7 @@ links:
 - icon: video
   icon_pack: fas
   name: streaming
-  url: https://www.youtube.com/live/zQdTn8O82zo?si=I4bqKansqueLiFRA
+  url: https://www.youtube.com/@bastianolea/streams
 - icon: chalkboard-user
   icon_pack: fas
   name: diapositivas
@@ -100,19 +100,55 @@ Para inscribirte, rellena el siguiente formulario[^2] y te contactaré en caso d
 
 Puedes ver las clases **en vivo** y **en tiempo real** por Youtube:
 
-{{< boton "Streaming en vivo" "https://www.youtube.com/live/zQdTn8O82zo?si=I4bqKansqueLiFRA" "fab fa-youtube" >}}
+{{< boton "Streaming en vivo" "https://www.youtube.com/@bastianolea/streams" "fab fa-youtube" >}}
 
-### Grabación clase 1
+### Grabación clase 1: introducción a R
+
+Clase realizada el **miércoles 25 de marzo.**
+
+{{< boton "Grabación clase 1" "https://www.youtube.com/live/zQdTn8O82zo?si=tTh8l2dFxqNpMjSq" "fab fa-youtube" >}}
+
 <iframe width="100%" height="480" 
 src="https://www.youtube.com/embed/zQdTn8O82zo?si=I4bqKansqueLiFRA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+
 ### Streaming clase 2
 
-_Pronto_
+Ve la segunda clase en vivo: **lunes 30 de marzo a las 19:30 horas** (horario de Chile)
 
-## Materiales
+<iframe width="100%" height="480" src="https://www.youtube.com/embed/DWmpwerahPU?si=u78PjemL2VTuqIuW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-Pronto subiré las diapositivas y el código del curso!
+
+
+## Diapositivas
+
+En las diapositivas del curso se resumen los temas, se muestran ejemplos de código, y se entregan enlaces a los datos necesarios y a los tutoriales para profundizar.
+
+{{< boton "Diapositivas" "https://bastianolea.github.io/curso_intro_R_gratis_v2" "fas fa-chalkboard-user" >}}
+
+<iframe width="100%" height="480" 
+src="https://bastianolea.github.io/curso_intro_R_gratis_v2" 
+title="Diapositivas" frameborder="0"></iframe>
+
+## Código
+
+En este enlace puedes acceder al [repositorio de GitHub](https://github.com/bastianolea/curso_intro_R_gratis_v2) que contiene el código que veremos en el curso, los datos que trabajemos, y también el código de R que genera las [diapositivas](https://bastianolea.github.io/curso_intro_R_gratis_v2) con [Quarto Revealjs](https://quarto.org/docs/presentations/revealjs/).
+
+{{< boton "Código del curso" "https://github.com/bastianolea/curso_intro_R_gratis_v2" "fas fa-file-code" >}}
+
+
+### Scripts de cada clase
+
+Scripts vistos en clase, con comentarios explicativos de cada paso y comando. Se sugiere [revisar a la par de las diapositivas](#diapositivas), que también contienen enlaces a **tutoriales más detallados** de cada tema.
+
+{{< boton "Script clase 1" "https://github.com/bastianolea/curso_intro_R_gratis_v2/blob/main/clases/clase_1.R" "fas fa-file-code" >}}
+
+<!--
+{{< boton "Script clase 2" "https://github.com/bastianolea/curso_intro_R_gratis/blob/main/clases/clase_2.R" "fas fa-file-code" >}}
+
+{{< boton "Script clase 3" "https://github.com/bastianolea/curso_intro_R_gratis/blob/main/clases/clase_3.R" "fas fa-file-code" >}}
+-->
+
 
 <!--
 {{< boton "Inscripciones cerradas" "https://bastianolea.rbind.io" "fas fa-file-pen" >}}
@@ -127,48 +163,14 @@ El curso se llevó a cabo de manera online y sincrónica los días 3, 5, y 9 de 
 -->
 
 <!--
-## Diapositivas
-
-En las diapositivas del curso se resumen los temas, se muestran ejemplos de código, y se entregan enlaces a los datos necesarios y a los tutoriales para profundizar.
-
-{{< boton "Diapositivas" "https://bastianolea.github.io/curso_intro_R_gratis" "fas fa-chalkboard-user" >}}
-
-<iframe width="100%" height="480" 
-src="https://bastianolea.github.io/curso_intro_R_gratis" 
-title="Diapositivas" frameborder="0"></iframe>
 
 También puedes [descargar las diapositivas en formato PDF aquí](/blog/curso_gratis_r_intro_1/diapositivas.pdf).
 
 ----
 
-## Código
-
-En este enlace puedes acceder al [repositorio de GitHub](https://github.com/bastianolea/curso_intro_R_gratis) que contiene el código que veremos en el curso, los datos que trabajemos, y también el código de R que genera las [diapositivas](https://bastianolea.github.io/curso_intro_R_gratis) con [Quarto Revealjs](https://quarto.org/docs/presentations/revealjs/).
-
-{{< boton "Código del curso" "https://github.com/bastianolea/curso_intro_R_gratis" "fas fa-file-code" >}}
-
-También puedes revisar el [código para crear las diapositivas con Quarto.](https://github.com/bastianolea/curso_intro_R_gratis/blob/main/diapositivas.qmd)
-
-### Scripts de cada clase
-
-Scripts vistos en clase, con comentarios explicativos de cada paso y comando. Se sugiere [revisar a la par de las diapositivas](#diapositivas), que también contienen enlaces a **tutoriales más detallados** de cada tema.
-
-{{< boton "Script clase 1" "https://github.com/bastianolea/curso_intro_R_gratis/blob/main/clases/clase_1.R" "fas fa-file-code" >}}
-
-{{< boton "Script clase 2" "https://github.com/bastianolea/curso_intro_R_gratis/blob/main/clases/clase_2.R" "fas fa-file-code" >}}
-
-{{< boton "Script clase 3" "https://github.com/bastianolea/curso_intro_R_gratis/blob/main/clases/clase_3.R" "fas fa-file-code" >}}
-
 
 ----
 
-## Grabaciones
-
-### Clase 1: introducción a R
-
-{{< boton "Grabación clase 1" "https://youtube.com/live/A9wtPBEaVvY" "fab fa-youtube" >}}
-
-<iframe width="100%" height="480" src="https://www.youtube.com/embed/A9wtPBEaVvY?si=V49lRnW2gFam7iP7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ----
 

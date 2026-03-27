@@ -34,7 +34,7 @@ links:
 
 <!-- {{< aviso "Muchas gracias a todas las personas que participaron 🤍 Fue un placer poder enseñarles lo básico de estas herramientas a un curso mayoritariamente conformado por mujeres y personas LBGTIQ. Las [grabaciones](#grabaciones) y las [diapositivas](#diapositivas) están disponibles en este post!" >}} -->
 
-{{< aviso "Las inscripciones se encuentran cerradas, y se envió acceso a 150 personas por correo, pero podrás ver el curso por [streaming](#streaming)" >}}
+{{< aviso "Las inscripciones se encuentran cerradas, y se envió acceso a 150 personas por correo, pero podrás ver el curso por [streaming](#streaming-y-grabaciones)" >}}
 
 ## Sobre el curso
 
@@ -65,7 +65,7 @@ El curso va dirigido a **profesionales o estudiantes de las ciencias sociales** 
 Los **cupos** son limitados, y se aplicarán **criterios de inclusión** para la participación de grupos minoritarios (mujeres, disidencias de sexo y género, personas con discapacidad). 
 
 <!-- A diferencia del primer curso, **sólo podrán participar personas de Chile**[^1]. -->
-De todas maneras, [cualquier persona podrá ver el **streaming en vivo** de las clases](#streaming), que [se transmitirá por Youtube](https://www.youtube.com/live/zQdTn8O82zo?si=I4bqKansqueLiFRA).
+De todas maneras, [cualquier persona podrá ver el **streaming en vivo** de las clases](#streaming-y-grabaciones), que [se transmitirá por Youtube](https://www.youtube.com/live/zQdTn8O82zo?si=I4bqKansqueLiFRA).
 
 <!--[^1]: Lamento tener que cerrar la posibilidad, pero el esfuerzo de impartir cursos gratuitos es alto, y necesito generar conexiones laborales y de colaboración centradas en mi territorio. -->
 
@@ -84,7 +84,7 @@ Su experiencia consiste principalmente en [visualización de datos](/tags/gráfi
 
 ## Inscripciones
 
-¡Las inscripciones se encuentran cerradas! Se enviaron correos a **150 personas** con cupos para participar en el curso. Pero **cualquier persona podrá [ver el curso en vivo](#streaming)** y acceder a los [materiales](#materiales).
+¡Las inscripciones se encuentran cerradas! Se enviaron correos a **150 personas** con cupos para participar en el curso. Pero **cualquier persona podrá [ver el curso en vivo](#streaming-y-grabaciones)** y acceder a los [materiales](#materiales).
 <!--
 Para inscribirte, rellena el siguiente formulario[^2] y te contactaré en caso de que hayas obtenido un cupo. 
 
@@ -95,19 +95,59 @@ Para inscribirte, rellena el siguiente formulario[^2] y te contactaré en caso d
 {{< info "Se recomienda **experiencia mínima** con R, pero si no tienes experiencia igual podrás aprender! Revisa los [contenidos del primer curso gratuito de R](/blog/curso_gratis_r_intro_1/) que organicé para tener una base de conocimientos básicos." >}}
 -->
 
-## Streaming
+## Streaming y grabaciones
 
 Puedes ver las clases **en vivo** y **en tiempo real** por Youtube:
 
-{{< boton "Streaming en vivo" "https://www.youtube.com/live/zQdTn8O82zo?si=I4bqKansqueLiFRA" "fab fa-youtube" >}}
+{{< boton "Streaming en vivo" "https://www.youtube.com/@bastianolea/streams" "fab fa-youtube" >}}
+
+### Grabación clase 1: introducción a R
+
+Clase realizada el **miércoles 25 de marzo.**
+
+{{< boton "Grabación clase 1" "https://www.youtube.com/live/zQdTn8O82zo?si=tTh8l2dFxqNpMjSq" "fab fa-youtube" >}}
 
 <iframe width="100%" height="480" 
 src="https://www.youtube.com/embed/zQdTn8O82zo?si=I4bqKansqueLiFRA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
-## Materiales
+### Streaming clase 2
 
-Pronto subiré las diapositivas y el código del curso!
+Ve la segunda clase en vivo: **lunes 30 de marzo a las 19:30 horas** (horario de Chile)
+
+<iframe width="100%" height="480" src="https://www.youtube.com/embed/DWmpwerahPU?si=u78PjemL2VTuqIuW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+
+## Diapositivas
+
+En las diapositivas del curso se resumen los temas, se muestran ejemplos de código, y se entregan enlaces a los datos necesarios y a los tutoriales para profundizar.
+
+{{< boton "Diapositivas" "https://bastianolea.github.io/curso_intro_R_gratis_v2" "fas fa-chalkboard-user" >}}
+
+<iframe width="100%" height="480" 
+src="https://bastianolea.github.io/curso_intro_R_gratis_v2" 
+title="Diapositivas" frameborder="0"></iframe>
+
+## Código
+
+En este enlace puedes acceder al [repositorio de GitHub](https://github.com/bastianolea/curso_intro_R_gratis_v2) que contiene el código que veremos en el curso, los datos que trabajemos, y también el código de R que genera las [diapositivas](https://bastianolea.github.io/curso_intro_R_gratis_v2) con [Quarto Revealjs](https://quarto.org/docs/presentations/revealjs/).
+
+{{< boton "Código del curso" "https://github.com/bastianolea/curso_intro_R_gratis_v2" "fas fa-file-code" >}}
+
+
+### Scripts de cada clase
+
+Scripts vistos en clase, con comentarios explicativos de cada paso y comando. Se sugiere [revisar a la par de las diapositivas](#diapositivas), que también contienen enlaces a **tutoriales más detallados** de cada tema.
+
+{{< boton "Script clase 1" "https://github.com/bastianolea/curso_intro_R_gratis_v2/blob/main/clases/clase_1.R" "fas fa-file-code" >}}
+
+<!--
+{{< boton "Script clase 2" "https://github.com/bastianolea/curso_intro_R_gratis/blob/main/clases/clase_2.R" "fas fa-file-code" >}}
+
+{{< boton "Script clase 3" "https://github.com/bastianolea/curso_intro_R_gratis/blob/main/clases/clase_3.R" "fas fa-file-code" >}}
+-->
+
 
 <!--
 {{< boton "Inscripciones cerradas" "https://bastianolea.rbind.io" "fas fa-file-pen" >}}
@@ -122,48 +162,14 @@ El curso se llevó a cabo de manera online y sincrónica los días 3, 5, y 9 de 
 -->
 
 <!--
-## Diapositivas
-
-En las diapositivas del curso se resumen los temas, se muestran ejemplos de código, y se entregan enlaces a los datos necesarios y a los tutoriales para profundizar.
-
-{{< boton "Diapositivas" "https://bastianolea.github.io/curso_intro_R_gratis" "fas fa-chalkboard-user" >}}
-
-<iframe width="100%" height="480" 
-src="https://bastianolea.github.io/curso_intro_R_gratis" 
-title="Diapositivas" frameborder="0"></iframe>
 
 También puedes [descargar las diapositivas en formato PDF aquí](/blog/curso_gratis_r_intro_1/diapositivas.pdf).
 
 ----
 
-## Código
-
-En este enlace puedes acceder al [repositorio de GitHub](https://github.com/bastianolea/curso_intro_R_gratis) que contiene el código que veremos en el curso, los datos que trabajemos, y también el código de R que genera las [diapositivas](https://bastianolea.github.io/curso_intro_R_gratis) con [Quarto Revealjs](https://quarto.org/docs/presentations/revealjs/).
-
-{{< boton "Código del curso" "https://github.com/bastianolea/curso_intro_R_gratis" "fas fa-file-code" >}}
-
-También puedes revisar el [código para crear las diapositivas con Quarto.](https://github.com/bastianolea/curso_intro_R_gratis/blob/main/diapositivas.qmd)
-
-### Scripts de cada clase
-
-Scripts vistos en clase, con comentarios explicativos de cada paso y comando. Se sugiere [revisar a la par de las diapositivas](#diapositivas), que también contienen enlaces a **tutoriales más detallados** de cada tema.
-
-{{< boton "Script clase 1" "https://github.com/bastianolea/curso_intro_R_gratis/blob/main/clases/clase_1.R" "fas fa-file-code" >}}
-
-{{< boton "Script clase 2" "https://github.com/bastianolea/curso_intro_R_gratis/blob/main/clases/clase_2.R" "fas fa-file-code" >}}
-
-{{< boton "Script clase 3" "https://github.com/bastianolea/curso_intro_R_gratis/blob/main/clases/clase_3.R" "fas fa-file-code" >}}
-
 
 ----
 
-## Grabaciones
-
-### Clase 1: introducción a R
-
-{{< boton "Grabación clase 1" "https://youtube.com/live/A9wtPBEaVvY" "fab fa-youtube" >}}
-
-<iframe width="100%" height="480" src="https://www.youtube.com/embed/A9wtPBEaVvY?si=V49lRnW2gFam7iP7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ----
 
