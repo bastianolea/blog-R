@@ -95,6 +95,13 @@ background-color: #A985C630;
     padding-left: 12px !important;
 }
 
+// espaciado debajo de titular de posts
+.post-content {
+  .pt5 {
+    padding-top: 1rem !important;
+  }
+}
+
 
 // shortcode para extensiones de ggplot2
 .contenedor-extension {
