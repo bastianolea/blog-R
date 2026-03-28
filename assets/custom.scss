@@ -122,3 +122,21 @@ background-color: #A985C630;
 .titulo-extension {
   margin-top:-12px; margin-bottom:-4px;
 }
+
+
+.imagen_lateral {
+  float: right; max-width: 240px; 
+  margin-left: 24px; margin-bottom: 24px;
+  max-width: 260px;
+}
+
+@media (max-width: 500px) { 
+  .imagen_lateral {
+    text-align: center; 
+    width: 100%;
+    max-width: 100%;
+    float: none;
+    margin: 8px;
+    padding-right: 32px;
+  }
+}

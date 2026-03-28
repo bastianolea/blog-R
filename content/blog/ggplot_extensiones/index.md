@@ -18,7 +18,13 @@ excerpt: "Existen muchas extensiones para `{ggplot2}` desarrolladas por la comun
 
 {{< aviso "Publicación en construcción! A medida que encuentre (y recuerde) más extensiones las iré listando aquí." >}}
 
-{{< imagen_lateral "ggplot2_extensiones_featured.png" "260px" >}}
+<!---
+{{< imagen_lateral "ggplot2_extensiones_featured.png" "300px" >}}
+-->
+<div class='imagen_lateral'>
+  <img src="ggplot2_extensiones_featured.png">
+</div>
+  
 
 Una de las ventajas de usar `{ggplot2}` para visualización de datos en R es su **flexibilidad** y capacidad de **personalización**. Existen [muchas extensiones desarrolladas por la comunidad](https://exts.ggplot2.tidyverse.org) para agregar nuevas funcionalidades, formas de visualizar datos, mejoras, paletas de colores y más.
 
@@ -84,7 +90,7 @@ Paquete que simplifica la creación de gráficos atractivos y simples de hacer e
   "ggrepel"
   "https://ggrepel.slowkow.com"
   "https://github.com/slowkow/ggrepel/raw/master/man/figures/logo.svg"
-  "Este paquete agrega geometrías como `geom_text_repel()` que permiten que las etiquetas de texto en tus visualizaciones no se sobrepongan, haciendo que se muevan para mantenerlas visibles. Muy útil para gráficos de dispersión con demasiados textos." >}}
+  "Este paquete agrega geometrías como `geom_text_repel()` que permiten que las etiquetas de texto en tus visualizaciones no se sobrepongan, haciendo que se muevan para mantenerlas visibles. Muy útil para gráficos de dispersión con demasiados textos. [Tutorial de uso aquí.](/blog/ggrepel/)" >}}
 
 {{< extension
   "corrr"
