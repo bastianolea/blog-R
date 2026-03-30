@@ -64,7 +64,7 @@ La base de datos resultante está diseñada para contener toda la metadata neces
 
 ### Desarrollo de la plataforma
 
-El estudio se centra en su presentación por medio de la plataforma interactiva, siendo su [informe de resultados](https://proactiva.subdere.gov.cl/handle/123456789/677) un complemento de la plataforma y no el producto central.
+El estudio se centra en su presentación por medio de la plataforma interactiva, siendo su [informe de resultados](https://proactiva.subdere.gov.cl/handle/123456789/683) un complemento de la plataforma y no el producto central.
 
 La plataforma fue desarrollada en R y Shiny, y presenta una serie de visualizaciones interactivas que permiten explorar los resultados del estudio. 
 
