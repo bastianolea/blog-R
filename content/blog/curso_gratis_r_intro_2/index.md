@@ -3,7 +3,7 @@ title: "Curso gratuito: introducción al análisis de datos con R, 2ª versión"
 subtitle: Curso online introductorio de programación dirigido a estudiantes o profesionales de las ciencias sociales
 excerpt: "Segundo curso gratuito de introducción a R enfocado en las ciencias sociales. En este curso de tres sesiones aprenderemos a usar R para **analizar datos sociales**, revisando lo básico de la **visualización de datos**, y explorando aspectos básicos de la **creación de mapas** con R."
 author: Bastián Olea Herrera
-date: '2026-03-22'
+date: '2026-03-30'
 slug: []
 categories: []
 tags:

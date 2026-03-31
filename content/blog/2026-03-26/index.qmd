@@ -20,7 +20,7 @@ excerpt: "Para mi [blog personal](https://bastimapache.cl) quise crear publicaci
 
 Para mi [blog personal, bastimapache.cl](https://bastimapache.cl) quise crear publicaciones que muestren los libros que he leído cada año, los cuales registro en mi cuenta de [Goodreads](https://www.goodreads.com/user/show/53224910-basti-n-olea-herrera).
 
-{{< imagen "galeria_libros_featured.png" >}}
+{{< imagen "galeria_libros.jpg" >}}
 
 Para esto, usé R para cargar el archivo de [exportación](https://help.goodreads.com/s/article/How-do-I-import-or-export-my-books-1553870934590) de datos de Goodreads, que te entrega un archivo `.csv` con tus libros leídos, puntuación, fecha de lectura, etc.
 

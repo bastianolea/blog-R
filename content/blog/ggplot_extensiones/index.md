@@ -22,7 +22,7 @@ excerpt: "Existen muchas extensiones para `{ggplot2}` desarrolladas por la comun
 {{< imagen_lateral "ggplot2_extensiones_featured.png" "300px" >}}
 -->
 <div class='imagen_lateral'>
-  <img src="ggplot2_extensiones_featured.png">
+  <img src="ggplot2_extensiones.png">
 </div>
   
 

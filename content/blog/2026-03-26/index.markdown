@@ -8,20 +8,25 @@ tags:
   - quarto
   - shiny
   - blog
+  - web scraping
 format:
   hugo-md:
     output-file: index
     output-ext: md
 execute:
-  message: false
+  warning: false
 excerpt: "Para mi [blog personal](https://bastimapache.cl) quise crear publicaciones que muestren los libros que he leído cada año, los cuales registro en mi cuenta de [Goodreads](https://www.goodreads.com/user/show/53224910-basti-n-olea-herrera). Así que usamos R para generar cuadrículas de libros por año, incluyendo la descarga automática de las portadas de los libros. Ésta es una de las gracias de Quarto: incluir código de R dentro de tus documentos, páginas web o publicaciones de blog, para generar contenido basado en datos."
 ---
 
-Para mi [blog personal](https://bastimapache.cl) quise crear publicaciones que muestren los libros que he leído cada año, los cuales registro en mi cuenta de [Goodreads](https://www.goodreads.com/user/show/53224910-basti-n-olea-herrera).
+Para mi [blog personal, bastimapache.cl](https://bastimapache.cl) quise crear publicaciones que muestren los libros que he leído cada año, los cuales registro en mi cuenta de [Goodreads](https://www.goodreads.com/user/show/53224910-basti-n-olea-herrera).
 
-{{< imagen “galeria_libros_featured.png” >}}
+{{< imagen “galeria_libros.jpg” >}}
 
 Para esto, usé R para cargar el archivo de [exportación](https://help.goodreads.com/s/article/How-do-I-import-or-export-my-books-1553870934590) de datos de Goodreads, que te entrega un archivo `.csv` con tus libros leídos, puntuación, fecha de lectura, etc.
+
+## Cargar datos de *Goodreads*
+
+Carguemos los datos que obtenemos de la exportación de *Goodreads:*
 
 ``` r
 library(dplyr) # para manipulación de datos
@@ -51,7 +56,7 @@ library(janitor) # para limpiar nombres de columnas
     ##     chisq.test, fisher.test
 
 ``` r
-data <- read_csv("goodreads_library_export.csv") |> 
+libros <- read_csv("goodreads_library_export.csv") |> 
   clean_names()
 ```
 
@@ -67,7 +72,9 @@ data <- read_csv("goodreads_library_export.csv") |>
     ## ℹ Use `spec()` to retrieve the full column specification for this data.
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
-{{< detalles “Ver código de la limpieza de datos” >}}
+De pasada, les aplicamos una limpieza.
+
+{{< detalles “**Ver código de la limpieza de datos**” >}}
 
 ``` r
 library(stringr)
@@ -83,7 +90,7 @@ library(lubridate)
     ##     date, intersect, setdiff, union
 
 ``` r
-libros <- data |> 
+libros <- libros |> 
   select(date_read,
          title, author, publisher, my_rating, number_of_pages, 
          book_id) |> 
@@ -125,29 +132,31 @@ libros |>
     ## 16 160382327 Ravenor                            Dan A…              NA         3
     ## 17  40957778 Invisible Women: Exposing Data Bi… Carol…             432         4
 
-Quería mostrar de los libros que leí por año en una **cuadrícula**. Para que la visualización se adapte a cualquier pantalla quise hacerla en `HTML`, de forma que si entras desde un computador se vean muchos libros a la vez, y en un celular se vean menos columnas.
+En [mi blog](https://bastimapache.cl) quería mostrar los libros que he leído por año en una **cuadrícula**, con las portadas y otros datos. Se podría hacer con un gráfico, pero para que la visualización se adapte a cualquier pantalla quise hacerla en `HTML`, de forma que si entras desde un computador se vean muchos libros a la vez, y en un celular se vean menos columnas.
 
-Con R tenemos muchas herramientas para transformar datos en código `HTML` para presentarlos de formas personalizadas. En este caso usé el [paquete `{shiny}`](/tags/shiny/), que produce `HTML` para aplicaciones interactivas hechas con R, pero también sirve para generar todo tipo de `HTML` desde R.
+Con R tenemos muchas herramientas para **transformar datos en código `HTML`** y así presentar tus datos de formas totalmente personalizadas. En este caso usé el [paquete `{shiny}`](/tags/shiny/), que produce `HTML` para aplicaciones interactivas hechas con R, pero también sirve para generar todo tipo de `HTML` desde R.
 
 Pero para mostrar los libros, primero necesito tener las **portadas** de cada uno!
 
-## Obtener la portada de los libros
+## Obtener las portadas de los libros
 
-Para obtener las portadas de cada libro usaremos [web scraping](/tags/web_scraping/) desde R.
+Para obtener las portadas de cada libro usaremos [web scraping](/tags/web_scraping/) desde R, y así **descargar las imágenes** directamente desde *Goodreads*.
 
 La lógica será:
 
-- Cada registro en la base de datos tiene un `book_id` asociado a cada libro
-- Con el `book_id` podemos llegar a la página de cada libro en *Goodreads,* porque la dirección de los libros es: `https://www.goodreads.com/book/show/{book_id}`
-- En cada página de libro en *Goodreads,*, la portada está en un elemento con clase `.BookCover__image`, que podemos usar para detectar la imagen y descargarla.
-- Entonces, por cada libro de la base de datos, entramos a su dirección web, extraemos la direcció de la imagen, y la descargamos:
+1.  Cada libro en mi base de datos tiene un `book_id` asociado a cada libro.
+2.  Con el `book_id` podemos llegar a la página de cada libro en *Goodreads,* porque la dirección de los libros es: `https://www.goodreads.com/book/show/{book_id}`
+3.  En cada página de libro en *Goodreads,* la portada está en un elemento con clase `.BookCover__image`, que podemos usar para detectar la imagen y descargarla.
+4.  Entonces, por cada libro de la base de datos, entramos a su dirección web, extraemos la dirección de la imagen, y la descargamos:
+
+Usamos la función `map()` de `{purrr}` para hacer un *loop* que pase por cada libro, y dentro del loop hacemos el web scraping y la descarga de la imagen:
 
 ``` r
 library(purrr)
 library(rvest)
 
 # por cada id de libro, descarga la portada
-walk(libros$book_id, \(id) {
+map(libros$book_id, \(id) {
   # id <- "11111"
   message(id)
   
@@ -170,9 +179,9 @@ walk(libros$book_id, \(id) {
 
 El resultado será una carpeta `portadas` llena de imágenes de cada libro.
 
-Naturalmente, el código que usé tiene pasos extras, como **crear la carpeta si no existe**, **revisar si ya se descargó la portada** para no volver a descargarla, y un **tiempo de espera** entre descargas para no saturar al pobre servidor que solidariamente nos está ayudando. Puedes [ver el código completo aquí.](https://github.com/bastianolea/blog-personal/blob/main/posts/libros/libros_2022/index.qmd)
+Naturalmente, [el código que usé](https://github.com/bastianolea/blog-personal/blob/main/posts/libros/libros_2022/index.qmd) tiene pasos extras, como **crear la carpeta** si no existe, **revisar si ya se descargó la portada** para no volver a descargarla, y agregar un **tiempo de espera** entre descargas para no saturar al pobre servidor que solidariamente nos está ayudando. Puedes [ver el código completo aquí.](https://github.com/bastianolea/blog-personal/blob/main/posts/libros/libros_2022/index.qmd)
 
-Estupendo! Agreguemos a la base de datos de libros una columna que represente la portada de cada libro, simplemente creando la ruta a la portada según su `book_id`:
+Ahora que tenemos las portadas descargadas, agreguemos a la base de datos de libros una columna que represente la portada de cada libro, simplemente creando la ruta a la portada según su `book_id`:
 
 ``` r
 libros <- libros |> 
@@ -186,7 +195,9 @@ De *yapa* también le pusimos una columna con el link a *Goodreads* de cada libr
 
 ## Creando una cuadrícula de libros
 
-Primero necesitamos tener los libros organizados de forma que podamos generar un elemento `HTML` por cada libro. Para eso, ordenamos los libros por fecha de lectura y luego los separamos en una lista, donde cada elemento de la lista es un libro. En otras palabras, creamos una **lista** donde cada elemento sea una tabla con los datos de cada libro en una sola fila.
+Para hacer la cuadrícula tenemos que aplicar un mismo código a cada libro, que lo haga pasar de una fila en la base a un libro bonito con imagen y sus datos, por lo que necesitaremos hacer otro *loop.*
+
+Necesitamos tener los libros organizados, de forma que podamos generar un elemento `HTML` por cada libro. Para eso, **ordenamos** los libros por fecha de lectura con `arrange()` y luego los **separamos** con `split()` en una lista, donde cada elemento de la lista sea un libro. En otras palabras, creamos una **lista** donde cada elemento sea una tabla con los datos de cada libro en una sola fila.
 
 ``` r
 lista_libros <- libros |> 
@@ -198,18 +209,20 @@ lista_libros <- libros |>
 Por ejemplo, veamos el libro número 9:
 
 ``` r
-lista_libros[[9]]
+lista_libros[[9]] |> 
+  select(title, author, number_of_pages, portada)
 ```
 
-    ## # A tibble: 1 × 10
-    ##   date_read  title    author publisher my_rating number_of_pages book_id portada
-    ##   <date>     <chr>    <chr>  <chr>         <dbl>           <dbl>   <dbl> <glue> 
-    ## 1 2025-08-01 Poco ho… Pedro… Edicione…         5             284  1.87e7 portad…
-    ## # ℹ 2 more variables: link <glue>, id <int>
+    ## # A tibble: 1 × 4
+    ##   title                          author        number_of_pages portada          
+    ##   <chr>                          <chr>                   <dbl> <glue>           
+    ## 1 Poco hombre: crónicas reunidas Pedro Lemebel             284 portadas/1871463…
 
-Hagamos una prueba con un sólo libro.
+Hagamos una **prueba** de la cuadrícula con un sólo libro, porque lo que nos interesa es transformar los datos en contenido `HTML`.
 
-Generaremos un `div`, que es un elemento `HTML` que puede *contener* cualquier cosa dentro, como un contenedor. Dentro de este `div`, ejecutaremos un **loop** con la función `map()` de `{purrr}` que va a ir **por cada libro** de la lista, y por cada libro va a generar un nuevo `div`, que dentro tendrá la portada del libro correspondiente, el título, el autor, la fecha de lectura y el número de páginas.
+Generaremos un `div`, que es un elemento `HTML` que puede *contener* cualquier cosa dentro, como un contenedor para englobar nuestra cuadrícula.
+
+Dentro de este `div` general, ejecutaremos un **loop** con la función `map()` de `{purrr}` que va a ir **por cada libro** de la lista, y por cada libro va a generar un nuevo `div`, que dentro tendrá la portada del libro correspondiente, el título, el autor, la fecha de lectura y el número de páginas.
 
 ``` r
 library(shiny)
@@ -241,7 +254,7 @@ salida <- div(
 )
 ```
 
-En otras palabras, escribimos un código que genera `HTML` en base a un libro hipotético, pero que nos va a permitir generar código para uno o infinitos libros gracias al loop.
+En otras palabras, escribimos un código que genera `HTML` en base a un libro hipotético, pero que después nos va a permitir generar código para uno o infinitos libros gracias al loop.
 
 Veamos qué se generó con el libro de ejemplo:
 
@@ -269,7 +282,7 @@ Páginas:
 </div>
 </div>
 
-**Está quedando horrible!** Pero funciona. Siempre es bueno probar la funcionalidad de las cosas antes de dedicarse a que queden bonitas.
+**Está quedando horrible!** Pero funciona. Pasamos de una fila a `HTML`. Siempre es bueno probar la funcionalidad de las cosas antes de dedicarse a que queden bonitas.
 
 ### Puntuación de cada libro
 
@@ -326,7 +339,7 @@ A cada elemento `HTML` le puedes asignar una **clase**, y después definir el es
 
 Personalmente primero le pongo la clase a cada elemento `HTML`, y después voy ajustando las clases para que quede como yo quiera.
 
-{{< detalles “Ver código de las clases CSS” >}}
+{{< detalles “**Ver código de las clases CSS**” >}}
 
 Éstas son las clases `CSS` que usé para la cuadrícula de libros:
 
@@ -360,7 +373,7 @@ Personalmente primero le pongo la clase a cada elemento `HTML`, y después voy a
   img {
       height: 170px;
       border-radius: 4px;
-      border: solid 1px #553A7460;
+      border: solid 1px #31243B70;
   }
 }
 
@@ -434,7 +447,7 @@ Personalmente primero le pongo la clase a cada elemento `HTML`, y después voy a
   &#10;  img {
       height: 170px;
       border-radius: 4px;
-      border: solid 1px #553A7460;
+      border: solid 1px #31243B70;
   }
 }
 &#10;.libro_titulo {
@@ -477,7 +490,9 @@ Personalmente primero le pongo la clase a cada elemento `HTML`, y después voy a
 
 {{< /detalles >}}
 
-A continuación mejoramos el código anterior, poniéndole clases a todos los elementos para que se les aplique el `CSS` y así poder personalizarlos, y también incluiremos la puntuación con estrellas y otros detalles:
+## Cuadrícula de libros con estilo personalizado
+
+A continuación mejoramos el código anterior, **poniéndole clases a todos los elementos** para que se les aplique el `CSS` y así poder personalizarlos, y también incluiremos la **puntuación con estrellas** y otros detalles:
 
 ``` r
 library(shiny)

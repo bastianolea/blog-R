@@ -11,7 +11,7 @@ googleAnalytics = ""
 metaDataFormat = "yaml"
 footnoteReturnLinkContents = "&#8617;" # ↩
 # set deliberately low for testing choose your preffered number based on the blog layout you've chosen
-pagination.pagerSize = 15
+pagination.pagerSize = 20
 preserveTaxonomyNames = true
 buildFuture = true # for posts set in the future
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.qmd$", "\\.knit\\.md$", "\\.utf8\\.md$"]
