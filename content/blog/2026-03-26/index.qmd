@@ -206,7 +206,7 @@ Aunque falta un detalle: las **estrellas** que le di a cada libro. Para eso, cre
 # función para generar estrellas
 estrellas <- function(rating) {
   simbolo <- "\u2605"
-  color_punto <-  "#FAC51F"
+  color_punto <-  "#9069c0"
   color_vacio <-  "#8F758F60"
   
   # por cada número del 1 al 5, hace un span con una estrella y revisa si es parte del puntaje o no, y le asigna un color; luego retorna los 5 elementos
@@ -236,6 +236,8 @@ Probemos la función:
 estrellas(3)
 ```
 
+Muestra 3 estrellas de 5! Super _cool_ y muy _clever_ en su implementación.
+
 ## Mejorando la apariencia del `HTML` con `CSS`
 
 Ahora que tenemos funcionando el _loop_ que genera el `HTML`, podemos enfocarnos en hacer que se vea mejor. Para dat **estilo** al `HTML` se usa el código `CSS`, y el `CSS` se aplica a los elementos del `HTML` directamente por el atributo `style` de cada elemento, o mediante **clases**.
@@ -264,7 +266,6 @@ Personalmente primero le pongo la clase a cada elemento `HTML`, y después voy a
 /* contenedor de cada libro individual */
 .contenedor_libro {
   align-items: center;
-  width: 130px !important;
   margin: auto;
   margin-top: 0;
 }
@@ -277,7 +278,7 @@ Personalmente primero le pongo la clase a cada elemento `HTML`, y después voy a
   opacity: 97%;
   
   img {
-      height: 170px;
+      height: 160px;
       border-radius: 4px;
       border: solid 1px #31243B70;
   }

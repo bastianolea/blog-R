@@ -256,7 +256,7 @@ Aunque falta un detalle: las **estrellas** que le di a cada libro. Para eso, cre
 # función para generar estrellas
 estrellas <- function(rating) {
   simbolo <- "\u2605"
-  color_punto <-  "#FAC51F"
+  color_punto <-  "#9069c0"
   color_vacio <-  "#8F758F60"
   
   # por cada número del 1 al 5, hace un span con una estrella y revisa si es parte del puntaje o no, y le asigna un color; luego retorna los 5 elementos
@@ -286,12 +286,14 @@ estrellas(3)
 ```
 
 <div class="estrellas">
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
 <span style="color: #8F758F60; &#10;font-size: 14px; margin: 1px;">★</span>
 <span style="color: #8F758F60; &#10;font-size: 14px; margin: 1px;">★</span>
 </div>
+
+Muestra 3 estrellas de 5! Super *cool* y muy *clever* en su implementación.
 
 ## Mejorando la apariencia del `HTML` con `CSS`
 
@@ -322,7 +324,6 @@ Personalmente primero le pongo la clase a cada elemento `HTML`, y después voy a
 /* contenedor de cada libro individual */
 .contenedor_libro {
   align-items: center;
-  width: 130px !important;
   margin: auto;
   margin-top: 0;
 }
@@ -335,7 +336,7 @@ Personalmente primero le pongo la clase a cada elemento `HTML`, y después voy a
   opacity: 97%;
   
   img {
-      height: 170px;
+      height: 160px;
       border-radius: 4px;
       border: solid 1px #31243B70;
   }
@@ -399,7 +400,6 @@ Personalmente primero le pongo la clase a cada elemento `HTML`, y después voy a
 /* contenedor de cada libro individual */
 .contenedor_libro {
   align-items: center;
-  width: 130px !important;
   margin: auto;
   margin-top: 0;
 }
@@ -412,7 +412,7 @@ Personalmente primero le pongo la clase a cada elemento `HTML`, y después voy a
   opacity: 97%;
   
   img {
-      height: 170px;
+      height: 160px;
       border-radius: 4px;
       border: solid 1px #31243B70;
   }
@@ -516,10 +516,10 @@ div(class = "cuadricula",
 <p class="libro_autor">Caroline Criado Pérez</p>
 <div class="libro_rating">
 <div class="estrellas">
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
 <span style="color: #8F758F60; &#10;font-size: 14px; margin: 1px;">★</span>
 </div>
 </div>
@@ -535,9 +535,9 @@ div(class = "cuadricula",
 <p class="libro_autor">Guy Haley</p>
 <div class="libro_rating">
 <div class="estrellas">
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
 <span style="color: #8F758F60; &#10;font-size: 14px; margin: 1px;">★</span>
 <span style="color: #8F758F60; &#10;font-size: 14px; margin: 1px;">★</span>
 </div>
@@ -554,9 +554,9 @@ div(class = "cuadricula",
 <p class="libro_autor">Dan Abnett</p>
 <div class="libro_rating">
 <div class="estrellas">
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
 <span style="color: #8F758F60; &#10;font-size: 14px; margin: 1px;">★</span>
 <span style="color: #8F758F60; &#10;font-size: 14px; margin: 1px;">★</span>
 </div>
@@ -573,11 +573,11 @@ div(class = "cuadricula",
 <p class="libro_autor">Rachilde</p>
 <div class="libro_rating">
 <div class="estrellas">
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
 </div>
 </div>
 <p class="libro_paginas">Leído en el 4 de 2025, 64 páginas</p>
@@ -592,10 +592,10 @@ div(class = "cuadricula",
 <p class="libro_autor">Carolina Rack</p>
 <div class="libro_rating">
 <div class="estrellas">
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
 <span style="color: #8F758F60; &#10;font-size: 14px; margin: 1px;">★</span>
 </div>
 </div>
@@ -630,10 +630,10 @@ div(class = "cuadricula",
 <p class="libro_autor">Lu Ciccia</p>
 <div class="libro_rating">
 <div class="estrellas">
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
 <span style="color: #8F758F60; &#10;font-size: 14px; margin: 1px;">★</span>
 </div>
 </div>
@@ -649,11 +649,11 @@ div(class = "cuadricula",
 <p class="libro_autor">Robert Rath</p>
 <div class="libro_rating">
 <div class="estrellas">
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
 </div>
 </div>
 <p class="libro_paginas">Leído en el 7 de 2025, 361 páginas</p>
@@ -668,11 +668,11 @@ div(class = "cuadricula",
 <p class="libro_autor">Pedro Lemebel</p>
 <div class="libro_rating">
 <div class="estrellas">
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
 </div>
 </div>
 <p class="libro_paginas">Leído en el 8 de 2025, 284 páginas</p>
@@ -687,8 +687,8 @@ div(class = "cuadricula",
 <p class="libro_autor">Joshua Reynolds</p>
 <div class="libro_rating">
 <div class="estrellas">
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
 <span style="color: #8F758F60; &#10;font-size: 14px; margin: 1px;">★</span>
 <span style="color: #8F758F60; &#10;font-size: 14px; margin: 1px;">★</span>
 <span style="color: #8F758F60; &#10;font-size: 14px; margin: 1px;">★</span>
@@ -706,10 +706,10 @@ div(class = "cuadricula",
 <p class="libro_autor">Karl Polanyi</p>
 <div class="libro_rating">
 <div class="estrellas">
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
 <span style="color: #8F758F60; &#10;font-size: 14px; margin: 1px;">★</span>
 </div>
 </div>
@@ -725,9 +725,9 @@ div(class = "cuadricula",
 <p class="libro_autor">Rosi Braidotti</p>
 <div class="libro_rating">
 <div class="estrellas">
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
 <span style="color: #8F758F60; &#10;font-size: 14px; margin: 1px;">★</span>
 <span style="color: #8F758F60; &#10;font-size: 14px; margin: 1px;">★</span>
 </div>
@@ -744,10 +744,10 @@ div(class = "cuadricula",
 <p class="libro_autor">Silvia Federici</p>
 <div class="libro_rating">
 <div class="estrellas">
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
 <span style="color: #8F758F60; &#10;font-size: 14px; margin: 1px;">★</span>
 </div>
 </div>
@@ -763,10 +763,10 @@ div(class = "cuadricula",
 <p class="libro_autor">Dan Abnett</p>
 <div class="libro_rating">
 <div class="estrellas">
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
 <span style="color: #8F758F60; &#10;font-size: 14px; margin: 1px;">★</span>
 </div>
 </div>
@@ -782,11 +782,11 @@ div(class = "cuadricula",
 <p class="libro_autor">Lu Ciccia</p>
 <div class="libro_rating">
 <div class="estrellas">
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
 </div>
 </div>
 <p class="libro_paginas">Leído en el 11 de 2025, 256 páginas</p>
@@ -801,11 +801,11 @@ div(class = "cuadricula",
 <p class="libro_autor">Hil Malatino</p>
 <div class="libro_rating">
 <div class="estrellas">
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
 </div>
 </div>
 <p class="libro_paginas">Leído en el 11 de 2025, 125 páginas</p>
@@ -820,10 +820,10 @@ div(class = "cuadricula",
 <p class="libro_autor">Various</p>
 <div class="libro_rating">
 <div class="estrellas">
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
-<span style="color: #FAC51F; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
+<span style="color: #9069c0; &#10;font-size: 14px; margin: 1px;">★</span>
 <span style="color: #8F758F60; &#10;font-size: 14px; margin: 1px;">★</span>
 </div>
 </div>
