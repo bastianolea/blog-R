@@ -96,6 +96,19 @@ Para inscribirte, rellena el siguiente formulario[^2] y te contactaré en caso d
 {{< info "Se recomienda **experiencia mínima** con R, pero si no tienes experiencia igual podrás aprender! Revisa los [contenidos del primer curso gratuito de R](/blog/curso_gratis_r_intro_1/) que organicé para tener una base de conocimientos básicos." >}}
 -->
 
+## Diapositivas
+
+En las diapositivas del curso se resumen los temas, se muestran ejemplos de código, y se entregan enlaces a los datos necesarios y a los tutoriales para profundizar.
+
+{{< boton "Diapositivas" "https://bastianolea.github.io/curso_intro_R_gratis_v2" "fas fa-chalkboard-user" >}}
+
+<iframe width="100%" height="480" 
+src="https://bastianolea.github.io/curso_intro_R_gratis_v2" 
+title="Diapositivas" frameborder="0"></iframe>
+
+
+
+
 ## Streaming y grabaciones
 
 Puedes ver las clases **en vivo** y **en tiempo real** por Youtube:
@@ -112,23 +125,20 @@ Clase realizada el **miércoles 25 de marzo.**
 src="https://www.youtube.com/embed/zQdTn8O82zo?si=I4bqKansqueLiFRA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
-### Streaming clase 2
+### Grabación clase 2: introducción a `{dplyr}`
 
-Ve la segunda clase en vivo: **lunes 30 de marzo a las 19:30 horas** (horario de Chile)
+Clase realizada el **lunes 30 de marzo a las 19:30 horas** (horario de Chile)
 
-<iframe width="100%" height="480" src="https://www.youtube.com/embed/DWmpwerahPU?si=u78PjemL2VTuqIuW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="100%" height="480" src="https://www.youtube.com/embed/DWmpwerahPU?si=M-RxosaPT7FYjA3P" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
+### Streaming clase 3
 
-## Diapositivas
+Ve la tercera y última clase en vivo: **lunes 1 de abril a las 19:30 horas** (horario de Chile)
 
-En las diapositivas del curso se resumen los temas, se muestran ejemplos de código, y se entregan enlaces a los datos necesarios y a los tutoriales para profundizar.
+<iframe width="100%" height="480" src="https://www.youtube.com/embed/Eqeo7ub58Yg?si=iYYnWM2LwZmnqFOt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-{{< boton "Diapositivas" "https://bastianolea.github.io/curso_intro_R_gratis_v2" "fas fa-chalkboard-user" >}}
 
-<iframe width="100%" height="480" 
-src="https://bastianolea.github.io/curso_intro_R_gratis_v2" 
-title="Diapositivas" frameborder="0"></iframe>
 
 ## Código
 
@@ -142,6 +152,9 @@ En este enlace puedes acceder al [repositorio de GitHub](https://github.com/bast
 Scripts vistos en clase, con comentarios explicativos de cada paso y comando. Se sugiere [revisar a la par de las diapositivas](#diapositivas), que también contienen enlaces a **tutoriales más detallados** de cada tema.
 
 {{< boton "Script clase 1" "https://github.com/bastianolea/curso_intro_R_gratis_v2/blob/main/clases/clase_1.R" "fas fa-file-code" >}}
+
+
+{{< boton "Script clase 2" "https://github.com/bastianolea/curso_intro_R_gratis_v2/blob/main/clases/clase_2.R" "fas fa-file-code" >}}
 
 <!--
 {{< boton "Script clase 2" "https://github.com/bastianolea/curso_intro_R_gratis/blob/main/clases/clase_2.R" "fas fa-file-code" >}}
