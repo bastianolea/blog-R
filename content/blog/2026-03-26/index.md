@@ -45,9 +45,7 @@ libros <- read_csv("goodreads_library_export.csv") |>
   clean_names()
 ```
 
-De pasada, les aplicamos una limpieza.
-
-{{< detalles "**Ver código de la limpieza de datos**" >}}
+Luego le aplicamos una breve limpieza a los datos, incluyendo el paso clave que es **filtrar** la base de datos para tener libros de un solo año.
 
 ``` r
 library(stringr)
@@ -55,20 +53,21 @@ library(glue)
 library(lubridate)
 
 libros <- libros |> 
+  # seleccionar columnas
   select(date_read,
          title, author, publisher, my_rating, number_of_pages, 
          book_id) |> 
-  filter(!is.na(date_read)) |> 
+  # excluir libros que no tiene fecha de lectura
+  filter_out(is.na(date_read)) |> 
+  # filtrar libros para un sólo año
   filter(year(ymd(date_read)) == 2025) |> 
-  # limpiar datos
+  # limpiar datos de texto
   mutate(title = str_remove(title, "\\(.*\\)"),
          title = str_squish(title),
          author = str_squish(author))
 ```
 
-{{< /detalles >}}
-
-Luego de una limpieza, los datos se ven más o menos así:
+Después de la limpieza 🧹 los datos se ven más o menos así:
 
 ``` r
 libros |> 
@@ -299,9 +298,11 @@ Muestra 3 estrellas de 5! Super *cool* y muy *clever* en su implementación.
 
 Ahora que tenemos funcionando el *loop* que genera el `HTML`, podemos enfocarnos en hacer que se vea mejor. Para dat **estilo** al `HTML` se usa el código `CSS`, y el `CSS` se aplica a los elementos del `HTML` directamente por el atributo `style` de cada elemento, o mediante **clases**.
 
+### Clases CSS
+
 A cada elemento `HTML` le puedes asignar una **clase**, y después definir el estilo de dicha clase para que se le aplique a todos los elementos que la tengan.
 
-### Clases CSS
+Cada elemento que tenga una clase específica adquirirá la configuración que definamos en dicha clase. Así podemos **darle un mismo estilo a múltiples elementos**.
 
 Personalmente primero le pongo la clase a cada elemento `HTML`, y después voy ajustando las clases para que quede como yo quiera.
 

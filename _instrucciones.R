@@ -19,10 +19,10 @@ blogdown::new_post(title = "Galería de libros de _Goodreads_ con R y Quarto",
 )
 
 # crear un post tutorial
-blogdown::new_post(title = "Gráficos con texto enriquecido en `{ggplot2}`", 
-                   file = "blog/ggtext/index.qmd",
+blogdown::new_post(title = "Gráficos horribles", 
+                   file = "blog/graficos_horribles/index.qmd",
                    author = "Bastián Olea Herrera",
-                   tags = c("visualización de datos", "ggplot2"),
+                   tags = c("curiosidades"),
                    # categories = c("Tutoriales", "Aplicaciones") 
 )
 

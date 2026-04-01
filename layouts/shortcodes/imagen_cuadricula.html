@@ -1,0 +1,15 @@
+<!---
+<a href="{{.Get 0}}" target="_blank" style="display: inline-block; margin: 4px;">
+  <img src="{{.Get 0}}" style="border-radius: 5px; border: solid 1px #31243B30; width: 128px; display: block;">
+</a>
+--->
+
+<!-- shortcode que permite mostrar imágenes en cuadrícula, con un enlace a la imagen original y un texto opcional debajo de cada imagen -->
+<!-- usar simplemente uno debajo del otro sin espacios -->
+
+<a href="{{.Get 0}}" target="_blank" style="display: inline-block; margin: 4px; text-align: center; text-decoration: none; color: inherit; vertical-align: top; width: calc(50% - 16px); max-width: 128px;">
+  <img src="{{.Get 0}}" style="border-radius: 5px; border: solid 1px #31243B30; width: 100%; display: block;">
+  {{ if .Get 1 }}
+    <span style="display: block; margin-top: 4px; word-wrap: break-word; font-size:80%; opacity:60%;">{{ .Get 1 }}</span>
+  {{ end }}
+</a>
