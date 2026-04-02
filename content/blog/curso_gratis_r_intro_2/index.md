@@ -3,7 +3,7 @@ title: "Curso gratuito: introducción al análisis de datos con R, 2ª versión"
 subtitle: Curso online introductorio de programación dirigido a estudiantes o profesionales de las ciencias sociales
 excerpt: "Segundo curso gratuito de introducción a R enfocado en las ciencias sociales. En este curso de tres sesiones aprenderemos a usar R para **analizar datos sociales**, revisando lo básico de la **visualización de datos**, y explorando aspectos básicos de la **creación de mapas** con R."
 author: Bastián Olea Herrera
-date: '2026-03-30'
+date: '2026-04-01'
 slug: []
 categories: []
 tags:
@@ -132,11 +132,11 @@ Clase realizada el **lunes 30 de marzo a las 19:30 horas** (horario de Chile)
 <iframe width="100%" height="480" src="https://www.youtube.com/embed/DWmpwerahPU?si=M-RxosaPT7FYjA3P" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
-### Streaming clase 3
+### Grabación clase 3: resúmenes de datos, cruzar tablas, y `{tidyr}`
 
-Ve la tercera y última clase en vivo: **lunes 1 de abril a las 19:30 horas** (horario de Chile)
+Clase realizada el **miércoles 1 de abril a las 19:30 horas** (horario de Chile)
 
-<iframe width="100%" height="480" src="https://www.youtube.com/embed/Eqeo7ub58Yg?si=iYYnWM2LwZmnqFOt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="100%" height="480" src="https://www.youtube.com/embed/Eqeo7ub58Yg?si=Vi_3XZVt-T47GAkM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
 
@@ -153,8 +153,9 @@ Scripts vistos en clase, con comentarios explicativos de cada paso y comando. Se
 
 {{< boton "Script clase 1" "https://github.com/bastianolea/curso_intro_R_gratis_v2/blob/main/clases/clase_1.R" "fas fa-file-code" >}}
 
-
 {{< boton "Script clase 2" "https://github.com/bastianolea/curso_intro_R_gratis_v2/blob/main/clases/clase_2.R" "fas fa-file-code" >}}
+
+{{< boton "Script clase 3" "https://github.com/bastianolea/curso_intro_R_gratis_v2/blob/main/clases/clase_3.R" "fas fa-file-code" >}}
 
 <!--
 {{< boton "Script clase 2" "https://github.com/bastianolea/curso_intro_R_gratis/blob/main/clases/clase_2.R" "fas fa-file-code" >}}
