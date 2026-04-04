@@ -116,6 +116,15 @@ Paquete que simplifica la creación de gráficos atractivos y simples de hacer e
   "https://github.com/davidsjoberg/ggbump/raw/master/man/figures/logo.png"
   "Agrega la geometría `geom_bump()` para crear gráficos de ranking o cambio de posiciones." >}}
 
+
+{{< extension 
+  "marimekko"
+  "https://gogonzo.github.io/marimekko/"
+  "https://gogonzo.github.io/marimekko/logo.svg"
+  "Un paquete que permite crear gráficos de mosaico con `geom_marimekko()`, que permiten controlar el área de los rectángulos para representar dos variables categóricas al mismo tiempo." >}}
+
+
+
 {{< extension 
   "ggbeeswarm"
   "https://github.com/eclarke/ggbeeswarm"
@@ -223,6 +232,13 @@ Paquete que simplifica la creación de gráficos atractivos y simples de hacer e
   "https://gganimate.com"
   "https://gganimate.com/reference/figures/logo.png"
   "Ofrece la capacidad de crear visualizaciones de datos animadas con `{ggplot2}`, usando variables que especifican cómo cambia el gráfico a través del tiempo." >}}
+
+
+{{< extension
+"ggstatsplot"
+"https://www.indrapatil.com/ggstatsplot/"
+"https://www.indrapatil.com/ggstatsplot/reference/figures/logo.png"
+"Extensión que hace posible agregar detalles estadísticos, combinando al visualización de los datos con el modelado y la aplicación de técnicas estadísticas." >}}
 
 
 ## Más extensiones
