@@ -18,11 +18,13 @@ execute:
 excerpt: "Para mi [blog personal](https://bastimapache.cl) quise crear publicaciones que muestren los libros que he leído cada año, los cuales registro en mi cuenta de [Goodreads](https://www.goodreads.com/user/show/53224910-basti-n-olea-herrera). Así que usamos R para generar cuadrículas de libros por año, incluyendo la descarga automática de las portadas de los libros. Ésta es una de las gracias de Quarto: incluir código de R dentro de tus documentos, páginas web o publicaciones de blog, para generar contenido basado en datos."
 ---
 
-Para mi [blog personal, bastimapache.cl](https://bastimapache.cl) quise crear publicaciones que muestren los libros que he leído cada año, los cuales registro en mi cuenta de [Goodreads](https://www.goodreads.com/user/show/53224910-basti-n-olea-herrera).
+Para mi [blog personal, bastimapache.cl](https://bastimapache.cl) quise crear [publicaciones que muestren los libros que he leído cada año](https://bastimapache.cl/blog.html#category=libros), los cuales registro en mi cuenta de [Goodreads](https://www.goodreads.com/user/show/53224910-basti-n-olea-herrera).
 
 {{< imagen “galeria_libros.jpg” >}}
 
 Para esto, usé R para cargar el archivo de [exportación](https://help.goodreads.com/s/article/How-do-I-import-or-export-my-books-1553870934590) de datos de Goodreads, que te entrega un archivo `.csv` con tus libros leídos, puntuación, fecha de lectura, etc.
+
+{{< info “Si quieres crear tu propio sitio web o blog con Quarto + R y subirlo a internet **gratis**, [sigue este tutorial que hice!](/blog/tutorial_quarto_github_pages/)” >}}
 
 ## Cargar datos de *Goodreads*
 
@@ -131,7 +133,7 @@ libros |>
     ## 16 160382327 Ravenor                            Dan A…              NA         3
     ## 17  40957778 Invisible Women: Exposing Data Bi… Carol…             432         4
 
-En [mi blog](https://bastimapache.cl) quería mostrar los libros que he leído por año en una **cuadrícula**, con las portadas y otros datos. Se podría hacer con un gráfico, pero para que la visualización se adapte a cualquier pantalla quise hacerla en `HTML`, de forma que si entras desde un computador se vean muchos libros a la vez, y en un celular se vean menos columnas.
+Si bien una **cuadrícula** de libros con las portadas y otros datos se podría hacer con un gráfico, pero para que la visualización se adapte a cualquier pantalla quise hacerla en `HTML`, de forma que si entras desde un computador se vean muchos libros a la vez, y en un celular se vean menos columnas.
 
 Con R tenemos muchas herramientas para **transformar datos en código `HTML`** y así presentar tus datos de formas totalmente personalizadas. En este caso usé el [paquete `{shiny}`](/tags/shiny/), que produce `HTML` para aplicaciones interactivas hechas con R, pero también sirve para generar todo tipo de `HTML` desde R.
 
@@ -356,6 +358,7 @@ Personalmente primero le pongo la clase a cada elemento `HTML`, y después voy a
   margin: auto;
   justify-content: space-evenly;
   white-space: wrap;
+  padding-top: 18px;
 }
 
 /* contenedor de cada libro individual */
@@ -432,6 +435,7 @@ Personalmente primero le pongo la clase a cada elemento `HTML`, y después voy a
   margin: auto;
   justify-content: space-evenly;
   white-space: wrap;
+  padding-top: 18px;
 }
 &#10;/* contenedor de cada libro individual */
 .contenedor_libro {
@@ -862,4 +866,4 @@ div(class = "cuadricula",
 
 **Hermoso!** 😍 Ahora, como mi [blog personal](https://bastimapache.cl) está hecho con Quarto, simplemente puedo copiar este código y cambiar el año del filtro para hacer [publicaciones automáticas por cada año](https://bastimapache.cl/blog.html#category=libros).
 
-Esa es una de las gracias de Quarto: incluir código de R dentro de tus documentos, páginas web o publicaciones de blog, para generar contenido en base a datos!
+Esa es una de las gracias de Quarto: incluir código de R dentro de tus documentos, páginas web o publicaciones de blog, para generar contenido en base a datos! [Crear tu propio sitio con Quarto es súper fácil!](/blog/tutorial_quarto_github_pages/)

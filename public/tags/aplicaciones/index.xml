@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Aplicaciones on Bastián Olea</title>
-    <link>http://localhost:6614/tags/aplicaciones/</link>
+    <link>http://localhost:3770/tags/aplicaciones/</link>
     <description>Recent content in Aplicaciones on Bastián Olea</description>
     <generator>Hugo</generator>
     <language>es-ES</language>
     <lastBuildDate>Fri, 24 Jan 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:6614/tags/aplicaciones/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:3770/tags/aplicaciones/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Video: Presentación de Visualizador de datos de Corrupción en Chile</title>
-      <link>http://localhost:6614/blog/unim/presentacion_visualizador_datos_corrupcion/</link>
+      <link>http://localhost:3770/blog/unim/presentacion_visualizador_datos_corrupcion/</link>
       <pubDate>Fri, 24 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:6614/blog/unim/presentacion_visualizador_datos_corrupcion/</guid>
+      <guid>http://localhost:3770/blog/unim/presentacion_visualizador_datos_corrupcion/</guid>
       <description>&lt;p&gt;Exposición en la &lt;strong&gt;Universidad Internacional de la Municipalidad de Rancagua&lt;/strong&gt;, instancia organizada por el &lt;strong&gt;Programa de Gobierno Local Abierto&lt;/strong&gt; (GOBLA) de la Municipalidad de Rancagua.&lt;/p&gt;&#xA;&lt;p&gt;En esta presentación doy a conocer el &#xA;&lt;a href=&#34;../../apps/corrupcion_chile&#34;&gt;visualizador de datos de Corrupción&lt;/a&gt;, explicando cómo fue el proceso de inspirarme a hacerlo, los desafíos que tuve durante su desarrollo, y la experiencia de colaboración y discusión en torno a un proyecto de datos que pueden ser polémicos.&lt;/p&gt;</description>
     </item>
   </channel>
