@@ -19,10 +19,10 @@ blogdown::new_post(title = "Galería de libros de _Goodreads_ con R y Quarto",
 )
 
 # crear un post tutorial
-blogdown::new_post(title = "Gráficos horribles", 
-                   file = "blog/graficos_horribles/index.qmd",
+blogdown::new_post(title = "Medir el ancho de una aplicación Shiny como una variable reactiva y usarlo para adaptar sus contenidos", 
+                   file = "blog/shiny_ancho/index.md",
                    author = "Bastián Olea Herrera",
-                   tags = c("curiosidades"),
+                   tags = c("shiny"),
                    # categories = c("Tutoriales", "Aplicaciones") 
 )
 
@@ -40,6 +40,8 @@ blogdown::new_post(title = "Gráficos horribles",
 
 
 ## borradores ----
+"content/blog/shiny_ancho/index.md"
+"content/blog/renombrar_columnas/index.qmd"
 # tutorial mapas: poner puntos a partir de tablas de datos en centroides
 "content/blog/ggtext/index.qmd"
 "content/blog/ggplot_extensiones/index.qmd"
@@ -51,6 +53,8 @@ blogdown::new_post(title = "Gráficos horribles",
 "content/blog/googledrive/index.qmd"
 
 # ideas ----
+# tip shiny actualizar css
+# tip shiny graficos con ancho mínimo
 # {futurize} https://www.jottr.org/2026/01/22/futurize-0.1.0/
 # hacer que R te pregunte cosas
 # mapas de chile con comunas pero sin líneas en la costa

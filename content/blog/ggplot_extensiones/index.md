@@ -155,6 +155,14 @@ Paquete que simplifica la creación de gráficos atractivos y simples de hacer e
   "https://corybrunson.github.io/ggalluvial/"
   "/ggplot2_empty_hex.png"
   "Gráficos de flujos o aluviales, que muestran cómo cambian las proporciones de distintas categorías a lo largo del tiempo u otra variable. [Ejemplo de uso.](/blog/2025-07-28/)" >}}
+  
+  
+{{< extension
+  "ggfittext"
+  "https://wilkox.org/ggfittext/"
+  "/ggplot2_empty_hex.png"
+  "Agrega la geometría `geom_fit_text()` para colocar texto dentro de áreas o formas, ajustando automáticamente el tamaño del texto o haciendo cortes de línea para que el texto se ajuste al espacio disponible." >}}
+
 
   <!--
 **Otras:**
