@@ -6,6 +6,7 @@ tags:
   - web scraping
   - apps
   - Chile
+  - gráficos
 categories:
   - Aplicaciones
 author: Bastián Olea Herrera
@@ -31,13 +32,17 @@ Proyecto de ciencia de datos desarrollado en R para analizar texto de noticias c
 
 Actualmente, el corpus de noticias obtenido supera las 800.000 noticias individuales, las cuales suman un total de 140 millones (!) de palabras, abarcando más de 30 fuentes periodísticas distintas.
 
+<!--
 <img style = "border-radius: 7px; width: 100%;
     margin-bottom: 8px;
     display: block; margin: auto;"
-    src = "datos_prensa_scraping_2024-12-31.png"
+    src = "https://github.com/bastianolea/prensa_chile/raw/main/otros/graficos/resultados/datos_prensa_scraping_2025-07-05.mov"
     alt = "Gráfico resumen de resultados del scraping de prensa">
+-->
 
-----
+<video src="otros_graficos_resultados_datos_prensa_scraping_2025-07-05.mov" width="100%" autoplay loop></video>
+
+
 
 ## Aplicaciones web
 
