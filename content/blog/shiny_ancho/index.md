@@ -112,7 +112,7 @@ Al ejecutar la app, si jugamos con el ancho de la ventana (o del panel *Viewer* 
 
 Notamos que los valores cambian demasiado rápido! 😵‍💫 El `input` se actualiza con demasiada frecuencia, lo que nos puede causar problemas.
 
-## Suavizar las actualizaciones del `input`
+## Ralentizar las actualizaciones del `input`
 
 Como el evento `resize` se dispara muy frecuentemente mientras se cambia el tamaño de la ventana, `input$window_width` se actualizará decenas de veces por segundo, lo que puede generar cálculos innecesarios y hacer la app más lenta.
 
@@ -255,6 +255,10 @@ if (ancho() < 600) {
 <img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
 
 Como el **espacio horizontal es más escaso en celulares**, adaptamos el gráfico para que la leyenda aparezca arriba, y así haya más espacio para los datos!
+
+## Bonus: obtener el ancho aproximado de la ventana desde un *output* existente
+
+Una forma más simple (pero menos prolija) es obtener una *aproximación* del ancho de la ventana a partir de uno de los `output` de tu aplicación, dado que cada sesión de Shiny tiene un objeto `session$clientData` donde viene información sobre los outputs, entre otras. Si en tu app hay un output, por ejemplo `output$grafico`, que usa el ancho completo de la ventana (o generalmente *casi* el ancho completo, porque los elementos suelen tener márgenes y espaciados), puedes obtener su ancho en el objeto `session$clientData$output_grafico_width`, y como es un objeto reactivo, se actualizará en tiempo real.
 
 {{< cafecito >}}
 {{< cursos >}}
