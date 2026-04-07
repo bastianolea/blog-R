@@ -1,9 +1,8 @@
 ---
-title: "Medir el ancho de una aplicación Shiny como una variable reactiva y usarla
-  para adaptar sus contenidos"
+title: "Medir el ancho de una aplicación Shiny como una variable reactiva y usarla para adaptar los contenidos de la app"
 author: Bastián Olea Herrera
 date: '2026-04-06'
-draft: true
+draft: false
 slug: []
 categories: []
 tags:
@@ -23,13 +22,13 @@ En este tutorial veremos cómo **capturar el ancho de la ventana** como un `inpu
 
 ## Capturar el ancho de la ventana
 
-Para obtener el ancho actual de la ventana en cualquier momento de la ejecución de nuesra aplicación, usaremos **JavaScript**. Pero descuida, no es necesario aprender este elnguaje, sino solamente saber cómo integrarlo en la app Shiny.
+Para obtener el **ancho actual de la ventana** en cualquier momento de la ejecución de nuestra aplicación, usaremos **JavaScript**. No es necesario aprender este lenguaje, sino solamente saber cómo integrarlo en la app Shiny.
 
 Hay **dos formas** de incluir este código JavaScript en tu app:
 
 ### Cargar código de JavaScript externo
 
-Puedes guardar el código JavaScript en un archivo separado llamado `ancho.js` dentro de la carpeta `www/` de tu aplicación, y hacer que tu aplicación lo cargue al ejecutarse, incluyéndolo en el código de la UI (interfaz):
+Con el siguiente código en la interfaz (UI) de tu aplicación harás que el script se cargue al ejecutar la app:
 
 ```r
 tags$head(
@@ -37,7 +36,9 @@ tags$head(
 ),
 ```
 
-El archivo `www/ancho.js` contiene el código JavaScript necesario para **medir el ancho** tanto al abrir la app como al cambiar la ventana:
+De esta forma, el script queda disponible para ejecutarse en tu app.
+
+Luego, creas un archivo JavaScript, en este caso llamado `ancho.js`, dentro de la carpeta `www/` de tu aplicación, que va a contener el código JavaScript necesario para **medir el ancho** tanto al abrir la app como al cambiar la ventana:
 
 ```js
 $(document).on('shiny:connected', function() {
@@ -49,6 +50,8 @@ $(window).on('resize', function() {
 ```
 
 El primer bloque envía el ancho apenas la app se conecta, y el segundo lo actualiza cada vez que cambia el tamaño de la ventana.
+
+Guarda ese código en un archivo `ancho.js` dentro de la carpeta `www` de tu aplicación, y asegúrate de que tu app lo incluya en su UI.
 
 Si prefieres mantener todo en el mismo archivo de tu app, puedes escribir el JavaScript directamente en la UI usando `tags$script(HTML(...))`:
 
@@ -65,15 +68,12 @@ tags$head(
 )
 ```
 
-Ambas opciones producen el mismo resultado. La primera es más ordenada si tu app es grande; la segunda es más práctica para apps pequeñas o de un solo archivo.
-
-
 
 ## Crear una variable reactiva con el ancho
 
-Una vez que el JavaScript está en la UI, Shiny recibirá el ancho de la ventana como `input$window_width`. Esto ya nos sirve para nuestro propósito, que es tener el ancho como una variable.
+Una vez que el JavaScript está en la UI, Shiny recibirá el ancho de la ventana como `input$window_width`. De este modo podemos **acceder al ancho como una variable.**
 
-Si creamos un **observador**, podemos hacer que Shiny imprima el valor del `input`, y como los observadores se actualizan cada vez que cambia el valor de los inputs que incluye, veremos cómo se actualiza el ancho cada vez que cambiamos el tamaño de la ventana:
+Si creamos un **observador** (`observe()`), podemos hacer que Shiny imprima el valor del `input` y así veamos la cifra que nos entrega. Como los observadores se actualizan cada vez que cambia el valor de los inputs que incluye, veremos cómo se actualiza el ancho cada vez que cambiamos el tamaño de la ventana:
 
 ```r
 observe({
@@ -81,7 +81,7 @@ observe({
 })
 ```
 
-Si jugamos con el ancho de la ventana (o del panel _Viewer_) veremos los cambios:
+Al ejecutar la app, si jugamos con el ancho de la ventana (o del panel _Viewer_ en RStudio) veremos los cambios:
 
 ```
 645
@@ -102,14 +102,14 @@ Si jugamos con el ancho de la ventana (o del panel _Viewer_) veremos los cambios
 848
 ```
 
-Notamos inmediatamente que los valores cambian demasiado rápido! El `input` se actualiza con demasiado detalle, lo que nos puede causar problemas.
+Notamos que los valores cambian demasiado rápido! 😵‍💫 El `input` se actualiza con demasiada frecuencia, lo que nos puede causar problemas.
 
 
 ## Suavizar las actualizaciones del `input`
 
-Como el evento `resize` se dispara muy frecuentemente mientras el/la usuario/a arrastra el borde de la ventana, puede ocurrir que `input$window_width` se actualice decenas de veces por segundo, lo que puede generar cálculos innecesarios y hacer la app más lenta.
+Como el evento `resize` se dispara muy frecuentemente mientras se cambia el tamaño de la ventana, `input$window_width` se actualizará decenas de veces por segundo, lo que puede generar cálculos innecesarios y hacer la app más lenta.
 
-Para evitar esto, usamos `debounce()`, que **retarda la reactividad** hasta que el valor deje de cambiar por un tiempo determinado (en milisegundos):
+Para evitar esto, usamos la función `debounce()`, que **retarda la reactividad** hasta que el valor deje de cambiar por un tiempo determinado (en milisegundos):
 
 Primero creamos una variable reactiva a partir del `input`:
 
@@ -117,7 +117,7 @@ Primero creamos una variable reactiva a partir del `input`:
 ancho <- reactive(input$window_width)
 ```
 
-Luego, aplicamos `debounce()` a esta variable, indicando un tiempo de espera de 100 milisegundos:
+Ahora podemos acceder al ancho con el objeto `ancho()`. Luego, aplicamos `debounce()` a este objeto, indicando un tiempo de espera de 100 milisegundos:
 
 ```r
 ancho <- debounce(ancho, 100)
@@ -145,7 +145,7 @@ Ahora los mensajes en la consola aparecerán de forma mucho más espaciada mient
 
 ## Usar el ancho en un output
 
-Ya puedes usar `ancho()` como cualquier otro objeto reactivo dentro de la sección `server` de tu app. Por ejemplo, para mostrar el ancho como un texto en tu app, imprimes el texto con `renderText()` en el `server`:
+Siguiendo los pasos anteriores, puedes usar `ancho()` como cualquier otro objeto reactivo dentro de la sección `server` de tu app. Por ejemplo, para mostrar el ancho como un texto en tu app, imprimes el texto con `renderText()` en el `server`:
 
 ```r
 texto_ancho <- renderText({
@@ -181,13 +181,11 @@ observe({
 })
 ```
 
-Usamos `req(ancho())` para asegurarnos de que el valor ya esté disponible antes de intentar usarlo (en el primer instante de la app, antes de que el JavaScript se ejecute, `input$window_width` podría ser `NULL`).
-
-Con este patrón, si el ancho de la ventana supera los 600 píxeles, se muestra el mapa y se oculta el selector; y si la ventana es más angosta (como en un celular), se oculta el mapa y se muestra el selector.
+En el código anterior, usamos `req(ancho())` para asegurarnos de que el valor ya esté disponible antes de intentar usarlo (en el primer instante de la app, antes de que el JavaScript se ejecute, `input$window_width` podría ser `NULL`).  elDentro del **observador**, que se evaluará cada vez que sus  elementos internos cambien, sanse detecta queoel  de la ventana supera los 600 píxeles, se muestra el map(`show()` a y se oculta el sel(`hide()`) ector; y si la ventana es más angosta (como en un celular), se oculta el mapa y se muestra el selector. Los textos a los que se hace referencia en `show()` y `hide()` son los `id` de los elementos que queremos afectar.
 
 Así podemos adaptar la experiencia de usuario para optimizarla según el dispositivo que use.
 
-{{< aviso "Tengo un [tutorial](/blog/shiny_ocultar/) más completo sobre mostrar y ocultar elementos en Shiny usando `{shinyjs}`! [Revisa este post](/blog/shiny_ocultar/) para aprender a usar `show()` y `hide()` para controlar la visibilidad de los elementos de tu app." >}}
+{{< info "Aquí hay un [tutorial](/blog/shiny_ocultar/) más completo sobre mostrar y ocultar elementos en Shiny usando `{shinyjs}`. [Revisa el post](/blog/shiny_ocultar/) para aprender a usar `show()` y `hide()` para controlar la visibilidad de los elementos de tu app." >}}
 
 
 ## Adaptar una visualización de datos según el ancho
@@ -205,11 +203,8 @@ library(ggplot2)
 grafico <- ggplot(iris) +
   aes(Sepal.Width, Sepal.Length, color = Species) + 
   geom_point(alpha = 0.7) +
-  scale_color_discrete(
-    palette = c("#AC558A", "#553A74", "#666BC7")) +
-  theme_linedraw(paper = "#EAD2FA", 
-                 ink = "#553A74", 
-                 accent = "#9069C0")
+  scale_color_discrete(palette = c("#AC558A", "#553A74", "#666BC7")) +
+  theme_linedraw(paper = "#EAD2FA", ink = "#553A74", accent = "#9069C0")
 
 grafico
 ```
@@ -254,7 +249,7 @@ if (ancho() < 600) {
     theme(legend.position = "top")
 }
   
-  return(grafico
+  return(grafico)
 })
 ```
 

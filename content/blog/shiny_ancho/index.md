@@ -1,10 +1,10 @@
 ---
 title: >-
   Medir el ancho de una aplicación Shiny como una variable reactiva y usarla
-  para adaptar sus contenidos
+  para adaptar los contenidos de la app
 author: Bastián Olea Herrera
 date: '2026-04-06'
-draft: true
+draft: false
 slug: []
 categories: []
 tags:
@@ -183,13 +183,11 @@ observe({
 })
 ```
 
-Usamos `req(ancho())` para asegurarnos de que el valor ya esté disponible antes de intentar usarlo (en el primer instante de la app, antes de que el JavaScript se ejecute, `input$window_width` podría ser `NULL`).
-
-Con este patrón, si el ancho de la ventana supera los 600 píxeles, se muestra el mapa y se oculta el selector; y si la ventana es más angosta (como en un celular), se oculta el mapa y se muestra el selector.
+En el código anterior, usamos `req(ancho())` para asegurarnos de que el valor ya esté disponible antes de intentar usarlo (en el primer instante de la app, antes de que el JavaScript se ejecute, `input$window_width` podría ser `NULL`). elDentro del **observador**, que se evaluará cada vez que sus elementos internos cambien, sanse detecta queoel de la ventana supera los 600 píxeles, se muestra el map(`show()` a y se oculta el sel(`hide()`) ector; y si la ventana es más angosta (como en un celular), se oculta el mapa y se muestra el selector. Los textos a los que se hace referencia en `show()` y `hide()` son los `id` de los elementos que queremos afectar.
 
 Así podemos adaptar la experiencia de usuario para optimizarla según el dispositivo que use.
 
-{{< aviso "Tengo un [tutorial](/blog/shiny_ocultar/) más completo sobre mostrar y ocultar elementos en Shiny usando `{shinyjs}`! [Revisa este post](/blog/shiny_ocultar/) para aprender a usar `show()` y `hide()` para controlar la visibilidad de los elementos de tu app." >}}
+{{< info "Aquí hay un [tutorial](/blog/shiny_ocultar/) más completo sobre mostrar y ocultar elementos en Shiny usando `{shinyjs}`. [Revisa el post](/blog/shiny_ocultar/) para aprender a usar `show()` y `hide()` para controlar la visibilidad de los elementos de tu app." >}}
 
 ## Adaptar una visualización de datos según el ancho
 
@@ -205,11 +203,8 @@ library(ggplot2)
 grafico <- ggplot(iris) +
   aes(Sepal.Width, Sepal.Length, color = Species) + 
   geom_point(alpha = 0.7) +
-  scale_color_discrete(
-    palette = c("#AC558A", "#553A74", "#666BC7")) +
-  theme_linedraw(paper = "#EAD2FA", 
-                 ink = "#553A74", 
-                 accent = "#9069C0")
+  scale_color_discrete(palette = c("#AC558A", "#553A74", "#666BC7")) +
+  theme_linedraw(paper = "#EAD2FA", ink = "#553A74", accent = "#9069C0")
 
 grafico
 ```
