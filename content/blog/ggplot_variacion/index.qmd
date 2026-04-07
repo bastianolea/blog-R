@@ -152,7 +152,7 @@ delitos_tasa_4 |>
 
 
 ```{r}
-delitos_tasa_4 |> 
+delitos_tasa_5 <- delitos_tasa_4 |> 
   mutate(pos = case_when(tipo == "baja" & año == 2023 ~ tasa + 0.7,
                          tipo == "sube" & año == 2023 ~ tasa - 0.7,
                          TRUE ~ tasa)) |>
@@ -162,40 +162,38 @@ delitos_tasa_4 |>
 ```
 
 ```{r}
-datos_long |> 
-  
+delitos_tasa_5 |> 
   # mutate(variable = reordenar_ranking(variable)) |>
   ggplot() +
-  aes(x = reordenar_ranking(variable),
-      y = valor, 
+  aes(x = delito, #reordenar_ranking(variable),
+      y = tasa, 
       color = año) +
-  # fondos
-  geom_rect(
-    aes(xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf), 
-    tibble(nivel = factor(c('ICR', "Dimensiones", "Factores"), levels = c("ICR", "Dimensiones", "Factores"))),
-    inherit.aes = F,
-    fill = color$texto, alpha = c(0.28, 0.15, 0.04)
-  ) +
+  # # fondos
+  # geom_rect(
+  #   aes(xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf), 
+  #   tibble(nivel = factor(c('ICR', "Dimensiones", "Factores"), levels = c("ICR", "Dimensiones", "Factores"))),
+  #   inherit.aes = F,
+  #   alpha = c(0.28, 0.15, 0.04)
+  # ) +
   # flechas
-  geom_path(aes(group = variable, y = pos),
-            arrow = grid::arrow(length = unit(0.12, "cm"), type = "open"),
-            color = color$texto) +
+  geom_path(aes(group = delito, y = pos),
+            arrow = grid::arrow(length = unit(0.12, "cm"), type = "open")) +
   geom_point(size = 5.6, color = "white", alpha = 0.4) +
   geom_point(size = 5) +
   geom_text(
     data = ~filter(.x, año == 2023),
     aes(label = dif,
-        y = if_else(tipo == "sube", valor + 1.4, valor - 0.4)),
-    size = 3, nudge_y = 0.5, color = color$texto, show.legend = F) + 
+        y = if_else(tipo == "sube", tasa + 1.4, tasa - 0.4)),
+    size = 3, nudge_y = 0.5, show.legend = F) + 
   geom_text(
-    aes(label = valor),
+    aes(label = tasa),
     size = 2.6, color = "#FFFFFF", alpha = 0.8, show.legend = F) + 
-  scale_fill_manual(values = c("2014" = "#cc3e6a", "2023" = "#4d75a0"), 
-                    aesthetics = c("fill", "color")) +
-  scale_y_continuous(breaks = 1:16, limits = c(1, 16), transform = "reverse",
+  # scale_fill_manual(values = c("2014" = "#cc3e6a", "2023" = "#4d75a0"), 
+                    # aesthetics = c("fill", "color")) +
+  # scale_y_continuous(breaks = 1:16, limits = c(1, 16), transform = "reverse",
                      # sec.axis = dup_axis(name = NULL)
-  ) +
-  facet_wrap(~nivel, nrow = 1, scales = "free_x", space = "free_x", axes = "all_y") +
+  # ) +
+  # facet_wrap(~nivel, nrow = 1, scales = "free_x", space = "free_x", axes = "all_y") +
   labs(y = "Ranking (menor es mejor)",
        x = NULL,
        color = "Año:") +

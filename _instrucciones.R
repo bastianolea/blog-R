@@ -40,11 +40,9 @@ blogdown::new_post(title = "Medir el ancho de una aplicación Shiny como una var
 
 
 ## borradores ----
-"content/blog/shiny_ancho/index.md"
 "content/blog/renombrar_columnas/index.qmd"
 # tutorial mapas: poner puntos a partir de tablas de datos en centroides
 "content/blog/ggtext/index.qmd"
-"content/blog/ggplot_extensiones/index.qmd"
 "content/blog/ggplot_numeros/index.qmd"
 "content/blog/ggplot_ordenar/index.qmd" #unir estos dos en ggplot_ajustes o algo así
 "content/blog/ggplot_variacion/index.qmd"
