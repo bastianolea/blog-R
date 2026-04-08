@@ -30,12 +30,10 @@ links:
 
 
 
-
 {{< imagen "curso_r_featured.png" >}}
 
-<!-- {{< aviso "Muchas gracias a todas las personas que participaron 🤍 Fue un placer poder enseñarles lo básico de estas herramientas a un curso mayoritariamente conformado por mujeres y personas LBGTIQ. Las [grabaciones](#grabaciones) y las [diapositivas](#diapositivas) están disponibles en este post!" >}} -->
+{{< info "Muchas gracias a todas las personas que participaron! Fue un gusto conocerles! Todo el material de las [clases](#clases) están disponibles más abajo!" >}}
 
-{{< aviso "Las inscripciones se encuentran cerradas, y se envió acceso a 150 personas por correo, pero podrás ver el curso por [streaming](#streaming-y-grabaciones)" >}}
 
 ## Sobre el curso
 
@@ -45,11 +43,8 @@ En este curso de tres sesiones aprenderemos a usar R para **analizar datos socia
 
 {{< info "Recomiendo revisar los [contenidos del primer curso gratuito de R](/blog/curso_gratis_r_intro_1/) que organicé, incluyendo grabaciones y diapositivas, para tener una base de conocimientos básicos!" >}}
 
-El curso se dirige a personas de las **ciencias sociales** con mínima experiencia en análisis de datos y/o en R, ya que no es tan introductorio como [el primer curso](/blog/curso_gratis_r_intro_1/) (va a empezar directamente con el trabajo con datos, saltando los aspectos básicos). Sin embargo, el curso es apto para personas sin experiencia previa, aunque se recomienda [revisar los contenidos del primer curso!](/blog/curso_gratis_r_intro_1/)
 
-----
-
-R es un lenguaje diseñado para trabajar con datos. Además de exploración, transformación y análisis de datos, R permite hacer visualizaciones, animaciones, automatización de procesos, reportes, aplicaciones web, y mucho más. 
+R es un lenguaje **diseñado para trabajar con datos.** Además de exploración, transformación y análisis de datos, R permite hacer visualizaciones, animaciones, automatización de procesos, reportes, aplicaciones web, y mucho más. 
 
 Su gracia es que es un lenguaje usado por personas de **diversas disciplinas**, y por lo mismo es un lenguaje orientado a ser usado por personas que no sean expertas en informática o ciencias de la computación.
 
@@ -63,15 +58,12 @@ El curso va dirigido a **profesionales o estudiantes de las ciencias sociales** 
 
 ## Cupos
 
-Los **cupos** son limitados, y se aplicarán **criterios de inclusión** para la participación de grupos minoritarios (mujeres, disidencias de sexo y género, personas con discapacidad). 
+Los **cupos** fueron limitados, y se aplicaron **criterios de inclusión** para la participación de grupos minoritarios (mujeres, disidencias de sexo y género, personas con discapacidad). De las más de 1.500 postulaciones al curso, se abrieron 150 cupos.
 
 <!-- A diferencia del primer curso, **sólo podrán participar personas de Chile**[^1]. -->
-De todas maneras, [cualquier persona podrá ver el **streaming en vivo** de las clases](#streaming-y-grabaciones), que [se transmitirá por Youtube](https://www.youtube.com/live/zQdTn8O82zo?si=I4bqKansqueLiFRA).
 
 <!--[^1]: Lamento tener que cerrar la posibilidad, pero el esfuerzo de impartir cursos gratuitos es alto, y necesito generar conexiones laborales y de colaboración centradas en mi territorio. -->
 
-## Clases
-Las clases serán **online** los días 25 y 30 de marzo, y 1 de abril a las 7:30PM (horario de Chile). Se enviará un enlace de Zoom a las personas que obtengan un cupo, y paralelamente cualquier persona podrá ver el **streaming en vivo** de las clases.
 
 ## Docente
 
@@ -82,10 +74,11 @@ Las clases serán **online** los días 25 y 30 de marzo, y 1 de abril a las 7:30
 Su experiencia consiste principalmente en [visualización de datos](/tags/gráficos/) y desarrollo de [aplicaciones interactivas](/shiny_apps/) con R. También se dedica a escribir [tutoriales](/categories/tutoriales/) para ayudar a otr@s a [aprender R](https://bastianolea.github.io/aprende_r/).
 
 
-
+<!---
 ## Inscripciones
 
 ¡Las inscripciones se encuentran cerradas! Se enviaron correos a **150 personas** con cupos para participar en el curso. Pero **cualquier persona podrá [ver el curso en vivo](#streaming-y-grabaciones)** y acceder a los [materiales](#materiales).
+-->
 <!--
 Para inscribirte, rellena el siguiente formulario[^2] y te contactaré en caso de que hayas obtenido un cupo. 
 
@@ -96,55 +89,80 @@ Para inscribirte, rellena el siguiente formulario[^2] y te contactaré en caso d
 {{< info "Se recomienda **experiencia mínima** con R, pero si no tienes experiencia igual podrás aprender! Revisa los [contenidos del primer curso gratuito de R](/blog/curso_gratis_r_intro_1/) que organicé para tener una base de conocimientos básicos." >}}
 -->
 
-## Diapositivas
+## Clases
+A continuación se entrega todo el material del curso, para que puedas seguirlo a tu propio ritmo.
 
-En las diapositivas del curso se resumen los temas, se muestran ejemplos de código, y se entregan enlaces a los datos necesarios y a los tutoriales para profundizar.
-
-{{< boton "Diapositivas" "https://bastianolea.github.io/curso_intro_R_gratis_v2" "fas fa-chalkboard-user" >}}
+### Diapositivas
+En las diapositivas del curso se resumen los temas, se muestran ejemplos de código, y se entregan para **descargar** los datos necesarios. También cada temática va acompañada de un tutorial para profundizar.
 
 <iframe width="100%" height="480" 
 src="https://bastianolea.github.io/curso_intro_R_gratis_v2" 
 title="Diapositivas" frameborder="0"></iframe>
 
+{{< boton "Diapositivas" "https://bastianolea.github.io/curso_intro_R_gratis_v2" "fas fa-chalkboard-user" >}}
 
 
 
-## Streaming y grabaciones
+### Clase 1:  introducción a R
 
-Puedes ver las clases **en vivo** y **en tiempo real** por Youtube:
+Clase realizada el miércoles 25 de marzo.
 
-{{< boton "Streaming en vivo" "https://www.youtube.com/@bastianolea/streams" "fab fa-youtube" >}}
+{{< boton "Diapositivas clase 1"
+"https://bastianolea.github.io/curso_intro_R_gratis_v2/diapositivas.html#/por-qué-programar-para-analizar-datos"
+"fas fa-chalkboard-user" >}}
 
-### Grabación clase 1: introducción a R
-
-Clase realizada el **miércoles 25 de marzo.**
+{{< boton "Código clase 1" "https://github.com/bastianolea/curso_intro_R_gratis_v2/blob/main/clases/clase_1.R" "fas fa-file-code" >}}
 
 {{< boton "Grabación clase 1" "https://www.youtube.com/live/zQdTn8O82zo?si=tTh8l2dFxqNpMjSq" "fab fa-youtube" >}}
 
-<iframe width="100%" height="480" 
+<iframe width="100%" height="320" 
 src="https://www.youtube.com/embed/zQdTn8O82zo?si=I4bqKansqueLiFRA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
-### Grabación clase 2: introducción a `{dplyr}`
 
-Clase realizada el **lunes 30 de marzo a las 19:30 horas** (horario de Chile)
+### Clase 2: introducción a `{dplyr}`
 
-<iframe width="100%" height="480" src="https://www.youtube.com/embed/DWmpwerahPU?si=M-RxosaPT7FYjA3P" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+Clase realizada el lunes 30 de marzo.
+
+{{< boton "Diapositivas clase 2"
+"https://bastianolea.github.io/curso_intro_R_gratis_v2/diapositivas.html#/dplyr"
+"fas fa-chalkboard-user" >}}
+
+{{< boton "Código clase 2" "https://github.com/bastianolea/curso_intro_R_gratis_v2/blob/main/clases/clase_2.R" "fas fa-file-code" >}}
+
+{{< boton "Grabación clase 2" "https://www.youtube.com/live/DWmpwerahPU?si=cDycRRiFqsZW2QeT" "fab fa-youtube" >}}
+
+<iframe width="100%" height="320" src="https://www.youtube.com/embed/DWmpwerahPU?si=M-RxosaPT7FYjA3P" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
-### Grabación clase 3: resúmenes de datos, cruzar tablas, y `{tidyr}`
+### Clase 3: resúmenes de datos, cruzar tablas, y `{tidyr}`
 
-Clase realizada el **miércoles 1 de abril a las 19:30 horas** (horario de Chile)
+Clase realizada el miércoles 1 de abril.
 
-<iframe width="100%" height="480" src="https://www.youtube.com/embed/Eqeo7ub58Yg?si=Vi_3XZVt-T47GAkM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+{{< boton "Diapositivas clase 3"
+"https://bastianolea.github.io/curso_intro_R_gratis_v2/diapositivas.html#/resúmenes-de-datos"
+"fas fa-chalkboard-user" >}}
+
+{{< boton "Código clase 3" "https://github.com/bastianolea/curso_intro_R_gratis_v2/blob/main/clases/clase_3.R" "fas fa-file-code" >}}
+
+{{< boton "Grabación clase 3" "https://www.youtube.com/live/Eqeo7ub58Yg?si=BeSZq4p1ZlmlhjGh" "fab fa-youtube" >}}
+
+<iframe width="100%" height="320" src="https://www.youtube.com/embed/Eqeo7ub58Yg?si=Vi_3XZVt-T47GAkM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
-### Streaming clase 4: visualización de datos con `{ggplot2}`
+### Clase 4: visualización de datos con `{ggplot2}`
 
-Esta clase extra se realizará el **martes 7 de abril a las 19:30 horas** (horario de Chile)
+Clase realizada el martes 7 de abril. Se trató de una **clase extra** por solicitud del propio curso.
 
-<iframe width="100%" height="480" src="https://www.youtube-nocookie.com/embed/mDj59s1WOyM?si=PtQhcY59XURJZTzo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+{{< boton "Diapositivas clase 4"
+"https://bastianolea.github.io/curso_intro_R_gratis_v2/diapositivas.html#/ggplot2"
+"fas fa-chalkboard-user" >}}
 
+{{< boton "Código clase 4" "https://github.com/bastianolea/curso_intro_R_gratis_v2/blob/main/clases/clase_4.R" "fas fa-file-code" >}}
+
+{{< boton "Grabación clase 4" "https://www.youtube.com/live/mDj59s1WOyM?si=vnCdeVfHp_d4gFxF" "fab fa-youtube" >}}
+
+<iframe width="100%" height="320" src="https://www.youtube.com/embed/mDj59s1WOyM?si=PtQhcY59XURJZTzo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
 ## Código
@@ -153,69 +171,18 @@ En este enlace puedes acceder al [repositorio de GitHub](https://github.com/bast
 
 {{< boton "Código del curso" "https://github.com/bastianolea/curso_intro_R_gratis_v2" "fas fa-file-code" >}}
 
+También puedes descargar el **proyecto de R** del curso para abrirlo en tu computador y tener todos los **scripts** y **datos** necesarios:
 
-### Scripts de cada clase
-
-Scripts vistos en clase, con comentarios explicativos de cada paso y comando. Se sugiere [revisar a la par de las diapositivas](#diapositivas), que también contienen enlaces a **tutoriales más detallados** de cada tema.
-
-{{< boton "Script clase 1" "https://github.com/bastianolea/curso_intro_R_gratis_v2/blob/main/clases/clase_1.R" "fas fa-file-code" >}}
-
-{{< boton "Script clase 2" "https://github.com/bastianolea/curso_intro_R_gratis_v2/blob/main/clases/clase_2.R" "fas fa-file-code" >}}
-
-{{< boton "Script clase 3" "https://github.com/bastianolea/curso_intro_R_gratis_v2/blob/main/clases/clase_3.R" "fas fa-file-code" >}}
-
-<!--
-{{< boton "Script clase 2" "https://github.com/bastianolea/curso_intro_R_gratis/blob/main/clases/clase_2.R" "fas fa-file-code" >}}
-
-{{< boton "Script clase 3" "https://github.com/bastianolea/curso_intro_R_gratis/blob/main/clases/clase_3.R" "fas fa-file-code" >}}
--->
+{{< boton "Descargar curso" "/blog/curso_gratis_r_intro_2/curso_intro_r_v2.zip" "fas fa-file-download" >}}
 
 
-<!--
-{{< boton "Inscripciones cerradas" "https://bastianolea.rbind.io" "fas fa-file-pen" >}}
 
-{{< info "Conéctate a la **transmisión en vivo** del curso [en este enlace](https://www.youtube.com/watch?v=A9wtPBEaVvY)." >}}
-
-Al inscribirte al curso aceptas el [código de conducta](https://bastianolea.rbind.io/code-of-conduct/).
--->
-
-<!--
-El curso se llevó a cabo de manera online y sincrónica los días 3, 5, y 9 de febrero, a un curso con cupos limitados que [priorizaron la participación de mujeres y personas LGBTIQ+](/blog/2026-01-19/).
--->
 
 <!--
 
 También puedes [descargar las diapositivas en formato PDF aquí](/blog/curso_gratis_r_intro_1/diapositivas.pdf).
 
-----
-
-
-----
-
-
-----
-
-### Clase 2: trabajando con datos en R
-
-{{< boton "Grabación clase 2" "https://youtube.com/live/xhEOHnTZ2fM" "fab fa-youtube" >}}
-
-<iframe width="100%" height="480" src="https://www.youtube.com/embed/xhEOHnTZ2fM?si=rxNAY_3dYto-Oneb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-----
-
-### Clase 3: manipulación de datos en R
-
-{{< boton "Grabación clase 3" "https://www.youtube.com/watch?v=vfvTsQXZlFs" "fab fa-youtube" >}}
-
-<iframe width="100%" height="480" src="https://www.youtube.com/embed/vfvTsQXZlFs?si=sic5ANNevJxgo77G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-----
-
-Puedes descargar todos los materiales del curso (código de clases, diapositivas y enlaces) en un solo archivo comprimido acá:
-
-{{< boton "Descargar curso" "/blog/curso_gratis_r_intro_1/curso_intro_r.zip" "fas fa-download" >}}
-
---> 
+decktape reveal https://bastianolea.github.io/curso_intro_R_gratis_v2/diapositivas.html#/title-slide /Users/baolea/Desktop/diapo_b.pdf
+-->
 
 {{< cafecito >}}
