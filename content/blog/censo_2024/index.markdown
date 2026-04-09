@@ -405,6 +405,12 @@ personas |>
   collect()
 ```
 
+```
+## Error in `recode()`:
+## ! Expression not supported in Arrow
+## → Call collect() first to pull data into R.
+```
+
 No funciona! Pero si ponemos el `collect()` antes, haremos que se carguen los resultados a nuestra memoria y podremos seguir normalmente:
 
 
@@ -840,12 +846,12 @@ personas_hogares |>
 ## # A tibble: 6 × 7
 ##   id_vivienda id_hogar region comuna  sexo edad_quinquenal p12_tenencia_viv
 ##         <int>    <int>  <int>  <int> <int>           <int>            <int>
-## 1       13755        1      6   6101     2              10                1
-## 2       13755        1      6   6101     2              15                1
-## 3       13756        1     13  13105     1              20                4
-## 4       13756        1     13  13105     2              40                4
-## 5       13756        1     13  13105     2              15                4
-## 6       13757        1     13  13129     2              65                1
+## 1       40901        1     13  13501     1              35                2
+## 2       40902        1     13  13114     1              80                1
+## 3       40902        1     13  13114     2              70                1
+## 4       40903        1     13  13124     1              45                2
+## 5       40903        1     13  13124     2              45                2
+## 6       40903        1     13  13124     1              15                2
 ```
 
 ``` r
@@ -984,12 +990,12 @@ personas_hogares_comunas |>
 ## # A tibble: 6 × 11
 ##   id_vivienda id_hogar nombre_region           region nombre_comuna comuna sexo 
 ##         <int>    <int> <chr>                    <int> <chr>          <int> <chr>
-## 1       13755        1 Libertador General Ber…      6 Rancagua        6101 Mujer
-## 2       13755        1 Libertador General Ber…      6 Rancagua        6101 Mujer
-## 3       13756        1 Metropolitana de Santi…     13 El Bosque      13105 Homb…
-## 4       13756        1 Metropolitana de Santi…     13 El Bosque      13105 Mujer
-## 5       13756        1 Metropolitana de Santi…     13 El Bosque      13105 Mujer
-## 6       13757        1 Metropolitana de Santi…     13 San Joaquín    13129 Mujer
+## 1       68153        1 Coquimbo                     4 Los Vilos       4203 Homb…
+## 2       68154        1 Metropolitana de Santi…     13 Vitacura       13132 Homb…
+## 3       68155        1 La Araucanía                 9 Lautaro         9108 Mujer
+## 4       68155        1 La Araucanía                 9 Lautaro         9108 Homb…
+## 5       68158        1 Metropolitana de Santi…     13 La Pintana     13112 Homb…
+## 6       68158        1 Metropolitana de Santi…     13 La Pintana     13112 Mujer
 ## # ℹ 4 more variables: edad_quinquenal <int>, p12_tenencia_viv <int>,
 ## #   propiedad <chr>, adulto_mayor <chr>
 ```
@@ -1026,18 +1032,18 @@ personas_hogares_comunas |>
 
 ```
 ## # A tibble: 32 × 3
-##    nombre_region             adulto_mayor          n
-##    <chr>                     <chr>             <int>
-##  1 Coquimbo                  Adulto mayor     145007
-##  2 Metropolitana de Santiago Adulto mayor    1201787
-##  3 La Araucanía              Adulto mayor     184837
-##  4 La Araucanía              No adulto mayor  825586
-##  5 Metropolitana de Santiago No adulto mayor 6198954
-##  6 Antofagasta               No adulto mayor  558114
-##  7 Valparaíso                No adulto mayor 1516774
-##  8 Maule                     Adulto mayor     207646
-##  9 Coquimbo                  No adulto mayor  687857
-## 10 Biobío                    No adulto mayor 1322719
+##    nombre_region                         adulto_mayor          n
+##    <chr>                                 <chr>             <int>
+##  1 Metropolitana de Santiago             No adulto mayor 6198954
+##  2 Los Lagos                             No adulto mayor  743943
+##  3 Arica y Parinacota                    Adulto mayor      37918
+##  4 Arica y Parinacota                    No adulto mayor  206651
+##  5 Metropolitana de Santiago             Adulto mayor    1201787
+##  6 Valparaíso                            Adulto mayor     379279
+##  7 Biobío                                No adulto mayor 1322719
+##  8 Biobío                                Adulto mayor     290340
+##  9 Valparaíso                            No adulto mayor 1516774
+## 10 Libertador General Bernardo O'Higgins No adulto mayor  806791
 ## # ℹ 22 more rows
 ```
 

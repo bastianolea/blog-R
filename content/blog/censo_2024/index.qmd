@@ -186,7 +186,8 @@ Por ejemplo:
 
 ```{r}
 #| error: true
-#| eval: false
+#| eval: true
+
 personas |> 
   count(sexo) |> 
   mutate(sexo = recode(sexo,

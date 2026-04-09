@@ -285,6 +285,10 @@ personas |>
   collect()
 ```
 
+    Error in `recode()`:
+    ! Expression not supported in Arrow
+    → Call collect() first to pull data into R.
+
 No funciona! Pero si ponemos el `collect()` antes, haremos que se carguen los resultados a nuestra memoria y podremos seguir normalmente:
 
 ``` r
@@ -614,12 +618,12 @@ personas_hogares |>
     # A tibble: 6 × 7
       id_vivienda id_hogar region comuna  sexo edad_quinquenal p12_tenencia_viv
             <int>    <int>  <int>  <int> <int>           <int>            <int>
-    1       13755        1      6   6101     2              10                1
-    2       13755        1      6   6101     2              15                1
-    3       13756        1     13  13105     1              20                4
-    4       13756        1     13  13105     2              40                4
-    5       13756        1     13  13105     2              15                4
-    6       13757        1     13  13129     2              65                1
+    1       27362        1     13  13113     2              45                2
+    2       27363        1      5   5701     1              75                1
+    3       27364        1     13  13125     2              55                1
+    4       27364        1     13  13125     2              20                1
+    5       27365        1     13  13122     2              30                7
+    6       27365        1     13  13122     2              10                7
 
 ``` r
 # cantidad de observaciones en la tabla
@@ -742,14 +746,14 @@ personas_hogares_comunas |>
 ```
 
     # A tibble: 6 × 11
-      id_vivienda id_hogar nombre_region region nombre_comuna comuna sexo  
-            <int>    <int> <chr>          <int> <chr>          <int> <chr> 
-    1           1        1 Valparaíso         5 Limache         5802 Mujer 
-    2           1        1 Valparaíso         5 Limache         5802 Hombre
-    3           1        1 Valparaíso         5 Limache         5802 Mujer 
-    4           1        1 Valparaíso         5 Limache         5802 Mujer 
-    5           2        1 Coquimbo           4 Monte Patria    4303 Hombre
-    6           2        1 Coquimbo           4 Monte Patria    4303 Mujer 
+      id_vivienda id_hogar nombre_region           region nombre_comuna comuna sexo 
+            <int>    <int> <chr>                    <int> <chr>          <int> <chr>
+    1       68153        1 Coquimbo                     4 Los Vilos       4203 Homb…
+    2       68154        1 Metropolitana de Santi…     13 Vitacura       13132 Homb…
+    3       68155        1 La Araucanía                 9 Lautaro         9108 Mujer
+    4       68155        1 La Araucanía                 9 Lautaro         9108 Homb…
+    5       68158        1 Metropolitana de Santi…     13 La Pintana     13112 Homb…
+    6       68158        1 Metropolitana de Santi…     13 La Pintana     13112 Mujer
     # ℹ 4 more variables: edad_quinquenal <int>, p12_tenencia_viv <int>,
     #   propiedad <chr>, adulto_mayor <chr>
 
@@ -768,8 +772,8 @@ personas_hogares_comunas |>
     # A tibble: 2 × 2
       adulto_mayor           n
       <chr>              <int>
-    1 No adulto mayor 15316446
-    2 Adulto mayor     3163986
+    1 Adulto mayor     3163986
+    2 No adulto mayor 15316446
 
 Podemos obtener el mismo conteo a nivel regional:
 
@@ -780,18 +784,18 @@ personas_hogares_comunas |>
 ```
 
     # A tibble: 32 × 3
-       nombre_region             adulto_mayor          n
-       <chr>                     <chr>             <int>
-     1 Coquimbo                  Adulto mayor     145007
-     2 Metropolitana de Santiago Adulto mayor    1201787
-     3 La Araucanía              Adulto mayor     184837
-     4 La Araucanía              No adulto mayor  825586
-     5 Metropolitana de Santiago No adulto mayor 6198954
-     6 Antofagasta               No adulto mayor  558114
-     7 Valparaíso                No adulto mayor 1516774
-     8 Maule                     Adulto mayor     207646
-     9 Coquimbo                  No adulto mayor  687857
-    10 Biobío                    No adulto mayor 1322719
+       nombre_region                         adulto_mayor          n
+       <chr>                                 <chr>             <int>
+     1 Libertador General Bernardo O'Higgins No adulto mayor  806791
+     2 Metropolitana de Santiago             No adulto mayor 6198954
+     3 Metropolitana de Santiago             Adulto mayor    1201787
+     4 Libertador General Bernardo O'Higgins Adulto mayor     180437
+     5 La Araucanía                          No adulto mayor  825586
+     6 Valparaíso                            No adulto mayor 1516774
+     7 Biobío                                No adulto mayor 1322719
+     8 Biobío                                Adulto mayor     290340
+     9 Ñuble                                 No adulto mayor  409410
+    10 Los Lagos                             No adulto mayor  743943
     # ℹ 22 more rows
 
 #### Calcular datos
@@ -825,10 +829,10 @@ Cantidad y porcentaje de personas adultas mayores según propiedad del hogar
 
 | adulto mayor    | propiedad |  cantidad | porcentaje |
 |:----------------|:----------|----------:|-----------:|
-| Adulto mayor    | No propia |   682.085 |      21,6% |
 | Adulto mayor    | Propia    | 2.481.901 |      78,4% |
-| No adulto mayor | No propia | 6.244.617 |      40,8% |
+| Adulto mayor    | No propia |   682.085 |      21,6% |
 | No adulto mayor | Propia    | 9.071.829 |      59,2% |
+| No adulto mayor | No propia | 6.244.617 |      40,8% |
 
 Transformemos la tabla para hacer más legible y clara la información al distribuir las variables en columnas por medio de `pivot_wider()`:
 
@@ -854,10 +858,10 @@ tabla_propiedad_ancha <- conteo_propiedad |>
 Cantidad y porcentaje de personas adultas mayores según propiedad del hogar
 </p>
 
-| adulto mayor | No propia (cantidad) | Propia (cantidad) | No propia (porcentaje) | Propia (porcentaje) |
-|:-----------|:---------------|:-------------|:----------------|:--------------|
-| Adulto mayor | 682.085 | 2.481.901 | 22% | 78% |
-| No adulto mayor | 6.244.617 | 9.071.829 | 41% | 59% |
+| adulto mayor | Propia (cantidad) | No propia (cantidad) | Propia (porcentaje) | No propia (porcentaje) |
+|:-----------|:-------------|:---------------|:--------------|:----------------|
+| Adulto mayor | 2.481.901 | 682.085 | 78% | 22% |
+| No adulto mayor | 9.071.829 | 6.244.617 | 59% | 41% |
 
 Obtenemos un resultado interesante: dentro de la **población adulta mayor**, un **78% reside** en hogares de tipo de **tenencia propia**, mientras dentro de la población que no es adulta mayor, el porcentaje de personas que residen en hogares de tenencia propia es solo un **59%**.
 
