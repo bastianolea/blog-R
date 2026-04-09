@@ -1,0 +1,740 @@
+---
+title: Explorar datos del Censo de Población y Vivienda 2024 con R
+author: Bastián Olea Herrera
+date: '2026-04-08'
+slug: []
+draft: false
+categories:
+  - Tutoriales
+tags:
+  - datos
+  - chile
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+execute:
+  warning: false
+editor_options: 
+  chunk_output_type: console
+excerpt: "Una de las dificultades más frecuentes en el análisis de datos es poder acceder a datos censales, porque su tamaño suele ser muy grande para la mayoría de los computadores, o bien imposible de abrir con programas como Excel. En este tutorial veremos cómo cargar los datos del Censo 2024 de Chile con R, accediendo a bases de datos de millones de observaciones para calcular estadísticas poblacionales sin colapsar nuestros computadores."
+---
+
+<!---
+https://bastianolea.rbind.io/blog/mapas_censo_2024/
+--->
+
+```{r}
+#| echo: false
+
+library(scales)
+library(knitr)
+
+number_options(big.mark = ".", decimal.mark = ",")
+```
+
+Una de las dificultades más frecuentes en el análisis de datos es poder acceder a datos censales. Los censos suelen ser bases de datos de **varios millones de observaciones**, lo que suele ser demasiado para la mayoría de los computadores, o bien algo imposible con programas como Excel.
+
+En este tutorial veremos cómo cargar los datos del [Censo de Población y Vivienda 2024](https://censo2024.ine.gob.cl) con R para poder acceder a bases de datos de millones de observaciones sin colapsar nuestros computadores.
+
+También veremos cómo **consultar información a nivel comunal** desde el censo, y a **cruzar las bases de personas y hogares**. 
+
+{{< indice >}}
+
+## Descargar datos del Censo
+
+Lo primero que haremos es **descargar** los datos del Censo, [disponibles en su sitio oficial.](https://censo2024.ine.gob.cl)
+
+{{< boton "Resultados Censo 2024" "https://censo2024.ine.gob.cl/resultados/" "fas fa-file-download" >}}
+
+En esta página se listan todos los archivos de resultados. 
+
+Vamos a descargar el archivo _Base de microdatos - Viviendas, hogares, personas Censo 2024 (parquet) – zip, 377 MB_. 
+
+Este archivo viene comprimido, y dentro trae los datos en formato **Parquet**, que es un formato moderno y **optimizado para grandes volúmenes de datos.**
+
+El Censo viene en tres niveles de información:
+- **Viviendas**
+- **Hogares**
+- **Personas**
+
+Partiremos cargando los datos de nivel personas, que es la base más grande de las tres, dado que tiene **una fila por cada habitante de Chile.**
+
+
+## Cargar datos del Censo en R
+
+Para cargar los datos en formato Parquet usaremos el [paquete de R `{arrow}`](https://arrow.apache.org/docs/r/), que necesitamos instalar con la siguiente línea:
+
+```r
+install.packages("arrow")
+```
+
+Una vez instalado, **leemos el Censo como una base de datos** con la función `open_dataset()`.
+
+{{< detalles "¿Qué significa cargar los datos como base de datos?" >}}
+
+Normalmente los datos se cargan en la **memoria** del computador. Si los datos son muy grandes y no caben a la memoria, **el computador colapsa** o se niega a cargar los datos. Pero cuando trabajamos mediante **bases de datos**, los datos no se cargan en la memoria, sino que se representan en una **versión optimizada**, capaz de realizar **operaciones más eficientes** y de copiar los datos a la memoria **solamente cuando se necesiten**. Esto nos permite **trabajar con datos que normalmente no cabrían en nuestra memoria.**
+
+{{< /detalles >}}
+
+```r
+library(arrow) # para cargar datos .parquet
+
+# cargar censo como base de datos
+personas <- open_dataset("personas_censo2024.parquet")
+```
+
+```{r}
+#| echo: false
+library(arrow) 
+personas <- open_dataset("~/Documents/Datos/Censo/2024/personas_censo2024.parquet")
+```
+
+Si intentamos ver los datos cargados, encontraremos que no tenemos un _dataframe_ normal:
+
+```{r}
+personas 
+```
+En lugar de eso, tenemos una base de datos que **representa** los datos del censo, pero que **no los carga** en la memoria. 
+
+Sin embargo, podemos usar todas las funciones de `{dplyr}` para trabajar con los datos como normalmente hacemos, solo que al terminar las operaciones podemos obtener una **previsualización** del resultado, o bien, podemos **cargar el resultado a la memoria** con la función `collect()`, tomando **precauciones** para no cargar casi 19 millones de filas por accidente.
+
+```{r}
+library(dplyr)
+
+personas |> 
+  select(comuna, area, sexo, edad) |> # seleccionar columnas
+  head() |> # cargar solamente las primeras filas
+  collect() # traer a memoria
+```
+
+
+Para ver la estructura de la base de datos, usamos `glimpse()` de `{dplyr}`:
+
+```{r}
+#| output: false
+glimpse(personas)
+```
+
+{{< detalles "Ver la estructura de los datos" >}}
+
+```{r}
+#| echo: false
+glimpse(personas)
+```
+
+{{< /detalles >}}
+
+Vemos todos los **nombres** de las columnas, y el **tipo** de datos que contienen. Además, vemos que la base de datos tiene **más de 18 millones** de filas! Esto es algo que en la mayoría de computadores no podríamos cargar en la memoria, pero gracias a que lo cargamos como una base de datos con `{arrow}`, podemos trabajar con ella sin problemas.
+
+
+## Diccionario de variables del Censo
+
+Como vimos en el _output_ anterior, los datos del Censo vienen con **valores codificados en números** . Para entender su significado, necesitamos consultar el **diccionario de variables** del Censo, que también está disponible en la página de resultados del Censo y se llama _Diccionario de variables microdatos Censo 2024 – xlsx, 154 KB_, o presiona el siguiente botón:
+
+{{< boton "Descargar diccionario de variables" "diccionario_variables_censo2024.xlsx" "fas fa-file-download" >}}
+
+En esa planilla, la pestaña `tabla_personas` nos muestra las **etiquetas** de los valores que vienen en la base de datos. Por ejemplo, vemos que en la variable `sexo`, el valor `1` es _Hombre_ y `2` es _Mujer_.
+
+
+## Calcular resúmenes de datos censales
+
+Para hacer un **conteo** de la cantidad de personas según cualquier variable del Censo, podemos usar `count()` y luego `collect()` para que la base de datos haga el cálculo y nos entregue el resultado:
+
+```{r}
+personas |> 
+  count(sexo) |> 
+  collect()
+```
+
+{{< info "Revisa estos tutoriales sobre [resúmenes de datos](/blog/r_introduccion/dplyr_summarize/) y [estadísticos descriptivos](/blog/estadisticos_descriptivos/) para complementar esta sección del tutorial!" >}}
+
+Podemos también **recodificar** el resultado del conteo con `case_when()`, para convertir los valores codificados en etiquetas legibles:
+
+```{r}
+tabla_sexo <- personas |> 
+  count(sexo) |> 
+  mutate(sexo = case_when(
+    sexo == 1 ~ "Hombre", 
+    sexo == 2 ~ "Mujer")) |> 
+  collect()
+
+tabla_sexo
+```
+
+
+<p class="titulo_tabla">Población chilena por sexo, Censo 2024</p>
+
+```{r}
+#| echo: false
+
+tabla_sexo |> 
+  mutate(n = number_format()(n)) |> 
+  rename(población = n) |> 
+  kable(align = "rl")
+```
+
+
+
+La base de datos de Arrow puede realizar **cálculos mucho más eficientes y rápidos**, pero solamente puede realizar cálculos generales. Ésto es porque lo que hace `{arrow}` es _traducir_ las funciones de `{dplyr}` en el lenguaje de la base de datos, lo que significa que el número de funciones soportadas es limitado, aunque amplio.
+
+{{< detalles "¿Qué pasa si `{arrow}` no soporta una función?" >}}
+
+Si `{arrow}` nos dice que alguna función no es soportada (_Expression not supported in Arrow_), tenemos que usar estas funciones _después_ de cargar el resultado en la memoria con `collect()`.
+
+Por ejemplo:
+
+```{r}
+#| error: true
+#| eval: false
+personas |> 
+  count(sexo) |> 
+  mutate(sexo = recode(sexo,
+                       "1" = "Hombre", 
+                       "2" = "Mujer")) |> 
+  collect()
+```
+
+No funciona! Pero si ponemos el `collect()` antes, haremos que se carguen los resultados a nuestra memoria y podremos seguir normalmente:
+
+```{r}
+personas |> 
+  count(sexo) |> 
+  collect() |> # cargar resultados antes de proseguir
+  mutate(sexo = recode(sexo,
+                       "1" = "Hombres", 
+                       "2" = "Mujeres"))
+```
+
+Ahora sí!
+
+{{< /detalles >}}
+
+
+
+### Obtener población por región
+
+Para obtener la población por región, nuevamente hacemos un conteo por la variable:
+
+```{r}
+personas_region <- personas |> 
+  count(region, name = "poblacion") |> 
+  arrange(region) |>
+  collect()
+
+personas_region
+```
+
+Otra alternativa sería hacer un [resumen de datos con `summarize()`](/blog/r_introduccion/dplyr_summarize/), donde agrupamos por la variable `region` y luego contamos las filas con `n()`:
+
+```{r}
+personas_region <- personas |> 
+  group_by(region) |> 
+  summarize(poblacion = n()) |> 
+  arrange(region) |>
+  collect()
+```
+
+El resultado sería el mismo. Pero en ambos casos, recibimos las regiones en números! Para **recodificar** las regiones y ponerles sus nombres como corresponde, podemos [usar nuevamente el _Diccionario de variables_](#consultar-el-diccionario-de-variables-códigos-del-censo) para **obtener las regiones y sus nombres:** 
+
+```{r}
+#| eval: false
+
+library(readxl) # para cargar datos en Excel
+library(janitor) # para limpiar datos
+
+# cargar códigos territoriales
+codigos_territoriales <- read_xlsx("diccionario_variables_censo2024.xlsx",
+                                   sheet = "codigos_territoriales") |>
+  clean_names() |> 
+  rename(division = 2)
+```
+
+```{r}
+#| eval: true
+#| echo: false
+
+library(readxl)
+library(janitor)
+library(here)
+
+codigos_territoriales <- read_xlsx("~/R/blog-r/content/blog/censo_2024/diccionario_variables_censo2024.xlsx",
+                                   sheet = "codigos_territoriales") |>
+  clean_names() |> 
+  rename(division = 2)
+```
+
+
+```{r}
+# limpiar regiones
+regiones <- codigos_territoriales |> 
+  filter(division == "Región") |> 
+  select(region = codigo_territorial, nombre_region = territorio) |> 
+  mutate(region = as.integer(region))
+```
+
+
+
+Luego de cargar la planilla Excel y limpiarla, obtenemos una tabla con las regiones y sus códigos territoriales:
+
+```{r}
+regiones
+```
+Ahora, para obtener la población por región con sus nombres, usamos `left_join()` para **cruzar los datos** del conteo de población con la tabla de regiones:
+
+```{r}
+#| output: false
+
+tabla_region <- personas_region |> 
+  left_join(regiones, join_by(region)) |> 
+  select(nombre_region, poblacion) |>
+  collect()
+
+tabla_region
+```
+
+<p class="titulo_tabla">Población chilena por región, Censo 2024</p>
+
+```{r}
+#| echo: false
+tabla_region |> 
+  mutate(poblacion = number_format()(poblacion)) |> 
+  rename(región = 1, población = 2) |> 
+  kable(align = "rl")
+```
+
+Obtuvimos una tabla de las regiones de Chile con su población censal!
+
+{{< info "Si quieres aprender a usar `left_join()` para cruzar datos, [revisa este tutorial!](/blog/left_join/)" >}}
+
+
+### Calcular población urbana y rural por región
+
+Ahora vamos por un poco más de detalle. Calculemos la población del país por regiones, pero desagregando las regiones por sus **áreas urbanas o rurales**, para obtener una población con mayor detalle territorial.
+
+Para esto, hacemos un conteo por las variables `region` y `area`, seguimos los pasos que ya vimos antes para agregar los nombres de regiones, y finalmente recodificamos la variable `area`:
+
+```{r}
+#| output: false
+
+personas_region_area <- personas |> 
+  # contar población por región y área
+  count(region, area, name = "poblacion") |> 
+  # agregar nombres de comunas y regiones
+  left_join(regiones, join_by(region)) |> 
+  arrange(region, area) |> 
+  select(nombre_region, area, poblacion) |> 
+  # recodificar área
+  mutate(area = case_when(
+    area == 1 ~ "Urbana", 
+    area == 2 ~ "Rural")) |> 
+  # copiar a memoria
+  collect()
+
+personas_region_area
+```
+Obtenemos los datos con dos filas por cada región, con su población urbana y rural en distintas filas. 
+
+Para hacer estos datos **más legibles** podemos [transformar la estructura de los datos](/blog/r_introduccion/tidyr_pivotar/) para que los datos del área que están _hacia abajo_ (formato largo) pasen a estar distribuidos en dos columnas: urbana y rural (formato ancho).
+
+```{r}
+#| output: false
+
+library(tidyr) # para transformar datos
+
+tabla_region_area <- personas_region_area |> 
+  pivot_wider(names_from = area, # nombres de las columnas
+              values_from = poblacion) # valores de las columnas
+
+tabla_region_area
+```
+
+<p class="titulo_tabla">Población chilena por región y área, Censo 2024</p>
+
+```{r}
+#| echo: false
+tabla_region_area |> 
+  mutate(across(where(is.numeric), number_format())) |> 
+  rename(región = 1) |>
+  kable(align = "rll")
+```
+
+Ahora tenemos las regiones con su población en dos columnas según el área donde las personas habitan. 
+
+
+{{< info "Si quieres aprender a usar `pivot_wider()` y `pivot_longer()` para transformar datos o pivotar tablas, [revisa este tutorial!](/blog/r_introduccion/tidyr_pivotar/)" >}}
+
+Podemos además calcular los **porcentajes** de estas poblaciones por región, y pivotar la tabla:
+
+
+```{r}
+tabla_region_area_porcentaje <- personas_region_area |> 
+  # calcular porcentajes
+  group_by(nombre_region) |> 
+  mutate(porcentaje = poblacion / sum(poblacion),
+         porcentaje = round(porcentaje * 100, 1)) |>
+  rename(población = poblacion) |> 
+  ungroup() |> 
+  # pivotar
+  pivot_wider(names_from = area, 
+              values_from = c(población, porcentaje), 
+              names_glue = "{area} ({.value})", # nombrar columnas
+              values_fill = 0)
+```
+
+<p class="titulo_tabla">Población chilena por región y área, Censo 2024</p>
+
+```{r}
+#| echo: false
+tabla_region_area_porcentaje |> 
+  mutate(across(contains("población"), number_format())) |> 
+  mutate(across(contains("porcentaje"), percent_format(scale = 1, accuracy = 0.1))) |> 
+  rename(región = 1) |>
+  kable(align = "r")
+```
+
+
+## Mapas a partir de datos del Censo
+
+En otro tutorial mostré [cómo visualizar los datos del Censo a nivel de manzana con R](/blog/mapas_censo_2024/), y también hice una pequeña [aplicación de muestra para visualizar variables del Censo en mapas](/blog/app_censo_mapas/) como una demostración de la simplicidad y potencia de R con un _backend_ de Arrow.
+
+{{< aviso "Tutorial en construcción! Pronto lo seguiré expandiendo." >}}
+
+<!--
+
+### Obtener población por comuna
+
+
+```r
+# seleccionar columnas
+personas_filt <- personas |>
+select(id_vivienda, id_hogar, region, comuna, sexo, area)
+
+glimpse(personas_filt)
+
+library(janitor)
+library(tidyr)
+
+# agrupar datos para sumar población por comuna y área
+# (procesamiento en base de datos)
+personas_area <- personas_filt |> 
+group_by(comuna, region, area) |> 
+summarize(n = n()) |> 
+ungroup() |> 
+# agregar nombres de comunas y regiones
+left_join(comunas, join_by(comuna)) |> 
+left_join(regiones, join_by(region)) |> 
+# copiar a memoria
+collect() |> 
+# recodificar área
+mutate(area = recode_values(area, 
+1 ~ "Urbana", 
+2 ~ "Rural")) |> 
+mutate(area = as.factor(area))
+
+# generar tabla con población y porcentaje por comuna y área
+tabla_area <- personas_area |> 
+# calcular pocentaje
+group_by(comuna) |> 
+mutate(p = n / sum(n),
+p = p * 100) |>
+ungroup() |> 
+# pivotar
+pivot_wider(names_from = area, 
+values_from = c(n, p), 
+values_fill = 0) |> 
+arrange(comuna) |> 
+clean_names()
+
+# guardar
+writexl::write_xlsx(tabla_area, "tabla_comunas_area.xlsx")
+
+```
+
+
+```{r}
+#| eval: false
+# códigos territoriales ----
+
+# cargar base de códigos territoriales
+codigos_territoriales <- readxl::read_xlsx("diccionario_variables_censo2024.xlsx",
+                                           sheet = "codigos_territoriales") |>
+  clean_names() |> 
+  rename(dpa = 2)
+
+# filtrar códigos territoriales
+comunas <- codigos_territoriales |> 
+  filter(dpa == "Comuna") |> 
+  select(comuna = 1, nombre_comuna = 3) |> 
+  mutate(comuna = as.integer(comuna))
+
+regiones <- codigos_territoriales |> 
+  filter(dpa == "Región") |> 
+  select(region = 1, nombre_region = 3) |> 
+  mutate(region = as.integer(region))
+
+
+```
+
+
+
+Mapa
+
+```{r}
+#| eval: false
+manzanas |> 
+  # filtrar
+  filter(COMUNA == "PUENTE ALTO") |> # comuna
+  # convertir
+  st_as_sf(crs = 4326) |> 
+  # graficar
+  ggplot() +
+  aes(fill = n_discapacidad) + # variable
+  geom_sf(color = "white", linewidth = 0.01) +
+  scale_fill_fermenter(palette = 3) +
+  theme_minimal(base_size = 10) +
+  theme(axis.text.x = element_text(angle = 90, vjust = .5)) +
+  guides(fill = guide_legend(title = "Población",
+                             position = "top")) +
+  labs(title = "Población con discapacidad por manzana",
+       subtitle = "Comuna de Puente Alto",
+       caption = "Fuente: Censo 2024, INE")
+```
+
+
+Cruzar hogares con personas
+```{r}
+#| eval: false
+
+library(dplyr)
+library(tidyr)
+library(arrow)
+
+# cargar ----
+comunas <- readxl::read_xlsx("datos/diccionario_variables_censo2024.xlsx",
+                             sheet = "codigos_territoriales") |> 
+  select(comuna = 1, nombre_comuna = 3)
+
+personas <- open_dataset("datos/personas_censo2024.parquet")
+
+hogares <- open_dataset("datos/hogares_censo2024.parquet")
+
+
+# personas: seleccionar columnas
+personas_filt <- personas |>
+  select(id_vivienda, id_hogar, comuna, parentesco,
+         sexo, edad_quinquenal)
+
+# hogares: seleccionar columnas
+hogares_filt <- hogares |>
+  select(id_vivienda, id_hogar, comuna, p12_tenencia_viv)
+
+# cruzar ambas bases por hogar/vivienda/comuna
+personas_hogares <- personas_filt |> 
+  left_join(hogares_filt, 
+            join_by(id_vivienda, id_hogar, comuna))
+# resultado: base de personas con datos de la vivienda donde viven
+
+# conteo ----
+conteo <- personas_hogares |> 
+  group_by(comuna, sexo, edad_quinquenal, parentesco, p12_tenencia_viv) |> 
+  summarize(n = n()) |> 
+  ungroup() |> 
+  collect() # carga a memoria de los datos
+
+
+# recodificación ----
+conteo_recod <- conteo |> 
+  mutate(parentesco = recode_values(
+    parentesco,
+    1 ~	"Jefe/a de hogar",
+    2 ~	"Esposo/a o cónyuge",
+    default = "Otros")) |> 
+  mutate(sexo = recode_values(
+    sexo, 
+    1 ~ "Hombre", 
+    2 ~ "Mujer")) |> 
+  mutate(p12_tenencia_viv = recode_values(
+    p12_tenencia_viv, 
+    1 ~ "Propia pagada",
+    2 ~ "Propia pagándose",
+    3 ~ "Arrendada con contrato",
+    4 ~ "Arrendada sin contrato",
+    5 ~ "Cedida por trabajo o servicio",
+    6 ~ "Cedida por familiar u otro",
+    7 ~ "Usufructo: solo uso y goce",
+    8 ~ "Ocupada de hecho",
+    9 ~ "Propiedad en sucesión o litigio")) |> 
+  mutate(propiedad = if_else(
+    p12_tenencia_viv %in% c("Propia pagada", "Propia pagándose"), 
+    "Propia", "No propia")) |> 
+  mutate(mayor = case_when(sexo == "Hombre" & edad_quinquenal >= 65 ~ "Adulto mayor", 
+                           sexo == "Mujer" & edad_quinquenal >= 60 ~ "Adulto mayor",
+                           .default = "No adulto mayor")) |> 
+  left_join(comunas, by = "comuna") |> 
+  relocate(nombre_comuna, .before = comuna)
+
+
+# resultados ----  
+
+
+# porcentaje de viviendas de propiedad del jefe de hogar según edad
+conteo_recod |> 
+  filter(parentesco == "Jefe/a de hogar",
+         propiedad == "Propia") |> 
+  group_by(nombre_comuna, mayor, propiedad) |> 
+  summarize(n = sum(n)) |> 
+  ungroup() |> 
+  pivot_wider(names_from = mayor, values_from = n,
+              values_fill = 0) |> 
+  group_by(nombre_comuna) |> 
+  mutate(adulto_mayor_porcentaje = `Adulto mayor` / (`Adulto mayor` + `No adulto mayor`) * 100)
+# de las viviendad que son propias, en algarrobo 53.7% son de jefatura de un adulto mayor
+
+
+# porcentaje de viviendas de jefe de hogar adulto mayor que son propias
+conteo_recod |> 
+  filter(parentesco == "Jefe/a de hogar",
+         mayor == "Adulto mayor") |> 
+  group_by(nombre_comuna, mayor, propiedad) |> 
+  summarize(n = sum(n)) |> 
+  ungroup() |> 
+  pivot_wider(names_from = propiedad, values_from = n,
+              values_fill = 0) |> 
+  group_by(nombre_comuna) |> 
+  mutate(propiedad_porcentaje = `Propia` / (`No propia` + Propia) * 100)
+# de las viviendas donde la jefatura de hogar es adulto mayor, en algarrobo 78% son propias
+
+
+# jefes de hogar, porcentaje de viviendas propias de adultos mayores por sexo
+conteo_recod |> 
+  filter(parentesco == "Jefe/a de hogar",
+         propiedad == "Propia",
+         mayor == "Adulto mayor") |> 
+  group_by(nombre_comuna, sexo, mayor, propiedad) |> 
+  summarize(n = sum(n)) |> 
+  ungroup() |> 
+  pivot_wider(names_from = sexo, values_from = n) |> 
+  group_by(nombre_comuna) |> 
+  mutate(Hombre_porcentaje = Hombre / (Hombre + Mujer) * 100,
+         Mujer_porcentaje = Mujer / (Hombre + Mujer) * 100)
+# de las viviendas propias donde la jefatura de hogar es adulto mayor, en algarrobo 54.1% son hombres y 45.9% son mujeres
+
+
+# porcentaje de hogares por comuna que son propios
+hogares_filt |> 
+  group_by(comuna, p12_tenencia_viv) |> 
+  summarize(n = n()) |> 
+  ungroup() |> 
+  collect() |> 
+  mutate(p12_tenencia_viv = recode_values(
+    p12_tenencia_viv, 
+    1 ~ "Propia",
+    2 ~ "Propia",
+    default = "No propia")) |> 
+  group_by(comuna, p12_tenencia_viv) |> 
+  summarize(n = sum(n)) |> 
+  pivot_wider(names_from = p12_tenencia_viv, values_from = n,
+              values_fill = 0) |> 
+  group_by(comuna) |> 
+  mutate(propia_porcentaje = Propia / (Propia + `No propia`) * 100) |> 
+  left_join(comunas, by = "comuna") |> 
+  relocate(nombre_comuna, .before = comuna)
+# en iquique, 41% de los hogares son propios
+
+
+
+# porcentaje de hogares donde viven adultos mayores, según propiedad
+hogares_adulto_mayor <- personas_filt |> 
+  select(comuna, id_vivienda, id_hogar, comuna, edad_quinquenal, sexo) |>
+  mutate(sexo = case_when(
+    sexo == 1 ~ "Hombre", 
+    sexo == 2 ~ "Mujer")) |> 
+  mutate(mayor = case_when(sexo == "Hombre" & edad_quinquenal >= 65 ~ "Adulto mayor", 
+                           sexo == "Mujer" & edad_quinquenal >= 60 ~ "Adulto mayor",
+                           .default = "No adulto mayor")) |> 
+  group_by(comuna, id_vivienda, id_hogar) |> 
+  mutate(hogar_con_adulto_mayor = if_else(any(mayor == "Adulto mayor"), "Adulto mayor", "Sin adulto mayor")) |> 
+  ungroup() |> 
+  distinct(comuna, id_vivienda, id_hogar, hogar_con_adulto_mayor) |> 
+  collect()
+
+hogares_adulto_mayor_propiedad <- hogares_filt |> 
+  left_join(hogares_adulto_mayor, by = c("id_vivienda", "id_hogar", "comuna")) |> 
+  mutate(p12_tenencia_viv = case_when(
+    p12_tenencia_viv == 1 ~ "Propia",
+    p12_tenencia_viv == 2 ~ "Propia",
+    .default = "No propia")) |> 
+  group_by(comuna, hogar_con_adulto_mayor, p12_tenencia_viv) |> 
+  summarize(n = n()) |> 
+  ungroup() |> 
+  collect() |> 
+  arrange(comuna, hogar_con_adulto_mayor, p12_tenencia_viv) |>
+  left_join(comunas, by = "comuna") |> 
+  relocate(nombre_comuna, .before = comuna)
+
+# porcentaje de hogares con presencia de adultos mayores según propiedad
+hogares_adulto_mayor_propiedad |> 
+  arrange(comuna, p12_tenencia_viv, hogar_con_adulto_mayor) |>
+  group_by(comuna, p12_tenencia_viv) |> 
+  mutate(porcentaje_adulto_mayor = n/sum(n)) |> 
+  select(comuna, nombre_comuna, p12_tenencia_viv, hogar_con_adulto_mayor, porcentaje_adulto_mayor) |> 
+  pivot_wider(names_from = hogar_con_adulto_mayor, values_from = porcentaje_adulto_mayor)
+# en iquique, de los hogares propios, un 49.4% tiene adultos mayores
+
+# porcentaje de propiedad de hogares según presencia de adultos mayores
+hogares_adulto_mayor_propiedad |> 
+  group_by(comuna, hogar_con_adulto_mayor) |> 
+  mutate(porcentaje_propia = n/sum(n)) |> 
+  select(comuna, nombre_comuna, hogar_con_adulto_mayor, p12_tenencia_viv, porcentaje_propia) |> 
+  pivot_wider(names_from = p12_tenencia_viv, values_from = porcentaje_propia)
+# en Iquique, ed los hogares con adultos mayores, un 67.0% son propios
+
+
+
+
+
+# tablas ----
+
+# hogares con o sin presencia de adultos mayores
+tabla_hogares_presencia <- hogares_adulto_mayor_propiedad |> 
+  pivot_wider(names_from = c(p12_tenencia_viv, hogar_con_adulto_mayor), 
+              values_from = n, names_sep = "/",
+              values_fill = 0) |> 
+  filter(comuna != 12202)
+
+# personas que viven en hogares con propiedad
+tabla_personas <- conteo_recod |> 
+  group_by(nombre_comuna, comuna, propiedad, mayor) |>
+  summarize(n = sum(n)) |> 
+  pivot_wider(names_from = c(propiedad, mayor), 
+              values_from = n, names_sep = "/",
+              values_fill = 0) |> 
+  filter(comuna != 12202)
+
+# personas que son jefes de hogar en hogares con equis propiedad
+tabla_jefes_hogar <- conteo_recod |> 
+  filter(parentesco == "Jefe/a de hogar") |>
+  group_by(nombre_comuna, comuna, propiedad, mayor) |>
+  summarize(n = sum(n)) |> 
+  pivot_wider(names_from = c(propiedad, mayor), 
+              values_from = n, names_sep = "/",
+              values_fill = 0) |> 
+  filter(comuna != 12202)
+
+tabla_hogares_presencia
+tabla_personas
+tabla_jefes_hogar
+
+# guardar en excel
+writexl::write_xlsx(
+  list("Hogares con o sin adultos mayores" = tabla_hogares_presencia,
+       "Personas" = tabla_personas,
+       "Personas jefatura de hogar" = tabla_jefes_hogar),
+  path = "resultados/tablas_conteos.xlsx")
+
+```
+
+-->
+
+{{< cafecito >}}

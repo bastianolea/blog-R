@@ -1,9 +1,9 @@
 ---
-title: Cargar datos del Censo de Población y Vivienda 2024 con R
+title: Explorar datos del Censo de Población y Vivienda 2024 con R
 author: Bastián Olea Herrera
 date: '2026-04-08'
 slug: []
-draft: true
+draft: false
 categories:
   - Tutoriales
 tags:
@@ -15,11 +15,16 @@ format:
     output-ext: md
 execute:
   warning: false
+editor_options: 
+  chunk_output_type: console
+excerpt: "Una de las dificultades más frecuentes en el análisis de datos es poder acceder a datos censales, porque su tamaño suele ser muy grande para la mayoría de los computadores, o bien imposible de abrir con programas como Excel. En este tutorial veremos cómo cargar los datos del Censo 2024 de Chile con R, accediendo a bases de datos de millones de observaciones para calcular estadísticas poblacionales sin colapsar nuestros computadores."
 ---
 
 <!---
 https://bastianolea.rbind.io/blog/mapas_censo_2024/
 --->
+
+
 
 Una de las dificultades más frecuentes en el análisis de datos es poder acceder a datos censales. Los censos suelen ser bases de datos de **varios millones de observaciones**, lo que suele ser demasiado para la mayoría de los computadores, o bien algo imposible con programas como Excel.
 
@@ -27,6 +32,7 @@ En este tutorial veremos cómo cargar los datos del [Censo de Población y Vivie
 
 También veremos cómo **consultar información a nivel comunal** desde el censo, y a **cruzar las bases de personas y hogares**. 
 
+{{< indice >}}
 
 ## Descargar datos del Censo
 
@@ -48,7 +54,7 @@ El Censo viene en tres niveles de información:
 Partiremos cargando los datos de nivel personas, que es la base más grande de las tres, dado que tiene **una fila por cada habitante de Chile.**
 
 
-## Cargar datos del Censo
+## Cargar datos del Censo en R
 
 Para cargar los datos en formato Parquet usaremos el [paquete de R `{arrow}`](https://arrow.apache.org/docs/r/), que necesitamos instalar con la siguiente línea:
 
@@ -71,10 +77,6 @@ library(arrow) # para cargar datos .parquet
 personas <- open_dataset("personas_censo2024.parquet")
 ```
 
-
-```
-## Warning: package 'arrow' was built under R version 4.4.3
-```
 
 ```
 ## 
@@ -242,10 +244,83 @@ glimpse(personas)
 ## $ div_genero               <int32> 2, 2, 2, NA, -66, -66, -66, -66, -66, NA, 2, …
 ```
 
+{{< detalles "Ver la estructura de los datos" >}}
+
+
+```
+## FileSystemDataset with 1 Parquet file
+## 18,480,432 rows x 63 columns
+## $ id_vivienda              <int32> 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 6, …
+## $ id_hogar                 <int32> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+## $ id_persona               <int32> 1, 2, 3, 4, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 1, …
+## $ region                   <int32> 5, 5, 5, 5, 4, 4, 4, 11, 11, 11, 1, 1, 1, 8, …
+## $ provincia                <int32> 58, 58, 58, 58, 43, 43, 43, 112, 112, 112, 11…
+## $ comuna                   <int32> 5802, 5802, 5802, 5802, 4303, 4303, 4303, 112…
+## $ comuna_bajo_umbral       <int32> 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, …
+## $ area                     <int32> 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, …
+## $ tipo_operativo           <int32> 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+## $ sexo                     <int32> 2, 1, 2, 2, 1, 2, 1, 2, 1, 1, 1, 2, 1, 2, 1, …
+## $ edad                     <int32> 80, 52, 45, 8, 69, 65, 58, -66, -66, -66, 73,…
+## $ edad_quinquenal          <int32> 80, 50, 45, 5, 65, 65, 55, 30, 55, 5, 70, 70,…
+## $ parentesco               <int32> 1, 11, 5, 12, 9, 7, 1, 1, 4, 5, 1, 2, 5, 1, 5…
+## $ p23_est_civil            <int32> 6, 8, 8, NA, 1, 1, 8, 2, 2, NA, 1, 1, 8, 8, 8…
+## $ p24_lug_resid5           <int32> 3, 2, 2, 2, 3, 3, 2, 3, 2, 3, 2, 2, 2, 2, 2, …
+## $ p24_lug_resid5_esp       <int32> 13117, 5802, 5802, 5802, 4301, 4301, 4303, 10…
+## $ p25_lug_nacimiento       <int32> 2, 2, 2, 1, 2, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, …
+## $ p25_lug_nacimiento_rec   <int32> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+## $ p25_lug_nacimiento_esp   <int32> 12101, 5101, 13120, 5802, 5109, 4303, 4303, -…
+## $ p26_llegada_periodo      <int32> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+## $ p27_nacionalidad         <int32> 1, 1, 1, 1, 1, 1, 1, -66, -66, -66, 1, 1, 1, …
+## $ p27_nacionalidad_esp     <int32> 152, 152, 152, 152, 152, 152, 152, -66, -66, …
+## $ p27_nacionalidad_rec     <int32> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+## $ p28_autoid_pueblo        <int32> 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, …
+## $ p28_pueblo_pert          <int32> NA, NA, NA, NA, NA, NA, NA, 1, NA, 1, NA, NA,…
+## $ p29_afrodescendencia_rec <int32> 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+## $ p29_afrodescendencia     <int32> 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, …
+## $ p30_lengua_indigena      <int32> 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, …
+## $ p30_lengua_indigena_rec  <int32> 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+## $ p31_religion             <int32> 12, 12, 12, NA, 1, 1, 12, 2, 1, NA, 1, 1, 1, …
+## $ p31_religion_rec         <int32> 2, 2, 2, NA, 1, 1, 2, 1, 1, NA, 1, 1, 1, 1, 1…
+## $ p32a_dificultad_ver      <int32> 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, …
+## $ p32b_dificultad_oir      <int32> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+## $ p32c_dificultad_mover    <int32> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, …
+## $ p32d_dificultad_cogni    <int32> 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, …
+## $ p32e_dificultad_cuidado  <int32> 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, …
+## $ p32f_dificultad_comunic  <int32> 1, 1, 1, 1, 1, 1, 1, 3, 1, 2, 1, 1, 1, 1, 1, …
+## $ discapacidad             <int32> 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, …
+## $ p33_edu_asiste           <int32> 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, …
+## $ asistencia_parv          <int32> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+## $ asistencia_basica        <int32> NA, NA, NA, 1, NA, NA, NA, NA, NA, -66, NA, N…
+## $ asistencia_media         <int32> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+## $ asistencia_superior      <int32> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+## $ p37_alfabet              <int32> 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, …
+## $ escolaridad              <int32> 17, 14, 12, 2, 12, 12, 15, 8, 5, 3, 8, 8, 16,…
+## $ cine11                   <int32> 9, 6, 6, 3, 6, 6, 6, 5, 3, 3, 5, 5, 6, 5, 5, …
+## $ sit_fuerza_trabajo       <int32> 3, 1, 1, NA, 3, 3, 1, 1, 1, NA, 1, 3, 1, 3, 3…
+## $ p40_cise_rec             <int32> NA, 1, 2, NA, NA, NA, 1, 2, 1, NA, 1, NA, 2, …
+## $ depend_econ_deficit_hab  <int32> 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 2, …
+## $ cod_ciuo                 <int32> NA, 7, 2, NA, NA, NA, 7, 5, 7, NA, 1, NA, 3, …
+## $ cod_caenes              <string> NA, "F", "P", NA, NA, NA, "F", "I", "F", NA, …
+## $ p44_lug_trab             <int32> NA, 5, 2, NA, NA, NA, 2, 1, 1, NA, 2, NA, 2, …
+## $ p44_lug_trab_esp         <int32> NA, 998, 5802, NA, NA, NA, 4303, 11202, 11202…
+## $ p45_medio_transporte     <int32> NA, 2, 3, NA, NA, NA, 2, NA, NA, NA, 1, NA, 2…
+## $ p46a_tot_hijs_nac        <int32> 3, NA, 1, NA, NA, 3, NA, 2, NA, NA, NA, 3, NA…
+## $ p46b_hijas_nac           <int32> 2, NA, 1, NA, NA, 0, NA, 1, NA, NA, NA, 0, NA…
+## $ p46c_hijos_nac           <int32> 1, NA, 0, NA, NA, 3, NA, 1, NA, NA, NA, 3, NA…
+## $ p47a_tot_hijs_sobrev     <int32> 3, NA, 1, NA, NA, 2, NA, 2, NA, NA, NA, 3, NA…
+## $ p47b_hijas_sobrev        <int32> 2, NA, 1, NA, NA, -99, NA, 1, NA, NA, NA, 0, …
+## $ p47c_hijos_sobrev        <int32> 1, NA, 0, NA, NA, -99, NA, 1, NA, NA, NA, 3, …
+## $ p48_anio_nac_uh          <int32> 1978, NA, 2015, NA, NA, 1984, NA, 2014, NA, N…
+## $ p48_mes_nac_uh           <int32> 7, NA, 9, NA, NA, 6, NA, 12, NA, NA, NA, 10, …
+## $ div_genero               <int32> 2, 2, 2, NA, -66, -66, -66, -66, -66, NA, 2, …
+```
+
+{{< /detalles >}}
+
 Vemos todos los **nombres** de las columnas, y el **tipo** de datos que contienen. Además, vemos que la base de datos tiene **más de 18 millones** de filas! Esto es algo que en la mayoría de computadores no podríamos cargar en la memoria, pero gracias a que lo cargamos como una base de datos con `{arrow}`, podemos trabajar con ella sin problemas.
 
 
-## Consultar el diccionario de variables códigos del Censo
+## Diccionario de variables del Censo
 
 Como vimos en el _output_ anterior, los datos del Censo vienen con **valores codificados en números** . Para entender su significado, necesitamos consultar el **diccionario de variables** del Censo, que también está disponible en la página de resultados del Censo y se llama _Diccionario de variables microdatos Censo 2024 – xlsx, 154 KB_, o presiona el siguiente botón:
 
@@ -256,7 +331,7 @@ En esa planilla, la pestaña `tabla_personas` nos muestra las **etiquetas** de l
 
 ## Calcular resúmenes de datos censales
 
-Para hacer un **conteo** de cualquier variable, podemos usar `count()` y luego `collect()` para que la base de datos haga el cálculo y nos entregue el resultado:
+Para hacer un **conteo** de la cantidad de personas según cualquier variable del Censo, podemos usar `count()` y luego `collect()` para que la base de datos haga el cálculo y nos entregue el resultado:
 
 
 ``` r
@@ -272,16 +347,21 @@ personas |>
 ## 1     2 9513399
 ## 2     1 8967033
 ```
+
+{{< info "Revisa estos tutoriales sobre [resúmenes de datos](/blog/r_introduccion/dplyr_summarize/) y [estadísticos descriptivos](/blog/estadisticos_descriptivos/) para complementar esta sección del tutorial!" >}}
+
 Podemos también **recodificar** el resultado del conteo con `case_when()`, para convertir los valores codificados en etiquetas legibles:
 
 
 ``` r
-personas |> 
+tabla_sexo <- personas |> 
   count(sexo) |> 
   mutate(sexo = case_when(
     sexo == 1 ~ "Hombre", 
     sexo == 2 ~ "Mujer")) |> 
   collect()
+
+tabla_sexo
 ```
 
 ```
@@ -291,6 +371,17 @@ personas |>
 ## 1 Mujer  9513399
 ## 2 Hombre 8967033
 ```
+
+
+<p class="titulo_tabla">Población chilena por sexo, Censo 2024</p>
+
+
+|   sexo|población |
+|------:|:---------|
+|  Mujer|9.513.399 |
+| Hombre|8.967.033 |
+
+
 
 La base de datos de Arrow puede realizar **cálculos mucho más eficientes y rápidos**, pero solamente puede realizar cálculos generales. Ésto es porque lo que hace `{arrow}` es _traducir_ las funciones de `{dplyr}` en el lenguaje de la base de datos, lo que significa que el número de funciones soportadas es limitado, aunque amplio.
 
@@ -305,18 +396,12 @@ Por ejemplo:
 personas |> 
   count(sexo) |> 
   mutate(sexo = recode(sexo,
-    "1" = "Hombre", 
-    "2" = "Mujer")) |> 
+                       "1" = "Hombre", 
+                       "2" = "Mujer")) |> 
   collect()
 ```
 
-```
-## Error in `recode()`:
-## ! Expression not supported in Arrow
-## → Call collect() first to pull data into R.
-```
-
-No funciona!
+No funciona! Pero si ponemos el `collect()` antes, haremos que se carguen los resultados a nuestra memoria y podremos seguir normalmente:
 
 
 ``` r
@@ -324,21 +409,355 @@ personas |>
   count(sexo) |> 
   collect() |> # cargar resultados antes de proseguir
   mutate(sexo = recode(sexo,
-    "1" = "Hombre", 
-    "2" = "Mujer"))
+                       "1" = "Hombres", 
+                       "2" = "Mujeres"))
 ```
 
 ```
 ## # A tibble: 2 × 2
-##   sexo         n
-##   <chr>    <int>
-## 1 Mujer  9513399
-## 2 Hombre 8967033
+##   sexo          n
+##   <chr>     <int>
+## 1 Mujeres 9513399
+## 2 Hombres 8967033
 ```
 
 Ahora sí!
 
 {{< /detalles >}}
+
+
+
+### Obtener población por región
+
+Para obtener la población por región, nuevamente hacemos un conteo por la variable:
+
+
+``` r
+personas_region <- personas |> 
+  count(region, name = "poblacion") |> 
+  arrange(region) |>
+  collect()
+
+personas_region
+```
+
+```
+## # A tibble: 16 × 2
+##    region poblacion
+##     <int>     <int>
+##  1      1    369806
+##  2      2    635416
+##  3      3    299180
+##  4      4    832864
+##  5      5   1896053
+##  6      6    987228
+##  7      7   1123008
+##  8      8   1613059
+##  9      9   1010423
+## 10     10    890284
+## 11     11    100745
+## 12     12    166537
+## 13     13   7400741
+## 14     14    398230
+## 15     15    244569
+## 16     16    512289
+```
+
+Otra alternativa sería hacer un [resumen de datos con `summarize()`](/blog/r_introduccion/dplyr_summarize/), donde agrupamos por la variable `region` y luego contamos las filas con `n()`:
+
+
+``` r
+personas_region <- personas |> 
+  group_by(region) |> 
+  summarize(poblacion = n()) |> 
+  arrange(region) |>
+  collect()
+```
+
+El resultado sería el mismo. Pero en ambos casos, recibimos las regiones en números! Para **recodificar** las regiones y ponerles sus nombres como corresponde, podemos [usar nuevamente el _Diccionario de variables_](#consultar-el-diccionario-de-variables-códigos-del-censo) para **obtener las regiones y sus nombres:** 
+
+
+``` r
+library(readxl) # para cargar datos en Excel
+library(janitor) # para limpiar datos
+
+# cargar códigos territoriales
+codigos_territoriales <- read_xlsx("diccionario_variables_censo2024.xlsx",
+                                   sheet = "codigos_territoriales") |>
+  clean_names() |> 
+  rename(division = 2)
+```
+
+
+```
+## 
+## Attaching package: 'janitor'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     chisq.test, fisher.test
+```
+
+```
+## here() starts at /Users/baolea/R/blog-r
+```
+
+
+
+``` r
+# limpiar regiones
+regiones <- codigos_territoriales |> 
+  filter(division == "Región") |> 
+  select(region = codigo_territorial, nombre_region = territorio) |> 
+  mutate(region = as.integer(region))
+```
+
+
+
+Luego de cargar la planilla Excel y limpiarla, obtenemos una tabla con las regiones y sus códigos territoriales:
+
+
+``` r
+regiones
+```
+
+```
+## # A tibble: 16 × 2
+##    region nombre_region                            
+##     <int> <chr>                                    
+##  1      1 Tarapacá                                 
+##  2      2 Antofagasta                              
+##  3      3 Atacama                                  
+##  4      4 Coquimbo                                 
+##  5      5 Valparaíso                               
+##  6      6 Libertador General Bernardo O'Higgins    
+##  7      7 Maule                                    
+##  8      8 Biobío                                   
+##  9      9 La Araucanía                             
+## 10     10 Los Lagos                                
+## 11     11 Aysén del General Carlos Ibáñez del Campo
+## 12     12 Magallanes y de la Antártica Chilena     
+## 13     13 Metropolitana de Santiago                
+## 14     14 Los Ríos                                 
+## 15     15 Arica y Parinacota                       
+## 16     16 Ñuble
+```
+Ahora, para obtener la población por región con sus nombres, usamos `left_join()` para **cruzar los datos** del conteo de población con la tabla de regiones:
+
+
+``` r
+tabla_region <- personas_region |> 
+  left_join(regiones, join_by(region)) |> 
+  select(nombre_region, poblacion) |>
+  collect()
+
+tabla_region
+```
+
+```
+## # A tibble: 16 × 2
+##    nombre_region                             poblacion
+##    <chr>                                         <int>
+##  1 Tarapacá                                     369806
+##  2 Antofagasta                                  635416
+##  3 Atacama                                      299180
+##  4 Coquimbo                                     832864
+##  5 Valparaíso                                  1896053
+##  6 Libertador General Bernardo O'Higgins        987228
+##  7 Maule                                       1123008
+##  8 Biobío                                      1613059
+##  9 La Araucanía                                1010423
+## 10 Los Lagos                                    890284
+## 11 Aysén del General Carlos Ibáñez del Campo    100745
+## 12 Magallanes y de la Antártica Chilena         166537
+## 13 Metropolitana de Santiago                   7400741
+## 14 Los Ríos                                     398230
+## 15 Arica y Parinacota                           244569
+## 16 Ñuble                                        512289
+```
+
+<p class="titulo_tabla">Población chilena por región, Censo 2024</p>
+
+
+|                                    región|población |
+|-----------------------------------------:|:---------|
+|                                  Tarapacá|369.806   |
+|                               Antofagasta|635.416   |
+|                                   Atacama|299.180   |
+|                                  Coquimbo|832.864   |
+|                                Valparaíso|1.896.053 |
+|     Libertador General Bernardo O'Higgins|987.228   |
+|                                     Maule|1.123.008 |
+|                                    Biobío|1.613.059 |
+|                              La Araucanía|1.010.423 |
+|                                 Los Lagos|890.284   |
+| Aysén del General Carlos Ibáñez del Campo|100.745   |
+|      Magallanes y de la Antártica Chilena|166.537   |
+|                 Metropolitana de Santiago|7.400.741 |
+|                                  Los Ríos|398.230   |
+|                        Arica y Parinacota|244.569   |
+|                                     Ñuble|512.289   |
+
+Obtuvimos una tabla de las regiones de Chile con su población censal!
+
+{{< info "Si quieres aprender a usar `left_join()` para cruzar datos, [revisa este tutorial!](/blog/left_join/)" >}}
+
+
+### Calcular población urbana y rural por región
+
+Ahora vamos por un poco más de detalle. Calculemos la población del país por regiones, pero desagregando las regiones por sus **áreas urbanas o rurales**, para obtener una población con mayor detalle territorial.
+
+Para esto, hacemos un conteo por las variables `region` y `area`, seguimos los pasos que ya vimos antes para agregar los nombres de regiones, y finalmente recodificamos la variable `area`:
+
+
+``` r
+personas_region_area <- personas |> 
+  # contar población por región y área
+  count(region, area, name = "poblacion") |> 
+  # agregar nombres de comunas y regiones
+  left_join(regiones, join_by(region)) |> 
+  arrange(region, area) |> 
+  select(nombre_region, area, poblacion) |> 
+  # recodificar área
+  mutate(area = case_when(
+    area == 1 ~ "Urbana", 
+    area == 2 ~ "Rural")) |> 
+  # copiar a memoria
+  collect()
+
+personas_region_area
+```
+
+```
+## # A tibble: 32 × 3
+##    nombre_region area   poblacion
+##    <chr>         <chr>      <int>
+##  1 Tarapacá      Rural      15559
+##  2 Tarapacá      Urbana    354247
+##  3 Antofagasta   Rural      15399
+##  4 Antofagasta   Urbana    620017
+##  5 Atacama       Rural      31728
+##  6 Atacama       Urbana    267452
+##  7 Coquimbo      Rural     165110
+##  8 Coquimbo      Urbana    667754
+##  9 Valparaíso    Rural     199962
+## 10 Valparaíso    Urbana   1696091
+## # ℹ 22 more rows
+```
+Obtenemos los datos con dos filas por cada región, con su población urbana y rural en distintas filas. 
+
+Para hacer estos datos **más legibles** podemos [transformar la estructura de los datos](/blog/r_introduccion/tidyr_pivotar/) para que los datos del área que están _hacia abajo_ (formato largo) pasen a estar distribuidos en dos columnas: urbana y rural (formato ancho).
+
+
+``` r
+library(tidyr) # para transformar datos
+
+tabla_region_area <- personas_region_area |> 
+  pivot_wider(names_from = area, # nombres de las columnas
+              values_from = poblacion) # valores de las columnas
+
+tabla_region_area
+```
+
+```
+## # A tibble: 16 × 3
+##    nombre_region                              Rural  Urbana
+##    <chr>                                      <int>   <int>
+##  1 Tarapacá                                   15559  354247
+##  2 Antofagasta                                15399  620017
+##  3 Atacama                                    31728  267452
+##  4 Coquimbo                                  165110  667754
+##  5 Valparaíso                                199962 1696091
+##  6 Libertador General Bernardo O'Higgins     265174  722054
+##  7 Maule                                     321382  801626
+##  8 Biobío                                    215358 1397701
+##  9 La Araucanía                              331479  678944
+## 10 Los Lagos                                 258193  632091
+## 11 Aysén del General Carlos Ibáñez del Campo  23180   77565
+## 12 Magallanes y de la Antártica Chilena       11779  154758
+## 13 Metropolitana de Santiago                 280498 7120243
+## 14 Los Ríos                                  129620  268610
+## 15 Arica y Parinacota                         23397  221172
+## 16 Ñuble                                     174140  338149
+```
+
+<p class="titulo_tabla">Población chilena por región y área, Censo 2024</p>
+
+
+|                                    región|Rural   |Urbana    |
+|-----------------------------------------:|:-------|:---------|
+|                                  Tarapacá|15.559  |354.247   |
+|                               Antofagasta|15.399  |620.017   |
+|                                   Atacama|31.728  |267.452   |
+|                                  Coquimbo|165.110 |667.754   |
+|                                Valparaíso|199.962 |1.696.091 |
+|     Libertador General Bernardo O'Higgins|265.174 |722.054   |
+|                                     Maule|321.382 |801.626   |
+|                                    Biobío|215.358 |1.397.701 |
+|                              La Araucanía|331.479 |678.944   |
+|                                 Los Lagos|258.193 |632.091   |
+| Aysén del General Carlos Ibáñez del Campo|23.180  |77.565    |
+|      Magallanes y de la Antártica Chilena|11.779  |154.758   |
+|                 Metropolitana de Santiago|280.498 |7.120.243 |
+|                                  Los Ríos|129.620 |268.610   |
+|                        Arica y Parinacota|23.397  |221.172   |
+|                                     Ñuble|174.140 |338.149   |
+
+Ahora tenemos las regiones con su población en dos columnas según el área donde las personas habitan. 
+
+
+{{< info "Si quieres aprender a usar `pivot_wider()` y `pivot_longer()` para transformar datos o pivotar tablas, [revisa este tutorial!](/blog/r_introduccion/tidyr_pivotar/)" >}}
+
+Podemos además calcular los **porcentajes** de estas poblaciones por región, y pivotar la tabla:
+
+
+
+``` r
+tabla_region_area_porcentaje <- personas_region_area |> 
+  # calcular porcentajes
+  group_by(nombre_region) |> 
+  mutate(porcentaje = poblacion / sum(poblacion),
+         porcentaje = round(porcentaje * 100, 1)) |>
+  rename(población = poblacion) |> 
+  ungroup() |> 
+  # pivotar
+  pivot_wider(names_from = area, 
+              values_from = c(población, porcentaje), 
+              names_glue = "{area} ({.value})", # nombrar columnas
+              values_fill = 0)
+```
+
+<p class="titulo_tabla">Población chilena por región y área, Censo 2024</p>
+
+
+|                                    región| Rural (población)| Urbana (población)| Rural (porcentaje)| Urbana (porcentaje)|
+|-----------------------------------------:|-----------------:|------------------:|------------------:|-------------------:|
+|                                  Tarapacá|            15.559|            354.247|               4,2%|               95,8%|
+|                               Antofagasta|            15.399|            620.017|               2,4%|               97,6%|
+|                                   Atacama|            31.728|            267.452|              10,6%|               89,4%|
+|                                  Coquimbo|           165.110|            667.754|              19,8%|               80,2%|
+|                                Valparaíso|           199.962|          1.696.091|              10,5%|               89,5%|
+|     Libertador General Bernardo O'Higgins|           265.174|            722.054|              26,9%|               73,1%|
+|                                     Maule|           321.382|            801.626|              28,6%|               71,4%|
+|                                    Biobío|           215.358|          1.397.701|              13,4%|               86,6%|
+|                              La Araucanía|           331.479|            678.944|              32,8%|               67,2%|
+|                                 Los Lagos|           258.193|            632.091|              29,0%|               71,0%|
+| Aysén del General Carlos Ibáñez del Campo|            23.180|             77.565|              23,0%|               77,0%|
+|      Magallanes y de la Antártica Chilena|            11.779|            154.758|               7,1%|               92,9%|
+|                 Metropolitana de Santiago|           280.498|          7.120.243|               3,8%|               96,2%|
+|                                  Los Ríos|           129.620|            268.610|              32,5%|               67,5%|
+|                        Arica y Parinacota|            23.397|            221.172|               9,6%|               90,4%|
+|                                     Ñuble|           174.140|            338.149|              34,0%|               66,0%|
+
+
+{{< aviso "Tutorial en construcción! Pronto lo seguiré expandiendo." >}}
+
+<!--
+
+### Obtener población por comuna
+
 
 ```r
 # seleccionar columnas
@@ -666,4 +1085,6 @@ writexl::write_xlsx(
   path = "resultados/tablas_conteos.xlsx")
 ```
 
+-->
 
+{{< cafecito >}}

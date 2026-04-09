@@ -1,9 +1,9 @@
 ---
-title: Cargar datos del Censo de Población y Vivienda 2024 con R
+title: Explorar datos del Censo de Población y Vivienda 2024 con R
 author: Bastián Olea Herrera
 date: '2026-04-08'
 slug: []
-draft: true
+draft: false
 categories:
   - Tutoriales
 tags:
@@ -15,11 +15,23 @@ format:
     output-ext: md
 execute:
   warning: false
+editor_options: 
+  chunk_output_type: console
+excerpt: "Una de las dificultades más frecuentes en el análisis de datos es poder acceder a datos censales, porque su tamaño suele ser muy grande para la mayoría de los computadores, o bien imposible de abrir con programas como Excel. En este tutorial veremos cómo cargar los datos del Censo 2024 de Chile con R, accediendo a bases de datos de millones de observaciones para calcular estadísticas poblacionales sin colapsar nuestros computadores."
 ---
 
 <!---
 https://bastianolea.rbind.io/blog/mapas_censo_2024/
 --->
+
+```{r}
+#| echo: false
+
+library(scales)
+library(knitr)
+
+number_options(big.mark = ".", decimal.mark = ",")
+```
 
 Una de las dificultades más frecuentes en el análisis de datos es poder acceder a datos censales. Los censos suelen ser bases de datos de **varios millones de observaciones**, lo que suele ser demasiado para la mayoría de los computadores, o bien algo imposible con programas como Excel.
 
@@ -27,6 +39,7 @@ En este tutorial veremos cómo cargar los datos del [Censo de Población y Vivie
 
 También veremos cómo **consultar información a nivel comunal** desde el censo, y a **cruzar las bases de personas y hogares**. 
 
+{{< indice >}}
 
 ## Descargar datos del Censo
 
@@ -48,7 +61,7 @@ El Censo viene en tres niveles de información:
 Partiremos cargando los datos de nivel personas, que es la base más grande de las tres, dado que tiene **una fila por cada habitante de Chile.**
 
 
-## Cargar datos del Censo
+## Cargar datos del Censo en R
 
 Para cargar los datos en formato Parquet usaremos el [paquete de R `{arrow}`](https://arrow.apache.org/docs/r/), que necesitamos instalar con la siguiente línea:
 
@@ -99,13 +112,23 @@ personas |>
 Para ver la estructura de la base de datos, usamos `glimpse()` de `{dplyr}`:
 
 ```{r}
+#| output: false
 glimpse(personas)
 ```
+
+{{< detalles "Ver la estructura de los datos" >}}
+
+```{r}
+#| echo: false
+glimpse(personas)
+```
+
+{{< /detalles >}}
 
 Vemos todos los **nombres** de las columnas, y el **tipo** de datos que contienen. Además, vemos que la base de datos tiene **más de 18 millones** de filas! Esto es algo que en la mayoría de computadores no podríamos cargar en la memoria, pero gracias a que lo cargamos como una base de datos con `{arrow}`, podemos trabajar con ella sin problemas.
 
 
-## Consultar el diccionario de variables códigos del Censo
+## Diccionario de variables del Censo
 
 Como vimos en el _output_ anterior, los datos del Censo vienen con **valores codificados en números** . Para entender su significado, necesitamos consultar el **diccionario de variables** del Censo, que también está disponible en la página de resultados del Censo y se llama _Diccionario de variables microdatos Censo 2024 – xlsx, 154 KB_, o presiona el siguiente botón:
 
@@ -116,23 +139,42 @@ En esa planilla, la pestaña `tabla_personas` nos muestra las **etiquetas** de l
 
 ## Calcular resúmenes de datos censales
 
-Para hacer un **conteo** de cualquier variable, podemos usar `count()` y luego `collect()` para que la base de datos haga el cálculo y nos entregue el resultado:
+Para hacer un **conteo** de la cantidad de personas según cualquier variable del Censo, podemos usar `count()` y luego `collect()` para que la base de datos haga el cálculo y nos entregue el resultado:
 
 ```{r}
 personas |> 
   count(sexo) |> 
   collect()
 ```
+
+{{< info "Revisa estos tutoriales sobre [resúmenes de datos](/blog/r_introduccion/dplyr_summarize/) y [estadísticos descriptivos](/blog/estadisticos_descriptivos/) para complementar esta sección del tutorial!" >}}
+
 Podemos también **recodificar** el resultado del conteo con `case_when()`, para convertir los valores codificados en etiquetas legibles:
 
 ```{r}
-personas |> 
+tabla_sexo <- personas |> 
   count(sexo) |> 
   mutate(sexo = case_when(
     sexo == 1 ~ "Hombre", 
     sexo == 2 ~ "Mujer")) |> 
   collect()
+
+tabla_sexo
 ```
+
+
+<p class="titulo_tabla">Población chilena por sexo, Censo 2024</p>
+
+```{r}
+#| echo: false
+
+tabla_sexo |> 
+  mutate(n = number_format()(n)) |> 
+  rename(población = n) |> 
+  kable(align = "rl")
+```
+
+
 
 La base de datos de Arrow puede realizar **cálculos mucho más eficientes y rápidos**, pero solamente puede realizar cálculos generales. Ésto es porque lo que hace `{arrow}` es _traducir_ las funciones de `{dplyr}` en el lenguaje de la base de datos, lo que significa que el número de funciones soportadas es limitado, aunque amplio.
 
@@ -144,30 +186,224 @@ Por ejemplo:
 
 ```{r}
 #| error: true
+#| eval: false
 personas |> 
   count(sexo) |> 
   mutate(sexo = recode(sexo,
-    "1" = "Hombre", 
-    "2" = "Mujer")) |> 
+                       "1" = "Hombre", 
+                       "2" = "Mujer")) |> 
   collect()
 ```
 
 No funciona! Pero si ponemos el `collect()` antes, haremos que se carguen los resultados a nuestra memoria y podremos seguir normalmente:
 
 ```{r}
-
 personas |> 
   count(sexo) |> 
   collect() |> # cargar resultados antes de proseguir
   mutate(sexo = recode(sexo,
-    "1" = "Hombre", 
-    "2" = "Mujer"))
-
+                       "1" = "Hombres", 
+                       "2" = "Mujeres"))
 ```
 
 Ahora sí!
 
 {{< /detalles >}}
+
+
+
+### Obtener población por región
+
+Para obtener la población por región, nuevamente hacemos un conteo por la variable:
+
+```{r}
+personas_region <- personas |> 
+  count(region, name = "poblacion") |> 
+  arrange(region) |>
+  collect()
+
+personas_region
+```
+
+Otra alternativa sería hacer un [resumen de datos con `summarize()`](/blog/r_introduccion/dplyr_summarize/), donde agrupamos por la variable `region` y luego contamos las filas con `n()`:
+
+```{r}
+personas_region <- personas |> 
+  group_by(region) |> 
+  summarize(poblacion = n()) |> 
+  arrange(region) |>
+  collect()
+```
+
+El resultado sería el mismo. Pero en ambos casos, recibimos las regiones en números! Para **recodificar** las regiones y ponerles sus nombres como corresponde, podemos [usar nuevamente el _Diccionario de variables_](#consultar-el-diccionario-de-variables-códigos-del-censo) para **obtener las regiones y sus nombres:** 
+
+```{r}
+#| eval: false
+
+library(readxl) # para cargar datos en Excel
+library(janitor) # para limpiar datos
+
+# cargar códigos territoriales
+codigos_territoriales <- read_xlsx("diccionario_variables_censo2024.xlsx",
+                                   sheet = "codigos_territoriales") |>
+  clean_names() |> 
+  rename(division = 2)
+```
+
+```{r}
+#| eval: true
+#| echo: false
+
+library(readxl)
+library(janitor)
+library(here)
+
+codigos_territoriales <- read_xlsx("~/R/blog-r/content/blog/censo_2024/diccionario_variables_censo2024.xlsx",
+                                   sheet = "codigos_territoriales") |>
+  clean_names() |> 
+  rename(division = 2)
+```
+
+
+```{r}
+# limpiar regiones
+regiones <- codigos_territoriales |> 
+  filter(division == "Región") |> 
+  select(region = codigo_territorial, nombre_region = territorio) |> 
+  mutate(region = as.integer(region))
+```
+
+
+
+Luego de cargar la planilla Excel y limpiarla, obtenemos una tabla con las regiones y sus códigos territoriales:
+
+```{r}
+regiones
+```
+Ahora, para obtener la población por región con sus nombres, usamos `left_join()` para **cruzar los datos** del conteo de población con la tabla de regiones:
+
+```{r}
+#| output: false
+
+tabla_region <- personas_region |> 
+  left_join(regiones, join_by(region)) |> 
+  select(nombre_region, poblacion) |>
+  collect()
+
+tabla_region
+```
+
+<p class="titulo_tabla">Población chilena por región, Censo 2024</p>
+
+```{r}
+#| echo: false
+tabla_region |> 
+  mutate(poblacion = number_format()(poblacion)) |> 
+  rename(región = 1, población = 2) |> 
+  kable(align = "rl")
+```
+
+Obtuvimos una tabla de las regiones de Chile con su población censal!
+
+{{< info "Si quieres aprender a usar `left_join()` para cruzar datos, [revisa este tutorial!](/blog/left_join/)" >}}
+
+
+### Calcular población urbana y rural por región
+
+Ahora vamos por un poco más de detalle. Calculemos la población del país por regiones, pero desagregando las regiones por sus **áreas urbanas o rurales**, para obtener una población con mayor detalle territorial.
+
+Para esto, hacemos un conteo por las variables `region` y `area`, seguimos los pasos que ya vimos antes para agregar los nombres de regiones, y finalmente recodificamos la variable `area`:
+
+```{r}
+#| output: false
+
+personas_region_area <- personas |> 
+  # contar población por región y área
+  count(region, area, name = "poblacion") |> 
+  # agregar nombres de comunas y regiones
+  left_join(regiones, join_by(region)) |> 
+  arrange(region, area) |> 
+  select(nombre_region, area, poblacion) |> 
+  # recodificar área
+  mutate(area = case_when(
+    area == 1 ~ "Urbana", 
+    area == 2 ~ "Rural")) |> 
+  # copiar a memoria
+  collect()
+
+personas_region_area
+```
+Obtenemos los datos con dos filas por cada región, con su población urbana y rural en distintas filas. 
+
+Para hacer estos datos **más legibles** podemos [transformar la estructura de los datos](/blog/r_introduccion/tidyr_pivotar/) para que los datos del área que están _hacia abajo_ (formato largo) pasen a estar distribuidos en dos columnas: urbana y rural (formato ancho).
+
+```{r}
+#| output: false
+
+library(tidyr) # para transformar datos
+
+tabla_region_area <- personas_region_area |> 
+  pivot_wider(names_from = area, # nombres de las columnas
+              values_from = poblacion) # valores de las columnas
+
+tabla_region_area
+```
+
+<p class="titulo_tabla">Población chilena por región y área, Censo 2024</p>
+
+```{r}
+#| echo: false
+tabla_region_area |> 
+  mutate(across(where(is.numeric), number_format())) |> 
+  rename(región = 1) |>
+  kable(align = "rll")
+```
+
+Ahora tenemos las regiones con su población en dos columnas según el área donde las personas habitan. 
+
+
+{{< info "Si quieres aprender a usar `pivot_wider()` y `pivot_longer()` para transformar datos o pivotar tablas, [revisa este tutorial!](/blog/r_introduccion/tidyr_pivotar/)" >}}
+
+Podemos además calcular los **porcentajes** de estas poblaciones por región, y pivotar la tabla:
+
+
+```{r}
+tabla_region_area_porcentaje <- personas_region_area |> 
+  # calcular porcentajes
+  group_by(nombre_region) |> 
+  mutate(porcentaje = poblacion / sum(poblacion),
+         porcentaje = round(porcentaje * 100, 1)) |>
+  rename(población = poblacion) |> 
+  ungroup() |> 
+  # pivotar
+  pivot_wider(names_from = area, 
+              values_from = c(población, porcentaje), 
+              names_glue = "{area} ({.value})", # nombrar columnas
+              values_fill = 0)
+```
+
+<p class="titulo_tabla">Población chilena por región y área, Censo 2024</p>
+
+```{r}
+#| echo: false
+tabla_region_area_porcentaje |> 
+  mutate(across(contains("población"), number_format())) |> 
+  mutate(across(contains("porcentaje"), percent_format(scale = 1, accuracy = 0.1))) |> 
+  rename(región = 1) |>
+  kable(align = "r")
+```
+
+
+## Mapas a partir de datos del Censo
+
+En otro tutorial mostré [cómo visualizar los datos del Censo a nivel de manzana con R](/blog/mapas_censo_2024/), y también hice una pequeña [aplicación de muestra para visualizar variables del Censo en mapas](/blog/app_censo_mapas/) como una demostración de la simplicidad y potencia de R con un _backend_ de Arrow.
+
+{{< aviso "Tutorial en construcción! Pronto lo seguiré expandiendo." >}}
+
+<!--
+
+### Obtener población por comuna
+
 
 ```r
 # seleccionar columnas
@@ -499,3 +735,6 @@ writexl::write_xlsx(
 
 ```
 
+-->
+
+{{< cafecito >}}

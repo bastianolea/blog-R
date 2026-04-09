@@ -1,0 +1,2144 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4119&amp;path=livereload" data-no-instant defer></script>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.152.2">
+<title>Explorar datos del Censo de Población y Vivienda 2024 con R | Bastián Olea</title>
+
+
+<meta property="twitter:site" content="@bastimapache">
+<meta property="twitter:creator" content="@bastimapache">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="Una de las dificultades más frecuentes en el análisis de datos es poder acceder a datos censales, porque su tamaño suele ser muy grande para la mayoría de los computadores, o bien imposible de abrir con programas como Excel. En este tutorial veremos cómo cargar los datos del Censo 2024 de Chile con R, accediendo a bases de datos de millones de observaciones para calcular estadísticas poblacionales sin colapsar nuestros computadores.">
+
+
+<meta property="og:site_name" content="Bastián Olea">
+<meta property="og:title" content="Explorar datos del Censo de Población y Vivienda 2024 con R | Bastián Olea">
+<meta property="og:description" content="Una de las dificultades más frecuentes en el análisis de datos es poder acceder a datos censales, porque su tamaño suele ser muy grande para la mayoría de los computadores, o bien imposible de abrir con programas como Excel. En este tutorial veremos cómo cargar los datos del Censo 2024 de Chile con R, accediendo a bases de datos de millones de observaciones para calcular estadísticas poblacionales sin colapsar nuestros computadores." />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="http://localhost:4119/blog/censo_2024/" />
+<meta property="og:locale" content="es-ES">
+
+
+
+
+    
+        <meta property="og:image" content="http://localhost:4119/blog/censo_2024/censo-featured.jpg" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="http://localhost:4119/blog/censo_2024/censo-featured.jpg" >
+    
+    
+  
+  <meta itemprop="name" content="Explorar datos del Censo de Población y Vivienda 2024 con R">
+  <meta itemprop="description" content="Una de las dificultades más frecuentes en el análisis de datos es poder acceder a datos censales. Los censos suelen ser bases de datos de varios millones de observaciones, lo que suele ser demasiado para la mayoría de los computadores, o bien algo imposible con programas como Excel.
+En este tutorial veremos cómo cargar los datos del Censo de Población y Vivienda 2024 con R para poder acceder a bases de datos de millones de observaciones sin colapsar nuestros computadores.">
+  <meta itemprop="datePublished" content="2026-04-08T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2026-04-08T00:00:00+00:00">
+  <meta itemprop="wordCount" content="3184">
+  <meta itemprop="image" content="http://localhost:4119/blog/censo_2024/censo-featured.jpg">
+  <meta itemprop="keywords" content="Datos,Chile">
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="false" type="image/x-icon">
+  <link rel="icon" href="false" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="../../style.main.min.be3e0f40fb75d5d977e7ba48c93a5c8b6bc8b1c7a72f611a1a58896ff6841894.css" integrity="sha256-vj4PQPt11dl357pIyTpci2vIscenL2EaGliJb/aEGJQ=" media="screen">
+  
+  
+  <script src="../../panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="../../main.min.858230d8d39b17ec435a8cd8991902766cb7afe0621875ffe5fcdf376474ca6e.js" type="text/javascript"></script>
+  
+  
+  <link rel="stylesheet" href="../../css/syntax.css">
+  
+  
+  <link rel="preload" href="https://bastianoleah.shinyapps.io/buscador/" as="image">
+</head>
+<body>
+      <div class="grid-container single-sidebar">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="http://localhost:4119/" title="Home">
+      <img src="../../img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="../../blog/" title="Bastián Olea: Blog de R">Blog</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/aprende_r/" title="Aprende R">Aprende R</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/shiny_apps/" title="Apps">Apps</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../clases/" title="Clases">Clases</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../categories/tutoriales/" title="Tutoriales">Tutoriales</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../about/" title="Bastián Olea: Sobre mi">Yo</a>
+      
+      
+      
+      <div class="dib v-mid", style = "padding: 4px; margin-top: 4px;">
+        <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.goodreads.com/user/show/53224910-basti-n-olea-herrera" title="goodreads" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-goodreads fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="../../contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+      </div>
+      
+    </div>
+  </nav>
+</header>
+
+
+                       
+ 
+
+<main class="page-main pa4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header" style="margin-top:-30px;">
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Explorar datos del Censo de Población y Vivienda 2024 con R</h1>
+        
+        
+        
+        <div style = "display: inline-block;">  
+          <p class="f7 db mv0 ttu" style = "display: inline-block;">
+            8/4/2026</p>
+          
+          
+          
+        </div>
+          
+        
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/datos"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            datos</a>  <a href="http://localhost:4119/tags/chile"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            chile</a> </dd></em>
+        </dl>
+         
+      
+        
+      
+      
+    </header>
+      
+      
+    <section class="post-body pt5 pb4">
+        <!---
+https://bastianolea.rbind.io/blog/mapas_censo_2024/
+--->
+<p>Una de las dificultades más frecuentes en el análisis de datos es poder acceder a datos censales. Los censos suelen ser bases de datos de <strong>varios millones de observaciones</strong>, lo que suele ser demasiado para la mayoría de los computadores, o bien algo imposible con programas como Excel.</p>
+<p>En este tutorial veremos cómo cargar los datos del 
+<a href="https://censo2024.ine.gob.cl" target="_blank" rel="noopener">Censo de Población y Vivienda 2024</a> con R para poder acceder a bases de datos de millones de observaciones sin colapsar nuestros computadores.</p>
+<p>También veremos cómo <strong>consultar información a nivel comunal</strong> desde el censo, y a <strong>cruzar las bases de personas y hogares</strong>.</p>
+<div style = "margin-left: -16px;">
+  
+  <details closed id="PageTableOfContents">
+    <summary>
+      <h2 class="mv0 f5 fw7 ttu tracked dib" style = "margin-left: 6px; font-size: 120%;">Índice</h2>
+      </summary>
+    <div class="pl2 pr0 mh0" style = "font-size: 90%; margin-top: -8px; margin-left: 16px; margin-bottom: 32px;">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#descargar-datos-del-censo">Descargar datos del Censo</a></li>
+    <li><a href="#cargar-datos-del-censo-en-r">Cargar datos del Censo en R</a></li>
+    <li><a href="#diccionario-de-variables-del-censo">Diccionario de variables del Censo</a></li>
+    <li><a href="#calcular-resúmenes-de-datos-censales">Calcular resúmenes de datos censales</a>
+      <ul>
+        <li><a href="#obtener-población-por-región">Obtener población por región</a></li>
+        <li><a href="#calcular-población-urbana-y-rural-por-región">Calcular población urbana y rural por región</a></li>
+      </ul>
+    </li>
+    <li><a href="#mapas-a-partir-de-datos-del-censo">Mapas a partir de datos del Censo</a></li>
+  </ul>
+</nav>
+    </div>
+  </details>
+  
+</div>
+
+
+
+
+<h2 id="descargar-datos-del-censo">Descargar datos del Censo
+  <a href="#descargar-datos-del-censo"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Lo primero que haremos es <strong>descargar</strong> los datos del Censo, 
+<a href="https://censo2024.ine.gob.cl" target="_blank" rel="noopener">disponibles en su sitio oficial.</a></p>
+
+
+
+
+<div class = "db pt1"
+style = "margin-bottom: 34px;">
+
+<a class = "btn-links mr2 ba dib"
+href = "https://censo2024.ine.gob.cl/resultados/" target="_blank"
+style = "padding: 12px; padding-bottom: 8px; border-radius: 5px; padding-right: 18px; text-decoration: none; border: 1px solid; color: #EAD2FA; background-color: #9069C0; margin-bottom: -12px;">
+<i class="fas fa-file-download fa-lg fa-fw mr2" style="color: #EAD2FA;"></i>
+Resultados Censo 2024</a>
+
+</div>
+<p>En esta página se listan todos los archivos de resultados.</p>
+<p>Vamos a descargar el archivo <em>Base de microdatos - Viviendas, hogares, personas Censo 2024 (parquet) &ndash; zip, 377 MB</em>.</p>
+<p>Este archivo viene comprimido, y dentro trae los datos en formato <strong>Parquet</strong>, que es un formato moderno y <strong>optimizado para grandes volúmenes de datos.</strong></p>
+<p>El Censo viene en tres niveles de información:</p>
+<ul>
+<li><strong>Viviendas</strong></li>
+<li><strong>Hogares</strong></li>
+<li><strong>Personas</strong></li>
+</ul>
+<p>Partiremos cargando los datos de nivel personas, que es la base más grande de las tres, dado que tiene <strong>una fila por cada habitante de Chile.</strong></p>
+
+
+
+
+<h2 id="cargar-datos-del-censo-en-r">Cargar datos del Censo en R
+  <a href="#cargar-datos-del-censo-en-r"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Para cargar los datos en formato Parquet usaremos el 
+<a href="https://arrow.apache.org/docs/r/" target="_blank" rel="noopener">paquete de R <code>{arrow}</code></a>, que necesitamos instalar con la siguiente línea:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;arrow&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Una vez instalado, <strong>leemos el Censo como una base de datos</strong> con la función <code>open_dataset()</code>.</p>
+
+
+<details>
+  <summary>
+    ¿Qué significa cargar los datos como base de datos?
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    Normalmente los datos se cargan en la <strong>memoria</strong> del computador. Si los datos son muy grandes y no caben a la memoria, <strong>el computador colapsa</strong> o se niega a cargar los datos. Pero cuando trabajamos mediante <strong>bases de datos</strong>, los datos no se cargan en la memoria, sino que se representan en una <strong>versión optimizada</strong>, capaz de realizar <strong>operaciones más eficientes</strong> y de copiar los datos a la memoria <strong>solamente cuando se necesiten</strong>. Esto nos permite <strong>trabajar con datos que normalmente no cabrían en nuestra memoria.</strong>
+    </div>
+</details>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">arrow</span><span class="p">)</span> <span class="c1"># para cargar datos .parquet</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># cargar censo como base de datos</span>
+</span></span><span class="line"><span class="cl"><span class="n">personas</span> <span class="o">&lt;-</span> <span class="nf">open_dataset</span><span class="p">(</span><span class="s">&#34;personas_censo2024.parquet&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Si intentamos ver los datos cargados, encontraremos que no tenemos un <em>dataframe</em> normal:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">personas</span> 
+</span></span></code></pre></div><pre><code>FileSystemDataset with 1 Parquet file
+63 columns
+id_vivienda: int32
+id_hogar: int32
+id_persona: int32
+region: int32
+provincia: int32
+comuna: int32
+comuna_bajo_umbral: int32
+area: int32
+tipo_operativo: int32
+sexo: int32
+edad: int32
+edad_quinquenal: int32
+parentesco: int32
+p23_est_civil: int32
+p24_lug_resid5: int32
+p24_lug_resid5_esp: int32
+p25_lug_nacimiento: int32
+p25_lug_nacimiento_rec: int32
+p25_lug_nacimiento_esp: int32
+p26_llegada_periodo: int32
+...
+43 more columns
+Use `schema()` to see entire schema
+</code></pre>
+<p>En lugar de eso, tenemos una base de datos que <strong>representa</strong> los datos del censo, pero que <strong>no los carga</strong> en la memoria.</p>
+<p>Sin embargo, podemos usar todas las funciones de <code>{dplyr}</code> para trabajar con los datos como normalmente hacemos, solo que al terminar las operaciones podemos obtener una <strong>previsualización</strong> del resultado, o bien, podemos <strong>cargar el resultado a la memoria</strong> con la función <code>collect()</code>, tomando <strong>precauciones</strong> para no cargar casi 19 millones de filas por accidente.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">personas</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="n">comuna</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">sexo</span><span class="p">,</span> <span class="n">edad</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="c1"># seleccionar columnas</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">head</span><span class="p">()</span> <span class="o">|&gt;</span> <span class="c1"># cargar solamente las primeras filas</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">collect</span><span class="p">()</span> <span class="c1"># traer a memoria</span>
+</span></span></code></pre></div><pre><code># A tibble: 6 × 4
+  comuna  area  sexo  edad
+   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+1   5802     1     2    80
+2   5802     1     1    52
+3   5802     1     2    45
+4   5802     1     2     8
+5   4303     2     1    69
+6   4303     2     2    65
+</code></pre>
+<p>Para ver la estructura de la base de datos, usamos <code>glimpse()</code> de <code>{dplyr}</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">glimpse</span><span class="p">(</span><span class="n">personas</span><span class="p">)</span>
+</span></span></code></pre></div>
+
+<details>
+  <summary>
+    Ver la estructura de los datos
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    <pre><code>FileSystemDataset with 1 Parquet file
+18,480,432 rows x 63 columns
+$ id_vivienda              &lt;int32&gt; 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 6, …
+$ id_hogar                 &lt;int32&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ id_persona               &lt;int32&gt; 1, 2, 3, 4, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 1, …
+$ region                   &lt;int32&gt; 5, 5, 5, 5, 4, 4, 4, 11, 11, 11, 1, 1, 1, 8, …
+$ provincia                &lt;int32&gt; 58, 58, 58, 58, 43, 43, 43, 112, 112, 112, 11…
+$ comuna                   &lt;int32&gt; 5802, 5802, 5802, 5802, 4303, 4303, 4303, 112…
+$ comuna_bajo_umbral       &lt;int32&gt; 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, …
+$ area                     &lt;int32&gt; 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ tipo_operativo           &lt;int32&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+$ sexo                     &lt;int32&gt; 2, 1, 2, 2, 1, 2, 1, 2, 1, 1, 1, 2, 1, 2, 1, …
+$ edad                     &lt;int32&gt; 80, 52, 45, 8, 69, 65, 58, -66, -66, -66, 73,…
+$ edad_quinquenal          &lt;int32&gt; 80, 50, 45, 5, 65, 65, 55, 30, 55, 5, 70, 70,…
+$ parentesco               &lt;int32&gt; 1, 11, 5, 12, 9, 7, 1, 1, 4, 5, 1, 2, 5, 1, 5…
+$ p23_est_civil            &lt;int32&gt; 6, 8, 8, NA, 1, 1, 8, 2, 2, NA, 1, 1, 8, 8, 8…
+$ p24_lug_resid5           &lt;int32&gt; 3, 2, 2, 2, 3, 3, 2, 3, 2, 3, 2, 2, 2, 2, 2, …
+$ p24_lug_resid5_esp       &lt;int32&gt; 13117, 5802, 5802, 5802, 4301, 4301, 4303, 10…
+$ p25_lug_nacimiento       &lt;int32&gt; 2, 2, 2, 1, 2, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, …
+$ p25_lug_nacimiento_rec   &lt;int32&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ p25_lug_nacimiento_esp   &lt;int32&gt; 12101, 5101, 13120, 5802, 5109, 4303, 4303, -…
+$ p26_llegada_periodo      &lt;int32&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ p27_nacionalidad         &lt;int32&gt; 1, 1, 1, 1, 1, 1, 1, -66, -66, -66, 1, 1, 1, …
+$ p27_nacionalidad_esp     &lt;int32&gt; 152, 152, 152, 152, 152, 152, 152, -66, -66, …
+$ p27_nacionalidad_rec     &lt;int32&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ p28_autoid_pueblo        &lt;int32&gt; 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, …
+$ p28_pueblo_pert          &lt;int32&gt; NA, NA, NA, NA, NA, NA, NA, 1, NA, 1, NA, NA,…
+$ p29_afrodescendencia_rec &lt;int32&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+$ p29_afrodescendencia     &lt;int32&gt; 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, …
+$ p30_lengua_indigena      &lt;int32&gt; 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, …
+$ p30_lengua_indigena_rec  &lt;int32&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+$ p31_religion             &lt;int32&gt; 12, 12, 12, NA, 1, 1, 12, 2, 1, NA, 1, 1, 1, …
+$ p31_religion_rec         &lt;int32&gt; 2, 2, 2, NA, 1, 1, 2, 1, 1, NA, 1, 1, 1, 1, 1…
+$ p32a_dificultad_ver      &lt;int32&gt; 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, …
+$ p32b_dificultad_oir      &lt;int32&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ p32c_dificultad_mover    &lt;int32&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, …
+$ p32d_dificultad_cogni    &lt;int32&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, …
+$ p32e_dificultad_cuidado  &lt;int32&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, …
+$ p32f_dificultad_comunic  &lt;int32&gt; 1, 1, 1, 1, 1, 1, 1, 3, 1, 2, 1, 1, 1, 1, 1, …
+$ discapacidad             &lt;int32&gt; 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, …
+$ p33_edu_asiste           &lt;int32&gt; 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, …
+$ asistencia_parv          &lt;int32&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ asistencia_basica        &lt;int32&gt; NA, NA, NA, 1, NA, NA, NA, NA, NA, -66, NA, N…
+$ asistencia_media         &lt;int32&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ asistencia_superior      &lt;int32&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ p37_alfabet              &lt;int32&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, …
+$ escolaridad              &lt;int32&gt; 17, 14, 12, 2, 12, 12, 15, 8, 5, 3, 8, 8, 16,…
+$ cine11                   &lt;int32&gt; 9, 6, 6, 3, 6, 6, 6, 5, 3, 3, 5, 5, 6, 5, 5, …
+$ sit_fuerza_trabajo       &lt;int32&gt; 3, 1, 1, NA, 3, 3, 1, 1, 1, NA, 1, 3, 1, 3, 3…
+$ p40_cise_rec             &lt;int32&gt; NA, 1, 2, NA, NA, NA, 1, 2, 1, NA, 1, NA, 2, …
+$ depend_econ_deficit_hab  &lt;int32&gt; 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 2, …
+$ cod_ciuo                 &lt;int32&gt; NA, 7, 2, NA, NA, NA, 7, 5, 7, NA, 1, NA, 3, …
+$ cod_caenes              &lt;string&gt; NA, &quot;F&quot;, &quot;P&quot;, NA, NA, NA, &quot;F&quot;, &quot;I&quot;, &quot;F&quot;, NA, …
+$ p44_lug_trab             &lt;int32&gt; NA, 5, 2, NA, NA, NA, 2, 1, 1, NA, 2, NA, 2, …
+$ p44_lug_trab_esp         &lt;int32&gt; NA, 998, 5802, NA, NA, NA, 4303, 11202, 11202…
+$ p45_medio_transporte     &lt;int32&gt; NA, 2, 3, NA, NA, NA, 2, NA, NA, NA, 1, NA, 2…
+$ p46a_tot_hijs_nac        &lt;int32&gt; 3, NA, 1, NA, NA, 3, NA, 2, NA, NA, NA, 3, NA…
+$ p46b_hijas_nac           &lt;int32&gt; 2, NA, 1, NA, NA, 0, NA, 1, NA, NA, NA, 0, NA…
+$ p46c_hijos_nac           &lt;int32&gt; 1, NA, 0, NA, NA, 3, NA, 1, NA, NA, NA, 3, NA…
+$ p47a_tot_hijs_sobrev     &lt;int32&gt; 3, NA, 1, NA, NA, 2, NA, 2, NA, NA, NA, 3, NA…
+$ p47b_hijas_sobrev        &lt;int32&gt; 2, NA, 1, NA, NA, -99, NA, 1, NA, NA, NA, 0, …
+$ p47c_hijos_sobrev        &lt;int32&gt; 1, NA, 0, NA, NA, -99, NA, 1, NA, NA, NA, 3, …
+$ p48_anio_nac_uh          &lt;int32&gt; 1978, NA, 2015, NA, NA, 1984, NA, 2014, NA, N…
+$ p48_mes_nac_uh           &lt;int32&gt; 7, NA, 9, NA, NA, 6, NA, 12, NA, NA, NA, 10, …
+$ div_genero               &lt;int32&gt; 2, 2, 2, NA, -66, -66, -66, -66, -66, NA, 2, …
+</code></pre>
+
+    </div>
+</details>
+<p>Vemos todos los <strong>nombres</strong> de las columnas, y el <strong>tipo</strong> de datos que contienen. Además, vemos que la base de datos tiene <strong>más de 18 millones</strong> de filas! Esto es algo que en la mayoría de computadores no podríamos cargar en la memoria, pero gracias a que lo cargamos como una base de datos con <code>{arrow}</code>, podemos trabajar con ella sin problemas.</p>
+
+
+
+
+<h2 id="diccionario-de-variables-del-censo">Diccionario de variables del Censo
+  <a href="#diccionario-de-variables-del-censo"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Como vimos en el <em>output</em> anterior, los datos del Censo vienen con <strong>valores codificados en números</strong> . Para entender su significado, necesitamos consultar el <strong>diccionario de variables</strong> del Censo, que también está disponible en la página de resultados del Censo y se llama <em>Diccionario de variables microdatos Censo 2024 &ndash; xlsx, 154 KB</em>, o presiona el siguiente botón:</p>
+
+
+
+
+<div class = "db pt1"
+style = "margin-bottom: 34px;">
+
+<a class = "btn-links mr2 ba dib"
+href = "diccionario_variables_censo2024.xlsx" target="_blank"
+style = "padding: 12px; padding-bottom: 8px; border-radius: 5px; padding-right: 18px; text-decoration: none; border: 1px solid; color: #EAD2FA; background-color: #9069C0; margin-bottom: -12px;">
+<i class="fas fa-file-download fa-lg fa-fw mr2" style="color: #EAD2FA;"></i>
+Descargar diccionario de variables</a>
+
+</div>
+<p>En esa planilla, la pestaña <code>tabla_personas</code> nos muestra las <strong>etiquetas</strong> de los valores que vienen en la base de datos. Por ejemplo, vemos que en la variable <code>sexo</code>, el valor <code>1</code> es <em>Hombre</em> y <code>2</code> es <em>Mujer</em>.</p>
+
+
+
+
+<h2 id="calcular-resúmenes-de-datos-censales">Calcular resúmenes de datos censales
+  <a href="#calcular-res%c3%bamenes-de-datos-censales"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Para hacer un <strong>conteo</strong> de la cantidad de personas según cualquier variable del Censo, podemos usar <code>count()</code> y luego <code>collect()</code> para que la base de datos haga el cálculo y nos entregue el resultado:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">personas</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">count</span><span class="p">(</span><span class="n">sexo</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">collect</span><span class="p">()</span>
+</span></span></code></pre></div><pre><code># A tibble: 2 × 2
+   sexo       n
+  &lt;int&gt;   &lt;int&gt;
+1     2 9513399
+2     1 8967033
+</code></pre>
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            background-color: #A985C650;  border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-info-circle" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #9069C0;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%;">
+    Revisa estos tutoriales sobre 
+<a href="../../blog/r_introduccion/dplyr_summarize/">resúmenes de datos</a> y 
+<a href="../../blog/estadisticos_descriptivos/">estadísticos descriptivos</a> para complementar esta sección del tutorial!
+  </aside>
+  
+</div>
+<p>Podemos también <strong>recodificar</strong> el resultado del conteo con <code>case_when()</code>, para convertir los valores codificados en etiquetas legibles:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tabla_sexo</span> <span class="o">&lt;-</span> <span class="n">personas</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">count</span><span class="p">(</span><span class="n">sexo</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">sexo</span> <span class="o">=</span> <span class="nf">case_when</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sexo</span> <span class="o">==</span> <span class="m">1</span> <span class="o">~</span> <span class="s">&#34;Hombre&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">sexo</span> <span class="o">==</span> <span class="m">2</span> <span class="o">~</span> <span class="s">&#34;Mujer&#34;</span><span class="p">))</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">collect</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tabla_sexo</span>
+</span></span></code></pre></div><pre><code># A tibble: 2 × 2
+  sexo         n
+  &lt;chr&gt;    &lt;int&gt;
+1 Mujer  9513399
+2 Hombre 8967033
+</code></pre>
+<p class="titulo_tabla">
+Población chilena por sexo, Censo 2024
+</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: right">sexo</th>
+          <th style="text-align: left">población</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: right">Mujer</td>
+          <td style="text-align: left">9.513.399</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Hombre</td>
+          <td style="text-align: left">8.967.033</td>
+      </tr>
+  </tbody>
+</table>
+<p>La base de datos de Arrow puede realizar <strong>cálculos mucho más eficientes y rápidos</strong>, pero solamente puede realizar cálculos generales. Ésto es porque lo que hace <code>{arrow}</code> es <em>traducir</em> las funciones de <code>{dplyr}</code> en el lenguaje de la base de datos, lo que significa que el número de funciones soportadas es limitado, aunque amplio.</p>
+
+
+<details>
+  <summary>
+    ¿Qué pasa si <code>{arrow}</code> no soporta una función?
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    <p>Si <code>{arrow}</code> nos dice que alguna función no es soportada (<em>Expression not supported in Arrow</em>), tenemos que usar estas funciones <em>después</em> de cargar el resultado en la memoria con <code>collect()</code>.</p>
+<p>Por ejemplo:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">personas</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">count</span><span class="p">(</span><span class="n">sexo</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">sexo</span> <span class="o">=</span> <span class="nf">recode</span><span class="p">(</span><span class="n">sexo</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="s">&#34;1&#34;</span> <span class="o">=</span> <span class="s">&#34;Hombre&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                       <span class="s">&#34;2&#34;</span> <span class="o">=</span> <span class="s">&#34;Mujer&#34;</span><span class="p">))</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">collect</span><span class="p">()</span>
+</span></span></code></pre></div><p>No funciona! Pero si ponemos el <code>collect()</code> antes, haremos que se carguen los resultados a nuestra memoria y podremos seguir normalmente:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">personas</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">count</span><span class="p">(</span><span class="n">sexo</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">collect</span><span class="p">()</span> <span class="o">|&gt;</span> <span class="c1"># cargar resultados antes de proseguir</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">sexo</span> <span class="o">=</span> <span class="nf">recode</span><span class="p">(</span><span class="n">sexo</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="s">&#34;1&#34;</span> <span class="o">=</span> <span class="s">&#34;Hombres&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                       <span class="s">&#34;2&#34;</span> <span class="o">=</span> <span class="s">&#34;Mujeres&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><pre><code># A tibble: 2 × 2
+  sexo          n
+  &lt;chr&gt;     &lt;int&gt;
+1 Mujeres 9513399
+2 Hombres 8967033
+</code></pre>
+<p>Ahora sí!</p>
+
+    </div>
+</details>
+
+
+
+
+<h3 id="obtener-población-por-región">Obtener población por región
+  <a href="#obtener-poblaci%c3%b3n-por-regi%c3%b3n"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Para obtener la población por región, nuevamente hacemos un conteo por la variable:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">personas_region</span> <span class="o">&lt;-</span> <span class="n">personas</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">count</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&#34;poblacion&#34;</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">arrange</span><span class="p">(</span><span class="n">region</span><span class="p">)</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">collect</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">personas_region</span>
+</span></span></code></pre></div><pre><code># A tibble: 16 × 2
+   region poblacion
+    &lt;int&gt;     &lt;int&gt;
+ 1      1    369806
+ 2      2    635416
+ 3      3    299180
+ 4      4    832864
+ 5      5   1896053
+ 6      6    987228
+ 7      7   1123008
+ 8      8   1613059
+ 9      9   1010423
+10     10    890284
+11     11    100745
+12     12    166537
+13     13   7400741
+14     14    398230
+15     15    244569
+16     16    512289
+</code></pre>
+<p>Otra alternativa sería hacer un 
+<a href="../../../blog/r_introduccion/dplyr_summarize/">resumen de datos con <code>summarize()</code></a>, donde agrupamos por la variable <code>region</code> y luego contamos las filas con <code>n()</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">personas_region</span> <span class="o">&lt;-</span> <span class="n">personas</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">group_by</span><span class="p">(</span><span class="n">region</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">summarize</span><span class="p">(</span><span class="n">poblacion</span> <span class="o">=</span> <span class="nf">n</span><span class="p">())</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">arrange</span><span class="p">(</span><span class="n">region</span><span class="p">)</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">collect</span><span class="p">()</span>
+</span></span></code></pre></div><p>El resultado sería el mismo. Pero en ambos casos, recibimos las regiones en números! Para <strong>recodificar</strong> las regiones y ponerles sus nombres como corresponde, podemos 
+<a href="#consultar-el-diccionario-de-variables-c%c3%b3digos-del-censo">usar nuevamente el <em>Diccionario de variables</em></a> para <strong>obtener las regiones y sus nombres:</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">readxl</span><span class="p">)</span> <span class="c1"># para cargar datos en Excel</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">janitor</span><span class="p">)</span> <span class="c1"># para limpiar datos</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># cargar códigos territoriales</span>
+</span></span><span class="line"><span class="cl"><span class="n">codigos_territoriales</span> <span class="o">&lt;-</span> <span class="nf">read_xlsx</span><span class="p">(</span><span class="s">&#34;diccionario_variables_censo2024.xlsx&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                   <span class="n">sheet</span> <span class="o">=</span> <span class="s">&#34;codigos_territoriales&#34;</span><span class="p">)</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">clean_names</span><span class="p">()</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">rename</span><span class="p">(</span><span class="n">division</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># limpiar regiones</span>
+</span></span><span class="line"><span class="cl"><span class="n">regiones</span> <span class="o">&lt;-</span> <span class="n">codigos_territoriales</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">division</span> <span class="o">==</span> <span class="s">&#34;Región&#34;</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="n">region</span> <span class="o">=</span> <span class="n">codigo_territorial</span><span class="p">,</span> <span class="n">nombre_region</span> <span class="o">=</span> <span class="n">territorio</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">region</span> <span class="o">=</span> <span class="nf">as.integer</span><span class="p">(</span><span class="n">region</span><span class="p">))</span>
+</span></span></code></pre></div><p>Luego de cargar la planilla Excel y limpiarla, obtenemos una tabla con las regiones y sus códigos territoriales:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">regiones</span>
+</span></span></code></pre></div><pre><code># A tibble: 16 × 2
+   region nombre_region                            
+    &lt;int&gt; &lt;chr&gt;                                    
+ 1      1 Tarapacá                                 
+ 2      2 Antofagasta                              
+ 3      3 Atacama                                  
+ 4      4 Coquimbo                                 
+ 5      5 Valparaíso                               
+ 6      6 Libertador General Bernardo O'Higgins    
+ 7      7 Maule                                    
+ 8      8 Biobío                                   
+ 9      9 La Araucanía                             
+10     10 Los Lagos                                
+11     11 Aysén del General Carlos Ibáñez del Campo
+12     12 Magallanes y de la Antártica Chilena     
+13     13 Metropolitana de Santiago                
+14     14 Los Ríos                                 
+15     15 Arica y Parinacota                       
+16     16 Ñuble                                    
+</code></pre>
+<p>Ahora, para obtener la población por región con sus nombres, usamos <code>left_join()</code> para <strong>cruzar los datos</strong> del conteo de población con la tabla de regiones:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tabla_region</span> <span class="o">&lt;-</span> <span class="n">personas_region</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">left_join</span><span class="p">(</span><span class="n">regiones</span><span class="p">,</span> <span class="nf">join_by</span><span class="p">(</span><span class="n">region</span><span class="p">))</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="n">nombre_region</span><span class="p">,</span> <span class="n">poblacion</span><span class="p">)</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">collect</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tabla_region</span>
+</span></span></code></pre></div><p class="titulo_tabla">
+Población chilena por región, Censo 2024
+</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: right">región</th>
+          <th style="text-align: left">población</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: right">Tarapacá</td>
+          <td style="text-align: left">369.806</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Antofagasta</td>
+          <td style="text-align: left">635.416</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Atacama</td>
+          <td style="text-align: left">299.180</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Coquimbo</td>
+          <td style="text-align: left">832.864</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Valparaíso</td>
+          <td style="text-align: left">1.896.053</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Libertador General Bernardo O&rsquo;Higgins</td>
+          <td style="text-align: left">987.228</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Maule</td>
+          <td style="text-align: left">1.123.008</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Biobío</td>
+          <td style="text-align: left">1.613.059</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">La Araucanía</td>
+          <td style="text-align: left">1.010.423</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Los Lagos</td>
+          <td style="text-align: left">890.284</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Aysén del General Carlos Ibáñez del Campo</td>
+          <td style="text-align: left">100.745</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Magallanes y de la Antártica Chilena</td>
+          <td style="text-align: left">166.537</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Metropolitana de Santiago</td>
+          <td style="text-align: left">7.400.741</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Los Ríos</td>
+          <td style="text-align: left">398.230</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Arica y Parinacota</td>
+          <td style="text-align: left">244.569</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Ñuble</td>
+          <td style="text-align: left">512.289</td>
+      </tr>
+  </tbody>
+</table>
+<p>Obtuvimos una tabla de las regiones de Chile con su población censal!</p>
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            background-color: #A985C650;  border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-info-circle" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #9069C0;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%;">
+    Si quieres aprender a usar <code>left_join()</code> para cruzar datos, 
+<a href="../../blog/left_join/">revisa este tutorial!</a>
+  </aside>
+  
+</div>
+
+
+
+
+<h3 id="calcular-población-urbana-y-rural-por-región">Calcular población urbana y rural por región
+  <a href="#calcular-poblaci%c3%b3n-urbana-y-rural-por-regi%c3%b3n"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Ahora vamos por un poco más de detalle. Calculemos la población del país por regiones, pero desagregando las regiones por sus <strong>áreas urbanas o rurales</strong>, para obtener una población con mayor detalle territorial.</p>
+<p>Para esto, hacemos un conteo por las variables <code>region</code> y <code>area</code>, seguimos los pasos que ya vimos antes para agregar los nombres de regiones, y finalmente recodificamos la variable <code>area</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">personas_region_area</span> <span class="o">&lt;-</span> <span class="n">personas</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># contar población por región y área</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">count</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&#34;poblacion&#34;</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># agregar nombres de comunas y regiones</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">left_join</span><span class="p">(</span><span class="n">regiones</span><span class="p">,</span> <span class="nf">join_by</span><span class="p">(</span><span class="n">region</span><span class="p">))</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">arrange</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">area</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="n">nombre_region</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">poblacion</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># recodificar área</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">area</span> <span class="o">=</span> <span class="nf">case_when</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">area</span> <span class="o">==</span> <span class="m">1</span> <span class="o">~</span> <span class="s">&#34;Urbana&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">area</span> <span class="o">==</span> <span class="m">2</span> <span class="o">~</span> <span class="s">&#34;Rural&#34;</span><span class="p">))</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># copiar a memoria</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">collect</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">personas_region_area</span>
+</span></span></code></pre></div><p>Obtenemos los datos con dos filas por cada región, con su población urbana y rural en distintas filas.</p>
+<p>Para hacer estos datos <strong>más legibles</strong> podemos 
+<a href="../../../blog/r_introduccion/tidyr_pivotar/">transformar la estructura de los datos</a> para que los datos del área que están <em>hacia abajo</em> (formato largo) pasen a estar distribuidos en dos columnas: urbana y rural (formato ancho).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span> <span class="c1"># para transformar datos</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tabla_region_area</span> <span class="o">&lt;-</span> <span class="n">personas_region_area</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">pivot_wider</span><span class="p">(</span><span class="n">names_from</span> <span class="o">=</span> <span class="n">area</span><span class="p">,</span> <span class="c1"># nombres de las columnas</span>
+</span></span><span class="line"><span class="cl">              <span class="n">values_from</span> <span class="o">=</span> <span class="n">poblacion</span><span class="p">)</span> <span class="c1"># valores de las columnas</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tabla_region_area</span>
+</span></span></code></pre></div><p class="titulo_tabla">
+Población chilena por región y área, Censo 2024
+</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: right">región</th>
+          <th style="text-align: left">Rural</th>
+          <th style="text-align: left">Urbana</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: right">Tarapacá</td>
+          <td style="text-align: left">15.559</td>
+          <td style="text-align: left">354.247</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Antofagasta</td>
+          <td style="text-align: left">15.399</td>
+          <td style="text-align: left">620.017</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Atacama</td>
+          <td style="text-align: left">31.728</td>
+          <td style="text-align: left">267.452</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Coquimbo</td>
+          <td style="text-align: left">165.110</td>
+          <td style="text-align: left">667.754</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Valparaíso</td>
+          <td style="text-align: left">199.962</td>
+          <td style="text-align: left">1.696.091</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Libertador General Bernardo O&rsquo;Higgins</td>
+          <td style="text-align: left">265.174</td>
+          <td style="text-align: left">722.054</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Maule</td>
+          <td style="text-align: left">321.382</td>
+          <td style="text-align: left">801.626</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Biobío</td>
+          <td style="text-align: left">215.358</td>
+          <td style="text-align: left">1.397.701</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">La Araucanía</td>
+          <td style="text-align: left">331.479</td>
+          <td style="text-align: left">678.944</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Los Lagos</td>
+          <td style="text-align: left">258.193</td>
+          <td style="text-align: left">632.091</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Aysén del General Carlos Ibáñez del Campo</td>
+          <td style="text-align: left">23.180</td>
+          <td style="text-align: left">77.565</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Magallanes y de la Antártica Chilena</td>
+          <td style="text-align: left">11.779</td>
+          <td style="text-align: left">154.758</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Metropolitana de Santiago</td>
+          <td style="text-align: left">280.498</td>
+          <td style="text-align: left">7.120.243</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Los Ríos</td>
+          <td style="text-align: left">129.620</td>
+          <td style="text-align: left">268.610</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Arica y Parinacota</td>
+          <td style="text-align: left">23.397</td>
+          <td style="text-align: left">221.172</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Ñuble</td>
+          <td style="text-align: left">174.140</td>
+          <td style="text-align: left">338.149</td>
+      </tr>
+  </tbody>
+</table>
+<p>Ahora tenemos las regiones con su población en dos columnas según el área donde las personas habitan.</p>
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            background-color: #A985C650;  border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-info-circle" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #9069C0;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%;">
+    Si quieres aprender a usar <code>pivot_wider()</code> y <code>pivot_longer()</code> para transformar datos o pivotar tablas, 
+<a href="../../blog/r_introduccion/tidyr_pivotar/">revisa este tutorial!</a>
+  </aside>
+  
+</div>
+<p>Podemos además calcular los <strong>porcentajes</strong> de estas poblaciones por región, y pivotar la tabla:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tabla_region_area_porcentaje</span> <span class="o">&lt;-</span> <span class="n">personas_region_area</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># calcular porcentajes</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">group_by</span><span class="p">(</span><span class="n">nombre_region</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">porcentaje</span> <span class="o">=</span> <span class="n">poblacion</span> <span class="o">/</span> <span class="nf">sum</span><span class="p">(</span><span class="n">poblacion</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">         <span class="n">porcentaje</span> <span class="o">=</span> <span class="nf">round</span><span class="p">(</span><span class="n">porcentaje</span> <span class="o">*</span> <span class="m">100</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">rename</span><span class="p">(</span><span class="n">población</span> <span class="o">=</span> <span class="n">poblacion</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">ungroup</span><span class="p">()</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># pivotar</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">pivot_wider</span><span class="p">(</span><span class="n">names_from</span> <span class="o">=</span> <span class="n">area</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">              <span class="n">values_from</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">población</span><span class="p">,</span> <span class="n">porcentaje</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">              <span class="n">names_glue</span> <span class="o">=</span> <span class="s">&#34;{area} ({.value})&#34;</span><span class="p">,</span> <span class="c1"># nombrar columnas</span>
+</span></span><span class="line"><span class="cl">              <span class="n">values_fill</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
+</span></span></code></pre></div><p class="titulo_tabla">
+Población chilena por región y área, Censo 2024
+</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: right">región</th>
+          <th style="text-align: right">Rural (población)</th>
+          <th style="text-align: right">Urbana (población)</th>
+          <th style="text-align: right">Rural (porcentaje)</th>
+          <th style="text-align: right">Urbana (porcentaje)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: right">Tarapacá</td>
+          <td style="text-align: right">15.559</td>
+          <td style="text-align: right">354.247</td>
+          <td style="text-align: right">4,2%</td>
+          <td style="text-align: right">95,8%</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Antofagasta</td>
+          <td style="text-align: right">15.399</td>
+          <td style="text-align: right">620.017</td>
+          <td style="text-align: right">2,4%</td>
+          <td style="text-align: right">97,6%</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Atacama</td>
+          <td style="text-align: right">31.728</td>
+          <td style="text-align: right">267.452</td>
+          <td style="text-align: right">10,6%</td>
+          <td style="text-align: right">89,4%</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Coquimbo</td>
+          <td style="text-align: right">165.110</td>
+          <td style="text-align: right">667.754</td>
+          <td style="text-align: right">19,8%</td>
+          <td style="text-align: right">80,2%</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Valparaíso</td>
+          <td style="text-align: right">199.962</td>
+          <td style="text-align: right">1.696.091</td>
+          <td style="text-align: right">10,5%</td>
+          <td style="text-align: right">89,5%</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Libertador General Bernardo O&rsquo;Higgins</td>
+          <td style="text-align: right">265.174</td>
+          <td style="text-align: right">722.054</td>
+          <td style="text-align: right">26,9%</td>
+          <td style="text-align: right">73,1%</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Maule</td>
+          <td style="text-align: right">321.382</td>
+          <td style="text-align: right">801.626</td>
+          <td style="text-align: right">28,6%</td>
+          <td style="text-align: right">71,4%</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Biobío</td>
+          <td style="text-align: right">215.358</td>
+          <td style="text-align: right">1.397.701</td>
+          <td style="text-align: right">13,4%</td>
+          <td style="text-align: right">86,6%</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">La Araucanía</td>
+          <td style="text-align: right">331.479</td>
+          <td style="text-align: right">678.944</td>
+          <td style="text-align: right">32,8%</td>
+          <td style="text-align: right">67,2%</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Los Lagos</td>
+          <td style="text-align: right">258.193</td>
+          <td style="text-align: right">632.091</td>
+          <td style="text-align: right">29,0%</td>
+          <td style="text-align: right">71,0%</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Aysén del General Carlos Ibáñez del Campo</td>
+          <td style="text-align: right">23.180</td>
+          <td style="text-align: right">77.565</td>
+          <td style="text-align: right">23,0%</td>
+          <td style="text-align: right">77,0%</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Magallanes y de la Antártica Chilena</td>
+          <td style="text-align: right">11.779</td>
+          <td style="text-align: right">154.758</td>
+          <td style="text-align: right">7,1%</td>
+          <td style="text-align: right">92,9%</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Metropolitana de Santiago</td>
+          <td style="text-align: right">280.498</td>
+          <td style="text-align: right">7.120.243</td>
+          <td style="text-align: right">3,8%</td>
+          <td style="text-align: right">96,2%</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Los Ríos</td>
+          <td style="text-align: right">129.620</td>
+          <td style="text-align: right">268.610</td>
+          <td style="text-align: right">32,5%</td>
+          <td style="text-align: right">67,5%</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Arica y Parinacota</td>
+          <td style="text-align: right">23.397</td>
+          <td style="text-align: right">221.172</td>
+          <td style="text-align: right">9,6%</td>
+          <td style="text-align: right">90,4%</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">Ñuble</td>
+          <td style="text-align: right">174.140</td>
+          <td style="text-align: right">338.149</td>
+          <td style="text-align: right">34,0%</td>
+          <td style="text-align: right">66,0%</td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+
+<h2 id="mapas-a-partir-de-datos-del-censo">Mapas a partir de datos del Censo
+  <a href="#mapas-a-partir-de-datos-del-censo"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>En otro tutorial mostré 
+<a href="../../../blog/mapas_censo_2024/">cómo visualizar los datos del Censo a nivel de manzana con R</a>, y también hice una pequeña 
+<a href="../../../blog/app_censo_mapas/">aplicación de muestra para visualizar variables del Censo en mapas</a> como una demostración de la simplicidad y potencia de R con un <em>backend</em> de Arrow.</p>
+
+
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            background-color: #493365;  border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-triangle-exclamation" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #EAD2FA;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%; color: #EAD2FA;">
+    Tutorial en construcción! Pronto lo seguiré expandiendo.
+  </aside>
+  
+</div>
+<!--
+
+### Obtener población por comuna
+
+
+```r
+# seleccionar columnas
+personas_filt <- personas |>
+select(id_vivienda, id_hogar, region, comuna, sexo, area)
+
+glimpse(personas_filt)
+
+library(janitor)
+library(tidyr)
+
+# agrupar datos para sumar población por comuna y área
+# (procesamiento en base de datos)
+personas_area <- personas_filt |> 
+group_by(comuna, region, area) |> 
+summarize(n = n()) |> 
+ungroup() |> 
+# agregar nombres de comunas y regiones
+left_join(comunas, join_by(comuna)) |> 
+left_join(regiones, join_by(region)) |> 
+# copiar a memoria
+collect() |> 
+# recodificar área
+mutate(area = recode_values(area, 
+1 ~ "Urbana", 
+2 ~ "Rural")) |> 
+mutate(area = as.factor(area))
+
+# generar tabla con población y porcentaje por comuna y área
+tabla_area <- personas_area |> 
+# calcular pocentaje
+group_by(comuna) |> 
+mutate(p = n / sum(n),
+p = p * 100) |>
+ungroup() |> 
+# pivotar
+pivot_wider(names_from = area, 
+values_from = c(n, p), 
+values_fill = 0) |> 
+arrange(comuna) |> 
+clean_names()
+
+# guardar
+writexl::write_xlsx(tabla_area, "tabla_comunas_area.xlsx")
+
+```
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+# códigos territoriales ----
+
+# cargar base de códigos territoriales
+codigos_territoriales <- readxl::read_xlsx("diccionario_variables_censo2024.xlsx",
+                                           sheet = "codigos_territoriales") |>
+  clean_names() |> 
+  rename(dpa = 2)
+
+# filtrar códigos territoriales
+comunas <- codigos_territoriales |> 
+  filter(dpa == "Comuna") |> 
+  select(comuna = 1, nombre_comuna = 3) |> 
+  mutate(comuna = as.integer(comuna))
+
+regiones <- codigos_territoriales |> 
+  filter(dpa == "Región") |> 
+  select(region = 1, nombre_region = 3) |> 
+  mutate(region = as.integer(region))
+```
+:::
+
+
+
+
+Mapa
+
+
+::: {.cell}
+
+```{.r .cell-code}
+manzanas |> 
+  # filtrar
+  filter(COMUNA == "PUENTE ALTO") |> # comuna
+  # convertir
+  st_as_sf(crs = 4326) |> 
+  # graficar
+  ggplot() +
+  aes(fill = n_discapacidad) + # variable
+  geom_sf(color = "white", linewidth = 0.01) +
+  scale_fill_fermenter(palette = 3) +
+  theme_minimal(base_size = 10) +
+  theme(axis.text.x = element_text(angle = 90, vjust = .5)) +
+  guides(fill = guide_legend(title = "Población",
+                             position = "top")) +
+  labs(title = "Población con discapacidad por manzana",
+       subtitle = "Comuna de Puente Alto",
+       caption = "Fuente: Censo 2024, INE")
+```
+:::
+
+
+
+Cruzar hogares con personas
+
+::: {.cell}
+
+```{.r .cell-code}
+library(dplyr)
+library(tidyr)
+library(arrow)
+
+# cargar ----
+comunas <- readxl::read_xlsx("datos/diccionario_variables_censo2024.xlsx",
+                             sheet = "codigos_territoriales") |> 
+  select(comuna = 1, nombre_comuna = 3)
+
+personas <- open_dataset("datos/personas_censo2024.parquet")
+
+hogares <- open_dataset("datos/hogares_censo2024.parquet")
+
+
+# personas: seleccionar columnas
+personas_filt <- personas |>
+  select(id_vivienda, id_hogar, comuna, parentesco,
+         sexo, edad_quinquenal)
+
+# hogares: seleccionar columnas
+hogares_filt <- hogares |>
+  select(id_vivienda, id_hogar, comuna, p12_tenencia_viv)
+
+# cruzar ambas bases por hogar/vivienda/comuna
+personas_hogares <- personas_filt |> 
+  left_join(hogares_filt, 
+            join_by(id_vivienda, id_hogar, comuna))
+# resultado: base de personas con datos de la vivienda donde viven
+
+# conteo ----
+conteo <- personas_hogares |> 
+  group_by(comuna, sexo, edad_quinquenal, parentesco, p12_tenencia_viv) |> 
+  summarize(n = n()) |> 
+  ungroup() |> 
+  collect() # carga a memoria de los datos
+
+
+# recodificación ----
+conteo_recod <- conteo |> 
+  mutate(parentesco = recode_values(
+    parentesco,
+    1 ~ "Jefe/a de hogar",
+    2 ~ "Esposo/a o cónyuge",
+    default = "Otros")) |> 
+  mutate(sexo = recode_values(
+    sexo, 
+    1 ~ "Hombre", 
+    2 ~ "Mujer")) |> 
+  mutate(p12_tenencia_viv = recode_values(
+    p12_tenencia_viv, 
+    1 ~ "Propia pagada",
+    2 ~ "Propia pagándose",
+    3 ~ "Arrendada con contrato",
+    4 ~ "Arrendada sin contrato",
+    5 ~ "Cedida por trabajo o servicio",
+    6 ~ "Cedida por familiar u otro",
+    7 ~ "Usufructo: solo uso y goce",
+    8 ~ "Ocupada de hecho",
+    9 ~ "Propiedad en sucesión o litigio")) |> 
+  mutate(propiedad = if_else(
+    p12_tenencia_viv %in% c("Propia pagada", "Propia pagándose"), 
+    "Propia", "No propia")) |> 
+  mutate(mayor = case_when(sexo == "Hombre" & edad_quinquenal >= 65 ~ "Adulto mayor", 
+                           sexo == "Mujer" & edad_quinquenal >= 60 ~ "Adulto mayor",
+                           .default = "No adulto mayor")) |> 
+  left_join(comunas, by = "comuna") |> 
+  relocate(nombre_comuna, .before = comuna)
+
+
+# resultados ----  
+
+
+# porcentaje de viviendas de propiedad del jefe de hogar según edad
+conteo_recod |> 
+  filter(parentesco == "Jefe/a de hogar",
+         propiedad == "Propia") |> 
+  group_by(nombre_comuna, mayor, propiedad) |> 
+  summarize(n = sum(n)) |> 
+  ungroup() |> 
+  pivot_wider(names_from = mayor, values_from = n,
+              values_fill = 0) |> 
+  group_by(nombre_comuna) |> 
+  mutate(adulto_mayor_porcentaje = `Adulto mayor` / (`Adulto mayor` + `No adulto mayor`) * 100)
+# de las viviendad que son propias, en algarrobo 53.7% son de jefatura de un adulto mayor
+
+
+# porcentaje de viviendas de jefe de hogar adulto mayor que son propias
+conteo_recod |> 
+  filter(parentesco == "Jefe/a de hogar",
+         mayor == "Adulto mayor") |> 
+  group_by(nombre_comuna, mayor, propiedad) |> 
+  summarize(n = sum(n)) |> 
+  ungroup() |> 
+  pivot_wider(names_from = propiedad, values_from = n,
+              values_fill = 0) |> 
+  group_by(nombre_comuna) |> 
+  mutate(propiedad_porcentaje = `Propia` / (`No propia` + Propia) * 100)
+# de las viviendas donde la jefatura de hogar es adulto mayor, en algarrobo 78% son propias
+
+
+# jefes de hogar, porcentaje de viviendas propias de adultos mayores por sexo
+conteo_recod |> 
+  filter(parentesco == "Jefe/a de hogar",
+         propiedad == "Propia",
+         mayor == "Adulto mayor") |> 
+  group_by(nombre_comuna, sexo, mayor, propiedad) |> 
+  summarize(n = sum(n)) |> 
+  ungroup() |> 
+  pivot_wider(names_from = sexo, values_from = n) |> 
+  group_by(nombre_comuna) |> 
+  mutate(Hombre_porcentaje = Hombre / (Hombre + Mujer) * 100,
+         Mujer_porcentaje = Mujer / (Hombre + Mujer) * 100)
+# de las viviendas propias donde la jefatura de hogar es adulto mayor, en algarrobo 54.1% son hombres y 45.9% son mujeres
+
+
+# porcentaje de hogares por comuna que son propios
+hogares_filt |> 
+  group_by(comuna, p12_tenencia_viv) |> 
+  summarize(n = n()) |> 
+  ungroup() |> 
+  collect() |> 
+  mutate(p12_tenencia_viv = recode_values(
+    p12_tenencia_viv, 
+    1 ~ "Propia",
+    2 ~ "Propia",
+    default = "No propia")) |> 
+  group_by(comuna, p12_tenencia_viv) |> 
+  summarize(n = sum(n)) |> 
+  pivot_wider(names_from = p12_tenencia_viv, values_from = n,
+              values_fill = 0) |> 
+  group_by(comuna) |> 
+  mutate(propia_porcentaje = Propia / (Propia + `No propia`) * 100) |> 
+  left_join(comunas, by = "comuna") |> 
+  relocate(nombre_comuna, .before = comuna)
+# en iquique, 41% de los hogares son propios
+
+
+
+# porcentaje de hogares donde viven adultos mayores, según propiedad
+hogares_adulto_mayor <- personas_filt |> 
+  select(comuna, id_vivienda, id_hogar, comuna, edad_quinquenal, sexo) |>
+  mutate(sexo = case_when(
+    sexo == 1 ~ "Hombre", 
+    sexo == 2 ~ "Mujer")) |> 
+  mutate(mayor = case_when(sexo == "Hombre" & edad_quinquenal >= 65 ~ "Adulto mayor", 
+                           sexo == "Mujer" & edad_quinquenal >= 60 ~ "Adulto mayor",
+                           .default = "No adulto mayor")) |> 
+  group_by(comuna, id_vivienda, id_hogar) |> 
+  mutate(hogar_con_adulto_mayor = if_else(any(mayor == "Adulto mayor"), "Adulto mayor", "Sin adulto mayor")) |> 
+  ungroup() |> 
+  distinct(comuna, id_vivienda, id_hogar, hogar_con_adulto_mayor) |> 
+  collect()
+
+hogares_adulto_mayor_propiedad <- hogares_filt |> 
+  left_join(hogares_adulto_mayor, by = c("id_vivienda", "id_hogar", "comuna")) |> 
+  mutate(p12_tenencia_viv = case_when(
+    p12_tenencia_viv == 1 ~ "Propia",
+    p12_tenencia_viv == 2 ~ "Propia",
+    .default = "No propia")) |> 
+  group_by(comuna, hogar_con_adulto_mayor, p12_tenencia_viv) |> 
+  summarize(n = n()) |> 
+  ungroup() |> 
+  collect() |> 
+  arrange(comuna, hogar_con_adulto_mayor, p12_tenencia_viv) |>
+  left_join(comunas, by = "comuna") |> 
+  relocate(nombre_comuna, .before = comuna)
+
+# porcentaje de hogares con presencia de adultos mayores según propiedad
+hogares_adulto_mayor_propiedad |> 
+  arrange(comuna, p12_tenencia_viv, hogar_con_adulto_mayor) |>
+  group_by(comuna, p12_tenencia_viv) |> 
+  mutate(porcentaje_adulto_mayor = n/sum(n)) |> 
+  select(comuna, nombre_comuna, p12_tenencia_viv, hogar_con_adulto_mayor, porcentaje_adulto_mayor) |> 
+  pivot_wider(names_from = hogar_con_adulto_mayor, values_from = porcentaje_adulto_mayor)
+# en iquique, de los hogares propios, un 49.4% tiene adultos mayores
+
+# porcentaje de propiedad de hogares según presencia de adultos mayores
+hogares_adulto_mayor_propiedad |> 
+  group_by(comuna, hogar_con_adulto_mayor) |> 
+  mutate(porcentaje_propia = n/sum(n)) |> 
+  select(comuna, nombre_comuna, hogar_con_adulto_mayor, p12_tenencia_viv, porcentaje_propia) |> 
+  pivot_wider(names_from = p12_tenencia_viv, values_from = porcentaje_propia)
+# en Iquique, ed los hogares con adultos mayores, un 67.0% son propios
+
+
+
+
+
+# tablas ----
+
+# hogares con o sin presencia de adultos mayores
+tabla_hogares_presencia <- hogares_adulto_mayor_propiedad |> 
+  pivot_wider(names_from = c(p12_tenencia_viv, hogar_con_adulto_mayor), 
+              values_from = n, names_sep = "/",
+              values_fill = 0) |> 
+  filter(comuna != 12202)
+
+# personas que viven en hogares con propiedad
+tabla_personas <- conteo_recod |> 
+  group_by(nombre_comuna, comuna, propiedad, mayor) |>
+  summarize(n = sum(n)) |> 
+  pivot_wider(names_from = c(propiedad, mayor), 
+              values_from = n, names_sep = "/",
+              values_fill = 0) |> 
+  filter(comuna != 12202)
+
+# personas que son jefes de hogar en hogares con equis propiedad
+tabla_jefes_hogar <- conteo_recod |> 
+  filter(parentesco == "Jefe/a de hogar") |>
+  group_by(nombre_comuna, comuna, propiedad, mayor) |>
+  summarize(n = sum(n)) |> 
+  pivot_wider(names_from = c(propiedad, mayor), 
+              values_from = n, names_sep = "/",
+              values_fill = 0) |> 
+  filter(comuna != 12202)
+
+tabla_hogares_presencia
+tabla_personas
+tabla_jefes_hogar
+
+# guardar en excel
+writexl::write_xlsx(
+  list("Hogares con o sin adultos mayores" = tabla_hogares_presencia,
+       "Personas" = tabla_personas,
+       "Personas jefatura de hogar" = tabla_jefes_hogar),
+  path = "resultados/tablas_conteos.xlsx")
+```
+:::
+
+
+-->
+<div style = "height: 18px;">
+</div>
+<div>
+  <div style="display: flex;
+  justify-content: center;
+  align-items: center;">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="bastimapache" data-color="#FFDD00" data-emoji="☕"  data-font="Cookie" data-text="Regálame un cafecito" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+  </div>
+ 
+    </section>
+      
+    <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="http://localhost:4119/blog/curso_gratis_r_intro_2/">Curso gratuito: introducción al análisis de datos con R, 2ª versión &rarr;</a>
+  
+</div>
+
+    </footer>
+    
+  </article>
+    
+    <div class="post-comments pa0 pa4-l mt4">
+  
+    
+      <script src="https://utteranc.es/client.js"
+              repo="bastianolea/blog-bastianolea-r"
+              issue-term="pathname"
+              theme="github-light"
+              label="comments"
+              crossorigin="anonymous"
+              async
+              type="text/javascript">
+      </script>
+    
+  
+</div>
+
+    
+</section>
+  
+
+<section class="post-body pt5 pb4">
+  
+  <details closed class="f6 fw7 input-reset">
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Fecha de publicación:</dt>
+    <dd class="fw5 ml0">April 8, 2026</dd>
+  </dl>
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Extensión:</dt>
+    <dd class="fw5 ml0">15 minute read, 3184 words</dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Categorías:</dt>
+    <dd class="fw5 ml0"> <a href="http://localhost:4119/categories/tutoriales">Tutoriales</a> </dd>
+  </dl>
+  
+  
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Tags:</dt>
+    <dd class="fw5 ml0"> <a href="http://localhost:4119/tags/datos">datos</a>  <a href="http://localhost:4119/tags/chile">chile</a> </dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Ver también:</dt>
+    
+    <dd class="fw5 ml0"><a href="../../blog/indice_brechas_genero/">Plataforma de análisis: Índice de Brechas de Género</a></dd>
+    
+    <dd class="fw5 ml0"><a href="../../blog/estudio_brechas_comunales/">Plataforma de visualización de resultados del Estudio de Brechas Comunales</a></dd>
+    
+    <dd class="fw5 ml0"><a href="../../blog/datos_estructurados_llm/">Extracción de datos estructurados desde texto usando IA</a></dd>
+    
+  </dl>
+</details>
+
+</section>
+</main>
+
+
+<aside class="page-sidebar" role="complementary">
+   
+   
+
+  <div class="blog-info ph4 pt4 pb4 pb0-l">
+    
+
+  <h1 class="f3">Blog</h1>
+  <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
+<a href="https://bastianoleah.shinyapps.io/buscador/" target="_blank" rel="noopener">buscador</a> para encontrar publicaciones o navega los 
+<a href="../../tags/">temas</a>.</p>
+  
+
+   
+<h3 style="margin-bottom: 12px;">Temas:</h3>
+
+<div style="font-size:90%;">
+
+<div style="font-size: 90%;">
+  
+   
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/chile/">Chile</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/datos/">Datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/gr%C3%A1ficos/">Gráficos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/shiny/">Shiny</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/apps/">Apps</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/ggplot2/">Ggplot2</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/web-scraping/">Web scraping</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/b%C3%A1sico/">Básico</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/mapas/">Mapas</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/curiosidades/">Curiosidades</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/quarto/">Quarto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/dplyr/">Dplyr</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/ciencias-sociales/">Ciencias sociales</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4119/tags/texto/">Texto</a></span>
+  </span>
+
+<a href="../../tags/" style="margin-left: 3px;">y más!</a>
+</div>
+</div>
+  
+  
+   
+   
+
+</div>
+
+  
+  <div id="PageTableOfContents" style="margin-top: 24px; position: sticky; top: 108px;">
+        <div class="blog-info ph4 pb4 pb0-l">
+        <h3 style="margin-bottom: 12px;">Índice:</h3>
+          <div class="pl2 pr0 mh0" style = "font-size: 90%; margin-top: -8px; margin-left: -22px; margin-bottom: 32px;">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#descargar-datos-del-censo">Descargar datos del Censo</a></li>
+    <li><a href="#cargar-datos-del-censo-en-r">Cargar datos del Censo en R</a></li>
+    <li><a href="#diccionario-de-variables-del-censo">Diccionario de variables del Censo</a></li>
+    <li><a href="#calcular-resúmenes-de-datos-censales">Calcular resúmenes de datos censales</a>
+      <ul>
+        <li><a href="#obtener-población-por-región">Obtener población por región</a></li>
+        <li><a href="#calcular-población-urbana-y-rural-por-región">Calcular población urbana y rural por región</a></li>
+      </ul>
+    </li>
+    <li><a href="#mapas-a-partir-de-datos-del-censo">Mapas a partir de datos del Censo</a></li>
+  </ul>
+</nav>
+          </div>
+        </div>
+    </div>
+  
+  
+
+</aside>
+
+        
+          <script id="partials/analytics.html" 
+  data-goatcounter="https://bastimapache.goatcounter.com/count"
+  async src="//gc.zgo.at/count.js"></script>
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2026 Bastián Olea Herrera, Chile
+      <span class="middot-divider"></span>
+      Hecho con <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source" style="color:#9069C0;">Hugo Apéro</a> 
+      y <a href="https://pkgs.rstudio.com/blogdown/" style="color:#9069C0;">{blogdown}</a></span>.
+      <br />
+      
+Basado en <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source" style="color:#9069C0;">Blogophonic</a></span>, de <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL" style="color:#9069C0;">Formspree</a>.
+
+Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlify</a></span>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.goodreads.com/user/show/53224910-basti-n-olea-herrera" title="goodreads" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-goodreads fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="../../contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+      <a class="dib pv1 ph2 link" href="../../about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
+      
+      <a class="dib pv1 ph2 link" href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      
+      <a class="dib pv1 ph2 link" href="../../contacto/" title="Bastián Olea: Contacto">Contacto</a>
+      
+      <a class="dib pv1 ph2 link" href="../../tags/" title="Temas">Temas</a>
+      
+      <a class="dib pv1 ph2 link" href="../../clases/" title="Clases">Clases</a>
+      
+      <a class="dib pv1 ph2 link" href="../../code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
+      
+      <a class="dib pv1 ph2 link" href="../../license/" title="Bastián Olea: Licencia">Licencia</a>
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>

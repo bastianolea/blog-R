@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-ES" dir="ltr"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=3770&amp;path=livereload" data-no-instant defer></script>
+<html lang="es-ES" dir="ltr"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4119&amp;path=livereload" data-no-instant defer></script>
   
                            
      
@@ -31,33 +31,33 @@
 <meta property="og:title" content="Blog: análisis de datos en R | Bastián Olea">
 <meta property="og:description" content="Blog de Bastián Olea, sociólogx y analista de datos" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="http://localhost:3770/blog/" />
+<meta property="og:url" content="http://localhost:4119/blog/" />
 <meta property="og:locale" content="es-ES">
 
 
 
 
     
-        <meta property="og:image" content="http://localhost:3770/blog/sidebar-listing.jpg" >
+        <meta property="og:image" content="http://localhost:4119/blog/sidebar-listing.jpg" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="http://localhost:3770/blog/sidebar-listing.jpg" >
+        <meta name="twitter:image" content="http://localhost:4119/blog/sidebar-listing.jpg" >
     
     
   
   <meta itemprop="name" content="Blog: análisis de datos en R">
   <meta itemprop="description" content="** No content below YAML for the blog _index. This file provides front matter for the listing page layout and sidebar content. It is also a branch bundle, and all settings under cascade provide front matter for all pages inside blog/. You may still override any of these by changing them in a page’s front matter.**">
-  <meta itemprop="datePublished" content="2026-04-01T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2026-04-01T00:00:00+00:00">
+  <meta itemprop="datePublished" content="2026-04-08T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2026-04-08T00:00:00+00:00">
   <meta itemprop="wordCount" content="56">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
-    <link rel="alternate" type="application/rss+xml" href="http://localhost:3770/blog/index.xml" title="Bastián Olea" />
+    <link rel="alternate" type="application/rss+xml" href="http://localhost:4119/blog/index.xml" title="Bastián Olea" />
   
   
-  <link rel="stylesheet" href="../../../style.main.min.9e107e703cb22b9b7772a1f09043a30b04330a2df7c76516e2d5a6824a136dcf.css" integrity="sha256-nhB&#43;cDyyK5t3cqHwkEOjCwQzCi33x2UW4tWmgkoTbc8=" media="screen">
+  <link rel="stylesheet" href="../../../style.main.min.be3e0f40fb75d5d977e7ba48c93a5c8b6bc8b1c7a72f611a1a58896ff6841894.css" integrity="sha256-vj4PQPt11dl357pIyTpci2vIscenL2EaGliJb/aEGJQ=" media="screen">
   
   
   <script src="../../../panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
@@ -75,7 +75,7 @@
       <div class="grid-container list-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="http://localhost:3770/" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="http://localhost:4119/" title="Home">
       <img src="../../../img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -271,8 +271,175 @@
   
   <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
     <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
+      <a href="../../../blog/ordenar_regiones/" class="db">
+        <img src="http://localhost:4119/blog/ordenar_regiones/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+      </a>
+    </figure>
+    <div class="flex flex-column w-100 w-60-ns pl3-ns">
+      <header class="w-100">
+        <h1 class="f3 mv2 lh-title underline"><a href="../../../blog/ordenar_regiones/" class="db">Ordenar las regiones de Chile de norte a sur en R</a></h1>
+        
+        
+      </header>
+      
+      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;">La franja larga y angosta que es Chile tiene el beneficio de que sus regiones se ubican casi perfectamente una sobre la otra, de norte a sur. Este orgen geográfico natural de sus regiones resulta familiar para sus habitantes, por lo que se vuelve recomendable ordenar los datos a nivel regional siguiendo este orden geográfico.</p>
+      
+      
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/consejos"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            consejos</a>  <a href="http://localhost:4119/tags/mapas"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            mapas</a>  <a href="http://localhost:4119/tags/chile"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            Chile</a> </dd></em>
+        </dl>
+        
+        
+      
+      <footer class="w-100">
+        
+      
+      
+      
+      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">6/6/2025</div>
+      
+        
+      </div>
+      
+      
+    </footer>
+    </div>
+  </div>
+  
+
+  
+  
+</article>
+      
+        
+                                   
+     
+     
+<article class="mv4 mv5-l bb">
+
+  
+  
+  
+  
+  
+  
+  <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
+    <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
+      <a href="../../../blog/datapasta/" class="db">
+        <img src="http://localhost:4119/blog/datapasta/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+      </a>
+    </figure>
+    <div class="flex flex-column w-100 w-60-ns pl3-ns">
+      <header class="w-100">
+        <h1 class="f3 mv2 lh-title underline"><a href="../../../blog/datapasta/" class="db">Copia y pega datos en R con {datapasta} y {clipr}</a></h1>
+        
+        
+      </header>
+      
+      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;"><code>{datapasta}</code> es un paquete para R que te ayuda a copiar y pegar datos desde y hacia R. Este paquete convierte tus datos en texto que puedes copiar y pegar en otro script, o editar manualmente. Usa la función <code>dpasta()</code> sobre un dataframe para hacer que los datos aparezcan como en texto directamente debajo de donde la ejecutaste. Por otro lado, <code>{clipr}</code> nos va a permitir copiar un dataframe desde R para poder pegarlo en programas como Excel.</p>
+      
+      
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/consejos"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            consejos</a>  <a href="http://localhost:4119/tags/datos"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            datos</a> </dd></em>
+        </dl>
+        
+        
+      
+      <footer class="w-100">
+        
+      
+      
+      
+      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">6/6/2025</div>
+      
+        
+      </div>
+      
+      
+    </footer>
+    </div>
+  </div>
+  
+
+  
+  
+</article>
+      
+        
+                                   
+     
+     
+<article class="mv4 mv5-l bb">
+
+  
+  
+  
+  
+  
+  
+  <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
+    <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
       <a href="../../../blog/quarto_params/" class="db">
-        <img src="http://localhost:3770/blog/quarto_params/quarto_params_2-featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+        <img src="http://localhost:4119/blog/quarto_params/quarto_params_2-featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
       </a>
     </figure>
     <div class="flex flex-column w-100 w-60-ns pl3-ns">
@@ -290,7 +457,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/quarto"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/quarto"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -301,7 +468,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            quarto</a>  <a href="http://localhost:3770/tags/loops"
+            quarto</a>  <a href="http://localhost:4119/tags/loops"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -324,26 +491,7 @@
       
       <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">15/4/2025</div>
       
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="5211889d89d3ea9a199b561bfff51db4" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('5211889d89d3ea9a199b561bfff51db4').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/quarto_params/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
+        
       </div>
       
       
@@ -371,7 +519,7 @@
   <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
     <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
       <a href="../../../blog/quarto_reportes/" class="db">
-        <img src="http://localhost:3770/blog/quarto_reportes/quarto_theme_cosmo-featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+        <img src="http://localhost:4119/blog/quarto_reportes/quarto_theme_cosmo-featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
       </a>
     </figure>
     <div class="flex flex-column w-100 w-60-ns pl3-ns">
@@ -387,7 +535,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/quarto"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/quarto"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -410,26 +558,7 @@
       
       <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">14/4/2025</div>
       
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="427d693daecaad2dbe36fc52cdd2b062" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('427d693daecaad2dbe36fc52cdd2b062').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/quarto_reportes/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
+        
       </div>
       
       
@@ -457,7 +586,7 @@
   <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
     <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
       <a href="../../../blog/2025-03-31/" class="db">
-        <img src="http://localhost:3770/blog/2025-03-31/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+        <img src="http://localhost:4119/blog/2025-03-31/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
       </a>
     </figure>
     <div class="flex flex-column w-100 w-60-ns pl3-ns">
@@ -473,7 +602,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/consejos"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/consejos"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -484,7 +613,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            consejos</a>  <a href="http://localhost:3770/tags/texto"
+            consejos</a>  <a href="http://localhost:4119/tags/texto"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -495,7 +624,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            texto</a>  <a href="http://localhost:3770/tags/limpieza-de-datos"
+            texto</a>  <a href="http://localhost:4119/tags/limpieza-de-datos"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -518,26 +647,7 @@
       
       <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">31/3/2025</div>
       
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="6177b7680b9b3e7de817227d06abfef2" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('6177b7680b9b3e7de817227d06abfef2').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/2025-03-31/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
+        
       </div>
       
       
@@ -565,7 +675,7 @@
   <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
     <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
       <a href="../../../blog/2025-03-30/" class="db">
-        <img src="http://localhost:3770/blog/2025-03-30/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+        <img src="http://localhost:4119/blog/2025-03-30/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
       </a>
     </figure>
     <div class="flex flex-column w-100 w-60-ns pl3-ns">
@@ -581,7 +691,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/texto"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/texto"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -604,26 +714,7 @@
       
       <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">30/3/2025</div>
       
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="23e232662ae6649d3f8654e18b916c59" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('23e232662ae6649d3f8654e18b916c59').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/2025-03-30/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
+        
       </div>
       
       
@@ -651,7 +742,7 @@
   <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
     <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
       <a href="../../../blog/tutorial_quarto_github_pages/" class="db">
-        <img src="http://localhost:3770/blog/tutorial_quarto_github_pages/afiche-featured.jpg" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+        <img src="http://localhost:4119/blog/tutorial_quarto_github_pages/afiche-featured.jpg" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
       </a>
     </figure>
     <div class="flex flex-column w-100 w-60-ns pl3-ns">
@@ -667,7 +758,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/quarto"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/quarto"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -678,7 +769,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            quarto</a>  <a href="http://localhost:3770/tags/shiny"
+            quarto</a>  <a href="http://localhost:4119/tags/shiny"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -689,7 +780,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            shiny</a>  <a href="http://localhost:3770/tags/git"
+            shiny</a>  <a href="http://localhost:4119/tags/git"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -700,7 +791,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            git</a>  <a href="http://localhost:3770/tags/github"
+            git</a>  <a href="http://localhost:4119/tags/github"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -723,26 +814,7 @@
       
       <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">27/3/2025</div>
       
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="dd8a8dd6a2d26de614e1989b4f6fcbba" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('dd8a8dd6a2d26de614e1989b4f6fcbba').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/tutorial_quarto_github_pages/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
+        
       </div>
       
       
@@ -770,7 +842,7 @@
   <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
     <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
       <a href="../../../blog/r_introduccion/tutorial_visualizacion_ggplot/" class="db">
-        <img src="http://localhost:3770/blog/r_introduccion/tutorial_visualizacion_ggplot/ggplot2-featured.jpg" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+        <img src="http://localhost:4119/blog/r_introduccion/tutorial_visualizacion_ggplot/ggplot2-featured.jpg" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
       </a>
     </figure>
     <div class="flex flex-column w-100 w-60-ns pl3-ns">
@@ -788,7 +860,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/visualizaci%C3%B3n-de-datos"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/visualizaci%C3%B3n-de-datos"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -799,7 +871,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            visualización de datos</a>  <a href="http://localhost:3770/tags/gr%C3%A1ficos"
+            visualización de datos</a>  <a href="http://localhost:4119/tags/gr%C3%A1ficos"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -810,7 +882,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            gráficos</a>  <a href="http://localhost:3770/tags/ggplot2"
+            gráficos</a>  <a href="http://localhost:4119/tags/ggplot2"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -833,26 +905,7 @@
       
       <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">21/3/2025</div>
       
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="89b2c75d9a1dd7c28f54c83b4e343703" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('89b2c75d9a1dd7c28f54c83b4e343703').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/r_introduccion/tutorial_visualizacion_ggplot/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
+        
       </div>
       
       
@@ -880,7 +933,7 @@
   <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
     <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
       <a href="../../../blog/patchwork/" class="db">
-        <img src="http://localhost:3770/blog/patchwork/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+        <img src="http://localhost:4119/blog/patchwork/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
       </a>
     </figure>
     <div class="flex flex-column w-100 w-60-ns pl3-ns">
@@ -896,7 +949,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/visualizaci%C3%B3n-de-datos"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/visualizaci%C3%B3n-de-datos"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -907,7 +960,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            visualización de datos</a>  <a href="http://localhost:3770/tags/gr%C3%A1ficos"
+            visualización de datos</a>  <a href="http://localhost:4119/tags/gr%C3%A1ficos"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -918,7 +971,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            gráficos</a>  <a href="http://localhost:3770/tags/ggplot2"
+            gráficos</a>  <a href="http://localhost:4119/tags/ggplot2"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -941,26 +994,7 @@
       
       <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">8/3/2025</div>
       
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="f8c4be0e2ef90b8dfd23984526173c90" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('f8c4be0e2ef90b8dfd23984526173c90').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/patchwork/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
+        
       </div>
       
       
@@ -1016,7 +1050,7 @@
   <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
     <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
       <a href="../../../blog/colores/" class="db">
-        <img src="http://localhost:3770/blog/colores/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+        <img src="http://localhost:4119/blog/colores/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
       </a>
     </figure>
     <div class="flex flex-column w-100 w-60-ns pl3-ns">
@@ -1032,7 +1066,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/visualizaci%C3%B3n-de-datos"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/visualizaci%C3%B3n-de-datos"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1043,7 +1077,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            visualización de datos</a>  <a href="http://localhost:3770/tags/ggplot2"
+            visualización de datos</a>  <a href="http://localhost:4119/tags/ggplot2"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1066,26 +1100,7 @@
       
       <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">6/3/2025</div>
       
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="64c51850adb0c29e7f4448fe6cb22100" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('64c51850adb0c29e7f4448fe6cb22100').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/colores/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
+        
       </div>
       
       
@@ -1113,7 +1128,7 @@
   <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
     <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
       <a href="../../../blog/mapa_chile_horizontal/" class="db">
-        <img src="http://localhost:3770/blog/mapa_chile_horizontal/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+        <img src="http://localhost:4119/blog/mapa_chile_horizontal/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
       </a>
     </figure>
     <div class="flex flex-column w-100 w-60-ns pl3-ns">
@@ -1129,7 +1144,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/mapas"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/mapas"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1140,7 +1155,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            mapas</a>  <a href="http://localhost:3770/tags/visualizaci%C3%B3n-de-datos"
+            mapas</a>  <a href="http://localhost:4119/tags/visualizaci%C3%B3n-de-datos"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1151,7 +1166,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            visualización de datos</a>  <a href="http://localhost:3770/tags/chile"
+            visualización de datos</a>  <a href="http://localhost:4119/tags/chile"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1174,26 +1189,7 @@
       
       <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">4/3/2025</div>
       
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="9bdfa6aed6307f2e055281e30f3805f0" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('9bdfa6aed6307f2e055281e30f3805f0').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/mapa_chile_horizontal/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
+        
       </div>
       
       
@@ -1249,7 +1245,7 @@
   <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
     <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
       <a href="../../../blog/simplificar_mapas/" class="db">
-        <img src="http://localhost:3770/blog/simplificar_mapas/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+        <img src="http://localhost:4119/blog/simplificar_mapas/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
       </a>
     </figure>
     <div class="flex flex-column w-100 w-60-ns pl3-ns">
@@ -1265,7 +1261,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/mapas"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/mapas"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1276,7 +1272,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            mapas</a>  <a href="http://localhost:3770/tags/visualizaci%C3%B3n-de-datos"
+            mapas</a>  <a href="http://localhost:4119/tags/visualizaci%C3%B3n-de-datos"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1299,26 +1295,7 @@
       
       <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">27/2/2025</div>
       
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="016e2bbcb694036decaf6b9b449a18d8" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('016e2bbcb694036decaf6b9b449a18d8').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/simplificar_mapas/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
+        
       </div>
       
       
@@ -1346,7 +1323,7 @@
   <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
     <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
       <a href="../../../blog/genero_nombres_llm/" class="db">
-        <img src="http://localhost:3770/blog/genero_nombres_llm/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+        <img src="http://localhost:4119/blog/genero_nombres_llm/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
       </a>
     </figure>
     <div class="flex flex-column w-100 w-60-ns pl3-ns">
@@ -1362,7 +1339,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/procesamiento-de-datos"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/procesamiento-de-datos"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1373,7 +1350,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            procesamiento de datos</a>  <a href="http://localhost:3770/tags/inteligencia-artificial"
+            procesamiento de datos</a>  <a href="http://localhost:4119/tags/inteligencia-artificial"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1384,7 +1361,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            inteligencia artificial</a>  <a href="http://localhost:3770/tags/an%C3%A1lisis-de-texto"
+            inteligencia artificial</a>  <a href="http://localhost:4119/tags/an%C3%A1lisis-de-texto"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1395,7 +1372,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            análisis de texto</a>  <a href="http://localhost:3770/tags/g%C3%A9nero"
+            análisis de texto</a>  <a href="http://localhost:4119/tags/g%C3%A9nero"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1418,26 +1395,7 @@
       
       <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">19/2/2025</div>
       
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="faedd39b929651c88f485a1479b7f54f" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('faedd39b929651c88f485a1479b7f54f').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/genero_nombres_llm/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
+        
       </div>
       
       
@@ -1465,7 +1423,7 @@
   <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
     <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
       <a href="../../../blog/shiny_usuarios/" class="db">
-        <img src="http://localhost:3770/blog/shiny_usuarios/shinymanager_2-featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+        <img src="http://localhost:4119/blog/shiny_usuarios/shinymanager_2-featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
       </a>
     </figure>
     <div class="flex flex-column w-100 w-60-ns pl3-ns">
@@ -1483,7 +1441,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/shiny"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/shiny"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1494,7 +1452,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            shiny</a>  <a href="http://localhost:3770/tags/apps"
+            shiny</a>  <a href="http://localhost:4119/tags/apps"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1517,26 +1475,7 @@
       
       <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">17/2/2025</div>
       
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="6c1a892d021d6e781d1dfed1a367792a" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('6c1a892d021d6e781d1dfed1a367792a').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/shiny_usuarios/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
+        
       </div>
       
       
@@ -1564,7 +1503,7 @@
   <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
     <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
       <a href="../../../blog/r_introduccion/dplyr_intro/" class="db">
-        <img src="http://localhost:3770/blog/r_introduccion/sidebar-featured.jpg" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+        <img src="http://localhost:4119/blog/r_introduccion/sidebar-featured.jpg" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
       </a>
     </figure>
     <div class="flex flex-column w-100 w-60-ns pl3-ns">
@@ -1582,7 +1521,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/dplyr"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/dplyr"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1593,7 +1532,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            dplyr</a>  <a href="http://localhost:3770/tags/datos"
+            dplyr</a>  <a href="http://localhost:4119/tags/datos"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1604,7 +1543,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            datos</a>  <a href="http://localhost:3770/tags/b%C3%A1sico"
+            datos</a>  <a href="http://localhost:4119/tags/b%C3%A1sico"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1627,26 +1566,7 @@
       
       <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">15/2/2025</div>
       
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="50fc803e2794ca92d41032b53d8bb6e1" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('50fc803e2794ca92d41032b53d8bb6e1').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/r_introduccion/dplyr_intro/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
+        
       </div>
       
       
@@ -1674,7 +1594,7 @@
   <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
     <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
       <a href="../../../blog/2025-02-14/" class="db">
-        <img src="http://localhost:3770/blog/2025-02-14/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+        <img src="http://localhost:4119/blog/2025-02-14/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
       </a>
     </figure>
     <div class="flex flex-column w-100 w-60-ns pl3-ns">
@@ -1690,7 +1610,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/dplyr"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/dplyr"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1701,7 +1621,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            dplyr</a>  <a href="http://localhost:3770/tags/limpieza-de-datos"
+            dplyr</a>  <a href="http://localhost:4119/tags/limpieza-de-datos"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1712,7 +1632,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            limpieza de datos</a>  <a href="http://localhost:3770/tags/datos-perdidos"
+            limpieza de datos</a>  <a href="http://localhost:4119/tags/datos-perdidos"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1735,26 +1655,7 @@
       
       <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">14/2/2025</div>
       
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="471b618f1882ae6406b5aa1852bc32dd" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('471b618f1882ae6406b5aa1852bc32dd').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/2025-02-14/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
+        
       </div>
       
       
@@ -1782,7 +1683,7 @@
   <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
     <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
       <a href="../../../blog/r_introduccion/r_intermedio/" class="db">
-        <img src="http://localhost:3770/blog/r_introduccion/sidebar-featured.jpg" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+        <img src="http://localhost:4119/blog/r_introduccion/sidebar-featured.jpg" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
       </a>
     </figure>
     <div class="flex flex-column w-100 w-60-ns pl3-ns">
@@ -1800,7 +1701,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/b%C3%A1sico"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/b%C3%A1sico"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1811,7 +1712,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            básico</a>  <a href="http://localhost:3770/tags/funciones"
+            básico</a>  <a href="http://localhost:4119/tags/funciones"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1822,7 +1723,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            funciones</a>  <a href="http://localhost:3770/tags/control-de-flujo"
+            funciones</a>  <a href="http://localhost:4119/tags/control-de-flujo"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1833,7 +1734,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            control de flujo</a>  <a href="http://localhost:3770/tags/loops"
+            control de flujo</a>  <a href="http://localhost:4119/tags/loops"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1844,7 +1745,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            loops</a>  <a href="http://localhost:3770/tags/programaci%C3%B3n"
+            loops</a>  <a href="http://localhost:4119/tags/programaci%C3%B3n"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1867,26 +1768,7 @@
       
       <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">14/2/2025</div>
       
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="59b1b7a92d8b1dbb7211f2589df94de9" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('59b1b7a92d8b1dbb7211f2589df94de9').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/r_introduccion/r_intermedio/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
+        
       </div>
       
       
@@ -1914,7 +1796,7 @@
   <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
     <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
       <a href="../../../blog/2025-02-12/" class="db">
-        <img src="http://localhost:3770/blog/2025-02-12/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+        <img src="http://localhost:4119/blog/2025-02-12/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
       </a>
     </figure>
     <div class="flex flex-column w-100 w-60-ns pl3-ns">
@@ -1931,7 +1813,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/consejos"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/consejos"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1942,7 +1824,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            consejos</a>  <a href="http://localhost:3770/tags/datos"
+            consejos</a>  <a href="http://localhost:4119/tags/datos"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1953,7 +1835,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            datos</a>  <a href="http://localhost:3770/tags/optimizaci%C3%B3n"
+            datos</a>  <a href="http://localhost:4119/tags/optimizaci%C3%B3n"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -1976,26 +1858,7 @@
       
       <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">12/2/2025</div>
       
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="dd285c0071e41fe926c7bb24fc353566" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('dd285c0071e41fe926c7bb24fc353566').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/2025-02-12/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
+        
       </div>
       
       
@@ -2023,7 +1886,7 @@
   <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
     <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
       <a href="../../../blog/datos_sociales/" class="db">
-        <img src="http://localhost:3770/blog/datos_sociales/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+        <img src="http://localhost:4119/blog/datos_sociales/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
       </a>
     </figure>
     <div class="flex flex-column w-100 w-60-ns pl3-ns">
@@ -2042,7 +1905,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/blog"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/blog"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -2053,7 +1916,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            blog</a>  <a href="http://localhost:3770/tags/datos"
+            blog</a>  <a href="http://localhost:4119/tags/datos"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -2064,7 +1927,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            datos</a>  <a href="http://localhost:3770/tags/tablas"
+            datos</a>  <a href="http://localhost:4119/tags/tablas"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -2075,7 +1938,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            tablas</a>  <a href="http://localhost:3770/tags/quarto"
+            tablas</a>  <a href="http://localhost:4119/tags/quarto"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -2086,7 +1949,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            quarto</a>  <a href="http://localhost:3770/tags/chile"
+            quarto</a>  <a href="http://localhost:4119/tags/chile"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -2109,26 +1972,7 @@
       
       <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">9/2/2025</div>
       
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="2aa7389b74118c3c8b4930a6598e8dd0" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('2aa7389b74118c3c8b4930a6598e8dd0').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/datos_sociales/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
+        
       </div>
       
       
@@ -2184,7 +2028,7 @@
   <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
     <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
       <a href="../../../blog/resumir_texto_llm/" class="db">
-        <img src="http://localhost:3770/blog/resumir_texto_llm/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+        <img src="http://localhost:4119/blog/resumir_texto_llm/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
       </a>
     </figure>
     <div class="flex flex-column w-100 w-60-ns pl3-ns">
@@ -2200,7 +2044,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/an%C3%A1lisis-de-texto"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/an%C3%A1lisis-de-texto"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -2211,7 +2055,7 @@
                  border-radius: 3px; 
                  padding: 2px 6px;
                  padding-top: 3px;">
-            análisis de texto</a>  <a href="http://localhost:3770/tags/inteligencia-artificial"
+            análisis de texto</a>  <a href="http://localhost:4119/tags/inteligencia-artificial"
           style="margin-right: 2px; 
                  color: #EAD2FA; 
                  font-style: normal;
@@ -2234,327 +2078,9 @@
       
       <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">8/2/2025</div>
       
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="d465a28240686abec5948d37155ebe94" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('d465a28240686abec5948d37155ebe94').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/resumir_texto_llm/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
+        
       </div>
       
-      
-    </footer>
-    </div>
-  </div>
-  
-
-  
-  
-</article>
-      
-        
-                                   
-     
-     
-<article class="mv4 mv5-l bb">
-
-  
-  
-  
-  
-  
-  
-  <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
-    <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
-      <a href="../../../blog/r_introduccion/tutorial_github/" class="db">
-        <img src="http://localhost:3770/blog/r_introduccion/tutorial_github/titulo_github-featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
-      </a>
-    </figure>
-    <div class="flex flex-column w-100 w-60-ns pl3-ns">
-      <header class="w-100">
-        <h1 class="f3 mv2 lh-title underline"><a href="../../../blog/r_introduccion/tutorial_github/" class="db">Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub</a></h1>
-        
-        
-        <h2 class="f5"><i class="fas fa-stream fa-fw pr1"></i><small class="f5 ttu tracked">Series: </small><a class="link i dim" href="../../../blog/r_introduccion/">Introducción a R</a></h2>
-        
-      </header>
-      
-      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;">En este tutorial se entregan los pasos para empezar a usar Git con tus proyectos de R. Git te permite llevar un registro de las versiones y un control de cambios en tu código, mientras que GitHub te permite subir tus repositorios a un servicio online, en el cual puedes compartir tu código con otras personas, descargar el código de otros, y colaborar en un mismo proyecto.</p>
-      
-      
-        
-        
-        <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/git"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            Git</a>  <a href="http://localhost:3770/tags/consejos"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            Consejos</a> </dd></em>
-        </dl>
-        
-        
-      
-      <footer class="w-100">
-        
-      
-      
-      
-      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">7/2/2025</div>
-      
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="a589ee7db91617ba0a97ed3d01ce4019" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('a589ee7db91617ba0a97ed3d01ce4019').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/r_introduccion/tutorial_github/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
-      </div>
-      
-      
-    </footer>
-    </div>
-  </div>
-  
-
-  
-  
-</article>
-      
-        
-                                   
-     
-     
-<article class="mv4 mv5-l bb">
-
-  
-  
-  
-  
-  
-  
-  <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
-    <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
-      <a href="../../../blog/unim/taller_ciencia_de_datos_gestion_municipal/" class="db">
-        <img src="http://localhost:3770/blog/unim/taller_ciencia_de_datos_gestion_municipal/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
-      </a>
-    </figure>
-    <div class="flex flex-column w-100 w-60-ns pl3-ns">
-      <header class="w-100">
-        <h1 class="f3 mv2 lh-title underline"><a href="../../../blog/unim/taller_ciencia_de_datos_gestion_municipal/" class="db">Video: Taller Aplicación de la Ciencia de Datos en la Gestión Municipal</a></h1>
-        
-        
-      </header>
-      
-      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;"><p>Tuve el privilegio de exponer en la <strong>Universidad Internacional de la Municipalidad de Rancagua</strong>, un espacio de diálogo, aprendizaje y colaboración, organizado por el <strong>Programa de Gobierno Local Abierto</strong> (GOBLA) de la Municipalidad de Rancagua.</p>
-<p>Presenté un taller dirigido a funcionarios y funcionarias municipales sobre Aplicación de la ciencia de datos en la Gestión Municipal, donde comuniqué la importancia de manejar herramientas de progamación para le análisis de datos, favoreciendo el desarrollo de herramientas reutilizables, reproducibles, transparentes y abiertas.</p></p>
-      
-      
-        
-        
-        <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/dplyr"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            dplyr</a>  <a href="http://localhost:3770/tags/web-scraping"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            web scraping</a>  <a href="http://localhost:3770/tags/datos"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            datos</a>  <a href="http://localhost:3770/tags/procesamiento-de-datos"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            procesamiento de datos</a>  <a href="http://localhost:3770/tags/limpieza-de-datos"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            limpieza de datos</a>  <a href="http://localhost:3770/tags/chile"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            Chile</a>  <a href="http://localhost:3770/tags/videos"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            videos</a> </dd></em>
-        </dl>
-        
-        
-      
-      <footer class="w-100">
-        
-      
-      
-      
-      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">24/1/2025</div>
-      
-        <span>
-          
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="95833a8a956782585bd623d9d4b3c73f" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('95833a8a956782585bd623d9d4b3c73f').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/unim/taller_ciencia_de_datos_gestion_municipal/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-        </span>
-      </div>
-      
-      
-        <p class="db pt1">
-        
-
-<div style="margin-top:-24px;">
-
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-      
-    
-  <a class="btn-links mr2 ba dib" 
-  style = "background-color: #9069C0; border-radius: 4px; 
-  color: #EAD2FA; font-size: 10pt;
-  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
-  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
-  href="https://youtu.be/ShVSzH7herA" target="_blank" rel="noopener"><i class="fab fa-youtube fa-lg fa-fw mr2"></i>ver video</a>
-
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-      
-    
-  <a class="btn-links mr2 ba dib" 
-  style = "background-color: #9069C0; border-radius: 4px; 
-  color: #EAD2FA; font-size: 10pt;
-  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
-  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
-  href="https://github.com/bastianolea/taller_ciencia_de_datos_gestion_municipal_unim" target="_blank" rel="noopener"><i class="fab fa-github fa-lg fa-fw mr2"></i>código</a>
-
-</div>
-
-        </p>
       
     </footer>
     </div>
@@ -2637,10 +2163,10 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/chile/">Chile</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/chile/">Chile</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
-    opacity: 40%;">45 posts</span>
+    opacity: 40%;">46 posts</span>
   </div>
  
   
@@ -2652,10 +2178,10 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/datos/">Datos</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/datos/">Datos</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
-    opacity: 40%;">32 posts</span>
+    opacity: 40%;">33 posts</span>
   </div>
  
   
@@ -2667,7 +2193,7 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/consejos/">Consejos</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/consejos/">Consejos</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
     opacity: 40%;">29 posts</span>
@@ -2682,7 +2208,7 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
     opacity: 40%;">28 posts</span>
@@ -2697,7 +2223,7 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/blog/">Blog</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/blog/">Blog</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
     opacity: 40%;">26 posts</span>
@@ -2712,10 +2238,10 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/gr%C3%A1ficos/">Gráficos</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/gr%C3%A1ficos/">Gráficos</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
-    opacity: 40%;">24 posts</span>
+    opacity: 40%;">25 posts</span>
   </div>
  
   
@@ -2727,7 +2253,7 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/apps/">Apps</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/shiny/">Shiny</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
     opacity: 40%;">23 posts</span>
@@ -2742,10 +2268,10 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/shiny/">Shiny</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/apps/">Apps</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
-    opacity: 40%;">22 posts</span>
+    opacity: 40%;">23 posts</span>
   </div>
  
   
@@ -2757,7 +2283,7 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/ggplot2/">Ggplot2</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/ggplot2/">Ggplot2</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
     opacity: 40%;">21 posts</span>
@@ -2772,7 +2298,7 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/web-scraping/">Web scraping</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/web-scraping/">Web scraping</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
     opacity: 40%;">18 posts</span>
@@ -2787,7 +2313,7 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/b%C3%A1sico/">Básico</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/b%C3%A1sico/">Básico</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
     opacity: 40%;">17 posts</span>
@@ -2802,7 +2328,7 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/mapas/">Mapas</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/limpieza-de-datos/">Limpieza de datos</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
     opacity: 40%;">15 posts</span>
@@ -2817,7 +2343,7 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/mapas/">Mapas</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
     opacity: 40%;">15 posts</span>
@@ -2832,7 +2358,7 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/curiosidades/">Curiosidades</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/curiosidades/">Curiosidades</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
     opacity: 40%;">14 posts</span>
@@ -2847,7 +2373,7 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/quarto/">Quarto</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
     opacity: 40%;">13 posts</span>
@@ -2862,7 +2388,7 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
     opacity: 40%;">13 posts</span>
@@ -2877,7 +2403,7 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/quarto/">Quarto</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
     opacity: 40%;">13 posts</span>
@@ -2892,7 +2418,7 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/dplyr/">Dplyr</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/dplyr/">Dplyr</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
     opacity: 40%;">11 posts</span>
@@ -2907,7 +2433,7 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/ciencias-sociales/">Ciencias sociales</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/ciencias-sociales/">Ciencias sociales</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
     opacity: 40%;">10 posts</span>
@@ -2922,7 +2448,7 @@
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:3770/tags/texto/">Texto</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="http://localhost:4119/tags/texto/">Texto</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
     opacity: 40%;">10 posts</span>

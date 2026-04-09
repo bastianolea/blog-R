@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-ES" dir="ltr"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=3770&amp;path=livereload" data-no-instant defer></script>
+<html lang="es-ES" dir="ltr"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4119&amp;path=livereload" data-no-instant defer></script>
   
                            
      
@@ -31,16 +31,16 @@
 <meta property="og:title" content="Cargar y unir datos de múltiples hojas de Excel con R | Bastián Olea">
 <meta property="og:description" content="Las hojas de Excel pueden ser cómodas para organizar información, pero no mucho para procesarla o analizarla. Por lo mismo, una de las operaciones iniciales de limpieza de datos suele ser unir datos que vienen repartidos en varias hojas de Excel. Veamos cómo se hace paso a paso. Usaremos el paquete `{readxl}` para leer los datos, `{dplyr}` para manipular y combinar las hojas, y `{purrr}` para realizar operaciones sobre todas las hojas de forma automática." />
 <meta property="og:type" content="page" />
-<meta property="og:url" content="http://localhost:3770/blog/excel_unir_hojas/" />
+<meta property="og:url" content="http://localhost:4119/blog/excel_unir_hojas/" />
 <meta property="og:locale" content="es-ES">
 
 
 
 
     
-        <meta property="og:image" content="http://localhost:3770/blog/sidebar-listing.jpg" >
+        <meta property="og:image" content="http://localhost:4119/blog/sidebar-listing.jpg" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="http://localhost:3770/blog/sidebar-listing.jpg" >
+        <meta name="twitter:image" content="http://localhost:4119/blog/sidebar-listing.jpg" >
     
     
   
@@ -49,7 +49,7 @@
 En este tutorial vamos a ver cómo se hace paso a paso. Usaremos el paquete {readxl} para leer los datos, {dplyr} para manipular y combinar las hojas, y {purrr} para realizar operaciones sobre todas las hojas de forma automática.">
   <meta itemprop="datePublished" content="2025-12-09T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-12-09T00:00:00+00:00">
-  <meta itemprop="wordCount" content="2387">
+  <meta itemprop="wordCount" content="2376">
   <meta itemprop="keywords" content="Excel,Limpieza de datos,Datos">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -57,7 +57,7 @@ En este tutorial vamos a ver cómo se hace paso a paso. Usaremos el paquete {rea
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="../../style.main.min.9e107e703cb22b9b7772a1f09043a30b04330a2df7c76516e2d5a6824a136dcf.css" integrity="sha256-nhB&#43;cDyyK5t3cqHwkEOjCwQzCi33x2UW4tWmgkoTbc8=" media="screen">
+  <link rel="stylesheet" href="../../style.main.min.be3e0f40fb75d5d977e7ba48c93a5c8b6bc8b1c7a72f611a1a58896ff6841894.css" integrity="sha256-vj4PQPt11dl357pIyTpci2vIscenL2EaGliJb/aEGJQ=" media="screen">
   
   
   <script src="../../panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
@@ -75,7 +75,7 @@ En este tutorial vamos a ver cómo se hace paso a paso. Usaremos el paquete {rea
       <div class="grid-container single-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="http://localhost:3770/" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="http://localhost:4119/" title="Home">
       <img src="../../img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -268,33 +268,14 @@ En este tutorial vamos a ver cómo se hace paso a paso. Usaremos el paquete {rea
             9/12/2025</p>
           
           
-          <span>
-            
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="5559971af4495c37169a47918df59ce5" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('5559971af4495c37169a47918df59ce5').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/excel_unir_hojas/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-          </span>
+          
         </div>
           
         
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/excel"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/excel"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -303,7 +284,7 @@ En este tutorial vamos a ver cómo se hace paso a paso. Usaremos el paquete {rea
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            Excel</a>  <a href="http://localhost:3770/tags/limpieza-de-datos"
+            Excel</a>  <a href="http://localhost:4119/tags/limpieza-de-datos"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -312,7 +293,7 @@ En este tutorial vamos a ver cómo se hace paso a paso. Usaremos el paquete {rea
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            limpieza de datos</a>  <a href="http://localhost:3770/tags/datos"
+            limpieza de datos</a>  <a href="http://localhost:4119/tags/datos"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -395,7 +376,7 @@ Descargar datos falsos</a>
   </summary>
     <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
     background-color: #A885C630;
-    margin-top: 8px; padding-top: 0px; padding-bottom: 0px;">
+    margin-top: 8px;">
     <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">purrr</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
@@ -957,22 +938,7 @@ hoja 20
 
 
 
-
-<aside>
-  <div id="avisos" style="margin-top:24px;">
-    
-    <a href="../../blog/curso_gratis_r_intro_2/">
-    <img src="../../blog/curso_gratis_r_intro_2/curso_r_featured.png" 
-      style="border-radius: 7px; max-height: 240px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;" 
-      alt="¿Quieres aprender R para analizar datos? Inscríbete a mi curso!">
-    </a>
-    
-    <div style="max-width: 320px; margin:auto; font-size:85%;opacity:60%;">
-      <p>¿Quieres aprender R para analizar datos? Participa del curso! <a href="../../blog/curso_gratis_r_intro_2/">Inscríbete gratis!</a></p>
-      </div>
-  
-  </div>
-</aside></p>
+</p>
  
     </section>
       
@@ -981,12 +947,12 @@ hoja 20
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="http://localhost:3770/blog/btw/">&larr; Interactúa desde R con una IA que conoce tus datos, archivos y paquetes</a>
+    href="http://localhost:4119/blog/btw/">&larr; Interactúa desde R con una IA que conoce tus datos, archivos y paquetes</a>
   
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="http://localhost:3770/blog/blockr/">Procesa datos con R sin programar y de forma interactiva &rarr;</a>
+    href="http://localhost:4119/blog/blockr/">Procesa datos con R sin programar y de forma interactiva &rarr;</a>
   
 </div>
 
@@ -1023,24 +989,24 @@ hoja 20
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">12 minute read, 2387 words</dd>
+    <dd class="fw5 ml0">12 minute read, 2376 words</dd>
   </dl>
   
   
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Tags:</dt>
-    <dd class="fw5 ml0"> <a href="http://localhost:3770/tags/excel">Excel</a>  <a href="http://localhost:3770/tags/limpieza-de-datos">limpieza de datos</a>  <a href="http://localhost:3770/tags/datos">datos</a> </dd>
+    <dd class="fw5 ml0"> <a href="http://localhost:4119/tags/excel">Excel</a>  <a href="http://localhost:4119/tags/limpieza-de-datos">limpieza de datos</a>  <a href="http://localhost:4119/tags/datos">datos</a> </dd>
   </dl>
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
+    <dd class="fw5 ml0"><a href="../../blog/censo_2024/">Explorar datos del Censo de Población y Vivienda 2024 con R</a></dd>
+    
     <dd class="fw5 ml0"><a href="../../blog/indice_brechas_genero/">Plataforma de análisis: Índice de Brechas de Género</a></dd>
     
     <dd class="fw5 ml0"><a href="../../blog/estudio_brechas_comunales/">Plataforma de visualización de resultados del Estudio de Brechas Comunales</a></dd>
-    
-    <dd class="fw5 ml0"><a href="../../blog/datos_estructurados_llm/">Extracción de datos estructurados desde texto usando IA</a></dd>
     
   </dl>
 </details>
@@ -1082,7 +1048,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/chile/">Chile</a></span>
+      href="http://localhost:4119/tags/chile/">Chile</a></span>
   </span>
  
   
@@ -1097,7 +1063,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/datos/">Datos</a></span>
+      href="http://localhost:4119/tags/datos/">Datos</a></span>
   </span>
  
   
@@ -1112,7 +1078,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/consejos/">Consejos</a></span>
+      href="http://localhost:4119/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -1127,7 +1093,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="http://localhost:4119/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -1142,7 +1108,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/blog/">Blog</a></span>
+      href="http://localhost:4119/tags/blog/">Blog</a></span>
   </span>
  
   
@@ -1157,7 +1123,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="http://localhost:4119/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -1172,7 +1138,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/apps/">Apps</a></span>
+      href="http://localhost:4119/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -1187,7 +1153,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/shiny/">Shiny</a></span>
+      href="http://localhost:4119/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -1202,7 +1168,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/ggplot2/">Ggplot2</a></span>
+      href="http://localhost:4119/tags/ggplot2/">Ggplot2</a></span>
   </span>
  
   
@@ -1217,7 +1183,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/web-scraping/">Web scraping</a></span>
+      href="http://localhost:4119/tags/web-scraping/">Web scraping</a></span>
   </span>
  
   
@@ -1232,7 +1198,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/b%C3%A1sico/">Básico</a></span>
+      href="http://localhost:4119/tags/b%C3%A1sico/">Básico</a></span>
   </span>
  
   
@@ -1247,7 +1213,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/mapas/">Mapas</a></span>
+      href="http://localhost:4119/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -1262,7 +1228,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="http://localhost:4119/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -1277,7 +1243,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/curiosidades/">Curiosidades</a></span>
+      href="http://localhost:4119/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -1292,7 +1258,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="http://localhost:4119/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -1307,7 +1273,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="http://localhost:4119/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -1322,7 +1288,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/quarto/">Quarto</a></span>
+      href="http://localhost:4119/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -1337,7 +1303,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/dplyr/">Dplyr</a></span>
+      href="http://localhost:4119/tags/dplyr/">Dplyr</a></span>
   </span>
  
   
@@ -1352,7 +1318,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/ciencias-sociales/">Ciencias sociales</a></span>
+      href="http://localhost:4119/tags/optimizaci%C3%B3n/">Optimización</a></span>
   </span>
  
   
@@ -1367,7 +1333,7 @@ hoja 20
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/texto/">Texto</a></span>
+      href="http://localhost:4119/tags/texto/">Texto</a></span>
   </span>
 
 <a href="../../tags/" style="margin-left: 3px;">y más!</a>

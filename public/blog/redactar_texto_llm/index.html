@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-ES" dir="ltr"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=3770&amp;path=livereload" data-no-instant defer></script>
+<html lang="es-ES" dir="ltr"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4119&amp;path=livereload" data-no-instant defer></script>
   
                            
      
@@ -31,16 +31,16 @@
 <meta property="og:title" content="Redactar textos basados en datos usando IA desde R | Bastián Olea">
 <meta property="og:description" content="En un post anterior vimos cómo usar R para [producir textos basados en datos](/blog/redactar_texto/). En este post veremos cómo usar un modelo de lenguaje (LLM) o _IA_ para interpretar datos directamente desde R, pero también usaremos la IA para generar código de R y reutilizarlo. Moraleja: es mejor pedirle código a la IA que pedirle respuestas y arriesgarte a errores o alucinaciones!" />
 <meta property="og:type" content="page" />
-<meta property="og:url" content="http://localhost:3770/blog/redactar_texto_llm/" />
+<meta property="og:url" content="http://localhost:4119/blog/redactar_texto_llm/" />
 <meta property="og:locale" content="es-ES">
 
 
 
 
     
-        <meta property="og:image" content="http://localhost:3770/blog/sidebar-listing.jpg" >
+        <meta property="og:image" content="http://localhost:4119/blog/sidebar-listing.jpg" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="http://localhost:3770/blog/sidebar-listing.jpg" >
+        <meta name="twitter:image" content="http://localhost:4119/blog/sidebar-listing.jpg" >
     
     
   
@@ -50,7 +50,7 @@ Si bien esto produce textos de máxima precisión y nos entrega todo el control 
 Al usar IA siempre debemos recordar que obtendremos resultados probabilísticos; es decir que serán resultados que pueden variar, pueden contener errores, y que no son reproducibles. Existen paquetes que hacen muy fácil usar IA en R!">
   <meta itemprop="datePublished" content="2026-02-19T00:00:00+00:00">
   <meta itemprop="dateModified" content="2026-02-19T00:00:00+00:00">
-  <meta itemprop="wordCount" content="2237">
+  <meta itemprop="wordCount" content="2226">
   <meta itemprop="keywords" content="Texto,Inteligencia artificial">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -58,7 +58,7 @@ Al usar IA siempre debemos recordar que obtendremos resultados probabilísticos;
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="../../style.main.min.9e107e703cb22b9b7772a1f09043a30b04330a2df7c76516e2d5a6824a136dcf.css" integrity="sha256-nhB&#43;cDyyK5t3cqHwkEOjCwQzCi33x2UW4tWmgkoTbc8=" media="screen">
+  <link rel="stylesheet" href="../../style.main.min.be3e0f40fb75d5d977e7ba48c93a5c8b6bc8b1c7a72f611a1a58896ff6841894.css" integrity="sha256-vj4PQPt11dl357pIyTpci2vIscenL2EaGliJb/aEGJQ=" media="screen">
   
   
   <script src="../../panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
@@ -76,7 +76,7 @@ Al usar IA siempre debemos recordar que obtendremos resultados probabilísticos;
       <div class="grid-container single-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="http://localhost:3770/" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="http://localhost:4119/" title="Home">
       <img src="../../img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -269,33 +269,14 @@ Al usar IA siempre debemos recordar que obtendremos resultados probabilísticos;
             19/2/2026</p>
           
           
-          <span>
-            
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="60d4f34d998f0e9dddfd9000c2f5de09" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('60d4f34d998f0e9dddfd9000c2f5de09').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/redactar_texto_llm/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-          </span>
+          
         </div>
           
         
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/texto"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/texto"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -304,7 +285,7 @@ Al usar IA siempre debemos recordar que obtendremos resultados probabilísticos;
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            texto</a>  <a href="http://localhost:3770/tags/inteligencia-artificial"
+            texto</a>  <a href="http://localhost:4119/tags/inteligencia-artificial"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -366,7 +347,7 @@ Descargar datos</a>
   </summary>
     <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
     background-color: #A885C630;
-    margin-top: 8px; padding-top: 0px; padding-bottom: 0px;">
+    margin-top: 8px;">
     <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">janitor</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">readxl</span><span class="p">)</span>
@@ -535,7 +516,7 @@ codigo_region region       total genero                   poblacion porcentaje
   </summary>
     <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
     background-color: #A885C630;
-    margin-top: 8px; padding-top: 0px; padding-bottom: 0px;">
+    margin-top: 8px;">
     <p>En resumen, ejecuta <code>usethis::edit_r_environ()</code> para abrir tu archivo <code>.Renviron</code>, donde se pueden guardar secretos que se aplican a todas tus sesiones de R pero quedan ocultos, y agrega una línea con la <em>API key</em>, por ejemplo:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">OPENAI_API_KEY</span><span class="o">=</span><span class="m">345345398475937434534539847593743453453984759374</span>
 </span></span></code></pre></div><p>Si tu proveedor es Claude (Anthropic), el nombre de la variable es <code>ANTHROPIC_API_KEY</code>, etc.</p>
@@ -681,7 +662,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
   </summary>
     <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
     background-color: #A885C630;
-    margin-top: 8px; padding-top: 0px; padding-bottom: 0px;">
+    margin-top: 8px;">
     <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">stringr</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">glue</span><span class="p">)</span>
@@ -801,22 +782,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
 
 
 
-
-<aside>
-  <div id="avisos" style="margin-top:24px;">
-    
-    <a href="../../blog/curso_gratis_r_intro_2/">
-    <img src="../../blog/curso_gratis_r_intro_2/curso_r_featured.png" 
-      style="border-radius: 7px; max-height: 240px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;" 
-      alt="¿Quieres aprender R para analizar datos? Inscríbete a mi curso!">
-    </a>
-    
-    <div style="max-width: 320px; margin:auto; font-size:85%;opacity:60%;">
-      <p>¿Quieres aprender R para analizar datos? Participa del curso! <a href="../../blog/curso_gratis_r_intro_2/">Inscríbete gratis!</a></p>
-      </div>
-  
-  </div>
-</aside></p>
+</p>
  
     </section>
       
@@ -825,12 +791,12 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="http://localhost:3770/blog/app_suicidios_genero/">&larr; App: Suicidios en Chile (2017-2024) desde una perspectiva de género</a>
+    href="http://localhost:4119/blog/app_suicidios_genero/">&larr; App: Suicidios en Chile (2017-2024) desde una perspectiva de género</a>
   
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="http://localhost:3770/blog/repetirse/">Cómo dejar de repetirte y escribir código más eficiente en R &rarr;</a>
+    href="http://localhost:4119/blog/repetirse/">Cómo dejar de repetirte y escribir código más eficiente en R &rarr;</a>
   
 </div>
 
@@ -867,14 +833,14 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">11 minute read, 2237 words</dd>
+    <dd class="fw5 ml0">11 minute read, 2226 words</dd>
   </dl>
   
   
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Tags:</dt>
-    <dd class="fw5 ml0"> <a href="http://localhost:3770/tags/texto">texto</a>  <a href="http://localhost:3770/tags/inteligencia-artificial">inteligencia artificial</a> </dd>
+    <dd class="fw5 ml0"> <a href="http://localhost:4119/tags/texto">texto</a>  <a href="http://localhost:4119/tags/inteligencia-artificial">inteligencia artificial</a> </dd>
   </dl>
   
   <dl class="f6 lh-copy">
@@ -926,7 +892,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/chile/">Chile</a></span>
+      href="http://localhost:4119/tags/chile/">Chile</a></span>
   </span>
  
   
@@ -941,7 +907,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/datos/">Datos</a></span>
+      href="http://localhost:4119/tags/datos/">Datos</a></span>
   </span>
  
   
@@ -956,7 +922,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/consejos/">Consejos</a></span>
+      href="http://localhost:4119/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -971,7 +937,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="http://localhost:4119/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -986,7 +952,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/blog/">Blog</a></span>
+      href="http://localhost:4119/tags/blog/">Blog</a></span>
   </span>
  
   
@@ -1001,7 +967,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="http://localhost:4119/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -1016,7 +982,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/apps/">Apps</a></span>
+      href="http://localhost:4119/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -1031,7 +997,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/shiny/">Shiny</a></span>
+      href="http://localhost:4119/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -1046,7 +1012,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/ggplot2/">Ggplot2</a></span>
+      href="http://localhost:4119/tags/ggplot2/">Ggplot2</a></span>
   </span>
  
   
@@ -1061,7 +1027,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/web-scraping/">Web scraping</a></span>
+      href="http://localhost:4119/tags/web-scraping/">Web scraping</a></span>
   </span>
  
   
@@ -1076,7 +1042,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/b%C3%A1sico/">Básico</a></span>
+      href="http://localhost:4119/tags/b%C3%A1sico/">Básico</a></span>
   </span>
  
   
@@ -1091,7 +1057,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/mapas/">Mapas</a></span>
+      href="http://localhost:4119/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -1106,7 +1072,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="http://localhost:4119/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -1121,7 +1087,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/curiosidades/">Curiosidades</a></span>
+      href="http://localhost:4119/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -1136,7 +1102,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/quarto/">Quarto</a></span>
+      href="http://localhost:4119/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -1151,7 +1117,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="http://localhost:4119/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -1166,7 +1132,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="http://localhost:4119/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -1181,7 +1147,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/dplyr/">Dplyr</a></span>
+      href="http://localhost:4119/tags/dplyr/">Dplyr</a></span>
   </span>
  
   
@@ -1196,7 +1162,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/optimizaci%C3%B3n/">Optimización</a></span>
+      href="http://localhost:4119/tags/automatizaci%C3%B3n/">Automatización</a></span>
   </span>
  
   
@@ -1211,7 +1177,7 @@ predominantemente femenino con baja no respuesta y diversidad de género minorit
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/ciencias-sociales/">Ciencias sociales</a></span>
+      href="http://localhost:4119/tags/ciencias-sociales/">Ciencias sociales</a></span>
   </span>
 
 <a href="../../tags/" style="margin-left: 3px;">y más!</a>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-ES" dir="ltr"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=3770&amp;path=livereload" data-no-instant defer></script>
+<html lang="es-ES" dir="ltr"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4119&amp;path=livereload" data-no-instant defer></script>
   
                            
      
@@ -31,16 +31,16 @@
 <meta property="og:title" content="Visualiza datos del Censo 2024 en mapas a nivel de manzana con R | Bastián Olea">
 <meta property="og:description" content="Recientemente lanzaron los datos 2024 del Censo de Población y Vivienda de Chile, incluyendo más de 200 variables a nivel de manzana. En este tutorial veremos dos formas de visualizar datos censales a nivel de manzana: con mapas estáticos en `{ggplot2}`, y con mapas interactivos con `{mapgl}`." />
 <meta property="og:type" content="page" />
-<meta property="og:url" content="http://localhost:3770/blog/mapas_censo_2024/" />
+<meta property="og:url" content="http://localhost:4119/blog/mapas_censo_2024/" />
 <meta property="og:locale" content="es-ES">
 
 
 
 
     
-        <meta property="og:image" content="http://localhost:3770/blog/mapas_censo_2024/featured.png" >
+        <meta property="og:image" content="http://localhost:4119/blog/mapas_censo_2024/featured.png" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="http://localhost:3770/blog/mapas_censo_2024/featured.png" >
+        <meta name="twitter:image" content="http://localhost:4119/blog/mapas_censo_2024/featured.png" >
     
     
   
@@ -49,8 +49,8 @@
 Datos censales Descarga los datos cartográficos del Censo 2024 desde la página del INE, entrando a Cartografía Censal y luego descargando el archivo Cartografía País Censo 2024 (geoparquet).">
   <meta itemprop="datePublished" content="2025-12-17T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-12-17T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1495">
-  <meta itemprop="image" content="http://localhost:3770/blog/mapas_censo_2024/featured.png">
+  <meta itemprop="wordCount" content="1484">
+  <meta itemprop="image" content="http://localhost:4119/blog/mapas_censo_2024/featured.png">
   <meta itemprop="keywords" content="Mapas,Chile,Datos">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -58,7 +58,7 @@ Datos censales Descarga los datos cartográficos del Censo 2024 desde la página
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="../../style.main.min.9e107e703cb22b9b7772a1f09043a30b04330a2df7c76516e2d5a6824a136dcf.css" integrity="sha256-nhB&#43;cDyyK5t3cqHwkEOjCwQzCi33x2UW4tWmgkoTbc8=" media="screen">
+  <link rel="stylesheet" href="../../style.main.min.be3e0f40fb75d5d977e7ba48c93a5c8b6bc8b1c7a72f611a1a58896ff6841894.css" integrity="sha256-vj4PQPt11dl357pIyTpci2vIscenL2EaGliJb/aEGJQ=" media="screen">
   
   
   <script src="../../panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
@@ -76,7 +76,7 @@ Datos censales Descarga los datos cartográficos del Censo 2024 desde la página
       <div class="grid-container single-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="http://localhost:3770/" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="http://localhost:4119/" title="Home">
       <img src="../../img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -269,33 +269,14 @@ Datos censales Descarga los datos cartográficos del Censo 2024 desde la página
             17/12/2025</p>
           
           
-          <span>
-            
-
-
-
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="86e62f42994cd9b3263a64b1a179f43e" title="visitas">
-</span>
-<script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('86e62f42994cd9b3263a64b1a179f43e').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://bastimapache.goatcounter.com/counter/" + encodeURIComponent("/blog/mapas_censo_2024/".replace(/(\/)?$/, '')) + '.json')
-    r.send()
-</script>
-</span>
-
-          </span>
+          
         </div>
           
         
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:3770/tags/mapas"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/mapas"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -304,7 +285,7 @@ Datos censales Descarga los datos cartográficos del Censo 2024 desde la página
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            mapas</a>  <a href="http://localhost:3770/tags/chile"
+            mapas</a>  <a href="http://localhost:4119/tags/chile"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -313,7 +294,7 @@ Datos censales Descarga los datos cartográficos del Censo 2024 desde la página
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            Chile</a>  <a href="http://localhost:3770/tags/datos"
+            Chile</a>  <a href="http://localhost:4119/tags/datos"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -742,22 +723,7 @@ Geodetic CRS:  WGS 84
 
 
 
-
-<aside>
-  <div id="avisos" style="margin-top:24px;">
-    
-    <a href="../../blog/curso_gratis_r_intro_2/">
-    <img src="../../blog/curso_gratis_r_intro_2/curso_r_featured.png" 
-      style="border-radius: 7px; max-height: 240px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;" 
-      alt="¿Quieres aprender R para analizar datos? Inscríbete a mi curso!">
-    </a>
-    
-    <div style="max-width: 320px; margin:auto; font-size:85%;opacity:60%;">
-      <p>¿Quieres aprender R para analizar datos? Participa del curso! <a href="../../blog/curso_gratis_r_intro_2/">Inscríbete gratis!</a></p>
-      </div>
-  
-  </div>
-</aside></p>
+</p>
  
     </section>
       
@@ -766,12 +732,12 @@ Geodetic CRS:  WGS 84
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="http://localhost:3770/blog/app_censo_mapas/">&larr; App: visualizador de mapas comunales del Censo 2024 por manzanas</a>
+    href="http://localhost:4119/blog/app_censo_mapas/">&larr; App: visualizador de mapas comunales del Censo 2024 por manzanas</a>
   
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="http://localhost:3770/blog/2025-12-16/">Automatizar el scroll de una página web desde R con `{RSelenium}` &rarr;</a>
+    href="http://localhost:4119/blog/2025-12-16/">Automatizar el scroll de una página web desde R con `{RSelenium}` &rarr;</a>
   
 </div>
 
@@ -808,29 +774,29 @@ Geodetic CRS:  WGS 84
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">8 minute read, 1495 words</dd>
+    <dd class="fw5 ml0">7 minute read, 1484 words</dd>
   </dl>
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Categorías:</dt>
-    <dd class="fw5 ml0"> <a href="http://localhost:3770/categories/tutoriales">Tutoriales</a> </dd>
+    <dd class="fw5 ml0"> <a href="http://localhost:4119/categories/tutoriales">Tutoriales</a> </dd>
   </dl>
   
   
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Tags:</dt>
-    <dd class="fw5 ml0"> <a href="http://localhost:3770/tags/mapas">mapas</a>  <a href="http://localhost:3770/tags/chile">Chile</a>  <a href="http://localhost:3770/tags/datos">datos</a> </dd>
+    <dd class="fw5 ml0"> <a href="http://localhost:4119/tags/mapas">mapas</a>  <a href="http://localhost:4119/tags/chile">Chile</a>  <a href="http://localhost:4119/tags/datos">datos</a> </dd>
   </dl>
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
+    <dd class="fw5 ml0"><a href="../../blog/censo_2024/">Explorar datos del Censo de Población y Vivienda 2024 con R</a></dd>
+    
     <dd class="fw5 ml0"><a href="../../blog/indice_brechas_genero/">Plataforma de análisis: Índice de Brechas de Género</a></dd>
     
     <dd class="fw5 ml0"><a href="../../blog/estudio_brechas_comunales/">Plataforma de visualización de resultados del Estudio de Brechas Comunales</a></dd>
-    
-    <dd class="fw5 ml0"><a href="../../blog/2026-03-12/">Primera reunión: grupo de usuari@s de R, Santiago de Chile</a></dd>
     
   </dl>
 </details>
@@ -872,7 +838,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/chile/">Chile</a></span>
+      href="http://localhost:4119/tags/chile/">Chile</a></span>
   </span>
  
   
@@ -887,7 +853,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/datos/">Datos</a></span>
+      href="http://localhost:4119/tags/datos/">Datos</a></span>
   </span>
  
   
@@ -902,7 +868,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/consejos/">Consejos</a></span>
+      href="http://localhost:4119/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -917,7 +883,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="http://localhost:4119/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -932,7 +898,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/blog/">Blog</a></span>
+      href="http://localhost:4119/tags/blog/">Blog</a></span>
   </span>
  
   
@@ -947,7 +913,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="http://localhost:4119/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -962,7 +928,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/apps/">Apps</a></span>
+      href="http://localhost:4119/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -977,7 +943,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/shiny/">Shiny</a></span>
+      href="http://localhost:4119/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -992,7 +958,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/ggplot2/">Ggplot2</a></span>
+      href="http://localhost:4119/tags/ggplot2/">Ggplot2</a></span>
   </span>
  
   
@@ -1007,7 +973,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/web-scraping/">Web scraping</a></span>
+      href="http://localhost:4119/tags/web-scraping/">Web scraping</a></span>
   </span>
  
   
@@ -1022,7 +988,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/b%C3%A1sico/">Básico</a></span>
+      href="http://localhost:4119/tags/b%C3%A1sico/">Básico</a></span>
   </span>
  
   
@@ -1037,7 +1003,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/mapas/">Mapas</a></span>
+      href="http://localhost:4119/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -1052,7 +1018,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="http://localhost:4119/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -1067,7 +1033,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/curiosidades/">Curiosidades</a></span>
+      href="http://localhost:4119/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -1082,7 +1048,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/quarto/">Quarto</a></span>
+      href="http://localhost:4119/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -1097,7 +1063,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="http://localhost:4119/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -1112,7 +1078,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="http://localhost:4119/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -1127,7 +1093,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/dplyr/">Dplyr</a></span>
+      href="http://localhost:4119/tags/dplyr/">Dplyr</a></span>
   </span>
  
   
@@ -1142,7 +1108,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/ciencias-sociales/">Ciencias sociales</a></span>
+      href="http://localhost:4119/tags/automatizaci%C3%B3n/">Automatización</a></span>
   </span>
  
   
@@ -1157,7 +1123,7 @@ Geodetic CRS:  WGS 84
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:3770/tags/texto/">Texto</a></span>
+      href="http://localhost:4119/tags/ciencias-sociales/">Ciencias sociales</a></span>
   </span>
 
 <a href="../../tags/" style="margin-left: 3px;">y más!</a>
