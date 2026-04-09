@@ -4,6 +4,7 @@ author: Bastián Olea Herrera
 date: '2026-04-08'
 slug: []
 draft: false
+freeze: true
 categories:
   - Tutoriales
 tags:

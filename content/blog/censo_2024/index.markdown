@@ -4,6 +4,7 @@ author: Bastián Olea Herrera
 date: '2026-04-08'
 slug: []
 draft: false
+freeze: true
 categories:
   - Tutoriales
 tags:
@@ -846,12 +847,12 @@ personas_hogares |>
 ## # A tibble: 6 × 7
 ##   id_vivienda id_hogar region comuna  sexo edad_quinquenal p12_tenencia_viv
 ##         <int>    <int>  <int>  <int> <int>           <int>            <int>
-## 1       40901        1     13  13501     1              35                2
-## 2       40902        1     13  13114     1              80                1
-## 3       40902        1     13  13114     2              70                1
-## 4       40903        1     13  13124     1              45                2
-## 5       40903        1     13  13124     2              45                2
-## 6       40903        1     13  13124     1              15                2
+## 1       27362        1     13  13113     2              45                2
+## 2       27363        1      5   5701     1              75                1
+## 3       27364        1     13  13125     2              55                1
+## 4       27364        1     13  13125     2              20                1
+## 5       27365        1     13  13122     2              30                7
+## 6       27365        1     13  13122     2              10                7
 ```
 
 ``` r
@@ -990,12 +991,12 @@ personas_hogares_comunas |>
 ## # A tibble: 6 × 11
 ##   id_vivienda id_hogar nombre_region           region nombre_comuna comuna sexo 
 ##         <int>    <int> <chr>                    <int> <chr>          <int> <chr>
-## 1       68153        1 Coquimbo                     4 Los Vilos       4203 Homb…
-## 2       68154        1 Metropolitana de Santi…     13 Vitacura       13132 Homb…
-## 3       68155        1 La Araucanía                 9 Lautaro         9108 Mujer
-## 4       68155        1 La Araucanía                 9 Lautaro         9108 Homb…
-## 5       68158        1 Metropolitana de Santi…     13 La Pintana     13112 Homb…
-## 6       68158        1 Metropolitana de Santi…     13 La Pintana     13112 Mujer
+## 1       40901        1 Metropolitana de Santi…     13 Melipilla      13501 Homb…
+## 2       40902        1 Metropolitana de Santi…     13 Las Condes     13114 Homb…
+## 3       40902        1 Metropolitana de Santi…     13 Las Condes     13114 Mujer
+## 4       40903        1 Metropolitana de Santi…     13 Pudahuel       13124 Homb…
+## 5       40903        1 Metropolitana de Santi…     13 Pudahuel       13124 Mujer
+## 6       40903        1 Metropolitana de Santi…     13 Pudahuel       13124 Homb…
 ## # ℹ 4 more variables: edad_quinquenal <int>, p12_tenencia_viv <int>,
 ## #   propiedad <chr>, adulto_mayor <chr>
 ```
@@ -1032,18 +1033,18 @@ personas_hogares_comunas |>
 
 ```
 ## # A tibble: 32 × 3
-##    nombre_region                         adulto_mayor          n
-##    <chr>                                 <chr>             <int>
-##  1 Metropolitana de Santiago             No adulto mayor 6198954
-##  2 Los Lagos                             No adulto mayor  743943
-##  3 Arica y Parinacota                    Adulto mayor      37918
-##  4 Arica y Parinacota                    No adulto mayor  206651
-##  5 Metropolitana de Santiago             Adulto mayor    1201787
-##  6 Valparaíso                            Adulto mayor     379279
-##  7 Biobío                                No adulto mayor 1322719
-##  8 Biobío                                Adulto mayor     290340
-##  9 Valparaíso                            No adulto mayor 1516774
-## 10 Libertador General Bernardo O'Higgins No adulto mayor  806791
+##    nombre_region             adulto_mayor          n
+##    <chr>                     <chr>             <int>
+##  1 Biobío                    No adulto mayor 1322719
+##  2 Biobío                    Adulto mayor     290340
+##  3 Metropolitana de Santiago Adulto mayor    1201787
+##  4 Metropolitana de Santiago No adulto mayor 6198954
+##  5 La Araucanía              Adulto mayor     184837
+##  6 La Araucanía              No adulto mayor  825586
+##  7 Ñuble                     No adulto mayor  409410
+##  8 Maule                     No adulto mayor  915362
+##  9 Los Lagos                 No adulto mayor  743943
+## 10 Valparaíso                No adulto mayor 1516774
 ## # ℹ 22 more rows
 ```
 
@@ -1080,10 +1081,10 @@ tabla_propiedad <- conteo_propiedad |>
 
 |adulto mayor    |propiedad |  cantidad| porcentaje|
 |:---------------|:---------|---------:|----------:|
-|Adulto mayor    |Propia    | 2.481.901|      78,4%|
 |Adulto mayor    |No propia |   682.085|      21,6%|
-|No adulto mayor |Propia    | 9.071.829|      59,2%|
+|Adulto mayor    |Propia    | 2.481.901|      78,4%|
 |No adulto mayor |No propia | 6.244.617|      40,8%|
+|No adulto mayor |Propia    | 9.071.829|      59,2%|
 
 Transformemos la tabla para hacer más legible y clara la información al distribuir las variables en columnas por medio de `pivot_wider()`:
 
@@ -1109,10 +1110,10 @@ tabla_propiedad_ancha <- conteo_propiedad |>
 <p class="titulo_tabla">Cantidad y porcentaje de personas adultas mayores según propiedad del hogar</p>
 
 
-|adulto mayor    |Propia (cantidad) |No propia (cantidad) |Propia (porcentaje) |No propia (porcentaje) |
-|:---------------|:-----------------|:--------------------|:-------------------|:----------------------|
-|Adulto mayor    |2.481.901         |682.085              |78%                 |22%                    |
-|No adulto mayor |9.071.829         |6.244.617            |59%                 |41%                    |
+|adulto mayor    |No propia (cantidad) |Propia (cantidad) |No propia (porcentaje) |Propia (porcentaje) |
+|:---------------|:--------------------|:-----------------|:----------------------|:-------------------|
+|Adulto mayor    |682.085              |2.481.901         |22%                    |78%                 |
+|No adulto mayor |6.244.617            |9.071.829         |41%                    |59%                 |
 
 Obtenemos un resultado interesante: dentro de la **población adulta mayor**, un **78% reside** en hogares de tipo de **tenencia propia**, mientras dentro de la población que no es adulta mayor, el porcentaje de personas que residen en hogares de tenencia propia es solo un **59%**.
 
