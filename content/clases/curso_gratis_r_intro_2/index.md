@@ -11,12 +11,8 @@ location: Online
 links:
 - icon: video
   icon_pack: fas
-  name: streaming
-  url: https://www.youtube.com/live/zQdTn8O82zo?si=I4bqKansqueLiFRA
-# - icon: video
-#   icon_pack: fas
-#   name: grabaciones
-#   url: https://www.youtube.com/@bastianolea/streams
+  name: grabaciones
+  url: https://www.youtube.com/@bastianolea/streams
 - icon: chalkboard-user
   icon_pack: fas
   name: diapositivas
@@ -27,8 +23,6 @@ links:
   url: https://github.com/bastianolea/curso_intro_R_gratis_v2
 
 ---
-
-
 
 {{< imagen "curso_r_featured.png" >}}
 
@@ -99,8 +93,9 @@ En las diapositivas del curso se resumen los temas, se muestran ejemplos de cód
 src="https://bastianolea.github.io/curso_intro_R_gratis_v2" 
 title="Diapositivas" frameborder="0"></iframe>
 
-{{< boton "Diapositivas" "https://bastianolea.github.io/curso_intro_R_gratis_v2" "fas fa-chalkboard-user" >}}
+{{< boton "Ver diapositivas interactivas" "https://bastianolea.github.io/curso_intro_R_gratis_v2" "fas fa-chalkboard-user" >}}
 
+{{< boton "Descargar diapositivas en PDF" "/blog/curso_gratis_r_intro_2/curso_intro_r_v2.pdf" "fas fa-file-pen" >}}
 
 
 ### Clase 1:  introducción a R
@@ -175,14 +170,5 @@ También puedes descargar el **proyecto de R** del curso para abrirlo en tu comp
 
 {{< boton "Descargar curso" "/blog/curso_gratis_r_intro_2/curso_intro_r_v2.zip" "fas fa-file-download" >}}
 
-
-
-
-<!--
-
-También puedes [descargar las diapositivas en formato PDF aquí](/blog/curso_gratis_r_intro_1/diapositivas.pdf).
-
-decktape reveal https://bastianolea.github.io/curso_intro_R_gratis_v2/diapositivas.html#/title-slide /Users/baolea/Desktop/diapo_b.pdf
--->
 
 {{< cafecito >}}
