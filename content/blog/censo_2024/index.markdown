@@ -79,6 +79,10 @@ personas <- open_dataset("personas_censo2024.parquet")
 
 
 ```
+## Warning: package 'arrow' was built under R version 4.4.3
+```
+
+```
 ## 
 ## Attaching package: 'arrow'
 ```
@@ -501,7 +505,7 @@ codigos_territoriales <- read_xlsx("diccionario_variables_censo2024.xlsx",
 ```
 
 ```
-## here() starts at /Users/baolea/R/blog-r
+## here() starts at /Users/bolea/Documents/Otros/blog-r
 ```
 
 
@@ -752,82 +756,419 @@ tabla_region_area_porcentaje <- personas_region_area |>
 |                                     Ñuble|           174.140|            338.149|              34,0%|               66,0%|
 
 
-{{< aviso "Tutorial en construcción! Pronto lo seguiré expandiendo." >}}
+## Cruzar datos censales de población con datos por hogares
 
-<!--
+En el Censo, la base de **personas** tiene una fila por cada habitante, mientras que la base de **hogares** tiene una fila por cada hogar, y la de **vivienda** tiene una fila por cada vivienda. En una vivenda (la construcción física) pueden haber múltiples hogares (personas que conviven y comparten un mismo presupuesto para alimentación).
 
-### Obtener población por comuna
+Estas bases tienen variables distintas debido a su distinta unidad de observación : las viviendas tienen `edad` o `sexo`, etc., los hogares comparten variables como su _fuente de energía para calefaccionar_ y su _tenencia_ (si la vivienda es propia, etc.), y las viviendas tienen características como su _materialidad_ o _número de habitaciones_.
+
+Para [cruzar](/blog/left_join/) estas bases, necesitamos usar las variables `id_vivienda` y  `id_hogar`, que son las que permiten identificar a qué hogar y vivienda corresponde cada persona censada.
+
+{{< info "Si necesitas aprender a cruzar bases de datos con R, revisa este tutorial sobre [left_join()](/blog/left_join/)." >}}
 
 
-```r
-# seleccionar columnas
-personas_filt <- personas |>
-select(id_vivienda, id_hogar, region, comuna, sexo, area)
+### Calcular cantidad de personas de tercera edad según propiedad de su hogar
 
-glimpse(personas_filt)
+Obtengamos ahora datos censales que requieren combinar dos niveles de información del Censo: nivel personas y nivel hogares. Queremos saber la cantidad de **personas adultas mayores**, según el **tipo de propiedad** de los hogares donde residen. 
 
-library(janitor)
-library(tidyr)
+El dato de adultos mayores debe **crearse a partir del sexo y la edad**, que son variables presentes en la base de microdatos a nivel _personas_, mientras que el dato de la propiedad o tenencia de los hogares (`p12_tenencia_viv`) está en al base de nivel _hogares_.
 
-# agrupar datos para sumar población por comuna y área
-# (procesamiento en base de datos)
-personas_area <- personas_filt |> 
-group_by(comuna, region, area) |> 
-summarize(n = n()) |> 
-ungroup() |> 
-# agregar nombres de comunas y regiones
-left_join(comunas, join_by(comuna)) |> 
-left_join(regiones, join_by(region)) |> 
-# copiar a memoria
-collect() |> 
-# recodificar área
-mutate(area = recode_values(area, 
-1 ~ "Urbana", 
-2 ~ "Rural")) |> 
-mutate(area = as.factor(area))
+Entonces necesitamos [cruzar las bases](/blog/left_join/) de personas y hogares, para **obtener una base de personas con información de su hogar**, y así poder contar a las y los adultos mayores según el tipo de propiedad del hogar donde viven.
 
-# generar tabla con población y porcentaje por comuna y área
-tabla_area <- personas_area |> 
-# calcular pocentaje
-group_by(comuna) |> 
-mutate(p = n / sum(n),
-p = p * 100) |>
-ungroup() |> 
-# pivotar
-pivot_wider(names_from = area, 
-values_from = c(n, p), 
-values_fill = 0) |> 
-arrange(comuna) |> 
-clean_names()
+#### Cargar datos
 
-# guardar
-writexl::write_xlsx(tabla_area, "tabla_comunas_area.xlsx")
-
-```
-
+Primero cargamos ambas bases de datos:
 
 
 ``` r
-# códigos territoriales ----
+library(dplyr)
+library(arrow)
 
-# cargar base de códigos territoriales
-codigos_territoriales <- readxl::read_xlsx("diccionario_variables_censo2024.xlsx",
-                                           sheet = "codigos_territoriales") |>
-  clean_names() |> 
-  rename(dpa = 2)
+# cargar datos de nivel personas
+personas <- open_dataset("personas_censo2024.parquet")
 
-# filtrar códigos territoriales
-comunas <- codigos_territoriales |> 
-  filter(dpa == "Comuna") |> 
-  select(comuna = 1, nombre_comuna = 3) |> 
-  mutate(comuna = as.integer(comuna))
-
-regiones <- codigos_territoriales |> 
-  filter(dpa == "Región") |> 
-  select(region = 1, nombre_region = 3) |> 
-  mutate(region = as.integer(region))
+# cargar datos de nivel hogares
+hogares <- open_dataset("hogares_censo2024.parquet")
 ```
 
+
+
+Ahora seleccionamos las variables que nos interesan para el análisis:
+
+
+``` r
+personas_filtrado <- personas |>
+  select(id_vivienda, id_hogar, # identificadores
+         region, comuna, # variables territoriales
+         sexo, edad_quinquenal) # variables sociodemográficas
+```
+
+
+``` r
+hogares_filtrado <- hogares |>
+  select(id_vivienda, id_hogar, # identificadores
+         # region, comuna, # estas ya vienen en nivel personas
+         p12_tenencia_viv) # variable de interés
+```
+
+#### Cruzar tablas
+
+Luego, [cruzamos ambas bases](/blog/left_join/) a partir de las variables que identifican a cada persona con su hogar y vivienda, que son `id_vivienda`, y `id_hogar`:
+
+
+``` r
+# cruzar ambas bases por hogar/vivienda/comuna
+personas_hogares <- left_join(personas_filtrado, 
+                              hogares_filtrado, 
+                              join_by(id_vivienda, 
+                                      id_hogar))
+```
+
+Recordemos que seguimos procesando a nivel de **base de datos**, por lo que podemos hacer estos **cruces entre tablas de millones de filas** sin problemas.
+
+Veamos una previsualización del resultado del cruce:
+
+
+``` r
+# primeras filas de la tabla
+personas_hogares |> 
+  head() |> 
+  collect()
+```
+
+```
+## # A tibble: 6 × 7
+##   id_vivienda id_hogar region comuna  sexo edad_quinquenal p12_tenencia_viv
+##         <int>    <int>  <int>  <int> <int>           <int>            <int>
+## 1       13755        1      6   6101     2              10                1
+## 2       13755        1      6   6101     2              15                1
+## 3       13756        1     13  13105     1              20                4
+## 4       13756        1     13  13105     2              40                4
+## 5       13756        1     13  13105     2              15                4
+## 6       13757        1     13  13129     2              65                1
+```
+
+``` r
+# cantidad de observaciones en la tabla
+personas_hogares |> 
+  tally() |> 
+  collect()
+```
+
+```
+## # A tibble: 1 × 1
+##          n
+##      <int>
+## 1 18480432
+```
+
+
+#### Recodificar variables
+
+Ahora **recodificamos** las variables para que sean legibles (basándonos en el _[diccionario](#consultar-el-diccionario-de-variables-códigos-del-censo)_), y creamos nuevas variables para identificar a los hogares de adultos mayores y el tipo de propiedad del hogar:
+
+
+``` r
+personas_hogares_recod <- personas_hogares |> 
+  # recodificar variables
+  mutate(sexo = case_when(
+    sexo == 1 ~ "Hombre", 
+    sexo == 2 ~ "Mujer")) |> 
+  # crear variable simplificada
+  mutate(propiedad = case_when(
+    p12_tenencia_viv == 1 ~ "Propia", 
+    p12_tenencia_viv == 2 ~ "Propia",
+    .default = "No propia")) |> 
+  # crear variable de adulto mayor
+  mutate(adulto_mayor = case_when(
+    sexo == "Hombre" & edad_quinquenal >= 65 ~ "Adulto mayor", 
+    sexo == "Mujer" & edad_quinquenal >= 60 ~ "Adulto mayor",
+    .default = "No adulto mayor"))
+```
+
+Nótese que para construir la variable `adulto_mayor` usamos el `sexo` y la `edad_quinquenal` para tomar en consideración las diferencias entre sexos en la tercera edad.
+
+Finalmente agregamos los **nombres de regiones y comunas**, porque recordemos que vienen como códigos territoriales, igual como hicimos más arriba a partir del **[diccionario de variables](#consultar-el-diccionario-de-variables-códigos-del-censo)**:
+
+
+``` r
+codigos_territoriales <- read_xlsx("diccionario_variables_censo2024.xlsx",
+                                   sheet = "codigos_territoriales") |>
+  clean_names() |> 
+  rename(division = 2)
+```
+
+
+
+Hacemos dos _dataframes_, uno para las regiones y otro para las comunas:
+
+
+``` r
+regiones <- codigos_territoriales |> 
+  filter(division == "Región") |> 
+  select(region = codigo_territorial, nombre_region = territorio) |> 
+  mutate(region = as.integer(region))
+
+regiones
+```
+
+```
+## # A tibble: 16 × 2
+##    region nombre_region                            
+##     <int> <chr>                                    
+##  1      1 Tarapacá                                 
+##  2      2 Antofagasta                              
+##  3      3 Atacama                                  
+##  4      4 Coquimbo                                 
+##  5      5 Valparaíso                               
+##  6      6 Libertador General Bernardo O'Higgins    
+##  7      7 Maule                                    
+##  8      8 Biobío                                   
+##  9      9 La Araucanía                             
+## 10     10 Los Lagos                                
+## 11     11 Aysén del General Carlos Ibáñez del Campo
+## 12     12 Magallanes y de la Antártica Chilena     
+## 13     13 Metropolitana de Santiago                
+## 14     14 Los Ríos                                 
+## 15     15 Arica y Parinacota                       
+## 16     16 Ñuble
+```
+
+``` r
+comunas <- codigos_territoriales |> 
+  filter(division == "Comuna") |> 
+  select(comuna = codigo_territorial, nombre_comuna = territorio) |> 
+  mutate(comuna = as.integer(comuna))
+
+comunas
+```
+
+```
+## # A tibble: 346 × 2
+##    comuna nombre_comuna
+##     <int> <chr>        
+##  1   1101 Iquique      
+##  2   1107 Alto Hospicio
+##  3   1401 Pozo Almonte 
+##  4   1402 Camiña       
+##  5   1403 Colchane     
+##  6   1404 Huara        
+##  7   1405 Pica         
+##  8   2101 Antofagasta  
+##  9   2102 Mejillones   
+## 10   2103 Sierra Gorda 
+## # ℹ 336 more rows
+```
+
+Y ahora agregamos estas variables con los nombres a la base de datos mediante otro `left_join()`:
+
+``` r
+personas_hogares_comunas <- personas_hogares_recod |> 
+  # cruzar tablas
+  left_join(regiones, by = "region") |>
+  left_join(comunas, by = "comuna") |> 
+  # reordenar variables
+  relocate(nombre_region, .before = region) |>
+  relocate(nombre_comuna, .before = comuna)
+```
+
+Así vamos hasta ahora:
+
+``` r
+personas_hogares_comunas |> 
+  head() |> 
+  collect()
+```
+
+```
+## # A tibble: 6 × 11
+##   id_vivienda id_hogar nombre_region           region nombre_comuna comuna sexo 
+##         <int>    <int> <chr>                    <int> <chr>          <int> <chr>
+## 1       13755        1 Libertador General Ber…      6 Rancagua        6101 Mujer
+## 2       13755        1 Libertador General Ber…      6 Rancagua        6101 Mujer
+## 3       13756        1 Metropolitana de Santi…     13 El Bosque      13105 Homb…
+## 4       13756        1 Metropolitana de Santi…     13 El Bosque      13105 Mujer
+## 5       13756        1 Metropolitana de Santi…     13 El Bosque      13105 Mujer
+## 6       13757        1 Metropolitana de Santi…     13 San Joaquín    13129 Mujer
+## # ℹ 4 more variables: edad_quinquenal <int>, p12_tenencia_viv <int>,
+## #   propiedad <chr>, adulto_mayor <chr>
+```
+
+Ya tenemos una tabla con datos censales a nivel de personas, pero además con variables asociadas a los hogares donde vive cada persona.
+
+
+#### Explorar datos
+Hasta ahora, con esta tabla podemos hacer un conteo de nuestra nueva variable de adultos mayores a nivel nacional:
+
+
+``` r
+personas_hogares_comunas |> 
+  count(adulto_mayor) |> 
+  collect()
+```
+
+```
+## # A tibble: 2 × 2
+##   adulto_mayor           n
+##   <chr>              <int>
+## 1 No adulto mayor 15316446
+## 2 Adulto mayor     3163986
+```
+
+Podemos obtener el mismo conteo a nivel regional:
+
+
+``` r
+personas_hogares_comunas |> 
+  count(nombre_region, adulto_mayor) |> 
+  collect()
+```
+
+```
+## # A tibble: 32 × 3
+##    nombre_region             adulto_mayor          n
+##    <chr>                     <chr>             <int>
+##  1 Coquimbo                  Adulto mayor     145007
+##  2 Metropolitana de Santiago Adulto mayor    1201787
+##  3 La Araucanía              Adulto mayor     184837
+##  4 La Araucanía              No adulto mayor  825586
+##  5 Metropolitana de Santiago No adulto mayor 6198954
+##  6 Antofagasta               No adulto mayor  558114
+##  7 Valparaíso                No adulto mayor 1516774
+##  8 Maule                     Adulto mayor     207646
+##  9 Coquimbo                  No adulto mayor  687857
+## 10 Biobío                    No adulto mayor 1322719
+## # ℹ 22 more rows
+```
+
+
+#### Calcular datos 
+
+Ahora introduzcamos las variables de nivel hogar. Calculemos los **adultos mayores según la tenencia del hogar donde residen,** entendida como la propiedad del hogar versus no propiedad (arriendo, cedida, etc.).
+
+Para ello hacemos un conteo con `count()` de las personas adultas mayores y la propiedad de sus viviendas:
+
+
+``` r
+conteo_propiedad <- personas_hogares_comunas |> 
+  count(adulto_mayor, propiedad) |> 
+  collect()
+```
+
+Veamos el resultado calculando el porcentaje y formateando los datos:
+
+
+``` r
+tabla_propiedad <- conteo_propiedad |> 
+  arrange(adulto_mayor) |> 
+  # calcular porcentaje
+  group_by(adulto_mayor) |>
+  mutate(p = n / sum(n)) |>
+  # dar formato a números
+  mutate(n = label_number()(n),
+         p = label_percent(accuracy = 0.1)(p))
+```
+
+<p class="titulo_tabla">Cantidad y porcentaje de personas adultas mayores según propiedad del hogar</p>
+
+
+|adulto mayor    |propiedad |  cantidad| porcentaje|
+|:---------------|:---------|---------:|----------:|
+|Adulto mayor    |Propia    | 2.481.901|      78,4%|
+|Adulto mayor    |No propia |   682.085|      21,6%|
+|No adulto mayor |Propia    | 9.071.829|      59,2%|
+|No adulto mayor |No propia | 6.244.617|      40,8%|
+
+Transformemos la tabla para hacer más legible y clara la información al distribuir las variables en columnas por medio de `pivot_wider()`:
+
+
+``` r
+tabla_propiedad_ancha <- conteo_propiedad |> 
+  arrange(adulto_mayor) |>
+  # calcular porcentaje
+  group_by(adulto_mayor) |>
+  mutate(p = n / sum(n)) |>
+  rename(porcentaje = p,
+         cantidad = n) |> 
+  # pivotar a ancho
+  pivot_wider(names_from = propiedad, 
+              values_from = c(cantidad, porcentaje),
+              names_glue = "{propiedad} ({.value})",
+              values_fill = 0) |> 
+  # dar formato a números
+  mutate(across(contains("cantidad"), label_number()),
+         across(contains("porcentaje"), label_percent()))
+```
+
+<p class="titulo_tabla">Cantidad y porcentaje de personas adultas mayores según propiedad del hogar</p>
+
+
+|adulto mayor    |Propia (cantidad) |No propia (cantidad) |Propia (porcentaje) |No propia (porcentaje) |
+|:---------------|:-----------------|:--------------------|:-------------------|:----------------------|
+|Adulto mayor    |2.481.901         |682.085              |78%                 |22%                    |
+|No adulto mayor |9.071.829         |6.244.617            |59%                 |41%                    |
+
+Obtenemos un resultado interesante: dentro de la **población adulta mayor**, un **78% reside** en hogares de tipo de **tenencia propia**, mientras dentro de la población que no es adulta mayor, el porcentaje de personas que residen en hogares de tenencia propia es solo un **59%**.
+
+Revisemos la misma información, pero a **nivel regional**:
+
+``` r
+conteo_propiedad_region <- personas_hogares_comunas |> 
+  count(adulto_mayor, nombre_region, propiedad) |> 
+  collect()
+
+tabla_propiedad_region <- conteo_propiedad_region |> 
+  # calcular porcentaje
+  group_by(adulto_mayor, nombre_region) |>
+  mutate(p = n / sum(n)) |>
+  filter(propiedad == "Propia") |>
+  arrange(-p) |>
+  # dar formato a números
+  mutate(p = label_percent()(p)) |> 
+  select(-n) |> 
+  # pivotar
+  pivot_wider(names_from = adulto_mayor, 
+              values_from = p)
+```
+
+
+<p class="titulo_tabla">Porcentaje de la población que vive en viviendas propias (pagadas o pagándose) según grupos de edad</p>
+
+
+|                                    región| propiedad | Adulto mayor | No adulto mayor |
+|-----------------------------------------:|:---------:|:------------:|:---------------:|
+|                              La Araucanía|  Propia   |     83%      |       67%       |
+|                                 Los Lagos|  Propia   |     83%      |       64%       |
+|                                     Maule|  Propia   |     83%      |       69%       |
+|                                     Ñuble|  Propia   |     83%      |       67%       |
+|                                    Biobío|  Propia   |     82%      |       66%       |
+| Aysén del General Carlos Ibáñez del Campo|  Propia   |     82%      |       59%       |
+|      Magallanes y de la Antártica Chilena|  Propia   |     82%      |       59%       |
+|                                  Coquimbo|  Propia   |     81%      |       64%       |
+|                                  Los Ríos|  Propia   |     81%      |       62%       |
+|     Libertador General Bernardo O'Higgins|  Propia   |     80%      |       64%       |
+|                                   Atacama|  Propia   |     80%      |       63%       |
+|                 Metropolitana de Santiago|  Propia   |     76%      |       55%       |
+|                                Valparaíso|  Propia   |     76%      |       58%       |
+|                        Arica y Parinacota|  Propia   |     74%      |       50%       |
+|                               Antofagasta|  Propia   |     73%      |       47%       |
+|                                  Tarapacá|  Propia   |     72%      |       47%       |
+
+En todas las regiones del país, el porcentaje de personas adultas mayores que residen en hogares de tenencia propia es mayor que el mismo dato en personas no adultas mayores. En otras palabras, se podría plantear que la población adulta mayor es más propensa a vivir en hogares _propios pagados_ o _propios pagándose_ que la población no adulta mayor. Para asegurar ésto habría que aplicar pruebas estadísticas que están fuera del foco de este tutorial.
+
+
+<!---
+
+--->
+
+
+## Mapas a partir de datos del Censo
+
+En otro tutorial mostré [cómo visualizar los datos del Censo a nivel de manzana con R](/blog/mapas_censo_2024/), y también hice una pequeña [aplicación de muestra para visualizar variables del Censo en mapas](/blog/app_censo_mapas/) como una demostración de la simplicidad y potencia de R con un _backend_ de Arrow.
+
+{{< aviso "Tutorial en construcción! Pronto lo seguiré expandiendo." >}}
+
+<!--
 
 
 Mapa
@@ -835,255 +1176,24 @@ Mapa
 
 ``` r
 manzanas |> 
-  # filtrar
-  filter(COMUNA == "PUENTE ALTO") |> # comuna
-  # convertir
-  st_as_sf(crs = 4326) |> 
-  # graficar
-  ggplot() +
-  aes(fill = n_discapacidad) + # variable
-  geom_sf(color = "white", linewidth = 0.01) +
-  scale_fill_fermenter(palette = 3) +
-  theme_minimal(base_size = 10) +
-  theme(axis.text.x = element_text(angle = 90, vjust = .5)) +
-  guides(fill = guide_legend(title = "Población",
-                             position = "top")) +
-  labs(title = "Población con discapacidad por manzana",
-       subtitle = "Comuna de Puente Alto",
-       caption = "Fuente: Censo 2024, INE")
+# filtrar
+filter(COMUNA == "PUENTE ALTO") |> # comuna
+# convertir
+st_as_sf(crs = 4326) |> 
+# graficar
+ggplot() +
+aes(fill = n_discapacidad) + # variable
+geom_sf(color = "white", linewidth = 0.01) +
+scale_fill_fermenter(palette = 3) +
+theme_minimal(base_size = 10) +
+theme(axis.text.x = element_text(angle = 90, vjust = .5)) +
+guides(fill = guide_legend(title = "Población",
+position = "top")) +
+labs(title = "Población con discapacidad por manzana",
+subtitle = "Comuna de Puente Alto",
+caption = "Fuente: Censo 2024, INE")
 ```
 
-
-Cruzar hogares con personas
-
-``` r
-library(dplyr)
-library(tidyr)
-library(arrow)
-
-# cargar ----
-comunas <- readxl::read_xlsx("datos/diccionario_variables_censo2024.xlsx",
-                             sheet = "codigos_territoriales") |> 
-  select(comuna = 1, nombre_comuna = 3)
-
-personas <- open_dataset("datos/personas_censo2024.parquet")
-
-hogares <- open_dataset("datos/hogares_censo2024.parquet")
-
-
-# personas: seleccionar columnas
-personas_filt <- personas |>
-  select(id_vivienda, id_hogar, comuna, parentesco,
-         sexo, edad_quinquenal)
-
-# hogares: seleccionar columnas
-hogares_filt <- hogares |>
-  select(id_vivienda, id_hogar, comuna, p12_tenencia_viv)
-
-# cruzar ambas bases por hogar/vivienda/comuna
-personas_hogares <- personas_filt |> 
-  left_join(hogares_filt, 
-            join_by(id_vivienda, id_hogar, comuna))
-# resultado: base de personas con datos de la vivienda donde viven
-
-# conteo ----
-conteo <- personas_hogares |> 
-  group_by(comuna, sexo, edad_quinquenal, parentesco, p12_tenencia_viv) |> 
-  summarize(n = n()) |> 
-  ungroup() |> 
-  collect() # carga a memoria de los datos
-
-
-# recodificación ----
-conteo_recod <- conteo |> 
-  mutate(parentesco = recode_values(
-    parentesco,
-    1 ~	"Jefe/a de hogar",
-    2 ~	"Esposo/a o cónyuge",
-    default = "Otros")) |> 
-  mutate(sexo = recode_values(
-    sexo, 
-    1 ~ "Hombre", 
-    2 ~ "Mujer")) |> 
-  mutate(p12_tenencia_viv = recode_values(
-    p12_tenencia_viv, 
-    1 ~ "Propia pagada",
-    2 ~ "Propia pagándose",
-    3 ~ "Arrendada con contrato",
-    4 ~ "Arrendada sin contrato",
-    5 ~ "Cedida por trabajo o servicio",
-    6 ~ "Cedida por familiar u otro",
-    7 ~ "Usufructo: solo uso y goce",
-    8 ~ "Ocupada de hecho",
-    9 ~ "Propiedad en sucesión o litigio")) |> 
-  mutate(propiedad = if_else(
-    p12_tenencia_viv %in% c("Propia pagada", "Propia pagándose"), 
-    "Propia", "No propia")) |> 
-  mutate(mayor = case_when(sexo == "Hombre" & edad_quinquenal >= 65 ~ "Adulto mayor", 
-                           sexo == "Mujer" & edad_quinquenal >= 60 ~ "Adulto mayor",
-                           .default = "No adulto mayor")) |> 
-  left_join(comunas, by = "comuna") |> 
-  relocate(nombre_comuna, .before = comuna)
-
-
-# resultados ----  
-
-
-# porcentaje de viviendas de propiedad del jefe de hogar según edad
-conteo_recod |> 
-  filter(parentesco == "Jefe/a de hogar",
-         propiedad == "Propia") |> 
-  group_by(nombre_comuna, mayor, propiedad) |> 
-  summarize(n = sum(n)) |> 
-  ungroup() |> 
-  pivot_wider(names_from = mayor, values_from = n,
-              values_fill = 0) |> 
-  group_by(nombre_comuna) |> 
-  mutate(adulto_mayor_porcentaje = `Adulto mayor` / (`Adulto mayor` + `No adulto mayor`) * 100)
-# de las viviendad que son propias, en algarrobo 53.7% son de jefatura de un adulto mayor
-
-
-# porcentaje de viviendas de jefe de hogar adulto mayor que son propias
-conteo_recod |> 
-  filter(parentesco == "Jefe/a de hogar",
-         mayor == "Adulto mayor") |> 
-  group_by(nombre_comuna, mayor, propiedad) |> 
-  summarize(n = sum(n)) |> 
-  ungroup() |> 
-  pivot_wider(names_from = propiedad, values_from = n,
-              values_fill = 0) |> 
-  group_by(nombre_comuna) |> 
-  mutate(propiedad_porcentaje = `Propia` / (`No propia` + Propia) * 100)
-# de las viviendas donde la jefatura de hogar es adulto mayor, en algarrobo 78% son propias
-
-
-# jefes de hogar, porcentaje de viviendas propias de adultos mayores por sexo
-conteo_recod |> 
-  filter(parentesco == "Jefe/a de hogar",
-         propiedad == "Propia",
-         mayor == "Adulto mayor") |> 
-  group_by(nombre_comuna, sexo, mayor, propiedad) |> 
-  summarize(n = sum(n)) |> 
-  ungroup() |> 
-  pivot_wider(names_from = sexo, values_from = n) |> 
-  group_by(nombre_comuna) |> 
-  mutate(Hombre_porcentaje = Hombre / (Hombre + Mujer) * 100,
-         Mujer_porcentaje = Mujer / (Hombre + Mujer) * 100)
-# de las viviendas propias donde la jefatura de hogar es adulto mayor, en algarrobo 54.1% son hombres y 45.9% son mujeres
-
-
-# porcentaje de hogares por comuna que son propios
-hogares_filt |> 
-  group_by(comuna, p12_tenencia_viv) |> 
-  summarize(n = n()) |> 
-  ungroup() |> 
-  collect() |> 
-  mutate(p12_tenencia_viv = recode_values(
-    p12_tenencia_viv, 
-    1 ~ "Propia",
-    2 ~ "Propia",
-    default = "No propia")) |> 
-  group_by(comuna, p12_tenencia_viv) |> 
-  summarize(n = sum(n)) |> 
-  pivot_wider(names_from = p12_tenencia_viv, values_from = n,
-              values_fill = 0) |> 
-  group_by(comuna) |> 
-  mutate(propia_porcentaje = Propia / (Propia + `No propia`) * 100) |> 
-  left_join(comunas, by = "comuna") |> 
-  relocate(nombre_comuna, .before = comuna)
-# en iquique, 41% de los hogares son propios
-
-
-
-# porcentaje de hogares donde viven adultos mayores, según propiedad
-hogares_adulto_mayor <- personas_filt |> 
-  select(comuna, id_vivienda, id_hogar, comuna, edad_quinquenal, sexo) |>
-  mutate(sexo = case_when(
-    sexo == 1 ~ "Hombre", 
-    sexo == 2 ~ "Mujer")) |> 
-  mutate(mayor = case_when(sexo == "Hombre" & edad_quinquenal >= 65 ~ "Adulto mayor", 
-                           sexo == "Mujer" & edad_quinquenal >= 60 ~ "Adulto mayor",
-                           .default = "No adulto mayor")) |> 
-  group_by(comuna, id_vivienda, id_hogar) |> 
-  mutate(hogar_con_adulto_mayor = if_else(any(mayor == "Adulto mayor"), "Adulto mayor", "Sin adulto mayor")) |> 
-  ungroup() |> 
-  distinct(comuna, id_vivienda, id_hogar, hogar_con_adulto_mayor) |> 
-  collect()
-
-hogares_adulto_mayor_propiedad <- hogares_filt |> 
-  left_join(hogares_adulto_mayor, by = c("id_vivienda", "id_hogar", "comuna")) |> 
-  mutate(p12_tenencia_viv = case_when(
-    p12_tenencia_viv == 1 ~ "Propia",
-    p12_tenencia_viv == 2 ~ "Propia",
-    .default = "No propia")) |> 
-  group_by(comuna, hogar_con_adulto_mayor, p12_tenencia_viv) |> 
-  summarize(n = n()) |> 
-  ungroup() |> 
-  collect() |> 
-  arrange(comuna, hogar_con_adulto_mayor, p12_tenencia_viv) |>
-  left_join(comunas, by = "comuna") |> 
-  relocate(nombre_comuna, .before = comuna)
-
-# porcentaje de hogares con presencia de adultos mayores según propiedad
-hogares_adulto_mayor_propiedad |> 
-  arrange(comuna, p12_tenencia_viv, hogar_con_adulto_mayor) |>
-  group_by(comuna, p12_tenencia_viv) |> 
-  mutate(porcentaje_adulto_mayor = n/sum(n)) |> 
-  select(comuna, nombre_comuna, p12_tenencia_viv, hogar_con_adulto_mayor, porcentaje_adulto_mayor) |> 
-  pivot_wider(names_from = hogar_con_adulto_mayor, values_from = porcentaje_adulto_mayor)
-# en iquique, de los hogares propios, un 49.4% tiene adultos mayores
-
-# porcentaje de propiedad de hogares según presencia de adultos mayores
-hogares_adulto_mayor_propiedad |> 
-  group_by(comuna, hogar_con_adulto_mayor) |> 
-  mutate(porcentaje_propia = n/sum(n)) |> 
-  select(comuna, nombre_comuna, hogar_con_adulto_mayor, p12_tenencia_viv, porcentaje_propia) |> 
-  pivot_wider(names_from = p12_tenencia_viv, values_from = porcentaje_propia)
-# en Iquique, ed los hogares con adultos mayores, un 67.0% son propios
-
-
-
-
-
-# tablas ----
-
-# hogares con o sin presencia de adultos mayores
-tabla_hogares_presencia <- hogares_adulto_mayor_propiedad |> 
-  pivot_wider(names_from = c(p12_tenencia_viv, hogar_con_adulto_mayor), 
-              values_from = n, names_sep = "/",
-              values_fill = 0) |> 
-  filter(comuna != 12202)
-
-# personas que viven en hogares con propiedad
-tabla_personas <- conteo_recod |> 
-  group_by(nombre_comuna, comuna, propiedad, mayor) |>
-  summarize(n = sum(n)) |> 
-  pivot_wider(names_from = c(propiedad, mayor), 
-              values_from = n, names_sep = "/",
-              values_fill = 0) |> 
-  filter(comuna != 12202)
-
-# personas que son jefes de hogar en hogares con equis propiedad
-tabla_jefes_hogar <- conteo_recod |> 
-  filter(parentesco == "Jefe/a de hogar") |>
-  group_by(nombre_comuna, comuna, propiedad, mayor) |>
-  summarize(n = sum(n)) |> 
-  pivot_wider(names_from = c(propiedad, mayor), 
-              values_from = n, names_sep = "/",
-              values_fill = 0) |> 
-  filter(comuna != 12202)
-
-tabla_hogares_presencia
-tabla_personas
-tabla_jefes_hogar
-
-# guardar en excel
-writexl::write_xlsx(
-  list("Hogares con o sin adultos mayores" = tabla_hogares_presencia,
-       "Personas" = tabla_personas,
-       "Personas jefatura de hogar" = tabla_jefes_hogar),
-  path = "resultados/tablas_conteos.xlsx")
-```
 
 -->
 
