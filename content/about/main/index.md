@@ -7,7 +7,7 @@ number_categories: 0 # set to zero to exclude
 
 show_intro: true
 intro: |
-  Bastián Olea Herrera, sociólogo, 33 años, ubicado en La Florida, Santiago de Chile. 
+  [Bastián Olea Herrera](www.bastimapache.cl), sociólogx, 33 años, ubicado en La Florida, Santiago de Chile. 
   - **Magíster en Sociología** (2019) (Pontificia Universidad Católica de Chile),
   - Licenciado en Sociología y Bachiller en Ciencias Sociales (2016) (Universidad Alberto Hurtado),
   - Diplomado en ciencia de datos (Pontificia Universidad Católica de Chile), 

@@ -12,10 +12,10 @@ abrir_post_reciente()
 
 
 # crear un post normal
-blogdown::new_post(title = "Galería de libros de _Goodreads_ con R y Quarto", 
+blogdown::new_post(title = "Posit IA, un asistente de programación para análisis de datos integrado en RStudio", 
                    file = paste0("blog/", lubridate::today(), "/index.qmd"),
                    author = "Bastián Olea Herrera",
-                   tags = c("quarto", "blog")
+                   tags = c("blog", "inteligencia artificial")
 )
 
 # crear un post tutorial
@@ -40,7 +40,7 @@ blogdown::new_post(title = "Cargar datos del Censo de Población y Vivienda 2024
 
 
 ## borradores ----
-"content/blog/censo_2024/index.qmd"
+"content/blog/2026-04-21/index.md"
 "content/blog/renombrar_columnas/index.qmd"
 # tutorial mapas: poner puntos a partir de tablas de datos en centroides
 "content/blog/ggtext/index.qmd"
