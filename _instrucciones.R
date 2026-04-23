@@ -19,11 +19,11 @@ blogdown::new_post(title = "Posit IA, un asistente de programación para anális
 )
 
 # crear un post tutorial
-blogdown::new_post(title = "Cargar datos del Censo de Población y Vivienda 2024 con R", 
-                   file = "blog/censo_2024/index.md",
+blogdown::new_post(title = "Aplicación: Visualizador de densidad de población urbana en comunas de Chile", 
+                   file = "blog/app_densidad_comunas/index.md",
                    author = "Bastián Olea Herrera",
-                   tags = c("datos", "chile"),
-                   categories = c("Tutoriales")
+                   tags = c("chile", "apps"),
+                   categories = c("Aplicaciones")
 )
 
 # draft: true
