@@ -52,4 +52,5 @@ Para agregar el tema a RStudio, [descarga el archivo `.rstheme` desde el reposit
 Si quieres configurar RStudio para que el tema cambie entre claro y oscuro de forma automática dependiendo de la hora del día, [sigue las instrucciones en este post!](/blog/2025-01-12/)
 
 ### Actualizaciones
+- **2026/04/22**: Tema actualizado para compatibilidad con la última versión de RStudio (2026.04.0)
 - **2025/12/03**: Ahora más morado! 💜 y más rosado! 🩷 Celebrando la [actualización del tema para el código](/blog/2025-12-02/) de este blog.
