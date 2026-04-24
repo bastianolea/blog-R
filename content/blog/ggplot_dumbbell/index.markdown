@@ -18,8 +18,6 @@ format:
 execute:
   message: false
   warning: false
-editor_options: 
-  chunk_output_type: console
 ---
 
 Los **gráficos de puntos comparativos**, también conocidos como _dumbbell_ o de _mancuernas_, son un tipo de visualización que muestra cómo cambia un valor entre dos tiempos. Se conectan dos puntos por una línea, donde cada punto representa el valor en un año o tiempo distinto. Su objetivo es **comparar** el cambio del valor.
@@ -431,7 +429,7 @@ delitos_tasa_clasif |>
   # barras 
   geom_col(
     width = 0.7,
-    color = "white", linewidth = 1.1,
+    color = "#F8F2E7", linewidth = 1.1,
     position = position_dodge() # lado a lado
   ) +
   # textos sobre las barras
@@ -439,7 +437,7 @@ delitos_tasa_clasif |>
     aes(
       label = label_number(decimal.mark = ",")(tasa)
     ),
-    color = "grey40", size = 3,
+    color = "#49392A", size = 3, alpha = .7,
     position = position_dodge(width = 0.7),
     vjust = -0.4
   ) +
@@ -455,10 +453,12 @@ delitos_tasa_clasif |>
        subtitle = "Estadísticas oficiales de delitos en Chile, 2018 y 2024",
        caption = "Fuente: Centro de Estudios y Análisis del Delito (CEAD)") +
   # temas
-  theme_minimal(base_family = "Atkinson Hyperlegible") +
+  theme_minimal(base_family = "Atkinson Hyperlegible",
+                ink = "#49392A", paper = "#F8F2E7") +
   theme(panel.grid.major.x = element_blank(),
+        axis.text.x = element_text(face = "bold"),
         legend.position = "bottom",
-        plot.title = element_text(face = "bold"),)
+        plot.title = element_text(face = "bold"))
 ```
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="672" />
@@ -500,8 +500,8 @@ delitos_tasa_clasif |>
   # línea que conecta puntos de delitos
   geom_line(
     aes(group = delito),
-    color = "grey70",
-    linewidth = 1,
+    color = "#49392A", alpha = 0.7,
+    linewidth = .8,
     show.legend = FALSE
   ) +
   geom_point(size = 5) +
@@ -517,7 +517,7 @@ delitos_tasa_clasif |>
   geom_text(
     data = ~filter(.x, año == max(año)),
     aes(label = glue("{cambio} en {año}")),
-    vjust = 2.7, color = "grey60", size = 3,
+    vjust = 2.7, color = "#49392A", alpha = 0.7, size = 3,
     show.legend = FALSE
   ) +
   # paleta de colores
@@ -532,11 +532,12 @@ delitos_tasa_clasif |>
        subtitle = "Estadísticas oficiales de delitos en Chile, 2018 y 2024",
        caption = "Fuente: Centro de Estudios y Análisis del Delito (CEAD)") +
   # temas
-  theme_classic(base_family = "Atkinson Hyperlegible") +
-  theme(panel.grid.major = element_line(linewidth = .2, color = "grey90"),
+  theme_classic(base_family = "Atkinson Hyperlegible",
+                ink = "#49392A", paper = "#F8F2E7") +
+  theme(panel.grid.major = element_line(linewidth = .2, color = "#E3DCD1"),
         legend.position = "bottom",
         plot.title = element_text(face = "bold"),
-        axis.text.y = element_text(face = "bold", color = "black", size = 10))
+        axis.text.y = element_text(face = "bold", color = "#49392A", size = 10))
 ```
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="672" />
