@@ -12,15 +12,15 @@ abrir_post_reciente()
 
 
 # crear un post normal
-blogdown::new_post(title = "Posit IA, un asistente de programación para análisis de datos integrado en RStudio", 
+blogdown::new_post(title = "Prueba", 
                    file = paste0("blog/", lubridate::today(), "/index.qmd"),
                    author = "Bastián Olea Herrera",
                    tags = c("blog", "inteligencia artificial")
 )
 
 # crear un post tutorial
-blogdown::new_post(title = "Aplicación: Visualizador de densidad de población urbana en comunas de Chile", 
-                   file = "blog/app_densidad_comunas/index.md",
+blogdown::new_post(title = "prueba", 
+                   file = "blog/prueba1/index.md",
                    author = "Bastián Olea Herrera",
                    tags = c("chile", "apps"),
                    categories = c("Aplicaciones")
@@ -40,7 +40,9 @@ blogdown::new_post(title = "Aplicación: Visualizador de densidad de población 
 
 
 ## borradores ----
-"content/blog/2026-04-21/index.md"
+"content/blog/ggplot_densidad_puntos/index.qmd"
+"content/blog/ggplot_variacion/index.qmd"
+"content/blog/posit_assistant/index.md"
 "content/blog/renombrar_columnas/index.qmd"
 # tutorial mapas: poner puntos a partir de tablas de datos en centroides
 "content/blog/ggtext/index.qmd"

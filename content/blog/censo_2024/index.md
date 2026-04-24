@@ -10,6 +10,7 @@ categories:
 tags:
   - datos
   - chile
+  - procesamiento de datos
 format:
   hugo-md:
     output-file: index
