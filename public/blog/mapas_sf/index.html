@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-ES" dir="ltr"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4119&amp;path=livereload" data-no-instant defer></script>
+<html lang="es-ES" dir="ltr"><head>
   
                            
      
@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.152.2">
+<meta name="generator" content="Hugo 0.136.5">
 <title>Mapas y visualización de datos geoespaciales en R con {sf} | Bastián Olea</title>
 
 
@@ -31,16 +31,16 @@
 <meta property="og:title" content="Mapas y visualización de datos geoespaciales en R con {sf} | Bastián Olea">
 <meta property="og:description" content="R cuenta con un muy amplio ecosistema para trabajar con datos geoespaciales. Uno de los paquetes más importantes es `{sf}`, que permite manipular datos espaciales a partir del estándar _simple features_ (características simples). En esta guía iré recopilando los comandos básicos para manipular y visualizar datos geoespaciales en R. En la medida que voy aprendiendo más sobre hacer mapas, iré actualizando y complementando." />
 <meta property="og:type" content="page" />
-<meta property="og:url" content="http://localhost:4119/blog/mapas_sf/" />
+<meta property="og:url" content="https://bastianoleah.netlify.app/blog/mapas_sf/" />
 <meta property="og:locale" content="es-ES">
 
 
 
 
     
-        <meta property="og:image" content="http://localhost:4119/blog/mapas_sf/mapa_rm_featured.png" >
+        <meta property="og:image" content="https://bastianoleah.netlify.app/blog/mapas_sf/mapa_rm_featured.png" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="http://localhost:4119/blog/mapas_sf/mapa_rm_featured.png" >
+        <meta name="twitter:image" content="https://bastianoleah.netlify.app/blog/mapas_sf/mapa_rm_featured.png" >
     
     
   
@@ -49,7 +49,7 @@
   <meta itemprop="datePublished" content="2025-11-18T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-11-18T00:00:00+00:00">
   <meta itemprop="wordCount" content="3974">
-  <meta itemprop="image" content="http://localhost:4119/blog/mapas_sf/mapa_rm_featured.png">
+  <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/mapas_sf/mapa_rm_featured.png">
   <meta itemprop="keywords" content="Mapas,Visualización de datos">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -57,16 +57,16 @@
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="../../style.main.min.be3e0f40fb75d5d977e7ba48c93a5c8b6bc8b1c7a72f611a1a58896ff6841894.css" integrity="sha256-vj4PQPt11dl357pIyTpci2vIscenL2EaGliJb/aEGJQ=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.505ccb90e601c12d37eab294b4f8746f2b253029ee020f196bd89767d1ed9455.css" integrity="sha256-UFzLkOYBwS036rKUtPh0byslMCnuAg8Za9iXZ9HtlFU=" media="screen">
   
   
-  <script src="../../panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="../../main.min.858230d8d39b17ec435a8cd8991902766cb7afe0621875ffe5fcdf376474ca6e.js" type="text/javascript"></script>
+  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
   
   
-  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="/css/syntax.css">
   
   
   <link rel="preload" href="https://bastianoleah.shinyapps.io/buscador/" as="image">
@@ -75,15 +75,15 @@
       <div class="grid-container single-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="http://localhost:4119/" title="Home">
-      <img src="../../img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianoleah.netlify.app/" title="Home">
+      <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 active" href="../../blog/" title="Bastián Olea: Blog de R">Blog</a>
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/blog/" title="Bastián Olea: Blog de R">Blog</a>
       
         
         
@@ -108,22 +108,27 @@
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="../../clases/" title="Clases">Clases</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/tags/" title="Temas">Temas</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="../../categories/tutoriales/" title="Tutoriales">Tutoriales</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/clases/" title="Cursos">Cursos</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="../../blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/tutoriales/" title="Tutoriales">Tutoriales</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="../../about/" title="Bastián Olea: Sobre mi">Yo</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/about/" title="Bastián Olea: Sobre mi">Yo</a>
       
       
       
@@ -145,6 +150,22 @@
     <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
     </a>
   
     
@@ -190,38 +211,6 @@
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
-    style="margin-bottom: 6px !important;"> 
-      <i class="fab fa-linkedin fa-lg fa-fw"></i>
-    </a>
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.goodreads.com/user/show/53224910-basti-n-olea-herrera" title="goodreads" target="_blank" rel="me noopener"
-    style="margin-bottom: 6px !important;"> 
-      <i class="fab fa-goodreads fa-lg fa-fw"></i>
-    </a>
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
     <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-heart fa-lg fa-fw"></i>
@@ -238,7 +227,7 @@
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="../../contacto/" title="envelope" 
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-envelope fa-lg fa-fw"></i>
     </a>
@@ -275,7 +264,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:4119/tags/mapas"
+          <em><dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/mapas"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -284,7 +273,7 @@
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            mapas</a>  <a href="http://localhost:4119/tags/visualizaci%C3%B3n-de-datos"
+            mapas</a>  <a href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -638,7 +627,7 @@ sf::read_sf("~/Downloads/Mis lugares/doc.kml")
   
   <aside style = "font-size: 90%; color: #EAD2FA;">
     Si necesitas aprender lo básico de <code>{ggplot2}</code> para visualización de datos, 
-<a href="../../blog/r_introduccion/tutorial_visualizacion_ggplot/">revisa este completo tutorial</a>.
+<a href="/blog/r_introduccion/tutorial_visualizacion_ggplot/">revisa este completo tutorial</a>.
   </aside>
   
 </div>
@@ -1769,12 +1758,12 @@ https://dominicroye.github.io/blog/inserted-map/
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="http://localhost:4119/blog/2025-11-25/">&larr; Configura R para que haga cosas automáticamente al abrirlo</a>
+    href="https://bastianoleah.netlify.app/blog/2025-11-25/">&larr; Configura R para que haga cosas automáticamente al abrirlo</a>
   
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="http://localhost:4119/blog/elecciones_presidenciales_2025/">Visualización y scraping de resultados de las elecciones presidenciales 2025 &rarr;</a>
+    href="https://bastianoleah.netlify.app/blog/elecciones_presidenciales_2025/">Visualización y scraping de resultados de las elecciones presidenciales 2025 &rarr;</a>
   
 </div>
 
@@ -1816,24 +1805,24 @@ https://dominicroye.github.io/blog/inserted-map/
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Categorías:</dt>
-    <dd class="fw5 ml0"> <a href="http://localhost:4119/categories/tutoriales">tutoriales</a> </dd>
+    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/categories/tutoriales">tutoriales</a> </dd>
   </dl>
   
   
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Tags:</dt>
-    <dd class="fw5 ml0"> <a href="http://localhost:4119/tags/mapas">mapas</a>  <a href="http://localhost:4119/tags/visualizaci%C3%B3n-de-datos">visualización de datos</a> </dd>
+    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/mapas">mapas</a>  <a href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos">visualización de datos</a> </dd>
   </dl>
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
-    <dd class="fw5 ml0"><a href="../../blog/ggplot_extensiones/">Extensiones recomendadas para mejorar tus gráficos de `{ggplot2}`</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/ggplot_dumbbell/">Gráficos de puntos comparativos o _dumbbell_ en `{ggplot2}`</a></dd>
     
-    <dd class="fw5 ml0"><a href="../../blog/ggplot_puente/">Gráficos de puente en `{ggplot2}`</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/ggplot_extensiones/">Extensiones recomendadas para mejorar tus gráficos de `{ggplot2}`</a></dd>
     
-    <dd class="fw5 ml0"><a href="../../blog/ggplot_ternario/">Gráficos ternarios o triangulares de tres variables en `{ggplot2}`</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/ggplot_puente/">Gráficos de puente en `{ggplot2}`</a></dd>
     
   </dl>
 </details>
@@ -1852,7 +1841,7 @@ https://dominicroye.github.io/blog/inserted-map/
   <h1 class="f3">Blog</h1>
   <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
 <a href="https://bastianoleah.shinyapps.io/buscador/" target="_blank" rel="noopener">buscador</a> para encontrar publicaciones o navega los 
-<a href="../../tags/">temas</a>.</p>
+<a href="/tags/">temas</a>.</p>
   
 
    
@@ -1875,7 +1864,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/chile/">Chile</a></span>
+      href="https://bastianoleah.netlify.app/tags/chile/">Chile</a></span>
   </span>
  
   
@@ -1890,7 +1879,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/datos/">Datos</a></span>
+      href="https://bastianoleah.netlify.app/tags/datos/">Datos</a></span>
   </span>
  
   
@@ -1905,7 +1894,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/consejos/">Consejos</a></span>
+      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -1920,7 +1909,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -1935,7 +1924,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/blog/">Blog</a></span>
+      href="https://bastianoleah.netlify.app/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -1950,7 +1939,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="https://bastianoleah.netlify.app/tags/blog/">Blog</a></span>
   </span>
  
   
@@ -1965,7 +1954,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/shiny/">Shiny</a></span>
+      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -1980,7 +1969,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/apps/">Apps</a></span>
+      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -1995,7 +1984,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/ggplot2/">Ggplot2</a></span>
+      href="https://bastianoleah.netlify.app/tags/ggplot2/">Ggplot2</a></span>
   </span>
  
   
@@ -2010,7 +1999,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/web-scraping/">Web scraping</a></span>
+      href="https://bastianoleah.netlify.app/tags/web-scraping/">Web scraping</a></span>
   </span>
  
   
@@ -2025,7 +2014,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/b%C3%A1sico/">Básico</a></span>
+      href="https://bastianoleah.netlify.app/tags/b%C3%A1sico/">Básico</a></span>
   </span>
  
   
@@ -2040,7 +2029,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -2055,7 +2044,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/mapas/">Mapas</a></span>
+      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -2070,7 +2059,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/curiosidades/">Curiosidades</a></span>
+      href="https://bastianoleah.netlify.app/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -2085,7 +2074,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/quarto/">Quarto</a></span>
+      href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -2100,7 +2089,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -2115,7 +2104,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="https://bastianoleah.netlify.app/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -2130,7 +2119,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/dplyr/">Dplyr</a></span>
+      href="https://bastianoleah.netlify.app/tags/dplyr/">Dplyr</a></span>
   </span>
  
   
@@ -2145,7 +2134,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/automatizaci%C3%B3n/">Automatización</a></span>
+      href="https://bastianoleah.netlify.app/tags/texto/">Texto</a></span>
   </span>
  
   
@@ -2160,10 +2149,10 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4119/tags/ciencias-sociales/">Ciencias sociales</a></span>
+      href="https://bastianoleah.netlify.app/tags/ciencias-sociales/">Ciencias sociales</a></span>
   </span>
 
-<a href="../../tags/" style="margin-left: 3px;">y más!</a>
+<a href="/tags/" style="margin-left: 3px;">y más!</a>
 </div>
 </div>
   
@@ -2265,6 +2254,22 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
       
     
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
     <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
     style="margin-bottom: 6px !important;"> 
       <i class="fab fa-github fa-lg fa-fw"></i>
@@ -2297,38 +2302,6 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
-    style="margin-bottom: 6px !important;"> 
-      <i class="fab fa-linkedin fa-lg fa-fw"></i>
-    </a>
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.goodreads.com/user/show/53224910-basti-n-olea-herrera" title="goodreads" target="_blank" rel="me noopener"
-    style="margin-bottom: 6px !important;"> 
-      <i class="fab fa-goodreads fa-lg fa-fw"></i>
-    </a>
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
     <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-heart fa-lg fa-fw"></i>
@@ -2345,7 +2318,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="../../contacto/" title="envelope" 
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-envelope fa-lg fa-fw"></i>
     </a>
@@ -2356,19 +2329,19 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
     <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
       
-      <a class="dib pv1 ph2 link" href="../../about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
+      <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
       
       <a class="dib pv1 ph2 link" href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
       
-      <a class="dib pv1 ph2 link" href="../../contacto/" title="Bastián Olea: Contacto">Contacto</a>
+      <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
       
-      <a class="dib pv1 ph2 link" href="../../tags/" title="Temas">Temas</a>
+      <a class="dib pv1 ph2 link" href="/tags/" title="Temas">Temas</a>
       
-      <a class="dib pv1 ph2 link" href="../../clases/" title="Clases">Clases</a>
+      <a class="dib pv1 ph2 link" href="/clases/" title="Clases">Clases</a>
       
-      <a class="dib pv1 ph2 link" href="../../code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
+      <a class="dib pv1 ph2 link" href="/code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
       
-      <a class="dib pv1 ph2 link" href="../../license/" title="Bastián Olea: Licencia">Licencia</a>
+      <a class="dib pv1 ph2 link" href="/license/" title="Bastián Olea: Licencia">Licencia</a>
       
     </div>
   </nav>

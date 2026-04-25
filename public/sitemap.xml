@@ -2,743 +2,749 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:4119/blog/r_introduccion/instalar_r/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/r_introduccion/instalar_r/</loc>
     <lastmod>2024-11-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/r_introduccion/por_que_r/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/r_introduccion/por_que_r/</loc>
     <lastmod>2024-11-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/r_introduccion/r_basico/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/r_introduccion/r_basico/</loc>
     <lastmod>2024-11-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/r_introduccion/r_intermedio/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/r_introduccion/r_intermedio/</loc>
     <lastmod>2025-02-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/r_introduccion/conectores/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/r_introduccion/conectores/</loc>
     <lastmod>2025-11-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/r_introduccion/proyectos/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/r_introduccion/proyectos/</loc>
     <lastmod>2025-01-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/r_introduccion/dplyr_intro/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/r_introduccion/dplyr_intro/</loc>
     <lastmod>2025-02-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/r_introduccion/dplyr_mutate/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/r_introduccion/dplyr_mutate/</loc>
     <lastmod>2025-12-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/r_introduccion/dplyr_summarize/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/r_introduccion/dplyr_summarize/</loc>
     <lastmod>2025-12-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/r_introduccion/tidyr_pivotar/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/r_introduccion/tidyr_pivotar/</loc>
     <lastmod>2025-11-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/r_introduccion/tutorial_dplyr_censo/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/r_introduccion/tutorial_dplyr_censo/</loc>
     <lastmod>2024-11-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/r_introduccion/tutorial_dplyr_campamentos/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/r_introduccion/tutorial_dplyr_campamentos/</loc>
     <lastmod>2024-11-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/r_introduccion/tutorial_visualizacion_ggplot/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/r_introduccion/tutorial_visualizacion_ggplot/</loc>
     <lastmod>2025-03-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/r_introduccion/tutorial_shiny_1/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/r_introduccion/tutorial_shiny_1/</loc>
     <lastmod>2024-11-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/r_introduccion/tutorial_shinyapps/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/r_introduccion/tutorial_shinyapps/</loc>
     <lastmod>2024-11-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/r_introduccion/web_scraping/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/r_introduccion/web_scraping/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/r_introduccion/tutorial_github/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/r_introduccion/tutorial_github/</loc>
     <lastmod>2025-02-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/r_introduccion/recursos_r/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/r_introduccion/recursos_r/</loc>
     <lastmod>2024-11-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/</loc>
+    <loc>https://bastianoleah.netlify.app/</loc>
+    <lastmod>2026-04-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianoleah.netlify.app/blog/</loc>
+    <lastmod>2026-04-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianoleah.netlify.app/categories/</loc>
+    <lastmod>2026-04-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianoleah.netlify.app/tags/ggplot2/</loc>
+    <lastmod>2026-04-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianoleah.netlify.app/tags/gr%C3%A1ficos/</loc>
+    <lastmod>2026-04-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianoleah.netlify.app/blog/ggplot_dumbbell/</loc>
+    <lastmod>2026-04-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianoleah.netlify.app/tags/</loc>
+    <lastmod>2026-04-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianoleah.netlify.app/categories/tutoriales/</loc>
+    <lastmod>2026-04-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/</loc>
+    <lastmod>2026-04-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianoleah.netlify.app/blog/app_densidad_comunas/</loc>
+    <lastmod>2026-04-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianoleah.netlify.app/categories/aplicaciones/</loc>
+    <lastmod>2026-04-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianoleah.netlify.app/tags/apps/</loc>
+    <lastmod>2026-04-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianoleah.netlify.app/tags/chile/</loc>
+    <lastmod>2026-04-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianoleah.netlify.app/tags/datos/</loc>
     <lastmod>2026-04-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/censo_2024/</loc>
     <lastmod>2026-04-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/categories/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/procesamiento-de-datos/</loc>
     <lastmod>2026-04-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/chile/</loc>
-    <lastmod>2026-04-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:4119/tags/datos/</loc>
-    <lastmod>2026-04-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:4119/blog/censo_2024/</loc>
-    <lastmod>2026-04-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:4119/tags/</loc>
-    <lastmod>2026-04-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:4119/categories/tutoriales/</loc>
-    <lastmod>2026-04-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:4119/tags/b%C3%A1sico/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/b%C3%A1sico/</loc>
     <lastmod>2026-04-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/blog/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/blog/</loc>
     <lastmod>2026-04-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/curso_gratis_r_intro_2/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/curso_gratis_r_intro_2/</loc>
     <lastmod>2026-04-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/shiny_ancho/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/shiny_ancho/</loc>
     <lastmod>2026-04-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/shiny/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/shiny/</loc>
     <lastmod>2026-04-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/curiosidades/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/curiosidades/</loc>
     <lastmod>2026-04-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/graficos_horribles/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/graficos_horribles/</loc>
     <lastmod>2026-04-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/consejos/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/consejos/</loc>
     <lastmod>2026-03-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/ggplot_extensiones/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/ggplot_extensiones/</loc>
     <lastmod>2026-03-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/ggplot2/</loc>
-    <lastmod>2026-03-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:4119/tags/visualizaci%C3%B3n-de-datos/</loc>
-    <lastmod>2026-03-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:4119/categories/aplicaciones/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2026-03-26/</loc>
     <lastmod>2026-03-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/apps/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/indice_brechas_genero/</loc>
     <lastmod>2026-03-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2026-03-26/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/quarto/</loc>
     <lastmod>2026-03-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/indice_brechas_genero/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/web-scraping/</loc>
     <lastmod>2026-03-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/quarto/</loc>
-    <lastmod>2026-03-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:4119/tags/web-scraping/</loc>
-    <lastmod>2026-03-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:4119/clases/</loc>
+    <loc>https://bastianoleah.netlify.app/clases/</loc>
     <lastmod>2026-03-25T19:30:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/clases/curso_gratis_r_intro_2/</loc>
+    <loc>https://bastianoleah.netlify.app/clases/curso_gratis_r_intro_2/</loc>
     <lastmod>2026-03-25T19:30:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/estudio_brechas_comunales/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/estudio_brechas_comunales/</loc>
     <lastmod>2026-03-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2026-03-12/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2026-03-12/</loc>
     <lastmod>2026-03-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/an%C3%A1lisis-de-texto/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/an%C3%A1lisis-de-texto/</loc>
     <lastmod>2026-03-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/datos_estructurados_llm/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/datos_estructurados_llm/</loc>
     <lastmod>2026-03-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/inteligencia-artificial/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/inteligencia-artificial/</loc>
     <lastmod>2026-03-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/texto/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/texto/</loc>
     <lastmod>2026-03-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/ellmer/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/ellmer/</loc>
     <lastmod>2026-02-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/automatizaci%C3%B3n/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/automatizaci%C3%B3n/</loc>
     <lastmod>2026-02-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/limpieza-de-datos/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/limpieza-de-datos/</loc>
     <lastmod>2026-02-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2026-02-25/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2026-02-25/</loc>
     <lastmod>2026-02-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/app_suicidios_genero/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/app_suicidios_genero/</loc>
     <lastmod>2026-02-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/gr%C3%A1ficos/</loc>
-    <lastmod>2026-02-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:4119/blog/redactar_texto_llm/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/redactar_texto_llm/</loc>
     <lastmod>2026-02-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/repetirse/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/repetirse/</loc>
     <lastmod>2026-02-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2026-02-18/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2026-02-18/</loc>
     <lastmod>2026-02-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/loops/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/loops/</loc>
     <lastmod>2026-02-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/optimizaci%C3%B3n/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/optimizaci%C3%B3n/</loc>
     <lastmod>2026-02-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/funciones/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/funciones/</loc>
     <lastmod>2026-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/g%C3%A9nero/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/g%C3%A9nero/</loc>
     <lastmod>2026-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/redactar_texto/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/redactar_texto/</loc>
     <lastmod>2026-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/curso_gratis_r_intro_1/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/curso_gratis_r_intro_1/</loc>
     <lastmod>2026-02-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/videos/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/videos/</loc>
     <lastmod>2026-02-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/ggplot_puente/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/ggplot_puente/</loc>
     <lastmod>2026-02-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/clases/curso_gratis_r_intro_1/</loc>
+    <loc>https://bastianoleah.netlify.app/clases/curso_gratis_r_intro_1/</loc>
     <lastmod>2026-02-03T19:30:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/ggplot_ternario/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/ggplot_ternario/</loc>
     <lastmod>2026-01-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/estad%C3%ADsticas/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/estad%C3%ADsticas/</loc>
     <lastmod>2026-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2026-01-27/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2026-01-27/</loc>
     <lastmod>2026-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/shiny_validacion/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/shiny_validacion/</loc>
     <lastmod>2026-01-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/ggplot_temas/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/ggplot_temas/</loc>
     <lastmod>2026-01-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/gt_pildoras/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/gt_pildoras/</loc>
     <lastmod>2026-01-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/shiny_docker/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/shiny_docker/</loc>
     <lastmod>2026-01-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/tablas/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/tablas/</loc>
     <lastmod>2026-01-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2026-01-19/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2026-01-19/</loc>
     <lastmod>2026-01-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/app_censo_mapas/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/app_censo_mapas/</loc>
     <lastmod>2025-12-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/mapas/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/mapas/</loc>
     <lastmod>2025-12-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/mapas_censo_2024/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/mapas_censo_2024/</loc>
     <lastmod>2025-12-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-12-16/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-12-16/</loc>
     <lastmod>2025-12-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/dplyr/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/dplyr/</loc>
     <lastmod>2025-12-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/r_introduccion/</loc>
+    <loc>https://bastianoleah.netlify.app/series/introducci%C3%B3n-a-r/</loc>
     <lastmod>2025-12-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/series/introducci%C3%B3n-a-r/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/r_introduccion/</loc>
     <lastmod>2025-12-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/series/</loc>
+    <loc>https://bastianoleah.netlify.app/series/</loc>
     <lastmod>2025-12-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/btw/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/btw/</loc>
     <lastmod>2025-12-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/excel_unir_hojas/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/excel_unir_hojas/</loc>
     <lastmod>2025-12-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/excel/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/excel/</loc>
     <lastmod>2025-12-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/blockr/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/blockr/</loc>
     <lastmod>2025-12-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-12-04/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-12-04/</loc>
     <lastmod>2025-12-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-12-02/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-12-02/</loc>
     <lastmod>2025-12-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/tema_morado/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/tema_morado/</loc>
     <lastmod>2025-12-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/estadisticos_descriptivos/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/estadisticos_descriptivos/</loc>
     <lastmod>2025-12-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/crear_dataframes/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/crear_dataframes/</loc>
     <lastmod>2025-12-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/aprender_r/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/aprender_r/</loc>
     <lastmod>2025-12-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/procesamiento-de-datos/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/tidyr/</loc>
     <lastmod>2025-11-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/tidyr/</loc>
-    <lastmod>2025-11-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:4119/blog/grupo_usuarixs_r/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/grupo_usuarixs_r/</loc>
     <lastmod>2025-11-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-11-27/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-11-27/</loc>
     <lastmod>2025-11-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/ciencias-sociales/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/ciencias-sociales/</loc>
     <lastmod>2025-11-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/surveydown_encuestas/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/surveydown_encuestas/</loc>
     <lastmod>2025-11-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-11-25/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-11-25/</loc>
     <lastmod>2025-11-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/mapas_sf/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/mapas_sf/</loc>
     <lastmod>2025-11-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/elecciones_presidenciales_2025/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/elecciones_presidenciales_2025/</loc>
     <lastmod>2025-11-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/shiny_desconexion/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/shiny_desconexion/</loc>
     <lastmod>2025-11-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-11-14/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-11-14/</loc>
     <lastmod>2025-11-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/delincuencia_prensa/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/delincuencia_prensa/</loc>
     <lastmod>2025-11-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/shiny_reactlog/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/shiny_reactlog/</loc>
     <lastmod>2025-11-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/mapas_areas_metropolitanas/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/mapas_areas_metropolitanas/</loc>
     <lastmod>2025-11-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-11-13/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-11-13/</loc>
     <lastmod>2025-11-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/buscador/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/buscador/</loc>
     <lastmod>2025-11-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/datos-perdidos/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/datos-perdidos/</loc>
     <lastmod>2025-11-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/waldo/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/waldo/</loc>
     <lastmod>2025-11-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/ggiraph/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/ggiraph/</loc>
     <lastmod>2025-11-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/db_supabase/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/db_supabase/</loc>
     <lastmod>2025-11-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/shiny_optimizar/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/shiny_optimizar/</loc>
     <lastmod>2025-11-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-10-29/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-10-29/</loc>
     <lastmod>2025-10-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/git_comandos/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/git_comandos/</loc>
     <lastmod>2025-10-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/git/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/git/</loc>
     <lastmod>2025-10-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/github/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/github/</loc>
     <lastmod>2025-10-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/programaci%C3%B3n/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/programaci%C3%B3n/</loc>
     <lastmod>2025-10-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/taller_datos_unam/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/taller_datos_unam/</loc>
     <lastmod>2025-10-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/mapa_chile_triple/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/mapa_chile_triple/</loc>
     <lastmod>2025-10-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-10-21/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-10-21/</loc>
     <lastmod>2025-10-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-10-21b/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-10-21b/</loc>
     <lastmod>2025-10-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/gander/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/gander/</loc>
     <lastmod>2025-10-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-10-16/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-10-16/</loc>
     <lastmod>2025-10-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/validacion_avanzada/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/validacion_avanzada/</loc>
     <lastmod>2025-10-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/tutorial_mapa_chile_subdere/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/tutorial_mapa_chile_subdere/</loc>
     <lastmod>2025-10-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/shiny_ocultar/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/shiny_ocultar/</loc>
     <lastmod>2025-10-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/shiny_temas/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/shiny_temas/</loc>
     <lastmod>2025-10-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/animaciones/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/animaciones/</loc>
     <lastmod>2025-09-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/app_mideso_ingresos_genero/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/app_mideso_ingresos_genero/</loc>
     <lastmod>2025-09-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/infografia_violaciones_ddhh_chile/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/infografia_violaciones_ddhh_chile/</loc>
     <lastmod>2025-09-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/arte-generativo/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/arte-generativo/</loc>
     <lastmod>2025-08-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-08-27/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-08-27/</loc>
     <lastmod>2025-08-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/ggplot_tipografias/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/ggplot_tipografias/</loc>
     <lastmod>2025-08-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/clases/taller_unam/</loc>
+    <loc>https://bastianoleah.netlify.app/clases/taller_unam/</loc>
     <lastmod>2025-08-22T18:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-08-22/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-08-22/</loc>
     <lastmod>2025-08-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/fechas/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/fechas/</loc>
     <lastmod>2025-08-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/left_join/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/left_join/</loc>
     <lastmod>2025-08-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/excel_openxlsx/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/excel_openxlsx/</loc>
     <lastmod>2025-08-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/visdat/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/visdat/</loc>
     <lastmod>2025-08-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/control-de-flujo/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/control-de-flujo/</loc>
     <lastmod>2025-08-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/validacion_basica/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/validacion_basica/</loc>
     <lastmod>2025-08-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-07-28/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-07-28/</loc>
     <lastmod>2025-07-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-07-27/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-07-27/</loc>
     <lastmod>2025-07-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/purrr/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/purrr/</loc>
     <lastmod>2025-07-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/clases/taller_corrupcion_cesi/</loc>
+    <loc>https://bastianoleah.netlify.app/clases/taller_corrupcion_cesi/</loc>
     <lastmod>2025-07-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/taller_corrupcion_cesi/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/taller_corrupcion_cesi/</loc>
     <lastmod>2025-07-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/clases/spatiallab_introduccion_r_2/</loc>
+    <loc>https://bastianoleah.netlify.app/clases/spatiallab_introduccion_r_2/</loc>
     <lastmod>2025-07-22T19:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/tutorial_scraping_chromote/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/tutorial_scraping_chromote/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/tutorial_scraping_selenium/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/tutorial_scraping_selenium/</loc>
     <lastmod>2025-07-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/ggplot_purrr/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/ggplot_purrr/</loc>
     <lastmod>2025-07-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-07-11/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-07-11/</loc>
     <lastmod>2025-07-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/ggrepel/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/ggrepel/</loc>
     <lastmod>2025-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/correlaciones/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/correlaciones/</loc>
     <lastmod>2025-07-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/estad%C3%ADstica/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/estad%C3%ADstica/</loc>
     <lastmod>2025-07-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/ggview/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/ggview/</loc>
     <lastmod>2025-07-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-07-08/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-07-08/</loc>
     <lastmod>2025-07-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/nubes_de_palabras/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/nubes_de_palabras/</loc>
     <lastmod>2025-07-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/ordenar_comunas/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/ordenar_comunas/</loc>
     <lastmod>2025-06-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-06-18/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-06-18/</loc>
     <lastmod>2025-06-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/furrr_multiprocesador/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/furrr_multiprocesador/</loc>
     <lastmod>2025-06-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-06-11/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-06-11/</loc>
     <lastmod>2025-06-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/github_copilot/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/github_copilot/</loc>
     <lastmod>2025-06-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/quarto_loop/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/quarto_loop/</loc>
     <lastmod>2025-06-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/stringr_texto/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/stringr_texto/</loc>
     <lastmod>2025-06-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/datapasta/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/datapasta/</loc>
     <lastmod>2025-06-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/ordenar_regiones/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/ordenar_regiones/</loc>
     <lastmod>2025-06-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/quarto_params/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/quarto_params/</loc>
     <lastmod>2025-04-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/quarto_reportes/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/quarto_reportes/</loc>
     <lastmod>2025-04-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-03-31/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-03-31/</loc>
     <lastmod>2025-03-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-03-30/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-03-30/</loc>
     <lastmod>2025-03-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/tutorial_quarto_github_pages/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/tutorial_quarto_github_pages/</loc>
     <lastmod>2025-03-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/patchwork/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/patchwork/</loc>
     <lastmod>2025-03-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/colores/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/colores/</loc>
     <lastmod>2025-03-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/mapa_chile_horizontal/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/mapa_chile_horizontal/</loc>
     <lastmod>2025-03-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/simplificar_mapas/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/simplificar_mapas/</loc>
     <lastmod>2025-02-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/genero_nombres_llm/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/genero_nombres_llm/</loc>
     <lastmod>2025-02-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/shiny_usuarios/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/shiny_usuarios/</loc>
     <lastmod>2025-02-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-02-14/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-02-14/</loc>
     <lastmod>2025-02-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-02-12/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-02-12/</loc>
     <lastmod>2025-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/datos_sociales/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/datos_sociales/</loc>
     <lastmod>2025-02-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/resumir_texto_llm/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/resumir_texto_llm/</loc>
     <lastmod>2025-02-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/tags/aplicaciones/</loc>
+    <loc>https://bastianoleah.netlify.app/tags/aplicaciones/</loc>
     <lastmod>2025-01-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/unim/presentacion_visualizador_datos_corrupcion/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/unim/presentacion_visualizador_datos_corrupcion/</loc>
     <lastmod>2025-01-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/unim/taller_ciencia_de_datos_gestion_municipal/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/unim/taller_ciencia_de_datos_gestion_municipal/</loc>
     <lastmod>2025-01-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/clases/spatiallab_introduccion_r_1/</loc>
+    <loc>https://bastianoleah.netlify.app/clases/spatiallab_introduccion_r_1/</loc>
     <lastmod>2025-01-21T18:30:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-01-14/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-01-14/</loc>
     <lastmod>2025-01-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-01-12/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-01-12/</loc>
     <lastmod>2025-01-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/camcorder/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/camcorder/</loc>
     <lastmod>2025-01-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/app_palestina/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/app_palestina/</loc>
     <lastmod>2025-01-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/portafolio_apps/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/portafolio_apps/</loc>
     <lastmod>2025-01-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2025-01-01/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2025-01-01/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2024-12-31/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2024-12-31/</loc>
     <lastmod>2024-12-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/clases/clases_particulares/</loc>
+    <loc>https://bastianoleah.netlify.app/clases/clases_particulares/</loc>
     <lastmod>2024-12-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/tutorial_scraping_rvest/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/tutorial_scraping_rvest/</loc>
     <lastmod>2024-12-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2024-12-26/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2024-12-26/</loc>
     <lastmod>2024-12-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/analisis_sentimiento_llm/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/analisis_sentimiento_llm/</loc>
     <lastmod>2024-12-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2024-12-21/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2024-12-21/</loc>
     <lastmod>2024-12-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/2024-12-20/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/2024-12-20/</loc>
     <lastmod>2024-12-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/app_temperaturas_chile/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/app_temperaturas_chile/</loc>
     <lastmod>2024-12-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/pal_asistentes_llm/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/pal_asistentes_llm/</loc>
     <lastmod>2024-12-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/regresion_ciclismo/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/regresion_ciclismo/</loc>
     <lastmod>2024-12-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/portafolio_trabajos_r/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/portafolio_trabajos_r/</loc>
     <lastmod>2024-11-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/tutorial_mapa_chile/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/tutorial_mapa_chile/</loc>
     <lastmod>2024-11-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/clases/spatiallab_shiny_2/</loc>
+    <loc>https://bastianoleah.netlify.app/clases/spatiallab_shiny_2/</loc>
     <lastmod>2024-11-21T19:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/tutorial_gt/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/tutorial_gt/</loc>
     <lastmod>2024-11-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/contar_dias_habiles/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/contar_dias_habiles/</loc>
     <lastmod>2024-11-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/limpieza_tips/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/limpieza_tips/</loc>
     <lastmod>2024-11-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/casen_introduccion/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/casen_introduccion/</loc>
     <lastmod>2024-11-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/convertr/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/convertr/</loc>
     <lastmod>2024-11-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/ggplot_nubes/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/ggplot_nubes/</loc>
     <lastmod>2024-11-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/hugo_blog_nuevo/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/hugo_blog_nuevo/</loc>
     <lastmod>2024-11-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/tutorial_digitalocean/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/tutorial_digitalocean/</loc>
     <lastmod>2024-11-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/benchmark_ejemplo/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/benchmark_ejemplo/</loc>
     <lastmod>2024-11-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/simel_scraping/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/simel_scraping/</loc>
     <lastmod>2024-11-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/elecciones_municipales_2024/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/elecciones_municipales_2024/</loc>
     <lastmod>2024-10-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/categories/an%C3%A1lisis-de-texto/</loc>
+    <loc>https://bastianoleah.netlify.app/categories/an%C3%A1lisis-de-texto/</loc>
     <lastmod>2024-10-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/introduccion_llm_mall/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/introduccion_llm_mall/</loc>
     <lastmod>2024-10-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/clases/spatiallab_shiny_1/</loc>
+    <loc>https://bastianoleah.netlify.app/clases/spatiallab_shiny_1/</loc>
     <lastmod>2024-10-16T19:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/numeros_romanos/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/numeros_romanos/</loc>
     <lastmod>2024-09-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/categories/procesamiento-de-datos/</loc>
+    <loc>https://bastianoleah.netlify.app/categories/procesamiento-de-datos/</loc>
     <lastmod>2024-09-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/evitar_errores/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/evitar_errores/</loc>
     <lastmod>2024-09-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/tutorial_mapas_osm/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/tutorial_mapas_osm/</loc>
     <lastmod>2024-09-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/app_prensa_chile/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/app_prensa_chile/</loc>
     <lastmod>2024-08-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/app_delincuencia_chile/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/app_delincuencia_chile/</loc>
     <lastmod>2024-07-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/app_censo_proyecciones/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/app_censo_proyecciones/</loc>
     <lastmod>2024-06-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/app_comparador_mapas_chile/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/app_comparador_mapas_chile/</loc>
     <lastmod>2024-06-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/tutorial_mapa_urbano/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/tutorial_mapa_urbano/</loc>
     <lastmod>2024-06-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/app_economia_chile/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/app_economia_chile/</loc>
     <lastmod>2024-05-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/app_corrupcion_chile/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/app_corrupcion_chile/</loc>
     <lastmod>2024-05-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/app_millonarios_chile/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/app_millonarios_chile/</loc>
     <lastmod>2024-03-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/app_femicidios_chile/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/app_femicidios_chile/</loc>
     <lastmod>2024-02-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/app_casen_genero_brechas/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/app_casen_genero_brechas/</loc>
     <lastmod>2024-01-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/app_casen_comparador_ingresos/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/app_casen_comparador_ingresos/</loc>
     <lastmod>2024-01-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/app_casen_relacionador/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/app_casen_relacionador/</loc>
     <lastmod>2024-01-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/tutorial_delitos_cead/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/tutorial_delitos_cead/</loc>
     <lastmod>2023-09-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/blog/app_cep_graficador/</loc>
+    <loc>https://bastianoleah.netlify.app/blog/app_cep_graficador/</loc>
     <lastmod>2023-06-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/contacto/</loc>
+    <loc>https://bastianoleah.netlify.app/contacto/</loc>
     <lastmod>2019-02-25T13:38:41-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/form/</loc>
+    <loc>https://bastianoleah.netlify.app/form/</loc>
     <lastmod>2019-02-25T13:38:41-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:4119/about/</loc>
+    <loc>https://bastianoleah.netlify.app/about/</loc>
   </url><url>
-    <loc>http://localhost:4119/code-of-conduct/</loc>
+    <loc>https://bastianoleah.netlify.app/code-of-conduct/</loc>
   </url><url>
-    <loc>http://localhost:4119/contributors/</loc>
+    <loc>https://bastianoleah.netlify.app/contributors/</loc>
   </url><url>
-    <loc>http://localhost:4119/license/</loc>
+    <loc>https://bastianoleah.netlify.app/license/</loc>
   </url><url>
-    <loc>http://localhost:4119/tutoriales/</loc>
+    <loc>https://bastianoleah.netlify.app/tutoriales/</loc>
   </url>
 </urlset>

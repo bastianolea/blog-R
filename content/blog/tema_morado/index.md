@@ -2,12 +2,12 @@
 title: Temas morados oscuro y claro para RStudio
 author: Bastián Olea Herrera
 format: hugo-md
-date: 2025-12-03
+# date: 2025-12-03
+date: 2026-04-23
 tags:
   - curiosidades
 lang: es
-excerpt: >-
-  Agrégale moradito a tu análisis de datos! Tema para RStudio enfocado en una paleta de colores morada y rosada, basado en el tema _base16 Default Dark_ de [`{rsthemes}`](https://github.com/gadenbuie/rsthemes?tab=readme-ov-file), el cual a su vez se basa en [base16](https://github.com/chriskempson/base16).
+excerpt: "¡Agrégale moradito a tu análisis de datos! Tema para RStudio enfocado en una paleta de colores morada y rosada, basado en el tema _base16 Default Dark_ de [`{rsthemes}`](https://github.com/gadenbuie/rsthemes?tab=readme-ov-file). Ahora actualizado para la última versión de RStudio."
 links:
 - icon: brush
   icon_pack: fas
@@ -15,12 +15,7 @@ links:
   url: https://github.com/bastianolea/rstudio_purple_dark_theme
 ---
 
-
-<div style = "max-width: 300px;">
-
-<img style = "border-radius: 7px;" src = tema-featured.png>
-
-</div>
+{{< imagen "tema-featured.png" >}}
 
 ## Tema morado oscuro
 
