@@ -2,10 +2,8 @@
 title: "Tutorial: generar tablas atractivas y personalizables con {gt}"
 author: Bastián Olea Herrera
 date: '2024-11-19'
-slug: []
-draft: false
 format: "hugo-md"
-# format: html
+freeze: true
 categories:
   - tutoriales
 tags:
@@ -755,11 +753,7 @@ De esta forma, usamos un poco de magia de iteraciones con `{purrr}` y sintaxis a
 - https://themockup.blog/static/resources/gt-cookbook.html#table-customization
 - https://gt.albert-rapp.de
 
-
-----
-
-
-Si este tutorial te sirvió, por favor considera hacerme una pequeña donación para poder tomarme un cafecito mientras escribo el siguiente tutorial 🥺
+{{< etiqueta "tablas" >}}
 
 {{< cafecito >}}
 

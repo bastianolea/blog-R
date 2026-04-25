@@ -2,10 +2,8 @@
 title: "Tutorial: generar tablas atractivas y personalizables con {gt}"
 author: Bastián Olea Herrera
 date: '2024-11-19'
-slug: []
-draft: false
 format: "hugo-md"
-# format: html
+freeze: true
 categories:
   - tutoriales
 tags:
@@ -19,9 +17,6 @@ execute:
   warning: false
 excerpt: El paquete de R `{gt}` genera tablas para presentar tus datos. Produce tablas atractivas con muy pocas líneas de código, y al mismo tiempo ofrece una alta capacidad de personalización de las tablas. En este artículo te mostraré tres ejemplos de creación de distintas tablas basadas en datos reales.
 ---
-
-
-
 
 
 
@@ -44,9 +39,6 @@ En este artículo te mostraré tres ejemplos de creación de distintas tablas ba
 El primer ejemplo de tabla se basará en los datos de [estimaciones de pobreza comunal del año 2022, producidos por el Ministerio de Desarrollo Social](https://bidat.midesof.cl/directorio/Pobreza%20comunal/estimaciones-de-pobreza-comunal-2022) de Chile.
 
 El primer paso será [obtener los datos oficiales.](https://bidat.midesof.cl/directorio/Pobreza%20comunal/estimaciones-de-pobreza-comunal-2022) Por conveniencia, tengo la tabla con los datos originales pre-procesada [en un repositorio sobre datos de pobreza en Chile](https://github.com/bastianolea/pobreza_chile), por lo que es posible importar los datos limpios en una sola línea de código:
-
-
-
 
 
 ``` r
@@ -73,15 +65,9 @@ pobreza
 ## # ℹ 1 more variable: limite_superior <dbl>
 ```
 
-
-
-
 Podemos ver que los datos corresponden a 345 filas con información de las comunas, su población, y las cifras de pobreza en números absolutos y porcentaje. 
 
 Para el ejemplo, primero obtendremos 7 filas al azar y seleccionaremos solamente las columnas que nos interesan. Teniendo cualquier tabla de datos en R, si le agregamos la función `gt()` crearemos una tabla `{gt}` con las configuraciones por defecto:
-
-
-
 
 
 ``` r

@@ -3,11 +3,10 @@ title: Visualizar un mapa de Chile separado en tres secciones
 author: Bastián Olea Herrera
 date: '2025-10-23'
 freeze: true
-slug: []
-categories: []
+categories:
+  - Tutoriales
 tags:
   - mapas
-  - Chile
 format:
   hugo-md:
     output-file: index
@@ -75,11 +74,13 @@ mapa |>
   theme_minimal()
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
+<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-1-1.png" width="768" />
 
 Aquí se nota al tiro el problema: el país es tan delgado y alto 🫦 que si contamos con poco espacio vertical, no se notan los detalles y dejamos márgenes sin uso.
 
 Si la visualización se demora mucho en generar en tu computador, prueba [simplificando los detalles del mapa.](../../../blog/simplificar_mapas/)
+
+{{< relacionada "blog/mapas_sf/" >}}
 
 ## Cortar mapa de Chile continental
 
@@ -99,7 +100,7 @@ mapa |>
   theme_minimal(base_size = 8)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
+<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
 
 Uno de los pasos para el recorte fue *reproyectar* el mapa, dado que vienen con un sistema de coordenadas distinto al que típicamente se usa. Al reproyectar, las coordenadas pasan a estar en grados decimales.
 
@@ -206,6 +207,8 @@ mapa_sur <- mapa_base +
            ylim = c(cortes$norte[3], cortes$sur[3]))
 ```
 
+{{< relacionada "blog/mapa_chile_horizontal/" >}}
+
 ## Unir mapas
 
 El paso final es **unir** los tres gráficos: [como detallamos en un post anterior](../../../blog/patchwork/), con el paquete [`{patchwork}`](https://patchwork.data-imaginist.com/articles/patchwork.html) podemos unir y combinar gráficos de `{ggplot2}`, y la sintaxis es muy simple: si conectas los gráficos con el signo `+` se unirán lado a lado, si los *divides* con `/` aparecerán uno sobre otro. Con el signo `&` puedes agregar capas a todos los gráficos de una.
@@ -219,7 +222,7 @@ mapa_norte + mapa_centro + mapa_sur +
   theme(axis.text.x = element_blank())
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="1800" />
+<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="1800" />
 
 Listo! Ahora el mapa cabe mucho mejor en una hoja, página o imagen.
 
@@ -247,4 +250,8 @@ mapa_norte + mapa_centro + mapa_sur +
   theme(axis.text.x = element_blank())
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-10-1.png" width="768" />
+<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
+
+{{< relacionada "blog/tutorial_mapa_urbano/" >}}
+{{< etiqueta "mapas" >}}
+{{< cafecito >}}

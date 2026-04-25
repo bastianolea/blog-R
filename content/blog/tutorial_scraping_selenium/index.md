@@ -3,7 +3,7 @@ title: 'Tutorial: web scraping controlando un navegador web con {RSelenium} en R
 author: Bastián Olea Herrera
 date: '2025-07-15'
 draft: false
-freeze: true
+freeze: false
 format:
   hugo-md:
     output-file: index
@@ -34,6 +34,8 @@ En este tutorial aprenderemos a usar `{RSelenium}` para programar scripts de R q
 {{< aviso "Si necesitas aprender lo básico del web scraping, primero [revisa este tutorial de `{rvest}`](/blog/tutorial_scraping_rvest/)" >}}
 
 En otro post aprendimos a [hacer web scraping con `{rvest}`](../../../blog/tutorial_scraping_rvest/), un paquete muy sencillo de usar para obtener información desde sitios web. Entonces ¿por qué aprender también `{RSelenium}`? La diferencia es que Selenium es capaz de controlar un *navegador web real* en tu computador, como Chrome o Firefox, lo cual puede marcar la diferencia para extraer datos de sitios que buscan dificultar o impedir el acceso a herramientas automatizadas de web scraping.
+
+{{< relacionada "blog/r_introduccion/web_scraping" >}}
 
 ### Iniciar un cliente
 
@@ -303,8 +305,7 @@ ventana_ancho <- remote$executeScript("return window.innerWidth")[[1]]
 
 Usa [Selenium IDE](https://addons.mozilla.org/en-US/firefox/addon/selenium-ide/) para grabar interacciones con un sitio. Puedes instalar esta extensión de Firefox para *grabar* tu interacción con un sitio web, y que queden registrado todos los pasos que hiciste en el sitio, de manera que puedas reproducirlos después en un script.
 
-------------------------------------------------------------------------
-
+{{< etiqueta "web scraping" >}}
 {{< cafecito >}}
 {{< cursos >}}
 

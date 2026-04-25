@@ -3,8 +3,7 @@ title: Visualizar un mapa de Chile separado en tres secciones
 author: Bastián Olea Herrera
 date: '2025-10-23'
 freeze: true
-slug: []
-categories: []
+categories: ['Tutoriales']
 tags:
   - mapas
 format:
@@ -50,7 +49,12 @@ unzip("Regiones.zip", exdir = "Regiones")
 
 Cargamos el _shape_ con la función `read_sf()` [del paquete `{sf}`](/blog/mapas_sf/). Si es tu primera vez haciendo mapas, revisa [esta guía](/blog/mapas_sf/). 
 
-```{r}
+```{r descomprimir}
+#| echo: false
+unzip("Regiones.zip", exdir = "Regiones")
+```
+
+```{r cargar}
 #| message: false
 library(sf)
 
@@ -59,10 +63,9 @@ mapa <- read_sf("Regiones")
 
 ```{r limpieza}
 #| echo: false
-#| eval: false
+#| eval: true
 
-file.remove("Regiones.zip")
-
+# file.remove("Regiones.zip")
 unlink("Regiones", recursive = TRUE)
 ```
 
@@ -86,6 +89,8 @@ mapa |>
 Aquí se nota al tiro el problema: el país es tan delgado y alto 🫦 que si contamos con poco espacio vertical, no se notan los detalles y dejamos márgenes sin uso.
 
 Si la visualización se demora mucho en generar en tu computador, prueba [simplificando los detalles del mapa.](/blog/simplificar_mapas/)
+
+{{< relacionada "blog/mapas_sf/" >}}
 
 ## Cortar mapa de Chile continental
 
@@ -194,6 +199,7 @@ mapa_sur <- mapa_base +
            ylim = c(cortes$norte[3], cortes$sur[3]))
 ```
 
+{{< relacionada "blog/mapa_chile_horizontal/" >}}
 
 ## Unir mapas
 
@@ -238,3 +244,9 @@ mapa_norte + mapa_centro + mapa_sur +
        subtitle = "dividido en tres secciones") &
   theme(axis.text.x = element_blank())
 ```
+
+{{< relacionada "blog/tutorial_mapa_urbano/" >}}
+
+{{< etiqueta "mapas" >}}
+
+{{< cafecito >}}

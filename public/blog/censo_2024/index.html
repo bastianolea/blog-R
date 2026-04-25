@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-ES" dir="ltr"><head>
+<html lang="es-ES" dir="ltr"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=7578&amp;path=livereload" data-no-instant defer></script>
   
                            
      
@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.152.2">
 <title>Explorar datos del Censo de Población y Vivienda 2024 con R | Bastián Olea</title>
 
 
@@ -31,16 +31,16 @@
 <meta property="og:title" content="Explorar datos del Censo de Población y Vivienda 2024 con R | Bastián Olea">
 <meta property="og:description" content="Una de las dificultades más frecuentes en el análisis de datos es poder acceder a datos censales, porque su tamaño suele ser muy grande para la mayoría de los computadores, o bien imposible de abrir con programas como Excel. En este tutorial veremos cómo cargar los datos del Censo 2024 de Chile con R, accediendo a bases de datos de millones de observaciones para calcular estadísticas poblacionales sin colapsar nuestros computadores." />
 <meta property="og:type" content="page" />
-<meta property="og:url" content="https://bastianoleah.netlify.app/blog/censo_2024/" />
+<meta property="og:url" content="http://localhost:7578/blog/censo_2024/" />
 <meta property="og:locale" content="es-ES">
 
 
 
 
     
-        <meta property="og:image" content="https://bastianoleah.netlify.app/blog/censo_2024/censo-featured.jpg" >
+        <meta property="og:image" content="http://localhost:7578/blog/censo_2024/censo-featured.jpg" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="https://bastianoleah.netlify.app/blog/censo_2024/censo-featured.jpg" >
+        <meta name="twitter:image" content="http://localhost:7578/blog/censo_2024/censo-featured.jpg" >
     
     
   
@@ -50,7 +50,7 @@ En este tutorial veremos cómo cargar los datos del Censo de Población y Vivien
   <meta itemprop="datePublished" content="2026-04-08T00:00:00+00:00">
   <meta itemprop="dateModified" content="2026-04-08T00:00:00+00:00">
   <meta itemprop="wordCount" content="5130">
-  <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/censo_2024/censo-featured.jpg">
+  <meta itemprop="image" content="http://localhost:7578/blog/censo_2024/censo-featured.jpg">
   <meta itemprop="keywords" content="Datos,Chile,Procesamiento de datos">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -58,16 +58,16 @@ En este tutorial veremos cómo cargar los datos del Censo de Población y Vivien
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.4d1b7c7668d9201215b61874a510943c2c9f79756154013070eed3e6db3db62d.css" integrity="sha256-TRt8dmjZIBIVthh0pRCUPCyfeXVhVAEwcO7T5ts9ti0=" media="screen">
+  <link rel="stylesheet" href="../../style.main.min.d9ed2a398ab5c329e022a62a470632e351726128d0ab57b38795c58be2a3555d.css" integrity="sha256-2e0qOYq1wyngIqYqRwYy41FyYSjQq1ezh5XFi&#43;KjVV0=" media="screen">
   
   
-  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  <script src="../../panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="../../main.min.858230d8d39b17ec435a8cd8991902766cb7afe0621875ffe5fcdf376474ca6e.js" type="text/javascript"></script>
   
   
-  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
   
   
   <link rel="preload" href="https://bastianoleah.shinyapps.io/buscador/" as="image">
@@ -76,15 +76,15 @@ En este tutorial veremos cómo cargar los datos del Censo de Población y Vivien
       <div class="grid-container single-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianoleah.netlify.app/" title="Home">
-      <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="http://localhost:7578/" title="Home">
+      <img src="../../img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 active" href="/blog/" title="Bastián Olea: Blog de R">Blog</a>
+      <a class="link f6 f5-l dib pv1 ph2 active" href="../../blog/" title="Bastián Olea: Blog de R">Blog</a>
       
         
         
@@ -109,27 +109,27 @@ En este tutorial veremos cómo cargar los datos del Censo de Población y Vivien
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="/tags/" title="Temas">Temas</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../tags/" title="Temas">Temas</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="/clases/" title="Cursos">Cursos</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../clases/" title="Cursos">Cursos</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/tutoriales/" title="Tutoriales">Tutoriales</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../categories/tutoriales/" title="Tutoriales">Tutoriales</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="/blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="/about/" title="Bastián Olea: Sobre mi">Yo</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../about/" title="Bastián Olea: Sobre mi">Yo</a>
       
       
       
@@ -228,7 +228,7 @@ En este tutorial veremos cómo cargar los datos del Censo de Población y Vivien
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="../../contacto/" title="envelope" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-envelope fa-lg fa-fw"></i>
     </a>
@@ -265,7 +265,7 @@ En este tutorial veremos cómo cargar los datos del Censo de Población y Vivien
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/datos"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:7578/tags/datos"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -274,7 +274,7 @@ En este tutorial veremos cómo cargar los datos del Censo de Población y Vivien
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            datos</a>  <a href="https://bastianoleah.netlify.app/tags/chile"
+            datos</a>  <a href="http://localhost:7578/tags/chile"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -283,7 +283,7 @@ En este tutorial veremos cómo cargar los datos del Censo de Población y Vivien
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            chile</a>  <a href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos"
+            chile</a>  <a href="http://localhost:7578/tags/procesamiento-de-datos"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -385,7 +385,7 @@ Resultados Censo 2024</a>
       Publicaciones relacionadas
     </p>
 
-  <a href="/blog/casen_introduccion/"
+  <a href="../../blog/casen_introduccion/"
      style="display: flex;
             flex-direction: row;
             align-items: stretch;
@@ -634,8 +634,8 @@ Descargar diccionario de variables</a>
   
   <aside style = "font-size: 90%;">
     Revisa estos tutoriales sobre 
-<a href="/blog/r_introduccion/dplyr_summarize/">resúmenes de datos</a> y 
-<a href="/blog/estadisticos_descriptivos/">estadísticos descriptivos</a> para complementar esta sección del tutorial!
+<a href="../../blog/r_introduccion/dplyr_summarize/">resúmenes de datos</a> y 
+<a href="../../blog/estadisticos_descriptivos/">estadísticos descriptivos</a> para complementar esta sección del tutorial!
   </aside>
   
 </div>
@@ -890,7 +890,7 @@ Población chilena por región, Censo 2024
   
   <aside style = "font-size: 90%;">
     Si quieres aprender a usar <code>left_join()</code> para cruzar datos, 
-<a href="/blog/left_join/">revisa este tutorial!</a>
+<a href="../../blog/left_join/">revisa este tutorial!</a>
   </aside>
   
 </div>
@@ -1036,7 +1036,7 @@ Población chilena por región y área, Censo 2024
   
   <aside style = "font-size: 90%;">
     Si quieres aprender a usar <code>pivot_wider()</code> y <code>pivot_longer()</code> para transformar datos o pivotar tablas, 
-<a href="/blog/r_introduccion/tidyr_pivotar/">revisa este tutorial!</a>
+<a href="../../blog/r_introduccion/tidyr_pivotar/">revisa este tutorial!</a>
   </aside>
   
 </div>
@@ -1205,7 +1205,7 @@ Población chilena por región y área, Censo 2024
   
   <aside style = "font-size: 90%;">
     Si necesitas aprender a cruzar bases de datos con R, revisa este tutorial sobre 
-<a href="/blog/left_join/">left_join()</a>.
+<a href="../../blog/left_join/">left_join()</a>.
   </aside>
   
 </div>
@@ -1436,7 +1436,7 @@ Población chilena por región y área, Censo 2024
       Publicaciones relacionadas
     </p>
 
-  <a href="/blog/mapas_censo_2024/"
+  <a href="../../blog/mapas_censo_2024/"
      style="display: flex;
             flex-direction: row;
             align-items: stretch;
@@ -1455,7 +1455,7 @@ Población chilena por región y área, Censo 2024
                    margin: 10px 0 10px 10px;
                    overflow: hidden;
                    border-radius: 5px;">
-      <img src="/blog/mapas_censo_2024/featured.png"
+      <img src="../../blog/mapas_censo_2024/featured.png"
            alt="Visualiza datos del Censo 2024 en mapas a nivel de manzana con R"
            style="position: absolute;
                   inset: 0;
@@ -1811,7 +1811,7 @@ caption = "Fuente: Censo 2024, INE")
                 overflow: hidden;
                 background-color: #9069C00d;">
 
-      <a href="/blog/app_densidad_comunas/"
+      <a href="../../blog/app_densidad_comunas/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -1823,7 +1823,7 @@ caption = "Fuente: Censo 2024, INE")
                   transition: background-color 0.15s ease;">
 
           
-          <img src="/blog/app_densidad_comunas/featured.png"
+          <img src="../../blog/app_densidad_comunas/featured.png"
                alt="Aplicación: Visualizador de densidad de población urbana en comunas de Chile"
                style="flex-shrink: 0;
                       width: 52px;
@@ -1842,7 +1842,7 @@ caption = "Fuente: Censo 2024, INE")
           </span>
 
         </a>
-      <a href="/blog/indice_brechas_genero/"
+      <a href="../../blog/indice_brechas_genero/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -1854,7 +1854,7 @@ caption = "Fuente: Censo 2024, INE")
                   transition: background-color 0.15s ease;">
 
           
-          <img src="/blog/indice_brechas_genero/featured.jpg"
+          <img src="../../blog/indice_brechas_genero/featured.jpg"
                alt="Plataforma de análisis: Índice de Brechas de Género"
                style="flex-shrink: 0;
                       width: 52px;
@@ -1873,7 +1873,7 @@ caption = "Fuente: Censo 2024, INE")
           </span>
 
         </a>
-      <a href="/blog/estudio_brechas_comunales/"
+      <a href="../../blog/estudio_brechas_comunales/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -1885,7 +1885,7 @@ caption = "Fuente: Censo 2024, INE")
                   transition: background-color 0.15s ease;">
 
           
-          <img src="/blog/estudio_brechas_comunales/featured.jpeg"
+          <img src="../../blog/estudio_brechas_comunales/featured.jpeg"
                alt="Plataforma de visualización de resultados del Estudio de Brechas Comunales"
                style="flex-shrink: 0;
                       width: 52px;
@@ -1904,7 +1904,7 @@ caption = "Fuente: Censo 2024, INE")
           </span>
 
         </a>
-      <a href="/blog/2026-03-12/"
+      <a href="../../blog/2026-03-12/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -1916,7 +1916,7 @@ caption = "Fuente: Censo 2024, INE")
                   transition: background-color 0.15s ease;">
 
           
-          <img src="/blog/2026-03-12/santiagorusers-featured.jpg"
+          <img src="../../blog/2026-03-12/santiagorusers-featured.jpg"
                alt="Primera reunión: grupo de usuari@s de R, Santiago de Chile"
                style="flex-shrink: 0;
                       width: 52px;
@@ -1935,7 +1935,7 @@ caption = "Fuente: Censo 2024, INE")
           </span>
 
         </a>
-      <a href="/blog/app_suicidios_genero/"
+      <a href="../../blog/app_suicidios_genero/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -1947,7 +1947,7 @@ caption = "Fuente: Censo 2024, INE")
                   transition: background-color 0.15s ease;">
 
           
-          <img src="/blog/app_suicidios_genero/suicidios_genero_1_featured.png"
+          <img src="../../blog/app_suicidios_genero/suicidios_genero_1_featured.png"
                alt="App: Suicidios en Chile (2017-2024) desde una perspectiva de género"
                style="flex-shrink: 0;
                       width: 52px;
@@ -1988,7 +1988,7 @@ caption = "Fuente: Censo 2024, INE")
                 overflow: hidden;
                 background-color: #9069C00d;">
 
-      <a href="/blog/indice_brechas_genero/"
+      <a href="../../blog/indice_brechas_genero/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -2000,7 +2000,7 @@ caption = "Fuente: Censo 2024, INE")
                   transition: background-color 0.15s ease;">
 
           
-          <img src="/blog/indice_brechas_genero/featured.jpg"
+          <img src="../../blog/indice_brechas_genero/featured.jpg"
                alt="Plataforma de análisis: Índice de Brechas de Género"
                style="flex-shrink: 0;
                       width: 52px;
@@ -2019,7 +2019,7 @@ caption = "Fuente: Censo 2024, INE")
           </span>
 
         </a>
-      <a href="/blog/estudio_brechas_comunales/"
+      <a href="../../blog/estudio_brechas_comunales/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -2031,7 +2031,7 @@ caption = "Fuente: Censo 2024, INE")
                   transition: background-color 0.15s ease;">
 
           
-          <img src="/blog/estudio_brechas_comunales/featured.jpeg"
+          <img src="../../blog/estudio_brechas_comunales/featured.jpeg"
                alt="Plataforma de visualización de resultados del Estudio de Brechas Comunales"
                style="flex-shrink: 0;
                       width: 52px;
@@ -2050,7 +2050,7 @@ caption = "Fuente: Censo 2024, INE")
           </span>
 
         </a>
-      <a href="/blog/datos_estructurados_llm/"
+      <a href="../../blog/datos_estructurados_llm/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -2078,7 +2078,7 @@ caption = "Fuente: Censo 2024, INE")
           </span>
 
         </a>
-      <a href="/blog/app_suicidios_genero/"
+      <a href="../../blog/app_suicidios_genero/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -2090,7 +2090,7 @@ caption = "Fuente: Censo 2024, INE")
                   transition: background-color 0.15s ease;">
 
           
-          <img src="/blog/app_suicidios_genero/suicidios_genero_1_featured.png"
+          <img src="../../blog/app_suicidios_genero/suicidios_genero_1_featured.png"
                alt="App: Suicidios en Chile (2017-2024) desde una perspectiva de género"
                style="flex-shrink: 0;
                       width: 52px;
@@ -2109,7 +2109,7 @@ caption = "Fuente: Censo 2024, INE")
           </span>
 
         </a>
-      <a href="/blog/mapas_censo_2024/"
+      <a href="../../blog/mapas_censo_2024/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -2121,7 +2121,7 @@ caption = "Fuente: Censo 2024, INE")
                   transition: background-color 0.15s ease;">
 
           
-          <img src="/blog/mapas_censo_2024/featured.png"
+          <img src="../../blog/mapas_censo_2024/featured.png"
                alt="Visualiza datos del Censo 2024 en mapas a nivel de manzana con R"
                style="flex-shrink: 0;
                       width: 52px;
@@ -2153,7 +2153,10 @@ caption = "Fuente: Censo 2024, INE")
   <div style="display: flex;
   justify-content: center;
   align-items: center;">
-    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="bastimapache" data-color="#FFDD00" data-emoji="☕"  data-font="Cookie" data-text="Regálame un cafecito" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="bastimapache" 
+    data-color="#D6B9E8" data-emoji="<i class='fa fa-mug-saucer'></i>"  data-font="Cookie" 
+    data-text="Regálame un cafecito" 
+    data-outline-color="#000000" data-font-color="#543A73" data-coffee-color="#ffffff" ></script>
   </div></p>
  
     </section>
@@ -2163,12 +2166,12 @@ caption = "Fuente: Censo 2024, INE")
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/tema_morado/">&larr; Temas morados oscuro y claro para RStudio</a>
+    href="http://localhost:7578/blog/tema_morado/">&larr; Temas morados oscuro y claro para RStudio</a>
   
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/curso_gratis_r_intro_2/">Curso gratuito: introducción al análisis de datos con R, 2ª versión &rarr;</a>
+    href="http://localhost:7578/blog/curso_gratis_r_intro_2/">Curso gratuito: introducción al análisis de datos con R, 2ª versión &rarr;</a>
   
 </div>
 
@@ -2210,24 +2213,24 @@ caption = "Fuente: Censo 2024, INE")
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Categorías:</dt>
-    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/categories/tutoriales">Tutoriales</a> </dd>
+    <dd class="fw5 ml0"> <a href="http://localhost:7578/categories/tutoriales">Tutoriales</a> </dd>
   </dl>
   
   
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Tags:</dt>
-    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/datos">datos</a>  <a href="https://bastianoleah.netlify.app/tags/chile">chile</a>  <a href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos">procesamiento de datos</a> </dd>
+    <dd class="fw5 ml0"> <a href="http://localhost:7578/tags/datos">datos</a>  <a href="http://localhost:7578/tags/chile">chile</a>  <a href="http://localhost:7578/tags/procesamiento-de-datos">procesamiento de datos</a> </dd>
   </dl>
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
-    <dd class="fw5 ml0"><a href="/blog/indice_brechas_genero/">Plataforma de análisis: Índice de Brechas de Género</a></dd>
+    <dd class="fw5 ml0"><a href="../../blog/indice_brechas_genero/">Plataforma de análisis: Índice de Brechas de Género</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/estudio_brechas_comunales/">Plataforma de visualización de resultados del Estudio de Brechas Comunales</a></dd>
+    <dd class="fw5 ml0"><a href="../../blog/estudio_brechas_comunales/">Plataforma de visualización de resultados del Estudio de Brechas Comunales</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/datos_estructurados_llm/">Extracción de datos estructurados desde texto usando IA</a></dd>
+    <dd class="fw5 ml0"><a href="../../blog/datos_estructurados_llm/">Extracción de datos estructurados desde texto usando IA</a></dd>
     
   </dl>
 </details>
@@ -2246,7 +2249,7 @@ caption = "Fuente: Censo 2024, INE")
   <h1 class="f3">Blog</h1>
   <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
 <a href="https://bastianoleah.shinyapps.io/buscador/" target="_blank" rel="noopener">buscador</a> para encontrar publicaciones o navega los 
-<a href="/tags/">temas</a>.</p>
+<a href="../../tags/">temas</a>.</p>
   
 
    
@@ -2269,7 +2272,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/chile/">Chile</a></span>
+      href="http://localhost:7578/tags/chile/">Chile</a></span>
   </span>
  
   
@@ -2284,7 +2287,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/datos/">Datos</a></span>
+      href="http://localhost:7578/tags/datos/">Datos</a></span>
   </span>
  
   
@@ -2299,7 +2302,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
+      href="http://localhost:7578/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -2314,7 +2317,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="http://localhost:7578/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -2329,7 +2332,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="http://localhost:7578/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -2344,7 +2347,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/blog/">Blog</a></span>
+      href="http://localhost:7578/tags/blog/">Blog</a></span>
   </span>
  
   
@@ -2359,7 +2362,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
+      href="http://localhost:7578/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -2374,7 +2377,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
+      href="http://localhost:7578/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -2389,7 +2392,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ggplot2/">Ggplot2</a></span>
+      href="http://localhost:7578/tags/ggplot2/">Ggplot2</a></span>
   </span>
  
   
@@ -2404,7 +2407,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/web-scraping/">Web scraping</a></span>
+      href="http://localhost:7578/tags/web-scraping/">Web scraping</a></span>
   </span>
  
   
@@ -2419,7 +2422,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/b%C3%A1sico/">Básico</a></span>
+      href="http://localhost:7578/tags/b%C3%A1sico/">Básico</a></span>
   </span>
  
   
@@ -2434,7 +2437,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="http://localhost:7578/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -2449,7 +2452,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
+      href="http://localhost:7578/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -2464,7 +2467,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="http://localhost:7578/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -2479,7 +2482,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/curiosidades/">Curiosidades</a></span>
+      href="http://localhost:7578/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -2494,7 +2497,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="http://localhost:7578/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -2509,7 +2512,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/quarto/">Quarto</a></span>
+      href="http://localhost:7578/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -2524,7 +2527,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/dplyr/">Dplyr</a></span>
+      href="http://localhost:7578/tags/dplyr/">Dplyr</a></span>
   </span>
  
   
@@ -2539,7 +2542,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/texto/">Texto</a></span>
+      href="http://localhost:7578/tags/optimizaci%C3%B3n/">Optimización</a></span>
   </span>
  
   
@@ -2554,10 +2557,10 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/loops/">Loops</a></span>
+      href="http://localhost:7578/tags/texto/">Texto</a></span>
   </span>
 
-<a href="/tags/" style="margin-left: 3px;">y más!</a>
+<a href="../../tags/" style="margin-left: 3px;">y más!</a>
 </div>
 </div>
   
@@ -2712,7 +2715,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="../../contacto/" title="envelope" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-envelope fa-lg fa-fw"></i>
     </a>
@@ -2723,19 +2726,19 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
     <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
       
-      <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
+      <a class="dib pv1 ph2 link" href="../../about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
       
       <a class="dib pv1 ph2 link" href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
       
-      <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
+      <a class="dib pv1 ph2 link" href="../../contacto/" title="Bastián Olea: Contacto">Contacto</a>
       
-      <a class="dib pv1 ph2 link" href="/tags/" title="Temas">Temas</a>
+      <a class="dib pv1 ph2 link" href="../../tags/" title="Temas">Temas</a>
       
-      <a class="dib pv1 ph2 link" href="/clases/" title="Clases">Clases</a>
+      <a class="dib pv1 ph2 link" href="../../clases/" title="Clases">Clases</a>
       
-      <a class="dib pv1 ph2 link" href="/code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
+      <a class="dib pv1 ph2 link" href="../../code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
       
-      <a class="dib pv1 ph2 link" href="/license/" title="Bastián Olea: Licencia">Licencia</a>
+      <a class="dib pv1 ph2 link" href="../../license/" title="Bastián Olea: Licencia">Licencia</a>
       
     </div>
   </nav>

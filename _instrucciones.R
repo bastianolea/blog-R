@@ -102,13 +102,14 @@ blogdown::new_post(title = "prueba",
 # {{< aviso "x" >}}
 # {{< info "x" >}}
 # {{< detalles "Hola" >}} {{< /detalles >}}
-# {{< boton "Buscador" "https://bastianoleah.shinyapps.io/buscador/" "fas fa-search" >}}
-# <i class='fas fa-chalkboard-user'></i>
-# <i class='fas fa-chalkboard-user' style='font-size: 200%'></i>
 
+# {{< boton "Buscador" "https://bastianoleah.shinyapps.io/buscador/" "fas fa-search" >}}
 # {{< relacionada "blog/estudio_brechas_comunales/" >}}
 # {{< etiqueta "apps" >}}
 
+# íconos
+# <i class='fas fa-chalkboard-user'></i>
+# <i class='fas fa-chalkboard-user' style='font-size: 200%'></i>
 
 
 ## archivos ----

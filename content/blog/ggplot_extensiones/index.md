@@ -2,9 +2,6 @@
 title: Extensiones recomendadas para mejorar tus gráficos de `{ggplot2}`
 author: Bastián Olea Herrera
 date: '2026-03-27'
-slug: []
-draft: false
-categories: []
 tags:
   - visualización de datos
   - ggplot2
@@ -257,3 +254,7 @@ Existen varias listas de extensiones de `{ggplot2}`:
 - [Lista oficial de extensiones](https://exts.ggplot2.tidyverse.org)
 - [Galería interactiva de extensiones](https://companion.ggplot2-extended-book.com)
 - [Libro _`ggplot2` extended_, de Antti Rask](https://ggplot2-extended-book.com)
+
+
+{{< etiqueta "visualización de datos" >}}
+

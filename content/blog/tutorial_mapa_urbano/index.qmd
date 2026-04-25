@@ -100,7 +100,10 @@ mapa |>
   # tema
   theme_void()
 ```
+
 Obtuvimos un mapa básico de todas las comunas de la Región Metropolitana de Santiago. 
+
+{{< relacionada "blog/mapas_sf/" >}}
 
 
 ### Mapa de la región con datos ficticios
@@ -128,6 +131,10 @@ mapa_datos |>
   geom_sf(col = "white") +
   theme_void()
 ```
+
+
+{{< relacionada "blog/tutorial_mapa_chile/" >}}
+
 
 ### Agregar datos obtenidos desde internet al mapa
 
@@ -348,6 +355,7 @@ mapa_urbano |>
   geom_sf(fill = "blueviolet", color = "white") +
   theme_void()
 ```
+
 De esta forma ya logramos graficar un mapa del Gran Santiago mucho más definido y limpio.
 
 ### Visualizar datos en el mapa urbano
@@ -387,6 +395,7 @@ ggplot() +
         legend.key.height = unit(10, "mm"),
         legend.ticks.length = unit(0.4, "mm"))
 ```
+
 También podemos recortar el mapa con `coord_sf()` para hacerle un poco de zoom a la zona urbana dentro del contexto de la región completa:
 
 ```{r region_urbana_fill_continuo_contexto_zoom}
@@ -410,7 +419,7 @@ ggplot() +
         legend.ticks.length = unit(0.4, "mm"))
 ```
 
-----
+{{< etiqueta "mapas" >}}
 
 {{< cafecito >}}
 

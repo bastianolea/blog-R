@@ -6,8 +6,7 @@ format:
     output-file: "index"
     output-ext: "md"
 date: '2025-03-04'
-slug: []
-categories: []
+categories: ['Tutoriales']
 freeze: true
 tags:
   - mapas
@@ -23,22 +22,13 @@ links:
     url: https://gist.github.com/bastianolea/8e3dff701fb660ee7cb5091bd1195b5f
 ---
 
-
-
 Visualizar un mapa de Chile puede ser complicado debido a su largo. Muchas veces cuesta ubicar correctamente el mapa por el espacio vertical que requiere. Pero en ciertos casos puede ser conveniente **visualizar a Chile _de lado_**, para aprovechar el espacio horizontal. 
 
 En esta guía veremos cómo rotar un mapa de Chile 90° hacia la izquierda en R para que quede acostado 💤🌙
 
-
-
 {{< aviso "Si necesitas aprender en profundidad la visualización de mapas con R, revisa mi [tutorial de mapas y datos espaciales con `{sf}`](/blog/mapas_sf/)." >}}
 
-
-
-
 Primero cargamos los paquetes necesarios:
-
-
 
 
 ``` r
@@ -49,11 +39,7 @@ library(dplyr) # manejo de datos tabulares
 library(readr) # cargar datos
 ```
 
-
-
 Obtenemos un mapa de Chile [gracias al paquete `{chilemapas}`](https://github.com/pachadotdev/chilemapas); en este caso un mapa del país por regiones:
-
-
 
 ``` r
 # obtener mapa
@@ -70,22 +56,22 @@ mapa_region
 ## Geodetic CRS:  SIRGAS 2000
 ## # A tibble: 16 × 2
 ##    codigo_region                                                        geometry
-##  * <chr>                                                          <GEOMETRY [°]>
-##  1 01            POLYGON ((-68.86081 -21.28512, -68.7581 -21.21752, -68.65677 -…
-##  2 02            MULTIPOLYGON (((-68.98863 -25.38016, -68.98522 -25.37566, -68.…
-##  3 03            MULTIPOLYGON (((-70.68641 -26.15053, -70.68923 -26.15726, -70.…
-##  4 04            MULTIPOLYGON (((-71.66962 -30.34526, -71.67234 -30.34574, -71.…
-##  5 05            MULTIPOLYGON (((-71.67929 -33.44583, -71.68012 -33.448, -71.67…
-##  6 06            POLYGON ((-71.1344 -34.78711, -71.12134 -34.80128, -71.09905 -…
-##  7 07            POLYGON ((-72.1032 -36.12348, -72.09964 -36.12574, -72.09894 -…
-##  8 08            MULTIPOLYGON (((-71.41259 -38.10669, -71.3922 -38.098, -71.383…
-##  9 09            MULTIPOLYGON (((-73.35579 -38.73982, -73.35306 -38.73343, -73.…
-## 10 10            MULTIPOLYGON (((-73.6175 -41.8142, -73.61389 -41.80392, -73.61…
-## 11 11            MULTIPOLYGON (((-74.34857 -45.02053, -74.34886 -45.02632, -74.…
-## 12 12            MULTIPOLYGON (((-71.18405 -52.8089, -71.17569 -52.80759, -71.1…
+##    <chr>                                                          <GEOMETRY [°]>
+##  1 01            POLYGON ((-69.93023 -21.4246, -69.92376 -21.42622, -69.91932 -…
+##  2 02            MULTIPOLYGON (((-68.0676 -24.32856, -67.91698 -24.26902, -67.8…
+##  3 03            MULTIPOLYGON (((-71.58497 -29.02456, -71.58844 -29.02838, -71.…
+##  4 04            MULTIPOLYGON (((-70.54551 -31.30742, -70.53877 -31.30074, -70.…
+##  5 05            MULTIPOLYGON (((-71.33832 -33.45237, -71.33763 -33.44836, -71.…
+##  6 06            POLYGON ((-71.5477 -34.87458, -71.54211 -34.87581, -71.53566 -…
+##  7 07            POLYGON ((-70.41724 -35.63022, -70.41108 -35.6302, -70.40146 -…
+##  8 08            MULTIPOLYGON (((-73.53466 -36.97378, -73.53245 -36.97829, -73.…
+##  9 09            MULTIPOLYGON (((-73.35306 -38.73343, -73.35396 -38.72799, -73.…
+## 10 10            MULTIPOLYGON (((-73.1691 -41.87755, -73.16135 -41.87781, -73.1…
+## 11 11            MULTIPOLYGON (((-75.41754 -48.73857, -75.43249 -48.74372, -75.…
+## 12 12            MULTIPOLYGON (((-70.35563 -52.94478, -70.34688 -52.93971, -70.…
 ## 13 13            POLYGON ((-70.47405 -33.8624, -70.47327 -33.86269, -70.46068 -…
-## 14 14            MULTIPOLYGON (((-71.65597 -40.35386, -71.65874 -40.34691, -71.…
-## 15 15            POLYGON ((-70.35079 -18.8362, -70.34707 -18.83939, -70.34351 -…
+## 14 14            MULTIPOLYGON (((-73.39503 -39.88698, -73.39672 -39.89339, -73.…
+## 15 15            POLYGON ((-69.07223 -19.02723, -69.06394 -19.02607, -69.04748 …
 ## 16 16            POLYGON ((-72.38553 -36.91169, -72.37685 -36.91617, -72.37034 …
 ```
 
@@ -98,13 +84,9 @@ mapa_region |>
   coord_sf(xlim = c(-80, -62))
 ```
 
-<img src="/blog/mapa_chile_horizontal/mapa_chile_horizontal_files/figure-html/unnamed-chunk-2-1.png" width="672" />
-
-
+<img src="/blog/mapa_chile_horizontal/mapa_chile_horizontal_files/figure-html/unnamed-chunk-1-1.png" alt="" width="672" />
 
 Cargamos algunos datos regionales para ponerle al mapa, sacados de mi proyecto de [visualización de datos económicos de Chile](https://bastianoleah.shinyapps.io/economia_chile/):
-
-
 
 ``` r
 # obtener datos
@@ -138,11 +120,7 @@ regiones <- tribble(~codigo_region, ~nombre_region,
                     "16", "Región de Magallanes y de la Antártica Chilena")
 ```
 
-
-
 Ahora que tenemos los datos listos, los agregamos al mapa [usando un `left_join()`](/blog/left_join/):
-
-
 
 
 ``` r
@@ -152,11 +130,7 @@ mapa_datos <- mapa_region |>
   left_join(datos_2, by = join_by(nombre_region))
 ```
 
-
-
 Finalmente, previsualizamos el mapa con los datos agregados:
-
-
 
 ``` r
 # visualizar mapa con datos
@@ -173,14 +147,11 @@ mapa_datos |>
         axis.ticks = element_blank())
 ```
 
-<img src="/blog/mapa_chile_horizontal/mapa_chile_horizontal_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="/blog/mapa_chile_horizontal/mapa_chile_horizontal_files/figure-html/unnamed-chunk-4-1.png" alt="" width="672" />
 
-
-
+{{< relacionada "blog/mapa_chile_triple/" >}}
 
 Ahora que tenemos un mapa de Chile con datos regionales, procedemos a **rotar el mapa**. Para esto, necesitamos una _matriz de rotación_, respecto de la cual no hay mucho que entender, salvo que nos permitirá multiplicar la geometría del mapa para obtener como resultado la misma geometría, pero rotada. El único detalle que hay que considerar es que es necesario **cambiar la proyección del mapa** para que la zona sur del país no se vea deformada.
-
-
 
 
 ``` r
@@ -195,11 +166,7 @@ mapa_rotado <- mapa_proyectado |>
   mutate(geometry = geometry * rotacion)
 ```
 
-
-
 Ahora visualizamos el **mapa reproyectado y rotado**:
-
-
 
 
 ``` r
@@ -220,19 +187,12 @@ mapa_rotado |>
         axis.ticks = element_blank())
 ```
 
-<img src="/blog/mapa_chile_horizontal/mapa_chile_horizontal_files/figure-html/unnamed-chunk-7-1.png" width="672" />
-
-
+<img src="/blog/mapa_chile_horizontal/mapa_chile_horizontal_files/figure-html/unnamed-chunk-6-1.png" alt="" width="672" />
 
 
 Listo! Revisa el [código completo](https://gist.github.com/bastianolea/8e3dff701fb660ee7cb5091bd1195b5f) en el siguiente botón para poder copiarlo y pegarlo en tu proyecto:
 
-
-
 {{< boton "Ver código completo" "https://gist.github.com/bastianolea/8e3dff701fb660ee7cb5091bd1195b5f" "fas fa-file-code" >}}
-
-
-
 
 ### Fuentes
 - [DeepSeek DeepThink (R1)](https://chat.deepseek.com)
@@ -240,11 +200,8 @@ Listo! Revisa el [código completo](https://gist.github.com/bastianolea/8e3dff70
 - https://r-spatial.github.io/sf/articles/sf3.html#affine-transformations
 - https://en.wikipedia.org/wiki/Rotation_matrix
 
-
-
+{{< etiqueta "mapas" >}}
 
 {{< cafecito >}}
 
-
 {{< cursos >}}
-

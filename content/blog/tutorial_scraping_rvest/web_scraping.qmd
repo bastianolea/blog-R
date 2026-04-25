@@ -2,7 +2,7 @@
 title: 'Tutorial: web scraping en R usando {rvest}'
 author: Bastián Olea Herrera
 date: '2024-12-27'
-draft: false
+freeze: true
 format: 
   hugo-md:
     output-file: "index"
@@ -25,6 +25,8 @@ Se denomina web scraping a un conjunto de técnicas usadas para **obtener datos 
 Se usa el web scraping cuando un sitio web presenta información, cifras, datos, números, o cualquier otro elemento que nos pueda servir, pero sin facilitar acceso a los datos, como sería un enlace de descarga, una API para obtener los datos, o alguna forma de exportar la información. En estos casos tenemos que recurrir al scraping para transformar lo que vemos en la web en datos analizables.
 
 En este tutorial aprenderemos a hacer web scraping en R para **extraer cualquier información que veamos en un sitio web**, y traerla a nuestro entorno de R para poder procesarla como deseemos.
+
+{{< relacionada "blog/r_introduccion/web_scraping" >}}
 
 ## Web scraping con {rvest}
 
@@ -259,9 +261,7 @@ En general, ésta es la lógica básica del web scraping. Se debe identificar el
 El web scraping es una herramienta muy útil para acelerar tus procesos y automatizar obtenciones y actualizaciones de datos, y es algo que resulta muy atractivo para personas interesadas en los datos. Pero ojo, que he visto mucha gente que quiere _entrar_ al análisis de datos _empezando_ por aprender web scraping. En mi experiencia, si bien el web scraping de por si no es algo complejo, sí es una herramienta que requiere de un **dominio de estructuras de datos complejas**, así como de **habilidades avanzadas de limpieza de datos**. Ello debido a que los datos que obtenemos por web scraping pueden venir literalmente en _cualquier_ formato, con infinidad de problemas inesperados, y será tarea de el/la analista resolver esos desafíos de interpretación y limpieza de datos de forma creativa, de manera que los resultados salgan correctos tanto para 1 como para 100 páginas de un mismo sitio web.
 
 
-----
-
-Si te sirvió este tutorial, por favor considera hacerme una pequeña donación para poder tomarme un cafecito mientras escribo el siguiente tutorial 🥺
+{{< etiqueta "web scraping" >}}
 
 {{< cafecito >}}
 

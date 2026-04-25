@@ -2,9 +2,8 @@
 title: 'Tutorial: generar tablas atractivas y personalizables con {gt}'
 author: Bastián Olea Herrera
 date: '2024-11-19'
-slug: []
-draft: false
 format: hugo-md
+freeze: true
 categories:
   - tutoriales
 tags:
@@ -492,25 +491,25 @@ tabla_pib
     # A tibble: 19 × 8
        region                       `2018` `2019` `2020` `2021` `2022` `2023` `2024`
        <chr>                        <chr>  <chr>  <chr>  <chr>  <chr>  <chr>  <chr> 
-     1 Región de Arica y Parinacota 1.433  1.419  1.331  1.554  1.665  1.696  1.680 
-     2 Región de Tarapacá           4.355  4.573  4.392  4.791  4.868  5.022  5.225 
-     3 Región de Antofagasta        15.986 15.983 15.697 15.560 15.562 16.089 17.257
-     4 Región de Atacama            3.687  3.528  3.540  3.958  3.991  4.036  4.081 
-     5 Región de Coquimbo           5.876  5.956  5.658  6.169  6.126  6.311  6.395 
-     6 Región de Valparaíso         13.989 13.948 13.087 14.406 15.258 15.288 15.551
-     7 Región Metropolitana de San… 78.215 78.931 72.170 81.945 84.131 84.396 85.941
-     8 Región del Libertador Gener… 7.930  7.882  7.589  8.310  8.328  8.211  8.686 
-     9 Región del Maule             7.186  7.148  7.049  7.651  7.898  8.046  8.464 
-    10 Región de Ñuble              2.775  2.786  2.693  3.016  3.121  3.066  3.176 
-    11 Región del Biobío            11.337 11.499 10.865 11.864 12.202 12.917 13.241
-    12 Región de La Araucanía       5.241  5.325  5.075  5.708  5.956  6.072  6.255 
-    13 Región de Los Ríos           2.498  2.503  2.403  2.639  2.709  2.706  2.821 
-    14 Región de Los Lagos          6.422  6.563  6.225  6.722  6.957  7.047  7.156 
-    15 Región de Aysén del General… 1.228  1.243  1.138  1.176  1.198  1.297  1.294 
-    16 Región de Magallanes y de l… 1.843  1.934  1.689  1.813  1.912  1.943  2.052 
-    17 Subtotal regionalizado       170.0… 171.2… 160.6… 176.9… 181.3… 183.7… 189.1…
-    18 Extrarregional               19.435 19.415 18.320 22.270 22.219 20.702 20.737
-    19 Producto Interno Bruto       189.4… 190.6… 178.9… 199.1… 203.4… 204.5… 209.9…
+     1 Región de Arica y Parinacota 1.432  1.419  1.329  1.553  1.663  1.685  1.764 
+     2 Región de Tarapacá           4.353  4.571  4.391  4.793  4.854  5.018  5.181 
+     3 Región de Antofagasta        15.974 15.966 15.689 15.537 15.464 16.107 17.618
+     4 Región de Atacama            3.671  3.513  3.525  3.946  3.964  4.017  4.140 
+     5 Región de Coquimbo           5.877  5.955  5.656  6.162  6.103  6.318  6.376 
+     6 Región de Valparaíso         13.989 13.946 13.081 14.403 15.250 15.222 15.531
+     7 Región Metropolitana de San… 78.232 78.972 72.231 82.027 84.196 84.644 86.000
+     8 Región del Libertador Gener… 7.940  7.891  7.596  8.316  8.334  8.221  8.729 
+     9 Región del Maule             7.177  7.142  7.047  7.650  7.907  8.033  8.472 
+    10 Región de Ñuble              2.785  2.793  2.698  3.018  3.124  3.053  3.189 
+    11 Región del Biobío            11.336 11.504 10.858 11.861 12.203 12.907 13.169
+    12 Región de La Araucanía       5.247  5.328  5.083  5.720  5.963  6.070  6.252 
+    13 Región de Los Ríos           2.501  2.507  2.403  2.639  2.708  2.702  2.822 
+    14 Región de Los Lagos          6.417  6.560  6.231  6.729  6.964  7.055  7.166 
+    15 Región de Aysén del General… 1.228  1.244  1.120  1.197  1.216  1.305  1.319 
+    16 Región de Magallanes y de l… 1.841  1.931  1.686  1.807  1.907  1.929  2.036 
+    17 Subtotal regionalizado       170.0… 171.2… 160.6… 177.0… 181.1… 183.9… 189.7…
+    18 Extrarregional               19.435 19.415 18.320 22.270 22.219 20.756 20.691
+    19 Producto Interno Bruto       189.4… 190.6… 178.9… 199.2… 203.3… 204.7… 210.4…
 
 Nos encontramos con una tabla que tiene 19 filas y seis columnas numéricas, correspondientes a los valores del Producto Interno Bruto para cada uno de los años. Procedemos a limpiar estos datos, debido a que la tabla usa puntos como divisores de miles, y esto hace que R interprete los números como si fueran decimales. Usamos `stringr::str_remove()` para eliminar todos los puntos en todas las columnas que empiecen con `20` (los años), y luego las convertimos a numéricas.
 
@@ -529,22 +528,22 @@ pib_regional
     # A tibble: 16 × 8
        region                       `2018` `2019` `2020` `2021` `2022` `2023` `2024`
        <chr>                         <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
-     1 Región de Arica y Parinacota   1433   1419   1331   1554   1665   1696   1680
-     2 Región de Tarapacá             4355   4573   4392   4791   4868   5022   5225
-     3 Región de Antofagasta         15986  15983  15697  15560  15562  16089  17257
-     4 Región de Atacama              3687   3528   3540   3958   3991   4036   4081
-     5 Región de Coquimbo             5876   5956   5658   6169   6126   6311   6395
-     6 Región de Valparaíso          13989  13948  13087  14406  15258  15288  15551
-     7 Región Metropolitana de San…  78215  78931  72170  81945  84131  84396  85941
-     8 Región del Libertador Gener…   7930   7882   7589   8310   8328   8211   8686
-     9 Región del Maule               7186   7148   7049   7651   7898   8046   8464
-    10 Región de Ñuble                2775   2786   2693   3016   3121   3066   3176
-    11 Región del Biobío             11337  11499  10865  11864  12202  12917  13241
-    12 Región de La Araucanía         5241   5325   5075   5708   5956   6072   6255
-    13 Región de Los Ríos             2498   2503   2403   2639   2709   2706   2821
-    14 Región de Los Lagos            6422   6563   6225   6722   6957   7047   7156
-    15 Región de Aysén del General…   1228   1243   1138   1176   1198   1297   1294
-    16 Región de Magallanes y de l…   1843   1934   1689   1813   1912   1943   2052
+     1 Región de Arica y Parinacota   1432   1419   1329   1553   1663   1685   1764
+     2 Región de Tarapacá             4353   4571   4391   4793   4854   5018   5181
+     3 Región de Antofagasta         15974  15966  15689  15537  15464  16107  17618
+     4 Región de Atacama              3671   3513   3525   3946   3964   4017   4140
+     5 Región de Coquimbo             5877   5955   5656   6162   6103   6318   6376
+     6 Región de Valparaíso          13989  13946  13081  14403  15250  15222  15531
+     7 Región Metropolitana de San…  78232  78972  72231  82027  84196  84644  86000
+     8 Región del Libertador Gener…   7940   7891   7596   8316   8334   8221   8729
+     9 Región del Maule               7177   7142   7047   7650   7907   8033   8472
+    10 Región de Ñuble                2785   2793   2698   3018   3124   3053   3189
+    11 Región del Biobío             11336  11504  10858  11861  12203  12907  13169
+    12 Región de La Araucanía         5247   5328   5083   5720   5963   6070   6252
+    13 Región de Los Ríos             2501   2507   2403   2639   2708   2702   2822
+    14 Región de Los Lagos            6417   6560   6231   6729   6964   7055   7166
+    15 Región de Aysén del General…   1228   1244   1120   1197   1216   1305   1319
+    16 Región de Magallanes y de l…   1841   1931   1686   1807   1907   1929   2036
 
 Ahora podemos crear nuestra tabla básica con `{gt}`, especificando el formato apropiado para todas las columnas numéricas en una sola instancia `fmt_number()`. Esto es posible porque podemos usar selectores de `{dplyr}` en los argumentos de columnas de `{gt}`, así que podemos pedirle que aplique un formato, estilo, u otras herramientas de `{gt}` a una o varias columnas seleccionadas por su nombre parcial o por su tipo de datos. En este caso, aplicamos el formato a todas las columnas numéricas usando `where(is.numeric)`:
 
@@ -597,16 +596,16 @@ pib_regional_cambio
     # A tibble: 96 × 4
        region                           año   valor    cambio
        <chr>                            <chr> <dbl>     <dbl>
-     1 Región Metropolitana de Santiago 2019  78931 -0.00915 
-     2 Región Metropolitana de Santiago 2020  72170  0.0857  
-     3 Región Metropolitana de Santiago 2021  81945 -0.135   
-     4 Región Metropolitana de Santiago 2022  84131 -0.0267  
-     5 Región Metropolitana de Santiago 2023  84396 -0.00315 
-     6 Región Metropolitana de Santiago 2024  85941 -0.0183  
-     7 Región de Antofagasta            2019  15983  0.000188
-     8 Región de Antofagasta            2020  15697  0.0179  
-     9 Región de Antofagasta            2021  15560  0.00873 
-    10 Región de Antofagasta            2022  15562 -0.000129
+     1 Región Metropolitana de Santiago 2019  78972 -0.00946 
+     2 Región Metropolitana de Santiago 2020  72231  0.0854  
+     3 Región Metropolitana de Santiago 2021  82027 -0.136   
+     4 Región Metropolitana de Santiago 2022  84196 -0.0264  
+     5 Región Metropolitana de Santiago 2023  84644 -0.00532 
+     6 Región Metropolitana de Santiago 2024  86000 -0.0160  
+     7 Región de Antofagasta            2019  15966  0.000501
+     8 Región de Antofagasta            2020  15689  0.0173  
+     9 Región de Antofagasta            2021  15537  0.00969 
+    10 Región de Antofagasta            2022  15464  0.00470 
     # ℹ 86 more rows
 
 Con nuestra nueva variable `cambio` calculada, ahora volvemos a transformar los datos para que estén en el formato *ancho*; es decir, nuevamente cada celda ubicada en una columna distinta dependiendo del año al cual corresponde. Así, volvemos a obtener seis columnas de datos numéricos, una para cada año, pero esta vez con la diferencia porcentual de los valores en vez del valor absoluto.
@@ -622,22 +621,22 @@ pib_regional_cambio_wide
     # A tibble: 16 × 7
        region                    `2019`   `2020`   `2021`   `2022`   `2023`   `2024`
        <chr>                      <dbl>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>
-     1 Región Metropolitana d… -9.15e-3  0.0857  -0.135   -2.67e-2 -0.00315 -0.0183 
-     2 Región de Antofagasta    1.88e-4  0.0179   0.00873 -1.29e-4 -0.0339  -0.0726 
-     3 Región de Arica y Pari…  9.77e-3  0.0620  -0.168   -7.14e-2 -0.0186   0.00943
-     4 Región de Atacama        4.31e-2 -0.00340 -0.118   -8.34e-3 -0.0113  -0.0111 
-     5 Región de Aysén del Ge… -1.22e-2  0.0845  -0.0334  -1.87e-2 -0.0826   0.00231
-     6 Región de Coquimbo      -1.36e-2  0.0500  -0.0903   6.97e-3 -0.0302  -0.0133 
-     7 Región de La Araucanía  -1.60e-2  0.0469  -0.125   -4.34e-2 -0.0195  -0.0301 
-     8 Región de Los Lagos     -2.20e-2  0.0515  -0.0798  -3.50e-2 -0.0129  -0.0155 
-     9 Región de Los Ríos      -2.00e-3  0.0400  -0.0982  -2.65e-2  0.00111 -0.0425 
-    10 Región de Magallanes y… -4.94e-2  0.127   -0.0734  -5.46e-2 -0.0162  -0.0561 
-    11 Región de Tarapacá      -5.01e-2  0.0396  -0.0908  -1.61e-2 -0.0316  -0.0404 
-    12 Región de Valparaíso     2.93e-3  0.0617  -0.101   -5.91e-2 -0.00197 -0.0172 
-    13 Región de Ñuble         -3.96e-3  0.0334  -0.120   -3.48e-2  0.0176  -0.0359 
-    14 Región del Biobío       -1.43e-2  0.0551  -0.0919  -2.85e-2 -0.0586  -0.0251 
-    15 Región del Libertador …  6.05e-3  0.0372  -0.0950  -2.17e-3  0.0140  -0.0578 
-    16 Región del Maule         5.29e-3  0.0139  -0.0854  -3.23e-2 -0.0187  -0.0520 
+     1 Región Metropolitana d… -9.46e-3  0.0854  -0.136   -0.0264  -0.00532 -0.0160 
+     2 Región de Antofagasta    5.01e-4  0.0173   0.00969  0.00470 -0.0416  -0.0938 
+     3 Región de Arica y Pari…  9.08e-3  0.0634  -0.169   -0.0708  -0.0132  -0.0469 
+     4 Región de Atacama        4.30e-2 -0.00342 -0.119   -0.00456 -0.0134  -0.0306 
+     5 Región de Aysén del Ge… -1.30e-2  0.0997  -0.0688  -0.0159  -0.0732  -0.0107 
+     6 Región de Coquimbo      -1.33e-2  0.0502  -0.0895   0.00957 -0.0352  -0.00918
+     7 Región de La Araucanía  -1.54e-2  0.0460  -0.125   -0.0425  -0.0179  -0.0300 
+     8 Región de Los Lagos     -2.23e-2  0.0502  -0.0799  -0.0349  -0.0131  -0.0157 
+     9 Región de Los Ríos      -2.40e-3  0.0415  -0.0982  -0.0261   0.00222 -0.0444 
+    10 Región de Magallanes y… -4.89e-2  0.127   -0.0718  -0.0553  -0.0115  -0.0555 
+    11 Región de Tarapacá      -5.01e-2  0.0394  -0.0916  -0.0127  -0.0338  -0.0325 
+    12 Región de Valparaíso     3.07e-3  0.0620  -0.101   -0.0588   0.00184 -0.0203 
+    13 Región de Ñuble         -2.87e-3  0.0340  -0.119   -0.0351   0.0227  -0.0445 
+    14 Región del Biobío       -1.48e-2  0.0562  -0.0924  -0.0288  -0.0577  -0.0203 
+    15 Región del Libertador …  6.17e-3  0.0374  -0.0948  -0.00216  0.0136  -0.0618 
+    16 Región del Maule         4.88e-3  0.0133  -0.0856  -0.0336  -0.0159  -0.0546 
 
 Generamos una nueva tabla `{gt}` con las diferencias porcentuales entre años, especificando que estas columnas numéricas ahora son porcentajes:
 
@@ -796,13 +795,10 @@ De esta forma, usamos un poco de magia de iteraciones con `{purrr}` y sintaxis a
 
 ## Otros recursos para tablas `{gt}`
 
--   Documentación oficial: https://gt.rstudio.com
--   https://themockup.blog/static/resources/gt-cookbook.html#table-customization
--   https://gt.albert-rapp.de
+- Documentación oficial: https://gt.rstudio.com
+- https://themockup.blog/static/resources/gt-cookbook.html#table-customization
+- https://gt.albert-rapp.de
 
-------------------------------------------------------------------------
-
-Si este tutorial te sirvió, por favor considera hacerme una pequeña donación para poder tomarme un cafecito mientras escribo el siguiente tutorial 🥺
-
+{{< etiqueta "tablas" >}}
 {{< cafecito >}}
 {{< cursos >}}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-ES" dir="ltr"><head>
+<html lang="es-ES" dir="ltr"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=7578&amp;path=livereload" data-no-instant defer></script>
   
                            
      
@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.152.2">
 <title>Usar un modelo de lenguaje local (LLM) para analizar texto en R | Bastián Olea</title>
 
 
@@ -31,16 +31,16 @@
 <meta property="og:title" content="Usar un modelo de lenguaje local (LLM) para analizar texto en R | Bastián Olea">
 <meta property="og:description" content="Procesa datos con IA en R, localmente! El paquete `{mall}` permite aplicar un modelo de lenguaje (LLM) local a tus datos, para así crear nuevas columnas a partir de prompts, tales como resumir, extraer sentimiento, clasificación, y más." />
 <meta property="og:type" content="page" />
-<meta property="og:url" content="https://bastianoleah.netlify.app/blog/introduccion_llm_mall/" />
+<meta property="og:url" content="http://localhost:7578/blog/introduccion_llm_mall/" />
 <meta property="og:locale" content="es-ES">
 
 
 
 
     
-        <meta property="og:image" content="https://bastianoleah.netlify.app/blog/sidebar-listing.jpg" >
+        <meta property="og:image" content="http://localhost:7578/blog/sidebar-listing.jpg" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="https://bastianoleah.netlify.app/blog/sidebar-listing.jpg" >
+        <meta name="twitter:image" content="http://localhost:7578/blog/sidebar-listing.jpg" >
     
     
   
@@ -57,16 +57,16 @@ Puedes encontrar instrucciones más detalladas sobre configurar el uso de IA en 
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.4d1b7c7668d9201215b61874a510943c2c9f79756154013070eed3e6db3db62d.css" integrity="sha256-TRt8dmjZIBIVthh0pRCUPCyfeXVhVAEwcO7T5ts9ti0=" media="screen">
+  <link rel="stylesheet" href="../../style.main.min.d9ed2a398ab5c329e022a62a470632e351726128d0ab57b38795c58be2a3555d.css" integrity="sha256-2e0qOYq1wyngIqYqRwYy41FyYSjQq1ezh5XFi&#43;KjVV0=" media="screen">
   
   
-  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  <script src="../../panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="../../main.min.858230d8d39b17ec435a8cd8991902766cb7afe0621875ffe5fcdf376474ca6e.js" type="text/javascript"></script>
   
   
-  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
   
   
   <link rel="preload" href="https://bastianoleah.shinyapps.io/buscador/" as="image">
@@ -75,15 +75,15 @@ Puedes encontrar instrucciones más detalladas sobre configurar el uso de IA en 
       <div class="grid-container single-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianoleah.netlify.app/" title="Home">
-      <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="http://localhost:7578/" title="Home">
+      <img src="../../img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 active" href="/blog/" title="Bastián Olea: Blog de R">Blog</a>
+      <a class="link f6 f5-l dib pv1 ph2 active" href="../../blog/" title="Bastián Olea: Blog de R">Blog</a>
       
         
         
@@ -108,27 +108,27 @@ Puedes encontrar instrucciones más detalladas sobre configurar el uso de IA en 
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="/tags/" title="Temas">Temas</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../tags/" title="Temas">Temas</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="/clases/" title="Cursos">Cursos</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../clases/" title="Cursos">Cursos</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/tutoriales/" title="Tutoriales">Tutoriales</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../categories/tutoriales/" title="Tutoriales">Tutoriales</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="/blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="/about/" title="Bastián Olea: Sobre mi">Yo</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../about/" title="Bastián Olea: Sobre mi">Yo</a>
       
       
       
@@ -227,7 +227,7 @@ Puedes encontrar instrucciones más detalladas sobre configurar el uso de IA en 
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="../../contacto/" title="envelope" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-envelope fa-lg fa-fw"></i>
     </a>
@@ -264,7 +264,7 @@ Puedes encontrar instrucciones más detalladas sobre configurar el uso de IA en 
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/an%C3%A1lisis-de-texto"
+          <em><dd class="fw5 ml0"> <a href="http://localhost:7578/tags/an%C3%A1lisis-de-texto"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -273,7 +273,7 @@ Puedes encontrar instrucciones más detalladas sobre configurar el uso de IA en 
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            análisis de texto</a>  <a href="https://bastianoleah.netlify.app/tags/inteligencia-artificial"
+            análisis de texto</a>  <a href="http://localhost:7578/tags/inteligencia-artificial"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -305,7 +305,7 @@ Puedes encontrar instrucciones más detalladas sobre configurar el uso de IA en 
   
   <aside style = "font-size: 90%;">
     Puedes encontrar instrucciones más detalladas sobre configurar el uso de IA en R 
-<a href="/blog/ellmer/">en esta publicación.</a>
+<a href="../../blog/ellmer/">en esta publicación.</a>
   </aside>
   
 </div>
@@ -414,12 +414,12 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/elecciones_municipales_2024/">&larr; Visualización y scraping de resultados en vivo de las elecciones municipales 2024</a>
+    href="http://localhost:7578/blog/elecciones_municipales_2024/">&larr; Visualización y scraping de resultados en vivo de las elecciones municipales 2024</a>
   
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/numeros_romanos/">Números romanos en R &rarr;</a>
+    href="http://localhost:7578/blog/numeros_romanos/">Números romanos en R &rarr;</a>
   
 </div>
 
@@ -461,24 +461,24 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Categorías:</dt>
-    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/categories/an%C3%A1lisis-de-texto">Análisis de texto</a> </dd>
+    <dd class="fw5 ml0"> <a href="http://localhost:7578/categories/an%C3%A1lisis-de-texto">Análisis de texto</a> </dd>
   </dl>
   
   
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Tags:</dt>
-    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/an%C3%A1lisis-de-texto">análisis de texto</a>  <a href="https://bastianoleah.netlify.app/tags/inteligencia-artificial">inteligencia artificial</a> </dd>
+    <dd class="fw5 ml0"> <a href="http://localhost:7578/tags/an%C3%A1lisis-de-texto">análisis de texto</a>  <a href="http://localhost:7578/tags/inteligencia-artificial">inteligencia artificial</a> </dd>
   </dl>
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
-    <dd class="fw5 ml0"><a href="/blog/datos_estructurados_llm/">Extracción de datos estructurados desde texto usando IA</a></dd>
+    <dd class="fw5 ml0"><a href="../../blog/datos_estructurados_llm/">Extracción de datos estructurados desde texto usando IA</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/ellmer/">Interactúa con modelos de lenguaje (LLM) y chatea con IAs en R</a></dd>
+    <dd class="fw5 ml0"><a href="../../blog/ellmer/">Interactúa con modelos de lenguaje (LLM) y chatea con IAs en R</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/redactar_texto_llm/">Redactar textos basados en datos usando IA desde R</a></dd>
+    <dd class="fw5 ml0"><a href="../../blog/redactar_texto_llm/">Redactar textos basados en datos usando IA desde R</a></dd>
     
   </dl>
 </details>
@@ -497,7 +497,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
   <h1 class="f3">Blog</h1>
   <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
 <a href="https://bastianoleah.shinyapps.io/buscador/" target="_blank" rel="noopener">buscador</a> para encontrar publicaciones o navega los 
-<a href="/tags/">temas</a>.</p>
+<a href="../../tags/">temas</a>.</p>
   
 
    
@@ -520,7 +520,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/chile/">Chile</a></span>
+      href="http://localhost:7578/tags/chile/">Chile</a></span>
   </span>
  
   
@@ -535,7 +535,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/datos/">Datos</a></span>
+      href="http://localhost:7578/tags/datos/">Datos</a></span>
   </span>
  
   
@@ -550,7 +550,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
+      href="http://localhost:7578/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -565,7 +565,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="http://localhost:7578/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -580,7 +580,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="http://localhost:7578/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -595,7 +595,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/blog/">Blog</a></span>
+      href="http://localhost:7578/tags/blog/">Blog</a></span>
   </span>
  
   
@@ -610,7 +610,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
+      href="http://localhost:7578/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -625,7 +625,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
+      href="http://localhost:7578/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -640,7 +640,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ggplot2/">Ggplot2</a></span>
+      href="http://localhost:7578/tags/ggplot2/">Ggplot2</a></span>
   </span>
  
   
@@ -655,7 +655,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/web-scraping/">Web scraping</a></span>
+      href="http://localhost:7578/tags/web-scraping/">Web scraping</a></span>
   </span>
  
   
@@ -670,7 +670,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/b%C3%A1sico/">Básico</a></span>
+      href="http://localhost:7578/tags/b%C3%A1sico/">Básico</a></span>
   </span>
  
   
@@ -685,7 +685,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="http://localhost:7578/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -700,7 +700,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
+      href="http://localhost:7578/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -715,7 +715,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/curiosidades/">Curiosidades</a></span>
+      href="http://localhost:7578/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -730,7 +730,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="http://localhost:7578/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -745,7 +745,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="http://localhost:7578/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -760,7 +760,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/quarto/">Quarto</a></span>
+      href="http://localhost:7578/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -775,7 +775,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/dplyr/">Dplyr</a></span>
+      href="http://localhost:7578/tags/dplyr/">Dplyr</a></span>
   </span>
  
   
@@ -790,7 +790,7 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/automatizaci%C3%B3n/">Automatización</a></span>
+      href="http://localhost:7578/tags/ciencias-sociales/">Ciencias sociales</a></span>
   </span>
  
   
@@ -805,10 +805,10 @@ cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpzqBMog/_mall_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ciencias-sociales/">Ciencias sociales</a></span>
+      href="http://localhost:7578/tags/optimizaci%C3%B3n/">Optimización</a></span>
   </span>
 
-<a href="/tags/" style="margin-left: 3px;">y más!</a>
+<a href="../../tags/" style="margin-left: 3px;">y más!</a>
 </div>
 </div>
   
@@ -937,7 +937,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="../../contacto/" title="envelope" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-envelope fa-lg fa-fw"></i>
     </a>
@@ -948,19 +948,19 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
     <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
       
-      <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
+      <a class="dib pv1 ph2 link" href="../../about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
       
       <a class="dib pv1 ph2 link" href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
       
-      <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
+      <a class="dib pv1 ph2 link" href="../../contacto/" title="Bastián Olea: Contacto">Contacto</a>
       
-      <a class="dib pv1 ph2 link" href="/tags/" title="Temas">Temas</a>
+      <a class="dib pv1 ph2 link" href="../../tags/" title="Temas">Temas</a>
       
-      <a class="dib pv1 ph2 link" href="/clases/" title="Clases">Clases</a>
+      <a class="dib pv1 ph2 link" href="../../clases/" title="Clases">Clases</a>
       
-      <a class="dib pv1 ph2 link" href="/code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
+      <a class="dib pv1 ph2 link" href="../../code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
       
-      <a class="dib pv1 ph2 link" href="/license/" title="Bastián Olea: Licencia">Licencia</a>
+      <a class="dib pv1 ph2 link" href="../../license/" title="Bastián Olea: Licencia">Licencia</a>
       
     </div>
   </nav>

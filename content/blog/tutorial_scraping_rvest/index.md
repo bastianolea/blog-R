@@ -26,6 +26,8 @@ Se usa el web scraping cuando un sitio web presenta información, cifras, datos,
 
 En este tutorial aprenderemos a hacer web scraping en R para **extraer cualquier información que veamos en un sitio web**, y traerla a nuestro entorno de R para poder procesarla como deseemos.
 
+{{< relacionada "blog/r_introduccion/web_scraping" >}}
+
 ## Web scraping con {rvest}
 
 La primera opción a la hora de hacer web scraping de sitios web con R es [el paquete {rvest}](https://rvest.tidyverse.org) (*harvest,* o *cosechar* en español). Este paquete, parte del [Tidyverse](https://www.tidyverse.org/), suele ser la opción más sencilla, más popular y mejor documentada para extraer datos desde sitios web estáticos en R.
@@ -402,10 +404,7 @@ En general, ésta es la lógica básica del web scraping. Se debe identificar el
 
 El web scraping es una herramienta muy útil para acelerar tus procesos y automatizar obtenciones y actualizaciones de datos, y es algo que resulta muy atractivo para personas interesadas en los datos. Pero ojo, que he visto mucha gente que quiere *entrar* al análisis de datos *empezando* por aprender web scraping. En mi experiencia, si bien el web scraping de por si no es algo complejo, sí es una herramienta que requiere de un **dominio de estructuras de datos complejas**, así como de **habilidades avanzadas de limpieza de datos**. Ello debido a que los datos que obtenemos por web scraping pueden venir literalmente en *cualquier* formato, con infinidad de problemas inesperados, y será tarea de el/la analista resolver esos desafíos de interpretación y limpieza de datos de forma creativa, de manera que los resultados salgan correctos tanto para 1 como para 100 páginas de un mismo sitio web.
 
-------------------------------------------------------------------------
-
-Si te sirvió este tutorial, por favor considera hacerme una pequeña donación para poder tomarme un cafecito mientras escribo el siguiente tutorial 🥺
-
+{{< etiqueta "web scraping" >}}
 {{< cafecito >}}
 {{< cursos >}}
 

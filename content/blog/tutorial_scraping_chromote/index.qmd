@@ -2,7 +2,7 @@
 title: Web scraping usando Google Chrome desde R con {chromote}
 author: Bastián Olea Herrera
 date: '2025-07-17'
-draft: false
+freeze: true
 format:
   hugo-md:
     output-file: "index"
@@ -45,6 +45,8 @@ chrome <- ChromoteSession$new()
 ```
 
 Lo que hicimos aquí fue crear un objeto `chrome` te representa la instancia del navegador que abrimos, y desde el cual podremos ir ejecutando las instrucciones.
+
+{{< relacionada "blog/r_introduccion/web_scraping" >}}
 
 Como `{chromote}` principalmente funciona sin un interfaz gráfica, igual que `{rvest}`, podremos seguir desde nuestra consola de R sin tener que cambiar de aplicación.
 
@@ -120,7 +122,7 @@ Finalmente, para terminar la sesión y apagar el proceso del navegador remoto, e
 chrome$close()
 ```
 
-----
+{{< etiqueta "web scraping" >}}
 
 {{< cafecito >}}
 

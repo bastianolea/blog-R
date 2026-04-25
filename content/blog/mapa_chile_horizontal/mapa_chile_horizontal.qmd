@@ -6,8 +6,7 @@ format:
     output-file: "index"
     output-ext: "md"
 date: '2025-03-04'
-slug: []
-categories: []
+categories: ['Tutoriales']
 freeze: true
 tags:
   - mapas
@@ -31,7 +30,7 @@ En esta guía veremos cómo rotar un mapa de Chile 90° hacia la izquierda en R 
 
 Primero cargamos los paquetes necesarios:
 
-```{r}
+```{r paquetes}
 #| message: false
 library(sf) # manejo de datos espaciales
 library(chilemapas) # mapas de Chile
@@ -115,6 +114,7 @@ mapa_datos |>
         axis.ticks = element_blank())
 ```
 
+{{< relacionada "blog/mapa_chile_triple/" >}}
 
 Ahora que tenemos un mapa de Chile con datos regionales, procedemos a **rotar el mapa**. Para esto, necesitamos una _matriz de rotación_, respecto de la cual no hay mucho que entender, salvo que nos permitirá multiplicar la geometría del mapa para obtener como resultado la misma geometría, pero rotada. El único detalle que hay que considerar es que es necesario **cambiar la proyección del mapa** para que la zona sur del país no se vea deformada.
 
@@ -162,6 +162,7 @@ Listo! Revisa el [código completo](https://gist.github.com/bastianolea/8e3dff70
 - https://r-spatial.github.io/sf/articles/sf3.html#affine-transformations
 - https://en.wikipedia.org/wiki/Rotation_matrix
 
+{{< etiqueta "mapas" >}}
 
 {{< cafecito >}}
 

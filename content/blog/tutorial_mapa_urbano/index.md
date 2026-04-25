@@ -128,6 +128,8 @@ mapa |>
 
 Obtuvimos un mapa básico de todas las comunas de la Región Metropolitana de Santiago.
 
+{{< relacionada "blog/mapas_sf/" >}}
+
 ### Mapa de la región con datos ficticios
 
 Ahora, hagamos una prueba para aprender a visualizar datos en la di este mapa. Para esto, crearemos una nueva variable donde algunas comunas tengan valores distintos. Podemos crear la nueva variable a partir de la columna `nombre_comuna`, aunque siempre es preferible hacerlo en base a la columna `codigo_comuna`, dado que los códigos únicos territoriales son identificadores únicos para cada comuna, mientras que los nombres de las comunas son más impredecibles (por ejemplo, pueden venir sin tilde, pueden venir en mayúsculas, o derechamente mal escritos).
@@ -178,6 +180,8 @@ mapa_datos |>
 
 <img src="index.markdown_strict_files/figure-markdown_strict/region_fill_manual-1.png" width="768" />
 
+{{< relacionada "blog/tutorial_mapa_chile/" >}}
+
 ### Agregar datos obtenidos desde internet al mapa
 
 Ahora, pasaremos a usar datos reales sobre nuestro mapa comunal. Pero en vez de entregarles datos copiados y pegados, obtendremos directamente los datos desde internet, [usando el paquete `{rvest}`](../../../blog/tutorial_scraping_rvest/) que sirve para hacer [web scraping](../../../blog/r_introduccion/web_scraping/) desde páginas web; es decir, descargar datos presentes en sitios de internet para usarlos directamente en R.
@@ -216,22 +220,11 @@ datos_comunas <- tabla_comunas_4 |>
 datos_comunas
 ```
 
-    # A tibble: 52 × 12
-       codigo_comuna nombre      x     provincia region superficie_km2 poblacion2020
-       <chr>         <chr>       <lgl> <chr>     <chr>           <dbl>         <dbl>
-     1 13101         Santiago    NA    Santiago  Metro…            232        503147
-     2 13102         Cerrillos   NA    Santiago  Metro…             21         88956
-     3 13103         Cerro Navia NA    Santiago  Metro…             11        142465
-     4 13104         Conchalí    NA    Santiago  Metro…            107        139195
-     5 13105         El Bosque   NA    Santiago  Metro…            142        172000
-     6 13106         Estación C… NA    Santiago  Metro…             15        206792
-     7 13107         Huechuraba  NA    Santiago  Metro…            448        112528
-     8 13108         Independen… NA    Santiago  Metro…              7        142065
-     9 13109         La Cisterna NA    Santiago  Metro…             10        100434
-    10 13110         La Florida  NA    Santiago  Metro…            702        402433
-    # ℹ 42 more rows
-    # ℹ 5 more variables: densidad_hab_km2 <dbl>, idh_2005 <chr>, idh_2005_2 <chr>,
-    #   latitud <chr>, longitud <chr>
+    # A tibble: 0 × 12
+    # ℹ 12 variables: codigo_comuna <chr>, nombre <chr>, x <lgl>, provincia <chr>,
+    #   region <chr>, superficie_km2 <dbl>, poblacion2020 <dbl>,
+    #   densidad_hab_km2 <dbl>, idh_2005 <chr>, idh_2005_2 <chr>, latitud <chr>,
+    #   longitud <chr>
 
 Así quedó el resultado de nuestro web scraping. A continuación, [usamos la función `left_join()`](../../../blog/left_join/) para adjuntar estas columnas nuevas a nuestro data frame que contiene los nombres y códigos de las comunas, además de la geometría o información geográfica de las comunas, usando como columna de unión los códigos comunales:
 
@@ -249,17 +242,17 @@ glimpse(mapa_datos_2)
     $ codigo_region    <chr> "13", "13", "13", "13", "13", "13", "13", "13", "13",…
     $ geometry         <MULTIPOLYGON [°]> MULTIPOLYGON (((-70.61396 -..., MULTIPOL…
     $ nombre_comuna    <chr> "Paine", "Buin", "Pudahuel", "Cerro Navia", "Colina",…
-    $ nombre           <chr> "Paine", "Buin", "Pudahuel", "Cerro Navia", "Colina",…
+    $ nombre           <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
     $ x                <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-    $ provincia        <chr> "Maipo", "Maipo", "Santiago", "Santiago", "Chacabuco"…
-    $ region           <chr> "Metropolitana de Santiago", "Metropolitana de Santia…
-    $ superficie_km2   <dbl> 820, 214, 197, 11, 9712, 653, 452, 448, 107, 3935, 69…
-    $ poblacion2020    <dbl> 82766, 109641, 253139, 142465, 180353, 21477, 126898,…
-    $ densidad_hab_km2 <dbl> 1009.0, 512.3, 1284.9, 12951.3, 185.7, 328.0, 280.7, …
-    $ idh_2005         <chr> "0.718", "0.731", "0.735", "0.683", "0.726", "0.709",…
-    $ idh_2005_2       <chr> "Alto", "Alto", "Alto", "Medio", "Alto", "Alto", "Med…
-    $ latitud          <chr> "-33°48'43.2\"", "-33°43'40.8\"", "-33°26'0\"", "-33°…
-    $ longitud         <chr> "-70°43'22.8\"", "-70°44'20.4\"", "-70°43'0\"", "-70°…
+    $ provincia        <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+    $ region           <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+    $ superficie_km2   <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+    $ poblacion2020    <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+    $ densidad_hab_km2 <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+    $ idh_2005         <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+    $ idh_2005_2       <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+    $ latitud          <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+    $ longitud         <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
 
 Lo que hicimos en la operación anterior fue [unir dos tablas distintas en base a una variable común](../../../blog/left_join/) que ambas tablas poseen: `codigo_comuna`. De este modo, obtenemos un nuevo data frame que contiene tanto la información geográfica como los datos comunales que necesitamos.
 
@@ -384,8 +377,12 @@ mapa_zonas_urbanas |>
   theme_void()
 ```
 
-    `summarise()` has grouped output by 'nombre_comuna'. You can override using the
-    `.groups` argument.
+    `summarise()` has regrouped the output.
+    ℹ Summaries were computed grouped by nombre_comuna and codigo_comuna.
+    ℹ Output is grouped by nombre_comuna.
+    ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+    ℹ Use `summarise(.by = c(nombre_comuna, codigo_comuna))` for per-operation
+      grouping (`?dplyr::dplyr_by`) instead.
 
 <img src="index.markdown_strict_files/figure-markdown_strict/region_urbano_opcion1-1.png" width="768" />
 
@@ -406,8 +403,12 @@ mapa_zonas_urbanas |>
   theme_void()
 ```
 
-    `summarise()` has grouped output by 'nombre_comuna'. You can override using the
-    `.groups` argument.
+    `summarise()` has regrouped the output.
+    ℹ Summaries were computed grouped by nombre_comuna and codigo_comuna.
+    ℹ Output is grouped by nombre_comuna.
+    ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+    ℹ Use `summarise(.by = c(nombre_comuna, codigo_comuna))` for per-operation
+      grouping (`?dplyr::dplyr_by`) instead.
 
 <img src="index.markdown_strict_files/figure-markdown_strict/region_urbano_opcion2-1.png" width="768" />
 
@@ -457,8 +458,12 @@ mapa_urbano <- mapa_zonas_urbanas |>
   ungroup()
 ```
 
-    `summarise()` has grouped output by 'nombre_comuna'. You can override using the
-    `.groups` argument.
+    `summarise()` has regrouped the output.
+    ℹ Summaries were computed grouped by nombre_comuna and codigo_comuna.
+    ℹ Output is grouped by nombre_comuna.
+    ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+    ℹ Use `summarise(.by = c(nombre_comuna, codigo_comuna))` for per-operation
+      grouping (`?dplyr::dplyr_by`) instead.
 
 ``` r
 # simplificar bordes del mapa (opcional)
@@ -543,7 +548,6 @@ ggplot() +
 
 <img src="index.markdown_strict_files/figure-markdown_strict/region_urbana_fill_continuo_contexto_zoom-1.png" width="768" />
 
-------------------------------------------------------------------------
-
+{{< etiqueta "mapas" >}}
 {{< cafecito >}}
 {{< cursos >}}
