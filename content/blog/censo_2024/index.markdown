@@ -10,6 +10,7 @@ categories:
 tags:
   - datos
   - chile
+  - procesamiento de datos
 format:
   hugo-md:
     output-file: index
@@ -54,6 +55,8 @@ El Censo viene en tres niveles de información:
 
 Partiremos cargando los datos de nivel personas, que es la base más grande de las tres, dado que tiene **una fila por cada habitante de Chile.**
 
+{{< relacionada "blog/casen_introduccion" >}}
+
 
 ## Cargar datos del Censo en R
 
@@ -78,10 +81,6 @@ library(arrow) # para cargar datos .parquet
 personas <- open_dataset("personas_censo2024.parquet")
 ```
 
-
-```
-## Warning: package 'arrow' was built under R version 4.4.3
-```
 
 ```
 ## 
@@ -512,7 +511,7 @@ codigos_territoriales <- read_xlsx("diccionario_variables_censo2024.xlsx",
 ```
 
 ```
-## here() starts at /Users/bolea/Documents/Otros/blog-r
+## here() starts at /Users/baolea/R/blog-r
 ```
 
 
@@ -991,12 +990,12 @@ personas_hogares_comunas |>
 ## # A tibble: 6 × 11
 ##   id_vivienda id_hogar nombre_region           region nombre_comuna comuna sexo 
 ##         <int>    <int> <chr>                    <int> <chr>          <int> <chr>
-## 1       40901        1 Metropolitana de Santi…     13 Melipilla      13501 Homb…
-## 2       40902        1 Metropolitana de Santi…     13 Las Condes     13114 Homb…
-## 3       40902        1 Metropolitana de Santi…     13 Las Condes     13114 Mujer
-## 4       40903        1 Metropolitana de Santi…     13 Pudahuel       13124 Homb…
-## 5       40903        1 Metropolitana de Santi…     13 Pudahuel       13124 Mujer
-## 6       40903        1 Metropolitana de Santi…     13 Pudahuel       13124 Homb…
+## 1       27362        1 Metropolitana de Santi…     13 La Reina       13113 Mujer
+## 2       27363        1 Valparaíso                   5 San Felipe      5701 Homb…
+## 3       27364        1 Metropolitana de Santi…     13 Quilicura      13125 Mujer
+## 4       27364        1 Metropolitana de Santi…     13 Quilicura      13125 Mujer
+## 5       27365        1 Metropolitana de Santi…     13 Peñalolén      13122 Mujer
+## 6       27365        1 Metropolitana de Santi…     13 Peñalolén      13122 Mujer
 ## # ℹ 4 more variables: edad_quinquenal <int>, p12_tenencia_viv <int>,
 ## #   propiedad <chr>, adulto_mayor <chr>
 ```
@@ -1035,19 +1034,21 @@ personas_hogares_comunas |>
 ## # A tibble: 32 × 3
 ##    nombre_region             adulto_mayor          n
 ##    <chr>                     <chr>             <int>
-##  1 Biobío                    No adulto mayor 1322719
-##  2 Biobío                    Adulto mayor     290340
-##  3 Metropolitana de Santiago Adulto mayor    1201787
-##  4 Metropolitana de Santiago No adulto mayor 6198954
-##  5 La Araucanía              Adulto mayor     184837
-##  6 La Araucanía              No adulto mayor  825586
-##  7 Ñuble                     No adulto mayor  409410
-##  8 Maule                     No adulto mayor  915362
-##  9 Los Lagos                 No adulto mayor  743943
-## 10 Valparaíso                No adulto mayor 1516774
+##  1 La Araucanía              No adulto mayor  825586
+##  2 Metropolitana de Santiago No adulto mayor 6198954
+##  3 Maule                     No adulto mayor  915362
+##  4 Antofagasta               No adulto mayor  558114
+##  5 Los Lagos                 Adulto mayor     146341
+##  6 Maule                     Adulto mayor     207646
+##  7 Metropolitana de Santiago Adulto mayor    1201787
+##  8 Biobío                    No adulto mayor 1322719
+##  9 Ñuble                     Adulto mayor     102879
+## 10 Ñuble                     No adulto mayor  409410
 ## # ℹ 22 more rows
 ```
 
+
+{{< relacionada "blog/mapas_censo_2024" >}}
 
 #### Calcular datos 
 
@@ -1083,8 +1084,8 @@ tabla_propiedad <- conteo_propiedad |>
 |:---------------|:---------|---------:|----------:|
 |Adulto mayor    |No propia |   682.085|      21,6%|
 |Adulto mayor    |Propia    | 2.481.901|      78,4%|
-|No adulto mayor |No propia | 6.244.617|      40,8%|
 |No adulto mayor |Propia    | 9.071.829|      59,2%|
+|No adulto mayor |No propia | 6.244.617|      40,8%|
 
 Transformemos la tabla para hacer más legible y clara la información al distribuir las variables en columnas por medio de `pivot_wider()`:
 
@@ -1203,5 +1204,9 @@ caption = "Fuente: Censo 2024, INE")
 
 
 -->
+
+{{< etiqueta "chile" >}}
+
+{{< etiqueta "datos" >}}
 
 {{< cafecito >}}

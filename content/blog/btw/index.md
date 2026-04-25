@@ -146,7 +146,7 @@ chat$chat("¿qué objetos tengo en mi entorno de R?")
 
 A diferencia de el primer ejemplo, ahora el modelo de lenguaje sí puede acceder a mi entorno de R y responder correctamente.
 
------
+{{< relacionada "/blog/gander/" >}}
 
 ## Ejemplo de uso
 
@@ -178,8 +178,7 @@ ggplot(human_capital, aes(x = factor(region), y = stock_2023)) +
 
 No es el gráfico más bonito del mundo (a mi me quedan mejores, todavía no me quitan el trabajo 😌), pero demuestra que sabe hacer la pega! Otros modelos hubieran inventado columnas, no hubieran podido hacer el filtro, o no sabrían poner los títulos de los ejes.
 
-
-----
+{{< etiqueta "inteligencia artificial" >}}
 
 #### Otros
 

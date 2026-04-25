@@ -1,0 +1,84 @@
+{{/*
+  Shortcode: posts_tag
+  Muestra un recuadro compacto con los 5 posts más recientes de un tag.
+  Uso: {{< posts_tag "nombre-del-tag" >}}
+  Uso con etiqueta personalizada: {{< posts_tag "nombre-del-tag" "Ver también" >}}
+*/}}
+
+{{- $tag   := .Get 0 -}}
+{{- $label := .Get 1 | default (printf "Publicaciones sobre %s" $tag) -}}
+{{- $tagSlug := $tag | lower | replaceRE "\\s+" "-" -}}
+{{- $tagPage := site.GetPage (printf "tags/%s" $tagSlug) -}}
+
+{{ if $tagPage }}
+  {{/* Excluir la página actual para evitar recursión infinita */}}
+  {{- $currentPage := .Page -}}
+  {{- $filtered := where $tagPage.Pages.ByDate.Reverse "RelPermalink" "ne" $currentPage.RelPermalink -}}
+  {{- $pages := $filtered | first 5 -}}
+
+  <div style="margin: 28px 0;">
+    <p style="margin: 0 0 6px 0;
+              font-size: 78%;
+              text-transform: uppercase;
+              letter-spacing: 0.06em;
+              opacity: 0.5;">
+      {{ $label }}
+    </p>
+
+    <div style="border: 1px solid #9069C035;
+                border-radius: 8px;
+                overflow: hidden;
+                background-color: #9069C00d;">
+
+      {{ range $i, $page := $pages }}
+        {{- $images    := $page.Resources.ByType "image" -}}
+        {{- $thumbnail := $images.GetMatch "*feature*" -}}
+
+        <a href="{{ $page.RelPermalink }}"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  {{ if gt $i 0 }}border-top: 1px solid #9069C020;{{ end }}
+                  transition: background-color 0.15s ease;">
+
+          {{ with $thumbnail }}
+          <img src="{{ .RelPermalink }}"
+               alt="{{ $page.Title }}"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          {{ else }}
+          <div style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      border-radius: 4px;
+                      background-color: #9069C020;">
+          </div>
+          {{ end }}
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            {{ $page.Title | markdownify }}
+          </span>
+
+        </a>
+      {{ end }}
+
+    </div>
+  </div>
+
+{{ else }}
+  <span style="color: #c0392b; font-size: 90%;">
+    ⚠ <code>etiqueta</code>: no se encontró el tag <code>{{ $tag }}</code> (slug: <code>{{ $tagSlug }}</code>)
+  </span>
+{{ end }}

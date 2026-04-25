@@ -44,6 +44,8 @@ La lógica de presentación de los resultados va desde una exploración desde lo
 {{< bajada "Diagrama de desarrollo del proyecto IBG" >}}
 
 
+{{< relacionada "blog/estudio_brechas_comunales" >}}
+
 ## Desarrollo del estudio
 
 {{< imagen_lateral "ibg_2.jpg" "160px" >}}
@@ -69,3 +71,7 @@ El estudio se centra en su presentación por medio de la plataforma interactiva,
 La plataforma fue desarrollada en R y Shiny, y presenta una serie de visualizaciones interactivas que permiten explorar los resultados del estudio. 
 
 {{< aviso "Pronto liberaremos el **código** del procesamiento de datos y de desarrollo de la plataforma!" >}}
+
+{{< etiqueta "apps" >}}
+
+{{< etiqueta "chile" >}}

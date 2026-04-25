@@ -21,13 +21,13 @@ links:
 
 Tema para RStudio enfocado en una paleta de colores morada y rosada, basado en el tema _base16 Default Dark_ de [`{rsthemes}`](https://github.com/gadenbuie/rsthemes?tab=readme-ov-file), el cual a su vez está basado en [base16](https://github.com/chriskempson/base16).
 
-<img style = "border-radius: 7px; max-width: 500px;" src = tema_oscuro.png>
+{{< imagen "tema_oscuro.png" >}}
 
 ## Tema claro
 
 Variación del tema _Tomorrow_ de RStudio, con una paleta morada y rosada para complementar con el tema morado oscuro.
 
-<img style = "border-radius: 7px; max-width: 500px;" src = tema_claro.png>
+{{< imagen "tema_claro.png" >}}
 
 ## Descarga
 
@@ -36,10 +36,11 @@ Variación del tema _Tomorrow_ de RStudio, con una paleta morada y rosada para c
 
 O bien, [entra al repositorio](https://github.com/bastianolea/rstudio_purple_dark_theme) y descarga el archivo `.rstheme`.
 
+{{< relacionada "/blog/2025-01-12/" >}}
+
 ## Instalación
 
 Para agregar el tema a RStudio, [descarga el archivo `.rstheme` desde el repositorio,](https://github.com/bastianolea/rstudio_purple_dark_theme) luego abre las opciones globales de RStudio _Global Options_ (`⌘;`), entra al menú _Appareance_, presiona _Add..._ en la parte de abajo, y elige el archivo `.rstheme` que quieras agregar. Luego puedes aplicar el tema desde ese mismo panel.
-
 
 
 ## Bonus

@@ -42,3 +42,5 @@ Esta aplicación fue desarrollada principalmente para poder personalizar un grá
 </div>
 
 Para desarrollar la aplicación usé **Claude Code**, que aceleró bastante el proceso de desarrollo, y luego refiné el resultado manualmente. Pronto escribiré un post con mis experiencias con este tipo de herramientas de IA para programación!
+
+{{< etiqueta "apps" >}}

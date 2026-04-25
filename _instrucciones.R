@@ -106,6 +106,8 @@ blogdown::new_post(title = "prueba",
 # <i class='fas fa-chalkboard-user'></i>
 # <i class='fas fa-chalkboard-user' style='font-size: 200%'></i>
 
+# {{< relacionada "blog/estudio_brechas_comunales/" >}}
+# {{< etiqueta "apps" >}}
 
 
 

@@ -1,0 +1,92 @@
+{{/* 
+  Shortcode: enlace_post
+  Muestra un cuadro con el thumbnail, título y excerpt de otro post.
+  Uso: {{< enlace_post "blog/nombre-del-post" >}}
+  Uso con título personalizado: {{< enlace_post "blog/nombre-del-post" "Ver también" >}}
+  El path es relativo a la carpeta content/, sin barra inicial.
+  El segundo parámetro (opcional) es el texto encima del recuadro; por defecto: "Publicaciones relacionadas".
+*/}}
+
+{{- $path := .Get 0 -}}
+{{- $label := .Get 1 | default "Publicaciones relacionadas" -}}
+{{- $page := site.GetPage $path -}}
+
+{{ if $page }}
+  {{- $images := $page.Resources.ByType "image" -}}
+  {{- $thumbnail := $images.GetMatch "*feature*" -}}
+  {{/* Usar solo excerpt o description para evitar recursión por .Summary */}}
+  {{- $summary := $page.Params.excerpt | default $page.Description -}}
+
+  <div style="margin: 28px 0;">
+    <p style="margin: 0 0 6px 0;
+              font-size: 78%;
+              text-transform: uppercase;
+              letter-spacing: 0.06em;
+              opacity: 0.5;">
+      {{ $label }}
+    </p>
+
+  <a href="{{ $page.RelPermalink }}"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid #9069C035;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #9069C00d;">
+
+    {{ with $thumbnail }}
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="{{ .RelPermalink }}"
+           alt="{{ $page.Title }}"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    {{ end }}
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        {{ $page.Title | markdownify }}
+      </p>
+
+      {{ with $summary }}
+      <p style="margin: 0;
+                font-size: 84%;
+                opacity: 0.72;
+                line-height: 1.5;">
+        {{ . | markdownify | plainify | truncate 200 "…" }}
+      </p>
+      {{ end }}
+
+    </div>
+  </a>
+  </div>
+
+{{ else }}
+  <span style="color: #c0392b; font-size: 90%;">
+    ⚠ <code>enlace_post</code>: no se encontró la página <code>{{ $path }}</code>
+  </span>
+{{ end }}

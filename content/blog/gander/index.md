@@ -176,3 +176,6 @@ En este ejemplo, con tan sólo seleccionar el código e invocar `{gander}` con `
 Magia? No! Estadísticas! Yey! 🥳
 
 {{< aviso "Para más paquetes y herramientas de modelos de lenguaje e IA en R, revisa [Large Language Model tools for R](https://luisdva.github.io/llmsr-book/), de Luis D. Verde Arregoitia." >}}
+
+
+{{< etiqueta "inteligencia artificial" >}}

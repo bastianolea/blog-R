@@ -459,6 +459,8 @@ delitos_tasa_clasif |>
 
 La comparación entre valores funciona, pero ahora veremos una forma distinta de hacerlo.
 
+{{< relacionada "/blog/ggplot_temas/" >}}
+
 ### Gráfico *dumbbell*
 
 Para hacer un **gráfico de puntos comparados** o *dumbell* necesitamos expresar los valores como puntos en vez de barras, y unir los puntos con una línea.
@@ -541,5 +543,6 @@ Para cada tipo de delito, vemos que el punto de la izquierda es el menor valor y
 Puedes ver una versión de este mismo gráfico en mi [aplicación web de estadísticas de delincuencia en Chile](https://bastianoleah.shinyapps.io/delincuencia_chile/), donde puedes elegir interactivamente los años a comparar y los delitos.
 
 {{< imagen "estadisticas_delitos_chile_featured.png" >}}
+{{< etiqueta "visualización de datos" >}}
 {{< cafecito >}}
 {{< cursos >}}

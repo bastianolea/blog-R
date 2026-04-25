@@ -62,6 +62,8 @@ El Censo viene en tres niveles de información:
 
 Partiremos cargando los datos de nivel personas, que es la base más grande de las tres, dado que tiene **una fila por cada habitante de Chile.**
 
+{{< relacionada "blog/casen_introduccion" >}}
+
 
 ## Cargar datos del Censo en R
 
@@ -588,6 +590,8 @@ personas_hogares_comunas |>
 ```
 
 
+{{< relacionada "blog/mapas_censo_2024" >}}
+
 #### Calcular datos 
 
 Ahora introduzcamos las variables de nivel hogar. Calculemos los **adultos mayores según la tenencia del hogar donde residen,** entendida como la propiedad del hogar versus no propiedad (arriendo, cedida, etc.).
@@ -728,5 +732,9 @@ caption = "Fuente: Censo 2024, INE")
 
 
 -->
+
+{{< etiqueta "chile" >}}
+
+{{< etiqueta "datos" >}}
 
 {{< cafecito >}}

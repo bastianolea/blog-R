@@ -49,7 +49,7 @@
 En este tutorial veremos cómo cargar los datos del Censo de Población y Vivienda 2024 con R para poder acceder a bases de datos de millones de observaciones sin colapsar nuestros computadores.">
   <meta itemprop="datePublished" content="2026-04-08T00:00:00+00:00">
   <meta itemprop="dateModified" content="2026-04-08T00:00:00+00:00">
-  <meta itemprop="wordCount" content="4961">
+  <meta itemprop="wordCount" content="5130">
   <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/censo_2024/censo-featured.jpg">
   <meta itemprop="keywords" content="Datos,Chile,Procesamiento de datos">
   
@@ -58,7 +58,7 @@ En este tutorial veremos cómo cargar los datos del Censo de Población y Vivien
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.505ccb90e601c12d37eab294b4f8746f2b253029ee020f196bd89767d1ed9455.css" integrity="sha256-UFzLkOYBwS036rKUtPh0byslMCnuAg8Za9iXZ9HtlFU=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.4d1b7c7668d9201215b61874a510943c2c9f79756154013070eed3e6db3db62d.css" integrity="sha256-TRt8dmjZIBIVthh0pRCUPCyfeXVhVAEwcO7T5ts9ti0=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
@@ -376,6 +376,51 @@ Resultados Censo 2024</a>
 <li><strong>Personas</strong></li>
 </ul>
 <p>Partiremos cargando los datos de nivel personas, que es la base más grande de las tres, dado que tiene <strong>una fila por cada habitante de Chile.</strong></p>
+<div style="margin: 28px 0;">
+    <p style="margin: 0 0 6px 0;
+              font-size: 78%;
+              text-transform: uppercase;
+              letter-spacing: 0.06em;
+              opacity: 0.5;">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/casen_introduccion/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid #9069C035;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #9069C00d;">
+
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Cargar y explorar datos de la encuesta Casen en R, usando factor de expansión
+      </p>
+
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
 
 
 
@@ -445,12 +490,12 @@ Use `schema()` to see entire schema
 </span></span></code></pre></div><pre><code># A tibble: 6 × 4
   comuna  area  sexo  edad
    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-1   5802     1     2    80
-2   5802     1     1    52
-3   5802     1     2    45
-4   5802     1     2     8
-5   4303     2     1    69
-6   4303     2     2    65
+1   8202     1     1    31
+2   9101     1     2    21
+3   9101     1     2    21
+4   9101     1     2    51
+5   6108     1     2     9
+6   6108     1     1     6
 </code></pre>
 <p>Para ver la estructura de la base de datos, usamos <code>glimpse()</code> de <code>{dplyr}</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">glimpse</span><span class="p">(</span><span class="n">personas</span><span class="p">)</span>
@@ -1226,12 +1271,12 @@ Población chilena por región y área, Censo 2024
 </span></span></code></pre></div><pre><code># A tibble: 6 × 7
   id_vivienda id_hogar region comuna  sexo edad_quinquenal p12_tenencia_viv
         &lt;int&gt;    &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt;           &lt;int&gt;            &lt;int&gt;
-1           1        1      5   5802     2              80                4
-2           1        1      5   5802     1              50                4
-3           1        1      5   5802     2              45                4
-4           1        1      5   5802     2               5                4
-5           2        1      4   4303     1              65                9
-6           2        1      4   4303     2              65                9
+1       27362        1     13  13113     2              45                2
+2       27363        1      5   5701     1              75                1
+3       27364        1     13  13125     2              55                1
+4       27364        1     13  13125     2              20                1
+5       27365        1     13  13122     2              30                7
+6       27365        1     13  13122     2              10                7
 </code></pre>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># cantidad de observaciones en la tabla</span>
 </span></span><span class="line"><span class="cl"><span class="n">personas_hogares</span> <span class="o">|&gt;</span> 
@@ -1336,12 +1381,12 @@ Población chilena por región y área, Censo 2024
 </span></span></code></pre></div><pre><code># A tibble: 6 × 11
   id_vivienda id_hogar nombre_region           region nombre_comuna comuna sexo 
         &lt;int&gt;    &lt;int&gt; &lt;chr&gt;                    &lt;int&gt; &lt;chr&gt;          &lt;int&gt; &lt;chr&gt;
-1       13755        1 Libertador General Ber…      6 Rancagua        6101 Mujer
-2       13755        1 Libertador General Ber…      6 Rancagua        6101 Mujer
-3       13756        1 Metropolitana de Santi…     13 El Bosque      13105 Homb…
-4       13756        1 Metropolitana de Santi…     13 El Bosque      13105 Mujer
-5       13756        1 Metropolitana de Santi…     13 El Bosque      13105 Mujer
-6       13757        1 Metropolitana de Santi…     13 San Joaquín    13129 Mujer
+1       27362        1 Metropolitana de Santi…     13 La Reina       13113 Mujer
+2       27363        1 Valparaíso                   5 San Felipe      5701 Homb…
+3       27364        1 Metropolitana de Santi…     13 Quilicura      13125 Mujer
+4       27364        1 Metropolitana de Santi…     13 Quilicura      13125 Mujer
+5       27365        1 Metropolitana de Santi…     13 Peñalolén      13122 Mujer
+6       27365        1 Metropolitana de Santi…     13 Peñalolén      13122 Mujer
 # ℹ 4 more variables: edad_quinquenal &lt;int&gt;, p12_tenencia_viv &lt;int&gt;,
 #   propiedad &lt;chr&gt;, adulto_mayor &lt;chr&gt;
 </code></pre>
@@ -1360,28 +1405,98 @@ Población chilena por región y área, Censo 2024
 </span></span></code></pre></div><pre><code># A tibble: 2 × 2
   adulto_mayor           n
   &lt;chr&gt;              &lt;int&gt;
-1 No adulto mayor 15316446
-2 Adulto mayor     3163986
+1 Adulto mayor     3163986
+2 No adulto mayor 15316446
 </code></pre>
 <p>Podemos obtener el mismo conteo a nivel regional:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">personas_hogares_comunas</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="nf">count</span><span class="p">(</span><span class="n">nombre_region</span><span class="p">,</span> <span class="n">adulto_mayor</span><span class="p">)</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="nf">collect</span><span class="p">()</span>
 </span></span></code></pre></div><pre><code># A tibble: 32 × 3
-   nombre_region                             adulto_mayor          n
-   &lt;chr&gt;                                     &lt;chr&gt;             &lt;int&gt;
- 1 Valparaíso                                Adulto mayor     379279
- 2 Valparaíso                                No adulto mayor 1516774
- 3 Coquimbo                                  Adulto mayor     145007
- 4 Coquimbo                                  No adulto mayor  687857
- 5 Aysén del General Carlos Ibáñez del Campo No adulto mayor   85155
- 6 Tarapacá                                  Adulto mayor      43959
- 7 Tarapacá                                  No adulto mayor  325847
- 8 Biobío                                    Adulto mayor     290340
- 9 Metropolitana de Santiago                 No adulto mayor 6198954
-10 Biobío                                    No adulto mayor 1322719
+   nombre_region                         adulto_mayor          n
+   &lt;chr&gt;                                 &lt;chr&gt;             &lt;int&gt;
+ 1 Libertador General Bernardo O'Higgins No adulto mayor  806791
+ 2 Metropolitana de Santiago             No adulto mayor 6198954
+ 3 Metropolitana de Santiago             Adulto mayor    1201787
+ 4 Libertador General Bernardo O'Higgins Adulto mayor     180437
+ 5 La Araucanía                          No adulto mayor  825586
+ 6 Valparaíso                            No adulto mayor 1516774
+ 7 Biobío                                No adulto mayor 1322719
+ 8 Biobío                                Adulto mayor     290340
+ 9 Ñuble                                 No adulto mayor  409410
+10 Los Lagos                             No adulto mayor  743943
 # ℹ 22 more rows
 </code></pre>
+<div style="margin: 28px 0;">
+    <p style="margin: 0 0 6px 0;
+              font-size: 78%;
+              text-transform: uppercase;
+              letter-spacing: 0.06em;
+              opacity: 0.5;">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/mapas_censo_2024/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid #9069C035;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #9069C00d;">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/mapas_censo_2024/featured.png"
+           alt="Visualiza datos del Censo 2024 en mapas a nivel de manzana con R"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Visualiza datos del Censo 2024 en mapas a nivel de manzana con R
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                opacity: 0.72;
+                line-height: 1.5;">
+        Recientemente lanzaron los datos 2024 del Censo de Población y Vivienda de Chile, incluyendo más de 200 variables a nivel de manzana. En este tutorial veremos dos formas de visualizar datos censales a…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
 
 
 
@@ -1418,27 +1533,27 @@ Cantidad y porcentaje de personas adultas mayores según propiedad del hogar
   <tbody>
       <tr>
           <td style="text-align: left">Adulto mayor</td>
-          <td style="text-align: left">No propia</td>
-          <td style="text-align: right">682.085</td>
-          <td style="text-align: right">21,6%</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Adulto mayor</td>
           <td style="text-align: left">Propia</td>
           <td style="text-align: right">2.481.901</td>
           <td style="text-align: right">78,4%</td>
       </tr>
       <tr>
-          <td style="text-align: left">No adulto mayor</td>
+          <td style="text-align: left">Adulto mayor</td>
           <td style="text-align: left">No propia</td>
-          <td style="text-align: right">6.244.617</td>
-          <td style="text-align: right">40,8%</td>
+          <td style="text-align: right">682.085</td>
+          <td style="text-align: right">21,6%</td>
       </tr>
       <tr>
           <td style="text-align: left">No adulto mayor</td>
           <td style="text-align: left">Propia</td>
           <td style="text-align: right">9.071.829</td>
           <td style="text-align: right">59,2%</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">No adulto mayor</td>
+          <td style="text-align: left">No propia</td>
+          <td style="text-align: right">6.244.617</td>
+          <td style="text-align: right">40,8%</td>
       </tr>
   </tbody>
 </table>
@@ -1465,26 +1580,26 @@ Cantidad y porcentaje de personas adultas mayores según propiedad del hogar
   <thead>
       <tr>
           <th style="text-align: left">adulto mayor</th>
-          <th style="text-align: left">No propia (cantidad)</th>
           <th style="text-align: left">Propia (cantidad)</th>
-          <th style="text-align: left">No propia (porcentaje)</th>
+          <th style="text-align: left">No propia (cantidad)</th>
           <th style="text-align: left">Propia (porcentaje)</th>
+          <th style="text-align: left">No propia (porcentaje)</th>
       </tr>
   </thead>
   <tbody>
       <tr>
           <td style="text-align: left">Adulto mayor</td>
-          <td style="text-align: left">682.085</td>
           <td style="text-align: left">2.481.901</td>
-          <td style="text-align: left">22%</td>
+          <td style="text-align: left">682.085</td>
           <td style="text-align: left">78%</td>
+          <td style="text-align: left">22%</td>
       </tr>
       <tr>
           <td style="text-align: left">No adulto mayor</td>
-          <td style="text-align: left">6.244.617</td>
           <td style="text-align: left">9.071.829</td>
-          <td style="text-align: left">41%</td>
+          <td style="text-align: left">6.244.617</td>
           <td style="text-align: left">59%</td>
+          <td style="text-align: left">41%</td>
       </tr>
   </tbody>
 </table>
@@ -1681,6 +1796,357 @@ caption = "Fuente: Censo 2024, INE")
 
 
 -->
+<p>
+  <div style="margin: 28px 0;">
+    <p style="margin: 0 0 6px 0;
+              font-size: 78%;
+              text-transform: uppercase;
+              letter-spacing: 0.06em;
+              opacity: 0.5;">
+      Publicaciones sobre chile
+    </p>
+
+    <div style="border: 1px solid #9069C035;
+                border-radius: 8px;
+                overflow: hidden;
+                background-color: #9069C00d;">
+
+      <a href="/blog/app_densidad_comunas/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  
+                  transition: background-color 0.15s ease;">
+
+          
+          <img src="/blog/app_densidad_comunas/featured.png"
+               alt="Aplicación: Visualizador de densidad de población urbana en comunas de Chile"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Aplicación: Visualizador de densidad de población urbana en comunas de Chile
+          </span>
+
+        </a>
+      <a href="/blog/indice_brechas_genero/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C020;
+                  transition: background-color 0.15s ease;">
+
+          
+          <img src="/blog/indice_brechas_genero/featured.jpg"
+               alt="Plataforma de análisis: Índice de Brechas de Género"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Plataforma de análisis: Índice de Brechas de Género
+          </span>
+
+        </a>
+      <a href="/blog/estudio_brechas_comunales/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C020;
+                  transition: background-color 0.15s ease;">
+
+          
+          <img src="/blog/estudio_brechas_comunales/featured.jpeg"
+               alt="Plataforma de visualización de resultados del Estudio de Brechas Comunales"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Plataforma de visualización de resultados del Estudio de Brechas Comunales
+          </span>
+
+        </a>
+      <a href="/blog/2026-03-12/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C020;
+                  transition: background-color 0.15s ease;">
+
+          
+          <img src="/blog/2026-03-12/santiagorusers-featured.jpg"
+               alt="Primera reunión: grupo de usuari@s de R, Santiago de Chile"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Primera reunión: grupo de usuari@s de R, Santiago de Chile
+          </span>
+
+        </a>
+      <a href="/blog/app_suicidios_genero/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C020;
+                  transition: background-color 0.15s ease;">
+
+          
+          <img src="/blog/app_suicidios_genero/suicidios_genero_1_featured.png"
+               alt="App: Suicidios en Chile (2017-2024) desde una perspectiva de género"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            App: Suicidios en Chile (2017-2024) desde una perspectiva de género
+          </span>
+
+        </a>
+      
+
+    </div>
+  </div>
+
+
+
+
+  <div style="margin: 28px 0;">
+    <p style="margin: 0 0 6px 0;
+              font-size: 78%;
+              text-transform: uppercase;
+              letter-spacing: 0.06em;
+              opacity: 0.5;">
+      Publicaciones sobre datos
+    </p>
+
+    <div style="border: 1px solid #9069C035;
+                border-radius: 8px;
+                overflow: hidden;
+                background-color: #9069C00d;">
+
+      <a href="/blog/indice_brechas_genero/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  
+                  transition: background-color 0.15s ease;">
+
+          
+          <img src="/blog/indice_brechas_genero/featured.jpg"
+               alt="Plataforma de análisis: Índice de Brechas de Género"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Plataforma de análisis: Índice de Brechas de Género
+          </span>
+
+        </a>
+      <a href="/blog/estudio_brechas_comunales/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C020;
+                  transition: background-color 0.15s ease;">
+
+          
+          <img src="/blog/estudio_brechas_comunales/featured.jpeg"
+               alt="Plataforma de visualización de resultados del Estudio de Brechas Comunales"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Plataforma de visualización de resultados del Estudio de Brechas Comunales
+          </span>
+
+        </a>
+      <a href="/blog/datos_estructurados_llm/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C020;
+                  transition: background-color 0.15s ease;">
+
+          
+          <div style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      border-radius: 4px;
+                      background-color: #9069C020;">
+          </div>
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Extracción de datos estructurados desde texto usando IA
+          </span>
+
+        </a>
+      <a href="/blog/app_suicidios_genero/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C020;
+                  transition: background-color 0.15s ease;">
+
+          
+          <img src="/blog/app_suicidios_genero/suicidios_genero_1_featured.png"
+               alt="App: Suicidios en Chile (2017-2024) desde una perspectiva de género"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            App: Suicidios en Chile (2017-2024) desde una perspectiva de género
+          </span>
+
+        </a>
+      <a href="/blog/mapas_censo_2024/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C020;
+                  transition: background-color 0.15s ease;">
+
+          
+          <img src="/blog/mapas_censo_2024/featured.png"
+               alt="Visualiza datos del Censo 2024 en mapas a nivel de manzana con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Visualiza datos del Censo 2024 en mapas a nivel de manzana con R
+          </span>
+
+        </a>
+      
+
+    </div>
+  </div>
+
+
+
 <div style = "height: 18px;">
 </div>
 <div>
@@ -1688,7 +2154,7 @@ caption = "Fuente: Censo 2024, INE")
   justify-content: center;
   align-items: center;">
     <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="bastimapache" data-color="#FFDD00" data-emoji="☕"  data-font="Cookie" data-text="Regálame un cafecito" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
-  </div>
+  </div></p>
  
     </section>
       
@@ -1697,7 +2163,7 @@ caption = "Fuente: Censo 2024, INE")
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/app_densidad_comunas/">&larr; Aplicación: Visualizador de densidad de población urbana en comunas de Chile</a>
+    href="https://bastianoleah.netlify.app/blog/tema_morado/">&larr; Temas morados oscuro y claro para RStudio</a>
   
   
   
@@ -1739,7 +2205,7 @@ caption = "Fuente: Censo 2024, INE")
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">24 minute read, 4961 words</dd>
+    <dd class="fw5 ml0">25 minute read, 5130 words</dd>
   </dl>
   
   <dl class="f6 lh-copy">
@@ -1833,7 +2299,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -1848,7 +2314,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
+      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -1998,7 +2464,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/curiosidades/">Curiosidades</a></span>
+      href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -2013,7 +2479,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="https://bastianoleah.netlify.app/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -2088,7 +2554,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ciencias-sociales/">Ciencias sociales</a></span>
+      href="https://bastianoleah.netlify.app/tags/loops/">Loops</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

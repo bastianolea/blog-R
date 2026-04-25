@@ -30,6 +30,7 @@ Continuando con la exploración de los datos georeferenciados del Censo 2024 por
 
 {{< imagen_tamaño "app_censo_mapas.jpg" "400px" >}}
 
+{{< relacionada "blog/censo_2024" >}}
 
 ## Aplicación
 
@@ -42,6 +43,8 @@ Toda la app fue **hecha en R en menos de media hora** ⏱️ gracias a la conven
 En el fondo hice la app para aprender la carga de datos formato Arrow como base de datos, que es extremadamente fácil de hacer con R y `{dplyr}`, y me hizo pasar de cargar datos y filtrar en 1.1 segundos a tan sólo 0.1 segundos! 🚀 Si quieres que haga un tutorial de eso déjame un comentario o escríbeme 🤭
 
 {{< info "Si quieres explorar más aplicaciones de datos sociales, revisa mi [portafolio de aplicaciones](https://bastianolea.github.io/shiny_apps/)" >}}
+
+{{< relacionada "blog/mapas_censo_2024" >}}
 
 
 ## Resumen del código
@@ -97,3 +100,5 @@ datos_filtrados |>
 
 
 La gracia de Shiny es que puedes tomar cualquier código de R que harías normalmente, y ponerlo dentro de una app interactiva, para lo que solamente necesitas reemplazar los filtros, selecciones, y otros lugares donde escribirías cosas a mano por un `input$algo` que sería la selección hecha por la/él usuaria/o de la aplicación web.
+
+{{< etiqueta "apps" >}}

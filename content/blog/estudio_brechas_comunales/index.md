@@ -44,7 +44,7 @@ Nos enorgullece poder hacer público un instrumento que aporta en la evaluación
 
 {{< boton "Accede a la plataforma de visualización" "https://www.descentralizachile.cl/ebc/" "fas fa-link" >}}
 
-
+{{< relacionada "blog/indice_brechas_genero" >}}
 
 ## Desarrollo del estudio
 
@@ -94,3 +94,6 @@ El [documento Quarto parametrizado](https://bastianolea.rbind.io/blog/quarto_par
 
 {{< aviso "Pronto liberaremos el **código** del procesamiento de datos y de desarrollo de la plataforma!" >}}
 
+{{< etiqueta "apps" >}}
+
+{{< etiqueta "chile" >}}
