@@ -30,7 +30,7 @@ Al ser R un lenguaje enfocado completamente el análisis de datos, es la platafo
 
 A continuación, te presento tres formas distintas de extraer datos desde páginas web con R. Cada una tiene sus ventajas y desventajas, y están acompañadas de un tutorial en el que le explico desde cero a utilizarlas.
 
-## {rvest}
+## [{rvest}](/blog/tutorial_scraping_rvest/)
 <img src = https://rvest.tidyverse.org/logo.png style = "float: left; width: 100px; margin-left: 2px; margin-right: 20px;">
 
 <div style = "margin-left: 120px;">
@@ -47,7 +47,7 @@ Sirve para la mayoría de los sitios web, pero presenta dificultades con sitios 
 
 ----
 
-## {RSelenium}
+## [{RSelenium}](/blog/tutorial_scraping_selenium/)
 <img src = https://docs.ropensci.org/RSelenium/logo.png style = "float: left; margin-left: 2px; width: 100px; margin-right: 20px;">
 
 Selenium es un software de automatización y testeo de sitios web bastante popular y muy usado. Por esta misma razón, puede ser una de las herramientas de web scraping para la que sea más fácil encontrar recursos, consejos y asistencia online.
@@ -64,7 +64,7 @@ Su fuerte está en la capacidad de controlar distintos navegadores, como Firefox
 
 ----
 
-## {chromote}
+## [{chromote}](/blog/tutorial_scraping_chromote/)
 <img src = https://rstudio.github.io/chromote/logo.png style = "float: left; width: 100px; margin-left: 4px; margin-right: 20px;">
 
 <div style = "margin-left: 128px;">
@@ -87,12 +87,13 @@ Con este paquete se puede controlar una instancia sin interfaz gráfica de Googl
 - [Web scraping de varios sitios del Banco Central usando `{rvest}`, automatizado de forma recurrente con GitHub Actions](https://github.com/bastianolea/economia_chile/blob/main/obtener_datos.R)
 - [Web scraping de perfiles de GitHub con `{rvest}` para generar tablas de los repositorios](https://github.com/bastianolea/datos_sociales/blob/master/scraping.R)
 - [Ejemplo de web scraping de noticias con `{rvest}`](https://github.com/bastianolea/prensa_chile/blob/main/scraping/fuentes/scraping_ejemplo.R)
-- [Ejemplo de web scraping de un sitio web de Transparencia Activa (Chile) con `{RSelenium}`](https://bastianolea.rbind.io/blog/tutorial_scraping_selenium/#navegar-a-un-sitio-web)
+- [Ejemplo de web scraping de un sitio web de Transparencia Activa (Chile) con `{RSelenium}`](blog/tutorial_scraping_selenium/#navegar-a-un-sitio-web)
 - [Obtención automatizada y masiva de datos de prensa con `{rvest}` y `{chromote}` para sitios que bloquean el acceso](https://github.com/bastianolea/prensa_chile)
-- [Extracción de una tabla de Wikipedia con `{rvest}`](https://bastianolea.rbind.io/blog/tutorial_scraping_rvest/#extraer-tablas-desde-un-sitio-web)
-- [Ejemplo de extracción de una tabla del Banco Central con `{rvest}`](https://bastianolea.rbind.io/blog/tutorial_gt/#tabla-de-producto-interno-bruto-regional)
+- [Extracción de una tabla de Wikipedia con `{rvest}`](blog/tutorial_scraping_rvest/#extraer-tablas-desde-un-sitio-web)
+- [Ejemplo de extracción de una tabla del Banco Central con `{rvest}`](blog/tutorial_gt/#tabla-de-producto-interno-bruto-regional)
+- [Descarga de múltiples archivos en una página web con `{rvest}`](/blog/2025-07-27/)
 
-----
+{{< etiqueta "web scraping" >}}
 
 {{< cafecito >}}
 {{< cursos >}}

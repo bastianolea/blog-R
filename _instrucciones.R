@@ -41,16 +41,15 @@ blogdown::new_post(title = "prueba",
 
 ## borradores ----
 "content/blog/ggplot_densidad_puntos/index.qmd"
-"content/blog/ggplot_variacion/index.qmd"
 "content/blog/posit_assistant/index.md"
 "content/blog/renombrar_columnas/index.qmd"
 # tutorial mapas: poner puntos a partir de tablas de datos en centroides
 "content/blog/ggtext/index.qmd"
 "content/blog/ggplot_numeros/index.qmd"
 "content/blog/ggplot_ordenar/index.qmd" #unir estos dos en ggplot_ajustes o algo así
-"content/blog/ggplot_variacion/index.qmd"
 "content/blog/ggplot_sankey/index.qmd"
 "content/blog/googledrive/index.qmd"
+
 
 # ideas ----
 # tip shiny actualizar css
@@ -63,7 +62,6 @@ blogdown::new_post(title = "prueba",
 # datos de género en chile (mmeg, subcomisión, datos.gob, red chilena, ibg)
 # How do I replace NA values with zeros in an R dataframe?
 # https://www.linkedin.com/feed/update/urn:li:activity:7405241344316841984?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB9if5MBe0keh4VrsmJOFbZxmIK9T9GSkYM
-# ejercicios de datos usando datos abiertos: limpiar datos, calcular alguna cosa, predecir algo
 "content/blog/dt_tablas/index.qmd"
 "content/blog/2025-07-06/index.qmd" # cargar y unir datos
 "https://cran.r-project.org/web/packages/janitor/vignettes/tabyls.html" # plagiar

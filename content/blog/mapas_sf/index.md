@@ -1230,9 +1230,9 @@ https://dominicroye.github.io/blog/inserted-map/
 -->
 {{< aviso "⚠️ Este tutorial se encuentra en construcción ⚠️" >}}
 
-------------------------------------------------------------------------
+{{< etiqueta "mapas" >}}
 
-## Recursos para aprender más
+## Recursos sobre mapas en R
 
 ### Apuntes
 
