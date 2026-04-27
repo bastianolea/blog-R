@@ -1230,9 +1230,9 @@ https://dominicroye.github.io/blog/inserted-map/
 -->
 {{< aviso "⚠️ Este tutorial se encuentra en construcción ⚠️" >}}
 
-{{< etiqueta "mapas" >}}
+------------------------------------------------------------------------
 
-## Recursos sobre mapas en R
+## Recursos para aprender más
 
 ### Apuntes
 
@@ -1241,7 +1241,7 @@ https://dominicroye.github.io/blog/inserted-map/
 
 ### Libros
 
--   [Drawing beautiful maps programmatically with R, sf and ggplot2](https://r-spatial.org/r/2018/10/25/ggplot2-sf.html)
--   [Geocomputation with R](https://bookdown.org/robinlovelace/geocompr/)
--   [Spatial Data Science With Applications in R](https://r-spatial.org/book/)
--   [Using Spatial Data with R](https://cengel.github.io/R-spatial/)
+- [Drawing beautiful maps programmatically with R, sf and ggplot2](https://r-spatial.org/r/2018/10/25/ggplot2-sf.html)
+- [Geocomputation with R](https://bookdown.org/robinlovelace/geocompr/)
+- [Spatial Data Science With Applications in R](https://r-spatial.org/book/)
+- [Using Spatial Data with R](https://cengel.github.io/R-spatial/)

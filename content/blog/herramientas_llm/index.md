@@ -11,7 +11,11 @@ format:
     output-file: index
     output-ext: md
 excerpt: "_La inteligencia artificial no lo sabe todo._ Y lo que no sabe, lo inventa. Conociendo las limitaciones de la IA podemos hacer un mejor uso de ella. Por ejemplo, la IA no tiene acceso a datos, ni es buena para responder preguntas sobre cifras exactas. En esta publicación veremos cómo enseñar a la IA a usar herramientas de R para complementar sus respuestas, y así entregar información exacta en vez de alucinar respuestas."
-
+links:
+  - icon: file-code
+    icon_pack: fas
+    name: Código herramienta
+    url: https://github.com/bastianolea/censo_poblacion_consultar
 ---
 
 _La inteligencia artificial no lo sabe todo._ Y lo que no sabe, **lo inventa**. Es demasiado importante **conocer las limitaciones** de las herramientas de inteligencia artificial para poder hacer buen uso de ellas.
