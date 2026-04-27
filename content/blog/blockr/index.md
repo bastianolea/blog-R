@@ -17,14 +17,14 @@ links:
   - icon: registered
     icon_pack: fas
     name: Paquete
-    url: https://bristolmyerssquibb.github.io/blockr/
+    url: https://blockr.site
   - icon: youtube
     icon_pack: fab
     name: Presentación
     url: "https://www.youtube.com/live/H4eheaXZKzs?si=FTo8q_sXCCjV-hBw&t=4394"
 ---
 
-Viendo el streaming de la [conferencia LatinR 2025](https://www.youtube.com/watch?v=H4eheaXZKzs) conocí el [paquete de R `{blockr}`](https://bristolmyerssquibb.github.io/blockr/), que nos ofrece una interfaz gráfica interactiva para usar R **sin escribir código**. 
+Viendo el streaming de la [conferencia LatinR 2025](https://www.youtube.com/watch?v=H4eheaXZKzs) conocí el [paquete de R `{blockr}`](https://blockr.site), que nos ofrece una interfaz gráfica interactiva para usar R **sin escribir código**. 
 
 {{< imagen "blockr_12.jpg" >}}
 
@@ -36,11 +36,10 @@ Esta herramienta _no code_ puede servirle a gente que esté aprendiendo R y quiz
 
 ## Empezar
 
-Para empezar a usarlo, primero hay que instalar el paquete. Se requiere tener el paquete `{pak}` instalado, y luego usarlo para instalar `{blockr}`:
+Para empezar a usarlo, primero hay que instalar el paquete: <!-- Se requiere tener el paquete `{pak}` instalado, y luego usarlo para instalar `{blockr}`: -->
 
 ```r
-# install.packages("pak")
-pak::pak("BristolMyersSquibb/blockr")
+install.packages("blockr")
 ```
 
 Una vez instalado, lo cargamos y ejecutamos la interfaz gráfica:
@@ -54,7 +53,7 @@ run_app()
 
 La interfaz empieza como un lienzo vacío, al cual hay que **agregar bloques**.
 
-Les voy a mostrar un ejemplo sencillo, pero recomiendo [seguir las instrucciones oficiales](https://bristolmyerssquibb.github.io/blockr/getting-started.html), que son bien completas.
+Les voy a mostrar un ejemplo sencillo, pero recomiendo [seguir las instrucciones oficiales](https://blockr.site/learn/01-build-your-first-app.html), que son bien completas.
 
 Al agregar un bloque, se nos abre un panel donde escribimos lo que necesitamos:
 
