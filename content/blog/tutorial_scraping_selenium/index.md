@@ -2,8 +2,7 @@
 title: 'Tutorial: web scraping controlando un navegador web con {RSelenium} en R'
 author: Bastián Olea Herrera
 date: '2025-07-15'
-draft: false
-freeze: false
+freeze: true
 format:
   hugo-md:
     output-file: index

@@ -1,10 +1,10 @@
-{{- $.Scratch.Add "pagesIndex" slice -}}
-{{- range $index, $page := .Site.Pages -}}
-  {{- if in (slice "post" "blog" "tutoriales") $page.Type -}}
-    {{- if gt (len $page.Content) 0 -}}
-      {{- $pageData := (dict "title" $page.Title "href" $page.Permalink "date" $page.Params.Date "tags" (delimit (default (slice) $page.Params.tags) " ; ") "excerpt" (default $page.Summary $page.Params.excerpt) "content" $page.Plain) -}}
-      {{- $.Scratch.Add "pagesIndex" $pageData -}}
+{{- $pagesIndex := slice -}}
+{{- range .Site.Pages -}}
+  {{- if in (slice "post" "blog" "tutoriales") .Type -}}
+    {{- if gt (len .Content) 0 -}}
+      {{- $pageData := dict "title" .Title "href" .Permalink "date" .Params.Date "tags" (delimit (default (slice) .Params.tags) " ; ") "excerpt" (default .Summary .Params.excerpt) "content" (.Plain | truncate 2000) -}}
+      {{- $pagesIndex = $pagesIndex | append $pageData -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
-{{- $.Scratch.Get "pagesIndex" | jsonify -}}
+{{- $pagesIndex | jsonify -}}

@@ -147,3 +147,106 @@ background-color: #A985C630;
   margin-bottom: -26px; margin-top: 32px; 
   text-align: center; font-weight: bold; opacity: 0.8;
 }
+
+
+.contenedor-iconos {
+  display: inline-flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.icono-cuadro {
+  display: inline-flex; justify-content: center; gap: 24px; 
+  background-color: #A985C640; /*#DEC4F2;*/
+  padding: 18px; border-radius: 8px;
+}
+
+.icono-v {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  
+  span {
+    font-weight: bold;
+  }
+  
+  i {
+    font-size: 200%;
+  }
+}
+
+
+.cuadro {
+  background-color: #A985C640; 
+  padding: 12px; 
+  margin: 12px;
+  border-radius: 8px;
+}
+
+
+.shiny-fake {
+  background-color: white;
+  padding: 12px;
+  margin: 12px;
+}
+
+.cita-sin-saltos {
+  blockquote {
+    margin-bottom: 0px !important;
+    margin-top: 0px !important;
+  }
+  
+  p {
+    margin-bottom: 0px !important;
+    margin-top: 0px !important;
+  }
+  
+}
+
+
+/* estilo de shortcode externo.html */
+
+.externo-card {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    text-decoration: none;
+    color: inherit;
+    border: solid 2px #A885C6AA;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #9069C020;
+  }
+  .externo-card-img {
+    position: relative;
+    width: 140px;
+    flex-shrink: 0;
+    margin: 14px 0 14px 14px;
+    overflow: hidden;
+  }
+  .externo-card-img img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    margin: 0;
+  }
+  .externo-card-text {
+    padding: 15px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+  }
+  @media (max-width: 500px) {
+    .externo-card {
+      flex-direction: column;
+    }
+    .externo-card-img {
+      width: 100%;
+      height: 130px;
+      margin: 0;
+      border-radius: 0;
+    }
+    .externo-card-img img {
+      border-radius: 0;
+    }
+  }

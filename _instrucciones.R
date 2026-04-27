@@ -19,11 +19,11 @@ blogdown::new_post(title = "Prueba",
 )
 
 # crear un post tutorial
-blogdown::new_post(title = "prueba", 
-                   file = "blog/prueba1/index.md",
+blogdown::new_post(title = "Potencia las capacidades de la IA ", 
+                   file = "blog/herramientas_llm/index.md",
                    author = "Bastián Olea Herrera",
-                   tags = c("chile", "apps"),
-                   categories = c("Aplicaciones")
+                   tags = c("inteligencia artificial"),
+                   categories = c()
 )
 
 # draft: true
@@ -40,6 +40,7 @@ blogdown::new_post(title = "prueba",
 
 
 ## borradores ----
+"content/blog/shiny/index.md"
 "content/blog/ggplot_densidad_puntos/index.qmd"
 "content/blog/posit_assistant/index.md"
 "content/blog/renombrar_columnas/index.qmd"
@@ -104,6 +105,11 @@ blogdown::new_post(title = "prueba",
 # {{< boton "Buscador" "https://bastianoleah.shinyapps.io/buscador/" "fas fa-search" >}}
 # {{< relacionada "blog/estudio_brechas_comunales/" >}}
 # {{< etiqueta "apps" >}}
+# {{< externo "Galería de apps Shiny" 
+#   "https://bastianolea.github.io/shiny_apps/" 
+#   "shiny_apps.png" 
+#   "Descripción"
+#   "Página recomendada" >}}
 
 # íconos
 # <i class='fas fa-chalkboard-user'></i>

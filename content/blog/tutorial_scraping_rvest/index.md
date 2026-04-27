@@ -2,7 +2,7 @@
 title: 'Tutorial: web scraping en R usando {rvest}'
 author: Bastián Olea Herrera
 date: '2024-12-27'
-draft: false
+freeze: true
 format:
   hugo-md:
     output-file: index

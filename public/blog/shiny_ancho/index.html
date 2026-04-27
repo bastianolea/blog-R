@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-ES" dir="ltr"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=7578&amp;path=livereload" data-no-instant defer></script>
+<html lang="es-ES" dir="ltr"><head>
   
                            
      
@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.152.2">
+<meta name="generator" content="Hugo 0.136.5">
 <title>Medir el ancho de una aplicación Shiny como una variable reactiva y usarla para adaptar los contenidos de la app | Bastián Olea</title>
 
 
@@ -31,16 +31,16 @@
 <meta property="og:title" content="Medir el ancho de una aplicación Shiny como una variable reactiva y usarla para adaptar los contenidos de la app | Bastián Olea">
 <meta property="og:description" content="Al desarrollar aplicaciones web Shiny, tenemos que considerar que van a ser visitadas desde distintos dispositivos: celulares, tablets, computadores grandes, computadores pequeños... Por eso es importante diseñarlas pensando en la reactividad. Si bien Shiny crea aplicaciones reacgtivas, puede ser útil usar el ancho de la ventana para adaptar los contenidos de la app: mostrar u ocultar elementos, ajustar los gráficos, cambiar un layout, o elegir qué visualización presentar según si el usuario está en un computador de escritorio o en un dispositivo móvil." />
 <meta property="og:type" content="page" />
-<meta property="og:url" content="http://localhost:7578/blog/shiny_ancho/" />
+<meta property="og:url" content="https://bastianoleah.netlify.app/blog/shiny_ancho/" />
 <meta property="og:locale" content="es-ES">
 
 
 
 
     
-        <meta property="og:image" content="http://localhost:7578/blog/sidebar-listing.jpg" >
+        <meta property="og:image" content="https://bastianoleah.netlify.app/blog/sidebar-listing.jpg" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="http://localhost:7578/blog/sidebar-listing.jpg" >
+        <meta name="twitter:image" content="https://bastianoleah.netlify.app/blog/sidebar-listing.jpg" >
     
     
   
@@ -56,16 +56,16 @@
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="../../style.main.min.d9ed2a398ab5c329e022a62a470632e351726128d0ab57b38795c58be2a3555d.css" integrity="sha256-2e0qOYq1wyngIqYqRwYy41FyYSjQq1ezh5XFi&#43;KjVV0=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.f1077c0959e0c28941c671121e25726699745ff83a06fc0ebda190491db6569b.css" integrity="sha256-8Qd8CVngwolBxnESHiVyZpl0X/g6BvwOvaGQSR22Vps=" media="screen">
   
   
-  <script src="../../panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="../../main.min.858230d8d39b17ec435a8cd8991902766cb7afe0621875ffe5fcdf376474ca6e.js" type="text/javascript"></script>
+  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
   
   
-  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="/css/syntax.css">
   
   
   <link rel="preload" href="https://bastianoleah.shinyapps.io/buscador/" as="image">
@@ -74,15 +74,15 @@
       <div class="grid-container single-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="http://localhost:7578/" title="Home">
-      <img src="../../img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianoleah.netlify.app/" title="Home">
+      <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 active" href="../../blog/" title="Bastián Olea: Blog de R">Blog</a>
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/blog/" title="Bastián Olea: Blog de R">Blog</a>
       
         
         
@@ -107,27 +107,27 @@
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="../../tags/" title="Temas">Temas</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/tags/" title="Temas">Temas</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="../../clases/" title="Cursos">Cursos</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/clases/" title="Cursos">Cursos</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="../../categories/tutoriales/" title="Tutoriales">Tutoriales</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/tutoriales/" title="Tutoriales">Tutoriales</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="../../blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="../../about/" title="Bastián Olea: Sobre mi">Yo</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/about/" title="Bastián Olea: Sobre mi">Yo</a>
       
       
       
@@ -226,7 +226,7 @@
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="../../contacto/" title="envelope" 
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-envelope fa-lg fa-fw"></i>
     </a>
@@ -263,7 +263,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:7578/tags/shiny"
+          <em><dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/shiny"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -438,7 +438,9 @@
 </span></span></code></pre></div><p>En el código anterior, usamos <code>req(ancho())</code> para asegurarnos de que el valor ya esté disponible antes de intentar usarlo (en el primer instante de la app, antes de que el JavaScript se ejecute, <code>input$window_width</code> podría ser <code>NULL</code>). elDentro del <strong>observador</strong>, que se evaluará cada vez que sus elementos internos cambien, sanse detecta queoel de la ventana supera los 600 píxeles, se muestra el map(<code>show()</code> a y se oculta el sel(<code>hide()</code>) ector; y si la ventana es más angosta (como en un celular), se oculta el mapa y se muestra el selector. Los textos a los que se hace referencia en <code>show()</code> y <code>hide()</code> son los <code>id</code> de los elementos que queremos afectar.</p>
 <p>Así podemos adaptar la experiencia de usuario para optimizarla según el dispositivo que use.</p>
 <div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
-            background-color: #A985C650;  border-radius: 6px;
+            /*background-color: #A985C650;*/
+            background-color: #DEC4F2;
+            border-radius: 6px;
             margin: 20px 40px 20px 40px;">
   
   <div style="flex-shrink: 0;">
@@ -447,8 +449,8 @@
   
   <aside style = "font-size: 90%;">
     Aquí hay un 
-<a href="../../blog/shiny_ocultar/">tutorial</a> más completo sobre mostrar y ocultar elementos en Shiny usando <code>{shinyjs}</code>. 
-<a href="../../blog/shiny_ocultar/">Revisa el post</a> para aprender a usar <code>show()</code> y <code>hide()</code> para controlar la visibilidad de los elementos de tu app.
+<a href="/blog/shiny_ocultar/">tutorial</a> más completo sobre mostrar y ocultar elementos en Shiny usando <code>{shinyjs}</code>. 
+<a href="/blog/shiny_ocultar/">Revisa el post</a> para aprender a usar <code>show()</code> y <code>hide()</code> para controlar la visibilidad de los elementos de tu app.
   </aside>
   
 </div>
@@ -545,12 +547,12 @@
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="http://localhost:7578/blog/curso_gratis_r_intro_2/">&larr; Curso gratuito: introducción al análisis de datos con R, 2ª versión</a>
+    href="https://bastianoleah.netlify.app/blog/curso_gratis_r_intro_2/">&larr; Curso gratuito: introducción al análisis de datos con R, 2ª versión</a>
   
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="http://localhost:7578/blog/graficos_horribles/">Gráficos horribles &rarr;</a>
+    href="https://bastianoleah.netlify.app/blog/graficos_horribles/">Gráficos horribles &rarr;</a>
   
 </div>
 
@@ -594,17 +596,17 @@
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Tags:</dt>
-    <dd class="fw5 ml0"> <a href="http://localhost:7578/tags/shiny">shiny</a> </dd>
+    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/shiny">shiny</a> </dd>
   </dl>
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
-    <dd class="fw5 ml0"><a href="../../blog/indice_brechas_genero/">Plataforma de análisis: Índice de Brechas de Género</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/indice_brechas_genero/">Plataforma de análisis: Índice de Brechas de Género</a></dd>
     
-    <dd class="fw5 ml0"><a href="../../blog/2026-03-26/">Galería de libros de _Goodreads_ para tu blog o sitio web con R y Quarto</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/2026-03-26/">Galería de libros de _Goodreads_ para tu blog o sitio web con R y Quarto</a></dd>
     
-    <dd class="fw5 ml0"><a href="../../blog/estudio_brechas_comunales/">Plataforma de visualización de resultados del Estudio de Brechas Comunales</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/estudio_brechas_comunales/">Plataforma de visualización de resultados del Estudio de Brechas Comunales</a></dd>
     
   </dl>
 </details>
@@ -623,7 +625,7 @@
   <h1 class="f3">Blog</h1>
   <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
 <a href="https://bastianoleah.shinyapps.io/buscador/" target="_blank" rel="noopener">buscador</a> para encontrar publicaciones o navega los 
-<a href="../../tags/">temas</a>.</p>
+<a href="/tags/">temas</a>.</p>
   
 
    
@@ -646,7 +648,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/chile/">Chile</a></span>
+      href="https://bastianoleah.netlify.app/tags/chile/">Chile</a></span>
   </span>
  
   
@@ -661,7 +663,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/datos/">Datos</a></span>
+      href="https://bastianoleah.netlify.app/tags/datos/">Datos</a></span>
   </span>
  
   
@@ -676,7 +678,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -691,7 +693,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/consejos/">Consejos</a></span>
+      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -706,7 +708,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="https://bastianoleah.netlify.app/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -721,7 +723,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/blog/">Blog</a></span>
+      href="https://bastianoleah.netlify.app/tags/blog/">Blog</a></span>
   </span>
  
   
@@ -736,7 +738,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/apps/">Apps</a></span>
+      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -751,7 +753,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/shiny/">Shiny</a></span>
+      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -766,7 +768,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/ggplot2/">Ggplot2</a></span>
+      href="https://bastianoleah.netlify.app/tags/ggplot2/">Ggplot2</a></span>
   </span>
  
   
@@ -781,7 +783,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/web-scraping/">Web scraping</a></span>
+      href="https://bastianoleah.netlify.app/tags/web-scraping/">Web scraping</a></span>
   </span>
  
   
@@ -796,7 +798,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/b%C3%A1sico/">Básico</a></span>
+      href="https://bastianoleah.netlify.app/tags/b%C3%A1sico/">Básico</a></span>
   </span>
  
   
@@ -811,7 +813,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/mapas/">Mapas</a></span>
+      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -826,7 +828,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -841,7 +843,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -856,7 +858,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/curiosidades/">Curiosidades</a></span>
+      href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -871,7 +873,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="https://bastianoleah.netlify.app/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -886,7 +888,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/quarto/">Quarto</a></span>
+      href="https://bastianoleah.netlify.app/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -901,7 +903,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/dplyr/">Dplyr</a></span>
+      href="https://bastianoleah.netlify.app/tags/dplyr/">Dplyr</a></span>
   </span>
  
   
@@ -916,7 +918,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/loops/">Loops</a></span>
+      href="https://bastianoleah.netlify.app/tags/texto/">Texto</a></span>
   </span>
  
   
@@ -931,10 +933,10 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:7578/tags/automatizaci%C3%B3n/">Automatización</a></span>
+      href="https://bastianoleah.netlify.app/tags/loops/">Loops</a></span>
   </span>
 
-<a href="../../tags/" style="margin-left: 3px;">y más!</a>
+<a href="/tags/" style="margin-left: 3px;">y más!</a>
 </div>
 </div>
   
@@ -1085,7 +1087,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="../../contacto/" title="envelope" 
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-envelope fa-lg fa-fw"></i>
     </a>
@@ -1096,19 +1098,19 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
     <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
       
-      <a class="dib pv1 ph2 link" href="../../about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
+      <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
       
       <a class="dib pv1 ph2 link" href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
       
-      <a class="dib pv1 ph2 link" href="../../contacto/" title="Bastián Olea: Contacto">Contacto</a>
+      <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
       
-      <a class="dib pv1 ph2 link" href="../../tags/" title="Temas">Temas</a>
+      <a class="dib pv1 ph2 link" href="/tags/" title="Temas">Temas</a>
       
-      <a class="dib pv1 ph2 link" href="../../clases/" title="Clases">Clases</a>
+      <a class="dib pv1 ph2 link" href="/clases/" title="Clases">Clases</a>
       
-      <a class="dib pv1 ph2 link" href="../../code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
+      <a class="dib pv1 ph2 link" href="/code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
       
-      <a class="dib pv1 ph2 link" href="../../license/" title="Bastián Olea: Licencia">Licencia</a>
+      <a class="dib pv1 ph2 link" href="/license/" title="Bastián Olea: Licencia">Licencia</a>
       
     </div>
   </nav>

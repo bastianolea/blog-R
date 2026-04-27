@@ -22,7 +22,9 @@
               font-size: 78%;
               text-transform: uppercase;
               letter-spacing: 0.06em;
-              opacity: 0.5;">
+              /*opacity: 0.5;*/
+              color: #AB85CC;
+              ">
       {{ $label }}
     </p>
 
@@ -32,10 +34,13 @@
             align-items: stretch;
             text-decoration: none;
             color: inherit;
-            border: 1px solid #9069C035;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
             border-radius: 8px;
             overflow: hidden;
-            background-color: #9069C00d;">
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
 
     {{ with $thumbnail }}
     <figure style="flex-shrink: 0;
@@ -75,7 +80,6 @@
       {{ with $summary }}
       <p style="margin: 0;
                 font-size: 84%;
-                opacity: 0.72;
                 line-height: 1.5;">
         {{ . | markdownify | plainify | truncate 200 "…" }}
       </p>

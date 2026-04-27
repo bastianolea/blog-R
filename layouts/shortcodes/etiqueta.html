@@ -21,11 +21,14 @@
               font-size: 78%;
               text-transform: uppercase;
               letter-spacing: 0.06em;
-              opacity: 0.5;">
+              /*opacity: 0.5;*/
+              color: #AB85CC;
+              ">
       {{ $label }}
     </p>
 
-    <div style="border: 1px solid #9069C035;
+    <div style="/*border: 1px solid #9069C035;*/
+                border: solid 2px #A885C6AA;
                 border-radius: 8px;
                 overflow: hidden;
                 background-color: #9069C00d;">
@@ -42,8 +45,8 @@
                   color: inherit;
                   padding: 8px 14px;
                   gap: 12px;
-                  {{ if gt $i 0 }}border-top: 1px solid #9069C020;{{ end }}
-                  transition: background-color 0.15s ease;">
+                  {{ if gt $i 0 }}border-top: 1px solid #9069C030;{{ end }}
+                  ">
 
           {{ with $thumbnail }}
           <img src="{{ .RelPermalink }}"
