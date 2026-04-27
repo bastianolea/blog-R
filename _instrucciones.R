@@ -105,6 +105,7 @@ blogdown::new_post(title = "Potencia las capacidades de la IA ",
 # {{< boton "Buscador" "https://bastianoleah.shinyapps.io/buscador/" "fas fa-search" >}}
 # {{< relacionada "blog/estudio_brechas_comunales/" >}}
 # {{< etiqueta "apps" >}}
+# {{< categoria "Tutoriales" "Más tutoriales de R" >}}
 # {{< externo "Galería de apps Shiny" 
 #   "https://bastianolea.github.io/shiny_apps/" 
 #   "shiny_apps.png" 
