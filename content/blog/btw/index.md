@@ -26,8 +26,9 @@ excerpt: "El paquete `{btw}` te ofrece un chat de IA interactivo directamente a 
 
 {{< imagen "btw_featured.png" >}}
 
-
 En este blog ya hemos visto varias [herramientas de IA](/tags/inteligencia-artificial) que te pueden ayudar a usar R, por ejemplo [el paquete `{gander}`](/blog/gander/), que al presionar una combinación de teclas cuando tienes código seleccionado invoca una ventana donde puedes pedir a una IA que haga cosas con ese código y/o datos, gracias a un **conocimiento contextual de tu entorno de R**.
+
+{{< aviso "**Actualización:** ahora RStudio integra herramientas de IA directamente, así que herramientas como ésta pierden un poco de relevancia. [Más información aquí](https://posit.co/blog/introducing-ai-in-rstudio)." >}}
 
 <img src = btw_logo.png style = "float: right; max-width: 128px; margin-left: 20px;">
 

@@ -40,6 +40,7 @@ blogdown::new_post(title = "Potencia las capacidades de la IA ",
 
 
 ## borradores ----
+# - **[Presentar tus datos a la IA para hacerle consultas](/blog/redactar_texto_llm/#configurar-el-modelo-para-interpretar-texto)** y que te ayude a interpretar tus datos
 "content/blog/shiny/index.md"
 "content/blog/ggplot_densidad_puntos/index.qmd"
 "content/blog/posit_assistant/index.md"

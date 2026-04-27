@@ -24,8 +24,11 @@ excerpt: "Chatear con modelos de lenguaje (LLM) o IAs puede tener muchos usos pa
 Chatear con modelos de lenguaje (LLM) o _IAs_ —como se les llama coloquialmente— puede tener muchos usos para el análisis de datos:
 - [Usar IA para **generar código de R**](/blog/gander/) para tus análisis, visualizaciones o exploraciones de datos
 - **[Interpretar datos por medio de textos explicativos](/blog/redactar_texto_llm/)** que describan tus análisis o resultados
-- **Convertir texto en datos estructurados**, como entrevistas, noticias o contenido web
-- **Presentar tus datos a la IA para hacerle consultas** y que te ayude a interpretar tus datos
+- **[Convertir texto en datos estructurados](/blog/datos_estructurados_llm/)**, como entrevistas, noticias o contenido web
+- **[Presentar tus datos a la IA para hacerle consultas](/blog/redactar_texto_llm/#configurar-el-modelo-para-interpretar-texto)** y que te ayude a interpretar tus datos
+
+
+/blog/redactar_texto_llm/
 
 Todo esto puedes hacerlo desde tu navegador web, pero cuando analizamos datos puede ser más conveniente **usar IA directamente desde R**. Así podemos mantener una **documentación** de nuestro análisis, **integrar IA** en nuestro procesamiento de datos, usar IA de manera **reproducible**, y usar directamente los resultados de la IA en nuestros flujos de trabajo.
 
@@ -109,19 +112,6 @@ Ollama descargará e instalará el modelo en tu computador. Recuerda que es nece
 Listo! Ahora tienes un modelo de lenguaje instalado localmente.
 
 
-
-## Interactuar con IAs desde R
-
-`{ellmer}` es un [paquete de R](https://ellmer.tidyverse.org/index.html) que facilita la interacción con modelos de lenguaje desde R, y se usa como el motor de muchos otros paquetes que usan IA.
-
-Instalamos el paquete:
-
-```r
-install.packages("ellmer")
-```
-
-Ahora tenemos que configurar `{ellmer}` para que use tu modelo de lenguaje, ya sea un modelo local o un modelo en la nube. 
-
 ### Configurar el uso de un modelo de lenguaje en R
 
 {{< info "Este paso es solamente si usas modelos de lenguaje desde la nube por medio de proveedores como OpenAI o Anthropic. Si usas un modelo de lenguaje local, puedes saltarte este paso." >}}
@@ -155,8 +145,19 @@ Una vez guardadas las credenciales, **reiniciamos la sesión de R** (menú _Sess
 Con esta variable de entorno, el paquete `{ellmer}` tendrá permiso para usar tu modelo de IA.
 
 
+## Interactuar con IAs desde R
 
-## Iniciar una conversación con la IA
+`{ellmer}` es un [paquete de R](https://ellmer.tidyverse.org/index.html) que facilita la interacción con modelos de lenguaje desde R, y se usa como el motor de muchos otros paquetes que usan IA.
+
+Instalamos el paquete:
+
+```r
+install.packages("ellmer")
+```
+
+Ahora tenemos que configurar `{ellmer}` para que use tu modelo de lenguaje, ya sea un modelo local o un modelo en la nube. 
+
+### Iniciar una conversación con la IA
 
 Con tu modelo de lenguaje instalado localmente o con tu _API key_ configurada, ya puedes empezar a interactuar con la IA desde R!
 
@@ -242,15 +243,17 @@ De este modo la consola de R se vuelve en un chat donde escribimos y obtenemos r
 
 Con esta configuración inicial, ahora puedes pasar a usar la IA con R de maneras más avanzadas, como tener asistentes, generar código, interpretar resultados, analizar datos y más!
 
-- Extraer datos estructurados desde textos libres
-- [{gander}, un asistente de código](/blog/gander/) que escribe código de R y reemplaza código o comentarios con lo que le pidas
-- [Asistente de IA directo en RStudio que tiene acceso a tus datos, paquetes cargados, y archivos](/blog/btw/)
-- [Entregar datos a una IA para generar textos explicativos, resúmenes, o interpretaciones de tus datos](/blog/redactar_texto_llm/)
 - [Análisis de sentimiento de textos con R](/blog/analisis_sentimiento_llm/)
 - [Resumir textos desde R](/blog/resumir_texto_llm/)
 - [Análisis de datos en formato texto con `{mall}`](/blog/introduccion_llm_mall/)
+- [Crear herramientas en R y hacer que la IA pueda usarlas para dar mejores respuestas](/blog/herramientas_llm/)
+- [Extraer datos estructurados desde textos libres](/blog/datos_estructurados_llm/)
+- [{gander}, un asistente de código](/blog/gander/) que escribe código de R y reemplaza código o comentarios con lo que le pidas
+- [Asistente de IA directo en RStudio que tiene acceso a tus datos, paquetes cargados, y archivos](/blog/btw/)
+- [Entregar datos a una IA para generar textos explicativos, resúmenes, o interpretaciones de tus datos](/blog/redactar_texto_llm/)
 
-
+{{< etiqueta "inteligencia artificial" >}}
 
 ## Recursos
 Para más paquetes y herramientas de modelos de lenguaje e IA en R, revisa [Large Language Model tools for R](https://luisdva.github.io/llmsr-book/), de Luis D. Verde Arregoitia.
+
