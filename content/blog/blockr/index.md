@@ -1,5 +1,5 @@
 ---
-title: Procesa datos con R sin programar y de forma interactiva
+title: "Procesa datos con R sin programar y de forma interactiva con `{blockr}`"
 author: Bastián Olea Herrera
 date: '2025-12-05'
 slug: []
@@ -12,7 +12,7 @@ format:
   hugo-md:
     output-file: index
     output-ext: md
-excerpt: "El paquete de R `{blockr}` nos ofrece una interfaz gráfica interactiva para poder usar R sin escribir código. Como su nombre lo indica, funciona por medio de bloques que se conectan entre sí, representando de forma visual el flujo de procesamiento de datos. En esta guía te muestro un ejemplo de su uso!"
+excerpt: "El paquete de R `{blockr}` nos ofrece una interfaz gráfica interactiva para poder usar R sin escribir código (_no code_). Como su nombre lo indica, funciona por medio de bloques que se conectan entre sí, representando de forma visual el flujo de procesamiento de datos. En esta guía te muestro un ejemplo de su uso!"
 links:
   - icon: registered
     icon_pack: fas
@@ -30,7 +30,7 @@ Viendo el streaming de la [conferencia LatinR 2025](https://www.youtube.com/watc
 
 Como su nombre lo indica, funciona por medio de **bloques** que se conectan entre sí, representando de forma visual el flujo de procesamiento de datos.
 
-Esta herramienta puede servirle a gente que esté aprendiendo R y quizás les sirva empezar por lo práctico antes de entrar al código. También puede ser útil para personas que les cueste programar en R, o que tengan alguna dificultad para escribir código, o bien, para quienes quieran esbozar un proceso antes de escribirlo.
+Esta herramienta _no code_ puede servirle a gente que esté aprendiendo R y quizás les sirva empezar por lo práctico antes de entrar al código. También puede ser útil para personas que les cueste programar en R, o que tengan alguna dificultad para escribir código, o bien, para quienes quieran esbozar un proceso antes de escribirlo.
 
 
 
@@ -148,7 +148,9 @@ Mira el video de la presentación en LatinR para saber más:
 
 ----
 
-### Otros recursos
+### Otros recursos de uso _no code_ de R
 - [`{esquisse}`, paquete de R para hacer gráficos de forma interactiva](https://dreamrs.github.io/esquisse/).
 - [DisplayR, servicio online para programar dashboards analíticos con R sin necesidad de usar código](https://www.displayr.com), que además tiene varios [ejemplos](https://www.displayr.com/dashboard-examples/) de productos.
+- [Jamovi, software interactivo de análisis de datos basado en R](https://www.jamovi.org)
 
+{{< etiqueta "básico" "Publicaciones de temas básicos" >}}
