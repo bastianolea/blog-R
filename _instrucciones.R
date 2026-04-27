@@ -40,6 +40,7 @@ blogdown::new_post(title = "Potencia las capacidades de la IA ",
 
 
 ## borradores ----
+"content/blog/unpivotr/index.qmd"
 # - **[Presentar tus datos a la IA para hacerle consultas](/blog/redactar_texto_llm/#configurar-el-modelo-para-interpretar-texto)** y que te ayude a interpretar tus datos
 "content/blog/shiny/index.md"
 "content/blog/ggplot_densidad_puntos/index.qmd"
@@ -69,7 +70,7 @@ blogdown::new_post(title = "Potencia las capacidades de la IA ",
 "https://cran.r-project.org/web/packages/janitor/vignettes/tabyls.html" # plagiar
 "https://github.com/rundel/livecode"
 "content/blog/2025-07-01/index.qmd" # st_join
-"content/blog/unpivotr/index.qmd"
+
 "content/blog/web_scraping_github_actions/github_actions_scraping.qmd"
 
 # constantes
