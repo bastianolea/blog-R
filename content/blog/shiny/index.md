@@ -1,7 +1,7 @@
 ---
 title: Crea aplicaciones web interactivas en R con Shiny
 author: Bastián Olea Herrera
-date: '2026-04-25'
+date: '2026-04-28'
 draft: true
 categories:
   - Tutoriales
@@ -40,6 +40,7 @@ En este tutorial veremos cómo crear una aplicación Shiny desde cero!
 - El trabajo necesario para producir una aplicación es muy bajo; en unos minutos puedes tener algo funcional
 - No necesitas expertos o equipos externos para desarrollar una aplicación, ya que Shiny simplifica al máximo el proceso
 
+{{< etiqueta "apps" "Algunas aplicaciones hechas con Shiny" >}}
 
 ## Cómo funciona una app Shiny
 
@@ -116,7 +117,7 @@ Al final de `app.R`, una línea mágica transformará el script en una aplicaci�
 
 
 
-## Creando una aplicación básica
+## Creando una aplicación vacía
 
 Si no tienes Shiny instalado, instálalo con:
 
@@ -126,15 +127,15 @@ install.packages("shiny")
 
 Todas las aplicaciones Shiny empiezan muy sencillas, con unas cuantas líneas que definen lo mínimo para que funcione, y después van creciendo en complejidad.
 
-Para ir aprendiendo, primero veremos una aplicación muy básica.
+Para **entender los conceptos básicos**, haremos una aplicación completamente vacía. Empezamos **creando un nuevo script**, que llamaremos `app.R`.
 
 {{< info "Revisa este [otro tutorial mucho más básico de Shiny](/blog/r_introduccion/tutorial_shiny_1/) si crees que necesitas ir más lento" >}}
 
 ### Global
 
-Lo inicial simple va a ser **cargar los paquetes necesarios** en la sección **global** de la aplicación, que corresponde a las primeras líneas del script `app.R`.
+Lo inicial siempre va a ser **cargar los paquetes necesarios** en la sección **global** de la aplicación, que corresponde a las primeras líneas del script `app.R`.
 
-Crea un script `app.R`, y en la primera línea agrega:
+En la primera línea de `app.R` agrega:
 
 ```r
 library(shiny)
@@ -142,7 +143,7 @@ library(shiny)
 
 ### Interfaz
 
-Luego tenemos que crear la interfaz de la aplicación. Esto es todos los aspectos visuales e interactivos de la aplicación, lo que las y los usuarios/as verán.
+Luego tenemos que crear la interfaz de la aplicación. Esto es todos los **aspectos visuales** e **interactivos** de la aplicación, lo que las y los usuarios/as verán y usarán.
 
 La interfaz de la aplicación se crea con una función. Hay varias disponibles, pero usaremos la más común, `page_fluid()` [del paquete `{bslib}`.](https://rstudio.github.io/bslib/)
 
@@ -155,9 +156,9 @@ ui <- page_fluid()
 
 {{< info "`{bslib}` es un paquete que nos ofrece herramientas modernas para crear las interfaces de aplicaciones Shiny, basadas en Bootstrap, un _framework frontend_ muy popular." >}}
 
-La función `page_fluid()` creará el objeto `ui`, que es necesario para que la aplicación funcione. Este objeto va a **contener toda la interfaz** de la aplicación, por lo tanto, dentro de la función que usemos para construir la app iremos poniendo todo lo que la app contenga, separado por comas.
+La función `page_fluid()` creará el objeto `ui`, que es necesario para que la aplicación funcione. Este objeto va a **contener toda la interfaz** de la aplicación.
 
-Agreguemos un **título** y un **texto** a nuestra aplicación:
+Agreguemos un **título** y un **texto** a la interfaz de nuestra aplicación:
 
 ```r
 ui <- page_fluid(
@@ -166,31 +167,97 @@ ui <- page_fluid(
   )
 ```
 
-Si ejecutamos el código y vemos lo que contiene `ui`, veremos la interfaz de nuestra aplicación en el visor de RStudio.
+Los elementos que pongamos dentro de la `ui` tienen que ir separados por comas!
+
 
 ### Server
 
-En la sección _server_ de la aplicación es donde ocurren todos los cálculos que normalmente hacemos en R. Por ejemplo, filtrar datos y crear gráficos.
+En la sección _server_ de la aplicación es donde ocurren todos los **cálculos** que normalmente hacemos en R. Por ejemplo, filtrar datos, procesar información y crear gráficos.
 
-El _server_ consiste en una función, dentro de la cual se ejecutan todos los cálculos:
+El _server_ es simplemente una función:
 
 ```r
 server <- function(input, output) {
 }
 ```
+Dentro de `server` iremos poniendo más funciones que creen las partes de la aplicación que requieren de cálculos y/o datos. Podemos dejarla vacía por mientras.
 
+
+### Aplicación vacía
+
+Unamos las piezas en un solo script `app.R`, agregando la última pieza para que la aplicación sea ejecutable: `shinyApp()`
+
+```r
+# global
+library(shiny)
+library(bslib)
+
+# interfaz
+ui <- page_fluid(
+    h1("Título"),
+    p("Texto dentro de la app")
+    )
+
+# servidor
+server <- function(input, output) {
+}
+
+# ejecutar la app
+shinyApp(ui, server)
+```
+
+Estas son las **partes básicas** de una app Shiny. Si guardas esto en un script, notarás que aparece el botón **_Run App_** en la parte superior derecha del panel de _scripts:_
+
+{{< imagen "app_shiny_vacia.png" "300px" >}}
+
+{{< bajada "Botón _Run App_ en un script de aplicación Shiny" >}}
+
+
+Al presionarlo, tu aplicación se ejecutará en el panel _Viewer_ de RStudio. Si hiciste todo bien (cargar los paquetes, separar elementos de UI con comas, poner `shinyApp()` al final) debería aparecer la aplicación en el panel!
+
+{{< imagen "app_shiny_vacia_run.png" "300px" >}}
+
+Hasta ahora hemos hecho lo más simple posible: una aplicación con un poco de texto, pero sin datos, sin interacción, ni nada.
+
+{{< relacionada "blog/r_introduccion/tutorial_shiny_1" " Tutorial básico recomendado" >}}
+
+
+
+## Creando una aplicación básica con datos
+
+La gracia de las aplicaciones Shiny es que usen datos y permitan a sus usuarios **explorar y visualizar información** de manera interactiva.
+
+
+### Maqueta de la aplicación
+
+Como dijimos, **la brecha entre un script de R y una aplicación es muy corta**. Así que siempre recomiendo empezar las aplicaciones como un script común y corriente, que luego podemos **convertir** en una aplicación Shiny.
+
+
+
+
+### Cargar datos en la app
+
+
+### Interfaz
+
+
+
+#### Textos
+
+#### Inputs
+
+### Server
 Dentro de la función `server`, lo que principalmente haremos será **crear _outputs_** o salidas. Los _outputs_ son la forma de hacer que un cálculo que haga la aplicación se muestre en la interfaz.
 
+#### Outputs
 
 
-
-{{< relacionada "blog/r_introduccion/tutorial_shiny_1" >}}
-
-
-
-
+### Temas
 
 {{< relacionada "blog/shiny_temas" >}}
+
+
+
 
 {{< relacionada "blog/shiny_ocultar" >}}
 {{< relacionada "blog/shiny_optimizar" >}}
@@ -204,6 +271,6 @@ Hola
 
 
 
-{{< etiqueta "apps" "Algunas aplicaciones hechas con Shiny" >}}
+
 
 {{< etiqueta "shiny" >}}

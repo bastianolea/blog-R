@@ -1,25 +1,43 @@
 
-abrir_post_reciente <- function() {
+#' Lista de publicaciones recientes
+#'
+#' Ejecutar para recibir una lista de los scripts más recientes en la carpeta de publicaciones del blog, y según el número que se entregue, el script se abre para editarlo.
+#' @param modo Elige si mostrar archivos recientes según "creado" (creados recientemente) o "modificado" (editados recientemente)
+#' @param cantidad Cantidad de scripts recientes a entregar
+#'
+#' @returns No retorna nada, sino que abre el script respectivo en RStudio.
+#' @export
+abrir_post_reciente <- function(modo = "creado", cantidad = 5) {
   # de todas las carpetas con posts, presentar las más recientes,
   # y abrir el archivo quarto o markdown de la carpeta elegida
   
-  library(fs)
-  library(dplyr)
-  library(stringr)
+  require(fs)
+  require(dplyr)
+  require(stringr)
   
   # obtener todas las carpetas del blog
   carpetas <- bind_rows(
     dir_info("content/blog", type = "directory"),
-    dir_info("content/blog/r_introduccion/", type = "directory")
+    dir_info("content/blog/r_introduccion/", type = "directory"),
+    dir_info("content/clases/", type = "directory")
   )
   
-  # filtrar las 3 más recientes
-  recientes <- carpetas |> 
-    slice_max(modification_time, 
-              n = 3)
+  # filtrar las x más recientes según el modo que se elija
+  if (modo == "creado") {
+    recientes <- carpetas |> slice_max(birth_time, n = cantidad)
+    
+  } else if (modo == "modificado") {
+    recientes <- carpetas |> slice_max(modification_time, n = cantidad)
+  }
   
   # dar a elegir entre las 3
-  eleccion <- menu(recientes$path, title = "Archivos recientes")
+  eleccion <- menu(recientes$path, 
+                   title = str_glue("Archivos {modo}s recientemente:"))
+  
+  # salir si se elige cero
+  if (eleccion == 0) {
+    stop("chaito")
+  }
   
   # carpeta elegida
   elegido <- recientes$path[eleccion]
