@@ -84,7 +84,7 @@ Para **ordenar geográficamente las regiones de Chile** podemos crear una variab
 ``` r
 regiones_ordenadas <- regiones |> 
   # agregar orden de región de norte a sur
-  mutate(orden_region = case_match(codigo_region,
+  mutate(orden_region = recode_values(codigo_region,
                                    15 ~ 1,
                                    1 ~ 2,
                                    2 ~ 3,
@@ -100,9 +100,8 @@ regiones_ordenadas <- regiones |>
                                    14 ~ 13,
                                    10 ~ 14,
                                    11 ~ 15,
-                                   12 ~ 16
-                                   
-  ))
+                                   12 ~ 16)
+  )
 ```
 
 Se recomienda hacer este tipo de operaciones usando el código de las regiones, para evitar problemas por las distintas formas de escribir el nombre de cada región[^1]. Pero si lo quieres hacer por el nombre de las regiones, sería así:
@@ -110,7 +109,7 @@ Se recomienda hacer este tipo de operaciones usando el código de las regiones, 
 ``` r
 regiones_ordenadas <- regiones |> 
   # agregar orden de región de norte a sur
-  mutate(orden_region = case_match(nombre_region,
+  mutate(orden_region = recode_values(nombre_region,
                                       "Tarapacá" ~  2,
                                    "Antofagasta" ~  3,
                                        "Atacama" ~  4,
@@ -126,8 +125,8 @@ regiones_ordenadas <- regiones |>
                      "Metropolitana de Santiago" ~  7,
                                       "Los Ríos" ~  13,
                             "Arica y Parinacota" ~  1,
-                                         "Ñuble" ~  10
-     ))
+                                         "Ñuble" ~  10)
+     )
 ```
 
 Si ejecutamos la nueva tabla con la columna `orden_region`, vemos que sigue desordenada, así que la ordenamos:
@@ -220,7 +219,7 @@ regiones_ordenadas_2 |>
 
 <img src="ordenar_regiones.markdown_strict_files/figure-markdown_strict/unnamed-chunk-10-1.png" width="768" />
 
-¡Listo! Si te sirve, acá dejo un dataframe con las regiones del país, su código y su orden, para que puedas copiarlo y pegarlo en tu script de R, y luego agregarlo a tus datos usando `left_join()`:
+¡Listo! Si te sirve, acá dejo un dataframe con las regiones del país, su código y su orden, para que puedas copiarlo y pegarlo en tu script de R, y luego [agregarlo a tus datos usando `left_join()`:](../../../blog/left_join/)
 
 ``` r
 # regiones_ordenadas |> 
@@ -243,8 +242,10 @@ tibble::tribble(
                  13,                 "Metropolitana de Santiago",             7,
                  14,                                  "Los Ríos",            13,
                  15,                        "Arica y Parinacota",             1,
-                 16,                                     "Ñuble",            10
-     )
+                 16,                                     "Ñuble",            10)
 ```
+
+{{< relacionada "/blog/left_join/" >}}
+{{< etiqueta "mapas" >}}
 
 [^1]: Por ejempo, *Valparaíso* puede encontrarse como *Región de Valparaíso*, *De Valparaíso*, *V región de Valparaíso,* etc., y para qué hablar de O'Higgins...
