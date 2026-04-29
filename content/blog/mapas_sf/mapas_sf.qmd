@@ -1,9 +1,9 @@
 ---
 title: Mapas y visualización de datos geoespaciales en R con {sf}
 author: Bastián Olea Herrera
-date: '2025-11-18'
+date: '2026-04-29'
 draft: false
-freeze: true
+freeze: false
 slug: []
 categories:
   - tutoriales
@@ -20,10 +20,15 @@ links:
     name: SF
     url: https://r-spatial.github.io/sf/
 execute:
-  eval: true
   cache: false
   warning: false
+knitr:
+  opts_chunk: 
+    dev.args:
+      bg: transparent
 excerpt: "R cuenta con un muy amplio ecosistema para trabajar con datos geoespaciales. Uno de los paquetes más importantes es `{sf}`, que permite manipular datos espaciales a partir del estándar _simple features_ (características simples). En esta guía iré recopilando los comandos básicos para manipular y visualizar datos geoespaciales en R. En la medida que voy aprendiendo más sobre hacer mapas, iré actualizando y complementando."
+editor_options: 
+  chunk_output_type: console
 ---
 
 {{< imagen "mapa_rm_featured.png" >}}
@@ -57,14 +62,15 @@ library(dplyr)
 ```{r}
 library(ggplot2)
 
-# tema de colores
-thematic::thematic_on(fg = "#553A74",
-                      bg = "#EAD2FA",
-                      accent = "#9069C0")
-
 theme_set(
-  # fondo transparente para mapas
-  theme(plot.background = element_rect(fill = "transparent", color = "transparent")) +
+  # tema de colores
+  theme_grey(paper = "#EAD2FA",
+             ink = "#553A74",
+             accent = "#9069C0") +
+    # tipografía
+    theme(text = element_text(family = "Atkinson Hyperlegible")) +
+    # fondo transparente para mapas
+    theme(plot.background = element_rect(fill = "transparent", color = "transparent")) +
     # borrar líneas feas
     theme(axis.ticks = element_blank())
 )
@@ -262,13 +268,16 @@ mapa_centroide |>
 #| message: false
 #| warning: false
 mapa_centroide |> 
-  filter(region == mapa$region[3]) |> 
+  filter(region == mapa$region[3]) |>
   ggplot() +
-  geom_sf(fill = "#9069C0", 
+  # mapa
+  geom_sf(fill = "#9069C0",
           linewidth = NA) +
+  # punto
   geom_sf(
     aes(geometry = centroide),
-    size = 3, alpha = .6) +
+    size = 3, alpha = 1) +
+  # texto bajo el punto
   geom_sf_text(
     aes(geometry = centroide),
     label = "centroide", size = 3,
@@ -281,11 +290,15 @@ mapa_centroide |>
 mapa_centroide |> 
   filter(region == mapa$region[3]) |> 
   ggplot() +
+  # mapa
   geom_sf(fill = "#9069C0", 
           linewidth = NA) +
+  # capa del punto
   geom_sf(
     aes(geometry = centroide),
-    size = 3, alpha = .6) +
+    color = "#402E5A",
+    size = 3, alpha = 1) +
+  # texto bajo el punto
   geom_sf_text(
     aes(geometry = centroide),
     label = "centroide", size = 3,
@@ -483,6 +496,7 @@ ggplot() +
           linewidth = 0.1) +
   # capa con puntos
   geom_sf(data = punto,
+          color = "#25054A",
           size = 3, alpha = .5)
 ```
 
@@ -496,6 +510,7 @@ ggplot() +
           linewidth = 0.1) +
   # capa con el punto
   geom_sf(data = punto,
+          color = "#402E5A",
           size = 3, alpha = .5)
 ```
 {{< /detalles >}}
@@ -532,6 +547,7 @@ ggplot() +
   # capa con puntos
   geom_sf(data = puntos,
           aes(size = n),
+          color = "#25054A",
           alpha = .5) +
   # capa con textos
   geom_sf_label(data = puntos,
@@ -555,6 +571,7 @@ ggplot() +
   # capa con puntos
   geom_sf(data = puntos,
           aes(size = n),
+          color = "#402E5A",
           alpha = .5) +
   # capa con textos
   geom_sf_label(data = puntos,
@@ -723,6 +740,7 @@ ggplot() +
           linewidth = 0.2, alpha = .7) +
   # capa con puntos
   geom_sf(data = puntos,
+          color = "#25054A",
           alpha = .5) +
   geom_sf(data = rectangulo,
           fill = NA, color = "#402E5A", lwd = 0.7)
@@ -752,9 +770,9 @@ Teniendo una tabla con un conjunto de coordenadas, podemos unirlas para formar u
 
 ```{r}
 coordenadas <- tribble(~nombre, ~lon, ~lat,
-                           "A", -68,  -36,
-                           "B", -64,  -31,
-                           "C", -60,  -36)
+                       "A", -68,  -36,
+                       "B", -64,  -31,
+                       "C", -60,  -36)
 
 # convertir tabla a sf
 puntos <- coordenadas |> 
@@ -770,7 +788,7 @@ poligono <- puntos |>
 
 ```{r poligonos_1}
 #| echo: false
- 
+
 ggplot() +
   # mapa de fondo
   geom_sf(data = mapa,
@@ -778,6 +796,7 @@ ggplot() +
           linewidth = 0.2, alpha = 0.7) +
   # capa con puntos
   geom_sf(data = puntos,
+          color = "#25054A",
           alpha = .6) +
   # capa con polígono
   geom_sf(data = poligono,
@@ -813,10 +832,10 @@ coordenadas <- tribble(~tipo,    ~lon, ~lat,
                        "Triángulo", -68,  -30,
                        "Triángulo", -64,  -25,
                        "Triángulo", -60,  -30,
-                        "Cuadrado", -68,  -38,
-                        "Cuadrado", -60,  -38,
-                        "Cuadrado", -60,  -32,
-                        "Cuadrado", -68,  -32)
+                       "Cuadrado", -68,  -38,
+                       "Cuadrado", -60,  -38,
+                       "Cuadrado", -60,  -32,
+                       "Cuadrado", -68,  -32)
 
 # convertir tabla a sf
 puntos <- coordenadas |> 
@@ -833,7 +852,7 @@ poligono <- puntos |>
 
 ```{r poligonos_2}
 #| echo: false
- 
+
 ggplot() +
   # mapa de fondo
   geom_sf(data = mapa,
@@ -842,10 +861,11 @@ ggplot() +
   # capa con polígonos de color
   geom_sf(data = poligono,
           aes(fill = tipo, color = tipo),
-          lwd = 0.6, alpha = .7) +
+          lwd = 0.6, alpha = .5) +
   # capa con puntos
   geom_sf(data = puntos,
-          alpha = .4) +
+          color = "#25054A",
+          alpha = .5) +
   # escala de colores
   labs(fill = "Tipo", color = "Tipo") +
   theme(legend.key.spacing.y = unit(1, "mm"))
@@ -862,10 +882,11 @@ ggplot() +
   # capa con polígonos de color
   geom_sf(data = poligono,
           aes(fill = tipo, color = tipo),
-          lwd = 0.6, alpha = .7) +
+          lwd = 0.6, alpha = .5) +
   # capa con puntos
   geom_sf(data = puntos,
-          alpha = .4) +
+          color = "#25054A",
+          alpha = .5) +
   # escala de colores
   labs(fill = "Tipo", color = "Tipo") +
   theme(legend.key.spacing.y = unit(1, "mm"))
@@ -951,6 +972,205 @@ chile |>
 ```
 
 
+#### Recortar un mapa a partir de otro mapa
+
+También podemos filtrar mapas con `st_crop()` usando la caja que encierra a otro mapa. De este modo, si tenemos un mapa que es un subconjunto de otro mapa mayor (por ejemplo, una región contextualizada en un país), podemos usar la región para recortar el mapa del país y así incluir este último como capa de fondo.
+
+Esto sirve, por ejemplo, cuando tenemos una región geográfica que queramos mostrar, pero queremos darle contexto geográfico incluyendo el territorio al rededor del mapa filtrado.
+
+Empecemos obteniendo el mapa de un país, y luego filtrando alguna de sus regiones para usarlo como mapa de fondo:
+
+```{r}
+library(rnaturalearth)
+
+# obtener mapa por regiones
+chile <- ne_states(country = "Chile") |> 
+  select(pais = admin,
+         region = name_es,
+         geometry)
+
+# filtrar algunas regiones
+regiones <- chile |> 
+  filter(region %in% c("O'Higgins", "Maule", "Ñuble", "Biobío", "La Araucanía", "Los Ríos"))
+```
+
+```{r}
+#| echo: false
+# visualizar regiones
+regiones |> 
+  ggplot() +
+  geom_sf(fill = "#9069C0", 
+          color = "#DFC6EF",
+          linewidth = 0.2, alpha = 0.8)
+```
+
+
+{{< detalles "Ver código del gráfico" >}}
+```{r}
+#| eval: false
+# visualizar regiones
+regiones |> 
+  ggplot() +
+  geom_sf(fill = "#9069C0", 
+          color = "#DFC6EF",
+          linewidth = 0.2, alpha = 0.8)
+```
+{{< /detalles >}}
+
+Ahora filtremos la región principal que queremos mapear:
+
+```{r}
+# filtrar región principal
+region <- regiones |> 
+  filter(region == "Ñuble")
+```
+
+```{r}
+#| echo: false
+# visualizar región
+region |> 
+  ggplot() +
+  geom_sf(fill = "#9069C0",
+          linewidth = 0, alpha = 0.8)
+```
+
+
+{{< detalles "Ver código del gráfico" >}}
+```{r}
+#| eval: false
+# visualizar regiones
+regiones |> 
+  ggplot() +
+  geom_sf(fill = "#9069C0", 
+          color = "#DFC6EF",
+          linewidth = 0.2, alpha = 0.8)
+```
+{{< /detalles >}}
+
+Podemos usar la caja del mapa principal (calculada con `st_bbox()`) para recortar el mapa de fondo:
+
+```{r}
+# recortar ampa de fondo con caja de mapa principal
+fondo_region <- regiones |> 
+  st_crop(st_bbox(region)) # recortar en base a caja
+```
+
+```{r}
+#| echo: false
+# previsualizar mapa de fondo
+fondo_region |> 
+  ggplot() +
+  geom_sf(fill = "#9069C0", 
+          color = "#DFC6EF",
+          linewidth = 0.2, alpha = 0.8)
+```
+
+{{< detalles "Ver código del gráfico" >}}
+```{r}
+#| eval: false
+# previsualizar mapa de fondo
+fondo_region |> 
+  ggplot() +
+  geom_sf(fill = "#9069C0", 
+          color = "#DFC6EF",
+          linewidth = 0.2, alpha = 0.8)
+```
+{{< /detalles >}}
+
+Obtenemos el mapa del país recortado a la caja del mapa regional. Luego podemos combinar ambos para una visualización de un mapa regional que tenga contexto de sus alrededores:
+
+```{r}
+#| echo: false
+ggplot() +
+  # capa de fondo
+  geom_sf(data = fondo_region, 
+          fill = "#9069C0", color = "#DFC6EF", 
+          alpha = 0.4) +
+  # capa principal
+  geom_sf(data = region, 
+          fill = "#9069C0", color = "#DFC6EF", 
+          linewidth = 0.2, alpha = 0.6)
+```
+
+{{< detalles "Ver código del gráfico" >}}
+```{r}
+#| eval: false
+ggplot() +
+  # capa de fondo
+  geom_sf(data = fondo_region, 
+          fill = "#9069C0", color = "#DFC6EF", 
+          alpha = 0.4) +
+  # capa principal
+  geom_sf(data = region, 
+          fill = "#9069C0", color = "#DFC6EF", 
+          linewidth = 0.2, alpha = 0.6)
+```
+{{< /detalles >}}
+
+También podemos ampliar el recorte que hacemos del mapa de fondo **ampliando** la caja al [aplicarle un _buffer_](/blog/mapas_sf/#calcular-buffer) a la región con `st_buffer()`:
+
+```{r}
+# con buffer sobre el mapa para ampliar recorte
+fondo_region <- regiones |> 
+  st_crop(region |> 
+            st_buffer(60000) |> # ampliar mapa 
+            st_bbox()) # calcular caja
+```
+
+```{r}
+#| echo: false
+# previsualizar fondo
+fondo_region |> 
+  ggplot() +
+  geom_sf(fill = "#9069C0", 
+          color = "#DFC6EF",
+          linewidth = 0.2, alpha = 0.8)
+```
+
+{{< detalles "Ver código del gráfico" >}}
+```{r}
+#| eval: false
+# previsualizar fondo
+fondo_region |> 
+  ggplot() +
+  geom_sf(fill = "#9069C0", 
+          color = "#DFC6EF",
+          linewidth = 0.2, alpha = 0.8)
+```
+{{< /detalles >}}
+
+Ahora combinamos ambas capas, mapa de fondo recortado, y mapa principal:
+```{r}
+#| echo: false
+# combinar fondo con mapa principal
+ggplot() +
+  # capa de fondo
+  geom_sf(data = fondo_region, 
+          fill = "#9069C0", color = "#DFC6EF", 
+          alpha = 0.4) +
+  # capa principal
+  geom_sf(data = region, 
+          fill = "#9069C0", color = "#DFC6EF", 
+          linewidth = 0.2, alpha = 0.8)
+```
+
+
+{{< detalles "Ver código del gráfico" >}}
+```{r}
+#| eval: false
+# combinar fondo con mapa principal
+ggplot() +
+  # capa de fondo
+  geom_sf(data = fondo_region, 
+          fill = "#9069C0", color = "#DFC6EF", 
+          alpha = 0.4) +
+  # capa principal
+  geom_sf(data = region, 
+          fill = "#9069C0", color = "#DFC6EF", 
+          linewidth = 0.2, alpha = 0.8)
+```
+{{< /detalles >}}
+
 ----
 
 ### Mover puntos de un mapa
@@ -963,12 +1183,12 @@ Creemos una tabla con latitudes y longitudes, y convirtámosla a `sf` con `st_as
 ```{r}
 #| message: false
 puntos <- tribble(~nombre, ~lon,     ~lat,
-                "Hualqui", -8113368, -4434476,
-                "Coronel", -8136065, -4440419,
-             "Concepción", -8132714, -4414370,
-                   "Lota", -8139383, -4451456,
+                  "Hualqui", -8113368, -4434476,
+                  "Coronel", -8136065, -4440419,
+                  "Concepción", -8132714, -4414370,
+                  "Lota", -8139383, -4451456,
                   "Penco", -8119934, -4402016,
-             "Talcahuano", -8139277, -4399701) |> 
+                  "Talcahuano", -8139277, -4399701) |> 
   # convertir a tabla sf
   st_as_sf(coords = c("lon", "lat"), 
            crs = 3395)
@@ -1041,7 +1261,7 @@ puntos_movidos <- puntos |>
   mutate(geometry = case_when(nombre == "Hualqui" ~ geometry + c(7000, 0),
                               nombre ==  "Penco" ~ geometry + c(7000, 0),
                               .default = st_sfc(geometry) |> st_set_crs(NA))
-         ) |> 
+  ) |> 
   st_set_crs(st_crs(puntos))
 ```
 
@@ -1092,7 +1312,7 @@ ggplot() +
           color = "#402E5A", size = 3, alpha = 0.2) +
   geom_sf(data = puntos_movidos,
           color = "#402E5A", size = 3, alpha = 0.7) +
-    geom_sf_text(data = puntos_movidos, 
+  geom_sf_text(data = puntos_movidos, 
                aes(label = paste("  ", nombre)),
                color = "#402E5A", size = 3, hjust = 0, angle = -35)
 ```
