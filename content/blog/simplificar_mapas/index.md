@@ -87,6 +87,8 @@ mapa_regiones |>
 
 <img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
 
+{{< relacionada "/blog/mapas_sf" >}}
+
 Vemos que en la zona sur del país, el detalle del mapa es tal, que los cientos de islas se vuelven en manchas grises debido a sus bordes demasiado detallados.
 
 ``` r
@@ -176,6 +178,9 @@ normal + medio + bajo
 
 <img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-1.png" width="768" />
 
+
+{{< relacionada "/blog/mapa_chile_triple/" >}}
+
 Con respecto a la velocidad de generación de los mapas, realizamos una prueba de rendimiento que compare la velocidad de guardado de dos mapas, uno normal y uno simplificado:
 
 ``` r
@@ -212,5 +217,7 @@ El mapa simplificado consume un 10% de memoria con respecto al mapa original.
 ------------------------------------------------------------------------
 
 Si te interesa el tema de los mapas, en otros tutoriales hemos visto cómo [hacer mapas de Chile con R, tanto comunales como regionales](../../../blog/tutorial_mapa_chile/), así como también de la [zona urbana de la Región Metropolitana](../../../blog/tutorial_mapa_urbano/). Además aprendimos cómo agregar [características espaciales como calles y autopistas](../../../blog/tutorial_mapas_osm/) obtenidas desde Open Street Map.
+
+{{< etiqueta "mapas" >}}
 
 {{< cafecito  >}}

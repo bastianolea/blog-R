@@ -30,6 +30,10 @@ links:
     icon_pack: fab
     name: código
     url: https://gist.github.com/bastianolea/df03203e88534261ef831f2cb4fca254
+  - icon: registered
+    icon_pack: fas
+    name: chilemapas
+    url: https://pacha.dev/chilemapas/
 ---
 
 
@@ -165,7 +169,7 @@ Entonces, deberíamos tener nuestro dataframe con el mapa, y otro dataframe dond
 
 #### Obtener datos por web scraping
 
-Para visualizar un mapa de datos comunales, primero obtendremos datos comunales desde Wikipedia. Usamos el paquete para hacer un web scraping y obtener una [tabla de datos de las comunas del país.](https://es.wikipedia.org/wiki/Anexo:Comunas_de_Chile)
+Para visualizar un mapa de datos comunales, primero obtendremos datos comunales desde Wikipedia. Usamos el paquete para hacer un [web scraping](/blog/tutorial_scraping_rvest/) y obtener una [tabla de datos de las comunas del país.](https://es.wikipedia.org/wiki/Anexo:Comunas_de_Chile)
 
 ``` r
 library(rvest)
@@ -199,7 +203,10 @@ tabla[[1]]
     # ℹ 6 more variables: Población2020 <chr>, `Densidad(hab./km²)` <chr>,
     #   `IDH 2005` <chr>, `IDH 2005` <chr>, Latitud <chr>, Longitud <chr>
 
-Luego obtener los datos, realizamos una pequeña limpieza. Limpiamos los nombres de las variables, seleccionamos las variables que nos interesan, y luego las convertimos apropiadamente a valores numéricos, donde tenemos que eliminar los separadores de miles, y transformar los separadores de decimales a puntos.
+
+{{< relacionada "/blog/tutorial_scraping_rvest/">}}
+
+Luego de obtener los datos, realizamos una pequeña limpieza. Limpiamos los nombres de las variables, seleccionamos las variables que nos interesan, y luego las convertimos apropiadamente a valores numéricos, donde tenemos que eliminar los separadores de miles, y transformar los separadores de decimales a puntos.
 
 ``` r
 library(janitor)
@@ -271,6 +278,8 @@ left_join(tabla_a,
     3 perro   carne          5            2       8
 
 En el ejemplo, tenemos dos tablas, donde las dos tienen una misma columna con los mismos datos, y otras columnas con datos distintos. Usando `left_join()` podemos unir ambas tablas de datos a partir de la columna que tienen en común. Como resultado obtenemos una nueva tabla que tiene todas las columnas.
+
+{{< relacionada "/blog/left_join/">}}
 
 ------------------------------------------------------------------------
 
@@ -373,6 +382,8 @@ mapa_comunas_filtro |>
 <img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png" width="576" />
 
 En este caso, agregamos también la función `geom_sf_text()` para agregar una capa nuestro gráfico que contiene las cifras para cada comuna. Hay que tener en consideración que poner números o textos sobre mapas suele ser complejo, porque el mapa ya es denso visualmente, y agregarle texto puede hacer que se vuelva ilegible. Hay que tener especial cuidado en resolver situaciones como textos que pasan por encima de bordes en el mapa, que se ubican incorrectamente dentro de los polígonos, o que se sobreponen uno sobre otros debido a que los polígonos se ven muy pequeños dentro del mapa.
+
+{{< relacionada "/blog/mapas_sf/">}}
 
 ------------------------------------------------------------------------
 
@@ -514,8 +525,6 @@ mapa_regiones_2 |>
 
 Visualizar datos geográficamente es una herramienta de comunicación y análisis de datos muy potente. Personalmente, encuentro que el potencial de la visualización de datos en mapas radica mucho más allá de simplemente mapear una variable a un territorio, sino a **incentivar que el público analice el mapa en relación a todo el conjunto de conocimientos que tenemos sobre del espacio que habitamos, sus características sociales, y las desigualdades distribuidas en el territorio.**
 
-------------------------------------------------------------------------
-
-Si este tutorial te sirvió, por favor considera hacerme una pequeña donación para poder tomarme un cafecito mientras escribo el siguiente tutorial 🥺
+{{< etiqueta "mapas" >}}
 
 {{< cafecito >}}
