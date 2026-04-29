@@ -1,0 +1,286 @@
+---
+title: Convierte mapas en grillas hexagonales
+author: Bastián Olea Herrera
+date: '2026-04-29'
+slug: []
+draft: true
+categories:
+  - Tutoriales
+tags:
+  - mapas
+  - visualización de datos
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+---
+
+
+```{r}
+# crea mapas para comunas o regiones
+
+# https://urbandatapalette.com/post/2021-08-tessellation-sf/
+# https://dominicroye.github.io/blog/hex-map-buuse/
+
+library(dplyr)
+library(arrow)
+library(sf)
+library(chilemapas)
+library(ggplot2)
+library(biscale)
+
+# datos ----
+# tabla con comunas
+comunas <- readxl::read_xlsx("~/Documents/Datos/Censo/2024/diccionario_variables_censo2024.xlsx",
+                             sheet = "codigos_territoriales") |> 
+  select(comuna = 1, nombre_comuna = 3) |> 
+  filter(comuna > 999)
+
+# cargar datos de cartografía censal
+censo_manzanas <- open_dataset("~/Documents/Datos/Censo/2024/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
+
+# glimpse(censo_manzanas)
+
+# filtros
+# region <- 6
+comuna_nombre <- "La Florida"
+comuna <- comunas |> filter(nombre_comuna == comuna_nombre) |> pull(comuna)
+# comuna <- 13201 
+
+# filtrar datos de cartografía censal por manzana
+censo_region <- censo_manzanas |> 
+  # filter(COD_REGION == region) |>
+  filter(CUT == comuna) |>
+  # seleccionar variables
+  select(CUT,
+         n_hog_60,
+         n_edad_60_mas,
+         n_tenencia_propia_pagada,
+         n_tenencia_propia_pagandose,
+         SHAPE) |> 
+  mutate(n_tenencia_propia = n_tenencia_propia_pagada + n_tenencia_propia_pagandose) |> 
+  # copiar de la base de datos
+  collect() |> 
+  # transformar a mapa 
+  st_as_sf() |> 
+  st_set_crs(4674) |> 
+  st_transform(32719) # en unidades métricas
+
+# pasar de polígonos a puntos
+censo_region_puntos <- censo_region |> 
+  st_make_valid() |> 
+  mutate(SHAPE = st_centroid(SHAPE))
+
+
+# mapas ----
+
+# # mapa de fondo de la región
+# mapa_region <- chilemapas::mapa_comunas |> 
+#   mutate(codigo_region = as.numeric(codigo_region)) |> 
+#   filter(codigo_region == region) |> 
+#   st_as_sf() |> 
+#   st_set_crs(4674) |> 
+#   st_transform(32719) # en unidades métricas
+
+# mapa de fondo de la comuna
+mapa_comuna <- chilemapas::mapa_comunas |> 
+  mutate(codigo_comuna = as.numeric(codigo_comuna)) |> 
+  filter(codigo_comuna == comuna) |> 
+  st_as_sf() |> 
+  st_set_crs(4674) |> 
+  st_transform(32719) # en unidades métricas
+
+# fondo pero circunscrito a los puntos
+mapa_comuna_fondo <- mapa_comuna |> 
+  st_crop(
+    censo_region_puntos |> 
+      st_buffer(5000) |> 
+      st_bbox()
+  )
+
+# # revisar mapas
+# library(mapview)
+# censo_region_puntos |> mapview::mapview(cex = 3, alpha = .5)
+# mapa_region |> mapview::mapview(cex = 3, alpha = .5)
+
+
+# # cuadrícula ----
+# 
+# # calcular grilla cuadrada
+# area_fishnet_grid = st_make_grid(censo_region_puntos, .05)
+# 
+# # To sf and add grid ID
+# fishnet_grid_sf = area_fishnet_grid |> 
+#   st_sf() |> 
+#   # add grid ID
+#   mutate(grid_id = 1:length(lengths(area_fishnet_grid)))
+# 
+# # count number of points in each grid
+# # https://gis.stackexchange.com/questions/323698/counting-points-in-polygons-with-sf-package-of-r
+# fishnet_grid_sf$n_colli = lengths(st_intersects(fishnet_grid_sf, censo_region_puntos))
+# 
+# # remove grid without value of 0 (i.e. no points in side that grid)
+# fishnet_count = filter(fishnet_grid_sf, n_colli > 0)
+# 
+# # ver resultado
+# fishnet_count |> 
+#   ggplot() +
+#   aes(fill = n_colli) |> 
+#   geom_sf()
+# 
+# # ver mapa interactivo
+# library(tmap)
+# tmap_mode("view")
+# 
+# tm_shape(fishnet_count) +
+#   tm_fill(
+#     col = "n_colli",
+#     palette = "Reds",
+#     style = "cont",
+#     title = "Number of collisions",
+#     id = "grid_id",
+#     showNA = FALSE,
+#     alpha = 0.5,
+#     popup.vars = c(
+#       "Number of collisions: " = "n_colli"
+#     ),
+#     popup.format = list(
+#       n_colli = list(format = "f", digits = 0)
+#     )
+#   ) +
+#   tm_borders(col = "grey40", lwd = 0.7)
+
+
+
+# hexágonos ----
+
+# tamaño de los hexágonos en kms
+kilometros <- 0.3
+
+# calcular hexágonos
+hexagonos <- censo_region_puntos |> 
+  st_make_grid(
+    # cellsize = .03,
+    cellsize = units::set_units(kilometros, km), # tamaño de hexágonos
+               what = "polygons", 
+               square = FALSE) |> 
+  st_as_sf() |>
+  mutate(grid_id = row_number())
+
+# # ver hexágonos
+# hexagonos |> 
+#   ggplot() +
+#   geom_sf() +
+#   theme_void()
+
+# agregar datos a grilla de hexágonos
+censo_region_hex <- hexagonos |>
+  st_join(censo_region_puntos)
+# ahora que los datos tienen el hexágono al que corresponden
+
+# descartar geometría y calcular valores por hexágono
+censo_region_conteo <- censo_region_hex |> 
+  st_drop_geometry() |> 
+  group_by(grid_id) |>
+  # calcular sumas
+  summarise(
+    n_tenencia_propia = sum(n_tenencia_propia, na.rm = TRUE),
+    n_edad_60_mas = sum(n_edad_60_mas, na.rm = TRUE),
+    n_manzanas = n()
+  ) |> 
+  # descartar celdas sin datos
+  filter_out(n_tenencia_propia == 0 & n_edad_60_mas == 0)# |>
+  # filter(n_manzanas > 20)
+
+# agregar grilla de hexágonos a los datos
+censo_region_hex_conteo <- censo_region_conteo |> 
+  left_join(hexagonos,
+            by = join_by(grid_id)) |>
+  st_as_sf()
+
+
+theme_set(
+  theme_minimal(
+    base_family = "Manrope"
+  ) +
+    theme(plot.title = element_text(face = "bold"),
+          legend.title = element_blank())
+)
+
+# mapa univariado ----
+# graficar
+censo_region_hex_conteo |>
+  ggplot() +
+  geom_sf(data = mapa_comuna_fondo, lwd = 0, alpha = .5) +
+  geom_sf(aes(fill = n_tenencia_propia),
+          linewidth = 0.3, color = "white") +
+  scale_fill_continuous(palette = "blues") +
+  labs(title = comuna_nombre,
+       subtitle = "Viviendas de tenencia propia",
+       caption = glue::glue("Censo 2024, cartografía censal\nHexágonos de {label_number(accuracy = 0.01)(kilometros)} kilometros"))
+
+censo_region_hex_conteo |>
+  ggplot() +
+  geom_sf(data = mapa_comuna_fondo, lwd = 0, alpha = .5) +
+  geom_sf(aes(fill = n_edad_60_mas),
+          linewidth = 0.3, color = "white") +
+  scale_fill_continuous(palette = "reds") +
+  # scale_fill_gradient(low = "#C2A0A6", high = "#9F3647") +
+  labs(title = comuna_nombre,
+       subtitle = "Cantidad de adultos mayores",
+       caption = glue::glue("Censo 2024, cartografía censal\nHexágonos de {label_number(accuracy = 0.01)(kilometros)} kilometros"))
+
+
+
+## mapa bivariado ----
+dimensiones <- 4
+paleta <- "DkViolet2"
+
+# calcular categorías bivariadas
+censo_hex_bi <- censo_region_hex_conteo |> 
+  bi_class(x = n_edad_60_mas,
+           y = n_tenencia_propia,
+           style = "quantile",
+           dim = dimensiones)
+
+# mapa bivariado
+mapa_hex <- censo_hex_bi |> 
+  ggplot() +
+  # geom_sf(data = mapa_region, lwd = .1, fill = NA) +
+  geom_sf(data = mapa_comuna_fondo, lwd = 0, alpha = .5) +
+  geom_sf(
+    aes(fill = bi_class),
+    show.legend = FALSE, linewidth = 0.3, color = "white") +
+  bi_scale_fill(pal = paleta, dim = dimensiones) +
+  labs(title = comuna_nombre,
+       subtitle = "Viviendas de tenencia propia y cantidad de adultos mayores",
+       caption = glue::glue("Censo 2024, cartografía censal\nHexágonos de {label_number(accuracy = 0.01)(kilometros)} kilometros"))
+
+# mapa_hex
+
+# leyenda del mapa
+leyenda <- bi_legend(
+  pal = paleta,
+  dim = dimensiones,
+  xlab = "Adultos mayores", ylab = "Viviendas propias",
+  size = 7) +
+  theme(
+    plot.background  = element_blank(),
+    panel.background = element_blank(),
+    panel.grid.major = element_blank())
+
+# mapa con leyenda
+# mapa_hex +
+#   theme_void() +
+#   inset_element(leyenda,
+#                 left = 0.8, right = 1,
+#                 bottom = 0, top = 0.3)
+wrap_plots(
+  mapa_hex,
+  leyenda,
+  widths = c(7, 1)
+)
+
+
+```
+

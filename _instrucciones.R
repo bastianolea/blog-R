@@ -20,11 +20,11 @@ blogdown::new_post(title = "Prueba",
 )
 
 # crear un post tutorial
-blogdown::new_post(title = "Potencia las capacidades de la IA ", 
-                   file = "blog/herramientas_llm/index.md",
+blogdown::new_post(title = "Convierte mapas en grillas hexagonales", 
+                   file = "blog/mapas_hexagonales/index.qmd",
                    author = "Bastián Olea Herrera",
-                   tags = c("inteligencia artificial"),
-                   categories = c()
+                   tags = c("mapas", "visualización de datos"),
+                   categories = c("Tutoriales")
 )
 
 # draft: true
@@ -41,6 +41,8 @@ blogdown::new_post(title = "Potencia las capacidades de la IA ",
 
 
 ## borradores ----
+"content/blog/mapas_hexagonales/index.qmd"
+"content/blog/mapas_bivariados/index.qmd"
 "content/blog/unpivotr/index.qmd"
 # - **[Presentar tus datos a la IA para hacerle consultas](/blog/redactar_texto_llm/#configurar-el-modelo-para-interpretar-texto)** y que te ayude a interpretar tus datos
 "content/blog/shiny/index.md"
