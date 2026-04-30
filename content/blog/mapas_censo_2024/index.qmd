@@ -54,7 +54,7 @@ manzanas <- read_parquet("Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_
 #| message: false
 library(arrow)
 
-manzanas <- read_parquet("~/Documents/Otros/censo_2024_mapas/datos/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
+manzanas <- read_parquet("~/Documents/Datos/Censo/2024/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
 ```
 
 Con la función `glimpse()` de `{dplyr}` podemos echar un vistazo a las columnas que vienen en la tabla, pero no las mostraremos aquí porque son más de 200 😂
@@ -68,11 +68,14 @@ glimpse(manzanas)
 
 Ahora que tenemos los datos, vamos a ver cómo visualizarlos en mapas!
 
-{{< aviso "Si necesitas aprender a visualizar mapas con R, [revisa este tutorial de `{sf}`](/blog/mapas_sf/)!" >}}
+
+{{< relacionada "/blog/censo_2024/" >}}
 
 ## Mapas estáticos
 
 Para generar mapas a partir de cartografía censal, lo que haremos será: **filtrar** la base de datos para obtener la unidad territorial que nos interesa, luego **convertir** la cartografía a formato `{sf}`, y finalmente **visualizar** con `{ggplot2}`.
+
+{{< relacionada "/blog/mapas_sf/" >}}
 
 ### Preparar datos
 
@@ -105,6 +108,7 @@ Este **_dataframe_ espacial** posee una columna especial (`SHAPE`) que contiene 
 
 Cada fila del _dataframe_ corresponde a una unidad territorial, y en la columna `SHAPE` se indica la forma o el polígono que ocupa esa unidad en el territorio.
 
+
 ### Visualización
 
 Vamos a generar mapas estáticos con [`{ggplot2}`, un paquete](/blog/r_introduccion/tutorial_visualizacion_ggplot/) muy poderoso y personalizable para visualización de datos.
@@ -124,6 +128,8 @@ manzanas_comuna_sf |>
 ```
 
 Con ésto anterior obtenemos el **mapa base**, generado a partir de los polígonos de la columna `SHAPE`. 
+
+{{< relacionada "/blog/mapas_sf/" >}}
 
 Ahora podemos **especificar una variable censal** para visualizar, definiéndola en `aes()`. Luego podemos personalizar el gráfico agregando paletas de colores, ajustes visuales, y textos:
 
@@ -200,6 +206,8 @@ Obtenemos como resultado una tabla de datos por comuna:
 ```{r}
 comunas
 ```
+
+{{< relacionada "/blog/mapas_sf/" >}}
 
 Ahora podemos visualizar un mapa de la **población ocupada por comuna** en la Región Metropolitana:
 
@@ -285,6 +293,8 @@ manzanas_comuna_sf |>
 ¡Así de simple! 💜
 
 Lo interesante es que `{mapgl}` también permite hacer cosas [mucho más increíbles](https://walker-data.com/mapgl/articles/layers-overview.html) usando [Mapbox](https://www.mapbox.com/), una plataforma de mapas de primer nivel que tiene muchas más opciones de personalización y estilos de mapas, incluyendo figuras tridimensionales, edificios, efectos visuales y más.
+
+{{< etiqueta "mapas" >}}
 
 {{< cafecito >}}
 
