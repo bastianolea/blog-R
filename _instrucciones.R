@@ -20,11 +20,11 @@ blogdown::new_post(title = "Prueba",
 )
 
 # crear un post tutorial
-blogdown::new_post(title = "Convierte mapas en grillas hexagonales", 
-                   file = "blog/mapas_hexagonales/index.qmd",
+blogdown::new_post(title = "Creando una función para consultar datos en R", 
+                   file = "blog/censo_poblacion_consultar/index.qmd",
                    author = "Bastián Olea Herrera",
-                   tags = c("mapas", "visualización de datos"),
-                   categories = c("Tutoriales")
+                   tags = c("datos", "chile", "funciones"),
+                   categories = c("")
 )
 
 # draft: true
@@ -41,12 +41,13 @@ blogdown::new_post(title = "Convierte mapas en grillas hexagonales",
 
 
 ## borradores ----
+# función para datos del censo
+"content/blog/shiny/index.md"
+"content/blog/ggplot_densidad_puntos/index.qmd"
 "content/blog/mapas_hexagonales/index.qmd"
 "content/blog/mapas_bivariados/index.qmd"
 "content/blog/unpivotr/index.qmd"
 # - **[Presentar tus datos a la IA para hacerle consultas](/blog/redactar_texto_llm/#configurar-el-modelo-para-interpretar-texto)** y que te ayude a interpretar tus datos
-"content/blog/shiny/index.md"
-"content/blog/ggplot_densidad_puntos/index.qmd"
 "content/blog/posit_assistant/index.md"
 "content/blog/renombrar_columnas/index.qmd"
 # tutorial mapas: poner puntos a partir de tablas de datos en centroides
