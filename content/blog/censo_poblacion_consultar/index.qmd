@@ -18,7 +18,7 @@ links:
     url: https://github.com/bastianolea/censo_poblacion_consultar
 ---
 
-En R es muy fácil filtrar y seleccionar cualquier base de datos para obtener las cifras que quieras
+En R es muy fácil filtrar y seleccionar cualquier base de datos para obtener las cifras que quieras.
 
 Por ejemplo, si queremos saber la población de una comuna, cargamos el Censo 2024, filtramos la comuna con `filter()`, luego agrupamos por comuna con `group_by()` y finalmente sumamos las observaciones con `summarize()` para obtener la población:
 
@@ -72,11 +72,13 @@ Pero si necesitamos hacer esto muy seguido, de repente es mejor optimizarlo. [Co
 
 Alabado sea [Hadley](https://hadley.nz) 🙏🏼
 
-[Crear una función](/blog/r_introduccion/r_intermedio/#crear-funciones) permite que ejecutemos un conjunto de operaciones de forma más simple, al **abstraer el código** en un único comando que es más rápido y cómodo de usar.
+[Crear una función](/blog/r_introduccion/r_intermedio/#crear-funciones) permite que ejecutemos un conjunto de operaciones de forma más simple, al **abstraer el código** en un único comando que es más rápido y cómodo de usar. Lo que antes eran varias líneas de código puede resumirse en una función como `filtrar_datos()` o similar.
 
 Las funciones también nos ayudan a **reutilizar** el código al empaquetarlo en una forma más conveniente.
 
 {{< relacionada "/blog/r_introduccion/r_intermedio/" "Aprende a hacer funciones" >}}
+
+Creemos entonces una función que nos ayude a obtener cifras.
 
 
 
