@@ -119,6 +119,10 @@ blogdown::new_post(
 # <i class='fas fa-chalkboard-user'></i>
 # <i class='fas fa-chalkboard-user' style='font-size: 200%'></i>
 
+
+# destacar código
+# ```r {hl_lines=["5-9"]}
+
 ## archivos ----
 "content/blog/r_introduccion/recursos_r/index.md" # páginas
 "assets/tema-morado-hex.scss" # tema
