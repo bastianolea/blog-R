@@ -260,3 +260,15 @@ background-color: #A985C630;
     /*opacity: 0.5;*/
     color: #8662a4 !important;
 }
+
+
+/* atenuar las líneas no destacadas cuando hay alguna destacada */
+.highlight:has(.hl) .line:not(.hl) {
+  opacity: 0.4;
+}
+
+/* color de líneas de código destacadas */
+.chroma .hl {
+  background-color: #3b2c46 !important;
+  border-radius: 3px !important;
+}

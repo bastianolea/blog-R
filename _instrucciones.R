@@ -4,27 +4,28 @@ blogdown::stop_server()
 blogdown::build_site()
 
 
-
 ## posts ----
 
 # editar el más reciente
-abrir_post_reciente()
+abrir_post_reciente(cantidad = 10)
 abrir_post_reciente("modificado")
 
 
 # crear un post normal
-blogdown::new_post(title = "Prueba", 
-                   file = paste0("blog/", lubridate::today(), "/index.qmd"),
-                   author = "Bastián Olea Herrera",
-                   tags = c("blog", "inteligencia artificial")
+blogdown::new_post(
+  title = "Prueba",
+  file = paste0("blog/", lubridate::today(), "/index.qmd"),
+  author = "Bastián Olea Herrera",
+  tags = c("blog", "inteligencia artificial")
 )
 
 # crear un post tutorial
-blogdown::new_post(title = "Creando una función para consultar datos en R", 
-                   file = "blog/censo_poblacion_consultar/index.qmd",
-                   author = "Bastián Olea Herrera",
-                   tags = c("datos", "chile", "funciones"),
-                   categories = c("")
+blogdown::new_post(
+  title = "Creando una función para consultar datos en R",
+  file = "blog/censo_poblacion_consultar/index.qmd",
+  author = "Bastián Olea Herrera",
+  tags = c("datos", "chile", "funciones"),
+  categories = c("")
 )
 
 # draft: true
@@ -38,7 +39,6 @@ blogdown::new_post(title = "Creando una función para consultar datos en R",
 #     icon_pack: fas
 #     name: Código
 #     url: https://gist.github.com/bastianolea/8ea85fa8169b302d2144e05434668c89
-
 
 ## borradores ----
 # función para datos del censo
@@ -92,9 +92,6 @@ blogdown::new_post(title = "Creando una función para consultar datos en R",
 "content/blog/shiny_tipografias/shiny_tipografias.qmd"
 
 
-
-
-
 ## shortcodes ----
 
 # {{< indice >}}
@@ -112,16 +109,15 @@ blogdown::new_post(title = "Creando una función para consultar datos en R",
 # {{< relacionada "blog/estudio_brechas_comunales/" >}}
 # {{< etiqueta "apps" >}}
 # {{< categoria "Tutoriales" "Más tutoriales de R" >}}
-# {{< externo "Galería de apps Shiny" 
-#   "https://bastianolea.github.io/shiny_apps/" 
-#   "shiny_apps.png" 
+# {{< externo "Galería de apps Shiny"
+#   "https://bastianolea.github.io/shiny_apps/"
+#   "shiny_apps.png"
 #   "Descripción"
 #   "Página recomendada" >}}
 
 # íconos
 # <i class='fas fa-chalkboard-user'></i>
 # <i class='fas fa-chalkboard-user' style='font-size: 200%'></i>
-
 
 ## archivos ----
 "content/blog/r_introduccion/recursos_r/index.md" # páginas
@@ -130,8 +126,8 @@ blogdown::new_post(title = "Creando una función para consultar datos en R",
 
 "layouts/index.html" #index
 "layouts/partials/shared/summary.html" # posts individuales en página de blog
-"layouts/partials/shared/summary-thumbnail.html" # posts individuales en las páginas de cada tag 
-"layouts/blog/single-sidebar.html" # html de los post 
+"layouts/partials/shared/summary-thumbnail.html" # posts individuales en las páginas de cada tag
+"layouts/blog/single-sidebar.html" # html de los post
 "layouts/taxonomy/taxonomy.html" # html de la página de tags (/tags/)
 
 "layouts/index.json" # genera el sitio en JSON para el buscador (el archivo queda en public como index.json)
