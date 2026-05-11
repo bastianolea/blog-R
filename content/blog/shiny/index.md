@@ -229,7 +229,7 @@ Al presionarlo, tu aplicación se ejecutará en el panel _Viewer_ de RStudio. Si
 Hasta ahora hemos hecho lo más simple posible: una aplicación con un poco de texto, pero sin datos, sin interacción, ni nada.
 
 {{< detalles "Ver código de la app vacía" >}}
-Pon ste código en el script `app.R`:
+Pon este código en el script `app.R`:
 ```r
 # global
 library(shiny)
@@ -464,9 +464,13 @@ Hasta ahora la aplicación es estática. Pero la gracia es **agregar elementos i
 
 Un elemento con el que los usuarios interactúan en la app se denomina **input**. Los inputs se crearon con funciones, y se ponen en la interfaz de la aplicación.
 
-Quizás el _input_ más simple es `selectInput()`, que agrega un selector de opciones. Al crear cualquier input, el primer argumento de la función es su `inputId`, que es el **identificador** o nombre del input, que usaremos luego para obtener sus resultados.
+Al crear cualquier input, el primer argumento de la función es su `inputId`, que es el **identificador** o nombre del input, que usaremos luego para obtener sus resultados.
 
-Creemos un input que permita seleccionar de una lista de regiones, que naturalmente vienen de los datos. El conjunto de datos `datos` [que descargamos](#cargar-datos-en-la-app) tiene en la columna `region` el nombre de la región a la que pertenece cada observación, así que si usamos `unique(datos$region)` obtendremos un vector con sus valores únicos.
+#### Crear un selector de alternativas
+
+Quizás el _input_ más simple es `selectInput()`, que agrega un **selector** de opciones. Estas opciones podemos escribirlas a mano en el argumento `choices`, o podemos usar un vector o la columna de un _dataframe_ como opciones para el selector.
+
+Crearemos un _input_ que permita seleccionar una opción desde una lista de regiones. Haremos que las regiones posibles de elegir vengan directamente de los datos. El conjunto de datos [que descargamos](#cargar-datos-en-la-app) (y que cargamos como `datos`) tiene el nombre de la región a la que pertenece cada observación en la columna `region`, así que si usamos `unique(datos$region)` obtendremos un vector con sus valores únicos.
 
 Entonces creamos el input con `selectInput()`, le damos el ID `"region"` (porque es un selector de regiones), y las elecciones posibles (`choices`) serán las regiones que vienen en el conjunto de datos:
 
@@ -476,9 +480,9 @@ ui <- page_fillable(
   h1("Campamentos en Chile"),
   ...
   selectInput(
-    inputId = "region",
-    label = "Explorar regiones",
-    choices = sort(unique(datos$region))
+    inputId = "region", # ID único del input
+    label = "Explorar regiones", # titular del input
+    choices = sort(unique(datos$region)) # vector con regiones desde los datos
     )
   ...
 )
@@ -488,31 +492,35 @@ Si probamos la app, veremos que aparece un cuadro donde se puede hacer la selecc
 
 {{< imagen "shiny_selectInput.png" "340px" >}}
 
-Por ahora esto no hace nada, pero internamente, cuando seleccionamos una opción, Shiny actualiza un objeto especial: el objeto `input`. Este objeto contiene los valores de todos los _inputs_ de nuestra app, según el ID que le dimos. 
 
-<div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin: 20px 0;">
+#### _Inputs_ de una app 
+Por ahora, nuestro selector **no hace nada**, pero internamente, cuando seleccionamos una opción, Shiny actualiza un objeto especial: **el objeto `input`**. Este objeto contiene los **valores** de todos los _inputs_ de nuestra app, según el ID que le dimos. 
 
-  <div class="cuadro" style="margin: 0; font-size: 1.1em;"><code>selectInput("selector")</code></div>
+<div class="cuadros-horizontales">
+
+  <div class="cuadro"><code>selectInput("selector")</code></div>
   
   <span style="font-size: 1.6em;">→</span>
   
-  <div class="cuadro" style="margin: 0; font-size: 1.1em;"><code>input$selector</code></div>
+  <div class="cuadro"><code>input$selector</code></div>
 </div>
 
-Al seleccionar una opción del selector, inmediatamente se actualiza el objeto `input$region`, dado que el ID del input que creamos era `region`.
+Al seleccionar una opción de un selector, inmediatamente se actualiza el objeto `input${inputId}`, donde `{inputId` corresponde al ID que le dimos al _input._ En nuestro ejemplo del selector de regiones, el valor elegido estaría en `input$region`, dado que el ID del input era `region`.
 
 Pronto veremos cómo usar este valor!
 
 
 ### Server
 
-Ahora que tenemos datos y un input, pasamos a _hacer cosas_ con eso datos y esos inputs! ✨
+Ahora que tenemos [datos](#cargar-datos-en-la-app) y un [input](#interacción-básica), pasamos a _hacer cosas_ con eso datos y esos inputs! ✨
 
-Dentro de la sección **server** de una app (la función `server`) es donde se conectan los inputs con los datos.
+Dentro de la sección **server** de una app (la función `server`) es **donde se conectan los inputs con los datos.**
+
+En la función server es donde vamos a **usar R como el motor de la app**.
 
 En `server`, lo que principalmente haremos será **crear _outputs_** o salidas. Los _outputs_ son la forma de hacer que un cálculo que haga la aplicación se muestre en la interfaz.
 
-Naturalmente pueden haber pasos intermedios en operaciones más complejas, pero el ciclo de la interacción es:
+Considerando las secciones UI y server, el ciclo de interacción de una app es:
 
 1. En la interfaz de la app hay **inputs**
 2. El/la usuario/a **interactúa** con un input
@@ -541,6 +549,252 @@ Naturalmente pueden haber pasos intermedios en operaciones más complejas, pero 
 </div>
 
 {{< bajada "Esquema simplificado de una app Shiny básica" >}}
+
+Naturalmente pueden haber pasos intermedios en operaciones más complejas, pero en resumen lo anterior describe el funcionamiento básico de una app Shiny.
+
+
+#### Usando _inputs_ dentro de _server_
+
+Pasemos un input al _server_ para hacer algo con su valor. Cuando hacemos esto, tenemos que tener una **idea** de qué es lo que queremos lograr, o para qué usaremos el input. Esto significa que tenemos que pensar en el **resultado** que esperamos poner en la app; es decir, en **el _output_ que se mostrará en la interfaz de la app.**
+
+<div class="cuadros-verticales">
+
+  <div class="cuadro-vertical">elegir input desde la app</div>
+  
+  <div class="flecha">↓</div>
+  
+  <div class="cuadro-vertical">input pasa a server</div>
+  
+  <div class="flecha">↓</div>
+  
+  <div class="cuadro-vertical">magia en <em>server</em></div>
+  
+  <div class="flecha">↓</div>
+  
+  <div class="cuadro-vertical"><em>output</em> aparece en la app</div>
+  
+</div>
+
+Pensemos en un caso simple: queremos **contar la cantidad de observaciones por región.** Tenemos nuestro _dataframe_ `datos`, el cual podemos filtrar por región y luego contar las filas para saber la cantidad de campamentos en una región:
+
+```r
+casos_region <- datos |> 
+  filter(region == "Maule") |> 
+  nrow()
+  
+casos_region
+```
+```
+[1] 25
+```
+
+{{< info "Como dijimos al principio, **la brecha entre un script de R y una aplicación es muy corta**. Así que siempre recomiendo empezar las aplicaciones como un script común y corriente, que luego podemos **convertir** en una aplicación Shiny." >}}
+
+Entonces, lo que haremos en la sección _server_ de la app será algo equivalente a esto:
+
+```r  {hl_lines=["2-3,6-7"]}
+# definir input de prueba
+region_elegida <- "Biobío"
+
+casos_region <- datos |> 
+  # aplicar input de prueba en el filtro
+  filter(region == region_elegida) |> 
+  nrow()
+  
+casos_region
+```
+```
+[1] 225
+```
+
+En este ejemplo creamos un input "falso" en el objeto `region_elegida` para poder probar la lógica en un scirpt aparte, pero en la app podremos usar el objeto `input$region`:
+
+```r  {hl_lines=["2-3,6-7"]}
+casos_region <- datos |> 
+  filter(region == input$region) |> 
+  nrow()
+```
+
+{{< aviso "El objeto `input` sólo existe mientras la app Shiny se está ejecutando, así que el código anterior es sólo de ejemplo!" >}}
+
+Esto lo haremos en _server_ a continuación.
+
+
+#### Generando salidas o _outputs_
+
+En la sección _server_ de la app, creamos el **output** que será la salida con lo que vamos a mostrar en la interfaz de la app. Aquí es donde podemos usar R normalmente para crear lo que queramos, pero dentro de ciertos _marcos_ que circunscriben el código de R a la lógica de una aplicación interactiva Shiny.
+
+Uno de estos _marcos_ para apps interactivas es que, a diferencia de un script normal donde podemos generar resultados (cifras, tablas, gráficos) en cualquier parte, en una app tenemos que **definir las salidas** de manera clara, con un nombre y una función apropiada para crear la salida, y luego **ubicar las salidas en algún lugar** de la interfaz de la aplicación.
+
+<div class="cuadros-verticales">
+
+  <div class="cuadro-vertical">código de R</div>
+  
+  <div class="flecha">↓</div>
+  
+  <div class="cuadro-vertical">crear (<em>render</em>) la salida</div>
+  
+  <div class="flecha">↓</div>
+  
+  <div class="cuadro-vertical">ubicar salida en la app</div>
+  
+</div>
+
+{{< aviso "Iremos explicando de a poco esta sección, ya que sólo funcionará cuando estén todos los elementos necesarios. Al final encontrarás el código completo de la app para probarla" >}}
+
+La salida que crearemos (el conteo de casos por región) se va a llamar `casos_region`, y como hay que **explicitar que el código será una salida** para la app, asignamos el resultado que queremos mostrar a un objeto preexistente llamado **output** que se encargará de recibir todas las salidas de nuestra app. Empecemos simplemente creando el objeto `casos_region` asignado a `output`, lo que quedaría así: `output$casos_region`
+
+```r {hl_lines=["3-7"]}
+) # final de la ui
+...
+# servidor
+server <- function(input, output) {
+  # conteo de casos filtrados por región
+  output$casos_region <- ... # aquí vamos...
+}
+
+# ejecutar la app
+shinyApp(ui, server)
+```
+
+{{< info "El objeto `output`, al igual que `input`, son objetos creados y usados por Shiny para organizar la app, y sólo son accesibles dentro de la app y mientras se está ejecutando. " >}}
+
+Ahora tenemos que pensar **qué tipo de _output_** crearemos, porque dependiendo del tipo de salida será la función que necesitamos usar para **convertir el resultado de R en algo visible en nuestra app**. En nuestro caso crearemos un **texto** con el conteo de casos, así que usaremos `renderText()` para crear o _renderizar_ la cifra en un texto legible para la aplicación.
+
+```r {hl_lines=["6-10"]}
+) # final de la ui
+...
+# servidor
+server <- function(input, output) {
+  # conteo de casos filtrados por región
+  output$casos_region <- renderText({
+    datos |>
+      filter(region == "Maule") |>
+      nrow()
+  })
+}
+
+# ejecutar la app
+shinyApp(ui, server)
+```
+
+La función `renderText()` convertirá el texto en un objeto HTML apropiado para la aplicación. Si quisiéramos hacer un gráfico, usaríamos `renderPlot()`, y así.
+
+Ahora podemos reemplazar el filtro de prueba que hicimos por un filtro que **use el input**:
+
+```r {hl_lines=[3]}
+  output$casos_region <- renderText({
+    datos |>
+      filter(region == input$region) |>
+      nrow()
+  })
+```
+
+Esto significa que el/la usuario/a eligirá qué es lo que se filtra, y que cada vez que se cambie el selector, se actualizará el objeto `input$region`, y por consiguiente se volverá a ejecutar el código de `output$casos_region` para entregar el nuevo resultado!
+
+El último paso es **conectar el output con el UI** para que nuestra salida aparezca en alguna parte de la app. Para ello, invocamos el nombre del _output_ en la función `textOutput()`, y la ubicamos en la UI de nuestra app; en este caso, debajo del selector mismo:
+
+```r {hl_lines=["7-8"]}
+selectInput(
+    inputId = "region",
+    label = "Explorar regiones",
+    choices = sort(unique(datos$region))
+  ),
+  
+  # salida de texto de conteo de observaciones
+  textOutput("casos_region")
+```
+
+Lo que hicimos fue:
+1. Crear un _input_
+2. Crear un _output_
+3. Hacer que el _output_ use el _input_
+4. Poner el _output_ en la parte visible de nuestra app (UI)
+
+Veamos cómo funciona la aplicación!
+
+{{< video "shiny_selector_1.mov" "320px" >}}
+
+Mejoremos la salida de texto para que sea más descriptiva: volvamos a server, al _output_ que creamos, y hagamos que incluya más texto y el nombre de la región seleccionada:
+
+```r {hl_lines=["2-6"]}
+  output$casos_region <- renderText({
+    conteo <- datos |>
+      filter(region == input$region) |>
+      nrow()
+    
+    glue("La región {input$region} tiene registrados {conteo} casos.")
+  })
+```
+
+{{< imagen "shiny_selector_2.png" "320px" >}}
+
+Siguiendo estas mismas ideas podemos crear un párrafo de texto más complejo usando distintas variables, combinando múltiples inputs, y más!
+
+
+{{< detalles "**Ver código completo de la app hasta ahora**" >}}
+Guarda este código en un script `app.R` para poder ejecutarlo:
+```r
+# global
+library(shiny)
+library(bslib)
+library(readxl)
+library(glue)
+
+# cargar datos
+datos <- read_excel("datos.xlsx")
+
+# interfaz
+ui <- page_fillable(
+  # título
+  h1("Campamentos en Chile"),
+
+  # párrafo
+  p(
+    glue(
+      "Aplicación Shiny para explorar 
+         los datos de los {nrow(datos)} 
+         campamentos registrados en Chile."
+    )
+  ),
+
+  # párrafo markdown
+  markdown(
+    "Los **campamentos** son definidos por el 
+           [Minvu](https://www.minvu.gob.cl/catastro-campamentos-2022/) 
+           como _Asentamientos de ocho o más viviendas precarias que 
+           habitan en posesión irregular un terreno, con carencia de 
+           servicios básicos, agrupadas y contiguas._"
+  ),
+
+  # selector de regiones
+  selectInput(
+    inputId = "region",
+    label = "Explorar regiones",
+    choices = sort(unique(datos$region))
+  ),
+
+  # salida de texto de conteo de observaciones
+  textOutput("casos_region")
+)
+
+# servidor
+server <- function(input, output) {
+  # conteo de casos filtrados por región
+  output$casos_region <- renderText({
+    conteo <- datos |>
+      filter(region == input$region) |>
+      nrow()
+
+    glue("{input$region} tiene registrados {conteo} casos.")
+  })
+}
+
+# ejecutar la app
+shinyApp(ui, server)
+```
+{{< /detalles >}}
+
 
 <!---
 #### Outputs
@@ -576,7 +830,7 @@ Hola
 
 ### Maqueta de la aplicación
 
-Como dijimos, **la brecha entre un script de R y una aplicación es muy corta**. Así que siempre recomiendo empezar las aplicaciones como un script común y corriente, que luego podemos **convertir** en una aplicación Shiny.
+
 
 
 --->
