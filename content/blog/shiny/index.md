@@ -48,7 +48,7 @@ En este tutorial veremos cómo crear una aplicación Shiny desde cero!
 
 {{< etiqueta "apps" "Algunas aplicaciones hechas con Shiny" >}}
 
-## Cómo funciona una app Shiny
+## Estructura de una app Shiny
 
 Las aplicaciones Shiny son, en su forma más básica, un solo archivo: `app.R`. 
 
@@ -196,7 +196,7 @@ Dentro de `server` iremos poniendo más funciones que creen las partes de la apl
 
 Unamos las piezas en un solo script `app.R`, agregando la última pieza para que la aplicación sea ejecutable: `shinyApp()`
 
-```r {hl_lines=[15,16]}
+```r
 # global
 library(shiny)
 library(bslib)
@@ -257,6 +257,8 @@ shinyApp(ui, server)
 ## Creando una aplicación básica con datos
 
 La gracia de las aplicaciones Shiny es que usen datos y permitan a sus usuarios **explorar y visualizar información** de manera interactiva.
+
+Ahora iremos poco a poco construyendo una app simple que cargue datos y los use para demostrar conceptos básicos de Shiny.
 
 ### Cargar datos en la app
 
@@ -458,7 +460,7 @@ shinyApp(ui, server)
 {{< /detalles >}}
 
 
-### Interacción básica
+### Interacción básica con _inputs_
 
 Hasta ahora la aplicación es estática. Pero la gracia es **agregar elementos interactivos** con los que l@s usuari@s puedan explorar los datos.
 
@@ -510,7 +512,7 @@ Al seleccionar una opción de un selector, inmediatamente se actualiza el objeto
 Pronto veremos cómo usar este valor!
 
 
-### Server
+### Uniendo _inputs_ y datos en _server_
 
 Ahora que tenemos [datos](#cargar-datos-en-la-app) y un [input](#interacción-básica), pasamos a _hacer cosas_ con eso datos y esos inputs! ✨
 
@@ -833,6 +835,73 @@ shinyApp(ui, server)
 {{< /detalles >}}
 
 
+## Cómo funciona una app Shiny
+
+En los pasos anteriores hicimos una app básica que usa datos para mostrar un selector, y al cambiar el selector se ejecuta código de R para entregar un resultado.
+
+En otras palabras, tuvimos **código de R que se re-ejecutó automáticamente cada vez que cambió un elemento interactivo del cual dependía.**
+
+Esta idea de que el código se ejecute cuando cambia algo se llama **reactividad**, y es la idea base detrás del funcionamiento de Shiny.
+
+En términos resumidos, al ejecutar la aplicación por primera vez se crea la interfaz de la aplicación. Luego Shiny identifica todos los **outputs** que hay en la aplicación. Cada output tiene una **cadena de dependencias**; es decir, depende de otros elementos de la app, los que a su vez pueden depender de inputs.
+
+Al iniciar la app, se identifica que existen outputs que requieren calcularse:
+
+{{< imagen "shiny_reactividad_2.png" >}}
+{{< bajada "Se identifican los outputs, y ahora hay que identificar sus dependencias (los resultados requeridos para calcular los outputs)" >}}
+
+Pero al querer calcular los outputs se identifica que se requieren calcular otros elementos anteriores primero; es decir, los outputs dependen de otros resultados. En la mayoría de los casos estos son **objetos reactivos:**
+
+{{< imagen "shiny_reactividad_3.png" >}}
+{{< bajada "La cadena de dependencias va avanzando desde el final hacia el principio (el o los elementos sin dependencias)" >}}
+
+Los objetos reactivos son código de R que son envueltos en funciones de Shiny que hacen que se re-calculen automáticamente cuando cambien sus dependencias. Son básicamente **pasos intermedios** entre los inputs o los datos y los outputs.
+
+Entonces, estos pasos intermedios pueden requerir los **valores de inputs**, o bien, el resultado de **otros objetos reactivos**. En el caso de este ejemplo, los dos outputs dependen de un objeto reactivo, y éste depende de un input:
+
+{{< imagen "shiny_reactividad_4.png" >}}
+{{< bajada "La cadena de dependencias se identificó, y ahora puede ser calculada paso a paso" >}}
+
+Con este paso se termina de determinar la cadena de dependencias; es decir, **Shiny identifica todos los pasos requeridos para calcular el output.** Entonces se empiezan a entregar los datos para iniciar los cálculos. Primero se identifican los inputs:
+
+{{< imagen "shiny_reactividad_5.png" >}}
+{{< bajada "El elemento sin dependencias se calcula y queda disponible para los pasos siguientes" >}}
+
+Gracias a los inputs se pueden **calcular** los objetos reactivos o pasos intermedios:
+
+{{< imagen "shiny_reactividad_6.png" >}}
+{{< bajada "La cadena de dependencias se va calculando" >}}
+
+Teniendo los objetos reactivos, los outputs ya cuentan con todo lo necesario, y pueden calcularse para **mostrarse en la app**.
+
+{{< imagen "shiny_reactividad_7.png" >}}
+{{< bajada "Finalmente se pueden calcular los outputs y mostrarse en la app" >}}
+
+En este punto nuestra app ya está lista y mostrando los resultados! 
+
+Cuando se calculan todos los pasos de la cadena, todo vuelve a un estado neutral, donde ya no necesita calcularse nada nuevo 😌
+
+{{< imagen "shiny_reactividad_8.png" >}}
+{{< bajada "Todo está calculado y en paz, la app está cargada y quieta" >}}
+
+Pero si en la app **se cambia un input**, toda la cadena se marca como **_invalidada_**: los resultados que se tenían ya no son válidos, porque cambiaron elementos de la cadena! 
+
+{{< imagen "shiny_reactividad_9.png" >}}
+{{< bajada "Se detectó el cambio de un input!" >}}
+
+Como la cadena se invalidó, Shiny nuevamente identifica que **los outputs deben calcularse**, y los marca como pendientes de cálculo, reiniciando el ciclo:
+
+{{< imagen "shiny_reactividad_2.png" >}}
+{{< bajada "Los outputs requieren recalcularse!" >}}
+
+Los outputs requieren recalcularse, pero los outputs dependen de los reactivos, y los reactivos de otros reactivos o de inputs... entonces se navega hacia atrás por la cadena, marcando como pendiente de cálculo a los elementos requeridos por el output, hasta llegar a los inputs o a elementos sin ninguna dependencia, los cuales pueden calcularse y entregar sus resultados a los pasos siguientes. 
+
+Podemos ver este proceso en vivo y en directo [usando el paquete `{reactlog}`](blog/shiny_reactlog/):
+
+{{< video "/blog/shiny_reactlog/reactlog_shiny.mp4" >}}
+
+{{< relacionada "blog/shiny_reactlog/" >}}
+
 <!---
 #### Outputs
 
@@ -855,17 +924,6 @@ shinyApp(ui, server)
 
 
 {{< relacionada "blog/shiny_optimizar" >}}
-
-{{< detalles >}}
-Hola
-{{< /detalles >}}
-
-{{< info "Prueba" >}}
-
-
-
-
-### Maqueta de la aplicación
 
 
 

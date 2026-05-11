@@ -1,0 +1,185 @@
+---
+title: Crea mapas bivariados en R para visualizar la relación entre dos variables
+author: Bastián Olea Herrera
+date: '2026-04-29'
+slug: []
+draft: true
+categories:
+  - Tutoriales
+tags:
+  - mapas
+  - visualización de datos
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+---
+
+
+
+``` r
+library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+``` r
+library(tidyr)
+library(arrow)
+```
+
+```
+## Warning: package 'arrow' was built under R version 4.4.3
+```
+
+```
+## 
+## Attaching package: 'arrow'
+```
+
+```
+## The following object is masked from 'package:utils':
+## 
+##     timestamp
+```
+
+``` r
+# cargar ----
+comunas <- readxl::read_xlsx("~/Documents/Datos/Censo/2024/diccionario_variables_censo2024.xlsx",
+                             sheet = "codigos_territoriales") |> 
+  select(comuna = 1, nombre_comuna = 3) |> 
+  filter(comuna > 999)
+
+personas <- open_dataset("~/Documents/Datos/Censo/2024/personas_censo2024.parquet")
+
+hogares <- open_dataset("~/Documents/Datos/Censo/2024/hogares_censo2024.parquet")
+
+
+# personas: seleccionar columnas
+personas_filt <- personas |>
+  select(id_vivienda, id_hogar, comuna, parentesco,
+         sexo, edad_quinquenal)
+
+# hogares: seleccionar columnas
+hogares_filt <- hogares |>
+  select(id_vivienda, id_hogar, comuna, p12_tenencia_viv)
+
+# cruzar ambas bases por hogar/vivienda/comuna
+personas_hogares <- personas_filt |> 
+  left_join(hogares_filt, 
+            join_by(id_vivienda, id_hogar, comuna))
+# resultado: base de personas con datos de la vivienda donde viven
+
+# conteo ----
+conteo <- personas_hogares |> 
+  group_by(comuna, sexo, edad_quinquenal, parentesco, p12_tenencia_viv) |> 
+  summarize(n = n()) |> 
+  ungroup() |> 
+  collect() # carga a memoria de los datos
+
+
+# recodificación ----
+conteo_recod <- conteo |> 
+  mutate(parentesco = recode_values(
+    parentesco,
+    1 ~	"Jefe/a de hogar",
+    2 ~	"Esposo/a o cónyuge",
+    default = "Otros")) |> 
+  mutate(sexo = recode_values(
+    sexo, 
+    1 ~ "Hombre", 
+    2 ~ "Mujer")) |> 
+  mutate(p12_tenencia_viv = recode_values(
+    p12_tenencia_viv, 
+    1 ~ "Propia pagada",
+    2 ~ "Propia pagándose",
+    3 ~ "Arrendada con contrato",
+    4 ~ "Arrendada sin contrato",
+    5 ~ "Cedida por trabajo o servicio",
+    6 ~ "Cedida por familiar u otro",
+    7 ~ "Usufructo: solo uso y goce",
+    8 ~ "Ocupada de hecho",
+    9 ~ "Propiedad en sucesión o litigio")) |> 
+  mutate(propiedad = if_else(
+    p12_tenencia_viv %in% c("Propia pagada", "Propia pagándose"), 
+    "Propia", "No propia")) |> 
+  mutate(mayor = case_when(sexo == "Hombre" & edad_quinquenal >= 65 ~ "Adulto mayor", 
+                           sexo == "Mujer" & edad_quinquenal >= 60 ~ "Adulto mayor",
+                           .default = "No adulto mayor")) |> 
+  left_join(comunas, by = "comuna") |> 
+  relocate(nombre_comuna, .before = comuna)
+
+
+# calcular ----
+
+# porcentaje de adultos mayores por comuna
+comuna_mayor <- conteo_recod |> 
+  group_by(nombre_comuna, comuna) |> 
+  count(mayor) |> 
+  mutate(p = n / sum(n)) |> 
+  filter(mayor == "Adulto mayor") |> 
+  ungroup()
+
+comuna_propia <- conteo_recod |> 
+  group_by(nombre_comuna, comuna) |> 
+  count(propiedad) |> 
+  mutate(p = n / sum(n)) |> 
+  filter(propiedad == "Propia") |> 
+  ungroup()
+
+# unir
+datos_censo <- left_join(
+# datos adulto mayor
+  comuna_mayor |> 
+    select(nombre_comuna, comuna,
+           mayor_p = p),
+  # datos propiedad
+  comuna_propia |> 
+    select(comuna,
+           propia_p = p)
+)
+```
+
+```
+## Joining with `by = join_by(comuna)`
+```
+
+``` r
+datos_censo
+```
+
+```
+## # A tibble: 345 × 4
+##    nombre_comuna   comuna mayor_p propia_p
+##    <chr>            <dbl>   <dbl>    <dbl>
+##  1 Algarrobo         5602   0.269    0.356
+##  2 Alhué            13502   0.198    0.366
+##  3 Alto Biobío       8314   0.190    0.467
+##  4 Alto Hospicio     1107   0.219    0.268
+##  5 Alto del Carmen   3302   0.224    0.354
+##  6 Ancud            10202   0.239    0.326
+##  7 Andacollo         4103   0.225    0.399
+##  8 Angol             9201   0.239    0.319
+##  9 Antofagasta       2101   0.272    0.254
+## 10 Antuco            8302   0.221    0.389
+## # ℹ 335 more rows
+```
+
+
+
+
