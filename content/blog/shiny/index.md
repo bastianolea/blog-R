@@ -837,6 +837,8 @@ shinyApp(ui, server)
 
 ## Cómo funciona una app Shiny
 
+{{< info "Esta sección del tutorial es teórica! Sirve para entender qué está pasando dentro de tu app. Puedes saltártela si gustas" >}}
+
 En los pasos anteriores hicimos una app básica que usa datos para mostrar un selector, y al cambiar el selector se ejecuta código de R para entregar un resultado.
 
 En otras palabras, tuvimos **código de R que se re-ejecutó automáticamente cada vez que cambió un elemento interactivo del cual dependía.**
@@ -933,3 +935,5 @@ Podemos ver este proceso en vivo y en directo [usando el paquete `{reactlog}`](b
 {{< aviso "Este post está en construcción! Fastídiame para que lo termine [comentando en este post de LinkedIn](https://www.linkedin.com/posts/bastianolea_basti%C3%A1n-olea-herrera-activity-7458116493420130304-wWUA)" >}}
 
 {{< etiqueta "shiny" >}}
+
+{{< relacionada "clases/spatiallab_shiny_2/" "Diapositivas y código de mi curso de Shiny" >}}

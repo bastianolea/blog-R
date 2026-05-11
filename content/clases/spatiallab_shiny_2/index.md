@@ -24,11 +24,27 @@ Este curso es ideal para aquellas personas que busquen generar aplicaciones inte
 
 ![](curso_desarrollo_apps_2_2.jpeg)
 
-_Temario:_
+
+Dictado por Bastián Olea Herrera, Magíster en sociología
+
+## Temario
 
 1. Introducción al framework Shiny y el concepto de reactividad [21 de noviembre]  
 2. Primeros pasos: programación de cifras interactivas [28 de noviembre]  
 3. Personalizar apariencia de una aplicación web [05 de diciembre]  
 4. Publicación de la aplicación web para volverla accesible al público [12 de diciembre]
 
-Dictado por Bastián Olea Herrera, Magíster en sociología
+## Código
+
+{{< boton "Repositorio del curso" "https://github.com/bastianolea/curso_shiny_2_spatialLab/tree/master" "fas fa-file-code" >}}
+
+## Diapositivas
+
+{{< boton "Clase 1" "https://github.com/bastianolea/curso_shiny_2_spatialLab/raw/master/clase_1_shiny/Dispositivas%20clase%20Shiny%201.pdf" "fas fa-chalkboard-user" >}}
+
+{{< boton "Clase 2" "https://github.com/bastianolea/curso_shiny_2_spatialLab/raw/master/clase_2_shiny/Clase%202%20Shiny.pdf" "fas fa-chalkboard-user" >}}
+
+{{< boton "Clase 3" "https://github.com/bastianolea/curso_shiny_2_spatialLab/raw/master/clase_3_shiny/Diapositivas%20Clase%203%20Shiny.pdf" "fas fa-chalkboard-user" >}}
+
+{{< boton "Clase 4" "https://github.com/bastianolea/curso_shiny_2_spatialLab/raw/master/clase_4_shiny/Diapositivas%20Clase%204%20Shiny.pdf" "fas fa-chalkboard-user" >}}
+
