@@ -195,6 +195,7 @@ background-color: #A985C630;
 
 .cuadros-verticales {
   display: flex; flex-direction: column; align-items: center; gap: 0; margin: 24px 0;
+  max-width: 400px; margin: auto;
 }
 
 .cuadros-horizontales {

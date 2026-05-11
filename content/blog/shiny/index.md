@@ -692,6 +692,20 @@ Ahora podemos reemplazar el filtro de prueba que hicimos por un filtro que **use
 
 Esto significa que el/la usuario/a eligirá qué es lo que se filtra, y que cada vez que se cambie el selector, se actualizará el objeto `input$region`, y por consiguiente se volverá a ejecutar el código de `output$casos_region` para entregar el nuevo resultado!
 
+Hasta ahora tenemos algo como esto:
+
+<div class="cuadros-verticales">
+  <div class="cuadro">
+    <code>output$casos_region</code> que identifica la salida para poder usarla
+  <div class="cuadro">
+    <code>renderText()</code> que <em>renderiza</em> el código de R en una salida HTML para la app
+  <div class="cuadro">
+  código de R que produce lo que queremos mostrar
+  </div>
+  </div>
+  </div>
+</div>
+
 El último paso es **conectar el output con el UI** para que nuestra salida aparezca en alguna parte de la app. Para ello, invocamos el nombre del _output_ en la función `textOutput()`, y la ubicamos en la UI de nuestra app; en este caso, debajo del selector mismo:
 
 ```r {hl_lines=["7-8"]}
@@ -710,6 +724,29 @@ Lo que hicimos fue:
 2. Crear un _output_
 3. Hacer que el _output_ use el _input_
 4. Poner el _output_ en la parte visible de nuestra app (UI)
+
+Pasamos a tener esto:
+
+<div class="cuadros-verticales">
+  <div class="cuadro">
+    app.R
+  
+  <div class="cuadro">
+  <b>UI</b>
+   <div class="cuadro">
+    <code>textOutput()</code> que ubica la salida en la interfaz de la app
+   </div>
+  </div>
+  
+  <div class="cuadro">
+  <b>server</b>
+   <div class="cuadro">
+    <code>renderText()</code> que <em>renderiza</em> la salida a partir de código R
+   </div>
+  </div>
+  
+  </div>
+</div>
 
 Veamos cómo funciona la aplicación!
 
