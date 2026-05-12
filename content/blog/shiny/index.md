@@ -835,6 +835,429 @@ shinyApp(ui, server)
 {{< /detalles >}}
 
 
+### Agregar un gráfico
+
+**Repaso:** Ya vimos que, para poner algo en la app, necesitamos generar un output y ponerlo en la interfaz (UI) de la app con una función `{x}output()`, como `textOutput()`, mientras que el output se calcula en `server`, y necesita crearse con una función `render{x}()`, como `renderText()`.
+
+#### Hacer un gráfico de prueba primero
+Antes de poner un gráfico en una app, recomiendo empezar con una prueba del gráfico en un script separado, y luego portar el script a la app.
+
+{{< relacionada "/blog/r_introduccion/tutorial_visualizacion_ggplot" >}}
+
+[Haremos un **gráfico de barras**](/blog/r_introduccion/tutorial_visualizacion_ggplot/#barras-ordenado) que muestre los principales campamentos de cada región elegida por el/la usuario/a.
+
+Cargamos los datos, los filtramos por región (pensando en cómo lo haríamos con el selector `input$region`), luego reducimos la cantidad de observaciones a las más relevantes con `slice_max()` para dejar sólo las con más hogares, y al final ordenamos las observaciones por la variable numérica `hogares`:
+
+```r
+library(dplyr)
+library(readxl)
+library(forcats)
+
+datos <- read_xlsx("datos.xlsx")
+
+# filtrar una región
+region_elegida = "Biobío"
+
+datos_region <- datos |> 
+  filter(region == region_elegida)
+
+# filtrar máximo de observaciones, y ordenarlas
+datos_region_grafico <- datos_region |> 
+  slice_max(hogares, n = 6) |> 
+  mutate(nombre = fct_reorder(nombre, hogares))
+```
+
+Ahora procedemos a hacer el gráfico:
+
+```r
+library(ggplot2)
+
+datos_region_grafico |> 
+  ggplot() +
+  aes(hogares, nombre) +
+  geom_col(width = 0.7) +
+  geom_text(
+    aes(label = hogares),
+    hjust = 1.3, color = "white", fontface = "bold") +
+  scale_x_continuous(expand = 0) +
+  theme_minimal() +
+  theme(
+    axis.title.y = element_blank(),
+    axis.text.y = element_text(face = "bold"))
+```
+
+{{< imagen "grafico_1.jpg" "400px" >}}
+
+#### Poner el gráfico en la app
+
+Para poner el gráfico en la app Shiny, principalmente hay que hacer dos cosas:
+
+1. Ubicar el output en donde queremos que aparezca en la interfaz de la app con `plotOutput()`
+2. Generar (_render_) el gráfico desde `server` usando los datos e inputs necesarios.
+
+Empecemos ubicando el gráfico (todavía inexistente) en algún lugar de la UI nuestra app, como debajo del selector y del texto que generamos más arriba.
+
+```r {hl_lines=["11-12"]}
+# selector de regiones
+  selectInput(
+    inputId = "region",
+    label = "Explorar regiones",
+    choices = sort(unique(datos$region))
+  ),
+
+  # salida de texto de conteo de observaciones
+  textOutput("casos_region"),
+  
+  # salida de gráfico
+  plotOutput("grafico_barras_region")
+```
+
+Pusimos `plotOutput("grafico_barras_region")` para que el output `output$grafico_barras_region` aparezca debajo del texto.
+
+Si ejecutamos la app hasta ahora, no va a aparecer nada, porque la salida no recibe nada para mostrar.
+
+Ahora vamos a la sección `server` y calculemos el gráfico. Tenemos que crear un `output` con el mismo nombre que pusimos arriba, y asignarle el resultado de la función `renderPlot()`:
+
+```r {hl_lines=["4-7"]}
+server <- function(input, output) {
+  ...
+
+  # gráfico de barras
+  output$grafico_barras_region <- renderPlot({
+    # aquí va el código del gráfico
+  })
+  ...
+}
+```
+
+Dentro de `renderPlot()`, como tiene paréntesis de llave (`{}`), podemos escribrir cualquier sintaxis de R que queramos. En este punto podemos copiar y pegar el código del gráfico que hicimos más arriba, incluyendo el procesamiento de sus datos, para generar el mismo gráfico pero dentro de nuestra app:
+
+```r {hl_lines=["6-32"]}
+server <- function(input, output) {
+  ...
+  # gráfico de barras
+  output$grafico_barras_region <- renderPlot({
+    # filtrar por región
+    datos_region <- datos |>
+      filter(region == input$region) # usar input!
+
+    # limitar cantidad de casos y ordenar
+    datos_region_grafico <- datos_region |>
+      slice_max(hogares, n = 6) |>
+      mutate(nombre = fct_reorder(nombre, hogares))
+
+    # gráfico
+    datos_region_grafico |>
+      ggplot() +
+      aes(hogares, nombre) +
+      geom_col(width = 0.7) +
+      geom_text(
+        aes(label = hogares),
+        hjust = 1.3,
+        color = "white",
+        fontface = "bold"
+      ) +
+      scale_x_continuous(expand = 0) +
+      theme_minimal(base_size = 13) +
+      theme(
+        axis.title.y = element_blank(),
+        axis.text.y = element_text(face = "bold")
+      )
+  })
+  ...
+}
+```
+
+La única diferencia es que ponemos `input$region` en el `filter()` para que el filtro de regiones funcione sobre el gráfico!
+
+{{< info "Recuerda que los inputs solamente estarán disponibles mientras ejecutes la aplicación, por lo que no puedes usarlos directamente para pruebas. Más adelante veremos cómo probar los inputs directamente!" >}}
+
+**Recapitulando:**
+- Hicimos un gráfico de prueba usando los mismos datos que la app
+- Ubicamos el lugar donde va a ir el gráfico con `plotOutput()` en `ui`
+- Calculamos el gráfico con `renderPlot()` en `server`
+- Pusimos el código del gráfico dentro de `renderPlot()`
+- Pusimos `input$region` dentro del código del gráfico para que se pueda cambiar el filtro interactivamente
+
+Probemos la aplicación!
+
+{{< video "shiny_grafico_1.mov" "320px" >}}
+
+{{< detalles "Ver código de la app hasta ahora" >}}
+```r
+# global
+library(shiny)
+library(bslib)
+library(readxl)
+library(glue)
+library(forcats)
+library(ggplot2)
+
+# cargar datos
+datos <- read_excel("datos.xlsx")
+
+# interfaz
+ui <- page_fillable(
+  # título
+  h1("Campamentos en Chile"),
+
+  # párrafo
+  p(
+    glue(
+      "Aplicación Shiny para explorar 
+         los datos de los {nrow(datos)} 
+         campamentos registrados en Chile."
+    )
+  ),
+
+  # párrafo markdown
+  markdown(
+    "Los **campamentos** son definidos por el 
+           [Minvu](https://www.minvu.gob.cl/catastro-campamentos-2022/) 
+           como _Asentamientos de ocho o más viviendas precarias que 
+           habitan en posesión irregular un terreno, con carencia de 
+           servicios básicos, agrupadas y contiguas._"
+  ),
+
+  # selector de regiones
+  selectInput(
+    inputId = "region",
+    label = "Explorar regiones",
+    choices = sort(unique(datos$region))
+  ),
+
+  # salida de texto de conteo de observaciones
+  textOutput("casos_region"),
+
+  # salida de gráfico
+  plotOutput("grafico_barras_region")
+)
+
+# servidor
+server <- function(input, output) {
+  # conteo de casos filtrados por región
+  output$casos_region <- renderText({
+    conteo <- datos |>
+      filter(region == input$region) |>
+      nrow()
+
+    glue("{input$region} tiene registrados {conteo} casos.")
+  })
+
+  # gráfico de barras
+  output$grafico_barras_region <- renderPlot({
+    # filtrar por región
+    datos_region <- datos |>
+      filter(region == input$region)
+
+    # limitar cantidad de casos y ordenar
+    datos_region_grafico <- datos_region |>
+      slice_max(hogares, n = 6) |>
+      mutate(nombre = fct_reorder(nombre, hogares))
+
+    # gráfico
+    datos_region_grafico |>
+      ggplot() +
+      aes(hogares, nombre) +
+      geom_col(width = 0.7) +
+      geom_text(
+        aes(label = hogares),
+        hjust = 1.3,
+        color = "white",
+        fontface = "bold"
+      ) +
+      scale_x_continuous(expand = 0) +
+      theme_minimal(base_family = "Arial",
+                    base_size = 13) +
+      theme(
+        axis.title.y = element_blank(),
+        axis.text.y = element_text(face = "bold")
+      )
+  })
+}
+
+# ejecutar la app
+shinyApp(ui, server)
+```
+{{< /detalles >}}
+
+
+{{< etiqueta "visualización de datos" >}}
+
+
+
+### Añadir un nuevo _input_
+
+Dentro del gráfico que hicimos hay otro parámetro que podríamos entregar al usuario: cuando agregamos `slice_max()` limitamos el máximo de observaciones entregadas a `n = 6`, filtradas por las de mayor valor en la variable `hogares`. 
+
+Hagamos que el valor del argumento `n` se cambie con un _slider_ o deslizador, para que las y los usuarios/as puedan elegir cuántas observaciones visualizar en el gráfico.
+
+En la interfaz de la aplicación, pensemos dónde poner el _input_. Yo creo que 🤓☝🏼 un selector de este tipo debería ir debajo del gráfico, ya que es un ajuste que se haría _después_ de elegir la región, ya que no es tan relevante como para poner antes de la visualización misma.
+
+Vamos al `ui` y agregamos un nuevo _input_, separado por comas de los elementos anteriores. En `sliderInput()`, como todos los inputs, empezamos poniendo el `inputId` (que es el nombre con el que llamaremos a su valor) y un `label` que es el título del selector. Los argumentos de este input son el mínimo y máximos, el valor que tiene seleccionado por defecto (`value`), y otros como `step` que son los saltos entre valores, y su ancho (`width`).
+
+```r {hl_lines=["7-16"]}
+# salida de texto de conteo de observaciones
+  textOutput("casos_region"),
+
+  # salida de gráfico
+  plotOutput("grafico_barras_region"),
+
+  # selector de observaciones máximas
+  sliderInput(
+    inputId = "maximo",
+    label = "Cantidad de resultados",
+    min = 3,
+    max = 15,
+    value = 8,
+    step = 1,
+    width = "100%"
+  )
+```
+
+Debajo del gráfico va a aparecer el _slider_:
+
+{{< imagen "app_shiny_slider.png" "400px" >}}
+
+Ahora, conectar este **nuevo input** a cualquier paso de la app es simplemente reemplazar el valor del argumento de cualquier función de R por `input${nombre}`, en este caso `input$maximo`:
+
+
+```r {hl_lines=["10-13"]}
+server <- function(input, output) {
+  ...
+  # gráfico de barras
+  output$grafico_barras_region <- renderPlot({
+    # filtrar por región
+    datos_region <- datos |>
+      filter(region == input$region) # usando el input
+
+    # limitar cantidad de casos y ordenar
+    datos_region_grafico <- datos_region |>
+      slice_max(hogares, n = input$maximo) |> # usando el input
+      mutate(nombre = fct_reorder(nombre, hogares))
+
+    # gráfico
+    datos_region_grafico |>
+      ggplot() +
+      ...
+  })
+  ...
+}
+```
+
+Entonces, el argumento `n` de `slice_max()` será por defecto 8 (lo que pusimos en el input), pero cambiará cuando muevas el _slider_!
+
+{{< video "shiny_grafico_2.mov" "320px" >}}
+
+{{< detalles "Ver código de la app hasta ahora" >}}
+```r
+# global
+library(shiny)
+library(bslib)
+library(readxl)
+library(glue)
+library(forcats)
+library(ggplot2)
+
+# cargar datos
+datos <- read_excel("datos.xlsx")
+
+# interfaz
+ui <- page_fillable(
+  # título
+  h1("Campamentos en Chile"),
+
+  # párrafo
+  p(
+    glue(
+      "Aplicación Shiny para explorar 
+         los datos de los {nrow(datos)} 
+         campamentos registrados en Chile."
+    )
+  ),
+
+  # párrafo markdown
+  markdown(
+    "Los **campamentos** son definidos por el 
+           [Minvu](https://www.minvu.gob.cl/catastro-campamentos-2022/) 
+           como _Asentamientos de ocho o más viviendas precarias que 
+           habitan en posesión irregular un terreno, con carencia de 
+           servicios básicos, agrupadas y contiguas._"
+  ),
+
+  # selector de regiones
+  selectInput(
+    inputId = "region",
+    label = "Explorar regiones",
+    choices = sort(unique(datos$region))
+  ),
+
+  # salida de texto de conteo de observaciones
+  textOutput("casos_region"),
+
+  # salida de gráfico
+  plotOutput("grafico_barras_region"),
+
+  # selector de observaciones máximas
+  sliderInput(
+    inputId = "maximo",
+    label = "Cantidad de resultados",
+    min = 3,
+    max = 15,
+    value = 6,
+    step = 1,
+    width = "100%"
+  )
+)
+
+# servidor
+server <- function(input, output) {
+  # conteo de casos filtrados por región
+  output$casos_region <- renderText({
+    conteo <- datos |>
+      filter(region == input$region) |>
+      nrow()
+
+    glue("{input$region} tiene registrados {conteo} casos.")
+  })
+
+  # gráfico de barras
+  output$grafico_barras_region <- renderPlot({
+    # filtrar por región
+    datos_region <- datos |>
+      filter(region == input$region)
+
+    # limitar cantidad de casos y ordenar
+    datos_region_grafico <- datos_region |>
+      slice_max(hogares, n = input$maximo) |>
+      mutate(nombre = fct_reorder(nombre, hogares))
+
+    # gráfico
+    datos_region_grafico |>
+      ggplot() +
+      aes(hogares, nombre) +
+      geom_col(width = 0.7) +
+      geom_text(
+        aes(label = hogares),
+        hjust = 1.3,
+        color = "white",
+        fontface = "bold"
+      ) +
+      scale_x_continuous(expand = 0) +
+      theme_minimal(base_family = "Arial", base_size = 13) +
+      theme(
+        axis.title.y = element_blank(),
+        axis.text.y = element_text(face = "bold")
+      )
+  })
+}
+
+# ejecutar la app
+shinyApp(ui, server)
+```
+{{< /detalles >}}
+
+
 ## Cómo funciona una app Shiny
 
 {{< info "Esta sección del tutorial es teórica! Sirve para entender qué está pasando dentro de tu app. Puedes saltártela si gustas" >}}
@@ -903,6 +1326,7 @@ Podemos ver este proceso en vivo y en directo [usando el paquete `{reactlog}`](b
 {{< video "/blog/shiny_reactlog/reactlog_shiny.mp4" >}}
 
 {{< relacionada "blog/shiny_reactlog/" >}}
+
 
 <!---
 #### Outputs
