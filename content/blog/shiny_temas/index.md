@@ -61,8 +61,8 @@ Para definir los colores del tema, agregamos el argumento `theme` a `page_fluid(
 
 ```r
 theme = bs_theme(bg = "#EAD1FA",
-                   fg = "#553A74",
-                   primary = "#8557AB")
+                 fg = "#553A74",
+                 primary = "#8557AB")
 ```
 
 Aquí se configuran los tres colores principales: el fondo (`bg`), el color de los textos (`fg`), y el color principal (`primary`) que se usa en los botones, barras de navegación, y otros elementos interactivos.
@@ -164,9 +164,9 @@ Esta aplicación tiene un selector de números que filtran los datos, que a su v
 Aplicar el tema es tan sencillo como agregar el tema en el argumento `theme` de `page_fluid()`:
 
 ```r
- theme = bs_theme(bg = "#EAD1FA",
-                   fg = "#553A74", 
-                   primary = "#8557AB")
+theme = bs_theme(bg = "#EAD1FA",
+                 fg = "#553A74", 
+                 primary = "#8557AB")
 ```
 
 Luego, para que el gráfico adopte la paleta de colores del tema, solamente tenemos que cargar el paquete `{thematic}` con `library(thematic)`, y luego activar el uso de temas con `thematic_shiny()` antes de la interfaz/UI, y listo! No es necesario cambiar nada en el código del gráfico ni del resto de la aplicación.[^1]
@@ -196,3 +196,5 @@ ui <- page_fluid(
 ```
 
 Listo! Así de fácil. Ahora no hay excusas para hacer que tus aplicaciones se vean bonitas y dejen una buena impresión en sus usuarios.
+
+{{< etiqueta "shiny" >}}

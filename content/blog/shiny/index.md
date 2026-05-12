@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Crea aplicaciones web interactivas en R con Shiny"
 author: Bastián Olea Herrera
-date: '2026-05-07'
+date: '2026-05-12'
 draft: false
 categories:
   - Tutoriales
@@ -1257,6 +1257,68 @@ shinyApp(ui, server)
 ```
 {{< /detalles >}}
 
+
+## Personalizando la app
+
+Hay muchas funciones que nos ayudarán a agregar elementos útiles a la interfaz (UI) de nuestras aplicaciones:
+
+- La función `br()` inserta un salto de líneas
+- Con `hr()` puedes insertar una barra horizontal para separar contenidos
+- Usando `div()` puedes insertar contenidos HTML completamente personalizables; por ejemplo, crear un recuadro redondeado que contenga texto, usando código CSS en el argumento `style`:
+
+```r
+div(
+  style = "margin: 6px; padding: 8px; 
+           border-radius: 5px;
+           background-color: #EDEDED;",
+  p("Texto dentro de un recuadro redondeado")
+  )
+```
+
+{{< imagen "app_shiny_div.png" "400px" >}}
+
+
+### Cambiar los colores de la aplicación
+
+Para cambiar el [tema de colores](/blog/shiny_temas/) de la aplicación, simplemente agrega el argumento `theme` en la función que uses para crear la página (como `page_fluid()`, `page_sidebar()`, etc.), y mediante la función `bs_theme()`, agrega los tres colores principales: el color de fondo (`bg`), el color del texto (`fg`), y el color primario (`primary`):
+
+```r {hl_lines=["2", "5-7"]}
+library(shiny)
+library(bslib)
+
+ui <- page_fluid(
+  theme = bs_theme(bg = "#EAD1FA",
+                   fg = "#553A74",
+                   primary = "#8557AB"),
+  ...
+```
+
+Si de tienes y vuelves a ejecutar tu aplicación (para que se reconstruya el código HTML de base), verás el cambio de colores! 🌈
+
+{{< relacionada "/blog/shiny_temas/" "Instrucciones completas en este tutorial" >}}
+
+
+### Usar tipografías personalizadas en tu app
+
+Puedes [cambiar la tipografía](/blog/shiny_tipografias) que se use en tus aplicaciones Shiny dentro de `bs_theme()`, en el argumento `theme` de la función que uses para constuir la UI de tu app. Ahí puedes definir `base_font` para la tipografía general de la app, y opcionalmente `heading_font` si quieres que los títulos (`h1`, `h2`, etc.) sean distintos. Con la función `font_google()` puedes hacer que tu app cargue automáticamente tipografías gratuitas de [Google Fonts](https://fonts.google.com).
+
+```r {hl_lines=["2", "5-8"]}
+library(shiny)
+library(bslib)
+
+ui <- page_fluid(
+  theme = bs_theme(
+    base_font = font_google("Manrope"),
+    heading_font = font_google("Domine")
+  ),
+  ...
+```
+
+{{< relacionada "/blog/shiny_tipografias" "Instrucciones completas en este tutorial" >}}
+
+[Encuentra aquí las instrucciones](/blog/ggplot_tipografias/) para aplicar las tipografías a los gráficos `ggplot2`!
+
+{{< relacionada "/blog/ggplot_tipografias/" >}}
 
 ## Cómo funciona una app Shiny
 

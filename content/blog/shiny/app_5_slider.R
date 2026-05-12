@@ -23,13 +23,23 @@ ui <- page_fillable(
     )
   ),
 
-  # párrafo markdown
-  markdown(
-    "Los **campamentos** son definidos por el 
-           [Minvu](https://www.minvu.gob.cl/catastro-campamentos-2022/) 
-           como _Asentamientos de ocho o más viviendas precarias que 
-           habitan en posesión irregular un terreno, con carencia de 
-           servicios básicos, agrupadas y contiguas._"
+  # # párrafo markdown
+  # markdown(
+  #   "Los **campamentos** son definidos por el 
+  #          [Minvu](https://www.minvu.gob.cl/catastro-campamentos-2022/) 
+  #          como _Asentamientos de ocho o más viviendas precarias que 
+  #          habitan en posesión irregular un terreno, con carencia de 
+  #          servicios básicos, agrupadas y contiguas._"
+  # ),
+  div(
+    style = "margin: 6px; padding: 12px; padding-bottom: 0px; border-radius: 7px; background-color: #EDEDED;",
+    markdown(
+      "Los **campamentos** son definidos por el
+             [Minvu](https://www.minvu.gob.cl/catastro-campamentos-2022/)
+             como _Asentamientos de ocho o más viviendas precarias que
+             habitan en posesión irregular un terreno, con carencia de
+             servicios básicos, agrupadas y contiguas._"
+    )
   ),
 
   # selector de regiones
