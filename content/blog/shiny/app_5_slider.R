@@ -89,6 +89,8 @@ server <- function(input, output) {
       slice_max(hogares, n = input$maximo) |>
       mutate(nombre = fct_reorder(nombre, hogares))
 
+    browser()
+    
     # gráfico
     datos_region_grafico |>
       ggplot() +

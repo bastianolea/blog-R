@@ -1320,6 +1320,17 @@ ui <- page_fluid(
 
 {{< relacionada "/blog/ggplot_tipografias/" >}}
 
+
+## Conceptos avanzados de Shiny
+
+### Renderizadores
+
+### Reactividad
+
+### Observadores
+
+
+
 ## Cómo funciona una app Shiny
 
 {{< info "Esta sección del tutorial es teórica! Sirve para entender qué está pasando dentro de tu app. Puedes saltártela si gustas" >}}
@@ -1390,14 +1401,51 @@ Podemos ver este proceso en vivo y en directo [usando el paquete `{reactlog}`](b
 {{< relacionada "blog/shiny_reactlog/" >}}
 
 
+
+
+## Revisar y _debuggear_ apps Shiny
+
+Como hemos visto, Shiny hace varias cosas _mientras se ejecuta_, lo que puede complicar un poquito el desarrollo y la corrección de problemas.
+
+
+### Acceder a los valores de los _inputs_
+
+Una de las dificultades más recurrentes es el **acceder a los valores de `input${x}`**.
+
+Para esto existe la función `browser()`, cuya tarea es interrumpir la ejecución de R para **inspeccionar el entorno** en el que está inserto el `browser()`. Esto significa que podemos poner una línea con `browser()` dentro de un elemento reactivo como `reactive()`, `observe()` o `render{x}()`, y cuando ese elemento se ejecute dentro de la app, **la app se detendrá y la consola estará dentro de la app**. En este punto estás dentro de la app, así que puedes ver lo que hay dentro de `input`!
+
+Por ejemplo, si ponemos `browser()` dentro de `output$grafico_barras_region` en la app de ejemplo que hemos trabajado, la ejecución se detiene y la consola permite ver los valores:
+
+```
+> runApp('app.R')
+Listening on http://127.0.0.1:4917
+Called from: renderPlot()
+Browse[1]> input$region
+[1] "Antofagasta"
+Browse[1]> input$maximo
+[1] 6
+Browse[1]> input
+<ReactiveValues> 
+  Values:    maximo, region 
+  Readonly:  TRUE 
+```
+
+Esto significa que podemos probar el filtro antes de hacer el gráfico, o ir cambiando cosas del código y probándolas de inmediato. Es literal como entrar en la app a cambiar cosas mientras se ejecuta.
+
+Pero en este método, los gráficos no se van a ver. Esto es porque R seguirá intentando mandar los gráficos al dispositivo (_device_) de Shiny, así que hay que ejecutar `dev.new()` en la consola para decirle a R que cree los gráficos en una ventanita nueva, y ahí sí.
+
+
+### Recibir mensajes a medida que se ejecuta la app
+
+Otra dificultad tiene que ver con **entender qué está pasando** en la app, y en qué orden. Hay varias formas para abordar esto.
+
+Al introducir `message()` dentro de los elementos reactivos y outputs de una app, veremos en la consola de R los mensajes en la medida que cada elemento de la app se va ejecutando. Por ejemplo, podemos poner un `message("filtrando datos")` dentro de un `reactive()` cuando se use un input para un filtro, y así veremos un mensaje en la consola cada vez que se cambie el filtro.
+
+{{< info "Para crear mensajes y alertas en la consola, [las funciones del paquete `{cli}`](https://cli.r-lib.org) son muy útiles, ya que ayudan a hacer mensajes de aviso más atractivos y personalizables." >}}
+
+
+
 <!---
-#### Outputs
-
-
-### Temas
-
-{{< relacionada "blog/shiny_temas" >}}
-
 
 
 * mostrar u ocultar elementos según condiciones
