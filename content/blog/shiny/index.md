@@ -261,7 +261,7 @@ La gracia de las aplicaciones Shiny es que usen datos y permitan a sus usuarios 
 
 Ahora iremos poco a poco construyendo una app simple que cargue datos y los use para demostrar conceptos básicos de Shiny.
 
-#### Cargar datos en la app
+### Cargar datos en la app
 
 Bajemos un conjunto de datos para probar: el [catastro de campamentos 2024](https://www.minvu.gob.cl/catastro-campamentos-2022/) realizado por el Ministerio de Vivienda y Urbanismo de Chile. Esta versión de los datos corresponde a una base previamente limpiada con código de [este repositorio.](https://github.com/bastianolea/campamentos_chile)
 
@@ -365,6 +365,8 @@ glue::glue("me gustan los {x} y los {y} también")
 
 Con `glue()` el código resulta mucho más legible, porque te ahorra tener que poner tantas comas y comillas!
 
+{{< relacionada "/blog/redactar_texto/" >}}
+
 Mejoremos entonces el párrafo `p()` de la app:
 
 ```r {hl_lines=[1,"8-12"]}
@@ -426,6 +428,7 @@ Fíjate que los elementos dentro de la UI van separados por comas (porque en rea
 library(shiny)
 library(bslib)
 library(readxl)
+library(dplyr)
 library(glue)
 
 # cargar datos
@@ -779,6 +782,7 @@ Guarda este código en un script `app.R` para poder ejecutarlo:
 library(shiny)
 library(bslib)
 library(readxl)
+library(dplyr)
 library(glue)
 
 # cargar datos
@@ -852,6 +856,7 @@ Cargamos los datos, los filtramos por región (pensando en cómo lo haríamos co
 ```r
 library(dplyr)
 library(readxl)
+library(dplyr)
 library(forcats)
 
 datos <- read_xlsx("datos.xlsx")
@@ -888,6 +893,8 @@ datos_region_grafico |>
 ```
 
 {{< imagen "grafico_1.jpg" "400px" >}}
+
+{{< relacionada "/blog/ggplot_temas/" >}}
 
 #### Poner el gráfico en la app
 
@@ -989,6 +996,7 @@ Probemos la aplicación!
 # global
 library(shiny)
 library(bslib)
+library(dplyr)
 library(readxl)
 library(glue)
 library(forcats)
@@ -1156,6 +1164,7 @@ Entonces, el argumento `n` de `slice_max()` será por defecto 8 (lo que pusimos 
 library(shiny)
 library(bslib)
 library(readxl)
+library(dplyr)
 library(glue)
 library(forcats)
 library(ggplot2)
@@ -1322,12 +1331,51 @@ ui <- page_fluid(
 {{< relacionada "/blog/ggplot_tipografias/" >}}
 
 
-### Cambiar la disposición/diseño de la app
+### Personalización avanzada con CSS
 
-Hasta ahora vimos una aplicación sencilla donde los elementos aparecen uno debajo del otro. Shiny tiene funciones para organizar los elementos de la interfaz de distintas maneras. 
+CSS es el lenguaje que se usa para especificar el diseño de las páginas web. Como Shiny genera páginas web HTML, podemos usar CSS para personalizar cualquier aspecto de la app.
+
+En cualquier parte de la UI puedes agregar `tags$style()` para escribir código CSS que se aplicará a toda la aplicación. Sirve para personalizar la apariencia de inputs, aspectos visuales y de espaciado de los temas, o creación de **clases** personalizadas para aplicar a los elementos de tu app.
+
+También puedes usar una hoja de estilos CSS externa, guardada en un archivo como `estilos.css`, y cargarla con `includeCSS("estilos.css")` para aplicarla a tu app.
+
+{{< aviso "Shiny crea el HTML de tu app en su primera ejecución. Cuando haces cambios en el código de `server` y haces _reload_ de la app, los cambios se reflejan porque el código de `server` se ejecuta en tiempo real. Sin embargo, si haces cambios en el código CSS y haces _reload_, no se reflejarán porque Shiny no vuelve a crear el HTML de la app a menos que la reinicies (detenerla e iniciarla de nuevo) para que se apliquen los cambios." >}}
+
+Si quieres cambiar el aspecto de un _input_, en un navegador web puedes inspeccionar la app, revisar las clases y estilos del elemento, y reemplazarlos en la hoja de estilo con CSS (usualmente poniéndole `!important` para que los estilos aplicados tomen preponderancia).
 
 
-#### Agregar pestañas a la app
+## Cambiar la disposición de la app
+
+Hasta ahora vimos una aplicación sencilla donde los elementos aparecen uno debajo del otro. Pero existen varias formas de disponer el contenido de la app para facilitar su navegación.
+
+Por ejemplo, si la aplicación tiene muchos elementos distintos, pero temáticamente agrupados, puedes ordenar los contenidos por **pestañas**. Si tienes muchos controles o inputs que afectan una o pocas salidas principales, sería conveniente una **barra lateral**. Si tienes demasiados controles que son opcionales, puedes esconderlos con un **acordeón**.
+
+Ahora veremos las funciones de Shiny para organizar los elementos de la interfaz de distintas maneras. 
+
+
+### Columnas
+
+Con la función `layout_columns()` puedes organizar lel contenido entolumnas, para que alos elementos parezcan ulado a lado del otro en vez de uno debajo del otro. Cada argumento de `layout_columns()` será una columna, así que si quieres agrupar varios elementos en una sola columna, envuélvelos en `list()` o en un `div()` para tener más control sobre el diseño.
+
+```r
+layout_columns(
+  # columna 1
+  div(
+    h2("Columna 1"),
+    p("Contenido de la columna 1")
+  ),
+  
+  # columna 2
+  div(
+    h2("Columna 2"),
+    p("Contenido de la columna 2")
+  )
+)
+```
+
+Por defecto, las columnas ocuparán 50% del ancho de la página, pero puedes configurar el ancho de cada columna con el argumento `col_widths` y usando números que sumen 12: 6 y 6 serían dos columnas del mismo ancho, 4 y 8 sería la columna izquierda más angosta que la derecha, y así. 
+
+### Organizar contenido en pestañas
 
 Para distribuir el contenido de la aplicación en pestañas, en cualquier lugar de la UI creamos un conjunto de pestañas con `navset_tab()`, y dentro de esta función vamos creando todos los **paneles** que queramos con `nav_panel()`:
 
@@ -1360,7 +1408,68 @@ Esto nos sirve para poder estructurar mejor el contenido de la aplicació, distr
 
 {{< info "El uso de pestañas además tiene el **beneficio** de que los elementos que están en las otras pestañas no se carga hasta que el/la usuario/a entra a la pestaña, alivianando la carga inicial de la app." >}}
 
-#### Barra lateral
+
+### Acordeones
+
+Con la función `accordion()` puedes crear un acordeón, que es un elemento que muestra un título, y al hacer click en el título se despliega un contenido oculto debajo. Esto es útil para esconder controles o información que no es tan relevante, o que tiene que verse por partes.
+
+```r
+accordion(
+
+  accordion_panel(
+    title = "Introducción",
+    ... # contenido dentro del acordeón
+  ),
+  accordion_panel(
+    title = "Metodología",
+    ...
+  ),
+  
+  accordion_panel(
+    title = "Fuentes",
+    ...
+  )
+)
+```
+
+{{< imagen "app_shiny_acordeon.png" "300px" >}}
+
+
+
+### Disposición de tarjetas
+
+Podemos envolver elementos de la interfaz en la función `card()` para que aparezcan envueltos en una **tarjeta** con bordes redondeados, lo que ayuda a organizar los contenidos de la aplicación.
+
+```r
+card(
+    card_header(
+      "Título de la tarjeta"
+    ),
+    p("Contenido de la tarjetita")
+    )
+```
+
+{{< imagen "app_shiny_cards.png" "400px" >}}
+
+Usando la función `layout_columns()` puedes organizar las tarjetas en columnas, para que aparezcan una al lado de la otra.
+
+```r
+layout_columns(
+  card(
+    p("tarjeta al lado izquierdo")
+  ),
+  card(
+    p("tarjeta al lado derecho")
+  )
+)
+```
+{{< imagen "app_shiny_cards_2.png" "400px" >}}
+
+Además, puedes poner tarjetas dentro de tarjetas para construir disposiciones más complejas.
+
+
+
+### Barra lateral
 Con `page_sidebar()` puedes crear una disposición con una barra lateral y un panel principal. Simplemente usa `page_sidebar()` para crear la UI de tu app, y en el argumento `sidebar` puedes poner los elementos que quieras que aparezcan en la barra lateral:
 
 ```r
@@ -1383,7 +1492,7 @@ ui <- page_sidebar(
 {{< imagen "app_shiny_sidebar.png" "400px" >}}
 
 
-#### Barra de menú
+### Barra de menú
 
 Con `page_navbar()` puedes crear una barra de menú en la parte superior de la app, donde puedes ubicar distintos elementos como el título de la app, enlaces a otras páginas, y más. Para crear un menú con esta función, simplemente reemplaza la función que usas para crear la UI de tu app por `page_navbar()`, y dentro de esta función puedes agregar los elementos que quieras que aparezcan en el menú:
 
@@ -1428,48 +1537,51 @@ Desde dispositivos móviles o en ventanas pequeñas, el menú superior se transf
 La disposición de menús se puede combinar con otras disposiciones, como la barra lateral, para crear una app con menú y barra lateral al mismo tiempo!
 
 
-#### Disposición de tarjetas
 
-Podemos envolver elementos de la interfaz en la función `card()` para que aparezcan envueltos en una **tarjeta** con bordes redondeados, lo que ayuda a organizar los contenidos de la aplicación.
+## Publicar la aplicación en internet
 
-```r
-card(
-    card_header(
-      "Título de la tarjeta"
-    ),
-    p("Contenido de la tarjetita")
-    )
-```
+Una vez que hayas creado tu aplicación podemos subirla a internet para que la compartas!
 
-{{< imagen "app_shiny_cards.png" "400px" >}}
+{{< info "Antes de subir una app, recomiendo **reiniciar** la sesión de R y volver a probar la app para confirmar que está funcionando bien y tiene definidas todas sus dependencias y rutas correctamente; por ejemplo, no depende de objetos cargados de antemano en el entorno de R." >}}
 
-Usando la función `layout_columns()` puedes organizar las tarjetas en columnas, para que aparezcan una al lado de la otra.
+Existen muchas formas de subir una aplicación (o **desplegarla a producción**, como se dice), pero acá veremos la más sencilla, que es usando los servicios de Posit.
 
-```r
-layout_columns(
-  card(
-    p("tarjeta al lado izquierdo")
-  ),
-  card(
-    p("tarjeta al lado derecho")
-  )
-)
-```
-{{< imagen "app_shiny_cards_2.png" "400px" >}}
+Antes existía [Shinyapps.io](http://shinyapps.io), pero el servicio se está descontinuando. En su reemplazo, [hoy existe **Posit Connect Cloud**](https://connect.posit.cloud).
 
-Además, puedes poner tarjetas dentro de tarjetas para construir disposiciones más complejas.
+Con el script de tu app abierto, presiona el botón **_Publish_** que está en al esquina superior derecha del script:
 
+{{< imagen "posit_connect_cloud_0.png" "400px" >}}
+
+Se abrirá una ventana preguntándote qué archivos del proycto subir (elige los necesarios, o si no sabes, elige todos), y en el lado derecho podrás elegir el **título** de la app y la **cuenta** a la que la vas a subir.
+
+{{< imagen "posit_connect_cloud_1.png" "400px" >}}
+
+Si no tienes una cuenta, presiona _Add new account_ para conectar o crear una cuenta. Aquí se abrirá una ventana y tienes que elegir **Posit Connect Cloud**:
+
+{{< imagen "posit_connect_cloud_2.png" "400px" >}}
+
+Luego podrás conectarte con tu cuenta de Posit, o bien crear una cuenta. Esta opción te permite subir aplicaciones gratis (con un máximo de apps y una capacidad de procesamiento limitados), o bien contratar un plan de pago para subir más aplicaciones y con más capacidad de procesamiento.
+
+Si todo sale bien, en la consola aparecerá el proceso de subida o _deployment_:
+
+{{< imagen "posit_connect_cloud_3.png" "400px" >}}
+
+Finalmente encontrarás la aplicación en tu cuenta de Posit Connect Cloud, y podrás compartir el enlace con quien quieras (botón en la barra superior) para que puedan usar tu aplicación!
+
+{{< imagen "posit_connect_cloud_4.png" "400px" >}}
 
 
 ## Conceptos avanzados de Shiny
 
+{{< aviso "Publicación en construcción!" >}}
+<!---
 ### Renderizadores
 
 ### Reactividad
 
 ### Observadores
 
-
+-->
 
 ## Cómo funciona una app Shiny
 

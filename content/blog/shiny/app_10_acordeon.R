@@ -14,56 +14,63 @@ ui <- page_fillable(
   # título
   h1("Campamentos en Chile"),
 
-  # párrafo
-  p(
-    glue(
-      "Aplicación Shiny para explorar 
+  accordion(
+    accordion_panel(
+      title = "Introducción",
+      p(
+        glue(
+          "Aplicación Shiny para explorar 
          los datos de los {nrow(datos)} 
          campamentos registrados en Chile."
+        )
+      )
+    ),
+    accordion_panel(
+      title = "¿Qué es un campamento?",
+      markdown(
+        "Los **campamentos** son definidos por el
+           [Minvu](https://www.minvu.gob.cl/catastro-campamentos-2022/)
+           como _Asentamientos de ocho o más viviendas precarias que
+           habitan en posesión irregular un terreno, con carencia de
+           servicios básicos, agrupadas y contiguas._"
+      )
+    ),
+
+    accordion_panel(
+      title = "Explorar los datos",
+
+      # selector de regiones
+      selectInput(
+        inputId = "region",
+        label = "Explorar regiones",
+        choices = sort(unique(datos$region))
+      ),
+
+      # salida de texto de conteo de observaciones
+      textOutput("casos_region"),
+
+      # salida de gráfico
+      plotOutput("grafico_barras_region"),
+
+      # selector de observaciones máximas
+      sliderInput(
+        inputId = "maximo",
+        label = "Cantidad de resultados",
+        min = 3,
+        max = 15,
+        value = 6,
+        step = 1,
+        width = "100%"
+      )
+    ),
+    
+    accordion_panel(
+      title = "Metodología"
+    ),
+    
+    accordion_panel(
+      title = "Fuentes"
     )
-  ),
-
-  # # párrafo markdown
-  # markdown(
-  #   "Los **campamentos** son definidos por el
-  #          [Minvu](https://www.minvu.gob.cl/catastro-campamentos-2022/)
-  #          como _Asentamientos de ocho o más viviendas precarias que
-  #          habitan en posesión irregular un terreno, con carencia de
-  #          servicios básicos, agrupadas y contiguas._"
-  # ),
-  div(
-    style = "margin: 6px; padding: 12px; padding-bottom: 0px; border-radius: 7px; background-color: #EDEDED;",
-    markdown(
-      "Los **campamentos** son definidos por el
-             [Minvu](https://www.minvu.gob.cl/catastro-campamentos-2022/)
-             como _Asentamientos de ocho o más viviendas precarias que
-             habitan en posesión irregular un terreno, con carencia de
-             servicios básicos, agrupadas y contiguas._"
-    )
-  ),
-
-  # selector de regiones
-  selectInput(
-    inputId = "region",
-    label = "Explorar regiones",
-    choices = sort(unique(datos$region))
-  ),
-
-  # salida de texto de conteo de observaciones
-  textOutput("casos_region"),
-
-  # salida de gráfico
-  plotOutput("grafico_barras_region"),
-
-  # selector de observaciones máximas
-  sliderInput(
-    inputId = "maximo",
-    label = "Cantidad de resultados",
-    min = 3,
-    max = 15,
-    value = 6,
-    step = 1,
-    width = "100%"
   )
 )
 
@@ -88,8 +95,6 @@ server <- function(input, output) {
     datos_region_grafico <- datos_region |>
       slice_max(hogares, n = input$maximo) |>
       mutate(nombre = fct_reorder(nombre, hogares))
-
-    # browser()
 
     # gráfico
     datos_region_grafico |>
