@@ -81,3 +81,7 @@ El resultado es solamente texto, con tildes y con eñes, pero sin símbolos ni n
 ```{r}
 textclean::strip(texto_num, digit.remove = FALSE, char.keep = c("!"))
 ```
+
+{{< etiqueta "texto" >}}
+
+{{< etiqueta "limpieza de datos" >}}

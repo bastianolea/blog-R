@@ -119,7 +119,6 @@ blogdown::new_post(
 # <i class='fas fa-chalkboard-user'></i>
 # <i class='fas fa-chalkboard-user' style='font-size: 200%'></i>
 
-
 # destacar código
 # ```r {hl_lines=["5-9"]}
 
@@ -140,6 +139,7 @@ blogdown::new_post(
 "assets/custom.scss" # css del sitio
 "static/css/syntax.css" # css del syntax higlight
 
+"static/_redirects" # redirección de posts con cambio de nombre
 
 ## utilidades ----
 

@@ -1,5 +1,5 @@
 ---
-title: 'Limpiar textos con símbolos, tildes o eñes en R'
+title: Limpiar textos con símbolos, tildes o eñes en R
 author: Bastián Olea Herrera
 date: '2025-03-31'
 slug: []
@@ -116,3 +116,6 @@ textclean::strip(texto_num, digit.remove = FALSE, char.keep = c("!"))
 ```
 
     [1] "hoy!!! súper ricas empanadas a 1000 pesos ñam ñam"
+
+{{< etiqueta "texto" >}}
+{{< etiqueta "limpieza de datos" >}}
