@@ -47,6 +47,8 @@ Algunos de los beneficios de usar Shiny son:
 
 En este tutorial veremos cómo crear una aplicación Shiny desde cero!
 
+{{< info "Para desarrollar una app Shiny, necesitas saber R! [Si necesitas aprender, revisa esta página](https://bastianolea.github.io/aprende_r/) que tiene recursos paso a paso para aprender R para análisis de datos desde cero." >}}
+
 ## Estructura de una app Shiny
 
 Las aplicaciones Shiny son, en su forma más básica, un solo archivo: `app.R`. 
@@ -325,6 +327,12 @@ shinyApp(ui, server)
 ```
 {{< /detalles >}}
 
+
+{{< externo "Aprende a trabajar con datos en R desde cero"
+  "https://bastianolea.github.io/aprende_r/"
+  "aprende_r.jpg"
+  "Si necesitas aprender a analizar datos con R, tengas o no experiencia previa, en este sitio encontrarás tutoriales paso a paso para aprender desde cero!"
+  "Página recomendada" >}}
 
 
 ### Textos básicos
