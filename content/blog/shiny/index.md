@@ -20,11 +20,11 @@ Shiny le da vida a todo lo que hayas desarrollado con R sin cambiarte a otro len
 ---
 
 
-[Shiny](https://shiny.posit.co) es un paquete para **desarrollar aplicaciones web interactivas** con R. Con Shiny puedes crear aplicaciones que tus usuarios/as podrán ver desde su navegador, y pueden contener todo tipo de contenido: gráficos, tablas, botones, textos dinámicos, mapas, etc. Es una forma de usar R para crear aplicaciones web centradas en datos que simplifica muchos aspectos complejos del desarrollo web.
+[Shiny](https://shiny.posit.co) es un paquete de R para **desarrollar aplicaciones web interactivas**. Con Shiny puedes crear apps que tus usuarios/as podrán ver desde su navegador, y pueden contener todo tipo de contenido: gráficos, tablas, botones, textos dinámicos, mapas, etc. Es una forma de usar R para **crear aplicaciones web centradas en datos** que simplifica muchos aspectos complejos del desarrollo web.
+
+{{< imagen "shiny-apps-featured.jpg" >}}
 
 Shiny le da vida a todo lo que hayas desarrollado con R **sin cambiarte a otro lenguaje ni aprender uno distinto**. Esto significa que **la distancia se acorta** entre el gráfico que hiciste o el resultado de tus estudios y el tener un producto presentable para tu público o clientes. 
-
-En este tutorial veremos cómo crear una aplicación Shiny desde cero!
 
 {{< indice >}}
 
@@ -48,6 +48,8 @@ Algunos de los beneficios de usar Shiny son:
 - No necesitas expertos o equipos externos para desarrollar una aplicación, ya que Shiny simplifica al máximo el proceso
 
 {{< etiqueta "apps" "Algunas aplicaciones hechas con Shiny" >}}
+
+En este tutorial veremos cómo crear una aplicación Shiny desde cero!
 
 ## Estructura de una app Shiny
 
