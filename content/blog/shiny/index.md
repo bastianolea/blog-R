@@ -34,7 +34,8 @@ En este tutorial veremos cómo crear una aplicación Shiny desde cero!
 "Página recomendada" >}}
 
 
-## Beneficios de Shiny
+Algunos de los beneficios de usar Shiny son:
+
 **Control del _stack_ completo de la aplicación desde un mismo lenguaje:**
 
 - Shiny se encarga de que todas las piezas (HTML, CSS, JavaScript) funcionen desde R
@@ -137,7 +138,7 @@ Para **entender los conceptos básicos**, haremos una aplicación completamente 
 
 {{< info "Revisa este [otro tutorial mucho más básico de Shiny](/blog/r_introduccion/tutorial_shiny_1/) si crees que necesitas ir más lento" >}}
 
-### Global
+#### Global
 
 Lo inicial siempre va a ser **cargar los paquetes necesarios** en la sección **global** de la aplicación, que corresponde a las primeras líneas del script `app.R`.
 
@@ -147,7 +148,7 @@ En la primera línea de `app.R` agrega:
 library(shiny)
 ```
 
-### Interfaz
+#### Interfaz
 
 Luego tenemos que crear la interfaz de la aplicación. Esto es todos los **aspectos visuales** e **interactivos** de la aplicación, lo que las y los usuarios/as verán y usarán.
 
@@ -179,7 +180,7 @@ ui <- page_fillable(
 Los elementos que pongamos dentro de la `ui` tienen que ir separados por comas!
 
 
-### Server
+#### Server
 
 En la sección _server_ de la aplicación es donde ocurren todos los **cálculos** que normalmente hacemos en R. Por ejemplo, filtrar datos, procesar información y crear gráficos.
 
@@ -192,7 +193,7 @@ server <- function(input, output) {
 Dentro de `server` iremos poniendo más funciones que creen las partes de la aplicación que requieren de cálculos y/o datos. Podemos dejarla vacía por mientras.
 
 
-### Aplicación vacía
+#### Aplicación vacía
 
 Unamos las piezas en un solo script `app.R`, agregando la última pieza para que la aplicación sea ejecutable: `shinyApp()`
 
@@ -260,7 +261,7 @@ La gracia de las aplicaciones Shiny es que usen datos y permitan a sus usuarios 
 
 Ahora iremos poco a poco construyendo una app simple que cargue datos y los use para demostrar conceptos básicos de Shiny.
 
-### Cargar datos en la app
+#### Cargar datos en la app
 
 Bajemos un conjunto de datos para probar: el [catastro de campamentos 2024](https://www.minvu.gob.cl/catastro-campamentos-2022/) realizado por el Ministerio de Vivienda y Urbanismo de Chile. Esta versión de los datos corresponde a una base previamente limpiada con código de [este repositorio.](https://github.com/bastianolea/campamentos_chile)
 
@@ -349,7 +350,7 @@ Shiny también crea sus aplicaciones web con HTML, pero nos ayuda a usarlo desde
 
 Los **párrafos** se crean con la función `p()`.
 
-### Componer textos con datos
+#### Componer textos con datos
 
 Podemos usar objetos de R para crear **textos estáticos** (que no cambian) en la app. Para ello podemos ayudarnos de la función `glue()` que nos facilita pegar textos. Veamos la comparación entre usar `paste()` versus `glue()` para componer textos:
 
@@ -1278,7 +1279,7 @@ div(
 {{< imagen "app_shiny_div.png" "400px" >}}
 
 
-### Cambiar los colores de la aplicación
+### Cambiar los colores de la app
 
 Para cambiar el [tema de colores](/blog/shiny_temas/) de la aplicación, simplemente agrega el argumento `theme` en la función que uses para crear la página (como `page_fluid()`, `page_sidebar()`, etc.), y mediante la función `bs_theme()`, agrega los tres colores principales: el color de fondo (`bg`), el color del texto (`fg`), y el color primario (`primary`):
 
@@ -1298,7 +1299,7 @@ Si de tienes y vuelves a ejecutar tu aplicación (para que se reconstruya el có
 {{< relacionada "/blog/shiny_temas/" "Instrucciones completas en este tutorial" >}}
 
 
-### Usar tipografías personalizadas en tu app
+### Usar tipografías personalizadas
 
 Puedes [cambiar la tipografía](/blog/shiny_tipografias) que se use en tus aplicaciones Shiny dentro de `bs_theme()`, en el argumento `theme` de la función que uses para constuir la UI de tu app. Ahí puedes definir `base_font` para la tipografía general de la app, y opcionalmente `heading_font` si quieres que los títulos (`h1`, `h2`, etc.) sean distintos. Con la función `font_google()` puedes hacer que tu app cargue automáticamente tipografías gratuitas de [Google Fonts](https://fonts.google.com).
 
@@ -1319,6 +1320,145 @@ ui <- page_fluid(
 [Encuentra aquí las instrucciones](/blog/ggplot_tipografias/) para aplicar las tipografías a los gráficos `ggplot2`!
 
 {{< relacionada "/blog/ggplot_tipografias/" >}}
+
+
+### Cambiar la disposición/diseño de la app
+
+Hasta ahora vimos una aplicación sencilla donde los elementos aparecen uno debajo del otro. Shiny tiene funciones para organizar los elementos de la interfaz de distintas maneras. 
+
+
+#### Agregar pestañas a la app
+
+Para distribuir el contenido de la aplicación en pestañas, en cualquier lugar de la UI creamos un conjunto de pestañas con `navset_tab()`, y dentro de esta función vamos creando todos los **paneles** que queramos con `nav_panel()`:
+
+```r
+# panel de pestañas
+navset_tab(
+
+    # pestaña 1
+    nav_panel(
+      title = "Introducción",
+      div(
+        ...
+      )
+    ),
+    # pestaña 2
+    nav_panel(
+      title = "Gráficos",
+      div(
+        ...
+      )
+    )
+  ),
+```
+
+{{< imagen "app_shiny_pestanas.png" "400px" >}}
+
+En el argumento `title` va el nombre de cada pestaña. También podemos reemplazar `navset_tab()` por `navset_underline()` o `navset_pill()` para que las pestañas tengan un diseño distinto.
+
+Esto nos sirve para poder estructurar mejor el contenido de la aplicació, distribuyendo la información en paneles ocultos. 
+
+{{< info "El uso de pestañas además tiene el **beneficio** de que los elementos que están en las otras pestañas no se carga hasta que el/la usuario/a entra a la pestaña, alivianando la carga inicial de la app." >}}
+
+#### Barra lateral
+Con `page_sidebar()` puedes crear una disposición con una barra lateral y un panel principal. Simplemente usa `page_sidebar()` para crear la UI de tu app, y en el argumento `sidebar` puedes poner los elementos que quieras que aparezcan en la barra lateral:
+
+```r
+ui <- page_sidebar(
+  
+  # contenido de la app que estará dentro de la barra lateral
+  sidebar = sidebar(
+    # selector de regiones
+    selectInput(
+      ...
+    ),
+
+    # selector de observaciones máximas
+    sliderInput(
+      ...
+    )
+  ),
+```
+
+{{< imagen "app_shiny_sidebar.png" "400px" >}}
+
+
+#### Barra de menú
+
+Con `page_navbar()` puedes crear una barra de menú en la parte superior de la app, donde puedes ubicar distintos elementos como el título de la app, enlaces a otras páginas, y más. Para crear un menú con esta función, simplemente reemplaza la función que usas para crear la UI de tu app por `page_navbar()`, y dentro de esta función puedes agregar los elementos que quieras que aparezcan en el menú:
+
+```r
+ui <- page_navbar(
+
+  # panel de introducción
+  nav_panel(
+    title = "Introducción",
+    
+    h1("Campamentos en Chile"),
+    ...
+  ),
+
+  # panel con controles
+  nav_panel(
+    title = "Controles",
+
+    selectInput(
+      ...
+    ),
+
+    sliderInput(
+      ...
+    )
+  ),
+
+  # panel de resultados
+  nav_panel(
+    title = "Gráficos",
+    ...
+  )
+)
+```
+
+{{< imagen "app_shiny_navbar.png" "400px" >}}
+
+Desde dispositivos móviles o en ventanas pequeñas, el menú superior se transforma en un botón que muestra las opciones:
+
+{{< imagen "app_shiny_navbar_2.png" "300px" >}}
+
+La disposición de menús se puede combinar con otras disposiciones, como la barra lateral, para crear una app con menú y barra lateral al mismo tiempo!
+
+
+#### Disposición de tarjetas
+
+Podemos envolver elementos de la interfaz en la función `card()` para que aparezcan envueltos en una **tarjeta** con bordes redondeados, lo que ayuda a organizar los contenidos de la aplicación.
+
+```r
+card(
+    card_header(
+      "Título de la tarjeta"
+    ),
+    p("Contenido de la tarjetita")
+    )
+```
+
+{{< imagen "app_shiny_cards.png" "400px" >}}
+
+Usando la función `layout_columns()` puedes organizar las tarjetas en columnas, para que aparezcan una al lado de la otra.
+
+```r
+layout_columns(
+  card(
+    p("tarjeta al lado izquierdo")
+  ),
+  card(
+    p("tarjeta al lado derecho")
+  )
+)
+```
+{{< imagen "app_shiny_cards_2.png" "400px" >}}
+
+Además, puedes poner tarjetas dentro de tarjetas para construir disposiciones más complejas.
+
 
 
 ## Conceptos avanzados de Shiny
@@ -1408,6 +1548,15 @@ Podemos ver este proceso en vivo y en directo [usando el paquete `{reactlog}`](b
 Como hemos visto, Shiny hace varias cosas _mientras se ejecuta_, lo que puede complicar un poquito el desarrollo y la corrección de problemas.
 
 
+### Recibir mensajes a medida que se ejecuta la app
+
+Otra dificultad tiene que ver con **entender qué está pasando** en la app, y en qué orden. Hay varias formas para abordar esto.
+
+Al introducir `message()` dentro de los elementos reactivos y outputs de una app, **veremos en la consola** de R los mensajes en la medida que cada elemento de la app se va ejecutando. Por ejemplo, podemos poner un `message("filtrando datos")` dentro de un `reactive()` cuando se use un input para un filtro, y así veremos un mensaje en la consola cada vez que se cambie el filtro.
+
+{{< info "Para crear mensajes y alertas en la consola, [las funciones del paquete `{cli}`](https://cli.r-lib.org) son muy útiles, ya que ayudan a hacer mensajes de aviso más atractivos y personalizables." >}}
+
+
 ### Acceder a los valores de los _inputs_
 
 Una de las dificultades más recurrentes es el **acceder a los valores de `input${x}`**.
@@ -1435,13 +1584,6 @@ Esto significa que podemos probar el filtro antes de hacer el gráfico, o ir cam
 Pero en este método, los gráficos no se van a ver. Esto es porque R seguirá intentando mandar los gráficos al dispositivo (_device_) de Shiny, así que hay que ejecutar `dev.new()` en la consola para decirle a R que cree los gráficos en una ventanita nueva, y ahí sí.
 
 
-### Recibir mensajes a medida que se ejecuta la app
-
-Otra dificultad tiene que ver con **entender qué está pasando** en la app, y en qué orden. Hay varias formas para abordar esto.
-
-Al introducir `message()` dentro de los elementos reactivos y outputs de una app, veremos en la consola de R los mensajes en la medida que cada elemento de la app se va ejecutando. Por ejemplo, podemos poner un `message("filtrando datos")` dentro de un `reactive()` cuando se use un input para un filtro, y así veremos un mensaje en la consola cada vez que se cambie el filtro.
-
-{{< info "Para crear mensajes y alertas en la consola, [las funciones del paquete `{cli}`](https://cli.r-lib.org) son muy útiles, ya que ayudan a hacer mensajes de aviso más atractivos y personalizables." >}}
 
 
 
