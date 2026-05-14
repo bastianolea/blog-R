@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Crea aplicaciones web interactivas en R con Shiny"
 author: Bastián Olea Herrera
-date: '2026-05-12'
+date: '2026-05-14'
 draft: false
 categories:
   - Tutoriales
@@ -12,7 +12,7 @@ format:
   hugo-md:
     output-file: index
     output-ext: md
-excerpt: "Shiny es un paquete para desarrollar aplicaciones web interactivas con R. Es una forma de usar R para crear aplicaciones web centradas en datos que simplifica muchos aspectos complejos del desarrollo web. Shiny le da vida a todo lo que hayas desarrollado con R sin cambiarte a otro lenguaje ni aprender uno distinto. Esto significa que la distancia se acorta entre el gráfico que hiciste o el resultado de tus estudios y el tener un producto presentable para tu público o clientes. ¡Da el salto desde tu script y aprende a programar apps con este tutorial!"
+excerpt: "Shiny es un paquete para desarrollar aplicaciones web interactivas con R. Es una forma de usar R para crear aplicaciones web centradas en datos que simplifica muchos aspectos complejos del desarrollo web. Shiny le da vida a todo lo que hayas desarrollado con R sin cambiarte a otro lenguaje ni aprender uno distinto, acortando la distancia entre el gráfico que hiciste o el resultado de tus estudios y crear un producto presentable. ¡Da el salto desde tu script y aprende a programar apps con este tutorial!"
 ---
 
 
@@ -1273,6 +1273,8 @@ shinyApp(ui, server)
 ```
 {{< /detalles >}}
 
+{{< relacionada "blog/shiny_ocultar/" "Contenido avanzado" >}}
+
 
 ## Personalizando la app
 
@@ -1833,32 +1835,19 @@ Esto significa que podemos probar el filtro antes de hacer el gráfico, o ir cam
 Pero en este método, los gráficos no se van a ver. Esto es porque R seguirá intentando mandar los gráficos al dispositivo (_device_) de Shiny, así que hay que ejecutar `dev.new()` en la consola para decirle a R que cree los gráficos en una ventanita nueva, y ahí sí.
 
 
-
+{{< relacionada "blog/shiny_optimizar" >}}
 
 
 <!---
 
-
-* mostrar u ocultar elementos según condiciones
-
-{{< relacionada "blog/shiny_ocultar" >}}
-
-
-* código condicional desde inputs
-
-
-
-
-
-{{< relacionada "blog/shiny_optimizar" >}}
-
-
-
-
---->
-
 {{< aviso "Este post está en construcción! Fastídiame para que lo termine [comentando en este post de LinkedIn](https://www.linkedin.com/posts/bastianolea_basti%C3%A1n-olea-herrera-activity-7458116493420130304-wWUA)" >}}
+
+---> 
 
 {{< etiqueta "shiny" >}}
 
 {{< relacionada "clases/spatiallab_shiny_2/" "Diapositivas y código de mi curso de Shiny" >}}
+
+Si este tutorial te sirvió laboralmente, te agradecería una pequeña donación!
+
+{{< cafecito >}}
