@@ -88,6 +88,11 @@ background-color: #A985C630;
 
 
 // estilo del índice
+#PageTableOfContents {
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+}
+
 #PageTableOfContents li {
     padding: 3px !important;
 }
