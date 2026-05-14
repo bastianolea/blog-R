@@ -1542,13 +1542,18 @@ La disposición de menús se puede combinar con otras disposiciones, como la bar
 
 ## Publicar la aplicación en internet
 
-Una vez que hayas creado tu aplicación podemos subirla a internet para que la compartas!
+<div class="icono-v">
+  <i class='fas fa-cloud-arrow-up'></i>
+  <!-- <span>app.R</span> -->
+</div>
 
-{{< info "Antes de subir una app, recomiendo **reiniciar** la sesión de R y volver a probar la app para confirmar que está funcionando bien y tiene definidas todas sus dependencias y rutas correctamente; por ejemplo, no depende de objetos cargados de antemano en el entorno de R." >}}
+Hasta ahora, tu aplicación ha vivido localmente en tu computadora. Para poder compartirla con otras personas puedes _compartir el código_ con alguien (aburrido, complicado), o bien puedes **subirla a un servicio** o **hostearla en un servidor** para que esté en internet y pueda ser compartida.
 
-Existen muchas formas de subir una aplicación (o **desplegarla a producción**, como se dice), pero acá veremos la más sencilla, que es usando los servicios de Posit.
+{{< info "Antes de subir una app, recomiendo **reiniciar** la sesión de R y volver a probar la app para confirmar que está funcionando bien y tiene definidas todas sus dependencias y rutas correctamente; por ejemplo, no depende de objetos cargados de antemano en el entorno de R, y cuenta con todos los datos necesarios." >}}
 
-Antes existía [Shinyapps.io](http://shinyapps.io), pero el servicio se está descontinuando. En su reemplazo, [hoy existe **Posit Connect Cloud**](https://connect.posit.cloud).
+Existen muchas formas de subir una aplicación (o **desplegarla a producción**, como se dice), pero acá veremos la más sencilla, que es usando los servicios de Posit. Antes existía [Shinyapps.io](http://shinyapps.io), pero el servicio se está descontinuando. En su reemplazo, [hoy existe **Posit Connect Cloud**](https://connect.posit.cloud). 
+
+Posit Connect Cloud es un servicio gratuito (con cuentas pagadas opcionales) gestionado por Posit (la empresa detrás de gran parte el ecosistema de R) donde puedes subir distinto tipo de contenido creado con R, directamente desde RStudio; entre ellas, aplicaciones Shiny.
 
 Con el script de tu app abierto, presiona el botón **_Publish_** que está en al esquina superior derecha del script:
 
@@ -1572,28 +1577,155 @@ Finalmente encontrarás la aplicación en tu cuenta de Posit Connect Cloud, y po
 
 {{< imagen "posit_connect_cloud_4.png" "400px" >}}
 
+{{< relacionada "blog/shiny_docker/" >}}
+
 
 ## Conceptos avanzados de Shiny
 
-{{< aviso "Publicación en construcción!" >}}
-<!---
-### Renderizadores
+Profundicemos un poco más en el funcionamiento de Shiny. Para esto tenemos que entender la lógica que opera tras el funcionamiento de apps Shiny.
 
 ### Reactividad
 
+En los pasos anteriores hicimos una app básica que usa datos para mostrar un selector, y al cambiar el selector se ejecuta código de R para entregar un resultado. En otras palabras, tuvimos **código de R que se re-ejecutó automáticamente cada vez que cambió un elemento interactivo del cual dependía.**
+
+Esta idea de que el código se ejecute cuando cambia algo se llama **reactividad**, y es la idea base detrás del funcionamiento de Shiny.
+
+Reactividad es el hecho de que, al cambiar un elemento que es una dependencia de un objeto reactivo, el objeto reactivo se re-ejecuta para adaptarse al cambio en su dependencia.
+
+Entonces ¿qué es un objeto reactivo? Es un bloque de código de R que se envuelve en una función de Shiny, como `renderPlot()`, `renderText()`, o `reactive()`, que les otorga esta cualidad de poder re-ejecutarse automáticamente.
+
+Puedes **crear elementos reactivos** en una app Shiny envolviendo el código de R con `reactive()`: 
+
+```r
+objeto_reactivo <- reactive({
+  ...
+  })
+```
+
+La función `reactive()` crea un objeto que también es una función (tienes que usarlo con `()` después de su nombre), y al usarlo dentro de _otros objetos reactivos_ **creas una dependencia** a este nuevo objeto. Sirve para crear objetos reactivos que no son outputs, sino **pasos intermedios** dentro de la lógica de la app.
+
+Veamos un ejemplo básico aislado: el `objeto_1()` es creado con `reactive()`, que contiene el valor de un input numérico y le suma 10. 
+
+```r
+objeto_1 <- reactive({
+  input$numero + 10
+  })
+```
+
+El objeto reactivo `objeto_1()` se actualizará cuando cambie `input$numero`.
+
+<div class="cuadros-verticales">
+
+  <div class="cuadro-vertical">
+  <code>
+  input$numero
+  </code>
+  </div>
+  
+  <div class="flecha">↓</div>
+  
+  <div class="cuadro-vertical">
+  <code>
+  objeto_1()
+  </code>
+  </div>
+  
+</div>
+
+
+Ahora creemos un segundo objeto reactivo: `objeto_2()`. Este objeto va a contener el valor de `objeto_1()`, y además le va a sumar 20.
+
+```r  
+objeto_2 <- reactive({
+  objeto_reactivo_1() + 20
+  })
+```
+
+Entonces, si cambia `input$numero`, el `objeto_1()` se actualizará, y a continuación `objeto_2()` se va actualizar también! Creamos una **cadena de dependencias**.
+
+<div class="cuadros-verticales">
+
+  <div class="cuadro-vertical">
+  <code>
+  input$numero
+  </code>
+  </div>
+  
+  <div class="flecha">↓</div>
+  
+  <div class="cuadro-vertical">
+  <code>
+  objeto_1()
+  </code>
+  </div>
+  
+  <div class="flecha">↓</div>
+  
+  <div class="cuadro-vertical">
+  <code>
+  objeto_2()
+  </code>
+  </div>
+  
+</div>
+
+Entonces podemos organizar el código para que funcione en pasos, y finalmente el cambio de `input$numero` afecte varios pasos en la cadena y termine en uno o más _outputs_.
+
+**_¿Para qué sirve esto?_** Para que la lógica de tu aplicación esté **ordenada en pasos**, y también para **optimizar** tu aplicación: si distintos outputs necesitan el mismo procesamiento, puedes crear un objeto reactivo que haga ese cálculo, y luego los dos outputs pueden depender del mismo `reactive`.
+
+<div class="cuadros-verticales">
+
+  <div class="cuadro-vertical">
+  <code>
+  input$numero
+  </code>
+  </div>
+  
+  <div class="flecha">↓</div>
+  
+  <div class="cuadro-vertical">
+  <code>
+  filtrar_datos()
+  </code>
+  </div>
+  
+  <div class="flecha">↓ ↓ ↓</div>
+  
+  <div class="cuadros-horizontales"
+  style="margin: 12px 0px;">
+  
+  <div class="cuadro-vertical" style="min-width: auto; margin: 0;">
+  <code>
+  output$grafico
+  </code>
+  </div>
+  
+  <div class="cuadro-vertical" style="min-width: auto; margin: 0;">
+  <code>
+  output$tabla
+  </code>
+  </div>
+  
+  <div class="cuadro-vertical" style="min-width: auto; margin: 0;">
+  <code>
+  output$texto
+  </code>
+  </div>
+  
+  </div>
+  
+</div>
+
+
 ### Observadores
 
--->
+{{< aviso "Publicación en construcción!" >}}
+
 
 ## Cómo funciona una app Shiny
 
 {{< info "Esta sección del tutorial es teórica! Sirve para entender qué está pasando dentro de tu app. Puedes saltártela si gustas" >}}
 
-En los pasos anteriores hicimos una app básica que usa datos para mostrar un selector, y al cambiar el selector se ejecuta código de R para entregar un resultado.
-
-En otras palabras, tuvimos **código de R que se re-ejecutó automáticamente cada vez que cambió un elemento interactivo del cual dependía.**
-
-Esta idea de que el código se ejecute cuando cambia algo se llama **reactividad**, y es la idea base detrás del funcionamiento de Shiny.
 
 En términos resumidos, al ejecutar la aplicación por primera vez se crea la interfaz de la aplicación. Luego Shiny identifica todos los **outputs** que hay en la aplicación. Cada output tiene una **cadena de dependencias**; es decir, depende de otros elementos de la app, los que a su vez pueden depender de inputs.
 
