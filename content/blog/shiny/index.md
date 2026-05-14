@@ -12,11 +12,7 @@ format:
   hugo-md:
     output-file: index
     output-ext: md
-excerpt: "Shiny es un paquete para desarrollar aplicaciones web interactivas con R. Con Shiny puedes crear aplicaciones que tus usuarios/as podrán ver desde su navegador, y pueden contener todo tipo de contenido: gráficos, tablas, botones, textos dinámicos, mapas, etc. Es una forma de usar R para crear aplicaciones web centradas en datos que simplifica muchos aspectos complejos del desarrollo web.
-
-Shiny le da vida a todo lo que hayas desarrollado con R sin cambiarte a otro lenguaje ni aprender uno distinto. Esto significa que la distancia se acorta entre el gráfico que hiciste o el resultado de tus estudios y el tener un producto presentable para tu público o clientes.
-
-¡Da el salto desde tu script y aprende a programar apps en este tutorial!"
+excerpt: "Shiny es un paquete para desarrollar aplicaciones web interactivas con R. Es una forma de usar R para crear aplicaciones web centradas en datos que simplifica muchos aspectos complejos del desarrollo web. Shiny le da vida a todo lo que hayas desarrollado con R sin cambiarte a otro lenguaje ni aprender uno distinto. Esto significa que la distancia se acorta entre el gráfico que hiciste o el resultado de tus estudios y el tener un producto presentable para tu público o clientes. ¡Da el salto desde tu script y aprende a programar apps con este tutorial!"
 ---
 
 
@@ -1537,7 +1533,6 @@ Desde dispositivos móviles o en ventanas pequeñas, el menú superior se transf
 {{< imagen "app_shiny_navbar_2.png" "300px" >}}
 
 La disposición de menús se puede combinar con otras disposiciones, como la barra lateral, para crear una app con menú y barra lateral al mismo tiempo!
-
 
 
 ## Publicar la aplicación en internet
