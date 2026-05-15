@@ -12,7 +12,7 @@ format:
   hugo-md:
     output-file: index
     output-ext: md
-excerpt: "Shiny es un paquete para desarrollar aplicaciones web interactivas con R. Es una forma de usar R para crear aplicaciones web centradas en datos que simplifica muchos aspectos complejos del desarrollo web. Shiny le da vida a todo lo que hayas desarrollado con R sin cambiarte a otro lenguaje ni aprender uno distinto, acortando la distancia entre el gráfico que hiciste o el resultado de tus estudios y crear un producto presentable. ¡Da el salto desde tu script y aprende a programar apps con este tutorial!"
+excerpt: "Shiny es un paquete para desarrollar aplicaciones web interactivas con R, generalmente centradas en el análisis y visualización de datos. Shiny le da vida a todo lo que hayas desarrollado con R sin cambiarte a otro lenguaje ni tener que aprender uno distinto, acortando la distancia entre los análisis que hagas en R y crear un producto presentable e interactivo. ¡Da el salto desde tu script y aprende a programar apps con este tutorial!"
 ---
 
 
@@ -251,7 +251,7 @@ shinyApp(ui, server)
 ```
 {{< /detalles >}}
 
-{{< relacionada "blog/r_introduccion/tutorial_shiny_1" " Tutorial básico recomendado" >}}
+{{< relacionada "blog/shiny/" " Tutorial básico recomendado" >}}
 
 
 
@@ -1545,6 +1545,9 @@ Desde dispositivos móviles o en ventanas pequeñas, el menú superior se transf
 La disposición de menús se puede combinar con otras disposiciones, como la barra lateral, para crear una app con menú y barra lateral al mismo tiempo!
 
 
+### Control de acceso con usuario y contraseña
+
+
 ## Publicar la aplicación en internet
 
 <div class="icono-v">
@@ -1835,14 +1838,85 @@ Esto significa que podemos probar el filtro antes de hacer el gráfico, o ir cam
 Pero en este método, los gráficos no se van a ver. Esto es porque R seguirá intentando mandar los gráficos al dispositivo (_device_) de Shiny, así que hay que ejecutar `dev.new()` en la consola para decirle a R que cree los gráficos en una ventanita nueva, y ahí sí.
 
 
-{{< relacionada "blog/shiny_optimizar" >}}
+### Validar automáticamente tu app
 
+Cuando desarrolles aplicaciones complejas, puede pasar que tengas la duda de si realmente todas las combinaciones de _inputs_ e interacciones posibles van a funcionar correctamente. Existen formas de eliminar la ansiedad y confirmar que la app funciona bien, pero sin que tengas que estar revisando cada rincón de tu app cada vez que actualices los datos!
+
+[Con el paquete `{shinytest2}` puedes automatizar el testeo de aplicaciones Shiny](blog/shiny_optimizar), asegurando su correcto funcionamiento a través de capturas de pantalla y otras formas de validación automática.
+
+{{< relacionada "blog/shiny_validacion" "Ver tutorial completo" >}}
+
+
+### Optimizar la velocidad de tu app
+
+Cuando la aplicación esté operativa llega el momento de ir mejorándola. Una posibilidad de mejora es la optimización de los tiempos de carga.
+
+En los ejemplos que vimos a lo largo del tutorial, los datos de la aplicación se cargan desde un archivo Excel, lo cual no es óptimo, ya que existen otros formatos de almacenamiento de datos que cargan la información mucho más rápido. Entonces podemos **optimizar la carga de datos** al guardar los datos en un formato más eficiente. Uno de estos formatos es `.rds`, formato nativo de R, o Arrow `.parquet`, un formato moderno y optimizado para datos columnares.
+
+Veamos una comparación o _benchmark_ de la eficiencia de carga de datos:
+
+|expression |     min|  median|   itr/sec|   memoria|
+|:----------|-------:|-------:|---------:|---------:|
+|excel      | 21.78ms| 24.02ms|  40.99647| 1014.12KB|
+|rds        |   2.4ms|  2.74ms| 351.02840|  135.86KB|
+|parquet    |  2.82ms|  3.48ms| 279.31071|    7.96KB|
+
+{{< detalles "Ver código del _benchmark_" >}}
+```r
+library(dplyr)
+library(arrow)
+library(readxl)
+
+datos <- read_xlsx("datos.xlsx")
+
+datos |> readr::write_rds("datos.rds")
+datos |> arrow::write_parquet("datos.parquet")
+
+bench::mark(
+  check = FALSE,
+  "excel" = readxl::read_xlsx("datos.xlsx"),
+  "rds" = readr::read_rds("datos.rds"),
+  "parquet" = arrow::read_parquet("datos.parquet")
+)
+```
+{{< /detalles >}}
+
+
+Podemos ver que cargar una planilla de Excel es **10 veces más lento** que `.rds` y también usa **10 veces más memoria**. Por otro lado, `.parquet` usa una cantidad minúscula de memoria comparado con los otros métodos.
+
+Así que este tipo de decisiones permiten mejorar la velocidad de la aplicación.
+
+<!--- 
+También podemos _perfilar_ el desempeño de una aplicación directamente desde RStudio en el menú _Profile_
+--->
+
+Otra forma de optimizar la aplicación es [implementar **cache**](/blog/shiny_optimizar/) de sus outputs y elementos, que significa que los resultados se guarden para que, cuando se vuelvan a realizar, se carguen en vez de volver a calcularse. Para esto puedes revisar el siguiente tutorial:
+
+{{< relacionada "/blog/shiny_optimizar/" "Ver tutorial completo" >}}
+
+
+## Otras mejoras para tu app
+
+Aquí dejo otros tutoriales de Shiny para perfeccionar y mejorar tus aplicaciones!
+
+
+{{< relacionada "/blog/shiny_ocultar/" " " >}}
+
+{{< relacionada "/blog/shiny_desconexion/" " " >}}
+
+{{< relacionada "/blog/shiny_usuarios/" " " >}}
+
+{{< relacionada "/blog/shiny_ancho/" " " >}}
 
 <!---
 
 {{< aviso "Este post está en construcción! Fastídiame para que lo termine [comentando en este post de LinkedIn](https://www.linkedin.com/posts/bastianolea_basti%C3%A1n-olea-herrera-activity-7458116493420130304-wWUA)" >}}
 
 ---> 
+
+----
+
+Espero que te sirva este tutorial! Aprender Shiny es todo un mundo que abre muchísimas posibilidades! Si encuentras cualquier error, o hay algo que no hayas entendido, por favor [contáctame](/contacto/).
 
 {{< etiqueta "shiny" >}}
 

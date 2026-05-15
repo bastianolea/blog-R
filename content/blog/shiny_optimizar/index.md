@@ -1,5 +1,5 @@
 ---
-title: "Optimiza la velocidad de tus aplicaciones Shiny con bindCache()"
+title: "Optimiza la velocidad de tus aplicaciones Shiny con `bindCache()`"
 author: Bastián Olea Herrera
 date: '2025-11-04'
 draft: false
@@ -14,6 +14,9 @@ excerpt: "Mejora la velocidad de carga de tus aplicaciones Shiny aplicando una s
 {{< imagen "shiny_esquema_3.png" >}}
 
 En una aplicación Shiny, cada interacción que la/el usuario hace suele conllevar un **cálculo** de R que se ejecuta para producir un _output_, como una tabla o un gráfico. Dependiendo de la cantidad de datos, de la complejidad del cálculo o del _output_, estas interacciones pueden tomar más tiempo del esperado. 
+
+{{< relacionada "/blog/shiny/" >}}
+
 
 Una forma de **optimizar la velocidad** de una aplicación Shiny es implementando un _cache_. Un cache significa que **los resultados de los cálculos realizados por la app se guardan**, de modo que si el cálculo se repite, el resultado se obtiene desde el cache, **sin necesidad de volver a ejecutar el cálculo**. En la mayoría de los casos esto significa una gran mejora de velocidad! 🚀
 
@@ -96,6 +99,7 @@ Esto entrega el beneficio de poder ampliar el cache a múltiples usuarios, porqu
 
 Otro beneficio es que te entrega el control sobre el cache, en el sentido que simplemente puedes borrar los archivos para obligar que Shiny re-calcule los outputs. Esto sirve para ayudarte cuando cambies el código pero no veas cambios y después te des cuenta que era porque los gráficos se estaban cargando desde el cache 😅
 
+{{< etiqueta "shiny" >}}
 
 ## Bonus: generando el cache de antemano
 Si quieres evitar que el primer usuario de tu app tenga que esperar a que se generen los cálculos y el cache, puedes **generar el cache de antemano**. Para esto simplemente configuras que el cache se guarde en el disco, y manualmente exploras las combinaciones de inputs de tu app... lo cual sería bastante aburrido de hacer.

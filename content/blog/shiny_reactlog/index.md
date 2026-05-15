@@ -1,5 +1,5 @@
 ---
-title: Analiza el funcionamiento de tus aplicaciones Shiny con {reactlog}
+title: "Analiza el funcionamiento de tus aplicaciones Shiny con `{reactlog}`"
 author: Bastián Olea Herrera
 date: '2025-11-14'
 slug: []
@@ -48,7 +48,7 @@ En esta visualización vemos al lado izquierdo los _inputs_, que usualmente son 
 
 Recordemos que, en Shiny, la reactividad va **desde el final hacia el principio**: todo parte porque existen _outputs_ que requieren los resultados de elementos reactivos (datos, cálculos), las cuales a su vez dependen de otros _inputs_, etc., y así se van evaluando todas las operaciones hasta que la app queda cargada (_idle_).
 
-----
+{{< relacionada "/blog/shiny" >}}
 
 Puedes hacer clic en los nodos para ver **detalles** adicionales, como el tiempo que tomó cada operación, las dependencias, y más.
 
@@ -64,6 +64,7 @@ En la parte superior, puedes **avanzar o retroceder** para ir viendo el estado d
 
 En este video vemos el funcionamiento interno de una aplicación compleja, y arriba vemos que todo pasó en menos de 2 segundos.
 
+{{< etiqueta "shiny" >}}
 
 ## Recursos 
 - [Posit: Reactivity - An overview](https://shiny.posit.co/r/articles/build/reactivity-overview/)

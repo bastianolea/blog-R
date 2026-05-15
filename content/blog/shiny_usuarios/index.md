@@ -8,10 +8,12 @@ categories:
 tags:
   - shiny
   - apps
-excerpt: "Si [creaste una aplicación Shiny](/blog/r_introduccion/tutorial_shiny_1) y quieres [compartirla con otros/as](/blog/r_introduccion/tutorial_shinyapps), pero tu app contiene información que no puede ser vista por cualquiera, ¡entonces sigue estos pasos! En unos minutos tendrás una aplicación que requiere de usuario y contraseña para poder usarla."
+excerpt: "Si [creaste una aplicación Shiny](/blog/shiny/) y quieres [compartirla con otros/as](/blog/shiny/#publicar-la-aplicación-en-internet), pero tu app contiene información que no puede ser vista por cualquiera, ¡entonces sigue estos pasos! En unos minutos tendrás una aplicación que requiere de usuario y contraseña para poder usarla."
 ---
 
-Si [creaste una aplicación Shiny](/blog/r_introduccion/tutorial_shiny_1) y quieres [compartirla con otros/as](/blog/r_introduccion/tutorial_shinyapps), pero tu app contiene información que no puede ser vista por cualquiera, ¡entonces sigue estos pasos! En unos minutos tendrás una aplicación que requiere de usuario y contraseña para poder usarla.
+Si [creaste una aplicación Shiny](/blog/shiny/) y quieres [compartirla con otros/as](/blog/shiny/#publicar-la-aplicación-en-internet), pero tu app contiene información que no puede ser vista por cualquiera, ¡entonces sigue estos pasos! En unos minutos tendrás una aplicación que requiere de usuario y contraseña para poder usarla.
+
+{{< relacionada "/blog/shiny" >}}
 
 ## 1. Instalar {shinymanager}
 Instala el [paquete {shinymanager}:](https://datastorm-open.github.io/shinymanager/)
@@ -138,4 +140,6 @@ set_labels(language = "en",
 
 La aplicación y todos sus contenidos han quedado protegidos tras la contraseña de usuario. El siguiente paso es guardar las contraseñas en un archivo (no en el código) que no se suba a GitHub (agregar a `.gitignore`), y que ojalá esté encriptado. Por ejemplo, {shinymanager} ofrece formas de [guardar las credenciales en una base de datos SQlite, con encripción y hashing de las contraseñas.](https://datastorm-open.github.io/shinymanager/#secure-sqlite-database)
 
-Para más información sobre el uso de {shinymanager}, [consulta su documentación](https://datastorm-open.github.io/shinymanager/).
+Para más información sobre el uso de `{shinymanager}`, [consulta su documentación](https://datastorm-open.github.io/shinymanager/).
+
+{{< etiqueta "shiny" >}}

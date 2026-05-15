@@ -1,5 +1,5 @@
 ---
-title: "Testeo automatizado de aplicaciones Shiny con {shinytest2}"
+title: "Testeo automatizado de aplicaciones Shiny con `{shinytest2}`"
 author: Bastián Olea Herrera
 date: '2026-01-23'
 slug: []
@@ -29,9 +29,12 @@ Al igual que la [validación de datos](/blog/validacion_avanzada/), validar [apl
 En esta guía aprenderás a utilizar `{shinytest2}` para automatizar el testeo de tus aplicaciones Shiny, asegurando su correcto funcionamiento a través de capturas de pantalla y otras validaciones automáticas.
 
 Primero que nada, instalamos el paquete:
+
 ```r
 install.packages("shinytest2")
 ```
+
+{{< relacionada "/blog/shiny" >}}
 
 ## Empezar a usar `{shinytest2}`
 
@@ -267,6 +270,8 @@ test_that("{shinytest2} recording: ebc", {
 })
 ```
 
+
+{{< etiqueta "shiny" >}}
 
 ## Conclusión
 

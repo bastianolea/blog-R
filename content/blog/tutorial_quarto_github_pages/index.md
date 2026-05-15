@@ -446,8 +446,8 @@ Las aplicaciones Shiny son formas mucho más avanzadas y flexibles para poder co
 
 Acá te dejo dos tutoriales para aprender a usar Shiny:
 
-- [Tutorial Shiny](https://bastianolea.rbind.io/blog/r_introduccion/tutorial_shiny_1/)
-- [Tutorial publicar en Shinyapps](https://bastianolea.rbind.io/blog/r_introduccion/tutorial_shinyapps/)
+- [Tutorial Shiny](https://bastianolea.rbind.io/blog/shiny//)
+- [Tutorial publicar en Shinyapps](https://bastianolea.rbind.io/blog/shiny/#publicar-la-aplicación-en-internet/)
 
 Y [comparto también un sitio mío](https://bastianolea.github.io/shiny_apps/) (creado con Quarto y alojado en GitHub Pages) para mostrar aplicaciones Shiny qeu he creado.
 

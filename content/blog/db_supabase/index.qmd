@@ -318,7 +318,7 @@ Ya sea porque necesitas la **capacidad de almacenamiento**, porque requieres **p
 
 ### Conexión por IPv4
 
-Las bases de Supabase usan IPv6 por defecto, pero algunos servicios requieren de conexiones IPv4 por limitaciones técnicas o de infraestructura. Uno de estos servicios [es ShinyApps.io](/blog/r_introduccion/tutorial_shinyapps/), el servicio que uso yo para alojar [mis aplicaciones Shiny](https://bastianolea.github.io/shiny_apps/).
+Las bases de Supabase usan IPv6 por defecto, pero algunos servicios requieren de conexiones IPv4 por limitaciones técnicas o de infraestructura. Uno de estos servicios [es ShinyApps.io](/blog/shiny/#publicar-la-aplicación-en-internet/), el servicio que uso yo para alojar [mis aplicaciones Shiny](https://bastianolea.github.io/shiny_apps/).
 
 Para usar IPv4 en conexiones a bases de datos Supabase, en el panel de Conexión (el mismo que usaste para [obtener las credenciales](/blog/db_supabase/#conectarse-a-la-base-de-datos)), en la opción _Method_ puedes elegir _Session pooler_ para obtener credenciales IPv4.
 

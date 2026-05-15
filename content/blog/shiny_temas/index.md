@@ -17,6 +17,8 @@ excerpt: En este post muestro lo básico para personalizar la apariencia de tus 
 
 Elevar tus aplicaciones Shiny al siguiente nivel es muy fácil! Una app con un diseño atractivo y profesional puede marcar la diferencia entre que alguien la use o no, o bien, que alguien la recuerde o no!
 
+{{< relacionada "/blog/shiny" >}}
+
 En este tutorial veremos cómo personalizar los temas de colores en tus aplicaciones Shiny utilizando el [paquete `{bslib}`](https://rstudio.github.io/bslib/), y además combinaremos esto con la capacidad para que nuestros gráficos `{ggplot2}` se ajusten automáticamente al tema gracias [al paquete `{thematic}`](https://rstudio.github.io/thematic/).
 
 

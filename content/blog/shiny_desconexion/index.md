@@ -24,6 +24,8 @@ excerpt: "Las aplicaciones Shiny funcionan con un servidor detrás, que es el pr
 
 Las aplicaciones Shiny funcionan con un servidor detrás, que es el proceso de R que realiza los cálculos necesarios para mostrar tus contenidos. Por lo mismo, estas aplicaciones **no pueden estar conectadas por siempre**, porque el proceso no puede estar esperando que la o el usuario hagan algo por siempre, así que y **luego de un tiempo de inactividad se desconectan**. 
 
+{{< relacionada "blog/shiny" >}}
+
 Por ejemplo, si pasa mucho tiempo, o si el usuario de la app presiona un enlace y se va de la aplicación, y después aprieta atrás en el navegador, la app podría haberse desconectado al detectar que el usuario se fue. 
 En estos casos la aplicación se pone gris, o bien, aparece un mensaje en inglés sobre la desconexión.
 
@@ -128,3 +130,5 @@ shinyApp(ui, server)
 ```
 
 {{< /detalles >}}
+
+{{< etiqueta "shiny" >}}

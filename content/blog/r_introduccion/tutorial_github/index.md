@@ -90,7 +90,7 @@ install.packages("usethis")
 
 ### Crear repositorio
 
-Para crear un repositorio, y para cualquier otra oportunidad en la que trabajes con R, debes estar trabajando en un Proyecto de RStudio. Si no estás trabajando dentro de un Proyecto de RStudio, [créalo primero.](https://bastianolea.rbind.io/blog/r_introduccion/tutorial_shiny_1/#crea-un-nuevo-proyecto)
+Para crear un repositorio, y para cualquier otra oportunidad en la que trabajes con R, debes estar trabajando en un Proyecto de RStudio. Si no estás trabajando dentro de un Proyecto de RStudio, [créalo primero.](https://bastianolea.rbind.io/blog/shiny//#crea-un-nuevo-proyecto)
 
 En tu consola de R, ejecuta `usethis::use_git()` para crear un repositorio local. La consola te preguntará si deseas _commit_ los archivos actuales. _Commit_ significa hacer una _confirmación_ de que quieres guardar el estado actual de tu código como una versión de tu proyecto. En otras palabras, significa algo así como guardar todo el estado de tu proyecto en el momento actual. Cuando creamos por primera vez un repositorio, hacemos un primer _commit_ de la situación inicial del proyecto.
 

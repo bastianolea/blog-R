@@ -30,6 +30,8 @@ Docker es una plataforma que permite empaquetar aplicaciones y sus dependencias 
 
 {{< info "Este es un post para usuarios avanzados de Shiny que necesiten desplegar sus apps contextos de empresas o producción. Si eres un usuario casual de Shiny, probablemente sea mejor usar [Posit Connect Cloud](https://connect.posit.cloud) para publicar tus apps." >}}
 
+{{< relacionada "/blog/shiny/" >}}
+
 ## ¿Qué es Docker?
 
 Docker es un programa que te permite crear **contenedores** dentro de los cuales puedes ejecutar aplicaciones. Estos son entornos exclusivos y específicos para tu app, de manera que ya no la ejecutas en _tu_ computador, sino que la ejecutas dentro del contenedor, que es una especie de computador virtual sólo para tu app. Estos contenedores son independientes entre sí y reproducibles, ayudándote a que tus apps siempre funcionen siempre igual, sin importar dónde las ejecutes.
@@ -261,8 +263,8 @@ docker rmi xxxx
 ```
 - _Reemplaza `xxxx` por el ID de la imagen_
 
-----
 
+{{< etiqueta "shiny" >}}
 
 ## Recursos
 

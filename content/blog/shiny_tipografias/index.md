@@ -16,10 +16,11 @@ excerpt: "En este post aprenderás a personalizar las tipografías de tus aplica
 
 Las tipografías son el aspecto principal de la apariencia de una aplicación, [junto a su paleta de colores.](/blog/shiny_temas/). Elegir bien la tipografía de tu app puede hacer que tu app se vea más profesional y atractiva, y que se diferencie del resto.
 
+{{< relacionada "/blog/shiny/" >}}
+
 En este tutorial veremos cómo personalizar las tipografías de tus aplicaciones Shiny usando el [paquete `{bslib}`](https://rstudio.github.io/bslib/), y cómo descargarlas localmente para que funcionen sin necesidad de conectarse a servidores de Google.
 
 {{< relacionada "/blog/shiny_temas/" >}}
-
 
 ## Tipografía general de la aplicación
 

@@ -20,6 +20,8 @@ excerpt: "En este post vemos dos tutoriales para aprender a mostrar y ocultar el
 
 Gracias [al paquete `{shinyjs}`](https://deanattali.com/shinyjs/) podemos hacer que una app Shiny muestre u oculte elementos según los datos que correspondan o los inputs que haya seleccionado el usuario. 
 
+{{< relacionada "/blog/shiny" >}}
+
 **Por ejemplo:**
 - Si el/la usuario/a selecciona una opción en particular, mostrar un contenedor con información adicional.
 - Si no hay datos para graficar, ocultar el gráfico y mostrar un aviso.
@@ -209,3 +211,5 @@ Vale mencionar que debemos especificar también la condición donde el gráfico 
 Puedes ver el [código completo de esta aplicación en este Gist de Github.](https://gist.github.com/bastianolea/31509ea2d6ed040fe61231e2247987a1)
 
 Nuevamente, le [agregamos el tema a la aplicación Shiny](/blog/shiny_temas/) para que se vea bonita, y además agregamos la función `thematic_shiny()` del paquete `{thematic}` [para que los gráficos usen los colores del tema automáticamente.](/blog/shiny_temas/#aplicar-el-tema-de-tu-app-shiny-a-tus-gráficos)
+
+{{< etiqueta "shiny" >}}

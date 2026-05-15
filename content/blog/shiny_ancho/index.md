@@ -25,7 +25,9 @@ excerpt: >-
 ---
 
 
-Al desarrollar aplicaciones web [Shiny](../../../tags/shiny), tenemos que considerar que van a ser visitadas desde distintos dispositivos: celulares, tablets, computadores grandes, computadores pequeños... Por eso es importante diseñarlas pensando en la **reactividad**; es decir, que la aplicación se adapte a distintos tamaños de ventana o pantalla. Si bien Shiny hace gran parte de eso por sí sólo, puede ser útil usar el **ancho de la ventana** para adaptar los contenidos de la app: mostrar u ocultar elementos, ajustar los gráficos, cambiar un layout, o elegir qué visualización presentar según si el usuario está en un computador de escritorio o en un dispositivo móvil.
+Al desarrollar aplicaciones web [Shiny](../../../blog/shiny), tenemos que considerar que van a ser visitadas desde distintos dispositivos: celulares, tablets, computadores grandes, computadores pequeños... Por eso es importante diseñarlas pensando en la **reactividad**; es decir, que la aplicación se adapte a distintos tamaños de ventana o pantalla. Si bien Shiny hace gran parte de eso por sí sólo, puede ser útil usar el **ancho de la ventana** para adaptar los contenidos de la app: mostrar u ocultar elementos, ajustar los gráficos, cambiar un layout, o elegir qué visualización presentar según si el usuario está en un computador de escritorio o en un dispositivo móvil.
+
+{{< relacionada "/blog/shiny/" >}}
 
 En este tutorial veremos cómo **capturar el ancho de la ventana** como un `input` reactivo de Shiny, para poder usar esta variable en nuestra app para adaptar sus contenidos.
 
@@ -255,6 +257,8 @@ if (ancho() < 600) {
 <img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
 
 Como el **espacio horizontal es más escaso en celulares**, adaptamos el gráfico para que la leyenda aparezca arriba, y así haya más espacio para los datos!
+
+{{< etiqueta "shiny" >}}
 
 ## Bonus: obtener el ancho aproximado de la ventana desde un *output* existente
 
