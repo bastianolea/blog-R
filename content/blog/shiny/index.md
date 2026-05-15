@@ -1916,12 +1916,12 @@ Aquí dejo otros tutoriales de Shiny para perfeccionar y mejorar tus aplicacione
 
 ----
 
-Espero que te sirva este tutorial! Aprender Shiny es todo un mundo que abre muchísimas posibilidades! Si encuentras cualquier error, o hay algo que no hayas entendido, por favor [contáctame](/contacto/).
+Espero que te sirva este tutorial! Aprender Shiny es todo un mundo que abre muchísimas posibilidades! Si encuentras cualquier error, o hay algo que no hayas entendido, por favor [contáctame](/contacto/). 
 
 {{< etiqueta "shiny" >}}
 
 {{< relacionada "clases/spatiallab_shiny_2/" "Diapositivas y código de mi curso de Shiny" >}}
 
-Si este tutorial te sirvió laboralmente, te agradecería una pequeña donación!
+Este tutorial se escribió sin ninguna asistencia de inteligencia artificial 😌 Si este tutorial te sirvió laboralmente, te agradecería una pequeña donación!
 
 {{< cafecito >}}

@@ -12,9 +12,14 @@ tags:
 excerpt: Shiny es un paquete de R que permite crear aplicaciones web interactivas usando sólo código de R. En este tutorial introductorio veremos cómo crear una app Shiny básica y subirla a un servidor gratuito para que puedas compartirla.
 ---
 
+{{< aviso "Existe una [versión mucho más completa](/blog/shiny/) de este tutorial! [Revísala aquí.](/blog/shiny/)" >}}
+
 Shiny es un paquete de R que permite crear aplicaciones web interactivas usando sólo código de R. Es muy fácil de aprender, puedes crear cosas interesantes en muy poco tiempo, y tiene la capacidad de [crear complejas y atractivas aplicaciones.](/apps/) 
 
 En este tutorial introductorio aprenderás cómo crear una app Shiny básica, que incluya texto, interacción para el usuario, y un resultado a partir de la interacción.
+
+{{< relacionada "/blog/shiny/" >}}
+
 
 ### ¿Por qué usar Shiny?
 
@@ -45,6 +50,7 @@ Para entender cómo funciona una aplicación Shiny, debemos saber que una app se
 - Renderización de gráficos y tablas, y salida de los mismos como outputs
 
 Entendiendo ésto, podemos crear nuestra propia aplicación.
+
 
 ## Creando una aplicación Shiny mínima
 
@@ -311,15 +317,15 @@ Ejecutamos la app, y vemos que ahora tenemos dos inputs, los cuales se usan en u
 </div>
 
 
-¡Listo! 🥳 Tienes una app Shiny básica con inputs, reactividad y outputs. Puedes encontrar todo el [código de la aplicación de este tutorial en este enlace.](https://github.com/bastianolea/blog-r/blob/master/content/blog/shiny//app.R)
+¡Listo! 🥳 Tienes una app Shiny básica con inputs, reactividad y outputs. Puedes encontrar todo el [código de la aplicación de este tutorial en este enlace.](app.R)
 
-El siguiente paso es compartirla con los demás! Para eso, puedes seguir el tutorial [publicar una app Shiny en shinyapps.io](/blog/shiny/#publicar-la-aplicación-en-internet/), y en unos minutos podrás subir tu aplicación Shiny a internet, gratis.
+Si quieres seguir aprendiendo **revisa este tutorial más completo**:
 
-----
+{{< relacionada "/blog/shiny/" >}}
 
-Si tienes cualquier consulta, necesitas apoyo con tu aplicación Shiny, o deseas que te ayude a desarrollar un proyecto, no dudes en [contactarme](/contact/).
+{{< etiqueta "shiny" >}}
 
-[Revisa mis clases para ver los cursos anteriores de Shiny](/clases/) que he impartido, los cuales contienen código y ejemplos de aplicaciones.
+Si tienes cualquier consulta, necesitas apoyo con tu aplicación Shiny, o deseas que te ayude a desarrollar un proyecto, no dudes en [contactarme](/contacto/).
 
 {{<cafecito>}}
 
