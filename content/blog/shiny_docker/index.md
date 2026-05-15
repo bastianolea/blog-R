@@ -147,6 +147,30 @@ services:
 Este archivo coordinará el despliegue de tu contenedor, y copiará los contenidos de la carpeta `app/` a `/srv/shiny-server/` dentro del contenedor, así que asegúrate de que dentro de `app/` (o el nombre de la carpeta de tu app) estén los archivos `app.R` o `ui.R` y `server.R`.
 
 
+### Revisar las dependencias de un paquete
+
+A veces el despliegue puede fallar porque algunos paquetes de R requieren de ciertas dependencias instaladas en el sistema operativo Linux, y sólo lo sabremos cuando armemos el contenedor y tire un error de que le falta algo. Puedes usar la función `pak::pkg_sysreqs()` para **revisar las dependencias de un paquete** en Ubuntu o la distribución de Linux que elijas.
+
+Por ejemplo, si necesitas mapas en tu app y usas `{sf}`:
+
+```r
+pak::pkg_sysreqs("sf", sysreqs_platform = "ubuntu")
+```
+
+```
+── Install scripts ─────────────────────────────────────────────────────────────────────────── Ubuntu NA ──
+apt-get -y update
+apt-get -y install cmake libssl-dev libgdal-dev gdal-bin libgeos-dev libproj-dev libsqlite3-dev \
+  libudunits2-dev
+
+── Packages and their system dependencies ─────────────────────────────────────────────────────────────────
+s2    – cmake, libssl-dev
+sf    – gdal-bin, libgdal-dev, libgeos-dev, libproj-dev, libsqlite3-dev
+units – libudunits2-dev
+```
+
+Recomiendo usar esto si estás usando paquetes complejos o fuera de lo común. O bien, puedes elegir una imagen apropiada que ya contenga todo esto instalado (en el caso de este ejemplo con `{sf}`, `rocker/geospatial` que ya viene con todo preinstalado para trabajar con ampas, o si solamente usas Shiny y Tidyverse, `rocker/shiny-verse`)
+
 
 ## Ejecutando apps Shiny desde contenedores Docker
 
@@ -200,7 +224,6 @@ services:
 
 El argumento `post_start` ejecutará un comando justo después de montar el volumen, lo que le dará permisos a Shiny para escribir en la carpeta del cache. Asegúrate de reemplazar la ruta por el nombre de la carpeta que usas para guardar el cache en disco.
  
-
 ----
 
 ## Comandos de Docker más frecuentes
