@@ -21,10 +21,10 @@ blogdown::new_post(
 
 # crear un post tutorial
 blogdown::new_post(
-  title = "Creando una función para consultar datos en R",
-  file = "blog/censo_poblacion_consultar/index.qmd",
+  title = "Crea un chatbot interactivo con R y Shiny",
+  file = "blog/shinychat/index.md",
   author = "Bastián Olea Herrera",
-  tags = c("datos", "chile", "funciones"),
+  tags = c("shiny", "inteligencia artificial"),
   categories = c("")
 )
 
