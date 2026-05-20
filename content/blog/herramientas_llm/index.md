@@ -38,7 +38,7 @@ chat <- chat_anthropic(
 )
 ```
 
-{{< info "Aprende a interactuar con modelos de IA desde R [en este tutorial](/blog/ellmer/)" >}}
+{{< relacionada "/blog/ellmer/" "Aprende a interactuar con modelos de IA desde R" >}}
 
 Con el modelo iniciado, le hacemos la pregunta:
 

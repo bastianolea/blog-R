@@ -27,9 +27,6 @@ Chatear con modelos de lenguaje (LLM) o _IAs_ —como se les llama coloquialment
 - **[Convertir texto en datos estructurados](/blog/datos_estructurados_llm/)**, como entrevistas, noticias o contenido web
 - **[Presentar tus datos a la IA para hacerle consultas](/blog/redactar_texto_llm/#configurar-el-modelo-para-interpretar-texto)** y que te ayude a interpretar tus datos
 
-
-/blog/redactar_texto_llm/
-
 Todo esto puedes hacerlo desde tu navegador web, pero cuando analizamos datos puede ser más conveniente **usar IA directamente desde R**. Así podemos mantener una **documentación** de nuestro análisis, **integrar IA** en nuestro procesamiento de datos, usar IA de manera **reproducible**, y usar directamente los resultados de la IA en nuestros flujos de trabajo.
 
 Veamos cómo se puede interactuar con LLMs directamente desde R! 🤖
@@ -40,23 +37,81 @@ Veamos cómo se puede interactuar con LLMs directamente desde R! 🤖
 3. [Configurar la _API key_](#configurar-el-uso-de-un-modelo-de-lenguaje-en-r) de tu proveedor de IA en R
 4. [Iniciar una conversación con la IA](#iniciar-una-conversación-con-la-ia)
 
-## Proveedores de modelos de lenguaje
+## Modelos de lenguaje
 
-Para usar modelos de lenguaje o IA en R, necesitas tener acceso a un proveedor de IA, o bien, [instalar un modelo de IA localmente en tu computador.](#modelos-de-lenguaje-locales)
+Para usar modelos de lenguaje o IA en R, necesitas tener acceso a un **proveedor** de IA en la nube, o bien, [instalar un **modelo local** de IA en tu computador.](#modelos-de-lenguaje-locales)
 
-Existen proveedores de IA que te permiten usar sus modelos gratis mediante el navegador, pero nosotrxs queremos dar un uso más avanzado a la IA, y para eso necesitamos una _API key_ o llave de API. Estas _llaves_ nos permiten usar la IA en contextos distintos al típico chat, y suelen tener un costo asociado.
+**Tienes que elegir** entre usar IA desde la nube o usar IA localmente, lo que depende de tus necesidades, tu presupuesto, y las capacidades de tu computador.
 
-Algunos proveedores populares de IA son OpenAI (ChatGPT), Anthropic (Claude), Google (Gemini), GitHub Models, etc.
+### Proveedores de modelos de lenguaje en la nube
 
-Necesitas una cuenta en un proveedor de IA que te pueda entregar una _API key_ para poder usarla en R. Si ya tienes una cuenta y una llave de API, puedes [saltarte la siguiente sección y pasar a la subsiguiente.](#configurar-el-uso-de-un-modelo-de-lenguaje-en-r)
+{{< info "Si quieres usar un modelo local, [salta a esta sección](#modelos-de-lenguaje-locales)." >}}
+
+Esta es la alternativa **más popular** para usar IA, ya que por medio de un pago puedes acceder a IA sin mayores complicaciones.
+
+Algunos proveedores populares de IA son OpenAI (ChatGPT), Anthropic (Claude), Google (Gemini), GitHub Models, etc., quienes construyen grandes _data centers_ con miles de computadores para ejecutar sus modelos de lenguaje, para que puedas usarlos desde tu computador o celular.
+
+Existen proveedores de IA que te permiten usar sus modelos _gratis_ mediante el navegador, pero nosotrxs queremos dar un uso más avanzado a la IA, y para eso necesitamos una _API key_ o **llave de API**. Estas _llaves_ nos permiten usar la IA en contextos distintos al típico chat, y suelen tener un costo asociado.
+
+Necesitas una cuenta en un proveedor de IA que te pueda entregar una _API key_ para poder usarla en R. 
+
+<!---
+{{< info "Si ya tienes una cuenta y una llave de API, puedes [saltarte la siguiente sección y pasar a la subsiguiente.](#configurar-el-uso-de-un-modelo-de-lenguaje-en-r)" >}}
+--->
+
+
+#### Configurar tu proveedor de IA en R
+
+<!---
+{{< info "Este paso es solamente si usas modelos de lenguaje desde la nube por medio de proveedores como OpenAI o Anthropic. Si usas un modelo de lenguaje local, puedes saltarte este paso." >}}
+--->
+
+Vamos a poner la _API key_ de tu proveedor en una parte segura de R.
+
+Para poder usar IA de proveedores en la nube necesitas tener una _llave_ que le dice al proveedor que vas a usar tu cuenta fuera de su plataforma (para que te cobren, obviamente 💸). Esto se hace mediante la _llave de API_.
+
+Las llaves de API son un código secreto que te entrega tu proveedor de IA, y básicamente es una especie de **contraseña** que te permite usar tu cuenta fuera de su plataforma web. Esto significa que es una clave privada! Si alguien más la usa, podría resultar en cobros para ti! Por eso, tenemos que guardar la _API key_ de forma segura en un **archivo de Entorno**.
+
+
+#### Editar tu archivo de _Entorno_
+
+El archivo de Entorno es un script donde puedes **guardar secretos** que R puede leer, pero que no quedan guardados en tu código ni en tu proyecto, y por lo tanto quedan seguros. Este script contiene **variables** que se cargan cada vez que abrimos una sesión de R. 
+
+El archivo de entorno sirve para guardar variables secretas en un archivo que está afuera de tu proyecto de R, y que aplica para todos tus proyectos y sesiones de R: perfecto para **guardar las _API keys_ en tu computadora de forma segura** y poder usarlas en todos tus proyectos.
+
+Para **editar** el archivo de entorno:
+
+```r
+usethis::edit_r_environ()
+```
+Se abrirá el archivo `.Renviron`, donde podemos agregar  una línea con la _API key_. Por ejemplo, si usas Claude:
+
+```r
+ANTHROPIC_API_KEY=345345398475937434534539847593743453453984759374
+```
+
+Si tu proveedor es OpenAI (ChatGPT), el nombre de la variable es `OPENAI_API_KEY`, etc. Tienen que ir escritas con mayúscula, sin espacios, y sin comillas.
+
+Una vez guardadas las credenciales, **reiniciamos la sesión de R** (menú _Session_ y luego _Restart R_) para que se lean las variables de entorno (siempre se leerán al iniciar R).
+
+Con esta variable de entorno, el paquete `{ellmer}` tendrá permiso para usar tu modelo de IA. `{ellmer}` buscará automáticamente este valor para funcionar, y si no lo encuentra arrojará un error.
+
+----
+
 
 ### Modelos de lenguaje locales
+
+{{< info "Si solamente quieres usar un proveedor de IA como Claude, Gemini o ChatGPT, puedes saltarte esta sección y [pasar a la siguiente](#interactuar-con-ias-desde-r)." >}}
 
 Si tu computador tiene una tarjeta de video lo suficientemente grande (más de 8GB de memoria de video), si quieres usar IA gratis, o si prefieres no usar modelos en la nube por privacidad, puedes **instalar un modelo de lenguaje local** en tu computadora.
 
 Esto significa que descargas el modelo y tu propio computador lo ejecuta, a diferencia de usarlo en la nube por medio de un proveedor.
 
-{{< info "Un modelo de lenguaje local solamente funcionará bien en un computador con más de 8GB de memoria de video (GPU), lo que deja fuera a la mayoría de los computadores. En general, todos los Mac con procesadores _Apple Silicon_ (M1, M2, M3, M4…) cumplen este requisito, ya que se caracterizan por compartir la memoria RAM con la memoria de GPU, a diferencia de otros computadores que tienen memoria RAM y memoria de GPU separadas." >}}
+{{< detalles "_Más información sobre lo necesario para un modelo local_" >}}
+
+Un modelo de lenguaje local solamente funcionará bien en un computador con más de 8GB de memoria de video (GPU), lo que deja fuera a la mayoría de los computadores. En general, todos los Mac con procesadores _Apple Silicon_ (M1, M2, M3, M4…) cumplen este requisito, ya que se caracterizan por compartir la memoria RAM con la memoria de GPU, a diferencia de otros computadores que tienen memoria RAM y memoria de GPU separadas.
+
+{{< /detalles >}}
 
 Un modelo de lenguaje local tiene algunos **beneficios**: 
 - es gratis
@@ -67,6 +122,7 @@ Un modelo de lenguaje local tiene algunos **beneficios**:
 Pero también tiene **inconvenientes**:
 - depende de las capacidades de tu computadora
 - no es tan potente como los modelos en la nube
+- exige muchísimo tu computador, lo que puede complicarse en computadores portátiles
 
 Para instalar y ejecutar un modelo de lenguaje local, necesitamos:
 1. Instalar Ollama
@@ -111,43 +167,13 @@ Ollama descargará e instalará el modelo en tu computador. Recuerda que es nece
 
 Listo! Ahora tienes un modelo de lenguaje instalado localmente.
 
-
-### Configurar el uso de un modelo de lenguaje en R
-
-{{< info "Este paso es solamente si usas modelos de lenguaje desde la nube por medio de proveedores como OpenAI o Anthropic. Si usas un modelo de lenguaje local, puedes saltarte este paso." >}}
-
-Como ya dijimos, para poder usar IA de proveedores en la nube necesitas tener una _llave_ que le dice al proveedor que vas a usar tu cuenta fuera de su plataforma. Esto se hace mediante la _llave de API_.
-
-Las llaves de API son un código secreto que te entrega tu proveedor de IA, y básicamente es una especie de **contraseña** que te permite usar tu cuenta fuera de su plataforma web. Esto significa que es una clave privada! Si alguien más la usa, podría resultar en cobros para ti! Por eso, tenemos que guardar la _API key_ de forma segura en un **archivo de Entorno**.
-
-
-#### Editar tu archivo de _Entorno_
-
-El archivo de Entorno es un script donde puedes **guardar secretos** que R puede leer, pero que no quedan guardados en tu código ni en tu proyecto, y por lo tanto quedan seguros. Este script contiene **variables** que se cargan cada vez que abrimos una sesión de R. 
-
-El archivo de entorno sirve para guardar variables secretas en un archivo que está afuera de tu proyecto de R, y que aplica para todos tus proyectos y sesiones de R: perfecto para **guardar las _API keys_ en tu computadora de forma segura** y poder usarlas en todos tus proyectos.
-
-Para **editar** el archivo de entorno:
-
-```r
-usethis::edit_r_environ()
-```
-Se abrirá el archivo `.Renviron`, donde podemos agregar  una línea con la _API key_, por ejemplo:
-
-```r
-OPENAI_API_KEY=345345398475937434534539847593743453453984759374
-```
-
-Si tu proveedor es Claude (Anthropic), el nombre de la variable es `ANTHROPIC_API_KEY`, etc. Tienen que ir escritas con mayúscula, sin espacios, y sin comillas.
-
-Una vez guardadas las credenciales, **reiniciamos la sesión de R** (menú _Session_ y luego _Restart R_) para que se lean las variables de entorno (siempre se leerán al iniciar R).
-
-Con esta variable de entorno, el paquete `{ellmer}` tendrá permiso para usar tu modelo de IA.
-
+----
 
 ## Interactuar con IAs desde R
 
-`{ellmer}` es un [paquete de R](https://ellmer.tidyverse.org/index.html) que facilita la interacción con modelos de lenguaje desde R, y se usa como el motor de muchos otros paquetes que usan IA.
+{{< info "Desde aquí en adelante los pasos son comunes tanto para modelos de lenguaje en la nube como locales" >}}
+
+`{ellmer}` es un [paquete de R](https://ellmer.tidyverse.org/index.html) que **facilita la interacción con modelos de lenguaje** desde R, y se usa como el motor de muchos otros paquetes que usan IA.
 
 Instalamos el paquete:
 
@@ -155,7 +181,7 @@ Instalamos el paquete:
 install.packages("ellmer")
 ```
 
-Ahora tenemos que configurar `{ellmer}` para que use tu modelo de lenguaje, ya sea un modelo local o un modelo en la nube. 
+Ahora tenemos que pedirle a `{ellmer}` que use tu modelo de lenguaje elegido desde tu proveedor, ya sea un modelo local o un modelo en la nube. 
 
 ### Iniciar una conversación con la IA
 
@@ -171,14 +197,20 @@ Ahora usaremos una función para **iniciar un chat**. Estas funciones empiezan c
 - Si usas un proveedor de IA en la nube, usa las funciones `chat_openai()`, `chat_anthropic()`, `chat_gemini()`, `chat_github()` o la que te corresponda. 
 - Si usar una IA local con Ollama, usa `chat_ollama()`.
 
-Creemos un chat usando ChatGPT:
+Creemos un chat usando Claude de Anthropic:
 
 ```r
 # crear sesión de chat
-chat <- chat_openai()
+chat <- chat_anthropic()
 ```
 
-Creamos un objeto `chat` que llevará nuestra conversación. Para iniciar la conversación, pasamos el texto de esta manera:
+```
+Using model = "claude-sonnet-4-20250514".
+```
+
+Creamos un objeto `chat` que llevará nuestra conversación. 
+
+Para **iniciar la conversación**, pasamos el texto de esta manera:
 
 ```r
 # preguntar algo a la IA
@@ -238,6 +270,9 @@ live_console(chat)
 ```
 
 De este modo la consola de R se vuelve en un chat donde escribimos y obtenemos respuestas de inmediato.
+
+
+{{< relacionada "/blog/herramientas_llm/" >}}
 
 ## Usos avanzados de modelos de lenguaje en R
 
