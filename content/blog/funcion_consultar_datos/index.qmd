@@ -168,7 +168,9 @@ Primero creamos la función:
 consultar_censo <- function() {}
 ```
 
-Dentro de los paréntesis de llave (`{}`) irá el código de la función. 
+Dentro de los paréntesis de llave (`{}`) irá el código de la función que veremos a continuación.
+
+{{< aviso "Todo lo que sigue son _ejemplos_ de aspectos de una función para consulta de datos. Puedes tomar algunos o todos para crear tu propia función, obviamente adaptándolos a tu propio caso!" >}}
 
 ### Argumentos
 
