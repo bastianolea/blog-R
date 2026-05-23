@@ -80,9 +80,9 @@
     </item>
     <item>
       <title>Limpiar textos con símbolos, tildes o eñes en R</title>
-      <link>https://bastianoleah.netlify.app/blog/2025-03-31/</link>
+      <link>https://bastianoleah.netlify.app/blog/limpiar_texto_simbolos/</link>
       <pubDate>Mon, 31 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://bastianoleah.netlify.app/blog/2025-03-31/</guid>
+      <guid>https://bastianoleah.netlify.app/blog/limpiar_texto_simbolos/</guid>
       <description>&lt;p&gt;Amamos el castellano, con sus tildes y eñes, y nos encanta que R no tenga problemas para usar estos símbolos en cualquier parte del lenguaje. Pero hay veces en las que necesitamos deshacernos de estos símbolos especiales, como tildes, eñes, e incluso mayúsculas.&lt;/p&gt;&#xA;&lt;p&gt;Por ejemplo:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistemas operativos o para subir archivos a internet),&lt;/li&gt;&#xA;&lt;li&gt;Si queremos buscar coincidencias de texto con &lt;code&gt;stringr::str_detect()&lt;/code&gt; y queremos aumentar probabilidades de coincidir al omitir variaciones de los caracteres,&lt;/li&gt;&#xA;&lt;li&gt;Si queremos hacer un &lt;code&gt;left_join()&lt;/code&gt; entre dos bases de datos con formas distintas de guardar los datos (todos en mayúscula, todos sin tilde pero con eñes, etc.)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Hay muchas formas distintas de hacerlo, dependiendo de lo que necesitemos. El paquete &lt;code&gt;{stringr}&lt;/code&gt; se enfoca en el procesamiento de texto y tiene varias funciones que nos pueden ayudar.&lt;/p&gt;</description>
     </item>
     <item>

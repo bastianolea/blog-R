@@ -169,7 +169,7 @@ Entonces, deberíamos tener nuestro dataframe con el mapa, y otro dataframe dond
 
 #### Obtener datos por web scraping
 
-Para visualizar un mapa de datos comunales, primero obtendremos datos comunales desde Wikipedia. Usamos el paquete para hacer un [web scraping](/blog/tutorial_scraping_rvest/) y obtener una [tabla de datos de las comunas del país.](https://es.wikipedia.org/wiki/Anexo:Comunas_de_Chile)
+Para visualizar un mapa de datos comunales, primero obtendremos datos comunales desde Wikipedia. Usamos el paquete para hacer un [web scraping](/blog/webscraping_rvest/) y obtener una [tabla de datos de las comunas del país.](https://es.wikipedia.org/wiki/Anexo:Comunas_de_Chile)
 
 ``` r
 library(rvest)
@@ -204,7 +204,7 @@ tabla[[1]]
     #   `IDH 2005` <chr>, `IDH 2005` <chr>, Latitud <chr>, Longitud <chr>
 
 
-{{< relacionada "/blog/tutorial_scraping_rvest/">}}
+{{< relacionada "/blog/webscraping_rvest/">}}
 
 Luego de obtener los datos, realizamos una pequeña limpieza. Limpiamos los nombres de las variables, seleccionamos las variables que nos interesan, y luego las convertimos apropiadamente a valores numéricos, donde tenemos que eliminar los separadores de miles, y transformar los separadores de decimales a puntos.
 

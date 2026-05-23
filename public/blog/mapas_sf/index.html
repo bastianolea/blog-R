@@ -46,9 +46,9 @@
   
   <meta itemprop="name" content="Mapas y visualización de datos geoespaciales en R con {sf}">
   <meta itemprop="description" content="⚠️ Este tutorial se encuentra en construcción! ⚠️ R cuenta con un muy amplio ecosistema de paquetes para datos geoespaciales. Uno de los paquetes más importantes es {sf}, que permite manipular datos espaciales a partir del estándar simple features (características simples), ampliamente utilizado en sistemas de información geográfica (SIG/GIS).">
-  <meta itemprop="datePublished" content="2025-11-18T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2025-11-18T00:00:00+00:00">
-  <meta itemprop="wordCount" content="4026">
+  <meta itemprop="datePublished" content="2026-04-29T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2026-04-29T00:00:00+00:00">
+  <meta itemprop="wordCount" content="4525">
   <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/mapas_sf/mapa_rm_featured.png">
   <meta itemprop="keywords" content="Mapas,Visualización de datos">
   
@@ -57,7 +57,7 @@
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.f1077c0959e0c28941c671121e25726699745ff83a06fc0ebda190491db6569b.css" integrity="sha256-8Qd8CVngwolBxnESHiVyZpl0X/g6BvwOvaGQSR22Vps=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.2d895d62345af9e2e72524b81407c43bc32960e92011f6c745d4db53ec6d0bd7.css" integrity="sha256-LYldYjRa&#43;eLnJSS4FAfEO8MpYOkgEfbHRdTbU&#43;xtC9c=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
@@ -254,7 +254,7 @@
         
         <div style = "display: inline-block;">  
           <p class="f7 db mv0 ttu" style = "display: inline-block;">
-            18/11/2025</p>
+            29/4/2026</p>
           
           
           
@@ -363,14 +363,15 @@
     margin-top: 8px;">
     <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># tema de colores</span>
-</span></span><span class="line"><span class="cl"><span class="n">thematic</span><span class="o">::</span><span class="nf">thematic_on</span><span class="p">(</span><span class="n">fg</span> <span class="o">=</span> <span class="s">&#34;#553A74&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                      <span class="n">bg</span> <span class="o">=</span> <span class="s">&#34;#EAD2FA&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                      <span class="n">accent</span> <span class="o">=</span> <span class="s">&#34;#9069C0&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nf">theme_set</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">  <span class="c1"># fondo transparente para mapas</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">theme</span><span class="p">(</span><span class="n">plot.background</span> <span class="o">=</span> <span class="nf">element_rect</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;transparent&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;transparent&#34;</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># tema de colores</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme_grey</span><span class="p">(</span><span class="n">paper</span> <span class="o">=</span> <span class="s">&#34;#EAD2FA&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">             <span class="n">ink</span> <span class="o">=</span> <span class="s">&#34;#553A74&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">             <span class="n">accent</span> <span class="o">=</span> <span class="s">&#34;#9069C0&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># tipografía</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">theme</span><span class="p">(</span><span class="n">text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">family</span> <span class="o">=</span> <span class="s">&#34;Atkinson Hyperlegible&#34;</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># fondo transparente para mapas</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">theme</span><span class="p">(</span><span class="n">plot.background</span> <span class="o">=</span> <span class="nf">element_rect</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;transparent&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;transparent&#34;</span><span class="p">))</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">    <span class="c1"># borrar líneas feas</span>
 </span></span><span class="line"><span class="cl">    <span class="nf">theme</span><span class="p">(</span><span class="n">axis.ticks</span> <span class="o">=</span> <span class="nf">element_blank</span><span class="p">())</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
@@ -407,7 +408,7 @@
         <li><a href="#mover-puntos-de-un-mapa">Mover puntos de un mapa</a></li>
       </ul>
     </li>
-    <li><a href="#recursos-sobre-mapas-en-r">Recursos sobre mapas en R</a>
+    <li><a href="#recursos-para-aprender-más">Recursos para aprender más</a>
       <ul>
         <li><a href="#apuntes">Apuntes</a></li>
         <li><a href="#libros">Libros</a></li>
@@ -509,9 +510,9 @@ style = "padding: 12px; padding-bottom: 8px; border-radius: 5px; padding-right: 
 Division regional: polígonos de las regiones de Chile</a></p>
 </div>
 <p>También puedes descargarlo directamente desde R con <code>download.file()</code> y luego <code>unzip()</code>, 
-<a href="../../../blog/mapa_chile_triple/#descargar-mapas">como se indica en este post</a>.</p>
+<a href="./blog/mapa_chile_triple/#descargar-mapas">como se indica en este post</a>.</p>
 <p>Una vez descargado, descomprimimos el archivo y obtenemos una <strong>carpeta</strong>. Esta carpeta es nuestro <em>shapefile</em>, así que la guardamos dentro de nuestro 
-<a href="../../../blog/r_introduccion/proyectos/">proyecto de RStudio</a>, idealmente dentro de una carpeta donde guardemos nuestros mapas.</p>
+<a href="./blog/r_introduccion/proyectos/">proyecto de RStudio</a>, idealmente dentro de una carpeta donde guardemos nuestros mapas.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># descargar</span>
 </span></span><span class="line"><span class="cl"><span class="nf">download.file</span><span class="p">(</span><span class="s">&#34;https://www.bcn.cl/obtienearchivo?id=repositorio/10221/10398/2/Regiones.zip&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">              <span class="s">&#34;Regiones.zip&#34;</span><span class="p">)</span>
@@ -575,7 +576,6 @@ Projected CRS: WGS 84 / Pseudo-Mercator
 
 ### Cargar KMZ
 
-
 ::: {.cell}
 
 ```{.r .cell-code}
@@ -584,7 +584,6 @@ unzip("~/Downloads/Mis lugares.kmz", exdir = "~/Downloads/Mis lugares")
 sf::read_sf("~/Downloads/Mis lugares/doc.kml")
 ```
 :::
-
 
 
 -->
@@ -699,11 +698,15 @@ sf::read_sf("~/Downloads/Mis lugares/doc.kml")
     <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">mapa_centroide</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">region</span> <span class="o">==</span> <span class="n">mapa</span><span class="o">$</span><span class="n">region[3]</span><span class="p">)</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># mapa</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#9069C0&#34;</span><span class="p">,</span> 
 </span></span><span class="line"><span class="cl">          <span class="n">linewidth</span> <span class="o">=</span> <span class="kc">NA</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># capa del punto</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">    <span class="nf">aes</span><span class="p">(</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">centroide</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">    <span class="n">size</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">.6</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#402E5A&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">size</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># texto bajo el punto</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">geom_sf_text</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">    <span class="nf">aes</span><span class="p">(</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">centroide</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">    <span class="n">label</span> <span class="o">=</span> <span class="s">&#34;centroide&#34;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span>
@@ -908,6 +911,7 @@ sf::read_sf("~/Downloads/Mis lugares/doc.kml")
 </span></span><span class="line"><span class="cl">          <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">)</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">  <span class="c1"># capa con el punto</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">punto</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#402E5A&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="n">size</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">.5</span><span class="p">)</span>
 </span></span></code></pre></div>
     </div>
@@ -947,6 +951,7 @@ sf::read_sf("~/Downloads/Mis lugares/doc.kml")
 </span></span><span class="line"><span class="cl">  <span class="c1"># capa con puntos</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">puntos</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nf">aes</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">n</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">          <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#402E5A&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="n">alpha</span> <span class="o">=</span> <span class="m">.5</span><span class="p">)</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">  <span class="c1"># capa con textos</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">geom_sf_label</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">puntos</span><span class="p">,</span>
@@ -1110,9 +1115,9 @@ sf::read_sf("~/Downloads/Mis lugares/doc.kml")
 </h3>
 <p>Teniendo una tabla con un conjunto de coordenadas, podemos unirlas para formar un polígono. Es decir, <strong>unir los puntos</strong> para conformar una figura geométrica cerrada. Para ello, usamos <code>st_combine()</code> para combinar las coordenadas en un solo elemento, y luego <code>st_cast()</code> para convertir esos puntos combinados en un polígono.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">coordenadas</span> <span class="o">&lt;-</span> <span class="nf">tribble</span><span class="p">(</span><span class="o">~</span><span class="n">nombre</span><span class="p">,</span> <span class="o">~</span><span class="n">lon</span><span class="p">,</span> <span class="o">~</span><span class="n">lat</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                           <span class="s">&#34;A&#34;</span><span class="p">,</span> <span class="m">-68</span><span class="p">,</span>  <span class="m">-36</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                           <span class="s">&#34;B&#34;</span><span class="p">,</span> <span class="m">-64</span><span class="p">,</span>  <span class="m">-31</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                           <span class="s">&#34;C&#34;</span><span class="p">,</span> <span class="m">-60</span><span class="p">,</span>  <span class="m">-36</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="s">&#34;A&#34;</span><span class="p">,</span> <span class="m">-68</span><span class="p">,</span>  <span class="m">-36</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="s">&#34;B&#34;</span><span class="p">,</span> <span class="m">-64</span><span class="p">,</span>  <span class="m">-31</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="s">&#34;C&#34;</span><span class="p">,</span> <span class="m">-60</span><span class="p">,</span>  <span class="m">-36</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># convertir tabla a sf</span>
 </span></span><span class="line"><span class="cl"><span class="n">puntos</span> <span class="o">&lt;-</span> <span class="n">coordenadas</span> <span class="o">|&gt;</span> 
@@ -1161,10 +1166,10 @@ sf::read_sf("~/Downloads/Mis lugares/doc.kml")
 </span></span><span class="line"><span class="cl">                       <span class="s">&#34;Triángulo&#34;</span><span class="p">,</span> <span class="m">-68</span><span class="p">,</span>  <span class="m">-30</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">                       <span class="s">&#34;Triángulo&#34;</span><span class="p">,</span> <span class="m">-64</span><span class="p">,</span>  <span class="m">-25</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">                       <span class="s">&#34;Triángulo&#34;</span><span class="p">,</span> <span class="m">-60</span><span class="p">,</span>  <span class="m">-30</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                        <span class="s">&#34;Cuadrado&#34;</span><span class="p">,</span> <span class="m">-68</span><span class="p">,</span>  <span class="m">-38</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                        <span class="s">&#34;Cuadrado&#34;</span><span class="p">,</span> <span class="m">-60</span><span class="p">,</span>  <span class="m">-38</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                        <span class="s">&#34;Cuadrado&#34;</span><span class="p">,</span> <span class="m">-60</span><span class="p">,</span>  <span class="m">-32</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                        <span class="s">&#34;Cuadrado&#34;</span><span class="p">,</span> <span class="m">-68</span><span class="p">,</span>  <span class="m">-32</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="s">&#34;Cuadrado&#34;</span><span class="p">,</span> <span class="m">-68</span><span class="p">,</span>  <span class="m">-38</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="s">&#34;Cuadrado&#34;</span><span class="p">,</span> <span class="m">-60</span><span class="p">,</span>  <span class="m">-38</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="s">&#34;Cuadrado&#34;</span><span class="p">,</span> <span class="m">-60</span><span class="p">,</span>  <span class="m">-32</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="s">&#34;Cuadrado&#34;</span><span class="p">,</span> <span class="m">-68</span><span class="p">,</span>  <span class="m">-32</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># convertir tabla a sf</span>
 </span></span><span class="line"><span class="cl"><span class="n">puntos</span> <span class="o">&lt;-</span> <span class="n">coordenadas</span> <span class="o">|&gt;</span> 
@@ -1195,10 +1200,11 @@ sf::read_sf("~/Downloads/Mis lugares/doc.kml")
 </span></span><span class="line"><span class="cl">  <span class="c1"># capa con polígonos de color</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">poligono</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nf">aes</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="n">tipo</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">tipo</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">          <span class="n">lwd</span> <span class="o">=</span> <span class="m">0.6</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">.7</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">          <span class="n">lwd</span> <span class="o">=</span> <span class="m">0.6</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">.5</span><span class="p">)</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">  <span class="c1"># capa con puntos</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">puntos</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">          <span class="n">alpha</span> <span class="o">=</span> <span class="m">.4</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">          <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#25054A&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">alpha</span> <span class="o">=</span> <span class="m">.5</span><span class="p">)</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">  <span class="c1"># escala de colores</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">labs</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;Tipo&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;Tipo&#34;</span><span class="p">)</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">theme</span><span class="p">(</span><span class="n">legend.key.spacing.y</span> <span class="o">=</span> <span class="nf">unit</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="s">&#34;mm&#34;</span><span class="p">))</span>
@@ -1256,6 +1262,165 @@ sf::read_sf("~/Downloads/Mis lugares/doc.kml")
 </details>
 <p>También podemos hacer recortes que pasen por encima de los polígonos, eliminando la geografía que quede fuera del recorte. En este caso hacemos un recorte más cercano a la zona costera de Temuco y Valdivia:</p>
 <img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-42-1.png" width="768" />
+
+
+
+
+<h4 id="recortar-un-mapa-a-partir-de-otro-mapa">Recortar un mapa a partir de otro mapa
+  <a href="#recortar-un-mapa-a-partir-de-otro-mapa"></a>
+</h4>
+<p>También podemos filtrar mapas con <code>st_crop()</code> usando la caja que encierra a otro mapa. De este modo, si tenemos un mapa que es un subconjunto de otro mapa mayor (por ejemplo, una región contextualizada en un país), podemos usar la región para recortar el mapa del país y así incluir este último como capa de fondo.</p>
+<p>Esto sirve, por ejemplo, cuando tenemos una región geográfica que queramos mostrar, pero queremos darle contexto geográfico incluyendo el territorio al rededor del mapa filtrado.</p>
+<p>Empecemos obteniendo el mapa de un país, y luego filtrando alguna de sus regiones para usarlo como mapa de fondo:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">rnaturalearth</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># obtener mapa por regiones</span>
+</span></span><span class="line"><span class="cl"><span class="n">chile</span> <span class="o">&lt;-</span> <span class="nf">ne_states</span><span class="p">(</span><span class="n">country</span> <span class="o">=</span> <span class="s">&#34;Chile&#34;</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="n">pais</span> <span class="o">=</span> <span class="n">admin</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="n">region</span> <span class="o">=</span> <span class="n">name_es</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="n">geometry</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># filtrar algunas regiones</span>
+</span></span><span class="line"><span class="cl"><span class="n">regiones</span> <span class="o">&lt;-</span> <span class="n">chile</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">region</span> <span class="o">%in%</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;O&#39;Higgins&#34;</span><span class="p">,</span> <span class="s">&#34;Maule&#34;</span><span class="p">,</span> <span class="s">&#34;Ñuble&#34;</span><span class="p">,</span> <span class="s">&#34;Biobío&#34;</span><span class="p">,</span> <span class="s">&#34;La Araucanía&#34;</span><span class="p">,</span> <span class="s">&#34;Los Ríos&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-44-1.png" width="768" />
+
+
+<details>
+  <summary>
+    Ver código del gráfico
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># visualizar regiones</span>
+</span></span><span class="line"><span class="cl"><span class="n">regiones</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#9069C0&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#DFC6EF&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">)</span>
+</span></span></code></pre></div>
+    </div>
+</details>
+<p>Ahora filtremos la región principal que queremos mapear:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># filtrar región principal</span>
+</span></span><span class="line"><span class="cl"><span class="n">region</span> <span class="o">&lt;-</span> <span class="n">regiones</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">region</span> <span class="o">==</span> <span class="s">&#34;Ñuble&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-47-1.png" width="768" />
+
+
+<details>
+  <summary>
+    Ver código del gráfico
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># visualizar regiones</span>
+</span></span><span class="line"><span class="cl"><span class="n">regiones</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#9069C0&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#DFC6EF&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">)</span>
+</span></span></code></pre></div>
+    </div>
+</details>
+<p>Podemos usar la caja del mapa principal (calculada con <code>st_bbox()</code>) para recortar el mapa de fondo:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># recortar ampa de fondo con caja de mapa principal</span>
+</span></span><span class="line"><span class="cl"><span class="n">fondo_region</span> <span class="o">&lt;-</span> <span class="n">regiones</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">st_crop</span><span class="p">(</span><span class="nf">st_bbox</span><span class="p">(</span><span class="n">region</span><span class="p">))</span> <span class="c1"># recortar en base a caja</span>
+</span></span></code></pre></div><img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-50-1.png" width="768" />
+
+
+<details>
+  <summary>
+    Ver código del gráfico
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># previsualizar mapa de fondo</span>
+</span></span><span class="line"><span class="cl"><span class="n">fondo_region</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#9069C0&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#DFC6EF&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">)</span>
+</span></span></code></pre></div>
+    </div>
+</details>
+<p>Obtenemos el mapa del país recortado a la caja del mapa regional. Luego podemos combinar ambos para una visualización de un mapa regional que tenga contexto de sus alrededores:</p>
+<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-52-1.png" width="768" />
+
+
+<details>
+  <summary>
+    Ver código del gráfico
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># capa de fondo</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">fondo_region</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#9069C0&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#DFC6EF&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.4</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># capa principal</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">region</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#9069C0&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#DFC6EF&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.6</span><span class="p">)</span>
+</span></span></code></pre></div>
+    </div>
+</details>
+<p>También podemos ampliar el recorte que hacemos del mapa de fondo <strong>ampliando</strong> la caja al 
+<a href="./blog/mapas_sf/#calcular-buffer">aplicarle un <em>buffer</em></a> a la región con <code>st_buffer()</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># con buffer sobre el mapa para ampliar recorte</span>
+</span></span><span class="line"><span class="cl"><span class="n">fondo_region</span> <span class="o">&lt;-</span> <span class="n">regiones</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">st_crop</span><span class="p">(</span><span class="n">region</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">            <span class="nf">st_buffer</span><span class="p">(</span><span class="m">60000</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="c1"># ampliar mapa </span>
+</span></span><span class="line"><span class="cl">            <span class="nf">st_bbox</span><span class="p">())</span> <span class="c1"># calcular caja</span>
+</span></span></code></pre></div><img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-55-1.png" width="768" />
+
+
+<details>
+  <summary>
+    Ver código del gráfico
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># previsualizar fondo</span>
+</span></span><span class="line"><span class="cl"><span class="n">fondo_region</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#9069C0&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#DFC6EF&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">)</span>
+</span></span></code></pre></div>
+    </div>
+</details>
+<p>Ahora combinamos ambas capas, mapa de fondo recortado, y mapa principal:</p>
+<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-57-1.png" width="768" />
+
+
+<details>
+  <summary>
+    Ver código del gráfico
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># combinar fondo con mapa principal</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># capa de fondo</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">fondo_region</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#9069C0&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#DFC6EF&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.4</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># capa principal</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">region</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#9069C0&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#DFC6EF&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">)</span>
+</span></span></code></pre></div>
+    </div>
+</details>
 <hr>
 
 
@@ -1272,17 +1437,17 @@ sf::read_sf("~/Downloads/Mis lugares/doc.kml")
 <p>Creemos una tabla con latitudes y longitudes, y convirtámosla a <code>sf</code> con <code>st_as_sf()</code>, 
 <a href="#poner-un-punto-en-un-mapa">como vimos antes</a>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">puntos</span> <span class="o">&lt;-</span> <span class="nf">tribble</span><span class="p">(</span><span class="o">~</span><span class="n">nombre</span><span class="p">,</span> <span class="o">~</span><span class="n">lon</span><span class="p">,</span>     <span class="o">~</span><span class="n">lat</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="s">&#34;Hualqui&#34;</span><span class="p">,</span> <span class="m">-8113368</span><span class="p">,</span> <span class="m">-4434476</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="s">&#34;Coronel&#34;</span><span class="p">,</span> <span class="m">-8136065</span><span class="p">,</span> <span class="m">-4440419</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">             <span class="s">&#34;Concepción&#34;</span><span class="p">,</span> <span class="m">-8132714</span><span class="p">,</span> <span class="m">-4414370</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                   <span class="s">&#34;Lota&#34;</span><span class="p">,</span> <span class="m">-8139383</span><span class="p">,</span> <span class="m">-4451456</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="s">&#34;Hualqui&#34;</span><span class="p">,</span> <span class="m">-8113368</span><span class="p">,</span> <span class="m">-4434476</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="s">&#34;Coronel&#34;</span><span class="p">,</span> <span class="m">-8136065</span><span class="p">,</span> <span class="m">-4440419</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="s">&#34;Concepción&#34;</span><span class="p">,</span> <span class="m">-8132714</span><span class="p">,</span> <span class="m">-4414370</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="s">&#34;Lota&#34;</span><span class="p">,</span> <span class="m">-8139383</span><span class="p">,</span> <span class="m">-4451456</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">                  <span class="s">&#34;Penco&#34;</span><span class="p">,</span> <span class="m">-8119934</span><span class="p">,</span> <span class="m">-4402016</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">             <span class="s">&#34;Talcahuano&#34;</span><span class="p">,</span> <span class="m">-8139277</span><span class="p">,</span> <span class="m">-4399701</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">                  <span class="s">&#34;Talcahuano&#34;</span><span class="p">,</span> <span class="m">-8139277</span><span class="p">,</span> <span class="m">-4399701</span><span class="p">)</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="c1"># convertir a tabla sf</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">st_as_sf</span><span class="p">(</span><span class="n">coords</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;lon&#34;</span><span class="p">,</span> <span class="s">&#34;lat&#34;</span><span class="p">),</span> 
 </span></span><span class="line"><span class="cl">           <span class="n">crs</span> <span class="o">=</span> <span class="m">3395</span><span class="p">)</span>
 </span></span></code></pre></div><p>Así se ven los puntitos por sí solos:</p>
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-44-1.png" width="768" />
+<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-60-1.png" width="768" />
 <p>Ahora recortemos el mapa de Chile para enfocarnos en la zona donde están los puntos. 
 <a href="#calcular-buffer">Creamos un <em>buffer</em></a> alrededor de los puntos para agrandarlos con <code>st_buffer()</code>, y luego 
 <a href="#calcular-caja-de-un-pol%c3%adgono">calculamos la caja que los contiene</a> con <code>st_bbox()</code> para usarla como recorte.</p>
@@ -1295,7 +1460,7 @@ sf::read_sf("~/Downloads/Mis lugares/doc.kml")
 </span></span><span class="line"><span class="cl">  <span class="nf">st_transform</span><span class="p">(</span><span class="n">crs</span> <span class="o">=</span> <span class="nf">st_crs</span><span class="p">(</span><span class="n">puntos</span><span class="p">))</span> <span class="o">|&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="c1"># recortar con la caja (bounding box)</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">st_crop</span><span class="p">(</span><span class="n">caja_puntos</span><span class="p">)</span>
-</span></span></code></pre></div><img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-47-1.png" width="768" />
+</span></span></code></pre></div><img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-63-1.png" width="768" />
 
 
 <details>
@@ -1324,7 +1489,7 @@ sf::read_sf("~/Downloads/Mis lugares/doc.kml")
 </span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">geometry</span> <span class="o">=</span> <span class="nf">case_when</span><span class="p">(</span><span class="n">nombre</span> <span class="o">==</span> <span class="s">&#34;Hualqui&#34;</span> <span class="o">~</span> <span class="n">geometry</span> <span class="o">+</span> <span class="nf">c</span><span class="p">(</span><span class="m">7000</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">                              <span class="n">nombre</span> <span class="o">==</span>  <span class="s">&#34;Penco&#34;</span> <span class="o">~</span> <span class="n">geometry</span> <span class="o">+</span> <span class="nf">c</span><span class="p">(</span><span class="m">7000</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">                              <span class="n">.default</span> <span class="o">=</span> <span class="nf">st_sfc</span><span class="p">(</span><span class="n">geometry</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="nf">st_set_crs</span><span class="p">(</span><span class="kc">NA</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">         <span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="p">)</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="nf">st_set_crs</span><span class="p">(</span><span class="nf">st_crs</span><span class="p">(</span><span class="n">puntos</span><span class="p">))</span>
 </span></span></code></pre></div>
 
@@ -1348,7 +1513,7 @@ sf::read_sf("~/Downloads/Mis lugares/doc.kml")
 </details>
 <p>Lo que sumemos o restemos a las coordenadas depende del sistema de coordenadas de cada mapa. En algunos va a haber que sumar números muy pequeños, pero en otros sistemas de coordenadas se usan números muy grandes.</p>
 <p>En el gráfico vemos en color más tenue las posiciones originales de los puntos que fueron modificados.</p>
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-51-1.png" width="768" />
+<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-67-1.png" width="768" />
 
 
 <details>
@@ -1365,7 +1530,7 @@ sf::read_sf("~/Downloads/Mis lugares/doc.kml")
 </span></span><span class="line"><span class="cl">          <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#402E5A&#34;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">puntos_movidos</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#402E5A&#34;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">)</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">geom_sf_text</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">puntos_movidos</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf_text</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">puntos_movidos</span><span class="p">,</span> 
 </span></span><span class="line"><span class="cl">               <span class="nf">aes</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="nf">paste</span><span class="p">(</span><span class="s">&#34;  &#34;</span><span class="p">,</span> <span class="n">nombre</span><span class="p">)),</span>
 </span></span><span class="line"><span class="cl">               <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#402E5A&#34;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">hjust</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">angle</span> <span class="o">=</span> <span class="m">-35</span><span class="p">)</span>
 </span></span></code></pre></div>
@@ -1374,7 +1539,6 @@ sf::read_sf("~/Downloads/Mis lugares/doc.kml")
 <hr>
 <!--
 Desde el centroide de un polígono
-
 
 ::: {.cell}
 
@@ -1389,11 +1553,9 @@ st_as_sf()
 ```
 :::
 
-
 -->
 <!--
 ### Calcular superficie o área
-
 
 ::: {.cell}
 
@@ -1408,9 +1570,7 @@ units::set_units("km^2")
 
 
 
-
 ### Recortar polígono a coordenadas
-
 
 ::: {.cell}
 
@@ -1421,9 +1581,7 @@ st_crop(xmin = -74, ymin = -36, xmax = -65, ymax = -30) |>
 
 
 
-
 ### Simplificar un polígono
-
 
 ::: {.cell}
 
@@ -1437,9 +1595,7 @@ rmapshaper::ms_simplify(geometry, keep = 0.8))
 
 
 
-
 ### Extraer líneas internas de un polígono
-
 
 ::: {.cell}
 
@@ -1450,9 +1606,7 @@ ms_innerlines() # deja solo las líneas interiores de un coso
 
 
 
-
 ## Correcciones
-
 
 ::: {.cell}
 
@@ -1461,12 +1615,17 @@ st_as_sf()
 ```
 :::
 
+
+
+
 ::: {.cell}
 
 ```{.r .cell-code}
 st_make_valid()
 ```
 :::
+
+
 
 ::: {.cell}
 
@@ -1477,14 +1636,12 @@ st_drop_geometry()
 
 
 
-
 ----
 
 
 ## Operaciones agrupadas
 
 ### Unir polígonos
-
 
 ::: {.cell}
 
@@ -1496,12 +1653,10 @@ st_union()
 
 
 
-
 ## Operaciones entre geometrías
 
 ### Recortar un polígono con otro
 https://bookdown.org/robinlovelace/geocompr/geometric-operations.html#clipping
-
 
 
 ::: {.cell}
@@ -1512,9 +1667,7 @@ st_intersection()
 :::
 
 
-
 ### Usar un polígono para eliminar partes de otro
-
 
 ::: {.cell}
 
@@ -1525,9 +1678,7 @@ st_difference()
 
 
 
-
 ### unir dos polígonos
-
 
 ::: {.cell}
 
@@ -1537,11 +1688,9 @@ st_union()
 :::
 
 
-
 ### Spatial join
 
 ### Filter
-
 
 ::: {.cell}
 
@@ -1553,11 +1702,9 @@ https://cengel.github.io/R-spatial/spatialops.html#topological-subsetting-select
 
 
 
-
 ## Coordenadas
 
 ### Extraer sistema de coordenadas
-
 
 ::: {.cell}
 
@@ -1567,9 +1714,7 @@ st_crs(comunas_region)
 :::
 
 
-
 ### Cambiar coordenadas
-
 
 ::: {.cell}
 
@@ -1580,11 +1725,9 @@ st_transform(crs = st_crs(comunas_region))
 
 
 
-
 ## Visualización
 
 ### Visualizar por capas
-
 
 ::: {.cell}
 
@@ -1595,9 +1738,7 @@ geom_sf()
 
 
 
-
 ### Texto
-
 
 ::: {.cell}
 
@@ -1608,10 +1749,8 @@ aes(label = nombre)) +
 :::
 
 
-
 ### Texto con repel
 https://github.com/slowkow/ggrepel/issues/111#issuecomment-416853013
-
 
 ::: {.cell}
 
@@ -1628,9 +1767,7 @@ label.padding = 0.15, label.size = 0
 
 
 
-
 ### Hacer zoom
-
 
 ::: {.cell}
 
@@ -1641,9 +1778,7 @@ label.padding = 0.15, label.size = 0
 :::
 
 
-
 ### Dibujar un cuadrado
-
 
 ::: {.cell}
 
@@ -1655,9 +1790,7 @@ label.padding = 0.15, label.size = 0
 :::
 
 
-
 ### Escala de colores para mapa de calor
-
 
 
 ::: {.cell}
@@ -1675,19 +1808,16 @@ limits = c(0, NA)
 
 
 
-
 ### Minimapa
 https://dominicroye.github.io/blog/inserted-map/
-
 
 ::: {.cell}
 
 :::
 
 
-
 -->
-
+<p>
 
 <div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
             background-color: #493365;
@@ -1705,13 +1835,7 @@ https://dominicroye.github.io/blog/inserted-map/
 </div>
 
   <div style="margin: 28px 0;">
-    <p style="margin: 0 0 6px 0;
-              font-size: 78%;
-              text-transform: uppercase;
-              letter-spacing: 0.06em;
-              /*opacity: 0.5;*/
-              color: #AB85CC;
-              ">
+    <p class="titulo-panel">
       Publicaciones sobre mapas
     </p>
 
@@ -1721,7 +1845,7 @@ https://dominicroye.github.io/blog/inserted-map/
                 overflow: hidden;
                 background-color: #9069C00d;">
 
-      <a href="/blog/app_censo_mapas/"
+      <a href="/blog/mapas_hexagonales/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -1730,6 +1854,37 @@ https://dominicroye.github.io/blog/inserted-map/
                   padding: 8px 14px;
                   gap: 12px;
                   
+                  ">
+
+          
+          <img src="/blog/mapas_hexagonales/featured.png"
+               alt="Mapas hexagonales o cuadriculados con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Mapas hexagonales o cuadriculados con R
+          </span>
+
+        </a>
+      <a href="/blog/app_censo_mapas/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
                   ">
 
           
@@ -1764,7 +1919,7 @@ https://dominicroye.github.io/blog/inserted-map/
                   ">
 
           
-          <img src="/blog/mapas_censo_2024/featured.png"
+          <img src="/blog/mapas_censo_2024/featured.jpg"
                alt="Visualiza datos del Censo 2024 en mapas a nivel de manzana con R"
                style="flex-shrink: 0;
                       width: 52px;
@@ -1845,50 +2000,19 @@ https://dominicroye.github.io/blog/inserted-map/
           </span>
 
         </a>
-      <a href="/blog/mapa_chile_triple/"
-           style="display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  text-decoration: none;
-                  color: inherit;
-                  padding: 8px 14px;
-                  gap: 12px;
-                  border-top: 1px solid #9069C030;
-                  ">
-
-          
-          <img src="/blog/mapa_chile_triple/mapa_chile_tres_featured.png"
-               alt="Visualizar un mapa de Chile separado en tres secciones"
-               style="flex-shrink: 0;
-                      width: 52px;
-                      height: 38px;
-                      object-fit: cover;
-                      object-position: center top;
-                      border-radius: 4px;
-                      margin: 0;">
-          
-
-          <span style="font-size: 88%;
-                       color: #9069C0;
-                       font-weight: 600;
-                       line-height: 1.35;">
-            Visualizar un mapa de Chile separado en tres secciones
-          </span>
-
-        </a>
       
 
     </div>
   </div>
 
 
+</p>
 
 
 
 
-
-<h2 id="recursos-sobre-mapas-en-r">Recursos sobre mapas en R
-  <a href="#recursos-sobre-mapas-en-r"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+<h2 id="recursos-para-aprender-más">Recursos para aprender más
+  <a href="#recursos-para-aprender-m%c3%a1s"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 0h24v24H0z" fill="currentColor"></path>
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
@@ -1941,12 +2065,12 @@ https://dominicroye.github.io/blog/inserted-map/
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/2025-11-25/">&larr; Configura R para que haga cosas automáticamente al abrirlo</a>
+    href="https://bastianoleah.netlify.app/blog/mapas_hexagonales/">&larr; Mapas hexagonales o cuadriculados con R</a>
   
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/elecciones_presidenciales_2025/">Visualización y scraping de resultados de las elecciones presidenciales 2025 &rarr;</a>
+    href="https://bastianoleah.netlify.app/blog/herramientas_llm/">Potencia las capacidades de la IA entregándole herramientas (_tool calling_) basadas en R &rarr;</a>
   
 </div>
 
@@ -1979,11 +2103,11 @@ https://dominicroye.github.io/blog/inserted-map/
   <details closed class="f6 fw7 input-reset">
   <dl class="f6 lh-copy">
     <dt class="fw7">Fecha de publicación:</dt>
-    <dd class="fw5 ml0">November 18, 2025</dd>
+    <dd class="fw5 ml0">April 29, 2026</dd>
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">19 minute read, 4026 words</dd>
+    <dd class="fw5 ml0">22 minute read, 4525 words</dd>
   </dl>
   
   <dl class="f6 lh-copy">
@@ -2001,11 +2125,11 @@ https://dominicroye.github.io/blog/inserted-map/
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
+    <dd class="fw5 ml0"><a href="/blog/mapas_hexagonales/">Mapas hexagonales o cuadriculados con R</a></dd>
+    
     <dd class="fw5 ml0"><a href="/blog/ggplot_dumbbell/">Gráficos de puntos comparativos o _dumbbell_ en `{ggplot2}`</a></dd>
     
     <dd class="fw5 ml0"><a href="/blog/ggplot_extensiones/">Extensiones recomendadas para mejorar tus gráficos de `{ggplot2}`</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/ggplot_puente/">Gráficos de puente en `{ggplot2}`</a></dd>
     
   </dl>
 </details>
@@ -2077,7 +2201,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
+      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -2092,7 +2216,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -2137,7 +2261,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
+      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -2152,7 +2276,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
+      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -2212,6 +2336,21 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
@@ -2227,7 +2366,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
+      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -2272,21 +2411,6 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianoleah.netlify.app/tags/quarto/">Quarto</a></span>
   </span>
  
@@ -2317,7 +2441,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ciencias-sociales/">Ciencias sociales</a></span>
+      href="https://bastianoleah.netlify.app/tags/optimizaci%C3%B3n/">Optimización</a></span>
   </span>
  
   
@@ -2332,7 +2456,7 @@ https://dominicroye.github.io/blog/inserted-map/
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/loops/">Loops</a></span>
+      href="https://bastianoleah.netlify.app/tags/texto/">Texto</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>
@@ -2372,7 +2496,7 @@ https://dominicroye.github.io/blog/inserted-map/
         <li><a href="#mover-puntos-de-un-mapa">Mover puntos de un mapa</a></li>
       </ul>
     </li>
-    <li><a href="#recursos-sobre-mapas-en-r">Recursos sobre mapas en R</a>
+    <li><a href="#recursos-para-aprender-más">Recursos para aprender más</a>
       <ul>
         <li><a href="#apuntes">Apuntes</a></li>
         <li><a href="#libros">Libros</a></li>

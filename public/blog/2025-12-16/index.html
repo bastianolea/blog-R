@@ -58,7 +58,7 @@ Así que hice lo que cualquier persona racional y ocupada haría, y automatizé 
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.f1077c0959e0c28941c671121e25726699745ff83a06fc0ebda190491db6569b.css" integrity="sha256-8Qd8CVngwolBxnESHiVyZpl0X/g6BvwOvaGQSR22Vps=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.2d895d62345af9e2e72524b81407c43bc32960e92011f6c745d4db53ec6d0bd7.css" integrity="sha256-LYldYjRa&#43;eLnJSS4FAfEO8MpYOkgEfbHRdTbU&#43;xtC9c=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
@@ -321,7 +321,7 @@ Así que hice lo que cualquier persona racional y ocupada haría, y automatizé 
   color: #EAD2FA; font-size: 10pt;
   padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
   margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
-  href="/blog/tutorial_scraping_selenium/" ><i class="fas fa-link fa-lg fa-fw mr2"></i>Tutorial</a>
+  href="/blog/webscraping_selenium/" ><i class="fas fa-link fa-lg fa-fw mr2"></i>Tutorial</a>
 
 </div>
 
@@ -340,7 +340,7 @@ Así que hice lo que cualquier persona racional y ocupada haría, y automatizé 
 <p>Pero al grabar el video, no me gustaba cómo quedaba cuando yo iba haciendo <em>scroll</em> manualmente, porque a veces me quedaban cortados los contenidos o se veía muy errático.</p>
 <p>Así que hice lo que cualquier persona racional y ocupada haría, y automatizé el <em>scroll</em> con R, para que <strong>la página se moviera solita</strong> sin que yo intervenga. Así la grabación sale perfecta 💖</p>
 <p>Para automarizar el scroll usé 
-<a href="/blog/tutorial_scraping_selenium/">el paquete <code>{RSelenium}</code></a>, que permite <strong>controlar un navegador web</strong> desde R.</p>
+<a href="/blog/webscraping_selenium/">el paquete <code>{RSelenium}</code></a>, que permite <strong>controlar un navegador web</strong> desde R.</p>
 <p>Cargamos el paquete:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">RSelenium</span><span class="p">)</span>
 </span></span></code></pre></div><p>Luego creamos un navegador:</p>
@@ -376,8 +376,8 @@ Así que hice lo que cualquier persona racional y ocupada haría, y automatizé 
   
   <aside style = "font-size: 90%; color: #EAD2FA;">
     Si necesitas aprender lo básico sobre web scraping, 
-<a href="/blog/tutorial_scraping_rvest/">revisa este <strong>tutorial introductorio</strong></a>, o bien, revisa el 
-<a href="/blog/tutorial_scraping_selenium/">tutorial avanzado de RSelenium</a>.
+<a href="/blog/webscraping_rvest/">revisa este <strong>tutorial introductorio</strong></a>, o bien, revisa el 
+<a href="/blog/webscraping_selenium/">tutorial avanzado de RSelenium</a>.
   </aside>
   
 </div>
@@ -395,7 +395,7 @@ Así que hice lo que cualquier persona racional y ocupada haría, y automatizé 
 </span></span></span><span class="line"><span class="cl"><span class="s">                      behavior: &#39;smooth&#39;});&#34;</span><span class="p">)</span>
 </span></span></code></pre></div><p>¡Mucho mejor! Así podemos bajar poco a poco por el sitio.</p>
 <p>Ahora quiero que el navegador haga <em>scroll</em> hasta llegar a un <strong>título</strong> específico de la página, así no tengo que ir haciendo scroll por cantidades específicas de pixeles. Para esto, tengo que 
-<a href="/blog/tutorial_scraping_selenium/#identificar-elementos">encontrar el <strong>selector</strong> del elemento</a> al que quiero llegar.</p>
+<a href="/blog/webscraping_selenium/#identificar-elementos">encontrar el <strong>selector</strong> del elemento</a> al que quiero llegar.</p>
 <p>En este caso usaré el ID (<code>#</code>) de cada subtítulo. Por ejemplo, para llegar al título &ldquo;Obtener R&rdquo;, el selector es <code>#obtener-r</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">remote</span><span class="o">$</span><span class="nf">executeScript</span><span class="p">(</span><span class="s">&#34;document.querySelector(&#39;#obtener-r&#39;).scrollIntoView({behavior: &#39;smooth&#39;});&#34;</span><span class="p">)</span>
 </span></span></code></pre></div><p>Ahora el comando me lleva a un elemento específico, con suavidad 😌</p>
@@ -612,7 +612,7 @@ Así que hice lo que cualquier persona racional y ocupada haría, y automatizé 
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
+      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -627,7 +627,7 @@ Así que hice lo que cualquier persona racional y ocupada haría, y automatizé 
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -747,21 +747,6 @@ Así que hice lo que cualquier persona racional y ocupada haría, y automatizé 
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
   </span>
  
@@ -777,7 +762,7 @@ Así que hice lo que cualquier persona racional y ocupada haría, y automatizé 
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -793,6 +778,21 @@ Así que hice lo que cualquier persona racional y ocupada haría, y automatizé 
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -867,7 +867,7 @@ Así que hice lo que cualquier persona racional y ocupada haría, y automatizé 
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/automatizaci%C3%B3n/">Automatización</a></span>
+      href="https://bastianoleah.netlify.app/tags/texto/">Texto</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

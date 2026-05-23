@@ -19,7 +19,7 @@ links:
   - icon: link
     icon_pack: fas
     name: Tutorial
-    url: /blog/tutorial_scraping_selenium/
+    url: /blog/webscraping_selenium/
 ---
 
 Para publicitar [mi nueva página para **aprender R** gratis y de manera autodidacta](https://bastianolea.github.io/aprende_r/), quise grabar un video mostrando los contenidos. 
@@ -33,7 +33,7 @@ Pero al grabar el video, no me gustaba cómo quedaba cuando yo iba haciendo _scr
 
 Así que hice lo que cualquier persona racional y ocupada haría, y automatizé el _scroll_ con R, para que **la página se moviera solita** sin que yo intervenga. Así la grabación sale perfecta 💖
 
-Para automarizar el scroll usé [el paquete `{RSelenium}`](/blog/tutorial_scraping_selenium/), que permite **controlar un navegador web** desde R. 
+Para automarizar el scroll usé [el paquete `{RSelenium}`](/blog/webscraping_selenium/), que permite **controlar un navegador web** desde R. 
 
 Cargamos el paquete:
 
@@ -62,7 +62,7 @@ remote$navigate(url = "https://bastianolea.github.io/aprende_r/")
 
 {{< imagen "rselenium_2.png" >}}
 
-{{< aviso "Si necesitas aprender lo básico sobre web scraping, [revisa este **tutorial introductorio**](/blog/tutorial_scraping_rvest/), o bien, revisa el [tutorial avanzado de RSelenium](/blog/tutorial_scraping_selenium/)." >}}
+{{< aviso "Si necesitas aprender lo básico sobre web scraping, [revisa este **tutorial introductorio**](/blog/webscraping_rvest/), o bien, revisa el [tutorial avanzado de RSelenium](/blog/webscraping_selenium/)." >}}
 
 Para hacer _scroll_, necesitamos ejecutar el siguiente comando de JavaScript en la página:
 ```r
@@ -83,7 +83,7 @@ remote$executeScript("window.scrollBy({
 
 ¡Mucho mejor! Así podemos bajar poco a poco por el sitio.
 
-Ahora quiero que el navegador haga _scroll_ hasta llegar a un **título** específico de la página, así no tengo que ir haciendo scroll por cantidades específicas de pixeles. Para esto, tengo que [encontrar el **selector** del elemento](/blog/tutorial_scraping_selenium/#identificar-elementos) al que quiero llegar. 
+Ahora quiero que el navegador haga _scroll_ hasta llegar a un **título** específico de la página, así no tengo que ir haciendo scroll por cantidades específicas de pixeles. Para esto, tengo que [encontrar el **selector** del elemento](/blog/webscraping_selenium/#identificar-elementos) al que quiero llegar. 
 
 En este caso usaré el ID (`#`) de cada subtítulo. Por ejemplo, para llegar al título "Obtener R", el selector es `#obtener-r`:
 

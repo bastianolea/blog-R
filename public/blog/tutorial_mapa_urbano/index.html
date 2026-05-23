@@ -50,7 +50,7 @@ En la primera parte veremos cómo obtener los mapas y cómo visualizar datos com
 Luego, nos enfrentaremos a un problema común que se tiene al graficar un mapa de la Región Metropolitana de Santiago, que tiene que ver con la diferencia entre los límites comunales reales de cada comuna y los límites urbanos de las comunas. Es la diferencia entre tener un mapa de la RM que abarque sectores rurales como Paine y que llegue hasta Argentina, o un mapa que demarque la zona urbana de Santiago, aproximadamente correspondiente a la zona que atravieza el anillo de la autopista Américo Vespucio.">
   <meta itemprop="datePublished" content="2024-06-12T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-06-12T00:00:00+00:00">
-  <meta itemprop="wordCount" content="3160">
+  <meta itemprop="wordCount" content="3212">
   <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/tutorial_mapa_urbano/featured.png">
   <meta itemprop="keywords" content="Mapas,Chile">
   
@@ -59,7 +59,7 @@ Luego, nos enfrentaremos a un problema común que se tiene al graficar un mapa d
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.f1077c0959e0c28941c671121e25726699745ff83a06fc0ebda190491db6569b.css" integrity="sha256-8Qd8CVngwolBxnESHiVyZpl0X/g6BvwOvaGQSR22Vps=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.2d895d62345af9e2e72524b81407c43bc32960e92011f6c745d4db53ec6d0bd7.css" integrity="sha256-LYldYjRa&#43;eLnJSS4FAfEO8MpYOkgEfbHRdTbU&#43;xtC9c=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
@@ -312,25 +312,6 @@ Luego, nos enfrentaremos a un problema común que se tiene al graficar un mapa d
   color: #EAD2FA; font-size: 10pt;
   padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
   margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
-  href="https://github.com/bastianolea/tutorial_r_mapa_urbano_rm" target="_blank" rel="noopener"><i class="fab fa-github fa-lg fa-fw mr2"></i>código</a>
-
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-      
-    
-  <a class="btn-links mr2 ba dib" 
-  style = "background-color: #9069C0; border-radius: 4px; 
-  color: #EAD2FA; font-size: 10pt;
-  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
-  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
   href="https://github.com/pachadotdev/chilemapas" target="_blank" rel="noopener"><i class="fas fa-registered fa-lg fa-fw mr2"></i>chilemapas</a>
 
 </div>
@@ -435,7 +416,9 @@ Luego, nos enfrentaremos a un problema común que se tiene al graficar un mapa d
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># obtener mapa comunal</span>
 </span></span><span class="line"><span class="cl"><span class="n">mapa_comunas</span> <span class="o">&lt;-</span> <span class="n">chilemapas</span><span class="o">::</span><span class="n">mapa_comunas</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">nombres_comunas</span> <span class="o">&lt;-</span> <span class="n">chilemapas</span><span class="o">::</span><span class="n">codigos_territoriales</span> <span class="o">|&gt;</span> <span class="nf">select</span><span class="p">(</span><span class="nf">matches</span><span class="p">(</span><span class="s">&#34;comuna&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># nombres de las comunas</span>
+</span></span><span class="line"><span class="cl"><span class="n">nombres_comunas</span> <span class="o">&lt;-</span> <span class="n">chilemapas</span><span class="o">::</span><span class="n">codigos_territoriales</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="nf">matches</span><span class="p">(</span><span class="s">&#34;comuna&#34;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># mapa de la región metropolitana</span>
 </span></span><span class="line"><span class="cl"><span class="n">mapa</span> <span class="o">&lt;-</span> <span class="n">mapa_comunas</span> <span class="o">|&gt;</span> 
@@ -483,6 +466,28 @@ Geodetic CRS:  SIRGAS 2000
 </h2>
 
 
+<details>
+  <summary>
+    Ver tema de los mapas
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">theme_set</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme_minimal</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">paper</span> <span class="o">=</span> <span class="s">&#34;#EAD2FA&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ink</span> <span class="o">=</span> <span class="s">&#34;#553A74&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">accent</span> <span class="o">=</span> <span class="s">&#34;#9069C0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">base_family</span> <span class="o">=</span> <span class="s">&#34;Atkinson Hyperlegible&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">theme</span><span class="p">(</span><span class="n">plot.title</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&#34;bold&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">          <span class="n">axis.title</span> <span class="o">=</span> <span class="nf">element_blank</span><span class="p">()))</span>
+</span></span></code></pre></div>
+    </div>
+</details>
+
+
 
 
 <h3 id="mapa-básico-de-la-región">Mapa básico de la región
@@ -491,24 +496,137 @@ Geodetic CRS:  SIRGAS 2000
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h3>
-<p>Podemos visualizar este mapa de manera con <code>{ggplot2}</code>:</p>
+<p>Podemos visualizar el mapa anterior con <code>{ggplot2}</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">mapa</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="c1"># iniciar gráfico</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">  <span class="c1"># agregar capa con el mapa</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;grey60&#34;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">)</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="c1"># tema</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">theme_void</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#553A74&#34;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#34;#EAD2FA&#34;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">)</span>
 </span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/region_prueba-1.png" width="768" />
-<p>Obtuvimos un mapa básico de todas las comunas de la Región Metropolitana de Santiago.</p>
+<p>Obtuvimos un mapa básico de todas las comunas de la Región Metropolitana de Santiago!</p>
 <div style="margin: 28px 0;">
-    <p style="margin: 0 0 6px 0;
-              font-size: 78%;
-              text-transform: uppercase;
-              letter-spacing: 0.06em;
-              /*opacity: 0.5;*/
-              color: #AB85CC;
-              ">
+    <p class="titulo-panel">
+      Para profundizar en mapas regionales
+    </p>
+
+  <a href="/blog/tutorial_mapa_chile/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/tutorial_mapa_chile/featured.png"
+           alt="Crea un mapa de Chile y visualiza datos comunales y regionales con mapas en R"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Crea un mapa de Chile y visualiza datos comunales y regionales con mapas en R
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        Visualizar datos geográficamente es una herramienta de comunicación y análisis de datos muy potente. En este tutorial te explico cómo obtener mapas comunales y regionales de Chile en R, y cómo crear…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+
+
+
+
+<h3 id="mapa-de-la-región-con-datos-ficticios">Mapa de la región con datos ficticios
+  <a href="#mapa-de-la-regi%c3%b3n-con-datos-ficticios"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Ahora, hagamos una prueba para aprender a visualizar datos en este tipo de mapa.s Para esto, vamos a <strong>crear una variable</strong> donde algunas comunas tengan valores distintos.</p>
+<p>Podemos crear la nueva variable a partir de la columna <code>nombre_comuna</code>, aunque siempre es preferible hacerlo en base a la columna <code>codigo_comuna</code>, dado que los códigos únicos territoriales son identificadores únicos para cada comuna, mientras que los nombres de las comunas son más impredecibles (por ejemplo, pueden venir sin tilde o sin eñes, como pasa en este caso).</p>
+<p>Usamos la función <code>case_when()</code> para asignar valores ficticios sobre algunas comunas:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">mapa_datos</span> <span class="o">&lt;-</span> <span class="n">mapa</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># crear una variable para comunas específicas</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">variable</span> <span class="o">=</span> <span class="nf">recode_values</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nombre_comuna</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;Paine&#34;</span> <span class="o">~</span> <span class="s">&#34;Bacán&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;Buin&#34;</span> <span class="o">~</span> <span class="s">&#34;Fome&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;La Florida&#34;</span> <span class="o">~</span> <span class="s">&#34;Bacán&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;Cerrillos&#34;</span> <span class="o">~</span> <span class="s">&#34;Bacán&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;Nunoa&#34;</span> <span class="o">~</span> <span class="s">&#34;Fome&#34;</span><span class="p">))</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="n">nombre_comuna</span><span class="p">,</span> <span class="n">codigo_comuna</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">geometry</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">mapa_datos</span>
+</span></span></code></pre></div><pre><code>Simple feature collection with 52 features and 3 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -71.71523 ymin: -34.29093 xmax: -69.76999 ymax: -32.92194
+Geodetic CRS:  SIRGAS 2000
+# A tibble: 52 × 4
+   nombre_comuna codigo_comuna variable                                 geometry
+   &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;                          &lt;MULTIPOLYGON [°]&gt;
+ 1 Paine         13404         Bacán    (((-70.61396 -33.73862, -70.60917 -33.7…
+ 2 Buin          13402         Fome     (((-70.61396 -33.73862, -70.62304 -33.7…
+ 3 Pudahuel      13124         &lt;NA&gt;     (((-70.75679 -33.38348, -70.78087 -33.4…
+ 4 Cerro Navia   13103         &lt;NA&gt;     (((-70.72154 -33.43661, -70.72426 -33.4…
+ 5 Colina        13301         &lt;NA&gt;     (((-70.37256 -33.10578, -70.37609 -33.1…
+ 6 Tiltil        13303         &lt;NA&gt;     (((-70.72028 -32.95297, -70.72329 -32.9…
+ 7 Lampa         13302         &lt;NA&gt;     (((-70.79191 -33.17296, -70.7833 -33.18…
+ 8 Huechuraba    13107         &lt;NA&gt;     (((-70.59589 -33.33656, -70.59023 -33.3…
+ 9 Conchali      13104         &lt;NA&gt;     (((-70.68968 -33.36587, -70.68201 -33.3…
+10 Maria Pinto   13504         &lt;NA&gt;     (((-71.27576 -33.40409, -71.26337 -33.4…
+# ℹ 42 more rows
+</code></pre>
+<p>Ahora visualizamos el resultado en un mapa:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># visualizar</span>
+</span></span><span class="line"><span class="cl"><span class="n">mapa_datos</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">aes</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="n">variable</span><span class="p">)</span> <span class="o">+</span> <span class="c1"># usamos la variable que creamos como relleno de las comunas</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">col</span> <span class="o">=</span> <span class="s">&#34;#EAD2FA&#34;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_fill_discrete</span><span class="p">(</span><span class="n">na.value</span> <span class="o">=</span> <span class="s">&#34;#9069C0&#34;</span><span class="p">)</span> <span class="c1"># color para comunas sin datos</span>
+</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
       Publicaciones relacionadas
     </p>
 
@@ -579,63 +697,65 @@ Geodetic CRS:  SIRGAS 2000
 
 
 
-<h3 id="mapa-de-la-región-con-datos-ficticios">Mapa de la región con datos ficticios
-  <a href="#mapa-de-la-regi%c3%b3n-con-datos-ficticios"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+<h3 id="agregar-datos-obtenidos-desde-internet-al-mapa">Agregar datos obtenidos desde internet al mapa
+  <a href="#agregar-datos-obtenidos-desde-internet-al-mapa"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 0h24v24H0z" fill="currentColor"></path>
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h3>
-<p>Ahora, hagamos una prueba para aprender a visualizar datos en la di este mapa. Para esto, crearemos una nueva variable donde algunas comunas tengan valores distintos. Podemos crear la nueva variable a partir de la columna <code>nombre_comuna</code>, aunque siempre es preferible hacerlo en base a la columna <code>codigo_comuna</code>, dado que los códigos únicos territoriales son identificadores únicos para cada comuna, mientras que los nombres de las comunas son más impredecibles (por ejemplo, pueden venir sin tilde, pueden venir en mayúsculas, o derechamente mal escritos).</p>
-<p>Usamos la función <code>case_when()</code> para asignar valores ficticios sobre algunas comunas, y los visualizamos en el mapa:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">mapa_datos</span> <span class="o">&lt;-</span> <span class="n">mapa</span> <span class="o">|&gt;</span> 
-</span></span><span class="line"><span class="cl">  <span class="c1"># crear una variable para comunas específicas</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">variable</span> <span class="o">=</span> <span class="nf">case_when</span><span class="p">(</span><span class="n">nombre_comuna</span> <span class="o">==</span> <span class="s">&#34;Paine&#34;</span> <span class="o">~</span> <span class="s">&#34;Bacán&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                              <span class="n">nombre_comuna</span> <span class="o">==</span> <span class="s">&#34;Buin&#34;</span> <span class="o">~</span> <span class="s">&#34;Penca&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                              <span class="n">nombre_comuna</span> <span class="o">==</span> <span class="s">&#34;La Florida&#34;</span> <span class="o">~</span> <span class="s">&#34;Bacán&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                              <span class="n">nombre_comuna</span> <span class="o">==</span> <span class="s">&#34;Cerrillos&#34;</span> <span class="o">~</span> <span class="s">&#34;Bacán&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                              <span class="n">nombre_comuna</span> <span class="o">==</span> <span class="s">&#34;Nunoa&#34;</span> <span class="o">~</span> <span class="s">&#34;Penca&#34;</span><span class="p">))</span> <span class="o">|&gt;</span> 
-</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="n">nombre_comuna</span><span class="p">,</span> <span class="n">codigo_comuna</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">geometry</span><span class="p">)</span>
+<p>Ahora, pasaremos a usar datos reales sobre nuestro mapa comunal. Pero en vez de entregarles datos copiados y pegados, obtendremos directamente los datos desde internet, 
+<a href="../../../blog/webscraping_rvest/">usando el paquete <code>{rvest}</code></a> que sirve para hacer 
+<a href="../../../blog/r_introduccion/web_scraping/">web scraping</a> desde páginas web; es decir, descargar datos presentes en sitios de internet para usarlos directamente en R.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">rvest</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">mapa_datos</span>
-</span></span></code></pre></div><pre><code>Simple feature collection with 52 features and 3 fields
-Geometry type: MULTIPOLYGON
-Dimension:     XY
-Bounding box:  xmin: -71.71523 ymin: -34.29093 xmax: -69.76999 ymax: -32.92194
-Geodetic CRS:  SIRGAS 2000
-# A tibble: 52 × 4
-   nombre_comuna codigo_comuna variable                                 geometry
-   &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;                          &lt;MULTIPOLYGON [°]&gt;
- 1 Paine         13404         Bacán    (((-70.61396 -33.73862, -70.60917 -33.7…
- 2 Buin          13402         Penca    (((-70.61396 -33.73862, -70.62304 -33.7…
- 3 Pudahuel      13124         &lt;NA&gt;     (((-70.75679 -33.38348, -70.78087 -33.4…
- 4 Cerro Navia   13103         &lt;NA&gt;     (((-70.72154 -33.43661, -70.72426 -33.4…
- 5 Colina        13301         &lt;NA&gt;     (((-70.37256 -33.10578, -70.37609 -33.1…
- 6 Tiltil        13303         &lt;NA&gt;     (((-70.72028 -32.95297, -70.72329 -32.9…
- 7 Lampa         13302         &lt;NA&gt;     (((-70.79191 -33.17296, -70.7833 -33.18…
- 8 Huechuraba    13107         &lt;NA&gt;     (((-70.59589 -33.33656, -70.59023 -33.3…
- 9 Conchali      13104         &lt;NA&gt;     (((-70.68968 -33.36587, -70.68201 -33.3…
-10 Maria Pinto   13504         &lt;NA&gt;     (((-71.27576 -33.40409, -71.26337 -33.4…
-# ℹ 42 more rows
+</span></span><span class="line"><span class="cl"><span class="n">tabla_comunas</span> <span class="o">&lt;-</span> <span class="nf">session</span><span class="p">(</span><span class="s">&#34;https://es.wikipedia.org/wiki/Anexo:Comunas_de_Chile&#34;</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="c1"># sitio web que scrapearemos</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">read_html</span><span class="p">()</span> <span class="o">|&gt;</span> <span class="c1"># leemos el contenido del sitio web </span>
+</span></span><span class="line"><span class="cl">  <span class="nf">html_table</span><span class="p">()</span> <span class="c1"># extraemos las tablas del sitio web</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># limpiar tabla</span>
+</span></span><span class="line"><span class="cl"><span class="n">tabla_comunas_2</span> <span class="o">&lt;-</span> <span class="n">tabla_comunas[[1]]</span> <span class="o">|&gt;</span> <span class="c1"># elegimos la primera tabla obtenida</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">clean_names</span><span class="p">()</span> <span class="o">|&gt;</span> <span class="c1"># limpiamos los nombres de la tabla usando {janitor}</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">remove_empty</span><span class="p">(</span><span class="s">&#34;cols&#34;</span><span class="p">)</span> <span class="o">|&gt;</span>  <span class="c1"># eliminar columnas vacías</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="n">latitud</span><span class="p">,</span> <span class="o">-</span><span class="n">longitud</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># convertir los códigos comunales a texto</span>
+</span></span><span class="line"><span class="cl"><span class="n">tabla_comunas_3</span> <span class="o">&lt;-</span> <span class="n">tabla_comunas_2</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">rename</span><span class="p">(</span><span class="n">codigo_comuna</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">codigo_comuna</span> <span class="o">=</span> <span class="nf">as.character</span><span class="p">(</span><span class="n">codigo_comuna</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">datos_comunas</span> <span class="o">&lt;-</span> <span class="n">tabla_comunas_3</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># limpiar variables numéricas para estén disponibles en formato numérico en vez de como texto</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">poblacion2020</span> <span class="o">=</span> <span class="nf">str_remove</span><span class="p">(</span><span class="n">poblacion2020</span><span class="p">,</span> <span class="s">&#34; &#34;</span><span class="p">),</span> <span class="c1"># borrar espacios</span>
+</span></span><span class="line"><span class="cl">         <span class="n">poblacion2020</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">poblacion2020</span><span class="p">))</span> <span class="o">|&gt;</span>  <span class="c1"># transformar texto a numérico</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># corregir superficie</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">superficie_km2</span> <span class="o">=</span> <span class="nf">str_remove</span><span class="p">(</span><span class="n">superficie_km2</span><span class="p">,</span> <span class="s">&#34;\\.&#34;</span><span class="p">),</span> <span class="c1"># borrar puntos separadores de miles</span>
+</span></span><span class="line"><span class="cl">         <span class="n">superficie_km2</span> <span class="o">=</span> <span class="nf">str_replace</span><span class="p">(</span><span class="n">superficie_km2</span><span class="p">,</span> <span class="s">&#34;,&#34;</span><span class="p">,</span> <span class="s">&#34;.&#34;</span><span class="p">),</span> <span class="c1"># reemplazar comas por puntos</span>
+</span></span><span class="line"><span class="cl">         <span class="n">superficie_km2</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">superficie_km2</span><span class="p">))</span> <span class="o">|&gt;</span> <span class="c1"># transformar texto a numérico</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># corregir densidad</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">densidad_hab_km2</span> <span class="o">=</span> <span class="nf">str_remove_all</span><span class="p">(</span><span class="n">densidad_hab_km2</span><span class="p">,</span> <span class="s">&#34;\\.&#34;</span><span class="p">),</span> <span class="c1"># borrar puntos separadores de miles</span>
+</span></span><span class="line"><span class="cl">         <span class="n">densidad_hab_km2</span> <span class="o">=</span> <span class="nf">str_replace</span><span class="p">(</span><span class="n">densidad_hab_km2</span><span class="p">,</span> <span class="s">&#34;,&#34;</span><span class="p">,</span> <span class="s">&#34;.&#34;</span><span class="p">),</span> <span class="c1"># reemplazar comas por puntos</span>
+</span></span><span class="line"><span class="cl">         <span class="n">densidad_hab_km2</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">densidad_hab_km2</span><span class="p">))</span> <span class="o">|&gt;</span>  <span class="c1"># transformar texto a numérico</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">idh_2005</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">idh_2005</span><span class="p">))</span> <span class="c1"># transformar texto a numérico</span>
+</span></span></code></pre></div><p>Así quedó el resultado de nuestro web scraping:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">glimpse</span><span class="p">(</span><span class="n">datos_comunas</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>Rows: 346
+Columns: 9
+$ codigo_comuna    &lt;chr&gt; &quot;15101&quot;, &quot;15102&quot;, &quot;15201&quot;, &quot;15202&quot;, &quot;1101&quot;, &quot;1107&quot;, &quot;…
+$ nombre           &lt;chr&gt; &quot;Arica&quot;, &quot;Camarones&quot;, &quot;Putre&quot;, &quot;General Lagos&quot;, &quot;Iqui…
+$ provincia        &lt;chr&gt; &quot;Arica&quot;, &quot;Arica&quot;, &quot;Parinacota&quot;, &quot;Parinacota&quot;, &quot;Iquiqu…
+$ region           &lt;chr&gt; &quot;Arica y Parinacota Arica y Parinacota&quot;, &quot;Arica y Par…
+$ superficie_km2   &lt;dbl&gt; 4799.4, 3927.0, 5902.5, 2244.4, 2242.1, 5729.0, 13765…
+$ poblacion2020    &lt;dbl&gt; 247552, 1233, 2515, 810, 223463, 129999, 17395, 1375,…
+$ densidad_hab_km2 &lt;dbl&gt; 516.00, 31.00, 43.00, 36.00, 99.60, 226.80, 126.00, 6…
+$ idh_2005         &lt;dbl&gt; 0.866, 0.791, 0.817, 0.773, 0.826, 0.735, 0.772, 0.69…
+$ idh_2005_2       &lt;chr&gt; &quot;Muy alto&quot;, &quot;Alto&quot;, &quot;Muy alto&quot;, &quot;Alto&quot;, &quot;Muy alto&quot;, &quot;…
 </code></pre>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># visualizar</span>
-</span></span><span class="line"><span class="cl"><span class="n">mapa_datos</span> <span class="o">|&gt;</span> 
-</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">aes</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="n">variable</span><span class="p">)</span> <span class="o">+</span> <span class="c1">#usamos la variable que creamos como relleno de las comunas</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">col</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">)</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">theme_void</span><span class="p">()</span>
-</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/region_fill_manual-1.png" width="768" />
 <div style="margin: 28px 0;">
-    <p style="margin: 0 0 6px 0;
-              font-size: 78%;
-              text-transform: uppercase;
-              letter-spacing: 0.06em;
-              /*opacity: 0.5;*/
-              color: #AB85CC;
-              ">
+    <p class="titulo-panel">
       Publicaciones relacionadas
     </p>
 
-  <a href="/blog/tutorial_mapa_chile/"
+  <a href="/blog/webscraping_rvest/"
      style="display: flex;
             flex-direction: row;
             align-items: stretch;
@@ -657,8 +777,8 @@ Geodetic CRS:  SIRGAS 2000
                    margin: 10px 0 10px 10px;
                    overflow: hidden;
                    border-radius: 5px;">
-      <img src="/blog/tutorial_mapa_chile/featured.png"
-           alt="Crea un mapa de Chile y visualiza datos comunales y regionales con mapas en R"
+      <img src="/blog/webscraping_rvest/scraping_4-featured.jpeg"
+           alt="Tutorial: web scraping en R usando {rvest}"
            style="position: absolute;
                   inset: 0;
                   width: 100%;
@@ -681,15 +801,9 @@ Geodetic CRS:  SIRGAS 2000
                 color: #9069C0;
                 font-weight: bold;
                 line-height: 1.35;">
-        Crea un mapa de Chile y visualiza datos comunales y regionales con mapas en R
+        Tutorial: web scraping en R usando {rvest}
       </p>
 
-      
-      <p style="margin: 0;
-                font-size: 84%;
-                line-height: 1.5;">
-        Visualizar datos geográficamente es una herramienta de comunicación y análisis de datos muy potente. En este tutorial te explico cómo obtener mapas comunales y regionales de Chile en R, y cómo crear…
-      </p>
       
 
     </div>
@@ -702,79 +816,101 @@ Geodetic CRS:  SIRGAS 2000
 
 
 
-<h3 id="agregar-datos-obtenidos-desde-internet-al-mapa">Agregar datos obtenidos desde internet al mapa
-  <a href="#agregar-datos-obtenidos-desde-internet-al-mapa"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 0h24v24H0z" fill="currentColor"></path>
-      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
-    </svg></a>
-</h3>
-<p>Ahora, pasaremos a usar datos reales sobre nuestro mapa comunal. Pero en vez de entregarles datos copiados y pegados, obtendremos directamente los datos desde internet, 
-<a href="../../../blog/tutorial_scraping_rvest/">usando el paquete <code>{rvest}</code></a> que sirve para hacer 
-<a href="../../../blog/r_introduccion/web_scraping/">web scraping</a> desde páginas web; es decir, descargar datos presentes en sitios de internet para usarlos directamente en R.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">rvest</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">tabla_comunas</span> <span class="o">&lt;-</span> <span class="nf">session</span><span class="p">(</span><span class="s">&#34;https://es.wikipedia.org/wiki/Anexo:Comunas_de_Chile&#34;</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="c1"># sitio web que scrapearemos</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">read_html</span><span class="p">()</span> <span class="o">|&gt;</span> <span class="c1"># leemos el contenido del sitio web </span>
-</span></span><span class="line"><span class="cl">  <span class="nf">html_table</span><span class="p">()</span> <span class="c1"># extraemos las tablas del sitio web</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">tabla_comunas_2</span> <span class="o">&lt;-</span> <span class="n">tabla_comunas[[1]]</span> <span class="o">|&gt;</span> <span class="c1"># elegimos la primera tabla obtenida</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">clean_names</span><span class="p">()</span> <span class="c1"># limpiamos los nombres de la tabla usando {janitor}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">tabla_comunas_3</span> <span class="o">&lt;-</span> <span class="n">tabla_comunas_2</span> <span class="o">|&gt;</span> 
-</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">region</span> <span class="o">==</span> <span class="s">&#34;Metropolitana de Santiago&#34;</span><span class="p">)</span> <span class="c1"># filtrar la región</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">tabla_comunas_4</span> <span class="o">&lt;-</span> <span class="n">tabla_comunas_3</span> <span class="o">|&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="c1"># convertir los códigos comunales a texto</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">rename</span><span class="p">(</span><span class="n">codigo_comuna</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span> <span class="o">|&gt;</span> 
-</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">codigo_comuna</span> <span class="o">=</span> <span class="nf">as.character</span><span class="p">(</span><span class="n">codigo_comuna</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">datos_comunas</span> <span class="o">&lt;-</span> <span class="n">tabla_comunas_4</span> <span class="o">|&gt;</span> 
-</span></span><span class="line"><span class="cl">  <span class="c1"># limpiar variables numéricas para estén disponibles en formato numérico en vez de como texto</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">poblacion2020</span> <span class="o">=</span> <span class="nf">str_remove</span><span class="p">(</span><span class="n">poblacion2020</span><span class="p">,</span> <span class="s">&#34; &#34;</span><span class="p">),</span> <span class="c1"># borrar espacios</span>
-</span></span><span class="line"><span class="cl">         <span class="n">poblacion2020</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">poblacion2020</span><span class="p">))</span> <span class="o">|&gt;</span>  <span class="c1"># transformar texto a numérico</span>
-</span></span><span class="line"><span class="cl">  <span class="c1"># corregir superficie</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">superficie_km2</span> <span class="o">=</span> <span class="nf">str_remove</span><span class="p">(</span><span class="n">superficie_km2</span><span class="p">,</span> <span class="s">&#34;\\.&#34;</span><span class="p">),</span> <span class="c1"># borrar puntos separadores de miles</span>
-</span></span><span class="line"><span class="cl">         <span class="n">superficie_km2</span> <span class="o">=</span> <span class="nf">str_replace</span><span class="p">(</span><span class="n">superficie_km2</span><span class="p">,</span> <span class="s">&#34;,&#34;</span><span class="p">,</span> <span class="s">&#34;.&#34;</span><span class="p">),</span> <span class="c1"># reemplazar comas por puntos</span>
-</span></span><span class="line"><span class="cl">         <span class="n">superficie_km2</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">superficie_km2</span><span class="p">))</span> <span class="o">|&gt;</span> <span class="c1"># transformar texto a numérico</span>
-</span></span><span class="line"><span class="cl">  <span class="c1"># corregir densidad</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">densidad_hab_km2</span> <span class="o">=</span> <span class="nf">str_remove_all</span><span class="p">(</span><span class="n">densidad_hab_km2</span><span class="p">,</span> <span class="s">&#34;\\.&#34;</span><span class="p">),</span> <span class="c1"># borrar puntos separadores de miles</span>
-</span></span><span class="line"><span class="cl">         <span class="n">densidad_hab_km2</span> <span class="o">=</span> <span class="nf">str_replace</span><span class="p">(</span><span class="n">densidad_hab_km2</span><span class="p">,</span> <span class="s">&#34;,&#34;</span><span class="p">,</span> <span class="s">&#34;.&#34;</span><span class="p">),</span> <span class="c1"># reemplazar comas por puntos</span>
-</span></span><span class="line"><span class="cl">         <span class="n">densidad_hab_km2</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">densidad_hab_km2</span><span class="p">))</span> <span class="c1"># transformar texto a numérico</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">datos_comunas</span>
-</span></span></code></pre></div><pre><code># A tibble: 0 × 12
-# ℹ 12 variables: codigo_comuna &lt;chr&gt;, nombre &lt;chr&gt;, x &lt;lgl&gt;, provincia &lt;chr&gt;,
-#   region &lt;chr&gt;, superficie_km2 &lt;dbl&gt;, poblacion2020 &lt;dbl&gt;,
-#   densidad_hab_km2 &lt;dbl&gt;, idh_2005 &lt;chr&gt;, idh_2005_2 &lt;chr&gt;, latitud &lt;chr&gt;,
-#   longitud &lt;chr&gt;
-</code></pre>
-<p>Así quedó el resultado de nuestro web scraping. A continuación, 
-<a href="../../../blog/left_join/">usamos la función <code>left_join()</code></a> para adjuntar estas columnas nuevas a nuestro data frame que contiene los nombres y códigos de las comunas, además de la geometría o información geográfica de las comunas, usando como columna de unión los códigos comunales:</p>
+<h4 id="agregar-variables-al-mapa">Agregar variables al mapa
+  <a href="#agregar-variables-al-mapa"></a>
+</h4>
+<p>A continuación, 
+<a href="../../../blog/left_join/">usamos la función <code>left_join()</code></a> para adjuntar estas columnas nuevas a nuestro <em>data frame</em> que contiene los nombres y códigos de las comunas, además de la geometría o información geográfica de las comunas, usando como columna de unión los códigos comunales:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">mapa_datos_2</span> <span class="o">&lt;-</span> <span class="n">mapa</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="nf">left_join</span><span class="p">(</span><span class="n">datos_comunas</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="s">&#34;codigo_comuna&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nf">glimpse</span><span class="p">(</span><span class="n">mapa_datos_2</span><span class="p">)</span>
 </span></span></code></pre></div><pre><code>Rows: 52
-Columns: 16
+Columns: 13
 $ codigo_comuna    &lt;chr&gt; &quot;13404&quot;, &quot;13402&quot;, &quot;13124&quot;, &quot;13103&quot;, &quot;13301&quot;, &quot;13303&quot;,…
 $ codigo_provincia &lt;chr&gt; &quot;134&quot;, &quot;134&quot;, &quot;131&quot;, &quot;131&quot;, &quot;133&quot;, &quot;133&quot;, &quot;133&quot;, &quot;131…
 $ codigo_region    &lt;chr&gt; &quot;13&quot;, &quot;13&quot;, &quot;13&quot;, &quot;13&quot;, &quot;13&quot;, &quot;13&quot;, &quot;13&quot;, &quot;13&quot;, &quot;13&quot;,…
 $ geometry         &lt;MULTIPOLYGON [°]&gt; MULTIPOLYGON (((-70.61396 -..., MULTIPOL…
 $ nombre_comuna    &lt;chr&gt; &quot;Paine&quot;, &quot;Buin&quot;, &quot;Pudahuel&quot;, &quot;Cerro Navia&quot;, &quot;Colina&quot;,…
-$ nombre           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-$ x                &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-$ provincia        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-$ region           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-$ superficie_km2   &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-$ poblacion2020    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-$ densidad_hab_km2 &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-$ idh_2005         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-$ idh_2005_2       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-$ latitud          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-$ longitud         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ nombre           &lt;chr&gt; &quot;Paine&quot;, &quot;Buin&quot;, &quot;Pudahuel&quot;, &quot;Cerro Navia&quot;, &quot;Colina&quot;,…
+$ provincia        &lt;chr&gt; &quot;Maipo&quot;, &quot;Maipo&quot;, &quot;Santiago&quot;, &quot;Santiago&quot;, &quot;Chacabuco&quot;…
+$ region           &lt;chr&gt; &quot;Metropolitana de Santiago Metropolitana de Santiago&quot;…
+$ superficie_km2   &lt;dbl&gt; 820, 214, 197, 11, 9712, 653, 452, 448, 107, 3935, 69…
+$ poblacion2020    &lt;dbl&gt; 82766, 109641, 253139, 142465, 180353, 21477, 126898,…
+$ densidad_hab_km2 &lt;dbl&gt; 1009.0, 512.3, 1284.9, 12951.3, 185.7, 328.0, 280.7, …
+$ idh_2005         &lt;dbl&gt; 0.718, 0.731, 0.735, 0.683, 0.726, 0.709, 0.697, 0.73…
+$ idh_2005_2       &lt;chr&gt; &quot;Alto&quot;, &quot;Alto&quot;, &quot;Alto&quot;, &quot;Medio&quot;, &quot;Alto&quot;, &quot;Alto&quot;, &quot;Med…
 </code></pre>
 <p>Lo que hicimos en la operación anterior fue 
 <a href="../../../blog/left_join/">unir dos tablas distintas en base a una variable común</a> que ambas tablas poseen: <code>codigo_comuna</code>. De este modo, obtenemos un nuevo data frame que contiene tanto la información geográfica como los datos comunales que necesitamos.</p>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/left_join/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/left_join/featured.png"
+           alt="Unir o cruzar datos con left_join()"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Unir o cruzar datos con left_join()
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        Un left join realiza una unión o combinación entre dos tablas de datos a partir de una variable en común o clave (key). En otras palabras, un left join toma dos tablas que tienen datos distintos, pero…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
 <p>Habiendo hecho esto, ahora podemos crear gráficos comunales usando cualquier variable que queramos, siempre y cuando podamos hacer coincidir los datos con el mapa en base a los códigos comunales o los nombres de comuna.</p>
 
 
@@ -786,6 +922,7 @@ $ longitud         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h3>
+<p>A continuación, ejemplos de visualización con las variables que agregamos a los mapas:</p>
 
 
 
@@ -795,11 +932,13 @@ $ longitud         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">mapa_datos_2</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">poblacion2020</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">          <span class="n">col</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">)</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="n">viridis</span><span class="o">::</span><span class="nf">scale_fill_viridis</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="nf">label_number</span><span class="p">(</span><span class="n">big.mark</span> <span class="o">=</span> <span class="s">&#34;.&#34;</span><span class="p">,</span> <span class="n">decimal.mark</span> <span class="o">=</span> <span class="s">&#34;,&#34;</span><span class="p">))</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">theme_void</span><span class="p">()</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">labs</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;Población&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">aes</span><span class="p">(</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">poblacion2020</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.3</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_fill_continuous</span><span class="p">(</span><span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;Sunset&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">labels</span> <span class="o">=</span> <span class="nf">label_number</span><span class="p">(</span><span class="n">big.mark</span> <span class="o">=</span> <span class="s">&#34;.&#34;</span><span class="p">,</span> <span class="n">decimal.mark</span> <span class="o">=</span> <span class="s">&#34;,&#34;</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&#34;Población por comunas&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">       <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&#34;Región Metropolitana de Santiago&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">       <span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;Población&#34;</span><span class="p">)</span>
 </span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/region_fill_continuo-1.png" width="768" />
 
 
@@ -810,18 +949,21 @@ $ longitud         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">mapa_datos_2</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">geometry</span><span class="p">,</span> 
-</span></span><span class="line"><span class="cl">              <span class="n">fill</span> <span class="o">=</span> <span class="n">idh_2005_2</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">          <span class="n">col</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">aes</span><span class="p">(</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">geometry</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">      <span class="n">fill</span> <span class="o">=</span> <span class="n">idh_2005_2</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">)</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">breaks</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;Medio&#34;</span><span class="p">,</span> <span class="s">&#34;Alto&#34;</span><span class="p">,</span> <span class="s">&#34;Muy alto&#34;</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">                    <span class="n">values</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;Medio&#34;</span> <span class="o">=</span> <span class="s">&#34;olivedrab4&#34;</span><span class="p">,</span> <span class="s">&#34;Alto&#34;</span> <span class="o">=</span> <span class="s">&#34;olivedrab3&#34;</span><span class="p">,</span> <span class="s">&#34;Muy alto&#34;</span> <span class="o">=</span> <span class="s">&#34;olivedrab2&#34;</span><span class="p">))</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf_text</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">nombre_comuna</span><span class="p">),</span> <span class="n">check_overlap</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">theme_void</span><span class="p">()</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">labs</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;IDH&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><pre><code>Warning in st_point_on_surface.sfc(sf::st_zm(x)): st_point_on_surface may not
-give correct results for longitude/latitude data
-</code></pre>
-<img src="index.markdown_strict_files/figure-markdown_strict/region_fill_categorico-1.png" width="768" />
+</span></span><span class="line"><span class="cl">                    <span class="n">values</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;Medio&#34;</span> <span class="o">=</span> <span class="s">&#34;#774EA0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                               <span class="s">&#34;Alto&#34;</span> <span class="o">=</span> <span class="s">&#34;#AB54A8&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                               <span class="s">&#34;Muy alto&#34;</span> <span class="o">=</span> <span class="s">&#34;#DA6AA2&#34;</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf_text</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="o">~</span><span class="nf">filter</span><span class="p">(</span><span class="n">.x</span><span class="p">,</span> <span class="n">superficie_km2</span> <span class="o">&gt;</span> <span class="m">150</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">aes</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="n">nombre_comuna</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">check_overlap</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">labs</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;IDH&#34;</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span> <span class="o">=</span> <span class="s">&#34;bottom&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/region_fill_categorico-1.png" width="768" />
 <p>Sin embargo, podemos ver que estos mapas no se ajustan perfectamente a la imagen mental que tiene un ciudadano común acerca de cómo se ve la Región Metropolitana. Por ejemplo, vemos cómo la comuna de San José de Maipo abarca una superficie enorme dado que limita en la cordillera de los Andes con Argentina, o que comunas como Lo Barnechea se expanden hacia superficies cordilleranas de gran extensión.</p>
 <p>Esto se debe a que ususalmente nos encontramos frente a mapas que representan el &ldquo;Gran Santiago&rdquo;, es decir, sólo la superficie urbana de las comunas urbanas de la región, omitiendo sectores rurales, cordilleranos o deshabitados.</p>
 <p>Por lo tanto, a continuación veremos cómo obtener un mapa urbano de la Región Metropolitana de Santiago.</p>
@@ -837,24 +979,25 @@ give correct results for longitude/latitude data
 </h2>
 <p>En los siguientes pasos, pasaremos de un mapa comunal a un mapa comunal urbano; es decir, un mapa que <strong>sólo considere la superficie urbana de las comunas</strong>, en vez de la superficie total de las comunas.</p>
 <p>Usando <code>{chilemapas}</code>, podemos obtener un mapa de la Región Metropolitana con un nivel de detalle mayor, que divide internamente las comunas en superficies más pequeñas que sólo corresponden a zonas urbanas:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># obtener mapa por zonas rural/urbano</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># nombres de comunas</span>
+</span></span><span class="line"><span class="cl"><span class="n">nombres_comunas</span> <span class="o">&lt;-</span> <span class="n">chilemapas</span><span class="o">::</span><span class="n">codigos_territoriales</span> <span class="o">|&gt;</span> <span class="nf">select</span><span class="p">(</span><span class="nf">matches</span><span class="p">(</span><span class="s">&#34;comuna&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># obtener mapa por zonas rural/urbano</span>
 </span></span><span class="line"><span class="cl"><span class="n">mapa_zonas_urbanas</span> <span class="o">&lt;-</span> <span class="n">chilemapas</span><span class="o">::</span><span class="n">mapa_zonas</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="c1"># definir geometrías</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">st_set_geometry</span><span class="p">(</span><span class="n">chilemapas</span><span class="o">::</span><span class="n">mapa_zonas</span><span class="o">$</span><span class="n">geometry</span><span class="p">)</span> <span class="o">|&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="c1"># filtrar región</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">codigo_region</span> <span class="o">==</span> <span class="m">13</span><span class="p">)</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="c1"># agregar nombres de comunas</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">left_join</span><span class="p">(</span><span class="n">chilemapas</span><span class="o">::</span><span class="n">codigos_territoriales</span> <span class="o">|&gt;</span> 
-</span></span><span class="line"><span class="cl">              <span class="nf">select</span><span class="p">(</span><span class="nf">matches</span><span class="p">(</span><span class="s">&#34;comuna&#34;</span><span class="p">)))</span>
-</span></span></code></pre></div><pre><code>Joining with `by = join_by(codigo_comuna)`
-</code></pre>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># mapa de zonas urbanas</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">left_join</span><span class="p">(</span><span class="n">nombres_comunas</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">by</span> <span class="o">=</span> <span class="nf">join_by</span><span class="p">(</span><span class="n">codigo_comuna</span><span class="p">))</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># mapa de zonas urbanas</span>
 </span></span><span class="line"><span class="cl"><span class="n">mapa_zonas_urbanas</span> <span class="o">|&gt;</span> 
-</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">geometry</span><span class="p">))</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;grey60&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">)</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">theme_void</span><span class="p">()</span>
-</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/region_zonas-1.png" width="768" />
-<p>Podemos mejorar esta visualización <strong>uniendo</strong> con <code>st_union()</code> las zonas urbanas intra-comunales en sus respectivas comunas, para volver a obtener un mapa comunal, pero que recorta las comunas para que sólo consideren su la superficie urbana de cada una:</p>
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">aes</span><span class="p">(</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">geometry</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#553A74&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">)</span>
+</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
+<p>Podemos mejorar esta visualización agrupando los polígonos por comuna y luego <strong>uniendo</strong> con <code>st_union()</code> las zonas urbanas intra-comunales en sus respectivas comunas, para volver a obtener un mapa comunal, pero que recorta las comunas para que sólo consideren su la <strong>superficie urbana</strong> de cada una:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># mapa de zonas urbanas</span>
 </span></span><span class="line"><span class="cl"><span class="n">mapa_zonas_urbanas</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="c1"># unir polígonos por comunas</span>
@@ -862,8 +1005,7 @@ give correct results for longitude/latitude data
 </span></span><span class="line"><span class="cl">  <span class="nf">summarise</span><span class="p">(</span><span class="n">geometry</span> <span class="o">=</span> <span class="nf">st_union</span><span class="p">(</span><span class="n">geometry</span><span class="p">),</span> <span class="n">.groups</span> <span class="o">=</span> <span class="s">&#34;drop&#34;</span><span class="p">)</span> <span class="o">|&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="c1"># visualizar</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;grey60&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">)</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">theme_void</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#553A74&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">)</span>
 </span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/region_zonas_comunas-1.png" width="768" />
 <p>De inmediato, podemos ver que emerge una figura más familiar de lo que es el <em>Gran Santiago,</em> pero ahora tenemos otro problema: el mapa también contiene las zonas urbanas de comunas menos céntricas de la región, tales como Buin, Curacaví, Talagante y otras. Esto se debe a que nuestro mapa aún contiene comunas que no son mayoritariamente urbanas, dado que poseen sectores despoblados o de actividad agrícola, minera u otras, y que por consiguiente dan una apariencia discontinua a nuestro mapa.</p>
 <p>Para resolver esto y dejar sólo las comunas urbanas del Gran Santiago, tenemos varias opciones: podemos filtrar específicamente las comunas que queremos, o bien, podemos filtrar en base a privincias, dejando sólo las provincias Santiago y Cordillera.</p>
@@ -893,16 +1035,8 @@ give correct results for longitude/latitude data
 </span></span><span class="line"><span class="cl">  <span class="nf">summarise</span><span class="p">(</span><span class="n">geometry</span> <span class="o">=</span> <span class="nf">st_union</span><span class="p">(</span><span class="n">geometry</span><span class="p">))</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="c1"># graficar</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;grey60&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">)</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">theme_void</span><span class="p">()</span>
-</span></span></code></pre></div><pre><code>`summarise()` has regrouped the output.
-ℹ Summaries were computed grouped by nombre_comuna and codigo_comuna.
-ℹ Output is grouped by nombre_comuna.
-ℹ Use `summarise(.groups = &quot;drop_last&quot;)` to silence this message.
-ℹ Use `summarise(.by = c(nombre_comuna, codigo_comuna))` for per-operation
-  grouping (`?dplyr::dplyr_by`) instead.
-</code></pre>
-<img src="index.markdown_strict_files/figure-markdown_strict/region_urbano_opcion1-1.png" width="768" />
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#553A74&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">)</span>
+</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/region_urbano_opcion1-1.png" width="768" />
 
 
 
@@ -919,16 +1053,8 @@ give correct results for longitude/latitude data
 </span></span><span class="line"><span class="cl">  <span class="nf">summarise</span><span class="p">(</span><span class="n">geometry</span> <span class="o">=</span> <span class="nf">st_union</span><span class="p">(</span><span class="n">geometry</span><span class="p">))</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="c1"># graficar</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;grey60&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">)</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">theme_void</span><span class="p">()</span>
-</span></span></code></pre></div><pre><code>`summarise()` has regrouped the output.
-ℹ Summaries were computed grouped by nombre_comuna and codigo_comuna.
-ℹ Output is grouped by nombre_comuna.
-ℹ Use `summarise(.groups = &quot;drop_last&quot;)` to silence this message.
-ℹ Use `summarise(.by = c(nombre_comuna, codigo_comuna))` for per-operation
-  grouping (`?dplyr::dplyr_by`) instead.
-</code></pre>
-<img src="index.markdown_strict_files/figure-markdown_strict/region_urbano_opcion2-1.png" width="768" />
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#553A74&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">)</span>
+</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/region_urbano_opcion2-1.png" width="768" />
 <p>La decisión que tomes depende de los objetivos del usuario y de tu visualzación, pero dejo ambas aproximaciones a modo de aprendizaje.</p>
 
 
@@ -945,13 +1071,15 @@ give correct results for longitude/latitude data
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">mapa_zonas_urbanas</span> <span class="o">|&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">nombre_comuna</span> <span class="o">==</span> <span class="s">&#34;Pudahuel&#34;</span><span class="p">)</span> <span class="o">|&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;lightblue&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">)</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf_text</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="n">geocodigo</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;black&#34;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">theme_void</span><span class="p">()</span>
-</span></span></code></pre></div><pre><code>Warning in st_point_on_surface.sfc(sf::st_zm(x)): st_point_on_surface may not
-give correct results for longitude/latitude data
-</code></pre>
-<img src="index.markdown_strict_files/figure-markdown_strict/prueba_islas-1.png" width="768" />
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#553A74&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.6</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf_label</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">aes</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="n">geocodigo</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#553A74&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">check_overlap</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">size</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/prueba_islas-1.png" width="768" />
 <p>Bastaría con anotar los geocódigos para filtrarlos.</p>
 <p>Entonces, en el siguiente paso removeremos estas pequeñas zonas urbanas de forma manual para obtener un mapa más contínuo.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># vector con geocódigos que deseamor remover</span>
@@ -971,22 +1099,16 @@ give correct results for longitude/latitude data
 </span></span><span class="line"><span class="cl">  <span class="nf">group_by</span><span class="p">(</span><span class="n">nombre_comuna</span><span class="p">,</span> <span class="n">codigo_comuna</span><span class="p">)</span> <span class="o">%&gt;%</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">summarise</span><span class="p">(</span><span class="n">geometry</span> <span class="o">=</span> <span class="nf">st_union</span><span class="p">(</span><span class="n">geometry</span><span class="p">))</span> <span class="o">|&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">ungroup</span><span class="p">()</span>
-</span></span></code></pre></div><pre><code>`summarise()` has regrouped the output.
-ℹ Summaries were computed grouped by nombre_comuna and codigo_comuna.
-ℹ Output is grouped by nombre_comuna.
-ℹ Use `summarise(.groups = &quot;drop_last&quot;)` to silence this message.
-ℹ Use `summarise(.by = c(nombre_comuna, codigo_comuna))` for per-operation
-  grouping (`?dplyr::dplyr_by`) instead.
-</code></pre>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># simplificar bordes del mapa (opcional)</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mutate(geometry = rmapshaper::ms_simplify(geometry,  keep = 0.4))</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># graficar</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># simplificar bordes del mapa (opcional)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># mutate(geometry = rmapshaper::ms_simplify(geometry,  keep = 0.4))</span>
+</span></span></code></pre></div><p>Y ahora el mapa resultante:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># graficar</span>
 </span></span><span class="line"><span class="cl"><span class="n">mapa_urbano</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;blueviolet&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">)</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">theme_void</span><span class="p">()</span>
-</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/remover_islas-1.png" width="768" />
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#553A74&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">)</span>
+</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="768" />
 <p>De esta forma ya logramos graficar un mapa del Gran Santiago mucho más definido y limpio.</p>
 
 
@@ -1006,22 +1128,20 @@ give correct results for longitude/latitude data
 </span></span><span class="line"><span class="cl"><span class="n">mapa_urbano_2</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">aes</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="n">densidad_hab_km2</span><span class="p">)</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">col</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">)</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="n">viridis</span><span class="o">::</span><span class="nf">scale_fill_viridis</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="nf">label_number</span><span class="p">(</span><span class="n">big.mark</span> <span class="o">=</span> <span class="s">&#34;.&#34;</span><span class="p">,</span> <span class="n">decimal.mark</span> <span class="o">=</span> <span class="s">&#34;,&#34;</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">                              <span class="n">option</span> <span class="o">=</span> <span class="s">&#34;magma&#34;</span><span class="p">)</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">theme_void</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">col</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_fill_continuous</span><span class="p">(</span><span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;PurpOr&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                        <span class="n">labels</span> <span class="o">=</span> <span class="nf">label_number</span><span class="p">(</span><span class="n">big.mark</span> <span class="o">=</span> <span class="s">&#34;.&#34;</span><span class="p">,</span> <span class="n">decimal.mark</span> <span class="o">=</span> <span class="s">&#34;,&#34;</span><span class="p">))</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">labs</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;Densidad poblacional&#34;</span><span class="p">)</span>
 </span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/region_urbana_fill_continuo-1.png" width="768" />
 <p>Finalmente, podemos poner nuestro nuevo mapa urbano de la Región Metropolitana de Santiago sobre el mapa de la región completa:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">mapa</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">          <span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;grey95&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">          <span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#D9BEEA&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.3</span><span class="p">)</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">mapa_urbano_2</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nf">aes</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="n">poblacion2020</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">          <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="n">viridis</span><span class="o">::</span><span class="nf">scale_fill_viridis</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="nf">label_number</span><span class="p">(</span><span class="n">big.mark</span> <span class="o">=</span> <span class="s">&#34;.&#34;</span><span class="p">,</span> <span class="n">decimal.mark</span> <span class="o">=</span> <span class="s">&#34;,&#34;</span><span class="p">),</span> 
-</span></span><span class="line"><span class="cl">                              <span class="n">option</span> <span class="o">=</span> <span class="s">&#34;mako&#34;</span><span class="p">)</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">theme_void</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">          <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_fill_continuous</span><span class="p">(</span><span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;PurpOr&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">labels</span> <span class="o">=</span> <span class="nf">label_number</span><span class="p">(</span><span class="n">big.mark</span> <span class="o">=</span> <span class="s">&#34;.&#34;</span><span class="p">,</span> <span class="n">decimal.mark</span> <span class="o">=</span> <span class="s">&#34;,&#34;</span><span class="p">))</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">labs</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;Población&#34;</span><span class="p">)</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">guides</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="nf">guide_colourbar</span><span class="p">(</span><span class="n">position</span> <span class="o">=</span> <span class="s">&#34;inside&#34;</span><span class="p">))</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">theme</span><span class="p">(</span><span class="n">legend.position.inside</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">.1</span><span class="p">,</span> <span class="m">.7</span><span class="p">),</span>
@@ -1029,35 +1149,97 @@ give correct results for longitude/latitude data
 </span></span><span class="line"><span class="cl">        <span class="n">legend.key.height</span> <span class="o">=</span> <span class="nf">unit</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="s">&#34;mm&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">        <span class="n">legend.ticks.length</span> <span class="o">=</span> <span class="nf">unit</span><span class="p">(</span><span class="m">0.4</span><span class="p">,</span> <span class="s">&#34;mm&#34;</span><span class="p">))</span>
 </span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/region_urbana_fill_continuo_contexto-1.png" width="768" />
-<p>También podemos recortar el mapa con <code>coord_sf()</code> para hacerle un poco de zoom a la zona urbana dentro del contexto de la región completa:</p>
+<p>También podemos <strong>recortar</strong> el mapa con <code>coord_sf()</code> para hacerle un poco de zoom a la zona urbana dentro del contexto de la región completa:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">mapa</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nf">aes</span><span class="p">(</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">geometry</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">          <span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;grey90&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.4</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">          <span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#D9BEEA&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="m">.4</span><span class="p">)</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">mapa_urbano_2</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nf">aes</span><span class="p">(</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">poblacion2020</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">          <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">          <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0.3</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_fill_continuous</span><span class="p">(</span><span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;PurpOr&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">labels</span> <span class="o">=</span> <span class="nf">label_number</span><span class="p">(</span><span class="n">big.mark</span> <span class="o">=</span> <span class="s">&#34;.&#34;</span><span class="p">,</span> <span class="n">decimal.mark</span> <span class="o">=</span> <span class="s">&#34;,&#34;</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># recortar con coordenadas </span>
 </span></span><span class="line"><span class="cl">  <span class="nf">coord_sf</span><span class="p">(</span><span class="n">xlim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-70.95</span><span class="p">,</span> <span class="m">-70.33</span><span class="p">),</span> 
 </span></span><span class="line"><span class="cl">           <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-33.75</span><span class="p">,</span> <span class="m">-33.2</span><span class="p">),</span> 
 </span></span><span class="line"><span class="cl">           <span class="n">expand</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="n">viridis</span><span class="o">::</span><span class="nf">scale_fill_viridis</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="nf">label_number</span><span class="p">(</span><span class="n">big.mark</span> <span class="o">=</span> <span class="s">&#34;.&#34;</span><span class="p">,</span> <span class="n">decimal.mark</span> <span class="o">=</span> <span class="s">&#34;,&#34;</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">                              <span class="n">option</span> <span class="o">=</span> <span class="s">&#34;mako&#34;</span><span class="p">)</span> <span class="o">+</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">theme_void</span><span class="p">()</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">labs</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;Población&#34;</span><span class="p">)</span> <span class="o">+</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">theme</span><span class="p">(</span><span class="n">legend.position.inside</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">.1</span><span class="p">,</span> <span class="m">.7</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">        <span class="n">legend.key.width</span> <span class="o">=</span> <span class="nf">unit</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="s">&#34;mm&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">        <span class="n">legend.key.height</span> <span class="o">=</span> <span class="nf">unit</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="s">&#34;mm&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">        <span class="n">legend.ticks.length</span> <span class="o">=</span> <span class="nf">unit</span><span class="p">(</span><span class="m">0.4</span><span class="p">,</span> <span class="s">&#34;mm&#34;</span><span class="p">))</span>
 </span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/region_urbana_fill_continuo_contexto_zoom-1.png" width="768" />
-<p>
+<p><div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Para profundizar en mapas con R
+    </p>
+
+  <a href="/blog/mapas_sf/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/mapas_sf/mapa_rm_featured.png"
+           alt="Mapas y visualización de datos geoespaciales en R con {sf}"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Mapas y visualización de datos geoespaciales en R con {sf}
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        R cuenta con un muy amplio ecosistema para trabajar con datos geoespaciales. Uno de los paquetes más importantes es {sf}, que permite manipular datos espaciales a partir del estándar simple features…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+
   <div style="margin: 28px 0;">
-    <p style="margin: 0 0 6px 0;
-              font-size: 78%;
-              text-transform: uppercase;
-              letter-spacing: 0.06em;
-              /*opacity: 0.5;*/
-              color: #AB85CC;
-              ">
+    <p class="titulo-panel">
       Publicaciones sobre mapas
     </p>
 
@@ -1067,7 +1249,7 @@ give correct results for longitude/latitude data
                 overflow: hidden;
                 background-color: #9069C00d;">
 
-      <a href="/blog/app_censo_mapas/"
+      <a href="/blog/mapas_hexagonales/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -1079,8 +1261,8 @@ give correct results for longitude/latitude data
                   ">
 
           
-          <img src="/blog/app_censo_mapas/featured.jpg"
-               alt="App: visualizador de mapas comunales del Censo 2024 por manzanas"
+          <img src="/blog/mapas_hexagonales/featured.png"
+               alt="Mapas hexagonales o cuadriculados con R"
                style="flex-shrink: 0;
                       width: 52px;
                       height: 38px;
@@ -1094,38 +1276,7 @@ give correct results for longitude/latitude data
                        color: #9069C0;
                        font-weight: 600;
                        line-height: 1.35;">
-            App: visualizador de mapas comunales del Censo 2024 por manzanas
-          </span>
-
-        </a>
-      <a href="/blog/mapas_censo_2024/"
-           style="display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  text-decoration: none;
-                  color: inherit;
-                  padding: 8px 14px;
-                  gap: 12px;
-                  border-top: 1px solid #9069C030;
-                  ">
-
-          
-          <img src="/blog/mapas_censo_2024/featured.png"
-               alt="Visualiza datos del Censo 2024 en mapas a nivel de manzana con R"
-               style="flex-shrink: 0;
-                      width: 52px;
-                      height: 38px;
-                      object-fit: cover;
-                      object-position: center top;
-                      border-radius: 4px;
-                      margin: 0;">
-          
-
-          <span style="font-size: 88%;
-                       color: #9069C0;
-                       font-weight: 600;
-                       line-height: 1.35;">
-            Visualiza datos del Censo 2024 en mapas a nivel de manzana con R
+            Mapas hexagonales o cuadriculados con R
           </span>
 
         </a>
@@ -1160,6 +1311,68 @@ give correct results for longitude/latitude data
           </span>
 
         </a>
+      <a href="/blog/app_censo_mapas/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/app_censo_mapas/featured.jpg"
+               alt="App: visualizador de mapas comunales del Censo 2024 por manzanas"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            App: visualizador de mapas comunales del Censo 2024 por manzanas
+          </span>
+
+        </a>
+      <a href="/blog/mapas_censo_2024/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/mapas_censo_2024/featured.jpg"
+               alt="Visualiza datos del Censo 2024 en mapas a nivel de manzana con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Visualiza datos del Censo 2024 en mapas a nivel de manzana con R
+          </span>
+
+        </a>
       <a href="/blog/elecciones_presidenciales_2025/"
            style="display: flex;
                   flex-direction: row;
@@ -1188,37 +1401,6 @@ give correct results for longitude/latitude data
                        font-weight: 600;
                        line-height: 1.35;">
             Visualización y scraping de resultados de las elecciones presidenciales 2025
-          </span>
-
-        </a>
-      <a href="/blog/mapas_areas_metropolitanas/"
-           style="display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  text-decoration: none;
-                  color: inherit;
-                  padding: 8px 14px;
-                  gap: 12px;
-                  border-top: 1px solid #9069C030;
-                  ">
-
-          
-          <img src="/blog/mapas_areas_metropolitanas/featured.jpg"
-               alt="Portafolio: mapas de Áreas Metropolitanas"
-               style="flex-shrink: 0;
-                      width: 52px;
-                      height: 38px;
-                      object-fit: cover;
-                      object-position: center top;
-                      border-radius: 4px;
-                      margin: 0;">
-          
-
-          <span style="font-size: 88%;
-                       color: #9069C0;
-                       font-weight: 600;
-                       line-height: 1.35;">
-            Portafolio: mapas de Áreas Metropolitanas
           </span>
 
         </a>
@@ -1295,7 +1477,7 @@ give correct results for longitude/latitude data
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">15 minute read, 3160 words</dd>
+    <dd class="fw5 ml0">16 minute read, 3212 words</dd>
   </dl>
   
   <dl class="f6 lh-copy">
@@ -1313,11 +1495,11 @@ give correct results for longitude/latitude data
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
+    <dd class="fw5 ml0"><a href="/blog/mapas_hexagonales/">Mapas hexagonales o cuadriculados con R</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/mapas_sf/">Mapas y visualización de datos geoespaciales en R con {sf}</a></dd>
+    
     <dd class="fw5 ml0"><a href="/blog/app_densidad_comunas/">Aplicación: Visualizador de densidad de población urbana en comunas de Chile</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/2026-03-12/">Primera reunión: grupo de usuari@s de R, Santiago de Chile</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/app_suicidios_genero/">App: Suicidios en Chile (2017-2024) desde una perspectiva de género</a></dd>
     
   </dl>
 </details>
@@ -1449,7 +1631,7 @@ give correct results for longitude/latitude data
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
+      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -1464,7 +1646,7 @@ give correct results for longitude/latitude data
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
+      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -1524,7 +1706,7 @@ give correct results for longitude/latitude data
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -1539,7 +1721,7 @@ give correct results for longitude/latitude data
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
+      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -1629,7 +1811,7 @@ give correct results for longitude/latitude data
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/optimizaci%C3%B3n/">Optimización</a></span>
+      href="https://bastianoleah.netlify.app/tags/loops/">Loops</a></span>
   </span>
  
   
@@ -1644,7 +1826,7 @@ give correct results for longitude/latitude data
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/automatizaci%C3%B3n/">Automatización</a></span>
+      href="https://bastianoleah.netlify.app/tags/ciencias-sociales/">Ciencias sociales</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

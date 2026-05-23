@@ -23,7 +23,7 @@
       <description>&lt;p&gt;Éste es un proyecto personal de visualización de datos que realiza un cruce entre distintas fuentes de datos para ver la correlación entre la cobertura mediática de casos de delincuencia en Chile en comparación con las estadísticas mensuales de delitos en el país.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;La hipótesis es que, si bien la delincuencia ha aumentado, &lt;strong&gt;la cobertura de prensa de temas sobre delincuencia ha aumentado en una medida mucho más grande que el fenómeno que pretende reflejar&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Crea un mapa de Chile desde datos geoespaciales oficiales en R</title>
+      <title>Crea un mapa de Chile desde la cartografía oficial en R</title>
       <link>https://bastianoleah.netlify.app/blog/tutorial_mapa_chile_subdere/</link>
       <pubDate>Tue, 14 Oct 2025 00:00:00 +0000</pubDate>
       <guid>https://bastianoleah.netlify.app/blog/tutorial_mapa_chile_subdere/</guid>

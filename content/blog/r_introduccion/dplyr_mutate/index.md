@@ -222,7 +222,7 @@ Estas son las piezas básicas para trabajar con variables o columnas. ¡Ahora ve
 
 ## Ejemplo con datos
 
-A continuación, usaremos datos sobre países de América Latina, que fueron obtenidos desde tablas de Wikipedia por medio de [web scraping](../../../../blog/r_introduccion/web_scraping/). Puedes revisar el [script con el código del scraping aquí](https://gist.github.com/bastianolea/00d7da36e85b76de1abf9ca37014cfe4).
+A continuación, usaremos datos sobre países de América Latina, que fueron obtenidos desde tablas de Wikipedia por medio de [web scraping](../../../../blog/web_scraping/). Puedes revisar el [script con el código del scraping aquí](https://gist.github.com/bastianolea/00d7da36e85b76de1abf9ca37014cfe4).
 
 Ejecutaremos el siguiente código para obtener una tabla llamada `datos` en nuestro entorno de R:
 

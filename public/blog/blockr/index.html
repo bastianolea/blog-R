@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="generator" content="Hugo 0.136.5">
-<title>Procesa datos con R sin programar y de forma interactiva | Bastián Olea</title>
+<title>Procesa datos con R sin programar y de forma interactiva con `{blockr}` | Bastián Olea</title>
 
 
 <meta property="twitter:site" content="@bastimapache">
@@ -24,12 +24,12 @@
   
     
   
-<meta name="description" content="El paquete de R `{blockr}` nos ofrece una interfaz gráfica interactiva para poder usar R sin escribir código. Como su nombre lo indica, funciona por medio de bloques que se conectan entre sí, representando de forma visual el flujo de procesamiento de datos. En esta guía te muestro un ejemplo de su uso!">
+<meta name="description" content="El paquete de R `{blockr}` nos ofrece una interfaz gráfica interactiva para poder usar R sin escribir código (_no code_). Como su nombre lo indica, funciona por medio de bloques que se conectan entre sí, representando de forma visual el flujo de procesamiento de datos. En esta guía te muestro un ejemplo de su uso!">
 
 
 <meta property="og:site_name" content="Bastián Olea">
-<meta property="og:title" content="Procesa datos con R sin programar y de forma interactiva | Bastián Olea">
-<meta property="og:description" content="El paquete de R `{blockr}` nos ofrece una interfaz gráfica interactiva para poder usar R sin escribir código. Como su nombre lo indica, funciona por medio de bloques que se conectan entre sí, representando de forma visual el flujo de procesamiento de datos. En esta guía te muestro un ejemplo de su uso!" />
+<meta property="og:title" content="Procesa datos con R sin programar y de forma interactiva con `{blockr}` | Bastián Olea">
+<meta property="og:description" content="El paquete de R `{blockr}` nos ofrece una interfaz gráfica interactiva para poder usar R sin escribir código (_no code_). Como su nombre lo indica, funciona por medio de bloques que se conectan entre sí, representando de forma visual el flujo de procesamiento de datos. En esta guía te muestro un ejemplo de su uso!" />
 <meta property="og:type" content="page" />
 <meta property="og:url" content="https://bastianoleah.netlify.app/blog/blockr/" />
 <meta property="og:locale" content="es-ES">
@@ -44,13 +44,13 @@
     
     
   
-  <meta itemprop="name" content="Procesa datos con R sin programar y de forma interactiva">
+  <meta itemprop="name" content="Procesa datos con R sin programar y de forma interactiva con `{blockr}`">
   <meta itemprop="description" content="Viendo el streaming de la conferencia LatinR 2025 conocí el paquete de R {blockr}, que nos ofrece una interfaz gráfica interactiva para usar R sin escribir código.
 Como su nombre lo indica, funciona por medio de bloques que se conectan entre sí, representando de forma visual el flujo de procesamiento de datos.
-Esta herramienta puede servirle a gente que esté aprendiendo R y quizás les sirva empezar por lo práctico antes de entrar al código. También puede ser útil para personas que les cueste programar en R, o que tengan alguna dificultad para escribir código, o bien, para quienes quieran esbozar un proceso antes de escribirlo.">
+Esta herramienta no code puede servirle a gente que esté aprendiendo R y quizás les sirva empezar por lo práctico antes de entrar al código. También puede ser útil para personas que les cueste programar en R, o que tengan alguna dificultad para escribir código, o bien, para quienes quieran esbozar un proceso antes de escribirlo.">
   <meta itemprop="datePublished" content="2025-12-05T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-12-05T00:00:00+00:00">
-  <meta itemprop="wordCount" content="732">
+  <meta itemprop="wordCount" content="780">
   <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/blockr/featured.jpg">
   <meta itemprop="keywords" content="Curiosidades,Básico">
   
@@ -59,7 +59,7 @@ Esta herramienta puede servirle a gente que esté aprendiendo R y quizás les si
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.f1077c0959e0c28941c671121e25726699745ff83a06fc0ebda190491db6569b.css" integrity="sha256-8Qd8CVngwolBxnESHiVyZpl0X/g6BvwOvaGQSR22Vps=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.2d895d62345af9e2e72524b81407c43bc32960e92011f6c745d4db53ec6d0bd7.css" integrity="sha256-LYldYjRa&#43;eLnJSS4FAfEO8MpYOkgEfbHRdTbU&#43;xtC9c=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
@@ -250,7 +250,7 @@ Esta herramienta puede servirle a gente que esté aprendiendo R y quizás les si
   <section class="page-content mw7 center">
     <article class="post-content pa0 pr3-l">
       <header class="post-header" style="margin-top:-30px;">
-        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Procesa datos con R sin programar y de forma interactiva</h1>
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Procesa datos con R sin programar y de forma interactiva con <code>{blockr}</code></h1>
         
         
         
@@ -312,7 +312,7 @@ Esta herramienta puede servirle a gente que esté aprendiendo R y quizás les si
   color: #EAD2FA; font-size: 10pt;
   padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
   margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
-  href="https://bristolmyerssquibb.github.io/blockr/" target="_blank" rel="noopener"><i class="fas fa-registered fa-lg fa-fw mr2"></i>Paquete</a>
+  href="https://blockr.site" target="_blank" rel="noopener"><i class="fas fa-registered fa-lg fa-fw mr2"></i>Paquete</a>
 
     
     
@@ -344,14 +344,14 @@ Esta herramienta puede servirle a gente que esté aprendiendo R y quizás les si
     <section class="post-body pt5 pb4">
         <p>Viendo el streaming de la 
 <a href="https://www.youtube.com/watch?v=H4eheaXZKzs" target="_blank" rel="noopener">conferencia LatinR 2025</a> conocí el 
-<a href="https://bristolmyerssquibb.github.io/blockr/" target="_blank" rel="noopener">paquete de R <code>{blockr}</code></a>, que nos ofrece una interfaz gráfica interactiva para usar R <strong>sin escribir código</strong>.</p>
+<a href="https://blockr.site" target="_blank" rel="noopener">paquete de R <code>{blockr}</code></a>, que nos ofrece una interfaz gráfica interactiva para usar R <strong>sin escribir código</strong>.</p>
 <a href="blockr_12.jpg" target="_blank">
 
   <img src="blockr_12.jpg" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
   
 </a>
 <p>Como su nombre lo indica, funciona por medio de <strong>bloques</strong> que se conectan entre sí, representando de forma visual el flujo de procesamiento de datos.</p>
-<p>Esta herramienta puede servirle a gente que esté aprendiendo R y quizás les sirva empezar por lo práctico antes de entrar al código. También puede ser útil para personas que les cueste programar en R, o que tengan alguna dificultad para escribir código, o bien, para quienes quieran esbozar un proceso antes de escribirlo.</p>
+<p>Esta herramienta <em>no code</em> puede servirle a gente que esté aprendiendo R y quizás les sirva empezar por lo práctico antes de entrar al código. También puede ser útil para personas que les cueste programar en R, o que tengan alguna dificultad para escribir código, o bien, para quienes quieran esbozar un proceso antes de escribirlo.</p>
 
 
 
@@ -362,9 +362,8 @@ Esta herramienta puede servirle a gente que esté aprendiendo R y quizás les si
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h2>
-<p>Para empezar a usarlo, primero hay que instalar el paquete. Se requiere tener el paquete <code>{pak}</code> instalado, y luego usarlo para instalar <code>{blockr}</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># install.packages(&#34;pak&#34;)</span>
-</span></span><span class="line"><span class="cl"><span class="n">pak</span><span class="o">::</span><span class="nf">pak</span><span class="p">(</span><span class="s">&#34;BristolMyersSquibb/blockr&#34;</span><span class="p">)</span>
+<p>Para empezar a usarlo, primero hay que instalar el paquete: <!-- Se requiere tener el paquete `{pak}` instalado, y luego usarlo para instalar `{blockr}`: --></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;blockr&#34;</span><span class="p">)</span>
 </span></span></code></pre></div><p>Una vez instalado, lo cargamos y ejecutamos la interfaz gráfica:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">blockr</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">run_app</span><span class="p">()</span>
@@ -375,7 +374,7 @@ Esta herramienta puede servirle a gente que esté aprendiendo R y quizás les si
 </a>
 <p>La interfaz empieza como un lienzo vacío, al cual hay que <strong>agregar bloques</strong>.</p>
 <p>Les voy a mostrar un ejemplo sencillo, pero recomiendo 
-<a href="https://bristolmyerssquibb.github.io/blockr/getting-started.html" target="_blank" rel="noopener">seguir las instrucciones oficiales</a>, que son bien completas.</p>
+<a href="https://blockr.site/learn/01-build-your-first-app.html" target="_blank" rel="noopener">seguir las instrucciones oficiales</a>, que son bien completas.</p>
 <p>Al agregar un bloque, se nos abre un panel donde escribimos lo que necesitamos:</p>
 <a href="blockr_2.jpg" target="_blank">
 
@@ -542,8 +541,8 @@ Esta herramienta puede servirle a gente que esté aprendiendo R y quizás les si
 
 
 
-<h3 id="otros-recursos">Otros recursos
-  <a href="#otros-recursos"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+<h3 id="otros-recursos-de-uso-_no-code_-de-r">Otros recursos de uso <em>no code</em> de R
+  <a href="#otros-recursos-de-uso-_no-code_-de-r"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 0h24v24H0z" fill="currentColor"></path>
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
@@ -554,7 +553,183 @@ Esta herramienta puede servirle a gente que esté aprendiendo R y quizás les si
 <li>
 <a href="https://www.displayr.com" target="_blank" rel="noopener">DisplayR, servicio online para programar dashboards analíticos con R sin necesidad de usar código</a>, que además tiene varios 
 <a href="https://www.displayr.com/dashboard-examples/" target="_blank" rel="noopener">ejemplos</a> de productos.</li>
+<li>
+<a href="https://www.jamovi.org" target="_blank" rel="noopener">Jamovi, software interactivo de análisis de datos basado en R</a></li>
 </ul>
+
+  <div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones de temas básicos
+    </p>
+
+    <div style="/*border: 1px solid #9069C035;*/
+                border: solid 2px #A885C6AA;
+                border-radius: 8px;
+                overflow: hidden;
+                background-color: #9069C00d;">
+
+      <a href="/blog/curso_gratis_r_intro_2/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  
+                  ">
+
+          
+          <img src="/blog/curso_gratis_r_intro_2/curso_r_featured.png"
+               alt="Curso gratuito: introducción al análisis de datos con R, 2ª versión"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Curso gratuito: introducción al análisis de datos con R, 2ª versión
+          </span>
+
+        </a>
+      <a href="/blog/curso_gratis_r_intro_1/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/curso_gratis_r_intro_1/curso_r_featured.png"
+               alt="Curso gratuito: introducción al análisis de datos con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Curso gratuito: introducción al análisis de datos con R
+          </span>
+
+        </a>
+      <a href="/blog/2026-01-27/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/2026-01-27/anscombe-featured.png"
+               alt="Por qué siempre visualizar los datos: el cuarteto de Anscombe"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Por qué siempre visualizar los datos: el cuarteto de Anscombe
+          </span>
+
+        </a>
+      <a href="/blog/r_introduccion/dplyr_summarize/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/r_introduccion/dplyr_summarize/featured.png"
+               alt="Calcular resúmenes de datos con `dplyr::summarize()`"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Calcular resúmenes de datos con <code>dplyr::summarize()</code>
+          </span>
+
+        </a>
+      <a href="/blog/r_introduccion/dplyr_mutate/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/r_introduccion/dplyr_mutate/featured.png"
+               alt="Crear variables nuevas con `dplyr::mutate()`"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Crear variables nuevas con <code>dplyr::mutate()</code>
+          </span>
+
+        </a>
+      
+
+    </div>
+  </div>
+
+
+
  
     </section>
       
@@ -605,7 +780,7 @@ Esta herramienta puede servirle a gente que esté aprendiendo R y quizás les si
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">4 minute read, 732 words</dd>
+    <dd class="fw5 ml0">4 minute read, 780 words</dd>
   </dl>
   
   
@@ -694,7 +869,7 @@ Esta herramienta puede servirle a gente que esté aprendiendo R y quizás les si
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
+      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -709,7 +884,7 @@ Esta herramienta puede servirle a gente que esté aprendiendo R y quizás les si
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -859,21 +1034,6 @@ Esta herramienta puede servirle a gente que esté aprendiendo R y quizás les si
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianoleah.netlify.app/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
@@ -890,6 +1050,21 @@ Esta herramienta puede servirle a gente que esté aprendiendo R y quizás les si
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -934,7 +1109,7 @@ Esta herramienta puede servirle a gente que esté aprendiendo R y quizás les si
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/texto/">Texto</a></span>
+      href="https://bastianoleah.netlify.app/tags/automatizaci%C3%B3n/">Automatización</a></span>
   </span>
  
   
@@ -949,7 +1124,7 @@ Esta herramienta puede servirle a gente que esté aprendiendo R y quizás les si
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ciencias-sociales/">Ciencias sociales</a></span>
+      href="https://bastianoleah.netlify.app/tags/optimizaci%C3%B3n/">Optimización</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>
@@ -980,7 +1155,7 @@ Esta herramienta puede servirle a gente que esté aprendiendo R y quizás les si
     <li><a href="#exportar-código">Exportar código</a></li>
     <li><a href="#video">Video</a>
       <ul>
-        <li><a href="#otros-recursos">Otros recursos</a></li>
+        <li><a href="#otros-recursos-de-uso-_no-code_-de-r">Otros recursos de uso <em>no code</em> de R</a></li>
       </ul>
     </li>
   </ul>

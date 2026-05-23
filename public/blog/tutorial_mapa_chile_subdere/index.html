@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="generator" content="Hugo 0.136.5">
-<title>Crea un mapa de Chile desde datos geoespaciales oficiales en R | Bastián Olea</title>
+<title>Crea un mapa de Chile desde la cartografía oficial en R | Bastián Olea</title>
 
 
 <meta property="twitter:site" content="@bastimapache">
@@ -28,7 +28,7 @@
 
 
 <meta property="og:site_name" content="Bastián Olea">
-<meta property="og:title" content="Crea un mapa de Chile desde datos geoespaciales oficiales en R | Bastián Olea">
+<meta property="og:title" content="Crea un mapa de Chile desde la cartografía oficial en R | Bastián Olea">
 <meta property="og:description" content="En este tutorial aprenderemos a crear mapas de Chile en R usando datos geográficos o _shapes_ oficiales, obtenidos desde la Subsecretaría de Desarrollo Regional y Administrativo (Subdere) y la Biblioteca del Congreso Nacional de Chile. El objetivo será aprender a visualizar mapas desde _shapefiles_ obtenidos de internet, y a procesar datos geográficos más complejos con R, para generar mapas de Chile con polígonos y límites geográficamente correctos." />
 <meta property="og:type" content="page" />
 <meta property="og:url" content="https://bastianoleah.netlify.app/blog/tutorial_mapa_chile_subdere/" />
@@ -44,13 +44,13 @@
     
     
   
-  <meta itemprop="name" content="Crea un mapa de Chile desde datos geoespaciales oficiales en R">
+  <meta itemprop="name" content="Crea un mapa de Chile desde la cartografía oficial en R">
   <meta itemprop="description" content="En post anteriores mostré cómo hacer mapas comunales y regionales de Chile con R, y a hacer mapas de los territorios urbanos del país.
 En este tutorial aprenderemos a crear mapas de Chile en R usando datos geográficos o shapes oficiales de Chile, obtenidos desde la Subsecretaría de Desarrollo Regional y Administrativo (Subdere) y la Biblioteca del Congreso Nacional de Chile (BCN).
 El objetivo será aprender a visualizar mapas desde shapefiles obtenidos de internet, y a procesar datos geográficos más complejos con R, para generar mapas de Chile con polígonos y límites geográficamente correctos.">
   <meta itemprop="datePublished" content="2025-10-14T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-10-14T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1129">
+  <meta itemprop="wordCount" content="1317">
   <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/tutorial_mapa_chile_subdere/featured.jpg">
   <meta itemprop="keywords" content="Mapas,Ggplot2,Gráficos,Ciencias sociales,Chile">
   
@@ -59,7 +59,7 @@ El objetivo será aprender a visualizar mapas desde shapefiles obtenidos de inte
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.f1077c0959e0c28941c671121e25726699745ff83a06fc0ebda190491db6569b.css" integrity="sha256-8Qd8CVngwolBxnESHiVyZpl0X/g6BvwOvaGQSR22Vps=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.2d895d62345af9e2e72524b81407c43bc32960e92011f6c745d4db53ec6d0bd7.css" integrity="sha256-LYldYjRa&#43;eLnJSS4FAfEO8MpYOkgEfbHRdTbU&#43;xtC9c=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
@@ -250,7 +250,7 @@ El objetivo será aprender a visualizar mapas desde shapefiles obtenidos de inte
   <section class="page-content mw7 center">
     <article class="post-content pa0 pr3-l">
       <header class="post-header" style="margin-top:-30px;">
-        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Crea un mapa de Chile desde datos geoespaciales oficiales en R</h1>
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Crea un mapa de Chile desde la cartografía oficial en R</h1>
         
         
         
@@ -376,6 +376,74 @@ El objetivo será aprender a visualizar mapas desde shapefiles obtenidos de inte
 <a href="https://ide.subdere.gov.cl/descargas-con-filtros/" target="_blank" rel="noopener">Subsecretaría de Desarrollo Regional y Administrativo</a> (Subdere) y la 
 <a href="https://www.bcn.cl/siit/mapas_vectoriales" target="_blank" rel="noopener">Biblioteca del Congreso Nacional de Chile</a> (BCN).</p>
 <p>El objetivo será aprender a visualizar mapas desde <em>shapefiles</em> obtenidos de internet, y a procesar datos geográficos más complejos con R, para generar mapas de Chile con polígonos y límites geográficamente correctos.</p>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/tutorial_mapa_chile/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/tutorial_mapa_chile/featured.png"
+           alt="Crea un mapa de Chile y visualiza datos comunales y regionales con mapas en R"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Crea un mapa de Chile y visualiza datos comunales y regionales con mapas en R
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        Visualizar datos geográficamente es una herramienta de comunicación y análisis de datos muy potente. En este tutorial te explico cómo obtener mapas comunales y regionales de Chile en R, y cómo crear…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
 
 
 
@@ -498,6 +566,74 @@ Líneas de red vial del país</a>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">comunas</span><span class="p">)</span>
 </span></span></code></pre></div><pre><code>[1] &quot;sf&quot;         &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;
 </code></pre>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/mapas_sf/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/mapas_sf/mapa_rm_featured.png"
+           alt="Mapas y visualización de datos geoespaciales en R con {sf}"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Mapas y visualización de datos geoespaciales en R con {sf}
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        R cuenta con un muy amplio ecosistema para trabajar con datos geoespaciales. Uno de los paquetes más importantes es {sf}, que permite manipular datos espaciales a partir del estándar simple features…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
 <p>Si lo imprimimos en la consola, confirmamos que los objetos cargados desde los <em>shapefiles</em> son tablas de datos que arriba dicen <em>Simple feature collection</em>; es decir, son tablas de datos que además tienen información geográfica.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">comunas</span>
 </span></span></code></pre></div><pre><code>Simple feature collection with 345 features and 7 fields
@@ -522,6 +658,74 @@ Geodetic CRS:  GCS_SIRGAS-Chile
 # ℹ 1 more variable: geometry &lt;MULTIPOLYGON [°]&gt;
 </code></pre>
 <p>Estas tablas de datos cuentan con una columna <code>geometry</code>, que contiene la información geográfica de los polígonos, puntos y/o líneas de cada observación. A su vez, encima de la tabla de datos vemos información especial, como el tipo de geometría, las dimensiones de la caja (<em>bounding box</em>), y el sistema de coordenadas de referencia (<em>CRS</em>), que indica el tipo de proyección usada.</p>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/simplificar_mapas/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/simplificar_mapas/featured.png"
+           alt="Simplificar la geometría de los polígonos de un mapa en R"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Simplificar la geometría de los polígonos de un mapa en R
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        Un problema común al visualizar datos georeferenciados o mapas coropléticos (con colores en las zonas geográficas que se corresponden con los datos) yace en que usamos mapas que tienen geometrías o…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
 
 
 
@@ -567,6 +771,180 @@ Geodetic CRS:  GCS_SIRGAS-Chile
 <a href="../../../blog/colores/#usar-paletas-de-colores-en-ggplot2">además le pusimos una escala de colores</a> cálidos desde el paquete <code>{colorspace}</code>, que además tiene la cualidad de poder adaptar la intensidad y brillo de sus colores.</p>
 <p>Listo! La gracia de <code>{sf}</code> es poder entregar herramientas para cargar cualquier tipo de datos geográficos y habilitar que <code>{ggplot2}</code> los pueda graficar sin problemas. A menos que ocurran problemas. Lo cual veremos 
 <a href="../../../tags/mapas/">en otro post</a> 😬</p>
+
+  <div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones sobre mapas
+    </p>
+
+    <div style="/*border: 1px solid #9069C035;*/
+                border: solid 2px #A885C6AA;
+                border-radius: 8px;
+                overflow: hidden;
+                background-color: #9069C00d;">
+
+      <a href="/blog/mapas_hexagonales/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  
+                  ">
+
+          
+          <img src="/blog/mapas_hexagonales/featured.png"
+               alt="Mapas hexagonales o cuadriculados con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Mapas hexagonales o cuadriculados con R
+          </span>
+
+        </a>
+      <a href="/blog/mapas_sf/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/mapas_sf/mapa_rm_featured.png"
+               alt="Mapas y visualización de datos geoespaciales en R con {sf}"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Mapas y visualización de datos geoespaciales en R con {sf}
+          </span>
+
+        </a>
+      <a href="/blog/app_censo_mapas/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/app_censo_mapas/featured.jpg"
+               alt="App: visualizador de mapas comunales del Censo 2024 por manzanas"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            App: visualizador de mapas comunales del Censo 2024 por manzanas
+          </span>
+
+        </a>
+      <a href="/blog/mapas_censo_2024/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/mapas_censo_2024/featured.jpg"
+               alt="Visualiza datos del Censo 2024 en mapas a nivel de manzana con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Visualiza datos del Censo 2024 en mapas a nivel de manzana con R
+          </span>
+
+        </a>
+      <a href="/blog/elecciones_presidenciales_2025/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/elecciones_presidenciales_2025/featured.jpg"
+               alt="Visualización y scraping de resultados de las elecciones presidenciales 2025"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Visualización y scraping de resultados de las elecciones presidenciales 2025
+          </span>
+
+        </a>
+      
+
+    </div>
+  </div>
+
+
+
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -627,7 +1005,7 @@ Geodetic CRS:  GCS_SIRGAS-Chile
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">6 minute read, 1129 words</dd>
+    <dd class="fw5 ml0">7 minute read, 1317 words</dd>
   </dl>
   
   <dl class="f6 lh-copy">
@@ -645,11 +1023,11 @@ Geodetic CRS:  GCS_SIRGAS-Chile
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
+    <dd class="fw5 ml0"><a href="/blog/mapas_hexagonales/">Mapas hexagonales o cuadriculados con R</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/mapas_sf/">Mapas y visualización de datos geoespaciales en R con {sf}</a></dd>
+    
     <dd class="fw5 ml0"><a href="/blog/ggplot_dumbbell/">Gráficos de puntos comparativos o _dumbbell_ en `{ggplot2}`</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/app_densidad_comunas/">Aplicación: Visualizador de densidad de población urbana en comunas de Chile</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/ggplot_extensiones/">Extensiones recomendadas para mejorar tus gráficos de `{ggplot2}`</a></dd>
     
   </dl>
 </details>
@@ -781,7 +1159,7 @@ Geodetic CRS:  GCS_SIRGAS-Chile
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
+      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -796,7 +1174,7 @@ Geodetic CRS:  GCS_SIRGAS-Chile
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
+      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -856,21 +1234,6 @@ Geodetic CRS:  GCS_SIRGAS-Chile
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
   </span>
  
@@ -886,7 +1249,7 @@ Geodetic CRS:  GCS_SIRGAS-Chile
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -902,6 +1265,21 @@ Geodetic CRS:  GCS_SIRGAS-Chile
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -976,7 +1354,7 @@ Geodetic CRS:  GCS_SIRGAS-Chile
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/automatizaci%C3%B3n/">Automatización</a></span>
+      href="https://bastianoleah.netlify.app/tags/texto/">Texto</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

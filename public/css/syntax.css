@@ -72,7 +72,7 @@ scales::col_mix("#EAD1FA", "#DDD4DD", amount = 0.3)
 /* Comment */ .chroma .c { color:#6e6a86 }
 /* CommentHashbang */ .chroma .ch { color:#6e6a86 }
 /* CommentMultiline */ .chroma .cm { color:#6e6a86 }
-/* CommentSingle */ .chroma .c1 { color:#685974FF } /* comentario */
+/* CommentSingle */ .chroma .c1 { color: #6f5286 } /*{ color:#685974FF }*/ /* comentario */
 /* CommentSpecial */ .chroma .cs { color:#6e6a86 }
 /* CommentPreproc */ .chroma .cp { color:#6e6a86 }
 /* CommentPreprocFile */ .chroma .cpf { color:#6e6a86 }

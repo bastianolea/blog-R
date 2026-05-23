@@ -46,10 +46,10 @@
   
   <meta itemprop="name" content="Temas de colores personalizados en apps Shiny">
   <meta itemprop="description" content="Elevar tus aplicaciones Shiny al siguiente nivel es muy fácil! Una app con un diseño atractivo y profesional puede marcar la diferencia entre que alguien la use o no, o bien, que alguien la recuerde o no!
-En este tutorial veremos cómo personalizar los temas de colores en tus aplicaciones Shiny utilizando el paquete {bslib}, y además combinaremos esto con la capacidad para que nuestros gráficos {ggplot2} se ajusten automáticamente al tema gracias al paquete {thematic}.">
+Publicaciones relacionadas Tutorial: Crea aplicaciones web interactivas en R con Shiny">
   <meta itemprop="datePublished" content="2025-10-09T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-10-09T00:00:00+00:00">
-  <meta itemprop="wordCount" content="818">
+  <meta itemprop="wordCount" content="923">
   <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/shiny_temas/featured.png">
   <meta itemprop="keywords" content="Shiny">
   
@@ -58,7 +58,7 @@ En este tutorial veremos cómo personalizar los temas de colores en tus aplicaci
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.f1077c0959e0c28941c671121e25726699745ff83a06fc0ebda190491db6569b.css" integrity="sha256-8Qd8CVngwolBxnESHiVyZpl0X/g6BvwOvaGQSR22Vps=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.2d895d62345af9e2e72524b81407c43bc32960e92011f6c745d4db53ec6d0bd7.css" integrity="sha256-LYldYjRa&#43;eLnJSS4FAfEO8MpYOkgEfbHRdTbU&#43;xtC9c=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
@@ -314,6 +314,74 @@ En este tutorial veremos cómo personalizar los temas de colores en tus aplicaci
       
     <section class="post-body pt5 pb4">
         <p>Elevar tus aplicaciones Shiny al siguiente nivel es muy fácil! Una app con un diseño atractivo y profesional puede marcar la diferencia entre que alguien la use o no, o bien, que alguien la recuerde o no!</p>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/shiny/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/shiny/shiny-apps-featured.jpg"
+           alt="Tutorial: Crea aplicaciones web interactivas en R con Shiny"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Tutorial: Crea aplicaciones web interactivas en R con Shiny
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        Shiny es un paquete para desarrollar aplicaciones web interactivas con R, generalmente centradas en el análisis y visualización de datos. Shiny le da vida a todo lo que hayas desarrollado con R sin…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
 <p>En este tutorial veremos cómo personalizar los temas de colores en tus aplicaciones Shiny utilizando el 
 <a href="https://rstudio.github.io/bslib/" target="_blank" rel="noopener">paquete <code>{bslib}</code></a>, y además combinaremos esto con la capacidad para que nuestros gráficos <code>{ggplot2}</code> se ajusten automáticamente al tema gracias 
 <a href="https://rstudio.github.io/thematic/" target="_blank" rel="noopener">al paquete <code>{thematic}</code></a>.</p>
@@ -368,8 +436,8 @@ En este tutorial veremos cómo personalizar los temas de colores en tus aplicaci
 <p>Para cambiar el tema de colores, usaremos la función <code>bs_theme()</code> del paquete <code>{bslib}</code>. Esta función nos permite definir los colores principales de la aplicación, y luego aplicarlos a la interfaz de usuario con el argumento <code>theme</code> de la función que usemos para construir la UI o interfaz de nuestra app (en este caso, <code>page_fluid()</code>).</p>
 <p>Para definir los colores del tema, agregamos el argumento <code>theme</code> a <code>page_fluid()</code>, y definimos el tema de la siguiente manera:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">theme</span> <span class="o">=</span> <span class="nf">bs_theme</span><span class="p">(</span><span class="n">bg</span> <span class="o">=</span> <span class="s">&#34;#EAD1FA&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                   <span class="n">fg</span> <span class="o">=</span> <span class="s">&#34;#553A74&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                   <span class="n">primary</span> <span class="o">=</span> <span class="s">&#34;#8557AB&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">fg</span> <span class="o">=</span> <span class="s">&#34;#553A74&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">primary</span> <span class="o">=</span> <span class="s">&#34;#8557AB&#34;</span><span class="p">)</span>
 </span></span></code></pre></div><p>Aquí se configuran los tres colores principales: el fondo (<code>bg</code>), el color de los textos (<code>fg</code>), y el color principal (<code>primary</code>) que se usa en los botones, barras de navegación, y otros elementos interactivos.</p>
 <p>En este caso, pondremos los colores de este mismo sitio 💜</p>
 
@@ -417,8 +485,9 @@ En este tutorial veremos cómo personalizar los temas de colores en tus aplicaci
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>Ahora sí, <strong>veamos cómo cambia la app al aplicar este tema:</strong></p>
 <div style="margin:auto; max-width:70%;">
-<video src="app_shiny_tema.mov" style="border-radius:7px; max-width: 100%; margin:auto;" autoplay loop>
-</video>
+  
+  <video src="app_shiny_tema.mov" style="border-radius:7px; max-width: 100%; display: block; margin: auto;" autoplay loop>
+  </video>
 </div>
 
 <p>Queda súper bonito! ☺️ Encuentra el 
@@ -478,9 +547,9 @@ En este tutorial veremos cómo personalizar los temas de colores en tus aplicaci
   
 </a>
 <p>Aplicar el tema es tan sencillo como agregar el tema en el argumento <code>theme</code> de <code>page_fluid()</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"> <span class="n">theme</span> <span class="o">=</span> <span class="nf">bs_theme</span><span class="p">(</span><span class="n">bg</span> <span class="o">=</span> <span class="s">&#34;#EAD1FA&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                   <span class="n">fg</span> <span class="o">=</span> <span class="s">&#34;#553A74&#34;</span><span class="p">,</span> 
-</span></span><span class="line"><span class="cl">                   <span class="n">primary</span> <span class="o">=</span> <span class="s">&#34;#8557AB&#34;</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">theme</span> <span class="o">=</span> <span class="nf">bs_theme</span><span class="p">(</span><span class="n">bg</span> <span class="o">=</span> <span class="s">&#34;#EAD1FA&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">fg</span> <span class="o">=</span> <span class="s">&#34;#553A74&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                 <span class="n">primary</span> <span class="o">=</span> <span class="s">&#34;#8557AB&#34;</span><span class="p">)</span>
 </span></span></code></pre></div><p>Luego, para que el gráfico adopte la paleta de colores del tema, solamente tenemos que cargar el paquete <code>{thematic}</code> con <code>library(thematic)</code>, y luego activar el uso de temas con <code>thematic_shiny()</code> antes de la interfaz/UI, y listo! No es necesario cambiar nada en el código del gráfico ni del resto de la aplicación.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <a href="app_shiny_2_con_tema.png" target="_blank">
 
@@ -504,6 +573,177 @@ En este tutorial veremos cómo personalizar los temas de colores en tus aplicaci
 </span></span><span class="line"><span class="cl">                   
 </span></span><span class="line"><span class="cl">  <span class="c1"># el resto de la app...</span>
 </span></span></code></pre></div><p>Listo! Así de fácil. Ahora no hay excusas para hacer que tus aplicaciones se vean bonitas y dejen una buena impresión en sus usuarios.</p>
+
+  <div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones sobre shiny
+    </p>
+
+    <div style="/*border: 1px solid #9069C035;*/
+                border: solid 2px #A885C6AA;
+                border-radius: 8px;
+                overflow: hidden;
+                background-color: #9069C00d;">
+
+      <a href="/blog/shiny/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  
+                  ">
+
+          
+          <img src="/blog/shiny/shiny-apps-featured.jpg"
+               alt="Tutorial: Crea aplicaciones web interactivas en R con Shiny"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Tutorial: Crea aplicaciones web interactivas en R con Shiny
+          </span>
+
+        </a>
+      <a href="/blog/shiny_tipografias/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/shiny_tipografias/shiny_tipografia_featured.png"
+               alt="Usando tipografías personalizadas en aplicaciones Shiny"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Usando tipografías personalizadas en aplicaciones Shiny
+          </span>
+
+        </a>
+      <a href="/blog/shiny_ancho/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <div style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      border-radius: 4px;
+                      background-color: #9069C020;">
+          </div>
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Medir el ancho de una aplicación Shiny como una variable reactiva y usarla para adaptar los contenidos de la app
+          </span>
+
+        </a>
+      <a href="/blog/indice_brechas_genero/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/indice_brechas_genero/featured.jpg"
+               alt="Plataforma de análisis: Índice de Brechas de Género"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Plataforma de análisis: Índice de Brechas de Género
+          </span>
+
+        </a>
+      <a href="/blog/2026-03-26/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/2026-03-26/featured.jpg"
+               alt="Galería de libros de _Goodreads_ para tu blog o sitio web con R y Quarto"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Galería de libros de <em>Goodreads</em> para tu blog o sitio web con R y Quarto
+          </span>
+
+        </a>
+      
+
+    </div>
+  </div>
+
+
+
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -562,7 +802,7 @@ En este tutorial veremos cómo personalizar los temas de colores en tus aplicaci
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">4 minute read, 818 words</dd>
+    <dd class="fw5 ml0">5 minute read, 923 words</dd>
   </dl>
   
   
@@ -575,11 +815,11 @@ En este tutorial veremos cómo personalizar los temas de colores en tus aplicaci
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
+    <dd class="fw5 ml0"><a href="/blog/shiny/">Tutorial: Crea aplicaciones web interactivas en R con Shiny</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/shiny_tipografias/">Usando tipografías personalizadas en aplicaciones Shiny</a></dd>
+    
     <dd class="fw5 ml0"><a href="/blog/shiny_ancho/">Medir el ancho de una aplicación Shiny como una variable reactiva y usarla para adaptar los contenidos de la app</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/indice_brechas_genero/">Plataforma de análisis: Índice de Brechas de Género</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/2026-03-26/">Galería de libros de _Goodreads_ para tu blog o sitio web con R y Quarto</a></dd>
     
   </dl>
 </details>
@@ -651,7 +891,7 @@ En este tutorial veremos cómo personalizar los temas de colores en tus aplicaci
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
+      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -666,7 +906,7 @@ En este tutorial veremos cómo personalizar los temas de colores en tus aplicaci
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -891,7 +1131,7 @@ En este tutorial veremos cómo personalizar los temas de colores en tus aplicaci
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/texto/">Texto</a></span>
+      href="https://bastianoleah.netlify.app/tags/automatizaci%C3%B3n/">Automatización</a></span>
   </span>
  
   
@@ -906,7 +1146,7 @@ En este tutorial veremos cómo personalizar los temas de colores en tus aplicaci
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ciencias-sociales/">Ciencias sociales</a></span>
+      href="https://bastianoleah.netlify.app/tags/optimizaci%C3%B3n/">Optimización</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

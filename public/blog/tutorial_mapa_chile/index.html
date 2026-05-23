@@ -48,7 +48,7 @@
   <meta itemprop="description" content="Índice Mapa de Chile por comunas Mapa regional de Chile Visualizar datos en el mapa Datos comunales Datos regionales Visualizar datos geográficamente es una herramienta de comunicación y análisis de datos muy potente. En este tutorial te explico cómo obtener mapas comunales y regionales de Chile en R, y cómo crear un gráficos que visualizan variables numéricas en las comunas y regiones del país. En pocos pasos puedes transformar tus datos territoriales en visualizaciones mucho más densas e informativas.">
   <meta itemprop="datePublished" content="2024-11-25T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-11-25T00:00:00+00:00">
-  <meta itemprop="wordCount" content="3311">
+  <meta itemprop="wordCount" content="3438">
   <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/tutorial_mapa_chile/featured.png">
   <meta itemprop="keywords" content="Mapas,Gráficos,Ciencias sociales,Chile">
   
@@ -57,7 +57,7 @@
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.f1077c0959e0c28941c671121e25726699745ff83a06fc0ebda190491db6569b.css" integrity="sha256-8Qd8CVngwolBxnESHiVyZpl0X/g6BvwOvaGQSR22Vps=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.2d895d62345af9e2e72524b81407c43bc32960e92011f6c745d4db53ec6d0bd7.css" integrity="sha256-LYldYjRa&#43;eLnJSS4FAfEO8MpYOkgEfbHRdTbU&#43;xtC9c=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
@@ -330,6 +330,25 @@
   margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
   href="https://gist.github.com/bastianolea/df03203e88534261ef831f2cb4fca254" target="_blank" rel="noopener"><i class="fab fa-github fa-lg fa-fw mr2"></i>código</a>
 
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+      
+    
+  <a class="btn-links mr2 ba dib" 
+  style = "background-color: #9069C0; border-radius: 4px; 
+  color: #EAD2FA; font-size: 10pt;
+  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
+  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
+  href="https://pacha.dev/chilemapas/" target="_blank" rel="noopener"><i class="fas fa-registered fa-lg fa-fw mr2"></i>chilemapas</a>
+
 </div>
 
       </div>
@@ -496,7 +515,8 @@
 <h4 id="obtener-datos-por-web-scraping">Obtener datos por web scraping
   <a href="#obtener-datos-por-web-scraping"></a>
 </h4>
-<p>Para visualizar un mapa de datos comunales, primero obtendremos datos comunales desde Wikipedia. Usamos el paquete para hacer un web scraping y obtener una 
+<p>Para visualizar un mapa de datos comunales, primero obtendremos datos comunales desde Wikipedia. Usamos el paquete para hacer un 
+<a href="/blog/webscraping_rvest/">web scraping</a> y obtener una 
 <a href="https://es.wikipedia.org/wiki/Anexo:Comunas_de_Chile" target="_blank" rel="noopener">tabla de datos de las comunas del país.</a></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">rvest</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
@@ -527,7 +547,69 @@
 # ℹ 6 more variables: Población2020 &lt;chr&gt;, `Densidad(hab./km²)` &lt;chr&gt;,
 #   `IDH 2005` &lt;chr&gt;, `IDH 2005` &lt;chr&gt;, Latitud &lt;chr&gt;, Longitud &lt;chr&gt;
 </code></pre>
-<p>Luego obtener los datos, realizamos una pequeña limpieza. Limpiamos los nombres de las variables, seleccionamos las variables que nos interesan, y luego las convertimos apropiadamente a valores numéricos, donde tenemos que eliminar los separadores de miles, y transformar los separadores de decimales a puntos.</p>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/webscraping_rvest/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/webscraping_rvest/scraping_4-featured.jpeg"
+           alt="Tutorial: web scraping en R usando {rvest}"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Tutorial: web scraping en R usando {rvest}
+      </p>
+
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+<p>Luego de obtener los datos, realizamos una pequeña limpieza. Limpiamos los nombres de las variables, seleccionamos las variables que nos interesan, y luego las convertimos apropiadamente a valores numéricos, donde tenemos que eliminar los separadores de miles, y transformar los separadores de decimales a puntos.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">janitor</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">stringr</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
@@ -595,6 +677,74 @@
 3 perro   carne          5            2       8
 </code></pre>
 <p>En el ejemplo, tenemos dos tablas, donde las dos tienen una misma columna con los mismos datos, y otras columnas con datos distintos. Usando <code>left_join()</code> podemos unir ambas tablas de datos a partir de la columna que tienen en común. Como resultado obtenemos una nueva tabla que tiene todas las columnas.</p>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/left_join/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/left_join/featured.png"
+           alt="Unir o cruzar datos con left_join()"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Unir o cruzar datos con left_join()
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        Un left join realiza una unión o combinación entre dos tablas de datos a partir de una variable en común o clave (key). En otras palabras, un left join toma dos tablas que tienen datos distintos, pero…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
 <hr>
 <p>Procedemos a unir los datos con el mapa usando <code>left_join()</code>, especificando en el argumento <code>by</code> que la unión sea a partir de la columna <code>codigo_comuna</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">mapa_comunas_2</span> <span class="o">&lt;-</span> <span class="n">mapa_comunas</span> <span class="o">|&gt;</span> 
@@ -683,6 +833,74 @@
 </span></span><span class="line"><span class="cl">  <span class="nf">theme</span><span class="p">(</span><span class="n">axis.title</span> <span class="o">=</span> <span class="nf">element_blank</span><span class="p">())</span>
 </span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png" width="576" />
 <p>En este caso, agregamos también la función <code>geom_sf_text()</code> para agregar una capa nuestro gráfico que contiene las cifras para cada comuna. Hay que tener en consideración que poner números o textos sobre mapas suele ser complejo, porque el mapa ya es denso visualmente, y agregarle texto puede hacer que se vuelva ilegible. Hay que tener especial cuidado en resolver situaciones como textos que pasan por encima de bordes en el mapa, que se ubican incorrectamente dentro de los polígonos, o que se sobreponen uno sobre otros debido a que los polígonos se ven muy pequeños dentro del mapa.</p>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/mapas_sf/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/mapas_sf/mapa_rm_featured.png"
+           alt="Mapas y visualización de datos geoespaciales en R con {sf}"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Mapas y visualización de datos geoespaciales en R con {sf}
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        R cuenta con un muy amplio ecosistema para trabajar con datos geoespaciales. Uno de los paquetes más importantes es {sf}, que permite manipular datos espaciales a partir del estándar simple features…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
 <hr>
 
 
@@ -828,8 +1046,180 @@
 </span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-18-1.png" width="288" />
 <hr>
 <p>Visualizar datos geográficamente es una herramienta de comunicación y análisis de datos muy potente. Personalmente, encuentro que el potencial de la visualización de datos en mapas radica mucho más allá de simplemente mapear una variable a un territorio, sino a <strong>incentivar que el público analice el mapa en relación a todo el conjunto de conocimientos que tenemos sobre del espacio que habitamos, sus características sociales, y las desigualdades distribuidas en el territorio.</strong></p>
-<hr>
-<p>Si este tutorial te sirvió, por favor considera hacerme una pequeña donación para poder tomarme un cafecito mientras escribo el siguiente tutorial 🥺</p>
+
+  <div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones sobre mapas
+    </p>
+
+    <div style="/*border: 1px solid #9069C035;*/
+                border: solid 2px #A885C6AA;
+                border-radius: 8px;
+                overflow: hidden;
+                background-color: #9069C00d;">
+
+      <a href="/blog/mapas_hexagonales/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  
+                  ">
+
+          
+          <img src="/blog/mapas_hexagonales/featured.png"
+               alt="Mapas hexagonales o cuadriculados con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Mapas hexagonales o cuadriculados con R
+          </span>
+
+        </a>
+      <a href="/blog/mapas_sf/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/mapas_sf/mapa_rm_featured.png"
+               alt="Mapas y visualización de datos geoespaciales en R con {sf}"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Mapas y visualización de datos geoespaciales en R con {sf}
+          </span>
+
+        </a>
+      <a href="/blog/app_censo_mapas/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/app_censo_mapas/featured.jpg"
+               alt="App: visualizador de mapas comunales del Censo 2024 por manzanas"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            App: visualizador de mapas comunales del Censo 2024 por manzanas
+          </span>
+
+        </a>
+      <a href="/blog/mapas_censo_2024/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/mapas_censo_2024/featured.jpg"
+               alt="Visualiza datos del Censo 2024 en mapas a nivel de manzana con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Visualiza datos del Censo 2024 en mapas a nivel de manzana con R
+          </span>
+
+        </a>
+      <a href="/blog/elecciones_presidenciales_2025/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/elecciones_presidenciales_2025/featured.jpg"
+               alt="Visualización y scraping de resultados de las elecciones presidenciales 2025"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Visualización y scraping de resultados de las elecciones presidenciales 2025
+          </span>
+
+        </a>
+      
+
+    </div>
+  </div>
+
+
+
 <div style = "height: 18px;">
 </div>
 <div>
@@ -854,7 +1244,7 @@
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/tutorial_gt/">Tutorial: generar tablas atractivas y personalizables con {gt} &rarr;</a>
+    href="https://bastianoleah.netlify.app/blog/tablas_gt/">Crea tablas atractivas y personalizables en R con `{gt}` &rarr;</a>
   
 </div>
 
@@ -891,7 +1281,7 @@
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">16 minute read, 3311 words</dd>
+    <dd class="fw5 ml0">17 minute read, 3438 words</dd>
   </dl>
   
   <dl class="f6 lh-copy">
@@ -909,11 +1299,11 @@
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
+    <dd class="fw5 ml0"><a href="/blog/mapas_hexagonales/">Mapas hexagonales o cuadriculados con R</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/mapas_sf/">Mapas y visualización de datos geoespaciales en R con {sf}</a></dd>
+    
     <dd class="fw5 ml0"><a href="/blog/ggplot_dumbbell/">Gráficos de puntos comparativos o _dumbbell_ en `{ggplot2}`</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/app_densidad_comunas/">Aplicación: Visualizador de densidad de población urbana en comunas de Chile</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/2026-03-12/">Primera reunión: grupo de usuari@s de R, Santiago de Chile</a></dd>
     
   </dl>
 </details>
@@ -1045,7 +1435,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
+      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -1060,7 +1450,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
+      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -1120,7 +1510,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -1135,7 +1525,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
+      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -1240,7 +1630,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/automatizaci%C3%B3n/">Automatización</a></span>
+      href="https://bastianoleah.netlify.app/tags/texto/">Texto</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

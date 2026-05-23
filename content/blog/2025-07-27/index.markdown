@@ -35,7 +35,7 @@ Beneficios? Muchos!
 - Creaste un proceso que puedes aplicar a otros sitios!
 - Fastidiaste a la gente del INE descargando 20 archivos en menos de 1 segundo 😣
 
-Lo primero obtener el código fuente de la página y extraer los en enlaces que están en cada botón con [web scraping](https://bastianolea.rbind.io/blog/r_introduccion/web_scraping/). Puedes aprender cómo extraer elementos de una página web con [este tutorial de web scraping](https://bastianolea.rbind.io/blog/tutorial_scraping_rvest/) o viendo [este taller donde lo explico en un video](https://bastianolea.rbind.io/blog/taller_corrupcion_cesi/).
+Lo primero obtener el código fuente de la página y extraer los en enlaces que están en cada botón con [web scraping](https://bastianolea.rbind.io/blog/web_scraping/). Puedes aprender cómo extraer elementos de una página web con [este tutorial de web scraping](https://bastianolea.rbind.io/blog/webscraping_rvest/) o viendo [este taller donde lo explico en un video](https://bastianolea.rbind.io/blog/taller_corrupcion_cesi/).
 
 
 

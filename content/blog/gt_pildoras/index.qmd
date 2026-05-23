@@ -14,13 +14,13 @@ format:
 excerpt: "En este tutorial veremos cómo convertir celdas de tus tablas a compactas _píldoras_ usando `{gt}`. El objetivo es presentar la información de forma más atractiva, permitiendo darle un color personalizado a cada celda según el dato que se muestre, o bien, destacar determinados datos. Esto te entrega mucha más flexibilidad para trabajar tablas directamente con HTML en el paquete `{gt}`, desbloqueando su potencial!"
 ---
 
-En este tutorial veremos cómo convertir celdas de tus tablas a compactas _píldoras_ usando [`{gt}`, una excelente librería de R para crear tablas personalizables.](/blog/tutorial_gt/) El objetivo es presentar la información de forma más **atractiva**, permitiendo darle un **color personalizado** según el dato que se muestre, o bien, **destacar** determinados datos. 
+En este tutorial veremos cómo convertir celdas de tus tablas a compactas _píldoras_ usando [`{gt}`, una excelente librería de R para crear tablas personalizables.](/blog/tablas_gt/) El objetivo es presentar la información de forma más **atractiva**, permitiendo darle un **color personalizado** según el dato que se muestre, o bien, **destacar** determinados datos. 
 
 {{< imagen_tamaño "gt_pills_featured.png" "300px">}}
 
 Si bien existen otras formas de hacer esto, aprender este método te entrega mucha más flexibilidad para trabajar tablas directamente con HTML en el paquete `{gt}`, desbloqueando su potencial! 🔥
 
-{{< aviso "Si quieres aprender lo básico del paquete `{gt}` para creación de tablas en R, [revisa este tutorial.](/blog/tutorial_gt/)" >}}
+{{< aviso "Si quieres aprender lo básico del paquete `{gt}` para creación de tablas en R, [revisa este tutorial.](/blog/tablas_gt/)" >}}
 
 ## Tablas básicas con `{gt}`
 
@@ -378,6 +378,6 @@ En esta función usamos dos colores para **crear un degradado entre el valor men
 
 ----
 
-Y así se puede usar HTML para personalizar celdas de tus tablas hechas con `{gt}`. Si te interesa este paquete, [tengo un tutorial más completo](https://bastianolea.rbind.io/blog/tutorial_gt/) que puedes revisar.
+Y así se puede usar HTML para personalizar celdas de tus tablas hechas con `{gt}`. Si te interesa este paquete, [tengo un tutorial más completo](https://bastianolea.rbind.io/blog/tablas_gt/) que puedes revisar.
 
 {{< cafecito >}}

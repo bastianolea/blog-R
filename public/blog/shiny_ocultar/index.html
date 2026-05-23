@@ -46,11 +46,10 @@
   
   <meta itemprop="name" content="Mostrar y ocultar elementos de una app Shiny a partir de datos o inputs">
   <meta itemprop="description" content="Gracias al paquete {shinyjs} podemos hacer que una app Shiny muestre u oculte elementos según los datos que correspondan o los inputs que haya seleccionado el usuario.
-Por ejemplo:
-Si el/la usuario/a selecciona una opción en particular, mostrar un contenedor con información adicional. Si no hay datos para graficar, ocultar el gráfico y mostrar un aviso. Se trata de una habilidad clave para crear aplicaciones que se adapten a datos complejos, cambiantes, o modificables por los usuarios.">
+Publicaciones relacionadas Tutorial: Crea aplicaciones web interactivas en R con Shiny">
   <meta itemprop="datePublished" content="2025-10-10T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-10-10T00:00:00+00:00">
-  <meta itemprop="wordCount" content="842">
+  <meta itemprop="wordCount" content="947">
   <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/shiny_ocultar/featured.png">
   <meta itemprop="keywords" content="Shiny">
   
@@ -59,7 +58,7 @@ Si el/la usuario/a selecciona una opción en particular, mostrar un contenedor c
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.f1077c0959e0c28941c671121e25726699745ff83a06fc0ebda190491db6569b.css" integrity="sha256-8Qd8CVngwolBxnESHiVyZpl0X/g6BvwOvaGQSR22Vps=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.2d895d62345af9e2e72524b81407c43bc32960e92011f6c745d4db53ec6d0bd7.css" integrity="sha256-LYldYjRa&#43;eLnJSS4FAfEO8MpYOkgEfbHRdTbU&#43;xtC9c=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
@@ -335,6 +334,74 @@ Si el/la usuario/a selecciona una opción en particular, mostrar un contenedor c
     <section class="post-body pt5 pb4">
         <p>Gracias 
 <a href="https://deanattali.com/shinyjs/" target="_blank" rel="noopener">al paquete <code>{shinyjs}</code></a> podemos hacer que una app Shiny muestre u oculte elementos según los datos que correspondan o los inputs que haya seleccionado el usuario.</p>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/shiny/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/shiny/shiny-apps-featured.jpg"
+           alt="Tutorial: Crea aplicaciones web interactivas en R con Shiny"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Tutorial: Crea aplicaciones web interactivas en R con Shiny
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        Shiny es un paquete para desarrollar aplicaciones web interactivas con R, generalmente centradas en el análisis y visualización de datos. Shiny le da vida a todo lo que hayas desarrollado con R sin…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
 <p><strong>Por ejemplo:</strong></p>
 <ul>
 <li>Si el/la usuario/a selecciona una opción en particular, mostrar un contenedor con información adicional.</li>
@@ -415,8 +482,9 @@ Si el/la usuario/a selecciona una opción en particular, mostrar un contenedor c
 </span></span></code></pre></div><p>Usamos <code>observe()</code> para que <strong>ocurra una acción en nuestra app si es que cambia algún objeto reactivo.</strong> En este caso, haremos que si se cambia <code>input$filtro</code>, se detecte si la selección es <code>&quot;perro&quot;</code>, y si es así, mostrar (<code>show()</code>) el elemento llamado <code>&quot;aviso&quot;</code>. Si la selección es cualquier otra, se oculta (<code>hide()</code>) el elemento.</p>
 <p><strong>Veamos la app en acción!</strong></p>
 <div style="margin:auto; max-width:70%;">
-<video src="shiny_app_a.mov" style="border-radius:7px; max-width: 100%; margin:auto;" autoplay loop>
-</video>
+  
+  <video src="shiny_app_a.mov" style="border-radius:7px; max-width: 100%; display: block; margin: auto;" autoplay loop>
+  </video>
 </div>
 
 <p>Para este ejemplo, agregamos 
@@ -500,8 +568,9 @@ Si el/la usuario/a selecciona una opción en particular, mostrar un contenedor c
 </span></span></code></pre></div><p>Vale mencionar que debemos especificar también la condición donde el gráfico debe volver a mostrarse, y el aviso debe volver a ocultarse, para que cuando el o la usuaria cambie el filtro y vuelvan a haber datos, el gráfico vuelva a aparecer.</p>
 <p><strong>Veamos la aplicación!</strong></p>
 <div style="margin:auto; max-width:70%;">
-<video src="shiny_app_b.mov" style="border-radius:7px; max-width: 100%; margin:auto;" autoplay loop>
-</video>
+  
+  <video src="shiny_app_b.mov" style="border-radius:7px; max-width: 100%; display: block; margin: auto;" autoplay loop>
+  </video>
 </div>
 
 <p>Puedes ver el 
@@ -509,6 +578,177 @@ Si el/la usuario/a selecciona una opción en particular, mostrar un contenedor c
 <p>Nuevamente, le 
 <a href="/blog/shiny_temas/">agregamos el tema a la aplicación Shiny</a> para que se vea bonita, y además agregamos la función <code>thematic_shiny()</code> del paquete <code>{thematic}</code> 
 <a href="/blog/shiny_temas/#aplicar-el-tema-de-tu-app-shiny-a-tus-gr%c3%a1ficos">para que los gráficos usen los colores del tema automáticamente.</a></p>
+
+  <div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones sobre shiny
+    </p>
+
+    <div style="/*border: 1px solid #9069C035;*/
+                border: solid 2px #A885C6AA;
+                border-radius: 8px;
+                overflow: hidden;
+                background-color: #9069C00d;">
+
+      <a href="/blog/shiny/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  
+                  ">
+
+          
+          <img src="/blog/shiny/shiny-apps-featured.jpg"
+               alt="Tutorial: Crea aplicaciones web interactivas en R con Shiny"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Tutorial: Crea aplicaciones web interactivas en R con Shiny
+          </span>
+
+        </a>
+      <a href="/blog/shiny_tipografias/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/shiny_tipografias/shiny_tipografia_featured.png"
+               alt="Usando tipografías personalizadas en aplicaciones Shiny"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Usando tipografías personalizadas en aplicaciones Shiny
+          </span>
+
+        </a>
+      <a href="/blog/shiny_ancho/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <div style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      border-radius: 4px;
+                      background-color: #9069C020;">
+          </div>
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Medir el ancho de una aplicación Shiny como una variable reactiva y usarla para adaptar los contenidos de la app
+          </span>
+
+        </a>
+      <a href="/blog/indice_brechas_genero/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/indice_brechas_genero/featured.jpg"
+               alt="Plataforma de análisis: Índice de Brechas de Género"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Plataforma de análisis: Índice de Brechas de Género
+          </span>
+
+        </a>
+      <a href="/blog/2026-03-26/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/2026-03-26/featured.jpg"
+               alt="Galería de libros de _Goodreads_ para tu blog o sitio web con R y Quarto"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Galería de libros de <em>Goodreads</em> para tu blog o sitio web con R y Quarto
+          </span>
+
+        </a>
+      
+
+    </div>
+  </div>
+
+
+
  
     </section>
       
@@ -517,7 +757,7 @@ Si el/la usuario/a selecciona una opción en particular, mostrar un contenedor c
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/tutorial_mapa_chile_subdere/">&larr; Crea un mapa de Chile desde datos geoespaciales oficiales en R</a>
+    href="https://bastianoleah.netlify.app/blog/tutorial_mapa_chile_subdere/">&larr; Crea un mapa de Chile desde la cartografía oficial en R</a>
   
   
   
@@ -559,7 +799,7 @@ Si el/la usuario/a selecciona una opción en particular, mostrar un contenedor c
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">4 minute read, 842 words</dd>
+    <dd class="fw5 ml0">5 minute read, 947 words</dd>
   </dl>
   
   
@@ -572,11 +812,11 @@ Si el/la usuario/a selecciona una opción en particular, mostrar un contenedor c
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
+    <dd class="fw5 ml0"><a href="/blog/shiny/">Tutorial: Crea aplicaciones web interactivas en R con Shiny</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/shiny_tipografias/">Usando tipografías personalizadas en aplicaciones Shiny</a></dd>
+    
     <dd class="fw5 ml0"><a href="/blog/shiny_ancho/">Medir el ancho de una aplicación Shiny como una variable reactiva y usarla para adaptar los contenidos de la app</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/indice_brechas_genero/">Plataforma de análisis: Índice de Brechas de Género</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/2026-03-26/">Galería de libros de _Goodreads_ para tu blog o sitio web con R y Quarto</a></dd>
     
   </dl>
 </details>
@@ -708,7 +948,7 @@ Si el/la usuario/a selecciona una opción en particular, mostrar un contenedor c
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
+      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -723,7 +963,7 @@ Si el/la usuario/a selecciona una opción en particular, mostrar un contenedor c
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
+      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -783,6 +1023,21 @@ Si el/la usuario/a selecciona una opción en particular, mostrar un contenedor c
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
@@ -798,7 +1053,7 @@ Si el/la usuario/a selecciona una opción en particular, mostrar un contenedor c
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
+      href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -829,21 +1084,6 @@ Si el/la usuario/a selecciona una opción en particular, mostrar un contenedor c
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianoleah.netlify.app/tags/curiosidades/">Curiosidades</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -903,7 +1143,7 @@ Si el/la usuario/a selecciona una opción en particular, mostrar un contenedor c
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/automatizaci%C3%B3n/">Automatización</a></span>
+      href="https://bastianoleah.netlify.app/tags/texto/">Texto</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

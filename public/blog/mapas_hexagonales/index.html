@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr"><head>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.136.5">
+<title>Mapas hexagonales o cuadriculados con R | Bastián Olea</title>
+
+
+<meta property="twitter:site" content="@bastimapache">
+<meta property="twitter:creator" content="@bastimapache">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="Al visualizar datos espaciales detallados, como los de la cartografía censal a nivel de manzanas, los polígonos presentan diversos tamaños y niveles de detalle. Esto puede ser demasiado detallado para la visualización que necesitemos, puede desconcentrar mucho, o bien, podemos necesitar homogeneizar la distribución de los datos en el territorio. En este tutorial veremos cómo crear mapas de hexágonos y de cuadrículas a partir de todo tipo de _shapes_.">
+
+
+<meta property="og:site_name" content="Bastián Olea">
+<meta property="og:title" content="Mapas hexagonales o cuadriculados con R | Bastián Olea">
+<meta property="og:description" content="Al visualizar datos espaciales detallados, como los de la cartografía censal a nivel de manzanas, los polígonos presentan diversos tamaños y niveles de detalle. Esto puede ser demasiado detallado para la visualización que necesitemos, puede desconcentrar mucho, o bien, podemos necesitar homogeneizar la distribución de los datos en el territorio. En este tutorial veremos cómo crear mapas de hexágonos y de cuadrículas a partir de todo tipo de _shapes_." />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://bastianoleah.netlify.app/blog/mapas_hexagonales/" />
+<meta property="og:locale" content="es-ES">
+
+
+
+
+    
+        <meta property="og:image" content="https://bastianoleah.netlify.app/blog/mapas_hexagonales/featured.png" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://bastianoleah.netlify.app/blog/mapas_hexagonales/featured.png" >
+    
+    
+  
+  <meta itemprop="name" content="Mapas hexagonales o cuadriculados con R">
+  <meta itemprop="description" content="Al visualizar datos espaciales detallados, como los de la cartografía censal a nivel de manzanas, los polígonos presentan diversos tamaños y niveles de detalle. Esto puede ser demasiado detallado para la visualización que necesitemos, puede desconcentrar mucho, o bien, podemos necesitar homogeneizar la distribución de los datos en el territorio. En este tutorial veremos cómo crear mapas de hexágonos y de cuadrículas a partir de todo tipo de shapes.
+# crea mapas para comunas o regiones library(dplyr) library(arrow) Datos censales Descarga los datos cartográficos del Censo 2024 desde la página del INE, entrando a Cartografía Censal y luego descargando el archivo Cartografía País Censo 2024 (geoparquet).">
+  <meta itemprop="datePublished" content="2026-04-30T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2026-04-30T00:00:00+00:00">
+  <meta itemprop="wordCount" content="3011">
+  <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/mapas_hexagonales/featured.png">
+  <meta itemprop="keywords" content="Mapas,Visualización de datos">
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="false" type="image/x-icon">
+  <link rel="icon" href="false" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.2d895d62345af9e2e72524b81407c43bc32960e92011f6c745d4db53ec6d0bd7.css" integrity="sha256-LYldYjRa&#43;eLnJSS4FAfEO8MpYOkgEfbHRdTbU&#43;xtC9c=" media="screen">
+  
+  
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  
+  
+  <link rel="stylesheet" href="/css/syntax.css">
+  
+  
+  <link rel="preload" href="https://bastianoleah.shinyapps.io/buscador/" as="image">
+</head>
+<body>
+      <div class="grid-container single-sidebar">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianoleah.netlify.app/" title="Home">
+      <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/blog/" title="Bastián Olea: Blog de R">Blog</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/aprende_r/" title="Aprende R">Aprende R</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/shiny_apps/" title="Apps">Apps</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/tags/" title="Temas">Temas</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/clases/" title="Cursos">Cursos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/tutoriales/" title="Tutoriales">Tutoriales</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/about/" title="Bastián Olea: Sobre mi">Yo</a>
+      
+      
+      
+      <div class="dib v-mid", style = "padding: 4px; margin-top: 4px;">
+        <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+      </div>
+      
+    </div>
+  </nav>
+</header>
+
+
+                       
+ 
+
+<main class="page-main pa4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header" style="margin-top:-30px;">
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Mapas hexagonales o cuadriculados con R</h1>
+        
+        
+        
+        <div style = "display: inline-block;">  
+          <p class="f7 db mv0 ttu" style = "display: inline-block;">
+            30/4/2026</p>
+          
+          
+          
+        </div>
+          
+        
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/mapas"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            mapas</a>  <a href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            visualización de datos</a> </dd></em>
+        </dl>
+         
+      
+        
+      
+      
+    </header>
+      
+      
+    <section class="post-body pt5 pb4">
+        <p>Al visualizar datos espaciales detallados, como los de la 
+<a href="./blog/mapas_censo_2024/">cartografía censal a nivel de manzanas</a>, los polígonos presentan diversos tamaños y niveles de detalle. Esto puede ser demasiado detallado para la visualización que necesitemos, puede desconcentrar mucho, o bien, podemos necesitar homogeneizar la distribución de los datos en el territorio. En este tutorial veremos cómo crear mapas de hexágonos y de cuadrículas a partir de todo tipo de <em>shapes</em>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># crea mapas para comunas o regiones</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">arrow</span><span class="p">)</span>
+</span></span></code></pre></div>
+
+
+
+<h2 id="datos-censales">Datos censales
+  <a href="#datos-censales"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>
+<a href="https://censo2024.ine.gob.cl/resultados/" target="_blank" rel="noopener">Descarga los datos cartográficos del Censo 2024 desde la página del INE</a>, entrando a <em>Cartografía Censal</em> y luego descargando el archivo <strong>Cartografía País Censo 2024 (geoparquet)</strong>.</p>
+
+
+
+
+<div class = "db pt1"
+style = "margin-bottom: 34px;">
+
+<a class = "btn-links mr2 ba dib"
+href = "https://storage.googleapis.com/bktdescargascenso2024/Cartografia/GEOPARQUET/Cartografia_censo2024_Pais.zip" target="_blank"
+style = "padding: 12px; padding-bottom: 8px; border-radius: 5px; padding-right: 18px; text-decoration: none; border: 1px solid; color: #EAD2FA; background-color: #9069C0; margin-bottom: -12px;">
+<i class="fas fa-map-location fa-lg fa-fw mr2" style="color: #EAD2FA;"></i>
+Descargar datos nivel manzana</a>
+
+</div>
+<p>Luego cargamos los datos con la función <code>open_dataset()</code> de <code>{arrow}</code>, que carga los datos como una base de datos para que el proceso sea eficiente.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># cargar datos de cartografía censal</span>
+</span></span><span class="line"><span class="cl"><span class="n">censo_manzanas</span> <span class="o">&lt;-</span> <span class="nf">open_dataset</span><span class="p">(</span><span class="s">&#34;Cartografia_censo2024_Pais_Manzanas.parquet&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Como vimos en el 
+<a href="./blog/censo_2024/">tutorial del Censo 2024</a>, cargar los datos censales como base de datos evita tener que cargar <em>todos los datos</em> de una sola vez, sino que cargas una <em>referencia</em> a los datos que no pesa nada, pero que puedes filtrar y seleccionar, y sólo cuando ya necesitas los datos los <em>copias</em> a la memoria con la función <code>collect()</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># filtrar datos de cartografía censal por manzana</span>
+</span></span><span class="line"><span class="cl"><span class="n">censo_comuna</span> <span class="o">&lt;-</span> <span class="n">censo_manzanas</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">COMUNA</span> <span class="o">==</span> <span class="s">&#34;LA FLORIDA&#34;</span><span class="p">)</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># seleccionar variables</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="n">n_edad_60_mas</span><span class="p">,</span> <span class="n">SHAPE</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># copiar desde la base de datos</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">collect</span><span class="p">()</span>
+</span></span></code></pre></div><div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/censo_2024/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/censo_2024/censo-featured.jpg"
+           alt="Explorar datos del Censo de Población y Vivienda 2024 con R"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Explorar datos del Censo de Población y Vivienda 2024 con R
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        Una de las dificultades más frecuentes en el análisis de datos es poder acceder a datos censales, porque su tamaño suele ser muy grande para la mayoría de los computadores, o bien imposible de abrir…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+<p>Entonces abrimos la conexión con la base de datos, filtramos la columna <code>COMUNA</code>, seleccionamos la variable que nos interesa (en este caso <code>n_edad_60_mas</code>, <em>personas de 60 años o más</em>), y la columna <code>SHAPE</code> que contiene los polígonos de las manzanas censales.</p>
+<p>Así se ve la tabla:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">censo_comuna</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code># A tibble: 6 × 2
+  n_edad_60_mas      SHAPE
+          &lt;dbl&gt; &lt;arrw_bnr&gt;
+1            71      [646]
+2            79      [502]
+3             7      [262]
+4            34      [454]
+5           121    [2,102]
+6            44      [662]
+</code></pre>
+<p>Veamos cómo se ve el mapa! Para ello, tenemos que usar el paquete <code>{sf}</code>, como vimos en el 
+<a href="./blog/mapas_sf">tutorial de mapas con R</a>, para convertir el <em>dataframe</em> en un dataframe de catacterísticas geoespaciales:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># transformar a mapa </span>
+</span></span><span class="line"><span class="cl"><span class="n">censo_comuna_mapa</span> <span class="o">&lt;-</span> <span class="n">censo_comuna</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">st_as_sf</span><span class="p">()</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">st_set_crs</span><span class="p">(</span><span class="m">4674</span><span class="p">)</span>
+</span></span></code></pre></div><div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/mapas_sf/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/mapas_sf/mapa_rm_featured.png"
+           alt="Mapas y visualización de datos geoespaciales en R con {sf}"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Mapas y visualización de datos geoespaciales en R con {sf}
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        R cuenta con un muy amplio ecosistema para trabajar con datos geoespaciales. Uno de los paquetes más importantes es {sf}, que permite manipular datos espaciales a partir del estándar simple features…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+<p>Ahora veamos cómo se ve el mapa:</p>
+
+
+<details>
+  <summary>
+    Ver tema para los gráficos
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">theme_set</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme_minimal</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">paper</span> <span class="o">=</span> <span class="s">&#34;#EAD2FA&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ink</span> <span class="o">=</span> <span class="s">&#34;#553A74&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">accent</span> <span class="o">=</span> <span class="s">&#34;#9069C0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">base_family</span> <span class="o">=</span> <span class="s">&#34;Atkinson Hyperlegible&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">theme</span><span class="p">(</span><span class="n">plot.title</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">face</span> <span class="o">=</span> <span class="s">&#34;bold&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">          <span class="n">legend.title</span> <span class="o">=</span> <span class="nf">element_blank</span><span class="p">()))</span>
+</span></span></code></pre></div>
+    </div>
+</details>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ver mapa</span>
+</span></span><span class="line"><span class="cl"><span class="n">censo_comuna_mapa</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">aes</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="n">n_edad_60_mas</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">lwd</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_fill_continuous</span><span class="p">(</span><span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;PurpOr&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&#34;La Florida&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">       <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&#34;Personas mayores de 60 años o más&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">       <span class="n">caption</span> <span class="o">=</span> <span class="s">&#34;Censo 2024, cartografía censal&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-1.png" width="768" />
+<!-- También podemos ver el mapa de manera interactiva con el paquete `{mapview}`: -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># revisar mapa</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">mapview</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">mapview</span><span class="p">(</span><span class="n">censo_comuna_mapa</span><span class="p">)</span>
+</span></span></code></pre></div><div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/mapas_censo_2024/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/mapas_censo_2024/featured.jpg"
+           alt="Visualiza datos del Censo 2024 en mapas a nivel de manzana con R"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Visualiza datos del Censo 2024 en mapas a nivel de manzana con R
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        Recientemente lanzaron los datos 2024 del Censo de Población y Vivienda de Chile, incluyendo más de 200 variables a nivel de manzana. En este tutorial veremos dos formas de visualizar datos censales a…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+
+
+
+
+<h2 id="mapa-de-puntos">Mapa de puntos
+  <a href="#mapa-de-puntos"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Para poder visualizar estos datos territoriales en visualizaciones más homogéneas, como en cuadrículas o en hexágonos, primero tenemos que <strong>convertir los polígonos en puntos</strong>. Los puntos nos permitirán más adelante contar cuántos polígonos caen dentro de cada celda de las grillas.</p>
+<p>Para convertir polígonos en puntos, usamos <code>st_centroid()</code> sobre la columna con los datos espaciales para 
+<a href="./blog/mapas_sf/#calcular-centroide">calcular su centroide</a>. Como precaución, podemos agregar <code>st_make_valid()</code> para corregir los polígonos de antemano.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># pasar de polígonos a puntos</span>
+</span></span><span class="line"><span class="cl"><span class="n">censo_comuna_puntos</span> <span class="o">&lt;-</span> <span class="n">censo_comuna_mapa</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">st_make_valid</span><span class="p">()</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">SHAPE</span> <span class="o">=</span> <span class="nf">st_centroid</span><span class="p">(</span><span class="n">SHAPE</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">censo_comuna_puntos</span>
+</span></span></code></pre></div><pre><code>Simple feature collection with 3584 features and 1 field
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -70.61368 ymin: -33.57001 xmax: -70.51873 ymax: -33.5083
+Geodetic CRS:  SIRGAS 2000
+# A tibble: 3,584 × 2
+   n_edad_60_mas                 SHAPE
+ *         &lt;dbl&gt;           &lt;POINT [°]&gt;
+ 1            71  (-70.6113 -33.50983)
+ 2            79 (-70.60988 -33.51116)
+ 3             7 (-70.60929 -33.51137)
+ 4            34  (-70.60912 -33.5118)
+ 5           121 (-70.60675 -33.51419)
+ 6            44 (-70.60518 -33.51488)
+ 7            21 (-70.60469 -33.51533)
+ 8            28   (-70.60347 -33.516)
+ 9           120 (-70.60526 -33.51619)
+10            12 (-70.60434 -33.51582)
+# ℹ 3,574 more rows
+</code></pre>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/mapas_sf/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/mapas_sf/mapa_rm_featured.png"
+           alt="Mapas y visualización de datos geoespaciales en R con {sf}"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Mapas y visualización de datos geoespaciales en R con {sf}
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        R cuenta con un muy amplio ecosistema para trabajar con datos geoespaciales. Uno de los paquetes más importantes es {sf}, que permite manipular datos espaciales a partir del estándar simple features…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+<p>Ahora cada polígono se convirtió en un punto ubicado al centro de cada figura:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">censo_comuna_puntos</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">aes</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="n">n_edad_60_mas</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_color_continuous</span><span class="p">(</span><span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;PurpOr&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
+<!-- Veamos el resultado de forma interactiva:  -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">censo_comuna_puntos</span> <span class="o">|&gt;</span> <span class="n">mapview</span><span class="o">::</span><span class="nf">mapview</span><span class="p">(</span><span class="n">cex</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">.4</span><span class="p">)</span>
+</span></span></code></pre></div>
+
+
+
+<h2 id="mapa-de-cuadrícula">Mapa de cuadrícula
+  <a href="#mapa-de-cuadr%c3%adcula"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Una vez que tenemos los puntos, podemos empezar a crear la cuadrícula para visualizar los datos territoriales en cuadritos. Pero para que los cuadritos sean cuadrados, tenemos que hacer una <strong>reproyección</strong> de las coordenadas del mapa primero:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># convertir mapa a unidades métricas</span>
+</span></span><span class="line"><span class="cl"><span class="n">censo_comuna_puntos</span> <span class="o">&lt;-</span> <span class="n">censo_comuna_puntos</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">st_transform</span><span class="p">(</span><span class="m">32719</span><span class="p">)</span>
+</span></span></code></pre></div><p>Para crear la grilla o cuadrícula usamos <code>st_make_grid()</code>, a la que le especificamos el tamaño de los cuadros que queremos con <code>set_units()</code>, del paquete <code>{units}</code>. En este caso, haremos una cuadrícula con celdas de 0,5 kilómetros. Luego tenemos que aplicar <code>st_as_sf()</code> para que el mapa resultante vuelva a tener características de tabla, y enumeramos las celdas de la grilla con <code>row_number()</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">units</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># calcular grilla cuadrada</span>
+</span></span><span class="line"><span class="cl"><span class="n">cuadricula</span> <span class="o">&lt;-</span> <span class="n">censo_comuna_puntos</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">st_make_grid</span><span class="p">(</span><span class="nf">set_units</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="n">km</span><span class="p">))</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">st_as_sf</span><span class="p">()</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">celda</span> <span class="o">=</span> <span class="nf">row_number</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">cuadricula</span>
+</span></span></code></pre></div><pre><code>Simple feature collection with 252 features and 1 field
+Geometry type: POLYGON
+Dimension:     XY
+Bounding box:  xmin: 350183.3 ymin: 6284358 xmax: 359183.3 ymax: 6291358
+Projected CRS: WGS 84 / UTM zone 19S
+First 10 features:
+                                x celda
+1  POLYGON ((350183.3 6284358,...     1
+2  POLYGON ((350683.3 6284358,...     2
+3  POLYGON ((351183.3 6284358,...     3
+4  POLYGON ((351683.3 6284358,...     4
+5  POLYGON ((352183.3 6284358,...     5
+6  POLYGON ((352683.3 6284358,...     6
+7  POLYGON ((353183.3 6284358,...     7
+8  POLYGON ((353683.3 6284358,...     8
+9  POLYGON ((354183.3 6284358,...     9
+10 POLYGON ((354683.3 6284358,...    10
+</code></pre>
+<p>Veamos la cuadrícula resultante:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">cuadricula</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#9069C0&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">)</span>
+</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/grilla_cuadrada_vacia-1.png" width="768" />
+<p>La cuadrícula usa la misma superficie que el mapa original. Podemos confirmar esto graficando la cuadrícula con los puntos encima:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">cuadricula</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#9069C0&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">)</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">censo_comuna_puntos</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#553A74&#34;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/mapa_cuadricula_puntos-1.png" width="768" />
+<p>Con el mapa anterior se entiende mejor el proceso que estamos haciendo: el valor de cada celda va a depender de los puntos que caen dentro de la misma. Para eso, tenemos que cruzar los puntos y las celdas, que hasta ahora son objetos distintos.</p>
+<p>Pero cómo podemos cruzar dos mapas distintos que no tienen columnas en común? Por un lado tenemos los <strong>puntos</strong> con sus coordenadas, y por otro lado tenemos las <strong>celdas</strong>, con sus propias coordenadas que definen cada polígono cuadrado.</p>
+<p>Podemos <strong>unir los datos de dos mapas en base a su ubicación geográfica</strong> con un <strong>cruce espacial</strong> o <em>spatial join</em>, usando la función <code>st_join()</code>. Un <em>spatial join</em> va a unir las filas de ambas tablas si la ubicación de los datos de una caen dentro de la ubicación espacial de la otra. En este caso, os puntos que caen dentro de una celda se unirán a la fila de esa celda:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># agregar datos a grilla de hexágonos</span>
+</span></span><span class="line"><span class="cl"><span class="n">censo_comuna_cuadros</span> <span class="o">&lt;-</span> <span class="n">cuadricula</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">st_join</span><span class="p">(</span><span class="n">censo_comuna_puntos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">censo_comuna_cuadros</span>
+</span></span></code></pre></div><pre><code>Simple feature collection with 3653 features and 2 fields
+Geometry type: POLYGON
+Dimension:     XY
+Bounding box:  xmin: 350183.3 ymin: 6284358 xmax: 359183.3 ymax: 6291358
+Projected CRS: WGS 84 / UTM zone 19S
+First 10 features:
+    celda n_edad_60_mas                              x
+1       1            66 POLYGON ((350183.3 6284358,...
+1.1     1            27 POLYGON ((350183.3 6284358,...
+1.2     1            35 POLYGON ((350183.3 6284358,...
+1.3     1            40 POLYGON ((350183.3 6284358,...
+1.4     1            28 POLYGON ((350183.3 6284358,...
+1.5     1            29 POLYGON ((350183.3 6284358,...
+1.6     1            17 POLYGON ((350183.3 6284358,...
+1.7     1            24 POLYGON ((350183.3 6284358,...
+1.8     1            36 POLYGON ((350183.3 6284358,...
+1.9     1            29 POLYGON ((350183.3 6284358,...
+</code></pre>
+<p>Podemos ver que ahora cada celda de la cuadrícula contiene los valores de los puntos que estaban dentro de ella. Por ejemplo, veamos los datos de la celda numero 4:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">censo_comuna_cuadros</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">celda</span> <span class="o">==</span> <span class="m">4</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>Simple feature collection with 22 features and 2 fields
+Geometry type: POLYGON
+Dimension:     XY
+Bounding box:  xmin: 351683.3 ymin: 6284358 xmax: 352183.3 ymax: 6284858
+Projected CRS: WGS 84 / UTM zone 19S
+First 10 features:
+    celda n_edad_60_mas                              x
+4       4            23 POLYGON ((351683.3 6284358,...
+4.1     4             6 POLYGON ((351683.3 6284358,...
+4.2     4            21 POLYGON ((351683.3 6284358,...
+4.3     4            29 POLYGON ((351683.3 6284358,...
+4.4     4            21 POLYGON ((351683.3 6284358,...
+4.5     4            64 POLYGON ((351683.3 6284358,...
+4.6     4            23 POLYGON ((351683.3 6284358,...
+4.7     4            21 POLYGON ((351683.3 6284358,...
+4.8     4             4 POLYGON ((351683.3 6284358,...
+4.9     4            39 POLYGON ((351683.3 6284358,...
+</code></pre>
+<p>Ahora cada celda contiene datos de todas las observaciones (en este caso, personas) que se ubican en dicho cuadro. O sea que, por cada celda, hay varias filas que representan a las manzanas o polígonos que cayeron dentro de dicha celda.</p>
+<p>Ahora queremos calcular el <strong>total</strong> de personas por celda, por lo que tenemos que sumar estos datos para resumir la tabla a <strong>una observación por cuadro</strong>. Para eso usamos <code>summarize()</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">censo_comuna_conteo_cuadros</span> <span class="o">&lt;-</span> <span class="n">censo_comuna_cuadros</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># agrupar por celda</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">group_by</span><span class="p">(</span><span class="n">celda</span><span class="p">)</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># sumar observaciones</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">summarise</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_edad_60_mas</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">n_edad_60_mas</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_manzanas</span> <span class="o">=</span> <span class="nf">n</span><span class="p">())</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># descartar celdas sin datos</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">filter_out</span><span class="p">(</span><span class="n">n_edad_60_mas</span> <span class="o">==</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">censo_comuna_conteo_cuadros</span>
+</span></span></code></pre></div><pre><code>Simple feature collection with 177 features and 3 fields
+Geometry type: POLYGON
+Dimension:     XY
+Bounding box:  xmin: 350183.3 ymin: 6284358 xmax: 359183.3 ymax: 6291358
+Projected CRS: WGS 84 / UTM zone 19S
+# A tibble: 177 × 4
+   celda n_edad_60_mas n_manzanas                                              x
+ * &lt;int&gt;         &lt;dbl&gt;      &lt;int&gt;                                  &lt;POLYGON [m]&gt;
+ 1     1           826         28 ((350183.3 6284358, 350683.3 6284358, 350683.…
+ 2     2           385          1 ((350683.3 6284358, 351183.3 6284358, 351183.…
+ 3     3            56          2 ((351183.3 6284358, 351683.3 6284358, 351683.…
+ 4     4           544         22 ((351683.3 6284358, 352183.3 6284358, 352183.…
+ 5     5           765         16 ((352183.3 6284358, 352683.3 6284358, 352683.…
+ 6     6           174          7 ((352683.3 6284358, 353183.3 6284358, 353183.…
+ 7    19           877         28 ((350183.3 6284858, 350683.3 6284858, 350683.…
+ 8    20           484         20 ((350683.3 6284858, 351183.3 6284858, 351183.…
+ 9    21           689         18 ((351183.3 6284858, 351683.3 6284858, 351683.…
+10    22           533         27 ((351683.3 6284858, 352183.3 6284858, 352183.…
+# ℹ 167 more rows
+</code></pre>
+<p>Ahora sí, tenemos los valores de la variable que nos interesa por cada celda de la cuadrícula.</p>
+<p><strong>Repasando:</strong> calculamos una cuadrícula a partir del mapa con <code>st_make_grid()</code>, luego vimos qué puntos caen en cada celda de la cuadrícula, luego unimos los puntos con la cuadrícula con un <code>st_join()</code>, luego sumamos los puntos por cuadrícula con <code>summarize()</code>.</p>
+
+
+<details>
+  <summary>
+    Ver una forma más eficiente de hacer lo mismo
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    <p>Lo anterior funcionó bien para este ejemplo, porque estamos usando los datos espaciales de una sola comuna. Pero si queremos hacer lo mismo para una región o un país puede <strong>ponerse más lento</strong>.</p>
+<p>Esto es porque lo hicimos de uan manera <strong>simple pero ineficiente</strong>: al hacer <code>summarize()</code> de datos espaciales, se suman perfectamente las observaciones de cada grupo, pero también se habrían <strong>combinado las geometrías</strong> de las celdas, lo cual tiene un <strong>costo de procesamiento alto</strong> y es <em>muy</em> ineficiente e innecesario.</p>
+<p>Para hacerlo más eficiente, podemos calcular por separado la suma por grupos, y luego agregar el resultado de la suma a la cuadrícula:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># descartar geometría y calcular valores por celda</span>
+</span></span><span class="line"><span class="cl"><span class="n">conteo_celda</span> <span class="o">&lt;-</span> <span class="n">censo_comuna_cuadros</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># eliminar información espacial</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">st_drop_geometry</span><span class="p">()</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># agrupar por celda</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">group_by</span><span class="p">(</span><span class="n">celda</span><span class="p">)</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># sumar observaciones</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">summarise</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_edad_60_mas</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">n_edad_60_mas</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_manzanas</span> <span class="o">=</span> <span class="nf">n</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># descartar celdas sin datos</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">filter_out</span><span class="p">(</span><span class="n">n_edad_60_mas</span> <span class="o">==</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># agregar las sumas a la cuadrícula</span>
+</span></span><span class="line"><span class="cl"><span class="n">censo_comuna_conteo_cuadros</span> <span class="o">&lt;-</span> <span class="n">cuadricula</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">left_join</span><span class="p">(</span><span class="n">conteo_celda</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">by</span> <span class="o">=</span> <span class="nf">join_by</span><span class="p">(</span><span class="n">celda</span><span class="p">))</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">st_as_sf</span><span class="p">()</span>
+</span></span></code></pre></div><p>El resultado es el mismo, pero <strong>este método evita unir innecesariamente polígonos que son idénticos</strong>.</p>
+
+    </div>
+</details>
+<p>Finalmente tenemos la cuadrícula con los valores sumados de la población correspondiente a cada celda. Veamos el mapa!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">censo_comuna_conteo_cuadros</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">aes</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="n">n_edad_60_mas</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_fill_continuous</span><span class="p">(</span><span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;Sunset&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&#34;La Florida&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">       <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&#34;Personas mayores de 60 años o más&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">       <span class="n">caption</span> <span class="o">=</span> <span class="s">&#34;Censo 2024, cartografía censal&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-16-1.png" width="768" />
+<p>¡Queda hermoso! Esta nueva visualización simplifica la complejidad de los datos territoriales originales, representando el espacio en una cuadrícula homogénea que igual permite identificar tendencias en un fenómeno territorial.</p>
+
+
+
+
+<h2 id="mapa-de-hexágonos">Mapa de hexágonos
+  <a href="#mapa-de-hex%c3%a1gonos"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Otra forma de simplificar datos espaciales es mediante hexágonos, figuras que tienen la cualidad de ser <strong>casi circulares</strong>, lo que permite una distribución más homogénea de las figuras<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<p>Para crear la grilla de hexágonos usamos la misma función <code>st_make_grid()</code>, pero pidiéndole polígonos y no cuadrados:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># calcular hexágonos</span>
+</span></span><span class="line"><span class="cl"><span class="n">hexagonos</span> <span class="o">&lt;-</span> <span class="n">censo_comuna_puntos</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">st_make_grid</span><span class="p">(</span><span class="n">cellsize</span> <span class="o">=</span> <span class="n">units</span><span class="o">::</span><span class="nf">set_units</span><span class="p">(</span><span class="m">0.6</span><span class="p">,</span> <span class="n">km</span><span class="p">),</span> <span class="c1"># tamaño de hexágonos</span>
+</span></span><span class="line"><span class="cl">               <span class="n">what</span> <span class="o">=</span> <span class="s">&#34;polygons&#34;</span><span class="p">,</span> <span class="n">square</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">st_as_sf</span><span class="p">()</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">celda</span> <span class="o">=</span> <span class="nf">row_number</span><span class="p">())</span>
+</span></span></code></pre></div><p>Veamos la grilla hexagonal:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">hexagonos</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#9069C0&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">0.6</span><span class="p">)</span>
+</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/hexagonos_vacios-1.png" width="768" />
+<p>Ahora comparemos la grilla hexagonal con los puntos de las observaciones de nuestros datos, para ver cómo se van a distribuir los valores de los hexágonos en base a los datos de los polígonos territoriales:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">hexagonos</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#9069C0&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">0.6</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">)</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">censo_comuna_puntos</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#553A74&#34;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/mapa_hexagonos_puntos-1.png" width="768" />
+<p>Ahora unimos los datos de dos mapas según su intersección geográfica con un <em>spatial join</em> con <code>st_join()</code>. Así, se unirán los polígonos correspondientes a los hexágonos con los datos de los puntos cuando ambos compartan la misma ubicación en el territorio. Así, los puntos que caen dentro de una celda se unirán a la fila de esa celda:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># agregar datos a grilla de hexágonos</span>
+</span></span><span class="line"><span class="cl"><span class="n">censo_comuna_hex</span> <span class="o">&lt;-</span> <span class="n">hexagonos</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">st_join</span><span class="p">(</span><span class="n">censo_comuna_puntos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">censo_comuna_hex</span>
+</span></span></code></pre></div><pre><code>Simple feature collection with 3655 features and 2 fields
+Geometry type: POLYGON
+Dimension:     XY
+Bounding box:  xmin: 349583.3 ymin: 6284011 xmax: 359483.3 ymax: 6291459
+Projected CRS: WGS 84 / UTM zone 19S
+First 10 features:
+    celda n_edad_60_mas                              x
+1       1            NA POLYGON ((349883.3 6284531,...
+2       2            NA POLYGON ((349883.3 6285570,...
+3       3            NA POLYGON ((349883.3 6286609,...
+4       4            NA POLYGON ((349883.3 6287648,...
+5       5            NA POLYGON ((349883.3 6288688,...
+6       6            NA POLYGON ((349883.3 6289727,...
+7       7             0 POLYGON ((349883.3 6290766,...
+8       8            24 POLYGON ((350183.3 6284011,...
+8.1     8            28 POLYGON ((350183.3 6284011,...
+9       9            32 POLYGON ((350183.3 6285050,...
+</code></pre>
+<p>Agrupamos los datos por hexágono, y sumamos las observaciones para obtener un <em>dataframe</em> que tiene una fila por hexágono, que contiene las columnas con la variable que nos interesa, y la columna de la geometría de cada hexágono:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">censo_comuna_conteo_hex</span> <span class="o">&lt;-</span> <span class="n">censo_comuna_hex</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">group_by</span><span class="p">(</span><span class="n">celda</span><span class="p">)</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># calcular sumas</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">summarise</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_edad_60_mas</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">n_edad_60_mas</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_manzanas</span> <span class="o">=</span> <span class="nf">n</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># descartar celdas sin datos</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">filter_out</span><span class="p">(</span><span class="n">n_edad_60_mas</span> <span class="o">==</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">censo_comuna_conteo_hex</span>
+</span></span></code></pre></div><pre><code>Simple feature collection with 147 features and 3 fields
+Geometry type: POLYGON
+Dimension:     XY
+Bounding box:  xmin: 349883.3 ymin: 6284011 xmax: 359183.3 ymax: 6291459
+Projected CRS: WGS 84 / UTM zone 19S
+# A tibble: 147 × 4
+   celda n_edad_60_mas n_manzanas                                              x
+ * &lt;int&gt;         &lt;dbl&gt;      &lt;int&gt;                                  &lt;POLYGON [m]&gt;
+ 1     8            52          2 ((350183.3 6284011, 349883.3 6284184, 349883.…
+ 2     9            55          2 ((350183.3 6285050, 349883.3 6285224, 349883.…
+ 3    10           555         23 ((350183.3 6286090, 349883.3 6286263, 349883.…
+ 4    14            73          5 ((350183.3 6290247, 349883.3 6290420, 349883.…
+ 5    15          1267         38 ((350483.3 6284531, 350183.3 6284704, 350183.…
+ 6    16          1179         49 ((350483.3 6285570, 350183.3 6285743, 350183.…
+ 7    17           295         14 ((350483.3 6286609, 350183.3 6286782, 350183.…
+ 8    18           354         23 ((350483.3 6287648, 350183.3 6287822, 350183.…
+ 9    19           264         20 ((350483.3 6288688, 350183.3 6288861, 350183.…
+10    20           678          9 ((350483.3 6289727, 350183.3 6289900, 350183.…
+# ℹ 137 more rows
+</code></pre>
+
+
+<details>
+  <summary>
+    Ver forma optimizada para hacer lo mismo
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    <p>Tomamos los datos cruzados con las celdas, le sacamos la información geográfica para dejar solamente celda y dato, agrupamos por celda y sumamos. Así obenemos celdas únicas con la suma de cada una. Luego simplemente agregamos estos resultados al objeto que contiene las celdas con sus polígonos. Así evitamos que el <code>summarize()</code> tenga que sumar también los polígonos, que es una operación lenta e innecesaria.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">censo_comuna_conteo</span> <span class="o">&lt;-</span> <span class="n">censo_comuna_hex</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># descartar geometría </span>
+</span></span><span class="line"><span class="cl">  <span class="nf">st_drop_geometry</span><span class="p">()</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">group_by</span><span class="p">(</span><span class="n">celda</span><span class="p">)</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># calcular sumas</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">summarise</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_edad_60_mas</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">n_edad_60_mas</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_manzanas</span> <span class="o">=</span> <span class="nf">n</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># descartar celdas sin datos</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">filter_out</span><span class="p">(</span><span class="n">n_edad_60_mas</span> <span class="o">==</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># agregar los datos a la grilla</span>
+</span></span><span class="line"><span class="cl"><span class="n">censo_comuna_conteo_hex</span> <span class="o">&lt;-</span> <span class="n">hexagonos</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">left_join</span><span class="p">(</span><span class="n">censo_comuna_conteo</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">by</span> <span class="o">=</span> <span class="nf">join_by</span><span class="p">(</span><span class="n">celda</span><span class="p">))</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">st_as_sf</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">censo_comuna_conteo_hex</span>
+</span></span></code></pre></div>
+    </div>
+</details>
+<p>Ahora podemos visualizar el mapa:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">censo_comuna_conteo_hex</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">aes</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="n">n_edad_60_mas</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_fill_continuous</span><span class="p">(</span><span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;PurpOr&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&#34;La Florida&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">       <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&#34;Personas mayores de 60 años o más\nHexágonos de 600 mts&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">       <span class="n">caption</span> <span class="o">=</span> <span class="s">&#34;Censo 2024, cartografía censal&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-21-1.png" width="768" />
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">censo_comuna_conteo_hex</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">aes</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="n">n_edad_60_mas</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_sf</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#EBD2FA&#34;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">1.3</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_fill_continuous</span><span class="p">(</span><span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;PurpOr&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme</span><span class="p">(</span><span class="n">panel.grid</span> <span class="o">=</span> <span class="nf">element_blank</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">axis.text</span> <span class="o">=</span> <span class="nf">element_blank</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">legend.position</span> <span class="o">=</span> <span class="s">&#34;none&#34;</span><span class="p">)</span>
+</span></span></code></pre></div>
+
+
+
+<h3 id="cambiar-tamaño-de-los-hexágonos">Cambiar tamaño de los hexágonos
+  <a href="#cambiar-tama%c3%b1o-de-los-hex%c3%a1gonos"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Podemos repetir el proceso anterior, cambiando el tamaño de las celdas en <code>st_make_grid()</code> para tener hexágonos más grandes. Como convertimos el mapa a unidades métricas, podemos especificar el tamaño de los hexágonos en kilómetros.</p>
+<p>Por ejemplo, podemos hacer los hexágonos más grandes:</p>
+<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-22-1.png" width="768" />
+<p>&hellip;o hexágonos más chicos:</p>
+<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-23-1.png" width="768" />
+
+  <div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones sobre mapas
+    </p>
+
+    <div style="/*border: 1px solid #9069C035;*/
+                border: solid 2px #A885C6AA;
+                border-radius: 8px;
+                overflow: hidden;
+                background-color: #9069C00d;">
+
+      <a href="/blog/mapas_sf/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  
+                  ">
+
+          
+          <img src="/blog/mapas_sf/mapa_rm_featured.png"
+               alt="Mapas y visualización de datos geoespaciales en R con {sf}"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Mapas y visualización de datos geoespaciales en R con {sf}
+          </span>
+
+        </a>
+      <a href="/blog/app_censo_mapas/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/app_censo_mapas/featured.jpg"
+               alt="App: visualizador de mapas comunales del Censo 2024 por manzanas"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            App: visualizador de mapas comunales del Censo 2024 por manzanas
+          </span>
+
+        </a>
+      <a href="/blog/mapas_censo_2024/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/mapas_censo_2024/featured.jpg"
+               alt="Visualiza datos del Censo 2024 en mapas a nivel de manzana con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Visualiza datos del Censo 2024 en mapas a nivel de manzana con R
+          </span>
+
+        </a>
+      <a href="/blog/elecciones_presidenciales_2025/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/elecciones_presidenciales_2025/featured.jpg"
+               alt="Visualización y scraping de resultados de las elecciones presidenciales 2025"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Visualización y scraping de resultados de las elecciones presidenciales 2025
+          </span>
+
+        </a>
+      <a href="/blog/mapas_areas_metropolitanas/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/mapas_areas_metropolitanas/featured.jpg"
+               alt="Portafolio: mapas de Áreas Metropolitanas"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Portafolio: mapas de Áreas Metropolitanas
+          </span>
+
+        </a>
+      
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+<h4 id="referencias">Referencias
+  <a href="#referencias"></a>
+</h4>
+<ul>
+<li>
+<a href="https://urbandatapalette.com/post/2021-08-tessellation-sf/" target="_blank" rel="noopener">Create spatial square/hexagon grids and count points inside in R with sf</a>, por 
+<a href="https://urbandatapalette.com" target="_blank" rel="noopener">Urban Data Palette</a></li>
+<li>
+<a href="https://dominicroye.github.io/blog/hex-map-buuse/" target="_blank" rel="noopener">Mapping building use with a hexagonal grid</a>, por 
+<a href="https://dominicroye.github.io" target="_blank" rel="noopener">Dr. Dominic Royé</a></li>
+</ul>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>La distancia del centro de cada hexágono hacia los adyacentes es la misma, y porque cada hexágono comparte un lado con sus adyacentes, no como en los cuadrados, donde la distancia a los que se encuentran en diagonal es mayor a la de los que están al lado o arriba/abajo.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+ 
+    </section>
+      
+    <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+    <a class="prev dtc pr2 tl v-top fw6"
+    href="https://bastianoleah.netlify.app/blog/shiny_tipografias/">&larr; Usando tipografías personalizadas en aplicaciones Shiny</a>
+  
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="https://bastianoleah.netlify.app/blog/mapas_sf/">Mapas y visualización de datos geoespaciales en R con {sf} &rarr;</a>
+  
+</div>
+
+    </footer>
+    
+  </article>
+    
+    <div class="post-comments pa0 pa4-l mt4">
+  
+    
+      <script src="https://utteranc.es/client.js"
+              repo="bastianolea/blog-bastianolea-r"
+              issue-term="pathname"
+              theme="github-light"
+              label="comments"
+              crossorigin="anonymous"
+              async
+              type="text/javascript">
+      </script>
+    
+  
+</div>
+
+    
+</section>
+  
+
+<section class="post-body pt5 pb4">
+  
+  <details closed class="f6 fw7 input-reset">
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Fecha de publicación:</dt>
+    <dd class="fw5 ml0">April 30, 2026</dd>
+  </dl>
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Extensión:</dt>
+    <dd class="fw5 ml0">15 minute read, 3011 words</dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Categorías:</dt>
+    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/categories/tutoriales">Tutoriales</a> </dd>
+  </dl>
+  
+  
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Tags:</dt>
+    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/mapas">mapas</a>  <a href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos">visualización de datos</a> </dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Ver también:</dt>
+    
+    <dd class="fw5 ml0"><a href="/blog/mapas_sf/">Mapas y visualización de datos geoespaciales en R con {sf}</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/ggplot_dumbbell/">Gráficos de puntos comparativos o _dumbbell_ en `{ggplot2}`</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/ggplot_extensiones/">Extensiones recomendadas para mejorar tus gráficos de `{ggplot2}`</a></dd>
+    
+  </dl>
+</details>
+
+</section>
+</main>
+
+
+<aside class="page-sidebar" role="complementary">
+   
+   
+
+  <div class="blog-info ph4 pt4 pb4 pb0-l">
+    
+
+  <h1 class="f3">Blog</h1>
+  <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
+<a href="https://bastianoleah.shinyapps.io/buscador/" target="_blank" rel="noopener">buscador</a> para encontrar publicaciones o navega los 
+<a href="/tags/">temas</a>.</p>
+  
+
+   
+<h3 style="margin-bottom: 12px;">Temas:</h3>
+
+<div style="font-size:90%;">
+
+<div style="font-size: 90%;">
+  
+   
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/chile/">Chile</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/datos/">Datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/gr%C3%A1ficos/">Gráficos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/ggplot2/">Ggplot2</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/web-scraping/">Web scraping</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/b%C3%A1sico/">Básico</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/curiosidades/">Curiosidades</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/quarto/">Quarto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/dplyr/">Dplyr</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/automatizaci%C3%B3n/">Automatización</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianoleah.netlify.app/tags/optimizaci%C3%B3n/">Optimización</a></span>
+  </span>
+
+<a href="/tags/" style="margin-left: 3px;">y más!</a>
+</div>
+</div>
+  
+  
+   
+   
+
+</div>
+
+  
+  <div id="PageTableOfContents" style="margin-top: 24px; position: sticky; top: 108px;">
+        <div class="blog-info ph4 pb4 pb0-l">
+        <h3 style="margin-bottom: 12px;">Índice:</h3>
+          <div class="pl2 pr0 mh0" style = "font-size: 90%; margin-top: -8px; margin-left: -22px; margin-bottom: 32px;">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#datos-censales">Datos censales</a></li>
+    <li><a href="#mapa-de-puntos">Mapa de puntos</a></li>
+    <li><a href="#mapa-de-cuadrícula">Mapa de cuadrícula</a></li>
+    <li><a href="#mapa-de-hexágonos">Mapa de hexágonos</a>
+      <ul>
+        <li><a href="#cambiar-tamaño-de-los-hexágonos">Cambiar tamaño de los hexágonos</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+          </div>
+        </div>
+    </div>
+  
+  
+
+</aside>
+
+        
+          <script id="partials/analytics.html" 
+  data-goatcounter="https://bastimapache.goatcounter.com/count"
+  async src="//gc.zgo.at/count.js"></script>
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2026 Bastián Olea Herrera, Chile
+      <span class="middot-divider"></span>
+      Hecho con <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source" style="color:#9069C0;">Hugo Apéro</a> 
+      y <a href="https://pkgs.rstudio.com/blogdown/" style="color:#9069C0;">{blogdown}</a></span>.
+      <br />
+      
+Basado en <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source" style="color:#9069C0;">Blogophonic</a></span>, de <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL" style="color:#9069C0;">Formspree</a>.
+
+Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlify</a></span>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+      <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
+      
+      <a class="dib pv1 ph2 link" href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      
+      <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
+      
+      <a class="dib pv1 ph2 link" href="/tags/" title="Temas">Temas</a>
+      
+      <a class="dib pv1 ph2 link" href="/clases/" title="Clases">Clases</a>
+      
+      <a class="dib pv1 ph2 link" href="/code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
+      
+      <a class="dib pv1 ph2 link" href="/license/" title="Bastián Olea: Licencia">Licencia</a>
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>

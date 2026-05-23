@@ -165,7 +165,7 @@ mapa_datos |>
 
 ### Agregar datos obtenidos desde internet al mapa
 
-Ahora, pasaremos a usar datos reales sobre nuestro mapa comunal. Pero en vez de entregarles datos copiados y pegados, obtendremos directamente los datos desde internet, [usando el paquete `{rvest}`](/blog/tutorial_scraping_rvest/) que sirve para hacer [web scraping](/blog/r_introduccion/web_scraping/) desde páginas web; es decir, descargar datos presentes en sitios de internet para usarlos directamente en R.
+Ahora, pasaremos a usar datos reales sobre nuestro mapa comunal. Pero en vez de entregarles datos copiados y pegados, obtendremos directamente los datos desde internet, [usando el paquete `{rvest}`](/blog/webscraping_rvest/) que sirve para hacer [web scraping](/blog/web_scraping/) desde páginas web; es decir, descargar datos presentes en sitios de internet para usarlos directamente en R.
 
 ```{r preparar_datos_mapa}
 library(rvest)
@@ -206,7 +206,7 @@ Así quedó el resultado de nuestro web scraping:
 glimpse(datos_comunas)
 ```
 
-{{< relacionada "/blog/tutorial_scraping_rvest/" >}}
+{{< relacionada "/blog/webscraping_rvest/" >}}
 
 #### Agregar variables al mapa
 A continuación, [usamos la función `left_join()`](/blog/left_join/) para adjuntar estas columnas nuevas a nuestro _data frame_ que contiene los nombres y códigos de las comunas, además de la geometría o información geográfica de las comunas, usando como columna de unión los códigos comunales:
