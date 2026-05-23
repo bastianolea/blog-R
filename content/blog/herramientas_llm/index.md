@@ -6,6 +6,7 @@ date: '2026-04-26'
 tags:
   - inteligencia artificial
   - datos
+  - funciones
 format:
   hugo-md:
     output-file: index
@@ -16,6 +17,10 @@ links:
     icon_pack: fas
     name: Código herramienta
     url: https://github.com/bastianolea/censo_poblacion_consultar
+  - icon: newspaper
+    icon_pack: fas
+    name: Tutorial herramienta
+    url: /blog/funcion_consultar_datos/
 ---
 
 _La inteligencia artificial no lo sabe todo._ Y lo que no sabe, **lo inventa**. Es demasiado importante **conocer las limitaciones** de las herramientas de inteligencia artificial para poder hacer buen uso de ellas.
@@ -37,8 +42,6 @@ chat <- chat_anthropic(
   model = "claude-haiku-4-5"
 )
 ```
-
-{{< relacionada "/blog/ellmer/" "Aprende a interactuar con modelos de IA desde R" >}}
 
 Con el modelo iniciado, le hacemos la pregunta:
 
@@ -62,11 +65,11 @@ Esto es porque, por muchos billones de parámetros que tenga un modelo, **es imp
 
 Esto es posible mediante el **uso de herramientas** (_tool calling_), que, como su nombre indica, es la capacidad de ciertos modelos de inteligencia artificial de poder recibir herramientas para poder usarlas cuando sean necesarias.
 
-Esto significa que podemos **crear funciones de R y entregárselas a la inteligencia artificial** para que las use! 😮
+Esto significa que podemos **[crear funciones de R](/blog/funcion_consultar_datos/) y entregárselas a la inteligencia artificial** para que las use! 😮
 
 ### Herramienta: consultar datos del Censo desde R
 
-En [este repositorio](https://github.com/bastianolea/censo_poblacion_consultar) creé una función de R llamada `consultar_censo()`, que permite obtener datos de población del Censo 2024 en distintos niveles territoriales (país, región, provincia, comuna), y en distintas desagregaciones (total, sexo, grupos de edad).
+En [este repositorio](https://github.com/bastianolea/censo_poblacion_consultar) creé una función de R llamada `consultar_censo()`, que permite obtener datos de población del Censo 2024 en distintos niveles territoriales (país, región, provincia, comuna), y en distintas desagregaciones (total, sexo, grupos de edad). 
 
 {{< externo "Repositorio censo_poblacion_consultar"
   "https://github.com/bastianolea/censo_poblacion_consultar"
@@ -74,9 +77,7 @@ En [este repositorio](https://github.com/bastianolea/censo_poblacion_consultar) 
   "Código de R para procesar datos del Censo y obtener una función que entrega población a nivel país, región, provincia, comuna, y opcionalmente desagregada por sexo y edad."
   "Repositorio mencionado" >}}
 
-Para poder usarla en tu sesión de R, clona el repositorio, o descarga el script `consultar_censo.R` y el archivo `censo.rds` y ponlos en tu proyecto de R.
-
-La función se usa así:
+[En este tutorial explico paso a paso cómo crear una **función de consulta de datos**](/blog/funcion_consultar_datos/). La función se usa así:
 
 ```r
 consultar_censo(
@@ -90,10 +91,9 @@ consultar_censo(
 [1] 31119
 ```
 
-{{< info "Pronto escribiré una publicación profundizando sobre esta función!" >}}
-
 La función `consultar_censo()` es útil para un ser humano, pero queremos que la IA pueda usarla también para que use esta información en sus respuestas.
 
+{{< relacionada "/blog/funcion_consultar_datos/" >}}
 
 ## Entregarle herramientas a la IA
 
@@ -448,7 +448,8 @@ chat$chat("Cuál es la población masculina de Curanilahue mayor de 20 años?")
 
 Ahora sí 😉 La IA supo que necesitaba sumar los datos, así que esta vez recurrió a la herramienta y lo hizo bien.
 
-----
+
+{{< relacionada "/blog/funcion_consultar_datos/" "Ahora te toca a ti crear una herramienta!" >}}
 
 Usar LLMs desde R tiene una potencialidad notable, con un ecosistema de paquetes maduro para implementar IA en el análisis de datos. Con lo que vimos en esta publicación se podría implementar un _chat bot_ manejado por R que pueda realizar consultas a datos complejos y entregar información exacta, o hacer que los modelos de IA realicen operaciones complejas de cualquier tipo. Hay muchísimas posibilidades!
 

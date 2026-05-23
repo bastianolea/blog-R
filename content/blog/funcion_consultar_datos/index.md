@@ -2,11 +2,12 @@
 title: Creando una función para consultar datos en R
 subtitle: Crea tu propia API para obtener cifras desde bases de datos más rápido
 author: Bastián Olea Herrera
-date: '2026-05-21'
-draft: true
+date: '2026-05-23'
+draft: false
+freeze: true
 tags:
   - datos
-  - chile
+  - Chile
   - funciones
 format:
   hugo-md:
@@ -20,15 +21,22 @@ links:
 excerpt: >-
   En R es muy fácil filtrar y seleccionar cualquier base de datos para obtener
   las cifras que quieras. Pero a veces necesitamos consultar muchas cifras, y
-  repetir el código se vuelve engorroso. Veremos cómo crear una función que nos
-  ayude a consultar datos de forma más eficiente y cómoda, lo que comúnmente se
-  denomina como API de consulta de datos.
+  repetir el código se vuelve engorroso. En este tutorial veremos cómo crear una
+  función diseñada para consultar datos. Este puede es conveniente para
+  consultar datos, o puede ser el primer paso para crear una API, o crear una
+  herramienta para una inteligencia artificial.
+editor_options:
+  chunk_output_type: inline
 ---
 
 
 En este tutorial veremos cómo **crear una función** en R diseñada para consultar datos. Este puede ser el primer paso para crear una API, una [herramienta para entregarle a una inteligencia artificial](../../../blog/herramientas_llm/), o simplemente algo conveniente de hacer para consultar datos.
 
 Como ejemplo, crearemos una función para consultar la población de comunas, regiones, provincias o país según resultados del Censo 2024, diseñada para [registrarla como herramienta para LLMs](../../../blog/herramientas_llm/) y así hacer que la IA pueda consultar datos de población censal.
+
+En el siguiente repositorio está el código completo de la función que vamos a crear:
+
+{{< externo "Repositorio censo_poblacion_consultar" "https://github.com/bastianolea/censo_poblacion_consultar"  "censo_poblacion_consultar.png" "Repositorio con código que procesa el Censo 2024 para transformarlo a formato _tidy_, crea una función tipo API para consultar los datos, y luego entrega esta función a un LLM para que pueda usarla para responder consultas." "Caso real de función de consulta de datos" >}}
 
 ------------------------------------------------------------------------
 
@@ -63,7 +71,9 @@ censo |>
        <int>     <int>
     1  13110    374836
 
-Así obtuvimos la población de La Florida (había que saberse o buscar el código único territorial eso sí).
+Así obtuvimos la población de La Florida (había que saberse o buscar el código único territorial eso sí 😅).
+
+{{< relacionada "/blog/censo_2024/" "Tutorial para trabajar con el Censo" >}}
 
 Ahora, si queremos la población por **sexo**, cambiamos la agrupación para hacer el conteo de observaciones por comuna y sexo:
 
@@ -79,14 +89,12 @@ censo |>
     # Groups:   comuna [1]
       comuna  sexo poblacion
        <int> <int>     <int>
-    1  13110     1    178461
-    2  13110     2    196375
+    1  13110     2    196375
+    2  13110     1    178461
 
-Luego, si quieres lo mismo pero para otra comuna, copias el código y cambias el filtro, y así.
+Luego, si quieres lo mismo pero para otra comuna, copias el código y cambias el filtro, y así. Después lo necesitas para una región, y tienes que copiar el código, cambiarlo de nuevo...
 
-{{< relacionada "/blog/censo_2024/" "Tutorial para trabajar con el Censo" >}}
-
-Pero si necesitamos hacer esto muy seguido, de repente es mejor optimizarlo. [Como dijo Dios en la biblia](https://es.r4ds.hadley.nz/19-functions.html#cuándo-deberías-escribir-una-función):
+Si necesitamos hacer esto muy seguido, de repente es mejor **optimizarlo**. [Como dijo Dios en la biblia](https://es.r4ds.hadley.nz/19-functions.html#cuándo-deberías-escribir-una-función):
 
 > Deberías considerar escribir una función cuando has copiado y pegado un bloque de código más de dos veces.
 
@@ -94,26 +102,26 @@ Pero si necesitamos hacer esto muy seguido, de repente es mejor optimizarlo. [Co
 Hadley Wickham
 </p>
 
-Alabado sea [Hadley](https://hadley.nz) 🙏🏼
-
 ## Funciones en R
 
-[Crear una función](../../../blog/r_introduccion/r_intermedio/#crear-funciones) permite que ejecutemos un conjunto de operaciones de forma más simple, al **abstraer el código** en un único comando que es más rápido y cómodo de usar. Lo que antes eran varias líneas de código puede resumirse en una función como `filtrar_datos()` o similar.
+[Crear una función](../../../blog/r_introduccion/r_intermedio/#crear-funciones) sirve para ejecutar un conjunto de operaciones de forma más simple, al **abstraer el código** en un único comando que es más rápido y cómodo de usar.
+
+Lo que antes eran varias líneas de código puede resumirse en una función como `filtrar_datos()` o similar.
 
 Las funciones también nos ayudan a **reutilizar** el código al empaquetarlo en una forma más conveniente.
 
 {{< relacionada "/blog/r_introduccion/r_intermedio/" "Aprende a hacer funciones" >}}
 
-Creemos entonces una función que sirva para **ayudar a obtener cifras de una base de datos**. Usaremos como ejemplo el Censo, pero podrás usar estos principios para cualquier otra base de datos, siempre y cuando esté ordernadita.
+Crearemos una función que sirva para **ayudar a obtener cifras de una base de datos**. Usaremos como ejemplo el Censo, pero podrás usar estos principios para cualquier otra base de datos, siempre y cuando esté ordernadita.
 
 Aprendiendo esto estarás a un paso de **crear tu propia API!**
 
 ## Datos
 
-Los datos que usaremos son una versión de los resultados del Censo 2024 en **formato *tidy***. Esto quiere decir que cada columna representa una variable, y cada fila representa una observación.
+Los datos que usaremos son una versión de los resultados del Censo 2024 en **formato *tidy***, [procesados en R con este script](https://github.com/bastianolea/censo_poblacion_consultar/blob/master/datos/procesar_censo.R). Esto quiere decir que cada columna representa una variable, y cada fila representa una observación.
 
 {{< boton "Descargar datos" "censo_2024_tidy.csv" "fas fa-file-download" >}}
-{{< info "Los datos vienen en CSV separado por punto y coma. Recuerda que este tipo de datos suelen abrirse en el navegador como texto, por lo que tienes que ponerle _Guardar como` para guardar el archivo." >}}
+{{< info "Los datos vienen en CSV separado por punto y coma. Recuerda que este tipo de datos suelen abrirse en el navegador como texto, por lo que tienes que ponerle _Guardar como_ para guardar el archivo." >}}
 
 Carguemos los datos para explorarlos:
 
@@ -122,17 +130,6 @@ library(readr)
 
 censo <- read_csv2("censo_2024_tidy.csv")
 ```
-
-    ℹ Using "','" as decimal and "'.'" as grouping mark. Use `read_delim()` for more control.
-
-    Rows: 23825 Columns: 10
-    ── Column specification ────────────────────────────────────────────────────────
-    Delimiter: ";"
-    chr (6): nivel, comuna, provincia, region, sexo, edad
-    dbl (4): codigo_comuna, codigo_provincia, codigo_region, poblacion
-
-    ℹ Use `spec()` to retrieve the full column specification for this data.
-    ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
 Si no quieres descargar los datos, puedes cargarlos directamente desde internet así:
 
@@ -148,7 +145,7 @@ Ahora miremos cómo vienen:
 library(dplyr)
 
 censo |> 
-  select(-contains("codigo"))
+select(-contains("codigo"))
 ```
 
 | nivel  | comuna  | provincia | region   | sexo    | edad  | poblacion |
@@ -160,14 +157,16 @@ censo |>
 | Comuna | Iquique | Iquique   | Tarapacá | Hombres | 20-24 |      6804 |
 | Comuna | Iquique | Iquique   | Tarapacá | Hombres | 25-29 |      8211 |
 
-Vemos que tenemos columnas que describen la unidad geográfica (`comuna`, `provincia`, `region`), tenemos dos variables sociodemográficas (`sexo` y `edad`) y finalmente la cantidad de `poblacion` que cumple los criterios anteriores.
+Tenemos columnas que describen la unidad geográfica (`comuna`, `provincia`, `region`), dos variables sociodemográficas (`sexo` y `edad`) y finalmente la cantidad de `poblacion` que cumple los criterios anteriores.
+
+Es decir, cada fila del *dataframe* describe un grupo de personas con carcterísticas específicas.
 
 Además tenemos la variable `nivel` que describe si los datos vienen por *Comuna, Provincia, Región* o *País.* Por ejemplo:
 
 ``` r
 censo |> 
-  select(-contains("codigo")) |> 
-  filter(nivel == "Provincia")
+select(-contains("codigo")) |> 
+filter(nivel == "Provincia")
 ```
 
 | nivel     | comuna | provincia | region   | sexo    | edad  | poblacion |
@@ -179,11 +178,19 @@ censo |>
 | Provincia | NA     | Iquique   | Tarapacá | Hombres | 20-24 |     13145 |
 | Provincia | NA     | Iquique   | Tarapacá | Hombres | 25-29 |     14644 |
 
+O sea que tenemos los datos de la población visto desde cuatro perspectivas, dependiendo del nivel territorial que nos interese.
+
+{{< info "Es importante entender la **estructura** que tienen los datos para saber qué podemos hacer con ellos!" >}}
+
 ## Crear una función
 
-Sería super conveniente tener una función llamada `consultar_censo()` a la que podamos simplemente pedirle cosas como `consultar_censo(region = "Maule")`, `consultar_censo(comuna = "Pirque")`, o bien cosas más complejas como `consultar_censo(comuna = "Cerrillos", sexo = "Mujeres", edad = "30-35")`.
+Tenemos un *dataframe* que debe ser **filtrado** de varias maneras para llegar a una cifra específica.
 
-Crearemos una función que vaya filtrando los datos dependiendo de lo que se pida en sus argumentos. De esta forma podremos aplicar **validaciones** de los filtros (si las regiones existen, si las edades son válidas, etc.) y personalizar cómo se entregan los resultados, entre otros beneficios.
+Sería súper conveniente tener una función llamada algo así como `consultar_censo()` a la que podamos pedirle cosas como `consultar_censo(region = "Maule")` para obtener la población de una región, `consultar_censo(comuna = "Pirque")` para la de una comuna, o bien cosas más complejas como `consultar_censo(comuna = "Cerrillos", sexo = "Mujeres", edad = "30-35")`.
+
+Crearemos una función que vaya filtrando los datos dependiendo de lo que se pida en sus argumentos.
+
+A medida que se van haciendo los **filtros**, podremos agregar cosas como **mensajes** que describan lo que se va obteniendo, o aplicar **validaciones** para confirmar que las regiones existen, si las edades son válidas, etc., y finalmente podremos personalizar cómo se entregan los resultados, entre otros beneficios.
 
 Primero creamos la función:
 
@@ -191,56 +198,83 @@ Primero creamos la función:
 consultar_censo <- function() {}
 ```
 
-Dentro de los paréntesis de llave (`{}`) irá el código de la función.
+Con lo anterior creamos una función que no hace nada. Dentro de los paréntesis de llave (`{}`) irá todo el código.
+
+{{< aviso "Lo que sigue son _ejemplos_ de aspectos de una función para consulta de datos. Puedes tomar algunos o todos para crear tu propia función, obviamente adaptándolos a tu propio caso!" >}}
 
 ### Argumentos
 
-Dentro del paréntesis de `function()` van a ir los **argumentos** que entreguemos al usar la función (como el filtro de `edad` o `sexo`). Podemos solamente declararlos, o declararlos especificando su valor por defecto (el que tendrán si se dejan vacíos:
+Dentro del paréntesis de `function()` van a ir los **argumentos** que entreguemos al usar la función (como el filtro de `edad` o `sexo`). Por medio de los argumentos podremos consultar los datos.
+
+Para agregar argumentos a una función, solamente hay que indicar su nombre dentro de `function()`, o bien poner el argumento especificando su valor por defecto (el que tendrán si se dejan vacíos):
 
 ``` r
 consultar_censo <- function(
-  nivel = "País",
-  edad = "Total",
-  sexo = "Total",
-  territorio = NA
+edad = "Total",
+sexo = "Total"
 ) {
 }
 ```
 
-Cuando ejecutemos la función, los argumentos van a *pasar* hacia dentro como **objetos** que contienen el valor que el/la usuario/a les de. Por ejemplo, podemos hacer que la función diga lo que recibe:
+Al ejecutar una función, el código en su interior se ejecuta dentro de un **entorno** propio, y este entorno podrá acceder a los **argumentos** como **objetos** que contienen el valor que el/la usuario/a les de. Es decir, cuando ejecutemos la función, los argumentos van a *pasar* hacia dentro de la función y podremos usarlos como si fueran objetos normales de R.
+
+Por ejemplo, podemos hacer que la función diga lo que recibe:
 
 ``` r
 consultar_censo <- function(
-  nivel = "País",
-  edad = "Total",
-  sexo = "Total",
-  territorio = NA
+    edad = "Total",
+    sexo = "Total"
 ) {
   require(cli)
   
-  cli_alert_info("datos de {territorio}
-                 nivel: {nivel}
-                 filtros:")
   cli_alert("edad: {edad}")
   cli_alert("sexo: {sexo}")
 }
 ```
 
 ``` r
-consultar_censo(territorio = "La Florida", sexo = "Hombres")
+consultar_censo(edad = "30-34", sexo = "Hombres")
 ```
 
     Loading required package: cli
 
-    ℹ datos de La Florida
-    nivel: País
-    filtros:
-
-    → edad: Total
+    → edad: 30-34
 
     → sexo: Hombres
 
 {{< info "Aquí usamos funciones del paquete `{cli}` para crear mensajes más lindos y fáciles de usar que un caos hecho con `paste()`." >}}
+
+#### Revisar una función
+
+Para probar la función podemos **simular** sus argumentos, creando objetos que se llamen igual. Por ejemplo, hagamos como que estamos en la función anterior para probar cómo salen los mensajes:
+
+``` r
+sexo <- "Mujeres"
+
+cli_alert("sexo: {sexo}")
+```
+
+    → sexo: Mujeres
+
+Pero también podemos **entrar** a la función mientras se ejecuta **interrumpiendo su ejecución** con la función `browser()`. Si pones `browser()` dentro de la función, guardas la función y la usas, la ejecución se detendrá en la línea exacta y estarás dentro del entorno de la función, pudiendo acceder a los argumentos reales:
+
+``` r
+prueba <- function(numero) {
+  message("iniciando")
+  browser() # interrumpir la ejecución
+  numero * 100
+}
+
+prueba(6)
+```
+
+    > prueba(6)
+    iniciando
+    Called from: prueba(6)
+    Browse[1]> numero
+    [1] 6
+
+Aquí entramos a la función y pudimos consultar directamente el valor del argumento `numero`, y probar a mano cómo va a salir la multiplicación, por ejemplo, para probar qué pasa si alguien pone como argumento un `NA`, y resolverlo de inmediato!
 
 ### Filtros
 
@@ -251,67 +285,70 @@ Pero puede ser que en este paso enfrentemos un primer problemita: como las palab
 *Ejemplo de la confusión:*
 
 ``` r
-nivel <- "Provincia"
+sexo <- "Mujeres"
 
 censo |> 
-  filter(nivel == nivel)
+  filter(sexo == sexo) |> 
+  select(sexo)
 ```
 
-    # A tibble: 23,825 × 10
-       nivel  codigo_comuna comuna  codigo_provincia provincia codigo_region region 
-       <chr>          <dbl> <chr>              <dbl> <chr>             <dbl> <chr>  
-     1 Comuna          1101 Iquique               11 Iquique               1 Tarapa…
-     2 Comuna          1101 Iquique               11 Iquique               1 Tarapa…
-     3 Comuna          1101 Iquique               11 Iquique               1 Tarapa…
-     4 Comuna          1101 Iquique               11 Iquique               1 Tarapa…
-     5 Comuna          1101 Iquique               11 Iquique               1 Tarapa…
-     6 Comuna          1101 Iquique               11 Iquique               1 Tarapa…
-     7 Comuna          1101 Iquique               11 Iquique               1 Tarapa…
-     8 Comuna          1101 Iquique               11 Iquique               1 Tarapa…
-     9 Comuna          1101 Iquique               11 Iquique               1 Tarapa…
-    10 Comuna          1101 Iquique               11 Iquique               1 Tarapa…
+    # A tibble: 23,825 × 1
+       sexo   
+       <chr>  
+     1 Hombres
+     2 Hombres
+     3 Hombres
+     4 Hombres
+     5 Hombres
+     6 Hombres
+     7 Hombres
+     8 Hombres
+     9 Hombres
+    10 Hombres
     # ℹ 23,815 more rows
-    # ℹ 3 more variables: sexo <chr>, edad <chr>, poblacion <dbl>
 
-{{< bajada "Resultado incorrecto! R intentó filtrar la columna `nivel` con sus propios valores" >}}
+{{< bajada "Resultado incorrecto! R intentó filtrar la columna `sexo` con sus propios valores" >}}
 
 **R se confunde** porque tiene dos objetos que se llaman igual: un objeto en el *entorno*, y una columna dentro del contexto de la evaluación de `{dplyr}`.
 
-Para solucionar la ambiguedad, podemos poner otros nombres a los argumentos (por ejemplo, anteponiéndoles un punto, onda `.nivel`), o bien, especificándole a `{dplyr}` los valores que vienen desde *afuera* del *dataframe*:
+Para solucionar la ambiguedad, podemos cambiar el nombre de los argumentos (por ejemplo, anteponiéndoles un punto, onda `.sexo`), o bien, especificándole a `{dplyr}` que los valores que vienen desde *afuera* del *dataframe*:
 
 ``` r
-nivel <- "Provincia"
+sexo <- "Mujeres"
 
 censo |> 
-  filter(nivel == .env$nivel)
+  filter(sexo == .env$sexo) |> 
+  select(sexo)
 ```
 
-    # A tibble: 3,191 × 10
-       nivel    codigo_comuna comuna codigo_provincia provincia codigo_region region
-       <chr>            <dbl> <chr>             <dbl> <chr>             <dbl> <chr> 
-     1 Provinc…            NA <NA>                 11 Iquique               1 Tarap…
-     2 Provinc…            NA <NA>                 11 Iquique               1 Tarap…
-     3 Provinc…            NA <NA>                 11 Iquique               1 Tarap…
-     4 Provinc…            NA <NA>                 11 Iquique               1 Tarap…
-     5 Provinc…            NA <NA>                 11 Iquique               1 Tarap…
-     6 Provinc…            NA <NA>                 11 Iquique               1 Tarap…
-     7 Provinc…            NA <NA>                 11 Iquique               1 Tarap…
-     8 Provinc…            NA <NA>                 11 Iquique               1 Tarap…
-     9 Provinc…            NA <NA>                 11 Iquique               1 Tarap…
-    10 Provinc…            NA <NA>                 11 Iquique               1 Tarap…
-    # ℹ 3,181 more rows
-    # ℹ 3 more variables: sexo <chr>, edad <chr>, poblacion <dbl>
+    # A tibble: 7,936 × 1
+       sexo   
+       <chr>  
+     1 Mujeres
+     2 Mujeres
+     3 Mujeres
+     4 Mujeres
+     5 Mujeres
+     6 Mujeres
+     7 Mujeres
+     8 Mujeres
+     9 Mujeres
+    10 Mujeres
+    # ℹ 7,926 more rows
 
 {{< bajada "Ahora sí!" >}}
 
 Anteponiendo `.env$` al argumento, explicitamos que el objeto que estamos usando viene desde el *entorno* de la función, y no es una columna del dataframe. Inversamente, podemos explicitar también con `.data$` que nos referimos a una columna de un *dataframe* y no a un objeto del entorno.
 
+{{< info "Esto de usar `.env$` sólo va a servir dentro de funciones de `{dplyr}`" >}}
+
+Apliquemos lo anterior para poder usar filtros basados en los argumentos:
+
 ``` r
 consultar_censo <- function(
-  nivel = "País",
-  edad = "Total",
-  sexo = "Total",
-  territorio = NA
+    nivel = "País",
+    edad = "Total",
+    sexo = "Total"
 ) {
   
   # filtros
@@ -326,20 +363,684 @@ consultar_censo <- function(
 }
 ```
 
+Ahora no habrá ambigüedad, y podemos probar la función:
+
 ``` r
 consultar_censo(nivel = "País",
                 edad = "25-29",
                 sexo = "Mujeres") |> 
-  select(poblacion)
+  glimpse()
 ```
 
-    # A tibble: 1 × 1
-      poblacion
-          <dbl>
-    1    689840
+    Rows: 1
+    Columns: 10
+    $ nivel            <chr> "País"
+    $ codigo_comuna    <dbl> NA
+    $ comuna           <chr> NA
+    $ codigo_provincia <dbl> NA
+    $ provincia        <chr> NA
+    $ codigo_region    <dbl> NA
+    $ region           <chr> NA
+    $ sexo             <chr> "Mujeres"
+    $ edad             <chr> "25-29"
+    $ poblacion        <dbl> 689840
+
+``` r
+consultar_censo(nivel = "País",
+                edad = "30-34",
+                sexo = "Total") |> 
+  glimpse()
+```
+
+    Rows: 1
+    Columns: 10
+    $ nivel            <chr> "País"
+    $ codigo_comuna    <dbl> NA
+    $ comuna           <chr> NA
+    $ codigo_provincia <dbl> NA
+    $ provincia        <chr> NA
+    $ codigo_region    <dbl> NA
+    $ region           <chr> NA
+    $ sexo             <chr> "Total"
+    $ edad             <chr> "30-34"
+    $ poblacion        <dbl> 1527489
+
+Va tomando forma! La función sirve para filtrar datos a nivel de país, filtrando por edad y sexo.
+
+### Filtros por columnas
+
+Para filtrar una comuna, provincia o región, tenemos tres columnas distintas. Necesitamos una forma donde, dependiendo del argumento que demos, el filtro se aplique a las columnas respectivas (`comuna`, `provincia` o `region`).
+
+Una forma simple de solucionarlo sería con `if else`.
+
+Hagamos una prueba primero:
+
+``` r
+region <- NULL
+provincia <- NULL
+comuna <- "Puente Alto"
+
+# si la comuna no es nula
+if (!is.null(comuna)) {
+  censo |> 
+    filter(nivel == "Comuna") |> 
+    filter(comuna == .env$comuna)
+  
+} else if (!is.null(region)) {
+  # si la comuna es nula pero la región no es nula
+  censo |> 
+    filter(nivel == "Región") |> 
+    filter(region == .env$region)
+}
+```
+
+    # A tibble: 57 × 10
+       nivel  codigo_comuna comuna   codigo_provincia provincia codigo_region region
+       <chr>          <dbl> <chr>               <dbl> <chr>             <dbl> <chr> 
+     1 Comuna         13201 Puente …              132 Cordille…            13 Metro…
+     2 Comuna         13201 Puente …              132 Cordille…            13 Metro…
+     3 Comuna         13201 Puente …              132 Cordille…            13 Metro…
+     4 Comuna         13201 Puente …              132 Cordille…            13 Metro…
+     5 Comuna         13201 Puente …              132 Cordille…            13 Metro…
+     6 Comuna         13201 Puente …              132 Cordille…            13 Metro…
+     7 Comuna         13201 Puente …              132 Cordille…            13 Metro…
+     8 Comuna         13201 Puente …              132 Cordille…            13 Metro…
+     9 Comuna         13201 Puente …              132 Cordille…            13 Metro…
+    10 Comuna         13201 Puente …              132 Cordille…            13 Metro…
+    # ℹ 47 more rows
+    # ℹ 3 more variables: sexo <chr>, edad <chr>, poblacion <dbl>
+
+Sirve! Dependiendo del argumento que rellenemos, se filtran distintas columnas.
+
+<!---
+{{< detalles "Ver otra forma más elegante de hacerlo" >}}
+
+Si seguimos con lo anterior, si el sistema es muy complejo se volverá difícil de manejar.
+
+Pensemos. 
+
+
+::: {.cell}
+
+```{.r .cell-code}
+unique(censo$nivel)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] "Comuna"    "País"      "Provincia" "Región"   
+```
+
+
+:::
+:::
+
+
+El valor de la variable `nivel` es _casi_ igual al nombre de las columnas, solo que las columnas no tienen mayúsculas ni tildes (como corresponde): `"Región"` y `region`, etc.
+
+Podemos usar `make_clean_names()` de `{janitor}`, el mejor paquete del mundo, para _limpiar_ el valor de `nivel` y usarlo para dos cosas: para filtrar el `nivel` y para seleccionar la columna correspondiente.
+
+Primero una prueba:
+
+
+::: {.cell}
+
+```{.r .cell-code}
+nivel <- "Región"
+
+library(janitor)
+
+columna <- make_clean_names(nivel)
+
+censo |> 
+filter(nivel == .env$nivel) |> 
+select(nivel, all_of(columna)) |> 
+head()
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 6 × 2
+  nivel  region  
+  <chr>  <chr>   
+1 Región Tarapacá
+2 Región Tarapacá
+3 Región Tarapacá
+4 Región Tarapacá
+5 Región Tarapacá
+6 Región Tarapacá
+```
+
+
+:::
+:::
+
+
+Buenardo. El objeto `columna` contiene el valor limpio de `nivel`, que corresponde con el nombre de columna que nos interesa. 
+
+Ahora, para hacer que el filtro aplique a distintas columnas según el valor de `nivel`, usamos un truco parecido al de `.env$`, pero al revés: decirle que `filter()` se aplique a la columna de los datos (`.data`) que _se llama igual que_ `columna`; es decir, `.data[[columna]]`:
+
+
+::: {.cell}
+
+```{.r .cell-code}
+nivel <- "Comuna"
+territorio <- "Puente Alto"
+
+columna <- make_clean_names(nivel)
+
+censo |>
+select(nivel, comuna, poblacion) |> 
+filter(nivel == .env$nivel) |> 
+filter(.data[[columna]] == territorio) |> 
+head()
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 6 × 3
+  nivel  comuna      poblacion
+  <chr>  <chr>           <dbl>
+1 Comuna Puente Alto     13458
+2 Comuna Puente Alto     19051
+3 Comuna Puente Alto     20932
+4 Comuna Puente Alto     20900
+5 Comuna Puente Alto     21870
+6 Comuna Puente Alto     22199
+```
+
+
+:::
+:::
+
+
+Absolutamente increíble 😲
+
+{{< /detalles >}}
+--->
+
+Ahora complementamos la función para que tenga esta capacidad de filtrar distintas columnas dependiendo de los argumentos:
+
+``` r
+consultar_censo <- function(
+    region = NULL,
+    provincia = NULL,
+    comuna = NULL,
+    edad = "Total",
+    sexo = "Total"
+) {
+  require(dplyr)
+  require(cli)
+  
+  # mensajes
+  cli_alert("edad: {edad}")
+  cli_alert("sexo: {sexo}")
+  
+  # filtros generales
+  filtrado <- censo |>
+    filter(
+      edad == .env$edad,
+      sexo == .env$sexo
+    )
+  
+  # filtros de territorio
+  if (!is.null(comuna)) {
+    cli_alert_info("datos nivel comunal: {comuna}")
+    
+    filtrado <- filtrado |> 
+      filter(nivel == "Comuna") |> 
+      filter(comuna == .env$comuna)
+    
+  } else if (!is.null(provincia)) {
+    cli_alert_info("datos nivel provincial: {provincia}")
+    
+    filtrado <- filtrado |> 
+      filter(nivel == "Provincia") |> 
+      filter(provincia == .env$provincia)
+    
+  } else if (!is.null(region)) {
+    cli_alert_info("datos nivel regional: {region}")
+    
+    filtrado <- filtrado |> 
+      filter(nivel == "Región") |> 
+      filter(region == .env$region)
+  }
+  
+  return(filtrado)
+}
+```
+
+Probemos:
+
+``` r
+consultar_censo(comuna = "La Florida") |> 
+  glimpse()
+```
+
+    → edad: Total
+
+    → sexo: Total
+
+    ℹ datos nivel comunal: La Florida
+
+    Rows: 1
+    Columns: 10
+    $ nivel            <chr> "Comuna"
+    $ codigo_comuna    <dbl> 13110
+    $ comuna           <chr> "La Florida"
+    $ codigo_provincia <dbl> 131
+    $ provincia        <chr> "Santiago"
+    $ codigo_region    <dbl> 13
+    $ region           <chr> "Metropolitana de Santiago"
+    $ sexo             <chr> "Total"
+    $ edad             <chr> "Total"
+    $ poblacion        <dbl> 374836
+
+``` r
+consultar_censo(provincia = "Cordillera") |> 
+  glimpse()
+```
+
+    → edad: Total
+
+    → sexo: Total
+
+    ℹ datos nivel provincial: Cordillera
+
+    Rows: 1
+    Columns: 10
+    $ nivel            <chr> "Provincia"
+    $ codigo_comuna    <dbl> NA
+    $ comuna           <chr> NA
+    $ codigo_provincia <dbl> 132
+    $ provincia        <chr> "Cordillera"
+    $ codigo_region    <dbl> 13
+    $ region           <chr> "Metropolitana de Santiago"
+    $ sexo             <chr> "Total"
+    $ edad             <chr> "Total"
+    $ poblacion        <dbl> 614587
+
+Increíble señores!
 
 ### Validación
 
-{{< relacionada "/blog/mapas_censo_2024/" >}}
+Otro beneficio de crear funciones para este tipo de operaciones es poder agregar pasos intermedios, tales como revisiones o validaciones que confirmen el funcionamiento correcto de la función, y si es necesario arrojar un error o sugerir soluciones.
+
+Probemos la función para filtrar datos regionales:
+
+``` r
+consultar_censo(region = "Maule",
+                sexo = "Hombres") |> 
+  glimpse()
+```
+
+    → edad: Total
+
+    → sexo: Hombres
+
+    ℹ datos nivel regional: Maule
+
+    Rows: 1
+    Columns: 10
+    $ nivel            <chr> "Región"
+    $ codigo_comuna    <dbl> NA
+    $ comuna           <chr> NA
+    $ codigo_provincia <dbl> NA
+    $ provincia        <chr> NA
+    $ codigo_region    <dbl> 7
+    $ region           <chr> "Maule"
+    $ sexo             <chr> "Hombres"
+    $ edad             <chr> "Total"
+    $ poblacion        <dbl> 545255
+
+Ahora veamos qué pasa **si nos equivocamos**:
+
+``` r
+consultar_censo(region = "Miaaauuule")
+```
+
+    → edad: Total
+
+    → sexo: Total
+
+    ℹ datos nivel regional: Miaaauuule
+
+    # A tibble: 0 × 10
+    # ℹ 10 variables: nivel <chr>, codigo_comuna <dbl>, comuna <chr>,
+    #   codigo_provincia <dbl>, provincia <chr>, codigo_region <dbl>, region <chr>,
+    #   sexo <chr>, edad <chr>, poblacion <dbl>
+
+Cero filas! 🤨 La función simplemente retorna una tabla vacía.
+
+Hagamos que la función revise si el argumento es correcto al **confirmar si existe** entre los valores posibles:
+
+``` r
+region <- "Miaule" # prrr 🐾
+
+region %in% unique(censo$region)
+```
+
+    [1] FALSE
+
+Falso falso! ❌
+
+Podemos aprovechar de **hacer algo cuando la revisión no se cumpla**. Podemos poner un `if` que revise si el valor del argumento está entre los valores posibles, y si no está, tiramos un error con `cli_abort("error: región incorrecta!")`:
+
+``` r
+if (nivel == "Región") {
+# revisar si la región es válida
+if (territorio %in% unique(censo$region)) {
+filtrado <- filtrado |> 
+filter(region == territorio)
+} else {
+# si región no es válida, error
+cli_abort("error: región incorrecta!") 
+}
+}
+```
+
+Agreguémoslo a la función:
+
+``` r
+consultar_censo <- function(
+    region = NULL,
+    provincia = NULL,
+    comuna = NULL,
+    edad = "Total",
+    sexo = "Total"
+) {
+  require(dplyr)
+  require(cli)
+  
+  # mensajes
+  cli_alert("edad: {edad}")
+  cli_alert("sexo: {sexo}")
+  
+  # filtros generales
+  filtrado <- censo |>
+    filter(
+      edad == .env$edad,
+      sexo == .env$sexo
+    )
+  
+  # filtros de territorio
+  if (!is.null(comuna)) {
+    # revisar si la comuna es válida
+    if (comuna %in% unique(censo$comuna)) {
+      cli_alert_info("datos nivel comunal: {comuna}")
+      
+      filtrado <- filtrado |> 
+        filter(nivel == "Comuna") |> 
+        filter(comuna == .env$comuna)
+    } else {
+      # si comuna no es válida, error
+      cli_abort("error: comuna incorrecta!") 
+    }
+    
+  } else if (!is.null(provincia)) {
+    # revisar si la provincia es válida
+    if (provincia %in% unique(censo$provincia)) {
+      cli_alert_info("datos nivel provincial: {provincia}")
+      
+      filtrado <- filtrado |> 
+        filter(nivel == "Provincia") |> 
+        filter(provincia == .env$provincia)
+    } else {
+      # si provincia no es válida, error
+      cli_abort("error: provincia incorrecta!") 
+    }
+    
+  } else if (!is.null(region)) {
+    # revisar si la región es válida
+    if (region %in% unique(censo$region)) {
+      cli_alert_info("datos nivel regional: {region}")
+      
+      filtrado <- filtrado |> 
+        filter(nivel == "Región") |> 
+        filter(region == .env$region)
+    } else {
+      # si región no es válida, error
+      cli_abort("error: región incorrecta!") 
+    }
+  }
+  return(filtrado)
+}
+```
+
+{{< aviso "Va aumentando la complejidad de la función! 😟 Pero se agradecerá cuando tengas que usarla muchas veces y luego puedas agregar una mejora que se aplique a todas las veces que la uses, o tengas que corregir los errores una sola vez." >}}
+
+Probemos nuevamente el error:
+
+``` r
+consultar_censo(region = "Miaule")
+```
+
+    → edad: Total
+
+    → sexo: Total
+
+    Error in `consultar_censo()`:
+    ! error: región incorrecta!
+
+``` r
+consultar_censo(comuna = "La Flower")
+```
+
+    → edad: Total
+
+    → sexo: Total
+
+    Error in `consultar_censo()`:
+    ! error: comuna incorrecta!
+
+Incluso podríamos agregar formas de intentar solucionar el error, o sugerencias para nuestros usuarixs. Por ejemplo, algo como:
+
+``` r
+regiones <- censo |> filter(nivel == "Región") |> pull(region) |> unique()
+
+library(glue)
+
+regiones <- glue_collapse(regiones, sep = ", ", last = " o ")
+
+glue("Las regiones posibles son: {regiones}. Avíspate")
+```
+
+    Las regiones posibles son: Tarapacá, Antofagasta, Atacama, Coquimbo, Valparaíso, Libertador General Bernardo O'Higgins, Maule, Biobío, La Araucanía, Los Lagos, Aysén del General Carlos Ibáñez del Campo, Magallanes y de la Antártica Chilena, Metropolitana de Santiago, Los Ríos, Arica y Parinacota o Ñuble. Avíspate
+
+{{< relacionada "/blog/2025-03-30/" >}}
+
+Ahora habría que cubrir otros casos donde la función se use de manera incorrecta. En nuestro caso, no tendría sentido lógico filtrar a la vez por una región y por una comuna.
+
+Probemos cómo validar que solamente uno de los tres argumentos territoriales ***no** sea nulo*:
+
+``` r
+# simulamos los tres objetos
+region <- NULL
+provincia <- NULL
+comuna <- "Puente Alto"
+
+# vemos cuáles no son nulos
+no_nulos <- c(
+  !is.null(region), 
+  !is.null(provincia), 
+  !is.null(comuna)
+)
+
+# confirmamos que sea solo 1 no nulo
+if (sum(no_nulos) == 1) {
+  message("ok!")
+} else {
+  cli_abort("error: solo se puede definir un argumento territorial a la vez!")
+}
+```
+
+    ok!
+
+Entonces podemos poner un chequeo así dentro de la función para **detenerla antes** de que les usuaries hagan cosas inesperadas.
+
+## Resultado
+
+Hasta ahora la función ha retornado simplemente los datos filtrados. Pero, como la función es nuestra, podemos personalizar lo que entregue. Como en este caso solamente entrega una cifra a la vez, no tiene mucho sentido entregar un *dataframe*.
+
+En su lugar, podemos hacer que la función retorne solamente el valor de la columna que sea relevante, o una versión más chica del dataframe.
+
+Simplemente agregando al final de la función algo como `pull(poblacion)` o `select(poblacion) |> pull()` podemos hacer que la función entregue solamente el número de población, sin el resto de las columnas. O también, agregando `scales::number_format()` podemos **formatear las cifras** para que se entreguen con puntos de miles.
+
+Agreguemos esto y el error que vimos antes a la función para tener su forma definitiva:
+
+``` r
+consultar_censo <- function(
+    region = NULL,
+    provincia = NULL,
+    comuna = NULL,
+    edad = "Total",
+    sexo = "Total"
+) {
+  require(dplyr)
+  require(cli)
+  require(glue)
+  require(scales)
+  
+  # revisar argumentos territoriales
+  no_nulos <- c(
+    !is.null(region), 
+    !is.null(provincia), 
+    !is.null(comuna)
+  )
+  
+  # error si hay más de 1 territorio definido
+  if (sum(no_nulos) != 1) {
+    cli_abort("error: solo se puede definir un argumento territorial a la vez!")
+  }
+  
+  # filtros generales
+  filtrado <- censo |>
+    filter(
+      edad == .env$edad,
+      sexo == .env$sexo
+    )
+  
+  # filtros de territorio
+  if (!is.null(comuna)) {
+    # revisar si la comuna es válida
+    if (comuna %in% unique(censo$comuna)) {
+      cli_alert_info("datos nivel comunal: {comuna}")
+      
+      filtrado <- filtrado |> 
+        filter(nivel == "Comuna") |> 
+        filter(comuna == .env$comuna)
+    } else {
+      # si comuna no es válida, error
+      cli_abort("error: comuna incorrecta!") 
+    }
+    
+  } else if (!is.null(provincia)) {
+    # revisar si la provincia es válida
+    if (provincia %in% unique(censo$provincia)) {
+      cli_alert_info("datos nivel provincial: {provincia}")
+      
+      filtrado <- filtrado |> 
+        filter(nivel == "Provincia") |> 
+        filter(provincia == .env$provincia)
+    } else {
+      # si provincia no es válida, error
+      cli_abort("error: provincia incorrecta!") 
+    }
+    
+  } else if (!is.null(region)) {
+    # revisar si la región es válida
+    if (region %in% unique(censo$region)) {
+      cli_alert_info("datos nivel regional: {region}")
+      
+      filtrado <- filtrado |> 
+        filter(nivel == "Región") |> 
+        filter(region == .env$region)
+    } else {
+      # si región no es válida, error
+      cli_abort("error: región incorrecta!") 
+    }
+  }
+  
+  # mensajes
+  cli_alert("edad: {edad}")
+  cli_alert("sexo: {sexo}")
+  
+  # extraer valor
+  poblacion <- filtrado |> pull(poblacion)
+  
+  # función de formateo
+  cifra <- scales::label_comma(
+    big.mark = '.', 
+    decimal.mark = ',')
+  
+  # mensaje con resultado
+  cli_alert_info(
+    "población censada: {cifra(poblacion)}"
+  )
+  
+  return(poblacion)
+}
+```
+
+``` r
+consultar_censo(
+  comuna = "Cerrillos",
+  sexo = "Mujeres",
+  edad = "Total")
+```
+
+    [1] 43825
+
+Otra opción es que, si queremos que [un modelo de lenguaje (LLM) use esta función](../../../blog/herramientas_llm/), lo ideal es que entregue un resultado en formato JSON, un formato de texto que las IAs pueden entender fácilmente. Para eso podemos usar la función `toJSON()` del paquete `{jsonlite}`.
+
 {{< relacionada "/blog/herramientas_llm/" >}}
+
+## Conclusiones
+
+Pasamos de tener que hacer esto:
+
+``` r
+censo |> 
+  filter(nivel == "Región") |>
+  filter(region == "Maule") |> 
+  select(-provincia, -comuna) |> 
+  filter(sexo == "Mujeres") |> 
+  filter(edad == "30-34") |>
+  select(poblacion) |> 
+  pull()
+```
+
+    [1] 43749
+
+Y solo obtener un numerito, a poder hacer esto:
+
+``` r
+consultar_censo(
+  region = "Maule",
+  sexo = "Mujeres",
+  edad = "30-34")
+```
+
+    ℹ datos nivel regional: Maule
+
+    → edad: 30-34
+
+    → sexo: Mujeres
+
+    ℹ población censada: 43.749
+
+    [1] 43749
+
+Ahora la función está lista para [entregarla a una inteligencia artificial para que pueda hacer *tool calling*](../../../blog/herramientas_llm/) y responder basándose en datos exactos, o para **empaquetar la función en una API** y permitir que otros usuari@s extraigan datos, o que sean ingeridos por aplicaciones.
+
+------------------------------------------------------------------------
+
+Si quieres ver una versión más completa de la misma función que vimos en este tutorial, y cómo se puede usar por medio de inteligencia artificial, revisa el siguiente tutorial:
+
+{{< externo "Repositorio censo_poblacion_consultar" "https://github.com/bastianolea/censo_poblacion_consultar"  "censo_poblacion_consultar.png" "Repositorio con código que procesa el Censo 2024 para transformarlo a formato _tidy_, crea una función tipo API para consultar los datos, y luego entrega esta función a un LLM para que pueda usarla para responder consultas." "Caso real de función de consulta de datos" >}}
+{{< relacionada "/blog/herramientas_llm/" "Cómo entregar funciones a una inteligencia artificial" >}}
 {{< etiqueta "datos" >}}
+{{< cafecito >}}
