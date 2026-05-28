@@ -1,11 +1,12 @@
 ---
-title: Aumenta el conocimiento especializado de inteligencias artificiales creando
-  un sistema de RAG con R
+title: "Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R"
+subtitle: "Conocimiento preciso y especializado basado en documentos gracias a la generación aumentada por recuperación"
 author: Bastián Olea Herrera
 date: '2026-05-28'
-draft: true
+draft: false
 tags:
   - inteligencia artificial
+  - texto
 format:
   hugo-md:
     output-file: index
@@ -15,25 +16,40 @@ links:
     icon_pack: fas
     name: Ragnar
     url: https://ragnar.tidyverse.org
+excerpt: "La _generación aumentada por recuperación_ o RAG, por sus siglas en inglés (_retrieval-augmented generation_) es un proceso por medio del cual puedes aumentar o complementar el conocimiento de una inteligencia artificial para que responda basándose en el contenido de textos y documentos que tú elijas. En esta publicación veremos por qué es necesario usar RAG, cómo crear un sistema de RAG con tus propios documentos, y cómo entregarle el sistema a una IA para mejorar sus conocimientos a la hora de responder."
 ---
 
 
-La _generación aumentada por recuperación_ o RAG, por sus siglas en inglés (_retrieval-augmented generation_) es un proceso por medio del cual puedes **aumentar o complementar el conocimiento de ua inteligencia artificial** para que pueda **responder preguntas basándose en tus propios documentos** sin necesidad de entrenar un modelo nuevo ni de requerir un modelo de lenguaje gigante y caro.
+La _generación aumentada por recuperación_ o RAG, por sus siglas en inglés (_retrieval-augmented generation_) es un proceso por medio del cual puedes **aumentar o complementar el conocimiento de una inteligencia artificial** para que pueda **responder preguntas basándose en tus propios documentos** sin necesidad de entrenar un modelo nuevo ni de requerir un modelo de lenguaje gigante y caro.
+
 
 _**¿Para qué sirve el RAG?**_ Para que cualquier modelo de IA pueda informarse en uno o varios documentos que tú especifiques, y así tenga **conocimiento específico** de temáticas especializadas. De esta forma, los modelos dejan de depender en los conocimientos de su entrenamiento (que son generales y difusos) y se basan en el conocimiento que tú les proveas para responder. 
 
-La idea principal del RAG es crear una base de conocimiento a partir de documentos, para que el modelo de lenguaje pueda buscar contenido y usarlo en sus respuestas. Si entregas los documentos apropiados a la IA, entonces la IA **dejará de inventar respuestas** a cosas que no sabe, dado que podrán recurrir a los documentos para informarse y responder.
 
-En esta publicación veremos por qué es necesario usar RAG, cómo crear un sistema de RAG con tus propios documentos, y cómo entregarle el sistema a una IA para aumentar y mejorar sus conocimientos a la hora de responder.
+## Cómo funciona el RAG
+
+En términos muy simples, así es el proceso de preguntar algo a un modelo de lenguaje y obtener una respuesta:
+
+{{< imagen "diagrama_pensamiento_llm.png" "160px" >}}
+
+Los modelos de IA solamente responden en base a su entrenamiento original, su _system prompt_ (instrucciones generales de funcionamiento), el contexto (preguntas y respuestas anteriores), las herramientas que tengan a mano (buscar en internet, etc.) y lo que les preguntes. Antes de cada respuesta los LLMs “piensan”, pero el concepto de _pensamiento_ es una metáfora para la estrategia de transformar tu pregunta en varias sub-preguntas, responderlas, y luego usar ese contexto para intentar responder mejor. 
+
+Al implementar un sistema de RAG, creamos una **base de conocimientos** a partir de documentos y entregamos al LLM la posibilidad de buscar textos dentro de esa base de conocimientos para que pueda obtener extractos de contenido relevantes a la pregunta, analizarlos, y usarlos para responder. 
+
+{{< imagen "diagrama_pensamiento_llm_rag-featured.png" "380px" >}}
+
+De esta manera, y si los documentos son pertinentes y completos, la IA recurrirá a los documentos para informarse, por lo que **dejará de inventar respuestas** a cosas que no sabe.
 
 
-## Ejemplo de las limitaciones de la IA
+## Poniendo a prueba a la IA
 
-Los modelos de lenguaje saben muchas cosas, pero no lo saben todo. Y lamentablemente, por razones de diseño de los mismos modelos, su función es **responder incluso cuando no tienen idea de lo que hablan.**
+Hagamos una prueba con una inteligencia artificial para **evaluar la necesidad de implementar un sistema de RAG.**
+
+Los modelos de lenguaje saben muchas cosas, pero **no lo saben todo**. Y lamentablemente, por razones de diseño de los mismos modelos, su función es **responder incluso cuando no tienen idea de lo que hablan.**
 
 Probemos el caso de uso de RAG preguntándole a una IA algo que probablemente no sepa.
 
-Primero creamos un chat con R, [siguiendo los pasos de este tutorial.](/blog/ellmer/) Luego, pensemos en un una investigación o estudio que hayamos realizado, y preguntémosle:
+Primero creamos un chat con R, [siguiendo los pasos de este tutorial.](/blog/ellmer/)
 
 ```r
 library(ellmer)
@@ -41,7 +57,7 @@ library(ellmer)
 chat <- chat_anthropic()
 ```
 
-Ahora preguntamos algo específico:
+Ahora, pensemos en un una investigación o estudio que hayamos realizado, en mi caso el [Estudio de Brechas Comunales](/blog/estudio_brechas_comunales/), y **preguntémosle a la IA** algo específico:
 
 ```r
 chat$chat("¿Qué es el EBC? Responde brevemente")
@@ -55,13 +71,11 @@ elaboración.
 
 </div>
 
-Nada que ver! 🙄 Preguntemos algo más general:
+Respondió algo nada que ver! 🙄 Preguntemos algo más general:
 
 ```r
 chat$chat("¿Qué es el Estudio de Brechas Comunales? Responde brevemente")
 ```
-
-El modelo piensa y responde:
 
 <div class="texto-ia">
 
@@ -69,9 +83,9 @@ El Estudio de Brechas Comunales es una herramienta de análisis que identifica y
 
 </div>
 
-Eeem... OK? El modelo entrega una respuesta genérica a partir de los conceptos, pero **realmente no sabe** sobre lo que le estamos preguntando.
+Eeem... OK? El modelo entrega una respuesta genérica a partir de los conceptos, pero **realmente no sabe** sobre lo que le estamos preguntando. Podrá convencer a una persona que tampoco sepa nada, pero para alguien que sí sabe, o alguien que requiere información certera, la respuesta es insuficiente. Por eso necesitamos mejorar el conocimiento de la IA de alguna manera!
 
-{{< relacionada "/blog/ellmer/" >}}
+{{< relacionada "/blog/ellmer/" "Tutorial para usar IA desde R" >}}
 
 
 ## Crear una base de conocimientos 
@@ -80,7 +94,11 @@ Lo principal en un sistema de generación aumentada por recuperación (RAG) son 
 
 Para crear un sistema de RAG en R, usaremos [el paquete `{ragnar}`.](https://ragnar.tidyverse.org)
 
-Primero, creamos un _almacén_ de documentos, que es una base de datos donde se guardarán los textos que elijamos. 
+```r
+install.packages("ragnar")
+```
+
+Primero, **creamos un _almacén_ de documentos**, que es una base de datos donde se guardarán los textos que necesitemos. 
 
 ```r
 library(ragnar)
@@ -91,19 +109,19 @@ store <- ragnar_store_create(
 )
 ```
 
-El almacén usa DuckDB como base de datos, y es la base desde la cual el sistema buscará documentos para responder.
+`{ragnar}` crea una base de datos [DuckDB](https://r.duckdb.org) para almacenar los documentos y luego poder encontrarlos para responder.
 
 {{< detalles "**Mejorar la capacidad de búsqueda de documentos con _text embeddings_**" >}}
 
-Al crear el almacén de documentos, el argumento `embed` es clave, porque indica que queremos que los documentos se procesen por medio de _text embeddings_ (incrustaciones de texto), un método que **convierte el lenguaje en represetaciones numéricas.** Esto sirve para que la búsqueda de textos sea mucho mejor, dado que, en vez de buscar coincidencias directas de texto (`bici` = `bicicleta`), la **búsqueda semántica** puede realizar relaciones entre los significados de las palabras (`ciclismo` = `bicicleta`). Esto nos ayuda a que el sistema sea mucho más inteligente, pero al costo de que se requiere un procesamiento previo de los textos, y también un cómputo al momento de realizar cada búsqueda.
+Al crear el almacén de documentos, el argumento `embed` es clave, porque configura si queremos usar _text embeddings_ (incrustaciones de texto) o no. Los _embeddings_ son un método que **convierte el lenguaje en representaciones numéricas.** Esto sirve para que la búsqueda de textos sea mucho mejor, dado que, en vez de buscar coincidencias directas de texto (`bici` = `bicicleta`), la **búsqueda semántica** puede encontrar relaciones entre los **significados de las palabras** (`ciclismo` = `bicicleta` a pesar de no coincidir letra a letra). Esto nos ayuda a que el sistema sea mucho más inteligente, pero al costo de que se requiere un **procesamiento** previo de todos los textos, y también un cómputo al momento de realizar cada búsqueda. Dependiendo de la situación, realizar este procesamiento puede ser difícil o imposible.
 
-Para ésto [necesitas Ollama instalado en tu computador](/blog/ellmer/#modelos-de-lenguaje-locales), e instalar un modelo de inscrustaciones como `nomic-embed-text`:
+Para usar _embeddings_ [necesitas Ollama instalado en tu computador](/blog/ellmer/#modelos-de-lenguaje-locales) e instalar un modelo de inscrustaciones como `nomic-embed-text`:
 
 ```r
 ollamar::pull("nomic-embed-text")
 ```
 
-Luego usamos la función apropiada en el argumento `embed`:
+O bien, encontrar un proveedor de _embeddings_. Luego usamos la función apropiada en el argumento `embed`:
 
 ```r
 library(ragnar)
@@ -114,13 +132,16 @@ store <- ragnar_store_create(
 )
 ```
 
+Ahora, luego de insertar los documentos en el almacén, se procesarán para permitir búsqueda semántica de los textos. 
+
+**Sin embargo**, si no se usan _embeddings_ se recurre a BM25, un algoritmo de búsqueda que sigue siendo bastante capaz. Personalmente lo he usado con y sin _embeddings_, y el segundo caso es perfectamente usable.
+
 {{< /detalles >}}
 
 
+### Agregar documentos a la base de conocimientos
 
-### Cargar documentos al _almacén_
-
-Ya que tenemos el _almacén_, necesitamos llenarlo con documentos para obtener una base de conocimientos. Los documentos se introducen al almacenamiento con `read_as_markdown()`,y pueden estar en cualquier formato ya que serán convertidos a formato Markdown.
+Ya que tenemos el _almacén_, necesitamos llenarlo con documentos para obtener una base de conocimientos. Los documentos se introducen al almacenamiento con `read_as_markdown()`, y pueden estar en cualquier formato (PDF, Word, etc.) ya que serán convertidos a formato Markdown.
 
 Esto significa que los documentos ideales para incluir serán documentos Markdown que hayamos **revisado y limpiado** previamente. El punto más importante aquí es que los documentos tengan una buena **estructura de títulos y subtítulos**:
 
@@ -138,7 +159,9 @@ Bla bla bla
 Ble ble ble
 ```
 
-Cargamos el documento:
+Recordemos que la calidad de las respuestas siempre va a depender de la calidad de los datos!
+
+Cargamos un documento:
 
 ```
 informe <- read_as_markdown("informe_estudio_brechas_comunales.md")
@@ -152,7 +175,7 @@ informe_secciones <- markdown_chunk(informe)
 
 Si el documento tiene una buena estructura de subtítulos, cada párrafo de texto se podrá clasificar mejor dentro de su contexto, ayudando a encontrar fragmentos de texto más apropiados.
 
-Si vemos el documento en este paso, se trata de un _dataframe_ de grafmentos de texto acompañados de los subtítulos de contexto:
+Si vemos el documento en este paso, se trata de un _dataframe_ de fragmentos de texto, acompañados de los subtítulos de la sección del texto donde se encuentran:
 
 ```
 # @document@origin: informe_estudio_brechas_comunales.md
@@ -316,15 +339,9 @@ El 74,4% de las comunas presentan brechas en cicloinclusión, lo que indica defi
 El modelo no sólo encontró los indicadores relevantes, sino que también incluyó un dato estadístico del estudio. Todo esto sin haber entrenado ningún modelo nuevo, y usando un modelo relativamente pequeño y económico.
 
 
-## Conclusión
+----
 
-Con `{ragnar}` y `{ellmer}`, crear un sistema de RAG en R es re simple:
-
-1. **Cargar documentos** con `read_as_markdown()` y dividirlos en fragmentos con `markdown_chunk()`
-2. **Crear un almacén** con `ragnar_store_create()` e insertar los fragmentos con `ragnar_store_insert()`
-3. **Conectar el almacén al chat** con `ragnar_register_tool_retrieve()`
-
-De esta forma, cualquier modelo de lenguaje puede responder preguntas especializadas basándose en tus propios documentos, sin inventar respuestas.
+Gracias al RAG, cualquier modelo de lenguaje puede responder preguntas especializadas basándose en tus propios documentos, sin inventar respuestas! Y lo mejor es que esto posibilita que dejes de depender de modelos enormes y poderosos (y caros) porque el conocimiento verdadero está en los documentos, no en los parámetros del modelo. Yey, ahorro!
 
 {{< etiqueta "inteligencia artificial" >}}
 
