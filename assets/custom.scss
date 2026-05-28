@@ -302,3 +302,12 @@ background-color: #A985C630;
   border-radius: 3px !important;
 }
 
+
+/* para párrafos de output de ia */
+.texto-ia {
+  padding-left: 12px; border-left: #A885C6 solid 4px; 
+  font-size: 80%; 
+  line-height: 1.5; 
+  font-family: Consolas,monaco,monospace;
+  opacity: 80%;
+}

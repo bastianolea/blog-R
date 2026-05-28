@@ -21,10 +21,10 @@ blogdown::new_post(
 
 # crear un post tutorial
 blogdown::new_post(
-  title = "Crea un chatbot interactivo con R y Shiny",
-  file = "blog/shinychat/index.md",
+  title = "Aumenta el conocimiento especializado de inteligencias artificiales creando un sistema de RAG con R",
+  file = "blog/ragnar/index.md",
   author = "Bastián Olea Herrera",
-  tags = c("shiny", "inteligencia artificial"),
+  tags = c("inteligencia artificial"),
   categories = c("")
 )
 
