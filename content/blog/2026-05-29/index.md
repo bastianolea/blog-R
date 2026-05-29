@@ -1,0 +1,85 @@
+---
+title: Palíndromos de Chile
+author: Bastián Olea Herrera
+date: '2026-05-29'
+slug: []
+categories: []
+tags:
+  - visualización de datos
+  - mapas
+  - texto
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+excerpt: >-
+  Un palíndromo es una palabra que se puede leer o escribir al revés y al
+  derecho. En Chile sólo hay 1 comuna con un nombre que tenga esta
+  característica, pero sí existen 7 localidades palindrómicas! Hagamos una
+  función que evalúa si una palabra es palíndromo o no.
+links:
+  - icon: file-code
+    icon_pack: fas
+    name: Código
+    url: https://github.com/bastianolea/palindromos_chile
+---
+
+
+Un palíndromo es una palabra que se puede leer o escribir al revés y al derecho. Por ejemplo, "seres" o "radar" al revés son iguales.
+
+## Palíndromos en R
+
+Hagamos una función en R para poder evaluar si una palabra es palindrómica:
+
+``` r
+palindromo <- function(texto) {
+  require(stringi)
+
+  texto_minusc <- tolower(texto)
+  texto_limpio <- chartr("áéíóú", "aeiou", texto_minusc)
+  texto_invertido <- stri_reverse(texto_limpio)
+
+  return(texto_limpio == texto_invertido)
+}
+```
+
+Esta función simplemente invierte un texto con `stri_reverse()` (cosa que `hola` se vuelve `aloh`), pero antes transforma la palabra a minúsculas con `tolower()`, y le saca los tildes con `chartr()`, para obtener la palabra en su versión *limpia*. Luego la función compara la palabra invertida con la palabra original, y retorna `TRUE` si es palíndromo o `FALSE` si no lo es.
+
+``` r
+palindromo("hola")
+```
+
+    [1] FALSE
+
+``` r
+palindromo("radar")
+```
+
+    [1] TRUE
+
+``` r
+palabras <- c("seres", "radar", "sanas")
+palindromo(palabras)
+```
+
+    [1] TRUE TRUE TRUE
+
+## Mapa de palíndromos en Chile
+
+Usando esta función, y [siguiendo este tutorial de mapas de Chile](../../../blog/tutorial_mapa_chile_subdere/), hice esta visualización sobre las localidades de Chile cuyos nombres son palíndromos, a partir de la base de datos de localidades del estudio de [Identificación de localidades en condición de aislamiento](https://proactiva.subdere.gov.cl/handle/123456789/523), realizado por Subdere.
+
+{{< imagen "palindromos_chile-featured.jpg" >}}
+
+En Chile sólo hay 1 comuna con un nombre que tenga esta característica, pero sí existen 7 localidades palindrómicas!
+
+{{< relacionada "/blog/tutorial_mapa_chile_subdere/" >}}
+
+### Fuentes
+
+- División Político Administrativa 2023, Subdere
+- Límites regionales DPA 2022, Subdere
+- [Identificación de localidades en condición de aislamiento 2021](https://proactiva.subdere.gov.cl/handle/123456789/523), Subdere
+
+Todas las fuentes se encuentran en la página de descarga de [IDE Subdere.](https://ide.subdere.gov.cl/descargas-con-filtros/)
+
+{{< etiqueta "mapas" >}}

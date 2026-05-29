@@ -7,16 +7,16 @@ blogdown::build_site()
 ## posts ----
 
 # editar el más reciente
-abrir_post_reciente(cantidad = 10)
+abrir_post_reciente("creado", cantidad = 10)
 abrir_post_reciente("modificado")
 
 
 # crear un post normal
 blogdown::new_post(
-  title = "Prueba",
+  title = "Palíndromos de Chile",
   file = paste0("blog/", lubridate::today(), "/index.qmd"),
   author = "Bastián Olea Herrera",
-  tags = c("blog", "inteligencia artificial")
+  tags = c("visualización de datos", "mapas")
 )
 
 # crear un post tutorial

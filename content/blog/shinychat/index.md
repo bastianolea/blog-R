@@ -24,11 +24,12 @@ Con R y los paquetes apropiados, en pocos minutos podrás crear un chat interact
 
 _**¿Por qué crear un chatbot con R?**_ 
 
-- Te entrega el control total para elegir el proveedor de la inteligencia artificial, o el _cerebro_ que usará el chatbot, así como cambiarlo cuando sea necesario
-- Permite que [complementes al chatbot con herramientas](/blog/herramientas_llm/): funciones de R que hacen posible que el chatbot realice tareas especializadas
-- Puedes incluir el chatbot en cualquier parte de tu aplicación Shiny, lo que te da libertad para crear interfaces adaptadas a tus necesidades
+- Te entrega el control para **elegir el proveedor** de inteligencia artificial, o el _cerebro_ que usará el chatbot, así como cambiarlo cuando sea necesario
+- **Aplicaciones:** Puedes incluir el chatbot en cualquier parte de una aplicación [Shiny](/tags/shiny/), lo que te da libertad para crear interfaces adaptadas a tus necesidades
+- **Datos:** Permite [complementar al chatbot con herramientas](/blog/herramientas_llm/), funciones de R que hacen posible que el chatbot realice tareas especializadas, como **consultar bases de datos**
+- **Conocimientos:** Hace posible [aumentar y afinar los conocimientos de la IA](/blog/rag_ragnar/) por medio de sistemas de _generación aumentada por recuperación_ o RAG, donde recopilas documentos y textos para guiar las respuestas de la IA
 
-{{< info "Este tutorial es la base para poder crear chatbots, cuyo objetivo principal es [ser complementados por herramientas](/blog/herramientas_llm/) para que sean más útiles y personalizados que un chat de IA común y corriente." >}}
+{{< info "Este tutorial es la base para poder crear chatbots, cuyo objetivo principal es [ser complementados por herramientas](/blog/herramientas_llm/) y [bases de conocimiento](/blog/rag_ragnar/) para que sean más útiles y personalizados que un chat de IA común y corriente." >}}
 
 {{< relacionada "/blog/herramientas_llm/" >}}
 
@@ -91,6 +92,8 @@ shinyApp(ui, server)
 {{< relacionada "/blog/herramientas_llm/" >}}
 
 {{< relacionada "/blog/funcion_consultar_datos/" >}}
+
+{{< relacionada "/blog/rag_ragnar/" >}}
 
 {{< etiqueta "inteligencia artificial" >}}
 
