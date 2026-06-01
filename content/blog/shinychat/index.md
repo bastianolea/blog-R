@@ -5,7 +5,7 @@ date: '2026-06-01'
 slug: []
 draft: false
 categories:
-  - ''
+  - "Tutoriales"
 tags:
   - shiny
   - inteligencia artificial
