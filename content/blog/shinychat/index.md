@@ -31,6 +31,8 @@ excerpt: "Este tutorial encuentras todo lo necesario para desarrollar tu propio 
 
 Con R y los paquetes apropiados, en pocos minutos podrás crear un chat interactivo de inteligencia artificial dentro de una aplicación Shiny, para poder chatear con un modelo de lenguaje (LLM) de tu elección.
 
+{{< imagen "chatbot_r_featured.png" "400px" >}}
+
 El objetivo es poder crear un chat interactivo e ir mejorándolo con la capacidad de **consultar datos**, **realizar cálculos** y otras capacidades propias de R, y además aumentar su conocimiento y la precisión de sus respuestas al permitirle **consultar documentos y textos** para responder. 
 
 {{< imagen "chatbot_6.png" "500px" >}}
@@ -432,7 +434,10 @@ library(ellmer)
 library(shinychat)
 
 # código de limpieza de datos
-source("pobreza.R")
+source("datos_pobreza.R")
+
+# código de la función de consulta de datos
+source("funcion_pobreza.R")
 
 ui <- page_fillable(
   chat_ui(
@@ -565,7 +570,11 @@ library(ellmer)
 library(shinychat)
 library(ragnar)
 
-source("pobreza.R")
+# código de limpieza de datos
+source("datos_pobreza.R")
+
+# código de la función de consulta de datos
+source("funcion_pobreza.R")
 
 ui <- page_fillable(
   chat_ui(

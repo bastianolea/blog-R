@@ -3,7 +3,11 @@ library(bslib)
 library(ellmer)
 library(shinychat)
 
-source("pobreza.R")
+# código de limpieza de datos
+source("datos_pobreza.R")
+
+# código de la función de consulta de datos
+source("funcion_pobreza.R")
 
 ui <- page_fillable(
   chat_ui(
