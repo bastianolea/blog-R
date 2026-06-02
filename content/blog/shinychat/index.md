@@ -273,7 +273,8 @@ ui <- page_fillable(
 server <- function(input, output, session) {
   chat <- chat_anthropic(
     model = "claude-haiku-4-5",
-    system_prompt = "Eres un chatbot respetuoso, útil y conciso. Responde muy brevemente solamente lo que se te pregunta, sin rodeos."
+    system_prompt = "Eres un chatbot respetuoso, útil y conciso. Responde muy 
+                     brevemente solamente lo que se te pregunta, sin rodeos."
   )
   
   observeEvent(input$chat_user_input, {
@@ -398,9 +399,9 @@ Para **enseñarle al modelo** cómo se usa la función, usamos `tool()` de `{ell
 herramienta <- tool(
   consultar_pobreza,
   description = "Función que entrega datos de la estimación de pobreza por ingresos 
-  a nivel de cantidad de personas estimada y porcentaje de la población, basándose 
-  en datos de la Encuesta de Caracterización Socioeconómica Nacional (Casen) 2024 
-  del Ministerio de Desarrollo Social y Familia.",
+                 a nivel de cantidad de personas estimada y porcentaje de la población, 
+                 basándose en datos de la Encuesta de Caracterización Socioeconómica 
+                 Nacional (Casen) 2024 del Ministerio de Desarrollo Social y Familia.",
   arguments = list(
     comuna = type_string(
       description = "Comuna de Chile que se desea consultar"
@@ -447,9 +448,9 @@ server <- function(input, output, session) {
   herramienta <- tool(
     consultar_pobreza,
     description = "Función que entrega datos de la estimación de pobreza por ingresos 
-  a nivel de cantidad de personas estimada y porcentaje de la población, basándose 
-  en datos de la Encuesta de Caracterización Socioeconómica Nacional (Casen) 2024 
-  del Ministerio de Desarrollo Social y Familia.",
+                   a nivel de cantidad de personas estimada y porcentaje de la población, 
+                   basándose en datos de la Encuesta de Caracterización Socioeconómica 
+                   Nacional (Casen) 2024 del Ministerio de Desarrollo Social y Familia.",
     arguments = list(
       comuna = type_string(
         description = "Comuna de Chile que se desea consultar"
@@ -460,7 +461,8 @@ server <- function(input, output, session) {
   # crear chat
   chat <- chat_anthropic(
     model = "claude-haiku-4-5",
-    system_prompt = "Eres un chatbot respetuoso, útil y conciso. Responde muy brevemente solamente lo que se te pregunta, sin rodeos."
+    system_prompt = "Eres un chatbot respetuoso, útil y conciso. Responde muy 
+                     brevemente solamente lo que se te pregunta, sin rodeos."
   )
   
   # entregar la herramienta al modelo
@@ -548,7 +550,9 @@ store <- ragnar_store_connect("documentos.ragnar.duckdb", read_only = TRUE)
 ragnar_register_tool_retrieve(
   chat,
   store,
-  store_description = "Base de conocimientos sobre el reglamento interno de la empresa"
+  store_description = "Base de conocimientos sobre metodología 
+                       de cálculo de estimaciones de pobreza a
+                       partir de la encuesta Casen 2024"
 )
 ```
 
@@ -577,9 +581,9 @@ server <- function(input, output, session) {
   herramienta <- tool(
     consultar_pobreza,
     description = "Función que entrega datos de la estimación de pobreza por ingresos 
-  a nivel de cantidad de personas estimada y porcentaje de la población, basándose 
-  en datos de la Encuesta de Caracterización Socioeconómica Nacional (Casen) 2024 
-  del Ministerio de Desarrollo Social y Familia.",
+                   a nivel de cantidad de personas estimada y porcentaje de la población, 
+                   basándose en datos de la Encuesta de Caracterización Socioeconómica 
+                   Nacional (Casen) 2024 del Ministerio de Desarrollo Social y Familia.",
     arguments = list(
       comuna = type_string(
         description = "Comuna de Chile que se desea consultar"
@@ -590,7 +594,8 @@ server <- function(input, output, session) {
   # crear chat
   chat <- chat_anthropic(
     model = "claude-haiku-4-5",
-    system_prompt = "Eres un chatbot respetuoso, útil y conciso. Responde muy brevemente solamente lo que se te pregunta, sin rodeos."
+    system_prompt = "Eres un chatbot respetuoso, útil y conciso. Responde muy 
+                     brevemente solamente lo que se te pregunta, sin rodeos."
   )
   
   # entregar la herramienta al modelo
