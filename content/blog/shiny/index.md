@@ -1547,6 +1547,12 @@ La disposición de menús se puede combinar con otras disposiciones, como la bar
 
 ### Control de acceso con usuario y contraseña
 
+Puedes agregar la funcionalidad de usuarios con contraseña en tu aplicación [siguiendo este tutorial del paquete `{shinymanager}`.](/blog/shiny_usuarios/)
+
+{{< relacionada "/blog/shiny_usuarios/" >}}
+
+----
+
 
 ## Publicar la aplicación en internet
 

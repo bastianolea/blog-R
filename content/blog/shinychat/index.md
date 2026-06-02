@@ -631,7 +631,7 @@ Ahora sí, en vez de chamullar una respuesta, el chatbot se basa en el documento
 
 Con estos tres elementos (el chatbot base, las [herramientas de consulta de datos](/blog/herramientas_llm/) y la [consulta de documentos con RAG](/blog/rag_ragnar/)), y sumándole un buen _system prompt_, puedes construir en nada de tiempo asistentes de IA útiles y confiables, adaptados completamente a tus datos y necesidades, sin depender de ninguna plataforma de chat externa. 
 
-Estos asistentes puedes ponerlos en [tus aplicaciones Shiny](/blog/shiny) o insertarlos/embeberlos en otros sitios web.
+Estos asistentes puedes ponerlos en [tus aplicaciones Shiny](/blog/shiny/) y luego [publicar tus apps a internet](/blog/shiny/#publicar-la-aplicación-en-internet), o insertarlos/embeberlos en otros sitios web.
 
 {{< imagen "chatbot_1.png" "500px" >}}
 

@@ -8,21 +8,21 @@ categories:
 tags:
   - shiny
   - apps
-excerpt: "Si [creaste una aplicación Shiny](/blog/shiny/) y quieres [compartirla con otros/as](/blog/shiny/#publicar-la-aplicación-en-internet), pero tu app contiene información que no puede ser vista por cualquiera, ¡entonces sigue estos pasos! En unos minutos tendrás una aplicación que requiere de usuario y contraseña para poder usarla."
+excerpt: "Si creaste una aplicación Shiny y quieres compartirla con otros/as, pero tu app contiene información que no puede ser vista por cualquiera, ¡entonces sigue estos pasos! En unos minutos tendrás una aplicación que requiere de usuario y contraseña para poder usarla."
 ---
 
 Si [creaste una aplicación Shiny](/blog/shiny/) y quieres [compartirla con otros/as](/blog/shiny/#publicar-la-aplicación-en-internet), pero tu app contiene información que no puede ser vista por cualquiera, ¡entonces sigue estos pasos! En unos minutos tendrás una aplicación que requiere de usuario y contraseña para poder usarla.
 
 {{< relacionada "/blog/shiny" >}}
 
-## 1. Instalar {shinymanager}
-Instala el [paquete {shinymanager}:](https://datastorm-open.github.io/shinymanager/)
+## Instalar `{shinymanager}`
+Instala el [paquete `{shinymanager}`](https://datastorm-open.github.io/shinymanager/) para empezar:
 
 ```r
 install.packages("shinymanager")
 ```
 
-## 2. Crear credenciales
+## Crear credenciales
 Dentro del script `app.R` de tu aplicación Shiny, crea un dataframe que contenga una contraseña de prueba:
 
 ```r
@@ -33,7 +33,7 @@ credentials <- data.frame(
 )
 ```
 
-## 3. Aplicar autenticación a tu app
+## Aplicar autenticación a tu app
 Ahora, en el apartado `server` de tu app, agrega el siguiente código que evaluará las credenciales ingresadas y gestionará el acceso para tus usuarios:
 
 ```r
@@ -54,7 +54,7 @@ ui <- secure_app(ui)
 ## Ejemplo
 Veamos un ejemplo con una aplicación Shiny real:
 
-#### App sin autenticación
+### App sin autenticación
 
 ```r
 library(shiny)
@@ -81,7 +81,7 @@ shinyApp(ui, server)
 
 Para agregarle autenticación a esta app, debemos seguir los pasos anteriores para dejarla así:
 
-#### App con autenticación
+### App con autenticación
 ```r
 library(shiny)
 library(bslib)
