@@ -8,6 +8,7 @@ categories: []
 tags:
   - git
   - programación
+  - consejos
 format:
   hugo-md:
     output-file: index
@@ -30,9 +31,13 @@ Otro recurso mucho más completo es [ohshitgit.com](https://ohshitgit.com/es), q
 
 ### Crear repositorio git en proyecto de RStudio
 
+Crearlo manualmente:
+
 ```
 git init
 ```
+
+**Recomendado:** crearlo con la ayuda del paquete `{usethis}`:
 
 ```r
 usethis::use_git()
@@ -130,7 +135,7 @@ git reset --soft HEAD~1
 ### Eliminar archivos agregados con `git add` después del commit
 Para cuando agregaste archivos al _commit_ pero luego te das cuenta que no debías haberlo hecho. Por ejemplo, si agregaste un archivo muy grande por error:
 
-```r
+```
 git rm --cached "archivo"
 git commit -m "mensaje"
 git push -u origin branch
@@ -164,7 +169,7 @@ git reset HEAD@{index}
 
 Por si no te deja subir los cambios, pero estás segurx de que quieres sobreescribir el repositorio remoto con tu versión local:
 
-```r
+```
 git push origin main --force
 ```
 
@@ -182,3 +187,24 @@ git reset --hard origin/main
 ### Ramas
 
 Aprende a [hacer ramas online aquí](https://learngitbranching.js.org/)
+
+
+## Configuraciones
+
+### Cambiar el editor de texto por defecto
+
+Por si detestas Vim y quieres usar un editor más simple como Nano:
+
+```
+git config --global core.editor "nano"
+```
+
+### Cambiar nombre por defecto de las ramas 
+
+Si te pasa como a mi y las ramas de tus proyectos usan el nombre antiguo, _master_, usa este comando para que en los siguientes proyectos pasen a llamarse _main_:
+
+```
+git config --global init.defaultBranch main
+```
+
+{{< relacionada "/blog/r_introduccion/tutorial_github/" >}}

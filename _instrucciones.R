@@ -8,7 +8,7 @@ blogdown::build_site()
 
 # editar el más reciente
 abrir_post_reciente("creado", cantidad = 10)
-abrir_post_reciente("modificado")
+abrir_post_reciente("modificado", cantidad = 10)
 
 
 # crear un post normal

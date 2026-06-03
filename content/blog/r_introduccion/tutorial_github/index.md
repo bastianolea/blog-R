@@ -8,8 +8,9 @@ weight: 31
 categories:
   - Tutoriales
 tags:
-  - Git
-  - Consejos
+  - git
+  - consejos
+  - básico
 lang: es
 excerpt: En este tutorial se entregan los pasos para empezar a usar Git con tus proyectos de R. Git te permite llevar un registro de las versiones y un control de cambios en tu código, mientras que GitHub te permite subir tus repositorios a un servicio online, en el cual puedes compartir tu código con otras personas, descargar el código de otros, y colaborar en un mismo proyecto.
 ---
@@ -149,13 +150,13 @@ Puedes compartir el enlace a este repositorio para que otras personas puedan ver
 Recuerda que los repositorios en GitHub son por defecto **públicos y visibles** para las demás personas. Si necesitas respaldar, almacenar o compartir código y o datos privados, crea un repositorio privado con el comando `usethis::use_github(private = TRUE)`. En un repositorio privado, solamente tus computadoras autorizadas y personas que tú autorices podrán acceder a tu código. 
 
 
----- 
-
-Si te sirvió este tutorial, por favor considera hacerme una pequeña donación para poder tomarme un cafecito mientras escribo el siguiente tutorial 🥺
-
 {{<cafecito>}}
 
-----
 
 ### Recursos
 El libro [Happy Git with R](https://happygitwithr.com) detalla todos los pasos necesarios para poder usar Git con R, incluyendo soluciones a problemas comunes.
+
+
+{{< relacionada "/blog/git_comandos/" >}}
+
+{{< etiqueta "básico" >}}
