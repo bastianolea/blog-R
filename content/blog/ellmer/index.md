@@ -31,6 +31,8 @@ Todo esto puedes hacerlo desde tu navegador web, pero cuando analizamos datos pu
 
 Veamos cómo se puede interactuar con LLMs directamente desde R! 🤖
 
+{{< imagen "r_ia_ellmer_featured.png" "300px" >}}
+
 **_¿Qué necesitaremos?_**
 1. Tener acceso a un [proveedor de modelos de lenguaje](#proveedores-de-modelos-de-lenguaje), o usar [modelos de lenguaje locales](#modelos-de-lenguaje-locales)
 2. [Instalar un paquete](#interactuar-con-ias-desde-r) para poder interactuar con modelos de lenguaje
@@ -41,7 +43,7 @@ Veamos cómo se puede interactuar con LLMs directamente desde R! 🤖
 
 Para usar modelos de lenguaje o IA en R, necesitas tener acceso a un **proveedor** de IA en la nube, o bien, [instalar un **modelo local** de IA en tu computador.](#modelos-de-lenguaje-locales)
 
-**Tienes que elegir** entre usar IA desde la nube o usar IA localmente, lo que depende de tus necesidades, tu presupuesto, y las capacidades de tu computador.
+{{< aviso "**Tienes que elegir** entre usar IA desde la nube o usar IA localmente, lo que depende de tus necesidades, tu presupuesto, y las capacidades de tu computador. Dependiendo de tu decisión, pasa a la sección de [proveedores de IA en la nube](#proveedores-de-modelos-de-lenguaje-en-la-nube) o a la de [modelos de IA locales](#proveedores-de-modelos-de-lenguaje-en-la-nube)" >}}
 
 ### Proveedores de modelos de lenguaje en la nube
 
@@ -75,6 +77,8 @@ Las llaves de API son un código secreto que te entrega tu proveedor de IA, y b�
 
 #### Editar tu archivo de _Entorno_
 
+{{< aviso "Este paso es **clave** para que puedas usar IA en R de forma segura" >}}
+
 El archivo de Entorno es un script donde puedes **guardar secretos** que R puede leer, pero que no quedan guardados en tu código ni en tu proyecto, y por lo tanto quedan seguros. Este script contiene **variables** que se cargan cada vez que abrimos una sesión de R. 
 
 El archivo de entorno sirve para guardar variables secretas en un archivo que está afuera de tu proyecto de R, y que aplica para todos tus proyectos y sesiones de R: perfecto para **guardar las _API keys_ en tu computadora de forma segura** y poder usarlas en todos tus proyectos.
@@ -103,9 +107,11 @@ Con esta variable de entorno, el paquete `{ellmer}` tendrá permiso para usar tu
 
 {{< info "Si solamente quieres usar un proveedor de IA como Claude, Gemini o ChatGPT, puedes saltarte esta sección y [pasar a la siguiente](#interactuar-con-ias-desde-r)." >}}
 
-Si tu computador tiene una tarjeta de video lo suficientemente grande (más de 8GB de memoria de video), si quieres usar IA gratis, o si prefieres no usar modelos en la nube por privacidad, puedes **instalar un modelo de lenguaje local** en tu computadora.
+Si tu computador tiene una tarjeta de video lo suficientemente grande (más de 8GB de memoria de video), si quieres usar IA **gratis**, o si prefieres no usar modelos en la nube por **privacidad**, puedes instalar un modelo de lenguaje local en tu computadora.
 
-Esto significa que descargas el modelo y tu propio computador lo ejecuta, a diferencia de usarlo en la nube por medio de un proveedor.
+Esto significa que descargas el modelo y tu propio computador lo ejecuta, a diferencia de [usarlo en la nube por medio de un proveedor.](#proveedores-de-modelos-de-lenguaje-en-la-nube)
+
+{{< aviso "Necesitas un computador con características especiales para poder ejecutar modelos locales" >}}
 
 {{< detalles "_Más información sobre lo necesario para un modelo local_" >}}
 
@@ -181,8 +187,6 @@ Instalamos el paquete:
 install.packages("ellmer")
 ```
 
-Ahora tenemos que pedirle a `{ellmer}` que use tu modelo de lenguaje elegido desde tu proveedor, ya sea un modelo local o un modelo en la nube. 
-
 ### Iniciar una conversación con la IA
 
 Con tu modelo de lenguaje instalado localmente o con tu _API key_ configurada, ya puedes empezar a interactuar con la IA desde R!
@@ -194,10 +198,12 @@ library(ellmer)
 ```
 
 Ahora usaremos una función para **iniciar un chat**. Estas funciones empiezan con `chat_`, y dependen de tu proveedor:
-- Si usas un proveedor de IA en la nube, usa las funciones `chat_openai()`, `chat_anthropic()`, `chat_gemini()`, `chat_github()` o la que te corresponda. 
-- Si usar una IA local con Ollama, usa `chat_ollama()`.
+- Si usas un proveedor de IA en la **nube**, usa las funciones `chat_openai()`, `chat_anthropic()`, `chat_gemini()`, `chat_github()` o la que te corresponda. 
+- Si usar una IA **local** con Ollama, usa `chat_ollama()`.
 
-Creemos un chat usando Claude de Anthropic:
+En otras palabras, en el momento de crear el chat, también **especificamos de dónde proviene la inteligencia artificial** que usaremos, ya sea un modelo local o un modelo en la nube, por medio de la función que elijamos. 
+
+Para continuar el tutorial, creemos un chat usando Claude de Anthropic:
 
 ```r
 # crear sesión de chat
