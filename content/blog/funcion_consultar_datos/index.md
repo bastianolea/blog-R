@@ -9,6 +9,7 @@ tags:
   - datos
   - Chile
   - funciones
+  - inteligencia artificial
 format:
   hugo-md:
     output-file: index
@@ -26,19 +27,20 @@ excerpt: >-
   consultar datos, o puede ser el primer paso para crear una API, o crear una
   herramienta para una inteligencia artificial.
 editor_options:
-  chunk_output_type: inline
+  chunk_output_type: console
 ---
 
 
 En este tutorial veremos cómo **crear una función** en R diseñada para consultar datos. Este puede ser el primer paso para crear una API, una [herramienta para entregarle a una inteligencia artificial](../../../blog/herramientas_llm/), o simplemente algo conveniente de hacer para consultar datos.
 
+{{< imagen "funcion_consultar_datos_featured.png" "500px" >}}
+{{< bajada "Pasaremos de tener una tabla de datos que necesitamos manipular, a una función conveniente que nos entregue las cifras que necesitamos" >}}
+
 Como ejemplo, crearemos una función para consultar la población de comunas, regiones, provincias o país según resultados del Censo 2024, diseñada para [registrarla como herramienta para LLMs](../../../blog/herramientas_llm/) y así hacer que la IA pueda consultar datos de población censal.
 
-En el siguiente repositorio está el código completo de la función que vamos a crear:
+En el siguiente tutorial está el código completo de la función que vamos a crear:
 
 {{< externo "Repositorio censo_poblacion_consultar" "https://github.com/bastianolea/censo_poblacion_consultar"  "censo_poblacion_consultar.png" "Repositorio con código que procesa el Censo 2024 para transformarlo a formato _tidy_, crea una función tipo API para consultar los datos, y luego entrega esta función a un LLM para que pueda usarla para responder consultas." "Caso real de función de consulta de datos" >}}
-
-------------------------------------------------------------------------
 
 En R es muy fácil filtrar y seleccionar cualquier base de datos para obtener las cifras que quieras.
 
@@ -46,6 +48,11 @@ Basándonos en el [Censo 2024 de Chile](../../../blog/censo_2024/), si queremos 
 
 ``` r
 library(arrow)
+```
+
+    Warning: package 'arrow' was built under R version 4.4.3
+
+``` r
 censo <- open_dataset("~/Documents/Datos/Censo/2024/personas_censo2024.parquet")
 ```
 
