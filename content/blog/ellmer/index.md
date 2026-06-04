@@ -1,9 +1,11 @@
 ---
-title: Interactúa con modelos de lenguaje (LLM) y chatea con IAs en R
+title: Interactúa con modelos de lenguaje (LLM) y chatea con IAs directamente desde R
+subtitle: Configura tu IA en R para integrarla en tu análisis de datos
 author: Bastián Olea Herrera
 date: '2026-02-26'
 slug: []
-categories: []
+categories: 
+  - Tutoriales
 tags:
   - inteligencia artificial
 format:
@@ -17,27 +19,21 @@ links:
     url: https://ellmer.tidyverse.org/index.html
 execute:
   eval: false
-excerpt: "Chatear con modelos de lenguaje (LLM) o IAs puede tener muchos usos para el análisis de datos: generar código de R para tus análisis, visualizaciones o exploraciones de datos; interpretar datos que describan tus análisis o resultados; convertir texto en datos estructurados, como entrevistas, noticias o contenido web; hacerle consultas sobre tus datos y que te ayude a interpretar, y más. Usar IA directamente desde R ayuda a mantener una documentación de nuestro análisis, integrar IA en nuestro procesamiento de datos, usar IA de manera reproducible, y usar directamente los resultados de la IA en nuestros flujos de trabajo."
+excerpt: "La IA es útil para distintos aspectos del análisis de datos, como interpretar resultados, explorar conjuntos de datos, redactar textos en base a datos, extraer datos estructurados (como entrevistas o noticias) y más. Siguiendo este tutorial podrás usar estas herramientas directamente desde R para aprovecharlas de manera estratégica, controlada y reproducible, integrando los resultados de la IA en tu propio flujo de trabajo."
 ---
 
 
-Chatear con modelos de lenguaje (LLM) o _IAs_ —como se les llama coloquialmente— puede tener muchos usos para el análisis de datos:
-- [Usar IA para **generar código de R**](/blog/gander/) para tus análisis, visualizaciones o exploraciones de datos
-- **[Interpretar datos por medio de textos explicativos](/blog/redactar_texto_llm/)** que describan tus análisis o resultados
-- **[Convertir texto en datos estructurados](/blog/datos_estructurados_llm/)**, como entrevistas, noticias o contenido web
-- **[Presentar tus datos a la IA para hacerle consultas](/blog/redactar_texto_llm/#configurar-el-modelo-para-interpretar-texto)** y que te ayude a interpretar tus datos
+Chatear con modelos de lenguaje (LLM) o _IAs_ —como se les llama coloquialmente— puede tener muchos usos para el análisis de datos. Si bien siempre se puede usar IA desde las páginas/apps de los proveedores más populares, cuando analizamos datos es mejor **usar IA directamente desde R**. Así podemos **entregar datos** a la IA, aprovechar las capacidades de la IA para hacer funciones y desbloquear análisis complejos, **integrar IA** en nuestro procesamiento de datos, **mantener el control** de cómo y dónde se usa la IA en nuestro análisis, usar IA de manera **reproducible**, y usar directamente los resultados de la IA en nuestros flujos de trabajo.
 
-Todo esto puedes hacerlo desde tu navegador web, pero cuando analizamos datos puede ser más conveniente **usar IA directamente desde R**. Así podemos mantener una **documentación** de nuestro análisis, **integrar IA** en nuestro procesamiento de datos, usar IA de manera **reproducible**, y usar directamente los resultados de la IA en nuestros flujos de trabajo.
+Veamos cómo se puede interactuar con LLMs directamente desde R!
 
-Veamos cómo se puede interactuar con LLMs directamente desde R! 🤖
-
-{{< imagen "r_ia_ellmer_featured.png" "300px" >}}
+{{< imagen "r_ia_ellmer_featured.png" "260px" >}}
 
 **_¿Qué necesitaremos?_**
-1. Tener acceso a un [proveedor de modelos de lenguaje](#proveedores-de-modelos-de-lenguaje), o usar [modelos de lenguaje locales](#modelos-de-lenguaje-locales)
+1. Tener acceso a un [proveedor de modelos de lenguaje](#proveedores-de-modelos-de-lenguaje-en-la-nube), o usar [modelos de lenguaje locales](#modelos-de-lenguaje-locales)
 2. [Instalar un paquete](#interactuar-con-ias-desde-r) para poder interactuar con modelos de lenguaje
-3. [Configurar la _API key_](#configurar-el-uso-de-un-modelo-de-lenguaje-en-r) de tu proveedor de IA en R
-4. [Iniciar una conversación con la IA](#iniciar-una-conversación-con-la-ia)
+3. [Configurar la _API key_](#proveedores-de-modelos-de-lenguaje-en-la-nube) de tu proveedor de IA en R (si usas un proveedor en la nube)
+4. [Iniciar una conversación con la IA](#iniciar-una-conversación-con-la-ia) desde R
 
 ## Modelos de lenguaje
 
@@ -284,14 +280,14 @@ De este modo la consola de R se vuelve en un chat donde escribimos y obtenemos r
 
 Con esta configuración inicial, ahora puedes pasar a usar la IA con R de maneras más avanzadas, como tener asistentes, generar código, interpretar resultados, analizar datos y más!
 
-- [Análisis de sentimiento de textos con R](/blog/analisis_sentimiento_llm/)
-- [Resumir textos desde R](/blog/resumir_texto_llm/)
-- [Análisis de datos en formato texto con `{mall}`](/blog/introduccion_llm_mall/)
+- [Crear un chatbot personalizado en una aplicación Shiny](/blog/shinychat/)
 - [Crear herramientas en R y hacer que la IA pueda usarlas para dar mejores respuestas](/blog/herramientas_llm/)
 - [Extraer datos estructurados desde textos libres](/blog/datos_estructurados_llm/)
-- [{gander}, un asistente de código](/blog/gander/) que escribe código de R y reemplaza código o comentarios con lo que le pidas
-- [Asistente de IA directo en RStudio que tiene acceso a tus datos, paquetes cargados, y archivos](/blog/btw/)
+- [Análisis de sentimiento de textos con R](/blog/analisis_sentimiento_llm/)
+- [Resumir textos desde R](/blog/resumir_texto_llm/)
 - [Entregar datos a una IA para generar textos explicativos, resúmenes, o interpretaciones de tus datos](/blog/redactar_texto_llm/)
+- [Análisis de datos en formato texto con `{mall}`](/blog/introduccion_llm_mall/)
+- [{gander}, un asistente de código](/blog/gander/) que escribe código de R y reemplaza código o comentarios con lo que le pidas
 
 {{< etiqueta "inteligencia artificial" >}}
 
