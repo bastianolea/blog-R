@@ -13,18 +13,13 @@ format:
     output-ext: md
 excerpt: "_La inteligencia artificial no lo sabe todo._ Y lo que no sabe, lo inventa. Conociendo las limitaciones de la IA podemos hacer un mejor uso de ella. Por ejemplo, la IA no tiene acceso a datos, ni es buena para responder preguntas sobre cifras exactas. En esta publicación veremos cómo enseñar a la IA a usar herramientas de R para complementar sus respuestas, y así entregar información exacta en vez de alucinar respuestas."
 links:
-  - icon: file-code
-    icon_pack: fas
-    name: Código herramienta
-    url: https://github.com/bastianolea/censo_poblacion_consultar
   - icon: newspaper
     icon_pack: fas
-    name: Tutorial herramienta
+    name: Crear herramientas
     url: /blog/funcion_consultar_datos/
 ---
 
 _La inteligencia artificial no lo sabe todo._ Y lo que no sabe, **lo inventa**. Es demasiado importante **conocer las limitaciones** de las herramientas de inteligencia artificial para poder hacer buen uso de ellas.
-
 
 Por ejemplo, la IA puede saber mucho sobre Chile, pero **no sabe** con exactitud _todos_ los datos de la población de todos sus territorios. Veamos un caso:
 
@@ -67,17 +62,28 @@ Esto es posible mediante el **uso de herramientas** (_tool calling_), que, como 
 
 Esto significa que podemos **[crear funciones de R](/blog/funcion_consultar_datos/) y entregárselas a la inteligencia artificial** para que las use! 😮
 
+
+{{< imagen "herramientas-llm-featured.png" "700px" >}}
+{{< bajada "Esquema del funcionamiento del _tool calling_ para asistir las respuestas de un modelo de lenguaje" >}}
+
 ### Herramienta: consultar datos del Censo desde R
 
-En [este repositorio](https://github.com/bastianolea/censo_poblacion_consultar) creé una función de R llamada `consultar_censo()`, que permite obtener datos de población del Censo 2024 en distintos niveles territoriales (país, región, provincia, comuna), y en distintas desagregaciones (total, sexo, grupos de edad). 
+Para ejemplificar esta publicación, usaremos una **función de R** llamada `consultar_censo()`, que permite obtener datos de población del Censo 2024 en distintos niveles territoriales (país, región, provincia, comuna), y en distintas desagregaciones (total, sexo, grupos de edad). 
 
+<!--
 {{< externo "Repositorio censo_poblacion_consultar"
   "https://github.com/bastianolea/censo_poblacion_consultar"
   "censo_poblacion_consultar.png"
   "Código de R para procesar datos del Censo y obtener una función que entrega población a nivel país, región, provincia, comuna, y opcionalmente desagregada por sexo y edad."
   "Repositorio mencionado" >}}
 
-[En este tutorial explico paso a paso cómo crear una **función de consulta de datos**](/blog/funcion_consultar_datos/). La función se usa así:
+--->
+
+[En este tutorial explico paso a paso cómo crear una **función de consulta de datos**](/blog/funcion_consultar_datos/), para que puedas crear una similar para tu propio proyecto, o usar la misma en tu computador.
+
+{{< relacionada "/blog/funcion_consultar_datos/" >}}
+
+La función `consultar_censo()` se usa así:
 
 ```r
 consultar_censo(
@@ -93,7 +99,7 @@ consultar_censo(
 
 La función `consultar_censo()` es útil para un ser humano, pero queremos que la IA pueda usarla también para que use esta información en sus respuestas.
 
-{{< relacionada "/blog/funcion_consultar_datos/" >}}
+
 
 ## Entregarle herramientas a la IA
 
