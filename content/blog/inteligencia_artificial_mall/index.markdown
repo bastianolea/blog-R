@@ -1,5 +1,6 @@
 ---
-title: "Usar un modelo de lenguaje local (LLM) para analizar texto en R"
+title: "Usando inteligencia artificial (LLM) para analizar datos de texto en R"
+subtitle: "Resumir texto, analizar sentimiento, y clasificar texto con inteligencia artificial"
 author: Bastián Olea Herrera
 format: hugo-md
 date: 2024-10-29
@@ -14,7 +15,11 @@ freeze: true
 excerpt: Procesa datos con IA directamente en R! El paquete `{mall}` permite aplicar un modelo de lenguaje (LLM) a tus datos para realizar tareas como resumir textos, realizar análisis de sentimiento, clasificación de textos, y más.
 ---
 
-[El paquete `{mall}`](https://mlverse.github.io/mall/) facilita el uso de un LLM _(large language model)_ o modelo de lenguaje de gran tamaño para analizar texto con IA en un _dataframe._ Esto significa que, para cualquier dataframe que tengamos, podemos aplicar un modelo de IA a una de sus columnas y recibir sus resultados en una columna nueva.
+[El paquete `{mall}`](https://mlverse.github.io/mall/) facilita el uso de un LLM _(large language model)_ o modelo de lenguaje de gran tamaño para analizar texto con IA en un _dataframe._ 
+
+{{< imagen "r_ia_mall_featured.png" >}}
+
+Esto significa que, para cualquier dataframe que tengamos, podemos aplicar un modelo de IA a una de sus columnas y recibir sus resultados en una columna nueva.
 
 {{< info "Puedes encontrar instrucciones más detalladas sobre configurar el uso de IA en R [en esta publicación.](/blog/ellmer/)" >}}
 
@@ -55,7 +60,7 @@ mall::llm_use(chat)
 ## Backend: ellmer
 ## LLM session: model:claude-sonnet-4-20250514
 ## R session:
-## cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpJn0QrH/_mall_cache2a94630b98d
+## cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//Rtmp8DhhWb/_mall_cache6e0d6e6bbd14
 ```
 
 Con el siguiente código vamos a descargar un _dataframe_ que contiene texto de noticias de Chile, para usarlo como datos de prueba. Los datos provienen de mi [repositorio de web scraping y análisis de prensa de Chile.](https://github.com/bastianolea/prensa_chile)
@@ -118,7 +123,7 @@ datos_sentimiento |>
 ##  2 neutro      "Mujer de 54 años recibió trasplante de bomba cardíaca y riñón d…
 ##  3 negativo    "Fiscalía investiga una segunda presunta agresión de Monsalve co…
 ##  4 neutro      "Los RUT definitivos que reciben el premio de La Suerte en Chile…
-##  5 positivo    "Este domingo parte el Festival de Viña 2024: Revisa el orden y …
+##  5 neutro      "Este domingo parte el Festival de Viña 2024: Revisa el orden y …
 ##  6 positivo    "Danesa se coronó como Miss Universo 2024: Emilia Dides quedó en…
 ##  7 neutro      "Hassler opta por tesis de Boric por sobre la del PC en Venezuel…
 ##  8 negativo    "Carabinero de civil disparó a delincuente que estaba robando en…
@@ -126,6 +131,8 @@ datos_sentimiento |>
 ## 10 neutro      "¿Quién es Janet Yellen? La Secretaria del Tesoro de EEEUU que v…
 ## 11 negativo    "Fijan audiencia para los detenidos por el homicidio del subofic…
 ```
+
+{{< relacionada "/blog/analisis_sentimiento_llm/" >}}
 
 ## Resúmenes de texto
 Otro uso es pedirle que genere resúmenes de textos. Para ello, usaremos la función `llm_summarize()` a la que le pedimos un máximo de palabras y le indicamos un _prompt_ extra para mejorar las respuestas. El paquete aplicará dicha solicitud a cada una de las observaciones en la columna indicada, y retornará los resultados en una nueva columna llamada `resumen`:
@@ -157,6 +164,8 @@ datos_resumidos
 ## 6 emilia dides representa chile en miss universo 2024         "Danesa se coronó…
 ## 7 irací hassler busca reelección en octubre                   "Hassler opta por…
 ```
+
+{{< relacionada "/blog/resumir_texto_llm/" >}}
 
 ## Clasificación de texto
 
@@ -190,8 +199,9 @@ datos_clasificados
 ## 6 farándula    "Danesa se coronó como Miss Universo 2024: Emilia Dides quedó en…
 ## 7 política     "Hassler opta por tesis de Boric por sobre la del PC en Venezuel…
 ```
+{{< relacionada "/blog/genero_nombres_llm/" >}}
 
-
+Si te interesa el uso de inteligencia artificial para analizar datos, [revisa los otros tutoriales sobre IA que he escrito!](/tags/inteligencia-artificial/)
 
 {{< etiqueta "inteligencia artificial" >}}
 

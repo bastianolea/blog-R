@@ -1,5 +1,8 @@
 ---
-title: Usar un modelo de lenguaje local (LLM) para analizar texto en R
+title: Usando inteligencia artificial (LLM) para analizar datos de texto en R
+subtitle: >-
+  Resumir texto, analizar sentimiento, y clasificar texto con inteligencia
+  artificial
 author: Bastián Olea Herrera
 format: hugo-md
 date: 2024-10-29T00:00:00.000Z
@@ -18,7 +21,11 @@ excerpt: >-
 ---
 
 
-[El paquete `{mall}`](https://mlverse.github.io/mall/) facilita el uso de un LLM *(large language model)* o modelo de lenguaje de gran tamaño para analizar texto con IA en un *dataframe.* Esto significa que, para cualquier dataframe que tengamos, podemos aplicar un modelo de IA a una de sus columnas y recibir sus resultados en una columna nueva.
+[El paquete `{mall}`](https://mlverse.github.io/mall/) facilita el uso de un LLM *(large language model)* o modelo de lenguaje de gran tamaño para analizar texto con IA en un *dataframe.*
+
+{{< imagen "r_ia_mall_featured.png" >}}
+
+Esto significa que, para cualquier dataframe que tengamos, podemos aplicar un modelo de IA a una de sus columnas y recibir sus resultados en una columna nueva.
 
 {{< info "Puedes encontrar instrucciones más detalladas sobre configurar el uso de IA en R [en esta publicación.](/blog/ellmer/)" >}}
 
@@ -47,7 +54,7 @@ mall::llm_use(chat)
     Backend: ellmer
     LLM session: model:claude-sonnet-4-20250514
     R session:
-    cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpctdWlN/_mall_cache2a8611567960
+    cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpvANrnD/_mall_cache6dfa6813ae14
 
 Con el siguiente código vamos a descargar un *dataframe* que contiene texto de noticias de Chile, para usarlo como datos de prueba. Los datos provienen de mi [repositorio de web scraping y análisis de prensa de Chile.](https://github.com/bastianolea/prensa_chile)
 
@@ -110,6 +117,8 @@ datos_sentimiento |>
     10 neutro      "¿Quién es Janet Yellen? La Secretaria del Tesoro de EEEUU que v…
     11 negativo    "Fijan audiencia para los detenidos por el homicidio del subofic…
 
+{{< relacionada "/blog/analisis_sentimiento_llm/" >}}
+
 ## Resúmenes de texto
 
 Otro uso es pedirle que genere resúmenes de textos. Para ello, usaremos la función `llm_summarize()` a la que le pedimos un máximo de palabras y le indicamos un *prompt* extra para mejorar las respuestas. El paquete aplicará dicha solicitud a cada una de las observaciones en la columna indicada, y retornará los resultados en una nueva columna llamada `resumen`:
@@ -131,13 +140,15 @@ datos_resumidos
     # A tibble: 7 × 2
       resumen                                                                 titulo
       <chr>                                                                   <chr> 
-    1 dos heridos bala intento asalto minimarket melipilla viernes noche      "Dos …
-    2 mujer recibe segundo trasplante riñón cerdo genéticamente modificado h… "Muje…
-    3 fiscalía investiga segunda denuncia agresión sexual contra monsalve se… "Fisc…
-    4 sorteo polla chilena 90 aniversario premios millonarios ganadores diar… "Los …
-    5 festival viña 2024 inicia domingo con alejandro sanz solidaridad incen… "Este…
-    6 danesa victoria kjaer corona miss universo 2024 chile finalista         "Dane…
-    7 hassler apoya posición de boric sobre venezuela, busca reelección       "Hass…
+    1 dos heridos bala asalto minimarket melipilla cuatro sujetos armados     "Dos …
+    2 mujer recibe segundo trasplante riñón cerdo genéticamente modificado    "Muje…
+    3 fiscalía investiga segunda denuncia agresión sexual contra monsalve     "Fisc…
+    4 sorteo la suerte chile rut ganadores premios millonarios polla benefic… "Los …
+    5 festival de viña 2024 inicia domingo con enfoque solidario incendios    "Este…
+    6 chilena emilia dides llegó a 12 finalistas miss universo                "Dane…
+    7 alcaldesa hassler apoya posición de boric sobre venezuela               "Hass…
+
+{{< relacionada "/blog/resumir_texto_llm/" >}}
 
 ## Clasificación de texto
 
@@ -154,13 +165,7 @@ datos_clasificados <- datos_prensa |>
                 additional_prompt = "Clasifica noticias de Chile en español en su temática principal",
                 pred_name = "categoria") |> 
   select(categoria, titulo)
-```
 
-    [working] (0 + 0) -> 6 -> 1 | ■■■■■                             14%
-
-    [working] (0 + 0) -> 0 -> 7 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100%
-
-``` r
 datos_clasificados
 ```
 
@@ -174,6 +179,10 @@ datos_clasificados
     5 cultura      "Este domingo parte el Festival de Viña 2024: Revisa el orden y …
     6 farándula    "Danesa se coronó como Miss Universo 2024: Emilia Dides quedó en…
     7 política     "Hassler opta por tesis de Boric por sobre la del PC en Venezuel…
+
+{{< relacionada "/blog/genero_nombres_llm/" >}}
+
+Si te interesa el uso de inteligencia artificial para analizar datos, [revisa los otros tutoriales sobre IA que he escrito!](../../../tags/inteligencia-artificial/)
 
 {{< etiqueta "inteligencia artificial" >}}
 {{< cafecito >}}

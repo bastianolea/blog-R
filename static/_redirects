@@ -14,3 +14,4 @@ http://bastianolea.rbind.io/*       https://bastianolea.rbind.io/:splat  301!
 /blog/tutorial_scraping_rvest/      /blog/webscraping_rvest/
 /blog/tutorial_scraping_selenium/   /blog/webscraping_selenium/
 /blog/r_introduccion/web_scraping/  /blog/web_scraping/
+/blog/introduccion_llm_mall/  /blog/inteligencia_artificial_mall/
