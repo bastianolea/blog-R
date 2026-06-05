@@ -1,0 +1,79 @@
+---
+title: Búsquedas de texto eficientes con R usando el algoritmo BM25
+author: Bastián Olea Herrera
+date: '2026-06-05'
+slug: []
+draft: true
+categories:
+  - ''
+tags:
+  - texto
+  - análisis de texto
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+---
+
+```{r}
+library(arrow)
+library(dplyr)
+library(stringr)
+library(janitor)
+library(rbm25)
+
+proyectos <- read_parquet("datos/proyectos_subdere/proyectos_subdere.parquet")
+
+stopwords <- stopwords::stopwords("es", source = "snowball")
+
+# benchmark entre dos limpiezas de texto
+bench::mark(
+  check = FALSE,
+  "base" = textos |>
+    tolower() |>
+    gsub(pattern = "[[:punct:]]", replacement = "") |>
+    gsub(
+      pattern = paste0("\\b(", paste(stopwords, collapse = "|"), ") *\\b"),
+      replacement = ""
+    ) |>
+    trimws(),
+  "stringr" = textos |>
+    str_to_lower() |>
+    str_remove_all("[[:punct:]]") |>
+    str_remove_all(paste0("\\b(", paste(stopwords, collapse = "|"), ")\\b")) |>
+    str_trim()
+)
+
+# limpieza de texto (ejemplo, porque ya se implementó)
+proyectos_b <- proyectos |>
+  # slice(1000:8000) |>
+  mutate(
+    nombre_limpio = nombre_de_proyecto |>
+      str_to_lower() |>
+      str_remove_all("[[:punct:]]") |>
+      str_remove_all(paste0(
+        "\\b(",
+        paste(stopwords, collapse = "|"),
+        ")\\b"
+      )) |>
+      str_trim()
+  ) |>
+  relocate(nombre_limpio, nombre_de_proyecto, .before = 1)
+
+# búsqueda de texto
+proyectos_b |>
+  mutate(
+    puntaje = bm25_score(
+      nombre_limpio,
+      query = "alcantarillas rural",
+      lang = "es"
+    )
+  ) |>
+  relocate(puntaje, .after = nombre_limpio) |>
+  arrange(desc(puntaje))
+
+proyectos
+proyectos_b
+
+```
+
