@@ -62,7 +62,9 @@ Aprende **desde cero** a usar este lenguaje y complementa tu carrera con herrami
 
 ## Inscripciones
 
-Las inscripciones se encuentran abiertas! Regístrate en el siguiente enlace:
+Las inscripciones se encuentran abiertas! Como este es un curso gratuito, por favor **sólo inscribirse si se tiene certeza de poder asistir!** Si te inscribes y no asistes estarás dejando a alguien fuera!
+
+Regístrate en el siguiente enlace:
 
 {{< boton "Inscripciones abiertas" "https://bastianoleah.shinyapps.io/inscripcion_curso_r_intro_3/" "fas fa-file-pen" >}}
 
@@ -73,6 +75,7 @@ Las inscripciones se encuentran abiertas! Regístrate en el siguiente enlace:
 | País               | Chile y Latinoamérica | 
 | Materiales         | Conexión a internet   | 
 | Código de conducta | [Ver código de conducta](/code-of-conduct/)| 
+| Compromiso         | Asistir a todas las clases |
 
 El curso contará con **150 cupos**, los cuales se asignarán por orden de inscripción y priorizando según **criterios de inclusión** para la participación de grupos minoritarios (mujeres, disidencias de sexo y género, personas con discapacidad).
 
@@ -87,7 +90,7 @@ Los criterios de inclusión se resumen (no exhaustivamente) a continuación:
 | **Territorio**     | _Personas que vivan en Chile_ | +3  | 
 
 
-
+Cada alumn@ debe comprometerse a asistir a todas las clases, ya que su cupo implica que otra persona se quede fuera! 
 
 ## Docente
 
