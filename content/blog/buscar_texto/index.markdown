@@ -34,7 +34,8 @@ Cuando tenemos datos que contienen mucho texto, usualmente necesitamos filtrar l
 
 Para filtrar entre un conjunto de datos de texto podemos usar distintos métodos. Hagamos un vector de texto para usar como ejemplo:
 
-```{r}
+
+``` r
 textos <- c(
   "Construcción biblioteca y punto turístico, comuna de Salamanca",
   "Mejoramiento de multicancha y construcción de techumbre población Arboleda, Vicuña",
@@ -72,10 +73,16 @@ textos <- c(
 <!----
 Por ejemplo, en R base, la función `grep()` permite buscar un patrón entre un vector de texto.
 
-```{r}
+
+``` r
 grep(pattern = "plaza", 
      textos, 
      value = TRUE)
+```
+
+```
+## [1] "Construcción plaza Las Tazas, comuna de Canela"       
+## [2] "Mejoramiento plaza de Ramadilla, comuna de Combarbalá"
 ```
 Con el argumento `value`, retorna los valores que coinciden con la búsqueda.
 --->
@@ -84,19 +91,26 @@ Con el argumento `value`, retorna los valores que coinciden con la búsqueda.
 
 La función `str_detect()` del paquete `{stringr}` permite detectar los elementos donde aparece el texto:
 
-```{r}
+
+``` r
 library(stringr)
 
 str_detect(textos, 
            "cancha")
 ```
 
+```
+##  [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [13] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+## [25] FALSE FALSE FALSE FALSE FALSE FALSE
+```
+
 `str_detect()` retorna verdaderos y falsos, pero si metemos los datos en un _dataframe_ y la usamos en un `filter()` servirá para filtrar las observaciones.
 
 Metamos el vector en una tabla de datos:
 
-```{r}
-#| message: false
+
+``` r
 library(dplyr)
 
 # crear tabla
@@ -105,20 +119,36 @@ datos <- tibble(textos)
 
 Ahora podemos usar `str_detect()` para **filtrar** las observaciones que contienen una palabra o texto específicos:
 
-```{r}
+
+``` r
 datos |> 
   filter(
     str_detect(textos, "agua")
     )
 ```
 
+```
+## # A tibble: 3 × 1
+##   textos                                                                        
+##   <chr>                                                                         
+## 1 Mejoramiento servicio de agua potable ruta D-71, acceso poniente, Canela Baja 
+## 2 Construcción sistema de agua potable por acarreo sector Las Cruces, comuna de…
+## 3 Mejoramiento multicancha Coyuntagua Sur, comuna de Illapel
+```
+
 Pero ¿qué pasa si buscamos un texto que no está exactamente entre los datos, o si hay varios textos similares pero no idénticos?
 
-```{r}
+
+``` r
 datos |> 
   filter(
     str_detect(textos, "agua potable rural")
     )
+```
+
+```
+## # A tibble: 0 × 1
+## # ℹ 1 variable: textos <chr>
 ```
 
 No se encuentra nada, a pesar de existir textos que contienen esas palabras. Esto pasa porque `str_detect()` busca **coincidencias exactas** en el texto. 
@@ -130,11 +160,23 @@ Una alternativa es usar _regex_, expresiones regulares para búsquedas de texto.
 
 Volviendo al caso del ejemplo anterior, podríamos buscar las palabras `"agua potable rural"` separadas por el operador `|` para que se encuentre textos que contengan cualquiera de las tres palabras:
 
-```{r}
+
+``` r
 datos |> 
   filter(
     str_detect(textos, "agua|potable|rural")
     )
+```
+
+```
+## # A tibble: 5 × 1
+##   textos                                                                        
+##   <chr>                                                                         
+## 1 Construcción obras de iluminación fotovoltaicas sectores rurales y urbanos si…
+## 2 Construcción de arranques para el sector Saturno servicio sanitario rural de …
+## 3 Mejoramiento servicio de agua potable ruta D-71, acceso poniente, Canela Baja 
+## 4 Construcción sistema de agua potable por acarreo sector Las Cruces, comuna de…
+## 5 Mejoramiento multicancha Coyuntagua Sur, comuna de Illapel
 ```
 
 Ahora sí se encuentran textos coincidentes!
@@ -150,7 +192,8 @@ install.packages("rbm25")
 
 El paquete `{rbm25}` entrega la función `bm25_score()`, que a diferencia de una búsqueda por coincidencia de texto, entrega un **ranking de resultados**, el cual puedes usar para ordenar los resultados posibles según su **relevancia** al texto de búsqueda.
 
-```{r}
+
+``` r
 library(rbm25)
 
 datos |> 
@@ -166,6 +209,18 @@ datos |>
   head(n = 6)
 ```
 
+```
+## # A tibble: 6 × 2
+##   puntaje textos                                                                
+##     <dbl> <chr>                                                                 
+## 1    5.34 Construcción de sede comunitaria Ferro Unido Lambert                  
+## 2    5.34 Construcción sede comunitaria Arcos de Pinamar, La Serena             
+## 3    2.85 Mejoramiento sede social Villa Aurora, Las Compañías, comuna de La Se…
+## 4    2.35 Mejoramiento de multicancha y construcción de techumbre población Arb…
+## 5    1.78 Ampliación sede Quebrada del Jardín, La Serena                        
+## 6    1.67 Reposición sede social villa Los Mineros, Andacollo
+```
+
 Obtenemos el puntaje en una columna, que luego usamos para ordenar los resultados por relevancia.
 
 Pero antes de hacer una búsqueda de texto en serio, se recomienda realizar una **limpieza del texto**. Para limpiar texto, como mínimo necesitamos:
@@ -177,7 +232,8 @@ Pero antes de hacer una búsqueda de texto en serio, se recomienda realizar una 
 
 Primero creamos el texto _regex_ para eliminar _stopwords_:
 
-```{r}
+
+``` r
 # install.packages("stopwords")
 stopwords <- stopwords::stopwords(language = "es")
 stopwords <- paste(stopwords, collapse = "|")
@@ -191,7 +247,8 @@ Para eliminar las _stopwords_ obtendremos un listado de palabras con la función
 {{< /detalles >}}
 
 Luego procedemos con la limpieza
-```{r}
+
+``` r
 datos_limpios <- datos |>
   mutate(
     texto_limpio = textos |>
@@ -205,9 +262,27 @@ datos_limpios |>
   select(texto_limpio)
 ```
 
+```
+## # A tibble: 30 × 1
+##    texto_limpio                                                                 
+##    <chr>                                                                        
+##  1 construcción biblioteca punto turístico comuna salamanca                     
+##  2 mejoramiento multicancha construcción techumbre población arboleda vicuña    
+##  3 construcción obras iluminación fotovoltaicas sectores rurales urbanos tendid…
+##  4 construcción plaza tazas comuna canela                                       
+##  5 reposición sede club deportivo victoria localidad choros comuna higuera      
+##  6 construcción pista patinaje artístico comuna vilos                           
+##  7 construcción arranques sector saturno servicio sanitario rural gabriela mist…
+##  8 adquisición terreno proyecto habitacional comité vivienda chapilca n°2       
+##  9 mejoramiento servicio agua potable ruta d71 acceso poniente canela baja      
+## 10 conservación señaléticas direccionales comuna paihuano                       
+## # ℹ 20 more rows
+```
+
 Ahora probemos nuevamente la búsqueda, pero esta vez sobre el texto limpio:
 
-```{r} 
+
+``` r
 # búsqueda de texto
 datos_limpios |>
   mutate(
@@ -222,6 +297,18 @@ datos_limpios |>
   head(n = 6)
 ```
 
+```
+## # A tibble: 6 × 2
+##   puntaje texto_limpio                                                          
+##     <dbl> <chr>                                                                 
+## 1    5.33 construcción sede comunitaria ferro unido lambert                     
+## 2    5.33 construcción sede comunitaria arcos pinamar serena                    
+## 3    2.84 mejoramiento sede social villa aurora compañías comuna serena         
+## 4    2.35 mejoramiento multicancha construcción techumbre población arboleda vi…
+## 5    1.78 ampliación sede quebrada jardín serena                                
+## 6    1.67 reposición sede social villa mineros andacollo
+```
+
 Los resultados casi no cambian, pero cuando realicemos búsquedas entre miles de textos, o con textos mucho más extensos, puede marcar la diferencia.
 
 ----
@@ -230,7 +317,8 @@ Los resultados casi no cambian, pero cuando realicemos búsquedas entre miles de
 
 Tenemos muchísimas funciones en R para trabajar textos, y yo pensaba que las de R base iban a ser más rápidas/eficientes, pero hice un benchmark y me llevé una sorpresa:
 
-```{r}
+
+``` r
 library(dplyr)
 library(stringr)
 library(rbm25)
@@ -259,11 +347,20 @@ bench::mark(
 )
 ```
 
+```
+## # A tibble: 2 × 6
+##   expression      min   median `itr/sec` mem_alloc `gc/sec`
+##   <bch:expr> <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
+## 1 R base       51.9ms   53.3ms      18.7   34.27KB      0  
+## 2 stringr     642.2µs  677.2µs    1469.     5.12KB     14.8
+```
+
 Las funciones de `{stringr}` son muchísimo más rápidas que las de R base en este caso!
 
 También pensaba que buscar con BM25 iba a ser mucho más lento que con `str_detect()`, y a su vez que ésta iba a ser más lenta que `grep()`, la función de R base, así que las puse a prueba:
 
-```{r}
+
+``` r
 bench::mark(
   check = FALSE,
   iterations = 100,
@@ -271,6 +368,15 @@ bench::mark(
   "str_detect" = str_detect(textos, "plaza"),
   "bm25" = bm25_score(textos, "plaza")
 )
+```
+
+```
+## # A tibble: 3 × 6
+##   expression      min   median `itr/sec` mem_alloc `gc/sec`
+##   <bch:expr> <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
+## 1 grep         23.9µs  24.99µs    38879.   10.16KB      0  
+## 2 str_detect  16.61µs  17.45µs    56134.      216B      0  
+## 3 bm25         1.14ms   1.17ms      820.    5.78KB     16.7
 ```
 
 Vemos que `{stringr}` es mucho más rápido que R base, y que efectivamente buscar con BM25 es lento, pero tampoco _tan_ lento.

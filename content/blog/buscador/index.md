@@ -122,6 +122,10 @@ resultado <- datos |>
 
 Y listo. Se obtiene el dataframe filtrado, limpio, bonito. Literalmente **desde la obtención de los datos a los resultados de búsqueda en menos de 50 líneas** de código. No hay mucho más que agregar, aguante R 😂
 
+### Actualización de algoritmo de búsqueda
+
+Meses después cambié la búsqueda para usar el algoritmo BM25, que más allá de decir si un texto contiene o no el término de búsqueda, le entrega a cada elemento un puntaje con respecto al término de búsqueda, y así se pueden ordenar los resultados por relevancia. [Más información en esta publicación.](/blog/buscar_texto/)
+
 
 ## Desarrollando la aplicación
 
