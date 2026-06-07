@@ -6,8 +6,10 @@ cascade:
   author: Bastián Olea Herrera
   show_author_byline: false
   show_comments: false
-  show_post_date: true
+  show_post_date: false
   show_post_time: false
+  show_event_date: false
+  show_event_location: false
   sidebar:
     show_sidebar_adunit: false
     text_link_label: Ver clases
@@ -17,7 +19,7 @@ description: |
 layout: list
 show_author_byline: false
 show_button_links: true
-show_post_date: true
+show_post_date: false
 show_post_thumbnail: true
 show_post_time: false
 

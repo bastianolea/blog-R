@@ -1,0 +1,43 @@
+<section class="event-details cf pt5-ns pt4">
+  {{ with .Params.excerpt }}
+  <div class="first-column">
+    <h5 class="row-label">Resumen</h5>
+  </div>
+  <div class="second-column">
+    <p class="row-details">{{ . }}</p>
+  </div>
+  {{ end }}
+  {{ if and .Date (ne .Params.show_event_date false) }}
+  <div class="first-column">
+    <h5 class="row-label">Fecha</h5>
+  </div>
+  <div class="second-column">
+    <p class="row-details">{{ partial "shared/date-range.html" . }}</p>
+  </div>
+  <div class="first-column">
+    <h5 class="row-label">Hora</h5>
+  </div>
+  <div class="second-column">
+    <p class="row-details">{{ partial "shared/time-range.html" . }}</p>
+  </div>
+  {{ end }}
+  {{ if and .Params.location (ne .Params.show_event_location false) }}
+  <div class="first-column">
+    <h5 class="row-label">Ubicación</h5>
+  </div>
+  <div class="second-column">
+    <p class="row-details">{{ .Params.location }}</p>
+  </div>
+  {{ end }}
+  {{ if .Params.event }}
+  <div class="first-column">
+    <h5 class="row-label">Evento</h5>
+  </div>
+  <div class="second-column">
+      <p class="row-details">
+        {{ with .Params.event_url }}<a href="{{ . | safeHTML }}" target="_blank">{{ end }}
+          {{ .Params.event }}{{ if .Params.event_url }}</a>{{ end }}
+      </p>
+  </div>
+  {{ end }}
+</section>
