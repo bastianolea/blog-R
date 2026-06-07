@@ -15,8 +15,8 @@ format:
     output-file: index
     output-ext: md
 links:
-  - icon: registered
-    icon_pack: fas
+  - icon: r-project
+    icon_pack: fab
     name: SF
     url: https://r-spatial.github.io/sf/
 execute:

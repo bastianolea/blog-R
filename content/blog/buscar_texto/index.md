@@ -30,6 +30,10 @@ links:
     icon_pack: fab
     name: Código del buscador
     url: https://github.com/bastianolea/blog_buscador
+  - icon: r-project
+    icon_pack: fab
+    name: RBM25
+    url: https://davzim.github.io/rbm25/
 ---
 
 
@@ -188,7 +192,7 @@ Si necesitamos buscar o detectar texto y obtener las mejores coincidencias posib
 install.packages("rbm25")
 ```
 
-El paquete `{rbm25}` entrega la función `bm25_score()`, que a diferencia de una búsqueda por coincidencia de texto, entrega un **ranking de resultados**, el cual puedes usar para ordenar los resultados posibles según su **relevancia** al texto de búsqueda.
+[El paquete `{rbm25}` de R](https://davzim.github.io/rbm25/) entrega la función `bm25_score()`, que a diferencia de una búsqueda por coincidencia de texto, entrega un **ranking de resultados**, el cual puedes usar para ordenar los resultados posibles según su **relevancia** al texto de búsqueda.
 
 ``` r
 library(rbm25)
@@ -337,8 +341,8 @@ bench::mark(
     # A tibble: 2 × 6
       expression      min   median `itr/sec` mem_alloc `gc/sec`
       <bch:expr> <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
-    1 R base       52.5ms   53.5ms      18.6   34.27KB        0
-    2 stringr     655.2µs  669.5µs    1476.     5.12KB        0
+    1 R base       50.6ms   53.3ms      18.5   34.27KB        0
+    2 stringr     641.7µs  653.8µs    1524.     5.12KB        0
 
 Las funciones de `{stringr}` son muchísimo más rápidas que las de R base en este caso!
 
@@ -357,9 +361,9 @@ bench::mark(
     # A tibble: 3 × 6
       expression      min   median `itr/sec` mem_alloc `gc/sec`
       <bch:expr> <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
-    1 grep        23.94µs  24.68µs    39991.   10.16KB     0   
-    2 str_detect  16.52µs   17.2µs    56973.      216B     0   
-    3 bm25         1.15ms   1.18ms      826.    5.78KB     8.35
+    1 grep         23.9µs  24.44µs    40414.   10.16KB     0   
+    2 str_detect  16.89µs  17.41µs    56754.      216B     0   
+    3 bm25         1.15ms   1.17ms      833.    5.78KB     8.41
 
 Vemos que `{stringr}` es mucho más rápido que R base, y que efectivamente buscar con BM25 es lento, pero tampoco *tan* lento.
 

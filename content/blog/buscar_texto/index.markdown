@@ -26,6 +26,10 @@ links:
     icon_pack: fab
     name: Código del buscador
     url: https://github.com/bastianolea/blog_buscador
+  - icon: r-project
+    icon_pack: fab
+    name: RBM25
+    url: https://davzim.github.io/rbm25/
 ---
 
 {{< info "Hice este post porque actualicé el [buscador de mi blog](/blog/buscador/) que puedes [usar aquí](https://bastianoleah.shinyapps.io/buscador/) para que ahora entregue mejores resultados, y lo mejor: ordenados por relevancia. Puedes ver su código [en este repositorio.](https://github.com/bastianolea/blog_buscador)" >}}
@@ -190,7 +194,7 @@ Si necesitamos buscar o detectar texto y obtener las mejores coincidencias posib
 install.packages("rbm25")
 ```
 
-El paquete `{rbm25}` entrega la función `bm25_score()`, que a diferencia de una búsqueda por coincidencia de texto, entrega un **ranking de resultados**, el cual puedes usar para ordenar los resultados posibles según su **relevancia** al texto de búsqueda.
+[El paquete `{rbm25}` de R](https://davzim.github.io/rbm25/) entrega la función `bm25_score()`, que a diferencia de una búsqueda por coincidencia de texto, entrega un **ranking de resultados**, el cual puedes usar para ordenar los resultados posibles según su **relevancia** al texto de búsqueda.
 
 
 ``` r
@@ -351,8 +355,8 @@ bench::mark(
 ## # A tibble: 2 × 6
 ##   expression      min   median `itr/sec` mem_alloc `gc/sec`
 ##   <bch:expr> <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
-## 1 R base       51.9ms   53.3ms      18.7   34.27KB      0  
-## 2 stringr     642.2µs  677.2µs    1469.     5.12KB     14.8
+## 1 R base       51.4ms     53ms      18.6   34.27KB      0  
+## 2 stringr     617.1µs    662µs    1511.     5.12KB     15.3
 ```
 
 Las funciones de `{stringr}` son muchísimo más rápidas que las de R base en este caso!
@@ -374,9 +378,9 @@ bench::mark(
 ## # A tibble: 3 × 6
 ##   expression      min   median `itr/sec` mem_alloc `gc/sec`
 ##   <bch:expr> <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
-## 1 grep         23.9µs  24.99µs    38879.   10.16KB      0  
-## 2 str_detect  16.61µs  17.45µs    56134.      216B      0  
-## 3 bm25         1.14ms   1.17ms      820.    5.78KB     16.7
+## 1 grep         23.4µs  24.52µs    40515.   10.16KB      0  
+## 2 str_detect   16.4µs  16.81µs    58797.      216B      0  
+## 3 bm25          1.1ms   1.15ms      845.    5.78KB     17.2
 ```
 
 Vemos que `{stringr}` es mucho más rápido que R base, y que efectivamente buscar con BM25 es lento, pero tampoco _tan_ lento.
