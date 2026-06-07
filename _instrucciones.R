@@ -41,15 +41,10 @@ blogdown::new_post(
 #     url: https://gist.github.com/bastianolea/8ea85fa8169b302d2144e05434668c89
 
 ## borradores ----
-# función para datos del censo
-"content/blog/shiny/index.md"
 "content/blog/ggplot_densidad_puntos/index.qmd"
-"content/blog/mapas_hexagonales/index.qmd"
 "content/blog/mapas_bivariados/index.qmd"
 "content/blog/unpivotr/index.qmd"
-# - **[Presentar tus datos a la IA para hacerle consultas](/blog/redactar_texto_llm/#configurar-el-modelo-para-interpretar-texto)** y que te ayude a interpretar tus datos
 "content/blog/posit_assistant/index.md"
-"content/blog/renombrar_columnas/index.qmd"
 # tutorial mapas: poner puntos a partir de tablas de datos en centroides
 "content/blog/ggtext/index.qmd"
 "content/blog/ggplot_numeros/index.qmd"
