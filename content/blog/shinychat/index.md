@@ -657,3 +657,5 @@ Personalmente he desarrollado varios chatbots que consultan datos complejos de e
 {{< etiqueta "inteligencia artificial" >}}
 
 {{< cafecito >}}
+
+{{< cursos >}}

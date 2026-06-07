@@ -1369,3 +1369,7 @@ https://dominicroye.github.io/blog/inserted-map/
 - [Geocomputation with R](https://bookdown.org/robinlovelace/geocompr/)
 - [Spatial Data Science With Applications in R](https://r-spatial.org/book/)
 - [Using Spatial Data with R](https://cengel.github.io/R-spatial/)
+
+{{< cafecito >}}
+
+{{< cursos >}}

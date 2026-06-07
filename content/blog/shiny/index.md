@@ -1931,3 +1931,5 @@ Espero que te sirva este tutorial! Aprender Shiny es todo un mundo que abre much
 Este tutorial se escribió sin ninguna asistencia de inteligencia artificial 😌 Si este tutorial te sirvió laboralmente, te agradecería una pequeña donación!
 
 {{< cafecito >}}
+
+{{< cursos >}}

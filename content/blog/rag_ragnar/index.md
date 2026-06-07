@@ -347,3 +347,4 @@ Gracias al RAG, cualquier modelo de lenguaje puede responder preguntas especiali
 
 {{< cafecito >}}
 
+{{< cursos >}}
