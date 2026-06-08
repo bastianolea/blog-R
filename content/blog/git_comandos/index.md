@@ -7,7 +7,7 @@ draft: false
 categories: []
 tags:
   - git
-  - programación
+  - GitHub
   - consejos
 format:
   hugo-md:

@@ -91,7 +91,7 @@ titleCaseStyle = "firstupper"
   # utterances está configurado y funciona, pero solo para gente registrada en github
   # Configuration of https://utteranc.es/ for comments
   [params.utterances]
-    repo_name = "bastianolea/blog-bastianolea-r"
+    repo_name = "bastianolea/blog-R"
     issue_term = "pathname" # url, pathname, or title
     theme = "github-light"
     label = "comments"

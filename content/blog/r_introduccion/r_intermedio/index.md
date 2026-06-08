@@ -15,7 +15,6 @@ tags:
   - funciones
   - control de flujo
   - loops
-  - programación
 lang: es
 excerpt: >-
   En guía aprenderemos herramientas de programación poderosas que flexibilizarán
