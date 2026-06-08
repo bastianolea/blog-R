@@ -25,7 +25,7 @@ links:
   - icon: link
     icon_pack: fas
     name: Buscador de mi blog
-    url: https://bastianoleah.shinyapps.io/buscador/
+    url: /buscar/
   - icon: github
     icon_pack: fab
     name: Código del buscador
@@ -37,7 +37,7 @@ links:
 ---
 
 
-{{< info "Hice este post porque actualicé el [buscador de mi blog](/blog/buscador/) que puedes [usar aquí](https://bastianoleah.shinyapps.io/buscador/) para que ahora entregue mejores resultados, y lo mejor: ordenados por relevancia. Puedes ver su código [en este repositorio.](https://github.com/bastianolea/blog_buscador)" >}}
+{{< info "Hice este post porque actualicé el [buscador de mi blog](/blog/buscador/) que puedes [usar aquí](/buscar/) para que ahora entregue mejores resultados, y lo mejor: ordenados por relevancia. Puedes ver su código [en este repositorio.](https://github.com/bastianolea/blog_buscador)" >}}
 
 Cuando tenemos datos que contienen mucho texto, usualmente necesitamos filtrar las observaciones dependiendo de si contienen o no uno o más términos.
 
@@ -367,6 +367,6 @@ bench::mark(
 
 Vemos que `{stringr}` es mucho más rápido que R base, y que efectivamente buscar con BM25 es lento, pero tampoco *tan* lento.
 
-En fin, hice todo esto porque actualicé el [buscador de mi blog](../../../blog/buscador/), que en sí mismo es una [aplicación Shiny](https://bastianoleah.shinyapps.io/buscador/), para que ahora busque con BM25 y así entregue mejores resultados, y lo mejor: ordenados por relevancia. Puedes ver su código [en este repositorio.](https://github.com/bastianolea/blog_buscador)
+En fin, hice todo esto porque actualicé el [buscador de mi blog](../../../blog/buscador/), que en sí mismo es una [aplicación Shiny](/buscar/), para que ahora busque con BM25 y así entregue mejores resultados, y lo mejor: ordenados por relevancia. Puedes ver su código [en este repositorio.](https://github.com/bastianolea/blog_buscador)
 
 {{< etiqueta "texto" >}}

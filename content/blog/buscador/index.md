@@ -19,8 +19,8 @@ links:
   - icon: link
     icon_pack: fas
     name: Aplicación
-    url: https://bastianoleah.shinyapps.io/buscador/
-excerpt: "En este post innecesariamente largo les comento mi irracional alegría de haber programado en R+Shiny [un buscador para este mismo sitio](https://bastianoleah.shinyapps.io/buscador/) (funcionalidad que ya se estaba volviendo muy necesaria). En menos de media hora ya tenía un producto mínimo funcional gracias a lo simple que es programar con R. Esta funcionalidad nueva va a ayudar a poder encontrar posts sobre cualquier tema, sobre todo para mí, que uso este blog a diario para copiar y pegar mi propio código 😂"
+    url: /buscar/
+excerpt: "En este post innecesariamente largo les comento mi irracional alegría de haber programado en R+Shiny [un buscador para este mismo sitio](/buscar/) (funcionalidad que ya se estaba volviendo muy necesaria). En menos de media hora ya tenía un producto mínimo funcional gracias a lo simple que es programar con R. Esta funcionalidad nueva va a ayudar a poder encontrar posts sobre cualquier tema, sobre todo para mí, que uso este blog a diario para copiar y pegar mi propio código 😂"
 ---
 
 {{< imagen "buscador-featured.png" >}}
@@ -29,7 +29,7 @@ excerpt: "En este post innecesariamente largo les comento mi irracional alegría
 
 Este blog ya lleva más de 100 publicaciones! 🎉 y si bien [uso las etiquetas](/tags/) para mantener todo organizado y ayudar a descubrir nuevos posts, a veces hasta a mi me cuesta encontrar publicaciones entre tanta cosa 😅
 
-Por esa razón hace tiempo que quería **implementar [un buscador](https://bastianoleah.shinyapps.io/buscador/) en este sitio**, cosa que resultó ser más complicada de lo que esperaba. Pero lo logré, y estoy irracionalmente feliz por eso 💜 
+Por esa razón hace tiempo que quería **implementar [un buscador](/buscar/) en este sitio**, cosa que resultó ser más complicada de lo que esperaba. Pero lo logré, y estoy irracionalmente feliz por eso 💜 
 
 > Algo hermoso de programar es la sensación de logro y orgullo que provoca poder crear cosas bonitas y que funcionan! ✨
 

@@ -1,0 +1,18 @@
+{{ define "main" }}
+<main class="page-main pa4" role="main">
+  <section class="page-content center" style="max-width: 1100px;">
+    <iframe
+      id="buscador-iframe"
+      src="https://bastianoleah.shinyapps.io/buscador/"
+      style="width: 100%; border: none; border-radius: 4px;"
+      title="Buscador de posts"
+      loading="lazy">
+    </iframe>
+  </section>
+</main>
+
+<script src="/js/iframeResizer.min.js"></script>
+<script>
+  iFrameResize({ checkOrigin: false }, '#buscador-iframe')
+</script>
+{{ end }}

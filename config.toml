@@ -127,7 +127,7 @@ titleCaseStyle = "firstupper"
   [[params.social]]
     icon      = "search" # icon name without the 'fa-'
     icon_pack = "fas"
-    url = "https://bastianoleah.shinyapps.io/buscador/"
+    url = "/buscar/"
   [[params.social]]
       icon      = "linkedin"
       icon_pack = "fab"
@@ -189,7 +189,7 @@ titleCaseStyle = "firstupper"
   [[menu.header]]
     name = "Buscar"
     title = "Buscador"
-    url = "https://bastianoleah.shinyapps.io/buscador/"
+    url = "/buscar/"
     weight = 7
   [[menu.header]]
     name = "Temas"
@@ -256,7 +256,7 @@ titleCaseStyle = "firstupper"
   [[menu.footer]]
     name = "Buscar"
     title = "Buscador"
-    url = "https://bastianoleah.shinyapps.io/buscador/"
+    url = "/buscar/"
     weight = 2
   [[menu.footer]]
     name = "Temas"
