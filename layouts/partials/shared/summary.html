@@ -46,11 +46,11 @@
       
       <div>{{ if $root.Params.show_post_date }}<div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">{{ .PublishDate.Format "2/1/2006" }}</div>{{ end }}
       <!-- contador de visitas -->
-        <!-- <span>
+        <span>
           {{ if $root.Params.show_page_views }}
             {{- partial "page_views.html" . -}}
           {{ end }}
-        </span> -->
+        </span>
       </div>
       
       {{ if and $root.Params.show_button_links .Params.links }}

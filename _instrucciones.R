@@ -122,7 +122,7 @@ blogdown::new_post(
 "layouts/partials/shared/sidebar/sidebar-header.html" # sidebar del blog
 
 "assets/custom.scss" # css del sitio
-"static/css/syntax.css" # css del syntax higlight
+"static/css/syntax.css" # css del syntax highlight
 
 "static/_redirects" # redirección de posts con cambio de nombre
 

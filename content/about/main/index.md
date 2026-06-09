@@ -21,7 +21,7 @@ intro: |
   
   {{< imagen "bastian_olea_1.jpg" >}}
   
-  También tengo un [blog personal](https://bastimapache.cl) donde comparto contenido sobre mi, fuera de lo profesional.
+  También tengo un [blog personal](www.bastimapache.cl) donde comparto contenido sobre mi, fuera de lo profesional.
   
   
 
