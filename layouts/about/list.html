@@ -42,7 +42,7 @@
              {{ partial "shared/summary-li" . }}
           {{ end }}
           {{ if .Params.show_outro }}
-            <div class="pt3 measure-wide lh-copy cf">{{ .Params.outro | markdownify }}</div>
+            <div class="pt3 measure-wide cf">{{ .Params.outro | markdownify }}</div>
           {{ end }}
         </div> <!--close wide column -->
         {{ end }}

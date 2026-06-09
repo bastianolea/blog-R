@@ -1,4 +1,4 @@
 ---
 title: "Buscar"
-description: "Buscador de posts y tutoriales del blog"
+description: "Buscador de publicaciones y tutoriales del blog"
 ---

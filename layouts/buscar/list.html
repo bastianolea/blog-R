@@ -1,6 +1,14 @@
 {{ define "main" }}
 <main class="page-main pa4" role="main">
-  <section class="page-content center" style="max-width: 1100px;">
+  <section class="page-content center">
+    
+    <!--- texto de cargando (desaparece al cargar) --->
+    <div id="cargando" 
+    style="margin-top: 120px; text-align: center; font-size: 120%; color: #A785C5;">
+      <em>Cargando...</em>
+    </div>
+    
+    <!--- aplicación shiny embebida --->
     <iframe
       id="buscador-iframe"
       src="https://bastianoleah.shinyapps.io/buscador/"
@@ -8,11 +16,20 @@
       title="Buscador de posts"
       loading="lazy">
     </iframe>
+
   </section>
 </main>
 
+<!--- tamaño vertical del iframe --->
 <script src="/js/iframeResizer.min.js"></script>
 <script>
   iFrameResize({ checkOrigin: false }, '#buscador-iframe')
+</script>
+
+<!--- ocultar texto al cargar iframe --->
+<script>
+  document.getElementById('buscador-iframe').addEventListener('load', function () {
+    document.getElementById('cargando').style.display = 'none'
+  })
 </script>
 {{ end }}

@@ -19,20 +19,21 @@ intro: |
   
   En este blog comparto documentos, tutoriales y recursos sobre el lenguaje de programación estadística R. Puedes [contactarme](/contacto/) si tienes alguna pregunta o comentario, me gusta responder dudas!
   
+  {{< imagen "bastian_olea_1.jpg" >}}
+  
   También tengo un [blog personal](https://bastimapache.cl) donde comparto contenido sobre mi, fuera de lo profesional.
   
-  {{< imagen "bastian_olea_1.jpg" >}}
+  
 
 
 show_outro: true
 outro: |
   <div>
-    <div style="display: flex;
-    justify-content: center;
-    align-items: center;">
-      <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="bastimapache" data-color="#FFDD00" data-emoji="☕"  data-font="Cookie" data-text="Regálame un cafecito" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
-    </div>
+  
+    {{< cafecito >}}
+    
   </div>
+  <br>
 ---
 
 ** index doesn't contain a body, just front matter above.
