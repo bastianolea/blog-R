@@ -5,13 +5,11 @@ author: Bastián Olea Herrera
 date: '2024-11-08'
 slug: []
 categories: []
-tags: 
-  - blog
 weight: 99
 excerpt: Colección de sitios web y recursos útiles para usuarios de R. Incluye sitios desde donde obtener datos, blogs de usuarios de R, sitios útiles para visualización de datos, y más.
 ---
 
-En esta página voy guardando enlaces a sitios web útiles para otros usuarios de R. Si quieres que incluya tu sitio o iniciativa, [puedes escribirme.](/contact/)
+En esta página voy guardando enlaces a sitios web útiles para otros usuarios de R. Si quieres que incluya tu sitio o iniciativa, [puedes escribirme.](/contacto/)
 
 
 
@@ -56,6 +54,8 @@ _Sitios con contenido educacional para que aprendas R._
 - [Tutorial para crear documentos Quarto](https://bastianolea.rbind.io/blog/quarto_reportes/)
 - [Tutorial para usar Quarto para generar blogs y sitios web](https://bastianolea.rbind.io/blog/tutorial_quarto_github_pages/)
 - [Crear, publicar y analizar sitios web personales usando R](https://r4sites-book.netlify.app) 📚 libro que detalla todas las instrucciones de crear un sitio web con R y Hugo.
+- [Slidecrafting: Making beautiful slides with reveal.js and Quarto](https://slidecrafting-book.com) 📚 libro sobre diapositivas con Quarto
+- [Temas y extensiones para diapositivas Quarto + RevealJS](https://emilhvitfeldt.com/project/slidecraft-101/)
 
 #### Análisis de texto con R
 - [Cuentapalabras. Estilometría y análisis de texto con R para filólogos](https://aic.uva.es/cuentapalabras/)
@@ -119,6 +119,7 @@ _Conoce a otras personas que usan R o únete a una comunidad de usuarios/as!_
 - [Kennedy Mwavu](https://x.com/kennedymwavu)
 - [Rony Rodríguez-Ramírez](https://rrmaximiliano.github.io) 🇳🇮
 - [Alejandro Romero González](https://alejandroromerog.github.io) 🇲🇽
+- [Emil Hvitfeldt](https://emilhvitfeldt.com/blog)
 
 #### Blogs sobre R
 - [R-Bloggers](https://www.r-bloggers.com/), blog que reúne cientos de posts desde blogs de usuarios y desarrolladores de R
