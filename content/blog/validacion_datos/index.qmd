@@ -1,8 +1,7 @@
 ---
-title: Validación de datos con {testthat} y {pointblank}
+title: Validación de datos con `{testthat}` y `{pointblank}`
 author: Bastián Olea Herrera
 date: '2025-10-15'
-draft: false
 freeze: true
 slug: []
 categories: []
@@ -317,10 +316,13 @@ Este código nos crea un script que contiene 10 pruebas para el dataset en base 
 Aplicar principios de validación de datos a tus proyectos de análisis de datos te va a ayudar a tener **mayor confianza en tus datos**, dándote certeza de que no hay sorpresas inesperadas entre las miles o millones de observaciones con las que trabajas. También puede **ahorrarte dolores de cabeza**, ya que si los datos cambian y estos cambios se desajustan de tus estándares, te enterarás de inmediato en vez de darte cuenta cuando se eche a perder algún gráfico o tabla más adelante 😅
 
 
+## Recursos 
+
 ### Recursos para aprender `{pointblank}`
 
 - [Introducción a `{pointblank}`](https://rstudio.github.io/pointblank/articles/pointblank.html)
 - [Guía oficial de `{pointblank}`](https://rstudio.github.io/pointblank/articles/VALID-I.html)
 - [Workshop de `{pointblank}` por Richard Iannone](https://github.com/rich-iannone/pointblank-workshop) (requiere clonar el proyecto y generar los reportes Markdown)
+- [11 Test Smells That Make Your Tests Lie to You](https://jakubsobolewski.com/blog/test-smells-in-r/), por Jakub Sobolewski
 
 {{< cafecito >}}

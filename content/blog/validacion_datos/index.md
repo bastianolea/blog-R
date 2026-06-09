@@ -1,8 +1,7 @@
 ---
-title: Validación de datos con {testthat} y {pointblank}
+title: Validación de datos con `{testthat}` y `{pointblank}`
 author: Bastián Olea Herrera
 date: '2025-10-15'
-draft: false
 freeze: true
 slug: []
 categories: []
@@ -94,22 +93,13 @@ Veamos un ejemplo de una prueba:
 
 ``` r
 library(testthat)
-```
 
-
-    Attaching package: 'testthat'
-
-    The following object is masked from 'package:dplyr':
-
-        matches
-
-``` r
 test_that("números iguales",
           expect_equal(4, 4)
 )
 ```
 
-    Test passed 🥳
+    Test passed with 1 success 🌈.
 
 Esta prueba evalúa si dos números son iguales (`expect_equal()`), y en este ejemplo se cumple: `{testthat}` nos entrega un emoji de celebración 🎉 Veamos la siguiente prueba:
 
@@ -120,12 +110,13 @@ test_that("números desiguales",
 ```
 
     ── Failure: números desiguales ─────────────────────────────────────────────────
-    4 not equal to 5.
+    Expected 4 to equal 5.
+    Differences:
     1/1 mismatches
     [1] 4 - 5 == -1
 
     Error:
-    ! Test failed
+    ! Test failed with 1 failure and 0 successes.
 
 Como la prueba no se cumple, porque `4` es distinto a `5`, y la prueba nos dará un error explicando en dónde está el problema.
 
@@ -143,7 +134,7 @@ test_that("se cargaron los datos",
 )
 ```
 
-    Test passed 😸
+    Test passed with 1 success 😀.
 
 ``` r
 # esperamos que el número de columnas sea 4
@@ -152,7 +143,7 @@ test_that("suficientes columnas",
 )
 ```
 
-    Test passed 😀
+    Test passed with 1 success 😀.
 
 ``` r
 # esperamos que la columna `animal` sea tipo caracter
@@ -161,7 +152,7 @@ test_that("columnas tipo texto",
 )
 ```
 
-    Test passed 😸
+    Test passed with 1 success 😸.
 
 ``` r
 # esperamos que la columna `patas` sea tipo numérico
@@ -171,10 +162,11 @@ test_that("columnas tipo texto",
 ```
 
     ── Failure: columnas tipo texto ────────────────────────────────────────────────
-    datos$patas has type 'character', not 'numeric'.
+    Expected `datos$patas` to have type "numeric".
+    Actual type: "character"
 
     Error:
-    ! Test failed
+    ! Test failed with 1 failure and 0 successes.
 
 ``` r
 # esperamos que los colores estén dentro de un conjunto determinado
@@ -184,12 +176,13 @@ test_that("colores factibles",
 ```
 
     ── Failure: colores factibles ──────────────────────────────────────────────────
-    datos$color (`actual`) isn't fully contained within c("negro", "gris", "blanco", "amarillo", "café") (`expected`).
-    * Missing from `expected`: "plumas", "#CCCCCC"
-    * Present in `expected`:   "negro", "gris", "blanco", "amarillo", "café"
+    Expected `datos$color` to only contain values from `c("negro", "gris", "blanco", "amarillo", "café")`.
+    Actual: "gris", "negro", "plumas", "#CCCCCC"
+    Expected: "negro", "gris", "blanco", "amarillo", "café"
+    Invalid: "plumas", "#CCCCCC"
 
     Error:
-    ! Test failed
+    ! Test failed with 1 failure and 0 successes.
 
 Una vez que guardamos este script, podemos ejecutar sus pruebas manualmente, o bien podemos usar `test_file("tests/test-script.R")` para **ejecutar todas las pruebas de un script**, o `test_dir("tests.R")` para ejecutar todas las pruebas de la carpeta de pruebas, validando tu proyecto entero de una sola vez.
 
@@ -214,7 +207,8 @@ testthat::expect_equal(n_distinct(iris$Species), 3)
 testthat::expect_equal(n_distinct(iris$Species), 4)
 ```
 
-    Error: n_distinct(iris$Species) not equal to 4.
+    Error: Expected `n_distinct(iris$Species)` to equal 4.
+    Differences:
     1/1 mismatches
     [1] 3 - 4 == -1
 
@@ -333,18 +327,18 @@ iris_sucio
 ```
 
     # A tibble: 150 × 5
-       sepal_length sepal_width petal_length petal_width species   
-       <chr>        <chr>       <chr>        <chr>       <chr>     
-     1 "5.1"        "3.5"       1.4          "0.2"       "se#tosa "
-     2 "4.9"        "3"         <NA>         "0.2 "      "se_tos*a"
-     3 "4.7"        "3.2"       1.3          "0.2 "      "se%tosa" 
-     4  <NA>        "3.1"       1.5          "0.2 "       <NA>     
-     5 "5"          "3.6"       <NA>         "0.2"       "se+tosa" 
-     6 "5.4"        "3.9 "      1.7          "0.4"       "set!osa" 
-     7 "4.6 "       "3.4"       1.4          "0.3"       "set$osa" 
-     8 "5"           <NA>       1.5           <NA>        <NA>     
-     9  <NA>        "2.9 "      1.4          "0.2 "      "SETO@SA" 
-    10 "4.9"        "3.1"       1.5           <NA>       "set)osa "
+       sepal_length sepal_width petal_length petal_width species    
+       <chr>        <chr>       <chr>        <chr>       <chr>      
+     1 "5.1"        "3.5 "      "1.4"        "0.2"       "se^tosa " 
+     2  <NA>        "3"         "1.4"        "0.2"       "setos$a"  
+     3 "4.7"        "3.2"       "1.3 "        <NA>       "s)etosa"  
+     4 "4.6"        "3.1 "      "1.5"        "0.2 "      "SETO^SA"  
+     5  <NA>        "3.6"       "1.4 "       "0.2"        <NA>      
+     6 "5.4"        "3.9"       "1.7"         <NA>       "s.eto+sa" 
+     7 "4.6 "        <NA>       "1.4"        "0.3"        <NA>      
+     8  <NA>        "3.4"       "1.5 "       "0.2 "      ")set-o.sa"
+     9 "4.4"        "2.9 "       <NA>        "0.2"       "se#tos!a "
+    10 "4.9 "       "3.1"       "1.5"         <NA>       "setos-a"  
     # ℹ 140 more rows
 
 Luego creamos un agente para validar estos datos:
@@ -384,10 +378,13 @@ Este código nos crea un script que contiene 10 pruebas para el dataset en base 
 
 Aplicar principios de validación de datos a tus proyectos de análisis de datos te va a ayudar a tener **mayor confianza en tus datos**, dándote certeza de que no hay sorpresas inesperadas entre las miles o millones de observaciones con las que trabajas. También puede **ahorrarte dolores de cabeza**, ya que si los datos cambian y estos cambios se desajustan de tus estándares, te enterarás de inmediato en vez de darte cuenta cuando se eche a perder algún gráfico o tabla más adelante 😅
 
+## Recursos
+
 ### Recursos para aprender `{pointblank}`
 
--   [Introducción a `{pointblank}`](https://rstudio.github.io/pointblank/articles/pointblank.html)
--   [Guía oficial de `{pointblank}`](https://rstudio.github.io/pointblank/articles/VALID-I.html)
--   [Workshop de `{pointblank}` por Richard Iannone](https://github.com/rich-iannone/pointblank-workshop) (requiere clonar el proyecto y generar los reportes Markdown)
+- [Introducción a `{pointblank}`](https://rstudio.github.io/pointblank/articles/pointblank.html)
+- [Guía oficial de `{pointblank}`](https://rstudio.github.io/pointblank/articles/VALID-I.html)
+- [Workshop de `{pointblank}` por Richard Iannone](https://github.com/rich-iannone/pointblank-workshop) (requiere clonar el proyecto y generar los reportes Markdown)
+- [11 Test Smells That Make Your Tests Lie to You](https://jakubsobolewski.com/blog/test-smells-in-r/), por Jakub Sobolewski
 
 {{< cafecito >}}
