@@ -305,7 +305,32 @@ Los resultados casi no cambian, pero cuando realicemos búsquedas entre miles de
 
 ------------------------------------------------------------------------
 
-#### Bonus: benchmarks
+## Resumen
+
+
+```r
+library(dplyr)
+
+# buscar por coincidencia exacta
+datos |> 
+  filter(
+    stringr::str_detect(textos, "agua|potable|rural")
+  ) |> 
+  head(4)
+
+# buscar con algoritmo de relevancia
+datos |> 
+  mutate(
+    puntaje = rbm25::bm25_score(
+      textos, "agua potable rural")
+  ) |>
+  arrange(-puntaje) |> 
+  head(4)
+```
+
+## Bonus
+
+### Benchmarks
 
 Tenemos muchísimas funciones en R para trabajar textos, y yo pensaba que las de R base iban a ser más rápidas/eficientes, pero hice un benchmark y me llevé una sorpresa:
 
@@ -370,3 +395,5 @@ Vemos que `{stringr}` es mucho más rápido que R base, y que efectivamente busc
 En fin, hice todo esto porque actualicé el [buscador de mi blog](../../../blog/buscador/), que en sí mismo es una [aplicación Shiny](/buscar/), para que ahora busque con BM25 y así entregue mejores resultados, y lo mejor: ordenados por relevancia. Puedes ver su código [en este repositorio.](https://github.com/bastianolea/blog_buscador)
 
 {{< etiqueta "texto" >}}
+
+
