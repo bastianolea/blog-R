@@ -20,6 +20,8 @@ excerpt: "Colección de comandos de `git` para realizar acciones comunes y resol
 
 [^1]: Hago esto porque tengo una nota en el computador con todos los comandos y siempre vuelvo a buscarla para copiarlos, así que mejor dejo todo eso acá 😋
 
+{{< relacionada "/blog/r_introduccion/tutorial_github/" >}}
+
 Otro recurso mucho más completo es [ohshitgit.com](https://ohshitgit.com/es), que como su nombre indica, está enfocado en resolver problemas comunes con `git`.
 
 
@@ -208,3 +210,14 @@ git config --global init.defaultBranch main
 ```
 
 {{< relacionada "/blog/r_introduccion/tutorial_github/" >}}
+
+
+### Actualizar _token_ vencido
+
+Si se vence el token que usas en tu computador (que se usa para darle permiso a tu computador para acceder a tu cuenta), genera uno nuevo en GitHub, cópialo, y en R ejecuta:
+
+```r
+gitcreds::gitcreds_set()
+```
+
+Podrás pegar el nuevo token en la consola, y tu computador quedará autorizado para volver a hacer _pull_ a tus repositorios.

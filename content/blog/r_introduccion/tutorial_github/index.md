@@ -9,6 +9,7 @@ categories:
   - Tutoriales
 tags:
   - git
+  - GitHub
   - consejos
   - básico
 lang: es
