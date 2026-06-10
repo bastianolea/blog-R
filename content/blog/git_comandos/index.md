@@ -221,3 +221,14 @@ gitcreds::gitcreds_set()
 ```
 
 Podrás pegar el nuevo token en la consola, y tu computador quedará autorizado para volver a hacer _pull_ a tus repositorios.
+
+
+----
+
+## Recursos
+
+Recursos para aprender a usar `git` con R:
+
+- [Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub](/blog/r_introduccion/tutorial_github/)
+- [Libro _Happy Git with R_](https://happygitwithr.com)
+- [ohshitgit.com](https://ohshitgit.com/es)
