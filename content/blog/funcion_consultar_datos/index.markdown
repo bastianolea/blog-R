@@ -1098,6 +1098,19 @@ Otra opción es que, si queremos que [un modelo de lenguaje (LLM) use esta funci
 
 {{< relacionada "/blog/herramientas_llm/" >}}
 
+**_Avanzado:_** Si los datos que consulta nuestra función son más complejos, podemos hacer que se retornen varios datos a la vez si los guardamos en una lista. En una lista podemos combinar cifras individuales, distintas tablas, y otros elementos recopilados en un sólo objeto. Por ejemplo:
+
+```r
+output <- lista(
+  "cifra" = poblacion,
+  "cantidad de observaciones" = nrow(datos),
+  "tabla" = data.frame()
+)
+
+return(output)
+```
+De este modo, la función retornará un resultado más complejo y completo, y el usuario podrá verlos todos o elegir uno de ellos para continuar (seleccionando el elemento con el operador `$`, `output$tabla`, o con brackets `[[`, `output[["tabla"]]`).
+
 
 ## Conclusiones
 
