@@ -1,0 +1,104 @@
+---
+title: Limpieza y validación de RUTs en R
+author: Bastián Olea Herrera
+date: '2026-06-11'
+slug: []
+draft: true
+categories: []
+tags:
+  - texto
+  - procesamiento de datos
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+---
+
+# Plan: Función para validar RUTs chilenos en R
+
+## Objetivo
+
+Escribir una función en R que valide RUTs chilenos en **formato estandarizado** `XXXXXXXX-Y`.
+
+La limpieza y normalización de formatos alternativos queda fuera del alcance de esta función.
+
+---
+
+## Contexto: algoritmo de validación
+
+El RUT chileno tiene el formato `XXXXXXXX-Y`, donde:
+- `X` = cuerpo numérico (7 u 8 dígitos)
+- `Y` = dígito verificador: `0`–`9` o `K`
+
+**Algoritmo módulo 11:**
+
+1. Tomar los dígitos del cuerpo (antes del guión).
+2. Multiplicar cada dígito, de derecha a izquierda, por la secuencia cíclica `2, 3, 4, 5, 6, 7`.
+3. Sumar todos los productos.
+4. Calcular `11 - (suma mod 11)`:
+   - Si el resultado es `11` → el verificador esperado es `"0"`
+   - Si el resultado es `10` → el verificador esperado es `"K"`
+   - En cualquier otro caso → el verificador es ese número como carácter
+
+---
+
+## Diseño de la función
+
+### Función principal: `validar_rut(rut)`
+
+**Parámetros:** un vector de caracteres. Cada elemento debe estar en formato `XXXXXXXX-Y`.
+
+**Retorna:** un vector lógico (`TRUE`/`FALSE`/`NA`) del mismo largo.
+- `TRUE` si el RUT es válido
+- `FALSE` si el formato es correcto pero el dígito verificador no coincide
+- `NA` si el input no cumple el formato esperado (no numérico, sin guión, etc.)
+
+**Pasos internos:**
+
+1. **Verificar formato básico** con regex: `^[0-9]+-[0-9K]$` (mayúscula).
+2. **Separar** cuerpo y dígito verificador por el guión.
+3. **Calcular** el dígito verificador esperado con el algoritmo módulo 11.
+4. **Comparar** el dígito calculado con el provisto y retornar `TRUE`/`FALSE`.
+
+### Función auxiliar interna: `calcular_dv(cuerpo)`
+
+Recibe el cuerpo como string numérico y devuelve el dígito verificador esperado como carácter (`"0"`–`"9"` o `"K"`).
+
+---
+
+## Estructura del código
+
+```r
+# Auxiliar: calcula el dígito verificador para un cuerpo dado
+calcular_dv <- function(cuerpo) {
+  digits <- as.integer(strsplit(cuerpo, "")[[1]])
+  pesos  <- rep(2:7, length.out = length(digits))
+  suma   <- sum(digits * rev(pesos))
+  dv     <- 11 - (suma %% 11)
+  switch(as.character(dv),
+    "11" = "0",
+    "10" = "K",
+    as.character(dv)
+  )
+}
+
+# Principal: valida un vector de RUTs en formato XXXXXXXX-Y
+validar_rut <- function(rut) {
+  rut <- toupper(rut)
+  
+  # Verificar formato esperado
+  formato_ok <- grepl("^[0-9]+-[0-9K]$", rut)
+  
+  resultado <- ifelse(!formato_ok, NA, {
+    partes  <- strsplit(rut[formato_ok], "-")
+    cuerpos <- sapply(partes, `[[`, 1)
+    dvs     <- sapply(partes, `[[`, 2)
+    sapply(seq_along(cuerpos), function(i) calcular_dv(cuerpos[i]) == dvs[i])
+  })
+  
+  resultado
+}
+```
+
+> Nota: la vectorización de `validar_rut` requiere cuidado al combinar `ifelse` con `strsplit`; en la implementación real se usará `vapply` o `purrr::map_lgl` para garantizar un resultado limpio por elemento.
+

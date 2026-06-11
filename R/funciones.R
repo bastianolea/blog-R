@@ -7,7 +7,7 @@
 #'
 #' @returns No retorna nada, sino que abre el script respectivo en RStudio.
 #' @export
-abrir_post_reciente <- function(modo = "creado", cantidad = 5) {
+abrir_publicacion_reciente <- function(modo = "creado", cantidad = 5) {
   # de todas las carpetas con posts, presentar las más recientes,
   # y abrir el archivo quarto o markdown de la carpeta elegida
   
@@ -24,20 +24,19 @@ abrir_post_reciente <- function(modo = "creado", cantidad = 5) {
   
   # filtrar las x más recientes según el modo que se elija
   if (modo == "creado") {
-    recientes <- carpetas |> slice_max(birth_time, n = cantidad)
+    recientes <- carpetas |> 
+      slice_max(birth_time, n = cantidad) |> 
+      arrange(desc(birth_time))
     
   } else if (modo == "modificado") {
-    recientes <- carpetas |> slice_max(modification_time, n = cantidad)
+    recientes <- carpetas |> 
+      slice_max(modification_time, n = cantidad) |> 
+      arrange(desc(modification_time))
   }
   
   # dar a elegir entre las 3
   eleccion <- menu(recientes$path, 
                    title = str_glue("Archivos {modo}s recientemente:"))
-  
-  # salir si se elige cero
-  if (eleccion == 0) {
-    stop("chaito")
-  }
   
   # carpeta elegida
   elegido <- recientes$path[eleccion]
@@ -56,6 +55,8 @@ abrir_post_reciente <- function(modo = "creado", cantidad = 5) {
     archivo <- str_subset(archivos, "\\.md")[1]
   }
   
+  message(paste("abriendo", archivo))
+  
   # abrir archivo con RStudio
-  rstudioapi::navigateToFile(archivo)
+  invisible(rstudioapi::navigateToFile(archivo))
 }

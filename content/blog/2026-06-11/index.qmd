@@ -1,0 +1,58 @@
+---
+title: Cargar texto desde archivos PDF en R
+author: Bastián Olea Herrera
+date: '2026-06-11'
+slug: []
+draft: true
+categories: []
+tags:
+  - texto
+  - análisis de texto
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+links:
+  - icon: registered
+    icon_pack: fas
+    name: pdftools
+    url: https://docs.ropensci.org/pdftools/
+---
+
+
+https://bastimapache.cl/posts/2019/2019-01-29-elementos-teoricos-y-conceptuales-en-torno-a-la-estigmatizacion-social-de-las-corporalidades-gordas-un-analisis-desde-las-dimensiones-de-la-salud-y-la-apariencia/
+
+
+
+
+```{r}
+url <- "https://www.bastimapache.cl/posts/2019/2019-01-29-tesis-magister-estigmatizacion-gordura-salud-apariencia/tesis_magister_bastian_olea_estigmatizacion_gordura_salud_apariencia.pdf"
+
+download.file(url, "documento.pdf")
+```
+
+```{r}
+install.packages("pdftools")
+
+library(pdftools)
+```
+
+```{r}
+texto <- pdf_text("documento.pdf")
+
+toc <- pdf_toc("documento.pdf")
+```
+
+Un elemento por página
+```{r}
+length(texto)
+```
+
+```{r}
+texto <- paste(texto, collapse = " ")
+```
+
+```{r}
+texto
+```
+
