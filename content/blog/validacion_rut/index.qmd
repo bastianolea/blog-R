@@ -1,0 +1,188 @@
+---
+title: Limpieza y validación de RUT en R
+subtitle: Funciones de R para limpiar, validar y verificar el número de cédula de identidad Chilena
+author: Bastián Olea Herrera
+date: '2026-06-12'
+slug: []
+draft: false
+categories: []
+tags:
+  - texto
+  - procesamiento de datos
+  - funciones
+  - Chile
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+editor_options: 
+  chunk_output_type: console
+excerpt: "En Chile, los [RUT](https://es.wikipedia.org/wiki/Rol_Único_Nacional) son los números de identificación usados para ciudadanos y empresas. Tienen el formato `xxxxxxx-y`, donde `x` es el número o cuerpo, e `y` es el dígito verificador (número entre `0` y `9` o `K`). En esta publicación entrego algunas funciones para realizar operaciones comunes con los RUT en R, como validarlos, calcular el dígito verificador, y limpiar los RUT."
+---
+
+En Chile, los [RUT](https://es.wikipedia.org/wiki/Rol_Único_Nacional) son los números de identificación usados para ciudadanos y empresas. Tienen el formato `xxxxxxx-y`, donde `x` es el número o cuerpo, e `y` es el dígito verificador (número entre `0` y `9` o `K`). En esta publicación entrego algunas funciones para realizar operaciones comunes con los RUT en R, como validarlos, calcular el dígito verificador, y limpiar los RUT.
+
+{{< aviso "Publicación en construcción!" >}}
+
+## Calcular dígito verificador
+
+El dígito verificador del RUT permite confirmar que se escribió correctamente usando el [algoritmo módulo 11](https://es.wikipedia.org/wiki/Código_de_control). En resumen, este algoritmo:
+
+1. Toma los dígitos previos al guión
+2. Multiplica cada dígito, de derecha a izquierda, por la secuencia cíclica `2, 3, 4, 5, 6, 7` y suma los resultados
+3. A esta suma se le calcula el módulo (resto de la división entera) de 11, y el resultado se le resta a 11
+4. El resultado de lo anterior es el dígito verificador; pero si el resultado es `11`  o `10`, el dígito será `0` o `K`, respectivamente
+
+La siguiente función de R implementa el cálculo del código verificador de cualquier RUT sin código verificador:
+
+```{r}
+#' Calcular dígito verificador del RUT
+#' 
+#' Calcula el dígito verificador para un RUT sin dígito verificador. Puede recibir uno o varios RUTs.
+#' 
+#' @returns Dígito verificador del cuerpo del RUT entregrado, en tipo caracter
+#' 
+#' @param rut_sin_digito Vector de RUTs sin dígito verificador
+#' 
+#' @example `calcular_digito(11111111)`
+#' 
+calcular_digito <- function(rut_sin_digito) {
+  require(stringr)
+  require(purrr)
+  
+  # separar números en dígitos
+  digitos_lista <- strsplit(as.character(rut_sin_digito), "")
+  
+  # calcular dígito verificador
+  digito <- map(
+    digitos_lista, 
+    \(digitos) {
+      digitos <- as.numeric(digitos)
+      
+      # secuencia cíclica de 2 a 7
+      pesos <- rep(2:7, length.out = length(digitos))
+      # sumar pesos invertidos con los dígitos
+      suma <- sum(digitos * rev(pesos))
+      # restar número 11 con el módulo 11 de la suma
+      digito <- 11 - (suma %% 11)
+      
+      return(
+        as.character(digito)
+      )
+    })
+  
+  digito <- list_c(digito)
+  
+  # casos especiales
+  digito <- ifelse(digito == "11", "0", digito)
+  digito <- ifelse(digito == "10", "K", digito)
+  
+  return(digito)
+}
+```
+
+Probemos la función con algunos RUT de prueba:
+
+```{r}
+#| error: true
+calcular_digito(24324110)
+
+calcular_digito(
+  c(11111111, 
+    1111111,
+    8519622)
+)
+```
+
+
+## Validar un RUT
+
+Otra cosa que podemos necesitar hacer con los RUT es verificar si vienen en un formato determinado. En este caso, el formato apropiado será `xxxxxxxx-y`, y esta función verificará: que el RUT contiene un guión, que se sigue el formato `xxxxxxxx-y`, y que el dígito verificador que trae sea el correcto (usando la función `calcular_digito()`):
+
+```{r}
+#' Validar formato de un RUT
+#' 
+#' Aplica varias pruebas para confirmar que un RUT es válido.
+#' 
+#' Para confirmar que un RUT es válido, detecta que contenga un guión, verifica el formato "xxx-x", y valida que el dígito verificador sea correcto. Esta función acepta uno o varios RUTs.
+#' 
+#' @returns TRUE/FALSE
+#' 
+#' @param rut Vector de RUTs a consultar
+#' 
+#' @example `validar_rut("11111111-1")`
+#' 
+validar_rut <- function(rut) {
+  require(stringr)
+  require(cli)
+  require(purrr)
+  
+  # por cada RUT:
+  validacion <- map(
+    rut, 
+    \(rut) {
+      
+      # rut <- "18172852-3"
+      rut <- as.character(rut)
+      rut <- toupper(rut)
+      
+      # confirmar guión
+      confirmar_guion <- str_detect(rut, "-")
+      if (!confirmar_guion) {
+        cli_alert_warning("RUT {rut} no incluye guión")
+        return(FALSE)
+      }
+      
+      # verificar formato esperado
+      confirmar_formato <- str_detect(rut, "^[0-9]+-[0-9K]$")
+      if (!confirmar_formato) {
+        cli_alert_warning("RUT {rut} con formato incorrecto")
+        return(FALSE)
+      }
+      
+      # validar dígito verificador
+      digito_verificador <- str_extract(rut, "[0-9K]$")
+      rut_sin_digito <- str_remove_all(rut, "\\-[0-9K]$")
+      
+      confirmar_digito <- calcular_digito(rut_sin_digito) == digito_verificador
+      if (!confirmar_digito) {
+        cli_alert_warning("RUT {rut} con dígito verificador incorrecto")
+        return(FALSE)
+      }
+      
+      return(TRUE)
+    })
+  
+  return(
+    unlist(validacion)
+    )
+}
+```
+
+Probemos la función `validar_rut()` con algunos RUTs de prueba:
+
+```{r}
+#| error: true
+
+validar_rut("17505116-3")
+validar_rut("23376940-1")
+validar_rut(c("23376940-1", "24444145-9"))
+validar_rut("11111111")
+validar_rut(c("hola", "11111111", "19413730-3"))
+```
+
+
+## Limpiar RUTs
+
+{{< aviso "Publicación en construcción!" >}}
+
+## Paquete de R
+
+{{< info "Espero poder publicar estas funciones como un paquete de R, [aunque ya existe uno](https://jkunst.com/clrutr/index.html) que hace algo casi idéntico. Por mientras, estas funciones puede que sean útiles" >}}
+
+
+## Otros
+
+- [Paquete de R `{clrutr}`, de Joshua Kunst](https://jkunst.com/clrutr/index.html)
+
+{{< etiqueta "Chile" >}}
