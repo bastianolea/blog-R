@@ -365,6 +365,7 @@ Para usar IPv4 en conexiones a bases de datos Supabase, en el panel de Conexión
 ## Recursos
 
 -   [A Crash Course on PostgreSQL for R Users](https://pacha.dev/blog/2020/08/09/postgresql-for-r-users/), por [Mauricio Vargas S.](https://pacha.dev)
+-   [Querying data from large cloud databases with R and DuckDB](https://frodriguezsanchez.net/post/querying-data-from-large-cloud-databases-with-r-and-duckdb/)
 
 {{< cafecito >}}
 {{< cursos >}}

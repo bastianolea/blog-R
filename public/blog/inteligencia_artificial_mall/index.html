@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr"><head>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.136.5">
+<title>Usando inteligencia artificial (LLM) para analizar datos de texto en R | Bastián Olea</title>
+
+
+<meta property="twitter:site" content="@bastimapache">
+<meta property="twitter:creator" content="@bastimapache">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="Resumir texto, analizar sentimiento, y clasificar texto con inteligencia artificial">
+
+
+<meta property="og:site_name" content="Bastián Olea">
+<meta property="og:title" content="Usando inteligencia artificial (LLM) para analizar datos de texto en R | Bastián Olea">
+<meta property="og:description" content="Resumir texto, analizar sentimiento, y clasificar texto con inteligencia artificial" />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/inteligencia_artificial_mall/" />
+<meta property="og:locale" content="es-ES">
+
+
+
+
+    
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/inteligencia_artificial_mall/r_ia_mall_featured.png" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/inteligencia_artificial_mall/r_ia_mall_featured.png" >
+    
+    
+  
+  <meta itemprop="name" content="Usando inteligencia artificial (LLM) para analizar datos de texto en R">
+  <meta itemprop="description" content="El paquete {mall} facilita el uso de un LLM (large language model) o modelo de lenguaje de gran tamaño para analizar texto con IA en un dataframe.
+Esto significa que, para cualquier dataframe que tengamos, podemos aplicar un modelo de IA a una de sus columnas y recibir sus resultados en una columna nueva.
+Puedes encontrar instrucciones más detalladas sobre configurar el uso de IA en R en esta publicación. Para poder hacer ésto, primero necesitamos tener un modelo LLM configurado en R. Sigue las instrucciones en este tutorial para lograrlo.">
+  <meta itemprop="datePublished" content="2024-10-29T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-10-29T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1153">
+  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/inteligencia_artificial_mall/r_ia_mall_featured.png">
+  <meta itemprop="keywords" content="Análisis de texto,Inteligencia artificial">
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="false" type="image/x-icon">
+  <link rel="icon" href="false" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.d422480e848eb6a5d606350ae11db5d9667dd9d70bf949467ce465c539b2be4a.css" integrity="sha256-1CJIDoSOtqXWBjUK4R212WZ92dcL&#43;UlGfORlxTmyvko=" media="screen">
+  
+  
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.caca34247ad208428a7269b9786cc8952a5bfd8b756a9b7391db731732bc56c5.js" type="text/javascript"></script>
+  
+  
+  <link rel="stylesheet" href="/css/syntax.css">
+  
+  
+  <link rel="preload" href="/buscador/" as="image">
+  
+</head>
+<body>
+      <div class="grid-container single-sidebar">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
+      <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/blog/" title="Bastián Olea: Blog de R">Blog</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/aprende_r/" title="Aprende R">Aprende R</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/shiny_apps/" title="Apps">Apps</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/tags/" title="Temas">Temas</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/clases/" title="Cursos">Cursos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/tutoriales/" title="Tutoriales">Tutoriales</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/about/" title="Bastián Olea: Sobre mi">Yo</a>
+      
+      
+      
+      <div class="dib v-mid", style = "padding: 4px; margin-top: 4px;">
+        <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+      </div>
+      
+    </div>
+  </nav>
+</header>
+
+
+                       
+ 
+
+<main class="page-main pa4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header" style="margin-top:-30px;">
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Usando inteligencia artificial (LLM) para analizar datos de texto en R</h1>
+        <h4 class="f4 mt0 mb4 lh-title measure">Resumir texto, analizar sentimiento, y clasificar texto con inteligencia artificial</h4>
+        
+        
+        <div style = "display: inline-block;">  
+          <p class="f7 db mv0 ttu" style = "display: inline-block;">
+            29/10/2024</p>
+          
+          
+          
+        </div>
+          
+        
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/an%C3%A1lisis-de-texto"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            análisis de texto</a>  <a href="https://bastianolea.rbind.io/tags/inteligencia-artificial"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            inteligencia artificial</a> </dd></em>
+        </dl>
+         
+      
+        
+      
+      
+    </header>
+      
+      
+    <section class="post-body pt5 pb4">
+        <p>
+<a href="https://mlverse.github.io/mall/" target="_blank" rel="noopener">El paquete <code>{mall}</code></a> facilita el uso de un LLM <em>(large language model)</em> o modelo de lenguaje de gran tamaño para analizar texto con IA en un <em>dataframe.</em></p>
+<a href="r_ia_mall_featured.png" target="_blank">
+
+  <img src="r_ia_mall_featured.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Esto significa que, para cualquier dataframe que tengamos, podemos aplicar un modelo de IA a una de sus columnas y recibir sus resultados en una columna nueva.</p>
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            /*background-color: #A985C650;*/
+            background-color: #DEC4F2;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-info-circle" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #9069C0;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%;">
+    Puedes encontrar instrucciones más detalladas sobre configurar el uso de IA en R 
+<a href="/blog/ellmer/">en esta publicación.</a>
+  </aside>
+  
+</div>
+<p>Para poder hacer ésto, primero necesitamos tener un modelo LLM configurado en R. 
+<a href="../../../blog/ellmer/">Sigue las instrucciones en este tutorial</a> para lograrlo.</p>
+<p>Luego, creamos un chat de IA con <code>{ellmer}</code> para que sea el motor o cerebro de <code>{mall}</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ellmer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">chat</span> <span class="o">&lt;-</span> <span class="nf">chat_anthropic</span><span class="p">()</span>
+</span></span></code></pre></div><pre><code>Using model = &quot;claude-sonnet-4-20250514&quot;.
+</code></pre>
+<p>Con eso hecho, ahora instruimos a <code>{mall}</code> para que use el chat que creamos:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">mall</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">mall</span><span class="o">::</span><span class="nf">llm_use</span><span class="p">(</span><span class="n">chat</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>── mall session object 
+
+Backend: ellmer
+LLM session: model:claude-sonnet-4-20250514
+R session:
+cache_folder:/var/folders/gt/vdp_nx_x3bq5wgnlr1nphkd1zbdps_/T//RtmpvANrnD/_mall_cache6dfa6813ae14
+</code></pre>
+<p>Con el siguiente código vamos a descargar un <em>dataframe</em> que contiene texto de noticias de Chile, para usarlo como datos de prueba. Los datos provienen de mi 
+<a href="https://github.com/bastianolea/prensa_chile" target="_blank" rel="noopener">repositorio de web scraping y análisis de prensa de Chile.</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># obtener datos de prensa</span>
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">&lt;-</span> <span class="s">&#34;https://raw.githubusercontent.com/bastianolea/prensa_chile/refs/heads/main/prensa_datos_muestra.csv&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">datos_prensa</span> <span class="o">&lt;-</span> <span class="n">readr</span><span class="o">::</span><span class="nf">read_csv2</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">show_col_types</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>ℹ Using &quot;','&quot; as decimal and &quot;'.'&quot; as grouping mark. Use `read_delim()` for more control.
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">datos_prensa</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code># A tibble: 6 × 4
+  titulo                                                cuerpo fuente fecha     
+  &lt;chr&gt;                                                 &lt;chr&gt;  &lt;chr&gt;  &lt;date&gt;    
+1 Hombre de 66 años fue asesinado en plena vía pública… &quot;El h… Coope… 2024-07-21
+2 Revive el cuarto capítulo de Indecisos: Candidatos a… &quot;Este… Megan… 2024-09-03
+3 Menos personas circulando y miedo de los residentes:… &quot;Poca… Megan… 2024-04-08
+4 CEO de Walmart Chile sostiene que si la empresa no d… &quot;Hace… The C… 2024-12-22
+5 Pdte. Boric entregó mensaje por la muerte de Piñera … &quot;El p… CNN C… 2024-02-06
+6 Encuentran dos cadáveres en un canal de regadío en P… &quot;Pers… Publi… 2024-07-13
+</code></pre>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/ellmer/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/ellmer/r_ia_ellmer_featured.png"
+           alt="Interactúa con modelos de lenguaje (LLM) y chatea con IAs directamente desde R"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Interactúa con modelos de lenguaje (LLM) y chatea con IAs directamente desde R
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        La IA es útil para distintos aspectos del análisis de datos, como interpretar resultados, explorar conjuntos de datos, redactar textos en base a datos, extraer datos estructurados (como entrevistas o…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+
+
+
+
+<h2 id="análisis-de-sentimiento">Análisis de sentimiento
+  <a href="#an%c3%a1lisis-de-sentimiento"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Probemos <code>{mall}</code> con 10 noticias al azar, pidiéndole al LLM que detecte el sentimiento de cada texto (si es positivo, neutro o negativo):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># extraer sentimiento de textos</span>
+</span></span><span class="line"><span class="cl"><span class="n">datos_sentimiento</span> <span class="o">&lt;-</span> <span class="n">datos_prensa</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="n">titulo</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">slice</span><span class="p">(</span><span class="m">10</span><span class="o">:</span><span class="m">20</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">llm_sentiment</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">pred_name</span> <span class="o">=</span> <span class="s">&#34;sentimiento&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">options</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;positivo&#34;</span><span class="p">,</span> <span class="s">&#34;neutro&#34;</span><span class="p">,</span> <span class="s">&#34;negativo&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">datos_sentimiento</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">relocate</span><span class="p">(</span><span class="n">sentimiento</span><span class="p">,</span> <span class="n">.before</span> <span class="o">=</span> <span class="n">titulo</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code># A tibble: 11 × 2
+   sentimiento titulo                                                           
+   &lt;chr&gt;       &lt;chr&gt;                                                            
+ 1 negativo    &quot;Dos personas resultan baleadas tras intentar evitar asalto en m…
+ 2 neutro      &quot;Mujer de 54 años recibió trasplante de bomba cardíaca y riñón d…
+ 3 negativo    &quot;Fiscalía investiga una segunda presunta agresión de Monsalve co…
+ 4 neutro      &quot;Los RUT definitivos que reciben el premio de La Suerte en Chile…
+ 5 neutro      &quot;Este domingo parte el Festival de Viña 2024: Revisa el orden y …
+ 6 positivo    &quot;Danesa se coronó como Miss Universo 2024: Emilia Dides quedó en…
+ 7 neutro      &quot;Hassler opta por tesis de Boric por sobre la del PC en Venezuel…
+ 8 negativo    &quot;Carabinero de civil disparó a delincuente que estaba robando en…
+ 9 neutro      &quot;Seguridad en días del 18’: Ex PDI llama a ser precavido y a evi…
+10 neutro      &quot;¿Quién es Janet Yellen? La Secretaria del Tesoro de EEEUU que v…
+11 negativo    &quot;Fijan audiencia para los detenidos por el homicidio del subofic…
+</code></pre>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/analisis_sentimiento_llm/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/analisis_sentimiento_llm/featured.png"
+           alt="Análisis de sentimiento usando modelos de lenguaje (LLM) locales en R"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Análisis de sentimiento usando modelos de lenguaje (LLM) locales en R
+      </p>
+
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+
+
+
+
+<h2 id="resúmenes-de-texto">Resúmenes de texto
+  <a href="#res%c3%bamenes-de-texto"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Otro uso es pedirle que genere resúmenes de textos. Para ello, usaremos la función <code>llm_summarize()</code> a la que le pedimos un máximo de palabras y le indicamos un <em>prompt</em> extra para mejorar las respuestas. El paquete aplicará dicha solicitud a cada una de las observaciones en la columna indicada, y retornará los resultados en una nueva columna llamada <code>resumen</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># resumir textos</span>
+</span></span><span class="line"><span class="cl"><span class="n">datos_resumidos</span> <span class="o">&lt;-</span> <span class="n">datos_prensa</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">cuerpo</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">slice</span><span class="p">(</span><span class="m">10</span><span class="o">:</span><span class="m">16</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">llm_summarize</span><span class="p">(</span><span class="n">cuerpo</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">max_words</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">additional_prompt</span> <span class="o">=</span> <span class="s">&#34;resumir noticias de Chile en español&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">pred_name</span> <span class="o">=</span> <span class="s">&#34;resumen&#34;</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="n">resumen</span><span class="p">,</span> <span class="n">titulo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">datos_resumidos</span>
+</span></span></code></pre></div><pre><code># A tibble: 7 × 2
+  resumen                                                                 titulo
+  &lt;chr&gt;                                                                   &lt;chr&gt; 
+1 dos heridos bala asalto minimarket melipilla cuatro sujetos armados     &quot;Dos …
+2 mujer recibe segundo trasplante riñón cerdo genéticamente modificado    &quot;Muje…
+3 fiscalía investiga segunda denuncia agresión sexual contra monsalve     &quot;Fisc…
+4 sorteo la suerte chile rut ganadores premios millonarios polla benefic… &quot;Los …
+5 festival de viña 2024 inicia domingo con enfoque solidario incendios    &quot;Este…
+6 chilena emilia dides llegó a 12 finalistas miss universo                &quot;Dane…
+7 alcaldesa hassler apoya posición de boric sobre venezuela               &quot;Hass…
+</code></pre>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/resumir_texto_llm/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/resumir_texto_llm/featured.png"
+           alt="Resumir textos usando modelos de lenguaje (LLM) locales en R"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Resumir textos usando modelos de lenguaje (LLM) locales en R
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        Los modelos de lenguaje (LLM) son herramientas muy útiles para analizar texto, y usarlos en tus análisis de datos con R es sencillo. En este tutorial, te enseño a utilizar modelos de lenguaje locales,…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+
+
+
+
+<h2 id="clasificación-de-texto">Clasificación de texto
+  <a href="#clasificaci%c3%b3n-de-texto"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Finalmente, podemos usar IA para clasificar textos libres en categorías discretas, y de esta forma poder agrupar información desestructurada. Para esto, usamos la función <code>llm_classify()</code>, a la que le indicamos las categorías posibles para cada texto. En este caso, vamos a clasificar los textos en 3 categorías: &ldquo;política&rdquo;, &ldquo;economía&rdquo; y &ldquo;deportes&rdquo;. El LLM se encargará de asignar cada texto a una de estas categorías, y el resultado se guardará en una nueva columna llamada <code>categoria</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">datos_clasificados</span> <span class="o">&lt;-</span> <span class="n">datos_prensa</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">cuerpo</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">slice</span><span class="p">(</span><span class="m">10</span><span class="o">:</span><span class="m">16</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">llm_classify</span><span class="p">(</span><span class="n">cuerpo</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">               <span class="n">labels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;delincuencia&#34;</span><span class="p">,</span> <span class="s">&#34;política&#34;</span><span class="p">,</span> <span class="s">&#34;economía&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                          <span class="s">&#34;deportes&#34;</span><span class="p">,</span> <span class="s">&#34;cultura&#34;</span><span class="p">,</span> <span class="s">&#34;ciencias&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                          <span class="s">&#34;tecnología&#34;</span><span class="p">,</span> <span class="s">&#34;farándula&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">additional_prompt</span> <span class="o">=</span> <span class="s">&#34;Clasifica noticias de Chile en español en su temática principal&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">pred_name</span> <span class="o">=</span> <span class="s">&#34;categoria&#34;</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="n">categoria</span><span class="p">,</span> <span class="n">titulo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">datos_clasificados</span>
+</span></span></code></pre></div><pre><code># A tibble: 7 × 2
+  categoria    titulo                                                           
+  &lt;chr&gt;        &lt;chr&gt;                                                            
+1 delincuencia &quot;Dos personas resultan baleadas tras intentar evitar asalto en m…
+2 ciencias     &quot;Mujer de 54 años recibió trasplante de bomba cardíaca y riñón d…
+3 delincuencia &quot;Fiscalía investiga una segunda presunta agresión de Monsalve co…
+4 economía     &quot;Los RUT definitivos que reciben el premio de La Suerte en Chile…
+5 cultura      &quot;Este domingo parte el Festival de Viña 2024: Revisa el orden y …
+6 farándula    &quot;Danesa se coronó como Miss Universo 2024: Emilia Dides quedó en…
+7 política     &quot;Hassler opta por tesis de Boric por sobre la del PC en Venezuel…
+</code></pre>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/genero_nombres_llm/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/genero_nombres_llm/featured.png"
+           alt="Predecir género a partir de nombres usando un modelo de lenguaje en R"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Predecir género a partir de nombres usando un modelo de lenguaje en R
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        Aprende a usar modelos extensos de lenguaje (LLM) para clasificar datos con un caso de uso real, donde se necesita asumir el género de las personas a partir de sus nombres para poder realizar análisis…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+<p>Si te interesa el uso de inteligencia artificial para analizar datos, 
+<a href="../../../tags/inteligencia-artificial/">revisa los otros tutoriales sobre IA que he escrito!</a></p>
+<p>
+  <div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones sobre inteligencia artificial
+    </p>
+
+    <div style="/*border: 1px solid #9069C035;*/
+                border: solid 2px #A885C6AA;
+                border-radius: 8px;
+                overflow: hidden;
+                background-color: #9069C00d;">
+
+      <a href="/blog/shinychat/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  
+                  ">
+
+          
+          <img src="/blog/shinychat/chatbot_r_featured.png"
+               alt="Crea un chatbot de inteligencia artificial con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Crea un chatbot de inteligencia artificial con R
+          </span>
+
+        </a>
+      <a href="/blog/rag_ragnar/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/rag_ragnar/diagrama_pensamiento_llm_rag-featured.png"
+               alt="Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R
+          </span>
+
+        </a>
+      <a href="/blog/funcion_consultar_datos/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/funcion_consultar_datos/funcion_consultar_datos_featured.png"
+               alt="Creando una función para consultar datos en R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Creando una función para consultar datos en R
+          </span>
+
+        </a>
+      <a href="/blog/herramientas_llm/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/herramientas_llm/herramientas-llm-featured.png"
+               alt="Potencia las capacidades de la IA entregándole herramientas (_tool calling_) basadas en R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Potencia las capacidades de la IA entregándole herramientas (<em>tool calling</em>) basadas en R
+          </span>
+
+        </a>
+      <a href="/blog/datos_estructurados_llm/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <div style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      border-radius: 4px;
+                      background-color: #9069C020;">
+          </div>
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Extracción de datos estructurados desde texto usando IA
+          </span>
+
+        </a>
+      
+
+    </div>
+  </div>
+
+
+
+<div style = "height: 18px;">
+</div>
+<div>
+  <div style="display: flex;
+  justify-content: center;
+  align-items: center;">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="bastimapache" 
+    data-color="#D6B9E8" data-emoji="<i class='fa fa-mug-saucer'></i>"  data-font="Cookie" 
+    data-text="Regálame un cafecito" 
+    data-outline-color="#000000" data-font-color="#543A73" data-coffee-color="#ffffff" ></script>
+  </div>
+</div></p>
+ 
+    </section>
+      
+    <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+    <a class="prev dtc pr2 tl v-top fw6"
+    href="https://bastianolea.rbind.io/blog/elecciones_municipales_2024/">&larr; Visualización y scraping de resultados en vivo de las elecciones municipales 2024</a>
+  
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="https://bastianolea.rbind.io/blog/numeros_romanos/">Números romanos en R &rarr;</a>
+  
+</div>
+
+    </footer>
+    
+  </article>
+    
+    <div class="post-comments pa0 pa4-l mt4">
+  
+    
+      <script src="https://utteranc.es/client.js"
+              repo="bastianolea/blog-R"
+              issue-term="pathname"
+              theme="github-light"
+              label="comments"
+              crossorigin="anonymous"
+              async
+              type="text/javascript">
+      </script>
+    
+  
+</div>
+
+    
+</section>
+  
+
+<section class="post-body pt5 pb4">
+  
+  <details closed class="f6 fw7 input-reset">
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Fecha de publicación:</dt>
+    <dd class="fw5 ml0">October 29, 2024</dd>
+  </dl>
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Extensión:</dt>
+    <dd class="fw5 ml0">6 minute read, 1153 words</dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Categorías:</dt>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/categories/an%C3%A1lisis-de-texto">Análisis de texto</a> </dd>
+  </dl>
+  
+  
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Tags:</dt>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/an%C3%A1lisis-de-texto">análisis de texto</a>  <a href="https://bastianolea.rbind.io/tags/inteligencia-artificial">inteligencia artificial</a> </dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Ver también:</dt>
+    
+    <dd class="fw5 ml0"><a href="/blog/buscar_texto/">Búsquedas de texto por ranking de relevancia con R usando el algoritmo BM25</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/shinychat/">Crea un chatbot de inteligencia artificial con R</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/rag_ragnar/">Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R</a></dd>
+    
+  </dl>
+</details>
+
+</section>
+</main>
+
+
+<aside class="page-sidebar" role="complementary">
+   
+   
+
+  <div class="blog-info ph4 pt4 pb4 pb0-l">
+    
+
+  <h1 class="f3">Blog</h1>
+  <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
+<a href="/tags/">temas</a>.</p>
+  
+
+   
+<h3 style="margin-bottom: 12px;">Temas:</h3>
+
+<div style="font-size:90%;">
+
+<div style="font-size: 90%;">
+  
+   
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/apps/">Apps</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/ggplot2/">Ggplot2</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/texto/">Texto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/ciencias-sociales/">Ciencias sociales</a></span>
+  </span>
+
+<a href="/tags/" style="margin-left: 3px;">y más!</a>
+</div>
+</div>
+  
+  
+   
+   
+
+</div>
+
+  
+  <div id="PageTableOfContents" style="margin-top: 24px; position: sticky; top: 108px;">
+        <div class="blog-info ph4 pb4 pb0-l">
+        <h3 style="margin-bottom: 12px;">Índice:</h3>
+          <div class="pl2 pr0 mh0" style = "font-size: 90%; margin-top: -8px; margin-left: -22px; margin-bottom: 32px;">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#análisis-de-sentimiento">Análisis de sentimiento</a></li>
+    <li><a href="#resúmenes-de-texto">Resúmenes de texto</a></li>
+    <li><a href="#clasificación-de-texto">Clasificación de texto</a></li>
+  </ul>
+</nav>
+          </div>
+        </div>
+    </div>
+  
+  
+
+</aside>
+
+        
+          <script id="partials/analytics.html" 
+  data-goatcounter="https://bastimapache.goatcounter.com/count"
+  async src="//gc.zgo.at/count.js"></script>
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2026 Bastián Olea Herrera, Chile
+      <span class="middot-divider"></span>
+      Hecho con <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source" style="color:#9069C0;">Hugo Apéro</a> 
+      y <a href="https://pkgs.rstudio.com/blogdown/" style="color:#9069C0;">{blogdown}</a></span>.
+      <br />
+      
+Basado en <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source" style="color:#9069C0;">Blogophonic</a></span>, de <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL" style="color:#9069C0;">Formspree</a>.
+
+Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlify</a></span>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+      <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
+      
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
+      
+      <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
+      
+      <a class="dib pv1 ph2 link" href="/tags/" title="Temas">Temas</a>
+      
+      <a class="dib pv1 ph2 link" href="/clases/" title="Clases">Clases</a>
+      
+      <a class="dib pv1 ph2 link" href="/code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
+      
+      <a class="dib pv1 ph2 link" href="/license/" title="Bastián Olea: Licencia">Licencia</a>
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>

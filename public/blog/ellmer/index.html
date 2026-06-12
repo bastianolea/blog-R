@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="generator" content="Hugo 0.136.5">
-<title>Interactúa con modelos de lenguaje (LLM) y chatea con IAs en R | Bastián Olea</title>
+<title>Interactúa con modelos de lenguaje (LLM) y chatea con IAs directamente desde R | Bastián Olea</title>
 
 
 <meta property="twitter:site" content="@bastimapache">
@@ -24,33 +24,32 @@
   
     
   
-<meta name="description" content="Chatear con modelos de lenguaje (LLM) o IAs puede tener muchos usos para el análisis de datos: generar código de R para tus análisis, visualizaciones o exploraciones de datos; interpretar datos que describan tus análisis o resultados; convertir texto en datos estructurados, como entrevistas, noticias o contenido web; hacerle consultas sobre tus datos y que te ayude a interpretar, y más. Usar IA directamente desde R ayuda a mantener una documentación de nuestro análisis, integrar IA en nuestro procesamiento de datos, usar IA de manera reproducible, y usar directamente los resultados de la IA en nuestros flujos de trabajo.">
+<meta name="description" content="Configura tu IA en R para integrarla en tu análisis de datos">
 
 
 <meta property="og:site_name" content="Bastián Olea">
-<meta property="og:title" content="Interactúa con modelos de lenguaje (LLM) y chatea con IAs en R | Bastián Olea">
-<meta property="og:description" content="Chatear con modelos de lenguaje (LLM) o IAs puede tener muchos usos para el análisis de datos: generar código de R para tus análisis, visualizaciones o exploraciones de datos; interpretar datos que describan tus análisis o resultados; convertir texto en datos estructurados, como entrevistas, noticias o contenido web; hacerle consultas sobre tus datos y que te ayude a interpretar, y más. Usar IA directamente desde R ayuda a mantener una documentación de nuestro análisis, integrar IA en nuestro procesamiento de datos, usar IA de manera reproducible, y usar directamente los resultados de la IA en nuestros flujos de trabajo." />
+<meta property="og:title" content="Interactúa con modelos de lenguaje (LLM) y chatea con IAs directamente desde R | Bastián Olea">
+<meta property="og:description" content="Configura tu IA en R para integrarla en tu análisis de datos" />
 <meta property="og:type" content="page" />
-<meta property="og:url" content="https://bastianoleah.netlify.app/blog/ellmer/" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/ellmer/" />
 <meta property="og:locale" content="es-ES">
 
 
 
 
     
-        <meta property="og:image" content="https://bastianoleah.netlify.app/blog/ellmer/featured.png" >
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/ellmer/r_ia_ellmer_featured.png" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="https://bastianoleah.netlify.app/blog/ellmer/featured.png" >
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/ellmer/r_ia_ellmer_featured.png" >
     
     
   
-  <meta itemprop="name" content="Interactúa con modelos de lenguaje (LLM) y chatea con IAs en R">
-  <meta itemprop="description" content="Chatear con modelos de lenguaje (LLM) o IAs —como se les llama coloquialmente— puede tener muchos usos para el análisis de datos:
-Usar IA para generar código de R para tus análisis, visualizaciones o exploraciones de datos Interpretar datos por medio de textos explicativos que describan tus análisis o resultados Convertir texto en datos estructurados, como entrevistas, noticias o contenido web Presentar tus datos a la IA para hacerle consultas y que te ayude a interpretar tus datos Todo esto puedes hacerlo desde tu navegador web, pero cuando analizamos datos puede ser más conveniente usar IA directamente desde R. Así podemos mantener una documentación de nuestro análisis, integrar IA en nuestro procesamiento de datos, usar IA de manera reproducible, y usar directamente los resultados de la IA en nuestros flujos de trabajo.">
+  <meta itemprop="name" content="Interactúa con modelos de lenguaje (LLM) y chatea con IAs directamente desde R">
+  <meta itemprop="description" content="Chatear con modelos de lenguaje (LLM) o IAs —como se les llama coloquialmente— puede tener muchos usos para el análisis de datos. Si bien siempre se puede usar IA desde las páginas/apps de los proveedores más populares, cuando analizamos datos es mejor usar IA directamente desde R. Así podemos entregar datos a la IA, aprovechar las capacidades de la IA para hacer funciones y desbloquear análisis complejos, integrar IA en nuestro procesamiento de datos, mantener el control de cómo y dónde se usa la IA en nuestro análisis, usar IA de manera reproducible, y usar directamente los resultados de la IA en nuestros flujos de trabajo.">
   <meta itemprop="datePublished" content="2026-02-26T00:00:00+00:00">
   <meta itemprop="dateModified" content="2026-02-26T00:00:00+00:00">
-  <meta itemprop="wordCount" content="2088">
-  <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/ellmer/featured.png">
+  <meta itemprop="wordCount" content="2120">
+  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/ellmer/r_ia_ellmer_featured.png">
   <meta itemprop="keywords" content="Inteligencia artificial">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -58,25 +57,26 @@ Usar IA para generar código de R para tus análisis, visualizaciones o explorac
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.2d895d62345af9e2e72524b81407c43bc32960e92011f6c745d4db53ec6d0bd7.css" integrity="sha256-LYldYjRa&#43;eLnJSS4FAfEO8MpYOkgEfbHRdTbU&#43;xtC9c=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.d422480e848eb6a5d606350ae11db5d9667dd9d70bf949467ce465c539b2be4a.css" integrity="sha256-1CJIDoSOtqXWBjUK4R212WZ92dcL&#43;UlGfORlxTmyvko=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.caca34247ad208428a7269b9786cc8952a5bfd8b756a9b7391db731732bc56c5.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
   
   
-  <link rel="preload" href="https://bastianoleah.shinyapps.io/buscador/" as="image">
+  <link rel="preload" href="/buscador/" as="image">
+  
 </head>
 <body>
       <div class="grid-container single-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianoleah.netlify.app/" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
       <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -104,7 +104,7 @@ Usar IA para generar código de R para tus análisis, visualizaciones o explorac
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
       
         
         
@@ -148,7 +148,7 @@ Usar IA para generar código de R para tus análisis, visualizaciones o explorac
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -249,8 +249,8 @@ Usar IA para generar código de R para tus análisis, visualizaciones o explorac
   <section class="page-content mw7 center">
     <article class="post-content pa0 pr3-l">
       <header class="post-header" style="margin-top:-30px;">
-        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Interactúa con modelos de lenguaje (LLM) y chatea con IAs en R</h1>
-        
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Interactúa con modelos de lenguaje (LLM) y chatea con IAs directamente desde R</h1>
+        <h4 class="f4 mt0 mb4 lh-title measure">Configura tu IA en R para integrarla en tu análisis de datos</h4>
         
         
         <div style = "display: inline-block;">  
@@ -265,7 +265,7 @@ Usar IA para generar código de R para tus análisis, visualizaciones o explorac
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/inteligencia-artificial"
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/inteligencia-artificial"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -313,30 +313,24 @@ Usar IA para generar código de R para tus análisis, visualizaciones o explorac
       
       
     <section class="post-body pt5 pb4">
-        <p>Chatear con modelos de lenguaje (LLM) o <em>IAs</em> —como se les llama coloquialmente— puede tener muchos usos para el análisis de datos:</p>
-<ul>
-<li>
-<a href="/blog/gander/">Usar IA para <strong>generar código de R</strong></a> para tus análisis, visualizaciones o exploraciones de datos</li>
-<li><strong>
-<a href="/blog/redactar_texto_llm/">Interpretar datos por medio de textos explicativos</a></strong> que describan tus análisis o resultados</li>
-<li><strong>
-<a href="/blog/datos_estructurados_llm/">Convertir texto en datos estructurados</a></strong>, como entrevistas, noticias o contenido web</li>
-<li><strong>
-<a href="/blog/redactar_texto_llm/#configurar-el-modelo-para-interpretar-texto">Presentar tus datos a la IA para hacerle consultas</a></strong> y que te ayude a interpretar tus datos</li>
-</ul>
-<p>Todo esto puedes hacerlo desde tu navegador web, pero cuando analizamos datos puede ser más conveniente <strong>usar IA directamente desde R</strong>. Así podemos mantener una <strong>documentación</strong> de nuestro análisis, <strong>integrar IA</strong> en nuestro procesamiento de datos, usar IA de manera <strong>reproducible</strong>, y usar directamente los resultados de la IA en nuestros flujos de trabajo.</p>
-<p>Veamos cómo se puede interactuar con LLMs directamente desde R! 🤖</p>
+        <p>Chatear con modelos de lenguaje (LLM) o <em>IAs</em> —como se les llama coloquialmente— puede tener muchos usos para el análisis de datos. Si bien siempre se puede usar IA desde las páginas/apps de los proveedores más populares, cuando analizamos datos es mejor <strong>usar IA directamente desde R</strong>. Así podemos <strong>entregar datos</strong> a la IA, aprovechar las capacidades de la IA para hacer funciones y desbloquear análisis complejos, <strong>integrar IA</strong> en nuestro procesamiento de datos, <strong>mantener el control</strong> de cómo y dónde se usa la IA en nuestro análisis, usar IA de manera <strong>reproducible</strong>, y usar directamente los resultados de la IA en nuestros flujos de trabajo.</p>
+<p>Veamos cómo se puede interactuar con LLMs directamente desde R!</p>
+<a href="r_ia_ellmer_featured.png" target="_blank">
+
+  <img src="r_ia_ellmer_featured.png" style="border-radius: 5px; width: 80%; max-width: 260px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
 <p><strong><em>¿Qué necesitaremos?</em></strong></p>
 <ol>
 <li>Tener acceso a un 
-<a href="#proveedores-de-modelos-de-lenguaje">proveedor de modelos de lenguaje</a>, o usar 
+<a href="#proveedores-de-modelos-de-lenguaje-en-la-nube">proveedor de modelos de lenguaje</a>, o usar 
 <a href="#modelos-de-lenguaje-locales">modelos de lenguaje locales</a></li>
 <li>
 <a href="#interactuar-con-ias-desde-r">Instalar un paquete</a> para poder interactuar con modelos de lenguaje</li>
 <li>
-<a href="#configurar-el-uso-de-un-modelo-de-lenguaje-en-r">Configurar la <em>API key</em></a> de tu proveedor de IA en R</li>
+<a href="#proveedores-de-modelos-de-lenguaje-en-la-nube">Configurar la <em>API key</em></a> de tu proveedor de IA en R (si usas un proveedor en la nube)</li>
 <li>
-<a href="#iniciar-una-conversaci%c3%b3n-con-la-ia">Iniciar una conversación con la IA</a></li>
+<a href="#iniciar-una-conversaci%c3%b3n-con-la-ia">Iniciar una conversación con la IA</a> desde R</li>
 </ol>
 
 
@@ -350,7 +344,24 @@ Usar IA para generar código de R para tus análisis, visualizaciones o explorac
 </h2>
 <p>Para usar modelos de lenguaje o IA en R, necesitas tener acceso a un <strong>proveedor</strong> de IA en la nube, o bien, 
 <a href="#modelos-de-lenguaje-locales">instalar un <strong>modelo local</strong> de IA en tu computador.</a></p>
-<p><strong>Tienes que elegir</strong> entre usar IA desde la nube o usar IA localmente, lo que depende de tus necesidades, tu presupuesto, y las capacidades de tu computador.</p>
+
+
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            background-color: #493365;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-triangle-exclamation" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #EAD2FA;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%; color: #EAD2FA;">
+    <strong>Tienes que elegir</strong> entre usar IA desde la nube o usar IA localmente, lo que depende de tus necesidades, tu presupuesto, y las capacidades de tu computador. Dependiendo de tu decisión, pasa a la sección de 
+<a href="#proveedores-de-modelos-de-lenguaje-en-la-nube">proveedores de IA en la nube</a> o a la de 
+<a href="#proveedores-de-modelos-de-lenguaje-en-la-nube">modelos de IA locales</a>
+  </aside>
+  
+</div>
 
 
 
@@ -433,6 +444,22 @@ Usar IA para generar código de R para tus análisis, visualizaciones o explorac
 <h4 id="editar-tu-archivo-de-_entorno_">Editar tu archivo de <em>Entorno</em>
   <a href="#editar-tu-archivo-de-_entorno_"></a>
 </h4>
+
+
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            background-color: #493365;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-triangle-exclamation" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #EAD2FA;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%; color: #EAD2FA;">
+    Este paso es <strong>clave</strong> para que puedas usar IA en R de forma segura
+  </aside>
+  
+</div>
 <p>El archivo de Entorno es un script donde puedes <strong>guardar secretos</strong> que R puede leer, pero que no quedan guardados en tu código ni en tu proyecto, y por lo tanto quedan seguros. Este script contiene <strong>variables</strong> que se cargan cada vez que abrimos una sesión de R.</p>
 <p>El archivo de entorno sirve para guardar variables secretas en un archivo que está afuera de tu proyecto de R, y que aplica para todos tus proyectos y sesiones de R: perfecto para <strong>guardar las <em>API keys</em> en tu computadora de forma segura</strong> y poder usarlas en todos tus proyectos.</p>
 <p>Para <strong>editar</strong> el archivo de entorno:</p>
@@ -469,8 +496,25 @@ Usar IA para generar código de R para tus análisis, visualizaciones o explorac
   </aside>
   
 </div>
-<p>Si tu computador tiene una tarjeta de video lo suficientemente grande (más de 8GB de memoria de video), si quieres usar IA gratis, o si prefieres no usar modelos en la nube por privacidad, puedes <strong>instalar un modelo de lenguaje local</strong> en tu computadora.</p>
-<p>Esto significa que descargas el modelo y tu propio computador lo ejecuta, a diferencia de usarlo en la nube por medio de un proveedor.</p>
+<p>Si tu computador tiene una tarjeta de video lo suficientemente grande (más de 8GB de memoria de video), si quieres usar IA <strong>gratis</strong>, o si prefieres no usar modelos en la nube por <strong>privacidad</strong>, puedes instalar un modelo de lenguaje local en tu computadora.</p>
+<p>Esto significa que descargas el modelo y tu propio computador lo ejecuta, a diferencia de 
+<a href="#proveedores-de-modelos-de-lenguaje-en-la-nube">usarlo en la nube por medio de un proveedor.</a></p>
+
+
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            background-color: #493365;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-triangle-exclamation" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #EAD2FA;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%; color: #EAD2FA;">
+    Necesitas un computador con características especiales para poder ejecutar modelos locales
+  </aside>
+  
+</div>
 
 
 <details>
@@ -592,8 +636,7 @@ Bajar Ollama</a>
 <a href="https://ellmer.tidyverse.org/index.html" target="_blank" rel="noopener">paquete de R</a> que <strong>facilita la interacción con modelos de lenguaje</strong> desde R, y se usa como el motor de muchos otros paquetes que usan IA.</p>
 <p>Instalamos el paquete:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;ellmer&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><p>Ahora tenemos que pedirle a <code>{ellmer}</code> que use tu modelo de lenguaje elegido desde tu proveedor, ya sea un modelo local o un modelo en la nube.</p>
-
+</span></span></code></pre></div>
 
 
 
@@ -608,10 +651,11 @@ Bajar Ollama</a>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ellmer</span><span class="p">)</span>
 </span></span></code></pre></div><p>Ahora usaremos una función para <strong>iniciar un chat</strong>. Estas funciones empiezan con <code>chat_</code>, y dependen de tu proveedor:</p>
 <ul>
-<li>Si usas un proveedor de IA en la nube, usa las funciones <code>chat_openai()</code>, <code>chat_anthropic()</code>, <code>chat_gemini()</code>, <code>chat_github()</code> o la que te corresponda.</li>
-<li>Si usar una IA local con Ollama, usa <code>chat_ollama()</code>.</li>
+<li>Si usas un proveedor de IA en la <strong>nube</strong>, usa las funciones <code>chat_openai()</code>, <code>chat_anthropic()</code>, <code>chat_gemini()</code>, <code>chat_github()</code> o la que te corresponda.</li>
+<li>Si usar una IA <strong>local</strong> con Ollama, usa <code>chat_ollama()</code>.</li>
 </ul>
-<p>Creemos un chat usando Claude de Anthropic:</p>
+<p>En otras palabras, en el momento de crear el chat, también <strong>especificamos de dónde proviene la inteligencia artificial</strong> que usaremos, ya sea un modelo local o un modelo en la nube, por medio de la función que elijamos.</p>
+<p>Para continuar el tutorial, creemos un chat usando Claude de Anthropic:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># crear sesión de chat</span>
 </span></span><span class="line"><span class="cl"><span class="n">chat</span> <span class="o">&lt;-</span> <span class="nf">chat_anthropic</span><span class="p">()</span>
 </span></span></code></pre></div><pre tabindex="0"><code>Using model = &#34;claude-sonnet-4-20250514&#34;.
@@ -673,7 +717,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                    margin: 10px 0 10px 10px;
                    overflow: hidden;
                    border-radius: 5px;">
-      <img src="/blog/herramientas_llm/featured.png"
+      <img src="/blog/herramientas_llm/herramientas-llm-featured.png"
            alt="Potencia las capacidades de la IA entregándole herramientas (_tool calling_) basadas en R"
            style="position: absolute;
                   inset: 0;
@@ -727,21 +771,21 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
 <p>Con esta configuración inicial, ahora puedes pasar a usar la IA con R de maneras más avanzadas, como tener asistentes, generar código, interpretar resultados, analizar datos y más!</p>
 <ul>
 <li>
-<a href="/blog/analisis_sentimiento_llm/">Análisis de sentimiento de textos con R</a></li>
-<li>
-<a href="/blog/resumir_texto_llm/">Resumir textos desde R</a></li>
-<li>
-<a href="/blog/introduccion_llm_mall/">Análisis de datos en formato texto con <code>{mall}</code></a></li>
+<a href="/blog/shinychat/">Crear un chatbot personalizado en una aplicación Shiny</a></li>
 <li>
 <a href="/blog/herramientas_llm/">Crear herramientas en R y hacer que la IA pueda usarlas para dar mejores respuestas</a></li>
 <li>
 <a href="/blog/datos_estructurados_llm/">Extraer datos estructurados desde textos libres</a></li>
 <li>
-<a href="/blog/gander/">{gander}, un asistente de código</a> que escribe código de R y reemplaza código o comentarios con lo que le pidas</li>
+<a href="/blog/analisis_sentimiento_llm/">Análisis de sentimiento de textos con R</a></li>
 <li>
-<a href="/blog/btw/">Asistente de IA directo en RStudio que tiene acceso a tus datos, paquetes cargados, y archivos</a></li>
+<a href="/blog/resumir_texto_llm/">Resumir textos desde R</a></li>
 <li>
 <a href="/blog/redactar_texto_llm/">Entregar datos a una IA para generar textos explicativos, resúmenes, o interpretaciones de tus datos</a></li>
+<li>
+<a href="/blog/introduccion_llm_mall/">Análisis de datos en formato texto con <code>{mall}</code></a></li>
+<li>
+<a href="/blog/gander/">{gander}, un asistente de código</a> que escribe código de R y reemplaza código o comentarios con lo que le pidas</li>
 </ul>
 
   <div style="margin: 28px 0;">
@@ -755,7 +799,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                 overflow: hidden;
                 background-color: #9069C00d;">
 
-      <a href="/blog/herramientas_llm/"
+      <a href="/blog/shinychat/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -767,7 +811,100 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                   ">
 
           
-          <img src="/blog/herramientas_llm/featured.png"
+          <img src="/blog/shinychat/chatbot_r_featured.png"
+               alt="Crea un chatbot de inteligencia artificial con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Crea un chatbot de inteligencia artificial con R
+          </span>
+
+        </a>
+      <a href="/blog/rag_ragnar/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/rag_ragnar/diagrama_pensamiento_llm_rag-featured.png"
+               alt="Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R
+          </span>
+
+        </a>
+      <a href="/blog/funcion_consultar_datos/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/funcion_consultar_datos/funcion_consultar_datos_featured.png"
+               alt="Creando una función para consultar datos en R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Creando una función para consultar datos en R
+          </span>
+
+        </a>
+      <a href="/blog/herramientas_llm/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/herramientas_llm/herramientas-llm-featured.png"
                alt="Potencia las capacidades de la IA entregándole herramientas (_tool calling_) basadas en R"
                style="flex-shrink: 0;
                       width: 52px;
@@ -814,96 +951,6 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
           </span>
 
         </a>
-      <a href="/blog/redactar_texto_llm/"
-           style="display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  text-decoration: none;
-                  color: inherit;
-                  padding: 8px 14px;
-                  gap: 12px;
-                  border-top: 1px solid #9069C030;
-                  ">
-
-          
-          <div style="flex-shrink: 0;
-                      width: 52px;
-                      height: 38px;
-                      border-radius: 4px;
-                      background-color: #9069C020;">
-          </div>
-          
-
-          <span style="font-size: 88%;
-                       color: #9069C0;
-                       font-weight: 600;
-                       line-height: 1.35;">
-            Redactar textos basados en datos usando IA desde R
-          </span>
-
-        </a>
-      <a href="/blog/btw/"
-           style="display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  text-decoration: none;
-                  color: inherit;
-                  padding: 8px 14px;
-                  gap: 12px;
-                  border-top: 1px solid #9069C030;
-                  ">
-
-          
-          <img src="/blog/btw/btw_featured.png"
-               alt="Interactúa desde R con una IA que conoce tus datos, archivos y paquetes"
-               style="flex-shrink: 0;
-                      width: 52px;
-                      height: 38px;
-                      object-fit: cover;
-                      object-position: center top;
-                      border-radius: 4px;
-                      margin: 0;">
-          
-
-          <span style="font-size: 88%;
-                       color: #9069C0;
-                       font-weight: 600;
-                       line-height: 1.35;">
-            Interactúa desde R con una IA que conoce tus datos, archivos y paquetes
-          </span>
-
-        </a>
-      <a href="/blog/gander/"
-           style="display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  text-decoration: none;
-                  color: inherit;
-                  padding: 8px 14px;
-                  gap: 12px;
-                  border-top: 1px solid #9069C030;
-                  ">
-
-          
-          <img src="/blog/gander/featured.png"
-               alt="Acelera tus análisis con `{gander}`, un asistente de IA integrado en RStudio"
-               style="flex-shrink: 0;
-                      width: 52px;
-                      height: 38px;
-                      object-fit: cover;
-                      object-position: center top;
-                      border-radius: 4px;
-                      margin: 0;">
-          
-
-          <span style="font-size: 88%;
-                       color: #9069C0;
-                       font-weight: 600;
-                       line-height: 1.35;">
-            Acelera tus análisis con <code>{gander}</code>, un asistente de IA integrado en RStudio
-          </span>
-
-        </a>
       
 
     </div>
@@ -931,12 +978,12 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/datos_estructurados_llm/">&larr; Extracción de datos estructurados desde texto usando IA</a>
+    href="https://bastianolea.rbind.io/blog/datos_estructurados_llm/">&larr; Extracción de datos estructurados desde texto usando IA</a>
   
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/2026-02-25/">Renombrar archivos desde R &rarr;</a>
+    href="https://bastianolea.rbind.io/blog/2026-02-25/">Renombrar archivos desde R &rarr;</a>
   
 </div>
 
@@ -948,7 +995,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
   
     
       <script src="https://utteranc.es/client.js"
-              repo="bastianolea/blog-bastianolea-r"
+              repo="bastianolea/blog-R"
               issue-term="pathname"
               theme="github-light"
               label="comments"
@@ -973,24 +1020,29 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">10 minute read, 2088 words</dd>
+    <dd class="fw5 ml0">10 minute read, 2120 words</dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Categorías:</dt>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/categories/tutoriales">Tutoriales</a> </dd>
   </dl>
   
   
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Tags:</dt>
-    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/inteligencia-artificial">inteligencia artificial</a> </dd>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/inteligencia-artificial">inteligencia artificial</a> </dd>
   </dl>
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
-    <dd class="fw5 ml0"><a href="/blog/herramientas_llm/">Potencia las capacidades de la IA entregándole herramientas (_tool calling_) basadas en R</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/shinychat/">Crea un chatbot de inteligencia artificial con R</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/datos_estructurados_llm/">Extracción de datos estructurados desde texto usando IA</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/rag_ragnar/">Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/redactar_texto_llm/">Redactar textos basados en datos usando IA desde R</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/funcion_consultar_datos/">Creando una función para consultar datos en R</a></dd>
     
   </dl>
 </details>
@@ -1008,7 +1060,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
 
   <h1 class="f3">Blog</h1>
   <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
-<a href="https://bastianoleah.shinyapps.io/buscador/" target="_blank" rel="noopener">buscador</a> para encontrar publicaciones o navega los 
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
 <a href="/tags/">temas</a>.</p>
   
 
@@ -1032,7 +1084,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/chile/">Chile</a></span>
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
   </span>
  
   
@@ -1047,7 +1099,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/datos/">Datos</a></span>
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
   </span>
  
   
@@ -1062,7 +1114,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -1077,7 +1129,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -1092,7 +1144,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
   </span>
  
   
@@ -1107,7 +1159,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/blog/">Blog</a></span>
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -1122,7 +1174,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -1137,7 +1189,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
+      href="https://bastianolea.rbind.io/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -1152,7 +1204,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ggplot2/">Ggplot2</a></span>
+      href="https://bastianolea.rbind.io/tags/ggplot2/">Ggplot2</a></span>
   </span>
  
   
@@ -1167,7 +1219,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/web-scraping/">Web scraping</a></span>
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
   </span>
  
   
@@ -1182,7 +1234,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/b%C3%A1sico/">Básico</a></span>
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
   </span>
  
   
@@ -1197,7 +1249,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -1212,7 +1264,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -1227,7 +1279,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -1242,7 +1294,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/curiosidades/">Curiosidades</a></span>
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -1257,7 +1309,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -1272,7 +1324,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/quarto/">Quarto</a></span>
+      href="https://bastianolea.rbind.io/tags/texto/">Texto</a></span>
   </span>
  
   
@@ -1287,7 +1339,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/dplyr/">Dplyr</a></span>
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -1302,7 +1354,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/optimizaci%C3%B3n/">Optimización</a></span>
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
   </span>
  
   
@@ -1317,7 +1369,7 @@ Después del mapache, cuál sería el segundo animal más bonito del mundo? Obvi
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/texto/">Texto</a></span>
+      href="https://bastianolea.rbind.io/tags/ciencias-sociales/">Ciencias sociales</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>
@@ -1393,7 +1445,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -1486,7 +1538,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
       
       <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
       
-      <a class="dib pv1 ph2 link" href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
       
       <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
       

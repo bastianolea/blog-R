@@ -1,0 +1,2352 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr"><head>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.136.5">
+<title>Crea un chatbot de inteligencia artificial con R | Bastián Olea</title>
+
+
+<meta property="twitter:site" content="@bastimapache">
+<meta property="twitter:creator" content="@bastimapache">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="Este tutorial encuentras todo lo necesario para desarrollar tu propio chatbot con R, basándonos en una aplicación Shiny y en modelos de inteligencia artificial. El objetivo es crear un chat interactivo y mejorarlo con la capacidad de consultar datos, realizar cálculos y otras funcionalidades propias de R, y además aumentar su conocimiento y la precisión de sus respuestas al permitirle consultar documentos y textos para responder (RAG). En pocos minutos podrás potenciar la inteligencia artificial y crear un producto capaz de analizar tus propios datos y estudios!">
+
+
+<meta property="og:site_name" content="Bastián Olea">
+<meta property="og:title" content="Crea un chatbot de inteligencia artificial con R | Bastián Olea">
+<meta property="og:description" content="Este tutorial encuentras todo lo necesario para desarrollar tu propio chatbot con R, basándonos en una aplicación Shiny y en modelos de inteligencia artificial. El objetivo es crear un chat interactivo y mejorarlo con la capacidad de consultar datos, realizar cálculos y otras funcionalidades propias de R, y además aumentar su conocimiento y la precisión de sus respuestas al permitirle consultar documentos y textos para responder (RAG). En pocos minutos podrás potenciar la inteligencia artificial y crear un producto capaz de analizar tus propios datos y estudios!" />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/shinychat/" />
+<meta property="og:locale" content="es-ES">
+
+
+
+
+    
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/shinychat/chatbot_r_featured.png" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/shinychat/chatbot_r_featured.png" >
+    
+    
+  
+  <meta itemprop="name" content="Crea un chatbot de inteligencia artificial con R">
+  <meta itemprop="description" content="Con R y los paquetes apropiados, en pocos minutos podrás crear un chat interactivo de inteligencia artificial dentro de una aplicación Shiny, para poder chatear con un modelo de lenguaje (LLM) de tu elección.
+El objetivo es poder crear un chat interactivo e ir mejorándolo con la capacidad de consultar datos, realizar cálculos y otras capacidades propias de R, y además aumentar su conocimiento y la precisión de sus respuestas al permitirle consultar documentos y textos para responder.">
+  <meta itemprop="datePublished" content="2026-06-01T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2026-06-01T00:00:00+00:00">
+  <meta itemprop="wordCount" content="3026">
+  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/shinychat/chatbot_r_featured.png">
+  <meta itemprop="keywords" content="Shiny,Inteligencia artificial">
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="false" type="image/x-icon">
+  <link rel="icon" href="false" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.d422480e848eb6a5d606350ae11db5d9667dd9d70bf949467ce465c539b2be4a.css" integrity="sha256-1CJIDoSOtqXWBjUK4R212WZ92dcL&#43;UlGfORlxTmyvko=" media="screen">
+  
+  
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.caca34247ad208428a7269b9786cc8952a5bfd8b756a9b7391db731732bc56c5.js" type="text/javascript"></script>
+  
+  
+  <link rel="stylesheet" href="/css/syntax.css">
+  
+  
+  <link rel="preload" href="/buscador/" as="image">
+  
+</head>
+<body>
+      <div class="grid-container single-sidebar">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
+      <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/blog/" title="Bastián Olea: Blog de R">Blog</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/aprende_r/" title="Aprende R">Aprende R</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/shiny_apps/" title="Apps">Apps</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/tags/" title="Temas">Temas</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/clases/" title="Cursos">Cursos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/tutoriales/" title="Tutoriales">Tutoriales</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/about/" title="Bastián Olea: Sobre mi">Yo</a>
+      
+      
+      
+      <div class="dib v-mid", style = "padding: 4px; margin-top: 4px;">
+        <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+      </div>
+      
+    </div>
+  </nav>
+</header>
+
+
+                       
+ 
+
+<main class="page-main pa4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header" style="margin-top:-30px;">
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Crea un chatbot de inteligencia artificial con R</h1>
+        
+        
+        
+        <div style = "display: inline-block;">  
+          <p class="f7 db mv0 ttu" style = "display: inline-block;">
+            1/6/2026</p>
+          
+          
+          
+        </div>
+          
+        
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/shiny"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            shiny</a>  <a href="https://bastianolea.rbind.io/tags/inteligencia-artificial"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            inteligencia artificial</a> </dd></em>
+        </dl>
+         
+      
+        
+      
+      <div class="ph0 pt3">
+        
+
+<div style="margin-top:-24px;">
+
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+      
+    
+  <a class="btn-links mr2 ba dib" 
+  style = "background-color: #9069C0; border-radius: 4px; 
+  color: #EAD2FA; font-size: 10pt;
+  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
+  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
+  href="https://posit-dev.github.io/shinychat/r/index.html" target="_blank" rel="noopener"><i class="fas fa-registered fa-lg fa-fw mr2"></i>shinychat</a>
+
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+      
+    
+  <a class="btn-links mr2 ba dib" 
+  style = "background-color: #9069C0; border-radius: 4px; 
+  color: #EAD2FA; font-size: 10pt;
+  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
+  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
+  href="/blog/herramientas_llm/" ><i class="fas fa-file-lines fa-lg fa-fw mr2"></i>consultar datos con IA</a>
+
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+      
+    
+  <a class="btn-links mr2 ba dib" 
+  style = "background-color: #9069C0; border-radius: 4px; 
+  color: #EAD2FA; font-size: 10pt;
+  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
+  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
+  href="/blog/rag_ragnar/" ><i class="fas fa-file-lines fa-lg fa-fw mr2"></i>consultar textos con IA</a>
+
+</div>
+
+      </div>
+      
+      
+    </header>
+      
+      
+    <section class="post-body pt5 pb4">
+        <p>Con R y los paquetes apropiados, en pocos minutos podrás crear un chat interactivo de inteligencia artificial dentro de una aplicación Shiny, para poder chatear con un modelo de lenguaje (LLM) de tu elección.</p>
+<a href="chatbot_r_featured.png" target="_blank">
+
+  <img src="chatbot_r_featured.png" style="border-radius: 5px; width: 80%; max-width: 400px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>El objetivo es poder crear un chat interactivo e ir mejorándolo con la capacidad de <strong>consultar datos</strong>, <strong>realizar cálculos</strong> y otras capacidades propias de R, y además aumentar su conocimiento y la precisión de sus respuestas al permitirle <strong>consultar documentos y textos</strong> para responder.</p>
+<a href="chatbot_6.png" target="_blank">
+
+  <img src="chatbot_6.png" style="border-radius: 5px; width: 80%; max-width: 500px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p><em><strong>¿Por qué crear un chatbot con R?</strong></em></p>
+<ul>
+<li>Te entrega el control para <strong>elegir el proveedor</strong> de inteligencia artificial, o el <em>cerebro</em> que usará el chatbot, así como cambiarlo cuando sea necesario</li>
+<li><strong>Aplicaciones:</strong> Puedes incluir el chatbot en cualquier parte de una 
+<a href="/tags/shiny/">aplicación Shiny</a>, lo que te da libertad para crear interfaces adaptadas a tus necesidades</li>
+<li><strong>Datos:</strong> Permite 
+<a href="/blog/herramientas_llm/">complementar al chatbot con herramientas</a>, funciones de R que hacen posible que el chatbot realice tareas especializadas, como <strong>consultar bases de datos</strong></li>
+<li><strong>Conocimientos:</strong> Hace posible 
+<a href="/blog/rag_ragnar/">aumentar y afinar los conocimientos de la IA</a> por medio de sistemas de <em>generación aumentada por recuperación</em> o RAG, donde recopilas documentos y textos para guiar las respuestas de la IA</li>
+</ul>
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            /*background-color: #A985C650;*/
+            background-color: #DEC4F2;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-info-circle" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #9069C0;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%;">
+    Este tutorial es la base para poder crear chatbots, cuyo objetivo principal es 
+<a href="/blog/herramientas_llm/">ser complementados por herramientas</a> y 
+<a href="/blog/rag_ragnar/">bases de conocimiento</a> para que sean más útiles y personalizados que un chat de IA común y corriente.
+  </aside>
+  
+</div>
+
+
+
+
+<h2 id="preparación">Preparación
+  <a href="#preparaci%c3%b3n"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Crear un chatbot requiere de tres piezas principales: una <strong>aplicación</strong> donde introducir el chatbot, la funcionalidad de chat o <strong>conversación</strong>, y el <strong>modelo de lenguaje</strong> que será el motor de la conversación.</p>
+<p>Estas tres piezas corresponden a los tres paquetes de R que usaremos: <code>{shiny}</code> para la aplicación, <code>{shinychat}</code> para la conversación, y <code>{ellmer}</code> para el modelo de lenguaje.</p>
+<p>Si aún no tienes configurado un modelo de lenguaje en R, 
+<a href="/blog/ellmer/">revisa este tutorial</a>, donde explico cómo conectarte con el modelo de IA desde R.</p>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Contenidos mínimos
+    </p>
+
+  <a href="/blog/ellmer/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/ellmer/r_ia_ellmer_featured.png"
+           alt="Interactúa con modelos de lenguaje (LLM) y chatea con IAs directamente desde R"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Interactúa con modelos de lenguaje (LLM) y chatea con IAs directamente desde R
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        La IA es útil para distintos aspectos del análisis de datos, como interpretar resultados, explorar conjuntos de datos, redactar textos en base a datos, extraer datos estructurados (como entrevistas o…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+<p>Empezamos instalando los paquetes necesarios:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;ellmer&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;shiny&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;bslib&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;shinychat&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Ahora veremos paso a paso cómo empezar desde cero y llegar a un chatbot capaz de consultar datos y bases de conocimiento.</p>
+
+
+
+
+<h2 id="crear-un-chatbot-con-shiny">Crear un chatbot con Shiny
+  <a href="#crear-un-chatbot-con-shiny"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Hagamos un 
+<a href="/blog/shiny/#estructura-de-una-app-shiny">ayudamemorias de una aplicación Shiny mínima</a>, sin ningún chat todavía:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">shiny</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">bslib</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ui</span> <span class="o">&lt;-</span> <span class="nf">page_fluid</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">h1</span><span class="p">(</span><span class="s">&#34;Mi chatbot&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">server</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">shinyApp</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span> <span class="n">server</span><span class="p">)</span>
+</span></span></code></pre></div><p>Tenemos la sección UI, con la <strong>interfaz</strong> de la aplicación, y una sección <em>server</em>, donde se hacen los cálculos de la aplicación.</p>
+<p>Esto nos entregará una app mínima, que puedes probar con el botón <em>Run</em> que aparecerá en RStudio o en tu IDE.</p>
+<p>En principio esta puede ser una app que ya hayas hecho, o puede ser el lienzo para que complementes tu chatbot con otros elementos de una aplicación normal.</p>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Instrucciones detalladas
+    </p>
+
+  <a href="/blog/shiny/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/shiny/shiny-apps-featured.jpg"
+           alt="Tutorial: Crea aplicaciones web interactivas en R con Shiny"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Tutorial: Crea aplicaciones web interactivas en R con Shiny
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        Shiny es un paquete para desarrollar aplicaciones web interactivas con R, generalmente centradas en el análisis y visualización de datos. Shiny le da vida a todo lo que hayas desarrollado con R sin…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+<p>Ahora vamos a transformar la aplicación en un chatbot en tres pasos: agregar la <strong>interfaz</strong> del chat, configurar el <strong>modelo</strong> de lenguaje, y <strong>conectar</strong> ambas partes en 
+<a href="/blog/shiny/#uniendo-_inputs_-y-datos-en-_server_">la sección <em>server</em></a> de la app.</p>
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            /*background-color: #A985C650;*/
+            background-color: #DEC4F2;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-info-circle" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #9069C0;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%;">
+    Veremos qué hace cada parte rápidamente, pero después de cada paso siempre estará el código completo para que copies y pegues.
+  </aside>
+  
+</div>
+
+
+
+
+<h3 id="interfaz-del-chat">Interfaz del chat
+  <a href="#interfaz-del-chat"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>
+<a href="https://posit-dev.github.io/shinychat/r/index.html" target="_blank" rel="noopener">El paquete <code>{shinychat}</code></a> nos entrega una <strong>interfaz de conversación tipo chat</strong>, con burbujitas de mensaje y todo, que simplemente se agrega a tu app con la función <code>chat_ui()</code>.</p>
+<p>Se recomienda usar <code>page_fillable()</code> en la app para que ocupe toda la pantalla, y dentro ponemos <code>chat_ui()</code>.</p>
+<p>Por ahora la app iría quedando así:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">shiny</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">bslib</span><span class="p">)</span>
+</span></span><span class="line hl"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ellmer</span><span class="p">)</span>
+</span></span><span class="line hl"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">shinychat</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line hl"><span class="cl"><span class="n">ui</span> <span class="o">&lt;-</span> <span class="nf">page_fillable</span><span class="p">(</span>
+</span></span><span class="line hl"><span class="cl">  <span class="nf">chat_ui</span><span class="p">(</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">id</span> <span class="o">=</span> <span class="s">&#34;chat&#34;</span><span class="p">,</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">messages</span> <span class="o">=</span> <span class="s">&#34;**¡Hola!** ¿En qué te puedo ayudar hoy?&#34;</span>
+</span></span><span class="line hl"><span class="cl">  <span class="p">),</span>
+</span></span><span class="line hl"><span class="cl">  <span class="n">fillable_mobile</span> <span class="o">=</span> <span class="kc">TRUE</span>
+</span></span><span class="line hl"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">server</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">shinyApp</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span> <span class="n">server</span><span class="p">)</span>
+</span></span></code></pre></div><p>Con esto creamos la parte visible del chat, pero falta el funcionamiento y el cerebro.</p>
+
+
+
+
+<h3 id="modelo-de-lenguaje-para-el-chatbot">Modelo de lenguaje para el chatbot
+  <a href="#modelo-de-lenguaje-para-el-chatbot"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>En la sección <code>server</code>, donde se realizan los cálculos de una app Shiny, <strong>creamos el chat</strong> que hará funcionar al chatbot.</p>
+<p>Como vimos en el 
+<a href="/blog/ellmer/#iniciar-una-conversaci%c3%b3n-con-la-ia">tutorial de chats de IA en R</a>, creamos el chat con la función <code>chat_anthropic()</code>, <code>chat_ollama()</code>, o el proveedor que te corresponda a ti. Este objeto representa la conversación completa con el modelo de lenguaje: guarda el historial de mensajes y se encarga de comunicarse con la API.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">shiny</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">bslib</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ellmer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">shinychat</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ui</span> <span class="o">&lt;-</span> <span class="nf">page_fillable</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">chat_ui</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="o">=</span> <span class="s">&#34;chat&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">messages</span> <span class="o">=</span> <span class="s">&#34;**¡Hola!** ¿En qué te puedo ayudar hoy?&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fillable_mobile</span> <span class="o">=</span> <span class="kc">TRUE</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line hl"><span class="cl"><span class="n">server</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line hl"><span class="cl">
+</span></span><span class="line hl"><span class="cl"><span class="n">chat</span> <span class="o">&lt;-</span> <span class="nf">chat_anthropic</span><span class="p">(</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">system_prompt</span> <span class="o">=</span> <span class="s">&#34;Eres un chatbot respetuoso, útil y conciso.&#34;</span>
+</span></span><span class="line hl"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line hl"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">shinyApp</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span> <span class="n">server</span><span class="p">)</span>
+</span></span></code></pre></div><p>El argumento <code>system_prompt</code> son las <strong>instrucciones</strong> que le damos al modelo para <strong>guiar su comportamiento</strong>: el rol que debe cumplir, el tono que debe usar, explicaciones sobre su función principal, las formas apropiadas de responder, y sus restricciones.</p>
+
+
+
+
+<h3 id="conectar-la-interfaz-con-el-modelo">Conectar la interfaz con el modelo
+  <a href="#conectar-la-interfaz-con-el-modelo"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Ahora falta el último paso: conectar el modelo de lenguaje creado con <code>chat_anthropic()</code> con el <code>chat_ui()</code> que pusimos en la interfaz de la app.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">shiny</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">bslib</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ellmer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">shinychat</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ui</span> <span class="o">&lt;-</span> <span class="nf">page_fillable</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">chat_ui</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="o">=</span> <span class="s">&#34;chat&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">messages</span> <span class="o">=</span> <span class="s">&#34;**¡Hola!** ¿En qué te puedo ayudar hoy?&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fillable_mobile</span> <span class="o">=</span> <span class="kc">TRUE</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">server</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">chat</span> <span class="o">&lt;-</span> <span class="nf">chat_openai</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">system_prompt</span> <span class="o">=</span> <span class="s">&#34;Eres un chatbot respetuoso, útil y conciso.&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line hl"><span class="cl">  <span class="nf">observeEvent</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">chat_user_input</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">stream</span> <span class="o">&lt;-</span> <span class="n">chat</span><span class="o">$</span><span class="nf">stream_async</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">chat_user_input</span><span class="p">)</span>
+</span></span><span class="line hl"><span class="cl">    <span class="nf">chat_append</span><span class="p">(</span><span class="s">&#34;chat&#34;</span><span class="p">,</span> <span class="n">stream</span><span class="p">)</span>
+</span></span><span class="line hl"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">shinyApp</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span> <span class="n">server</span><span class="p">)</span>
+</span></span></code></pre></div><p>Siguiendo 
+<a href="/blog/shiny/#reactividad">lo que aprendimos en el tutorial de Shiny</a>, el bloque <code>observeEvent()</code> se activará cada vez que se envíe un mensaje en la interfaz de <code>chat_ui()</code>. Dentro de él ocurren dos cosas:</p>
+<ol>
+<li>La primera línea, <code>chat$stream_async(input$chat_user_input)</code>, manda el mensaje del usuario/a al modelo de lenguaje (el objeto <code>chat</code>), y obtiene la respuesta que emita la IA.</li>
+<li>La segunda línea, <code>chat_append(&quot;chat&quot;, stream)</code>, va añadiendo las burbujas de mensajitos a la interfaz del chat a medida que llega el texto. La app lo va recibiendo en tiempo real en vez de esperar la respuesta completa.</li>
+</ol>
+
+
+<details>
+  <summary>
+    <strong>Código completo de la app con chatbot</strong>
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">shiny</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">bslib</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ellmer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">shinychat</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ui</span> <span class="o">&lt;-</span> <span class="nf">page_fillable</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">chat_ui</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="o">=</span> <span class="s">&#34;chat&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">messages</span> <span class="o">=</span> <span class="s">&#34;**¡Hola!** ¿En qué te puedo ayudar hoy?&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fillable_mobile</span> <span class="o">=</span> <span class="kc">TRUE</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">server</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">chat</span> <span class="o">&lt;-</span> <span class="nf">chat_anthropic</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">system_prompt</span> <span class="o">=</span> <span class="s">&#34;Eres un chatbot respetuoso, útil y conciso.&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nf">observeEvent</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">chat_user_input</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stream</span> <span class="o">&lt;-</span> <span class="n">chat</span><span class="o">$</span><span class="nf">stream_async</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">chat_user_input</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">chat_append</span><span class="p">(</span><span class="s">&#34;chat&#34;</span><span class="p">,</span> <span class="n">stream</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">shinyApp</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span> <span class="n">server</span><span class="p">)</span>
+</span></span></code></pre></div>
+    </div>
+</details>
+<p>Probemos el chatbot!</p>
+<a href="chatbot_basico.png" target="_blank">
+
+  <img src="chatbot_basico.png" style="border-radius: 5px; width: 80%; max-width: 400px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Si 
+<a href="/blog/ellmer/#proveedores-de-modelos-de-lenguaje-en-la-nube">configuraste bien tu proveedor de IA</a>, vas a poder conversar con tu modelo mediante la aplicación Shiny.</p>
+<p>Ahora pasamos a la gracia de todo esto: <strong>potenciar el chatbot con herramientas</strong> para que pueda acceder a datos, y darle una <strong>base de conocimientos</strong> con documentos específicos.</p>
+
+
+
+
+<h2 id="entregar-herramientas-al-chatbot">Entregar herramientas al chatbot
+  <a href="#entregar-herramientas-al-chatbot"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Para ilustrar el desarrollo de un chatbot enfocado en datos con R, hagamos que queremos desarrollar un chatbot que pueda decirnos <strong>cifras de la situación de pobreza en Chile</strong>.</p>
+<p>Primero <strong>pongamos a prueba el chatbot</strong> que ya creamos, que no tiene ningún conocimiento específico (solamente el conocimiento propio del entrenamiento de la IA), y preguntémosle por un dato:</p>
+<a href="chatbot_prueba_1.png" target="_blank">
+
+  <img src="chatbot_prueba_1.png" style="border-radius: 5px; width: 80%; max-width: 400px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>El modelo de lenguaje no supo responder! 🫤</p>
+<p>Cuando la IA no sabe responder, usualmente rellena con cualquier cosa, o se atreve a una estimación. En la mayoría de lso casos, <strong>esto debería ser inaceptable.</strong></p>
+
+
+<details>
+  <summary>
+    <strong>Ver código completo del chatbot hasta ahora</strong>
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    <p>Especificamos algunas cosas en el código: elejimos un modelo económico, Claude Haiku, definiendo <code>model = &quot;claude-haiku-4-5&quot;</code> dentro de <code>chat_anthropic()</code>, y además especifiquemos el <em>system prompt</em>: <code>&quot;Eres un chatbot respetuoso, útil y conciso. Responde muy brevemente solamente lo que se te pregunta.&quot;</code> para que nos entregue menos cháchara.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">shiny</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">bslib</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ellmer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">shinychat</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ui</span> <span class="o">&lt;-</span> <span class="nf">page_fillable</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">chat_ui</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="o">=</span> <span class="s">&#34;chat&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">messages</span> <span class="o">=</span> <span class="s">&#34;**¡Hola!** ¿En qué te puedo ayudar hoy?&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fillable_mobile</span> <span class="o">=</span> <span class="kc">TRUE</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">server</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">chat</span> <span class="o">&lt;-</span> <span class="nf">chat_anthropic</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">model</span> <span class="o">=</span> <span class="s">&#34;claude-haiku-4-5&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">system_prompt</span> <span class="o">=</span> <span class="s">&#34;Eres un chatbot respetuoso, útil y conciso. Responde muy 
+</span></span></span><span class="line"><span class="cl"><span class="s">                     brevemente solamente lo que se te pregunta, sin rodeos.&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nf">observeEvent</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">chat_user_input</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stream</span> <span class="o">&lt;-</span> <span class="n">chat</span><span class="o">$</span><span class="nf">stream_async</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">chat_user_input</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">chat_append</span><span class="p">(</span><span class="s">&#34;chat&#34;</span><span class="p">,</span> <span class="n">stream</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">shinyApp</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span> <span class="n">server</span><span class="p">)</span>
+</span></span></code></pre></div>
+    </div>
+</details>
+
+
+
+
+<h3 id="descargar-datos">Descargar datos
+  <a href="#descargar-datos"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Bajemos un conjunto de datos que nos pueden servir: las 
+<a href="https://bidat.gob.cl/directorio/Pobreza%20comunal/estimaciones-de-pobreza-comunal-2024" target="_blank" rel="noopener">estimaciones de pobreza comunal 2024</a> calculadas por el Ministerio de Desarrollo Social de Chile.</p>
+
+
+
+
+<div class = "db pt1"
+style = "margin-bottom: 34px;">
+
+<a class = "btn-links mr2 ba dib"
+href = "https://bidat.gob.cl/url/69e5767156227" target="_blank"
+style = "padding: 12px; padding-bottom: 8px; border-radius: 5px; padding-right: 18px; text-decoration: none; border: 1px solid; color: #EAD2FA; background-color: #9069C0; margin-bottom: -12px;">
+<i class="fas fa-file-download fa-lg fa-fw mr2" style="color: #EAD2FA;"></i>
+Desacargar datos de pobreza</a>
+
+</div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">pobreza</span> <span class="o">&lt;-</span> <span class="nf">read_xlsx</span><span class="p">(</span><span class="s">&#34;sae_ingresos_2024.xlsx&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Cargamos y limpiamos los datos hasta que obtenemos una tabla ordenada:</p>
+
+
+<details>
+  <summary>
+    <strong>Ver código de la limpieza de datos</strong>
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">readxl</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">janitor</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pobreza</span> <span class="o">&lt;-</span> <span class="nf">read_xlsx</span><span class="p">(</span><span class="s">&#34;sae_ingresos_2024.xlsx&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># limpiar columnas</span>
+</span></span><span class="line"><span class="cl"><span class="n">pobreza</span> <span class="o">&lt;-</span> <span class="n">pobreza</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">row_to_names</span><span class="p">(</span><span class="m">2</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">clean_names</span><span class="p">()</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">rename</span><span class="p">(</span><span class="n">poblacion</span> <span class="o">=</span> <span class="n">numero_de_personas_segun_proyecciones_de_poblacion</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="n">pobreza_personas</span> <span class="o">=</span> <span class="n">numero_de_personas_en_situacion_de_pobreza_de_ingresos</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="n">pobreza_porcentaje</span> <span class="o">=</span> <span class="n">porcentaje_de_personas_en_situacion_de_pobreza_de_ingresos_2024</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="n">pobreza_porcentaje_inf</span> <span class="o">=</span> <span class="n">limite_inferior</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="n">pobreza_porcentaje_sup</span> <span class="o">=</span> <span class="n">limite_superior</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># convertir a numéricos</span>
+</span></span><span class="line"><span class="cl"><span class="n">pobreza</span> <span class="o">&lt;-</span> <span class="n">pobreza</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">across</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">c</span><span class="p">(</span><span class="n">poblacion</span><span class="p">,</span> <span class="nf">starts_with</span><span class="p">(</span><span class="s">&#34;pobreza&#34;</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">      <span class="n">as.numeric</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span></code></pre></div>
+    </div>
+</details>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">nombre_comuna</th>
+          <th style="text-align: right">poblacion</th>
+          <th style="text-align: right">pobreza_personas</th>
+          <th style="text-align: right">pobreza_porcentaje</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Iquique</td>
+          <td style="text-align: right">232455</td>
+          <td style="text-align: right">37598</td>
+          <td style="text-align: right">0.161</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Alto Hospicio</td>
+          <td style="text-align: right">144554</td>
+          <td style="text-align: right">38759</td>
+          <td style="text-align: right">0.268</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Pozo Almonte</td>
+          <td style="text-align: right">18811</td>
+          <td style="text-align: right">3968</td>
+          <td style="text-align: right">0.210</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Camiña</td>
+          <td style="text-align: right">1376</td>
+          <td style="text-align: right">600</td>
+          <td style="text-align: right">0.436</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Colchane</td>
+          <td style="text-align: right">1553</td>
+          <td style="text-align: right">791</td>
+          <td style="text-align: right">0.509</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Huara</td>
+          <td style="text-align: right">3111</td>
+          <td style="text-align: right">1240</td>
+          <td style="text-align: right">0.398</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Pica</td>
+          <td style="text-align: right">6313</td>
+          <td style="text-align: right">1980</td>
+          <td style="text-align: right">0.313</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Antofagasta</td>
+          <td style="text-align: right">445152</td>
+          <td style="text-align: right">69705</td>
+          <td style="text-align: right">0.156</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Mejillones</td>
+          <td style="text-align: right">15950</td>
+          <td style="text-align: right">2239</td>
+          <td style="text-align: right">0.140</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Sierra Gorda</td>
+          <td style="text-align: right">1807</td>
+          <td style="text-align: right">256</td>
+          <td style="text-align: right">0.141</td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+
+<h3 id="función-de-consulta-de-datos">Función de consulta de datos
+  <a href="#funci%c3%b3n-de-consulta-de-datos"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Ahora que tenemos los datos, hagamos una función muy breve que nos permita <strong>filtrar la tabla de datos</strong>, 
+<a href="/blog/funcion_consultar_datos/">siguiendo las instrucciones de este tutorial</a>.</p>
+<p>El objetivo es crear una función sencilla que opere como una API para consultar datos, una especie de <strong>herramienta</strong> que resuelve una necesidad de información.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># crear la función de consulta de datos</span>
+</span></span><span class="line"><span class="cl"><span class="n">consultar_pobreza</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">comuna</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">message</span><span class="p">(</span><span class="s">&#34;comuna elegida: &#34;</span><span class="p">,</span> <span class="n">comuna</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">pobreza</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">    <span class="nf">filter</span><span class="p">(</span><span class="n">nombre_comuna</span> <span class="o">==</span> <span class="n">comuna</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">    <span class="nf">select</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">pobreza_personas</span><span class="p">,</span> <span class="n">pobreza_porcentaje</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">           <span class="n">pobreza_porcentaje_inf</span><span class="p">,</span> <span class="n">pobreza_porcentaje_sup</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>La función tiene un sólo argumento, con el cual se filtra la columna <code>nombre_comuna</code> para obtener cifras exactas de pobreza.</p>
+<p>Probemos la función de consulta de datos:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">consultar_pobreza</span><span class="p">(</span><span class="s">&#34;Maipú&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><pre tabindex="0"><code>$ nombre_comuna          &lt;chr&gt; &#34;Maipú&#34;
+$ region                 &lt;chr&gt; &#34;Metropolitana&#34;
+$ pobreza_personas       &lt;dbl&gt; 70661.29
+$ pobreza_porcentaje     &lt;dbl&gt; 0.1203846
+$ pobreza_porcentaje_inf &lt;dbl&gt; 0.09052756
+$ pobreza_porcentaje_sup &lt;dbl&gt; 0.1502416
+</code></pre><p>Estupendo! La función nos sirve para que con un sólo argumento podamos filtrar los datos.</p>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Instrucciones detalladas
+    </p>
+
+  <a href="/blog/funcion_consultar_datos/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/funcion_consultar_datos/funcion_consultar_datos_featured.png"
+           alt="Creando una función para consultar datos en R"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Creando una función para consultar datos en R
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        En R es muy fácil filtrar y seleccionar cualquier base de datos para obtener las cifras que quieras. Pero a veces necesitamos consultar muchas cifras, y repetir el código se vuelve engorroso. En este…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+
+
+
+
+<h3 id="registrar-la-herramienta">Registrar la herramienta
+  <a href="#registrar-la-herramienta"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Cualquier función de R que tengamos o que creemos podemos <em>pasársela</em> al modelo de lenguaje. Para que el modelo la entienda, tenemos que <strong>explicarle</strong> la herramienta. De esta manera, <strong>el modelo podrá usar funciones de R</strong> cuando sean relevantes para responder las preguntas que le hagamos.</p>
+<p>Para <strong>enseñarle al modelo</strong> cómo se usa la función, usamos <code>tool()</code> de <code>{ellmer}</code>, donde entregamos la función, agregamos una descripción general, y describimos también sus argumentos:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">herramienta</span> <span class="o">&lt;-</span> <span class="nf">tool</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">consultar_pobreza</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">description</span> <span class="o">=</span> <span class="s">&#34;Función que entrega datos de la estimación de pobreza por ingresos 
+</span></span></span><span class="line"><span class="cl"><span class="s">                 a nivel de cantidad de personas estimada y porcentaje de la población, 
+</span></span></span><span class="line"><span class="cl"><span class="s">                 basándose en datos de la Encuesta de Caracterización Socioeconómica 
+</span></span></span><span class="line"><span class="cl"><span class="s">                 Nacional (Casen) 2024 del Ministerio de Desarrollo Social y Familia.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">arguments</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">comuna</span> <span class="o">=</span> <span class="nf">type_string</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="n">description</span> <span class="o">=</span> <span class="s">&#34;Comuna de Chile que se desea consultar&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>Esto es como hacer una especie de <strong>documentación</strong> de la función, pero enfocada en que los modelos de lenguaje sepan cómo y cuándo usar la función.</p>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/herramientas_llm/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/herramientas_llm/herramientas-llm-featured.png"
+           alt="Potencia las capacidades de la IA entregándole herramientas (_tool calling_) basadas en R"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Potencia las capacidades de la IA entregándole herramientas (<em>tool calling</em>) basadas en R
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        La inteligencia artificial no lo sabe todo. Y lo que no sabe, lo inventa. Conociendo las limitaciones de la IA podemos hacer un mejor uso de ella. Por ejemplo, la IA no tiene acceso a datos, ni es…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+<p>Para agregar herramientas al chatbot, basta con registrarlas en el objeto <code>chat</code> de esta manera:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">chat</span><span class="o">$</span><span class="nf">register_tool</span><span class="p">(</span><span class="n">herramienta</span><span class="p">)</span>
+</span></span></code></pre></div><p>Esta línea se agrega dentro de <code>server</code>, luego de crear el chat. Así, cuando se pregunte algo que active la herramienta, <strong>el modelo la usará automáticamente</strong>.</p>
+
+
+<details>
+  <summary>
+    <strong>Ver código del chatbot con herramienta de consulta de datos</strong>
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">shiny</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">bslib</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ellmer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">shinychat</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># código de limpieza de datos</span>
+</span></span><span class="line"><span class="cl"><span class="nf">source</span><span class="p">(</span><span class="s">&#34;datos_pobreza.R&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># código de la función de consulta de datos</span>
+</span></span><span class="line"><span class="cl"><span class="nf">source</span><span class="p">(</span><span class="s">&#34;funcion_pobreza.R&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ui</span> <span class="o">&lt;-</span> <span class="nf">page_fillable</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">chat_ui</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="o">=</span> <span class="s">&#34;chat&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">messages</span> <span class="o">=</span> <span class="s">&#34;**¡Hola!** ¿En qué te puedo ayudar hoy?&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fillable_mobile</span> <span class="o">=</span> <span class="kc">TRUE</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">server</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1"># definir herramienta</span>
+</span></span><span class="line"><span class="cl">  <span class="n">herramienta</span> <span class="o">&lt;-</span> <span class="nf">tool</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">consultar_pobreza</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">description</span> <span class="o">=</span> <span class="s">&#34;Función que entrega datos de la estimación de pobreza por ingresos 
+</span></span></span><span class="line"><span class="cl"><span class="s">                   a nivel de cantidad de personas estimada y porcentaje de la población, 
+</span></span></span><span class="line"><span class="cl"><span class="s">                   basándose en datos de la Encuesta de Caracterización Socioeconómica 
+</span></span></span><span class="line"><span class="cl"><span class="s">                   Nacional (Casen) 2024 del Ministerio de Desarrollo Social y Familia.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">arguments</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="n">comuna</span> <span class="o">=</span> <span class="nf">type_string</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">description</span> <span class="o">=</span> <span class="s">&#34;Comuna de Chile que se desea consultar&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1"># crear chat</span>
+</span></span><span class="line"><span class="cl">  <span class="n">chat</span> <span class="o">&lt;-</span> <span class="nf">chat_anthropic</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">model</span> <span class="o">=</span> <span class="s">&#34;claude-haiku-4-5&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">system_prompt</span> <span class="o">=</span> <span class="s">&#34;Eres un chatbot respetuoso, útil y conciso. Responde muy 
+</span></span></span><span class="line"><span class="cl"><span class="s">                     brevemente solamente lo que se te pregunta, sin rodeos.&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1"># entregar la herramienta al modelo</span>
+</span></span><span class="line"><span class="cl">  <span class="n">chat</span><span class="o">$</span><span class="nf">register_tool</span><span class="p">(</span><span class="n">herramienta</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nf">observeEvent</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">chat_user_input</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stream</span> <span class="o">&lt;-</span> <span class="n">chat</span><span class="o">$</span><span class="nf">stream_async</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">chat_user_input</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">chat_append</span><span class="p">(</span><span class="s">&#34;chat&#34;</span><span class="p">,</span> <span class="n">stream</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">shinyApp</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span> <span class="n">server</span><span class="p">)</span>
+</span></span></code></pre></div>
+    </div>
+</details>
+<p>Ahora volvamos a probar el chatbot preguntándole lo mismo:</p>
+<a href="chatbot_prueba_2.png" target="_blank">
+
+  <img src="chatbot_prueba_2.png" style="border-radius: 5px; width: 80%; max-width: 400px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Ahora responde correctamente! 🥳</p>
+<p>Si nos fijamos en la consola, vemos que el chatbot consultó correctamente la herramienta, y se basó en ella para responder:</p>
+<a href="chatbot_prueba_3.png" target="_blank">
+
+  <img src="chatbot_prueba_3.png" style="border-radius: 5px; width: 80%; max-width: 360px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Instrucciones detalladas
+    </p>
+
+  <a href="/blog/herramientas_llm/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/herramientas_llm/herramientas-llm-featured.png"
+           alt="Potencia las capacidades de la IA entregándole herramientas (_tool calling_) basadas en R"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Potencia las capacidades de la IA entregándole herramientas (<em>tool calling</em>) basadas en R
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        La inteligencia artificial no lo sabe todo. Y lo que no sabe, lo inventa. Conociendo las limitaciones de la IA podemos hacer un mejor uso de ella. Por ejemplo, la IA no tiene acceso a datos, ni es…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+
+
+
+
+<h2 id="darle-conocimientos-especializados-al-chatbot">Darle conocimientos especializados al chatbot
+  <a href="#darle-conocimientos-especializados-al-chatbot"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Por ahora el modelo <strong>responde correctamente desde los datos</strong>, pero si le preguntamos otras cosas, deja de responder bien:</p>
+<a href="chatbot_prueba_4.png" target="_blank">
+
+  <img src="chatbot_prueba_4.png" style="border-radius: 5px; width: 80%; max-width: 360px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Si bien la cifra es correcta, al preguntarle algo sobre la metodología de los datos, responde algo genérico para <strong>omitir que no sabe realmente</strong> de dónde viene la información.</p>
+<p>Para hacer que el chatbot <strong>maneje conocimientos complejos o especializados</strong>, y que además responda preguntas <strong>limitándose a documentos específicos</strong>, podemos entregarle una herramienta para 
+<a href="/blog/rag_ragnar/"><em>generación aumentada por recuperación</em> o RAG</a>. Esto significa que el modelo accederá a informes, manuales, papers, o cualquier material relevante para tu caso de uso.</p>
+<p>Entonces descarguemos la metodología correspondiente a los datos que estamos trabajando:</p>
+
+
+
+
+<div class = "db pt1"
+style = "margin-bottom: 34px;">
+
+<a class = "btn-links mr2 ba dib"
+href = "https://bidat.gob.cl/url/69eb619acd328" target="_blank"
+style = "padding: 12px; padding-bottom: 8px; border-radius: 5px; padding-right: 18px; text-decoration: none; border: 1px solid; color: #EAD2FA; background-color: #9069C0; margin-bottom: -12px;">
+<i class="fas fa-file-download fa-lg fa-fw mr2" style="color: #EAD2FA;"></i>
+Desacargar metodología de estimación de pobreza</a>
+
+</div>
+<p>Con el paquete <code>{ragnar}</code> podemos crear una base de conocimientos a partir de nuestros documentos y conectarla al chatbot, 
+<a href="/blog/rag_ragnar/">como se detalla en este tutorial</a>.</p>
+<p>Primero tenemos que crear una base de conocimientos:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ragnar</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">store</span> <span class="o">&lt;-</span> <span class="nf">ragnar_store_create</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">location</span> <span class="o">=</span> <span class="s">&#34;documentos.ragnar.duckdb&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">embed</span> <span class="o">=</span> <span class="kc">NULL</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>Ahora cargamos los documentos y los procesamos:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">metodologia</span> <span class="o">&lt;-</span> <span class="nf">read_as_markdown</span><span class="p">(</span><span class="s">&#34;content/blog/shinychat/estimaciones-sae-2024.pdf&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">metodologia</span> <span class="o">&lt;-</span> <span class="nf">markdown_chunk</span><span class="p">(</span><span class="n">metodologia</span><span class="p">)</span>
+</span></span></code></pre></div><p>Finalmente los insertamos en la base y creamos el índice para que funcione:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">ragnar_store_insert</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="n">informe_secciones</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ragnar_store_build_index</span><span class="p">(</span><span class="n">store</span><span class="p">)</span>
+</span></span></code></pre></div><div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Instrucciones detalladas
+    </p>
+
+  <a href="/blog/rag_ragnar/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/rag_ragnar/diagrama_pensamiento_llm_rag-featured.png"
+           alt="Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        La generación aumentada por recuperación o RAG, por sus siglas en inglés (retrieval-augmented generation) es un proceso por medio del cual puedes aumentar o complementar el conocimiento de una…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+<p>Ahora, en el código de nuestro chatbot, agregamos la <strong>conexión a la base de conocimientos</strong> y luego, después de la creación del chat, ponemos el <strong>registro de la herramienta de RAG</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># conectarse a la base de conocimientos</span>
+</span></span><span class="line"><span class="cl"><span class="n">store</span> <span class="o">&lt;-</span> <span class="nf">ragnar_store_connect</span><span class="p">(</span><span class="s">&#34;documentos.ragnar.duckdb&#34;</span><span class="p">,</span> <span class="n">read_only</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># registrar la herramienta de búsqueda en el modelo</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ragnar_register_tool_retrieve</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">chat</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">store</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">store_description</span> <span class="o">=</span> <span class="s">&#34;Base de conocimientos sobre metodología 
+</span></span></span><span class="line"><span class="cl"><span class="s">                       de cálculo de estimaciones de pobreza a
+</span></span></span><span class="line"><span class="cl"><span class="s">                       partir de la encuesta Casen 2024&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div>
+
+<details>
+  <summary>
+    <strong>Ver código completo del chatbot con RAG</strong>
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">shiny</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">bslib</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ellmer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">shinychat</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ragnar</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># código de limpieza de datos</span>
+</span></span><span class="line"><span class="cl"><span class="nf">source</span><span class="p">(</span><span class="s">&#34;datos_pobreza.R&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># código de la función de consulta de datos</span>
+</span></span><span class="line"><span class="cl"><span class="nf">source</span><span class="p">(</span><span class="s">&#34;funcion_pobreza.R&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ui</span> <span class="o">&lt;-</span> <span class="nf">page_fillable</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">chat_ui</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="o">=</span> <span class="s">&#34;chat&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">messages</span> <span class="o">=</span> <span class="s">&#34;**¡Hola!** ¿En qué te puedo ayudar hoy?&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fillable_mobile</span> <span class="o">=</span> <span class="kc">TRUE</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">server</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1"># definir herramienta</span>
+</span></span><span class="line"><span class="cl">  <span class="n">herramienta</span> <span class="o">&lt;-</span> <span class="nf">tool</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">consultar_pobreza</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">description</span> <span class="o">=</span> <span class="s">&#34;Función que entrega datos de la estimación de pobreza por ingresos 
+</span></span></span><span class="line"><span class="cl"><span class="s">                   a nivel de cantidad de personas estimada y porcentaje de la población, 
+</span></span></span><span class="line"><span class="cl"><span class="s">                   basándose en datos de la Encuesta de Caracterización Socioeconómica 
+</span></span></span><span class="line"><span class="cl"><span class="s">                   Nacional (Casen) 2024 del Ministerio de Desarrollo Social y Familia.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">arguments</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="n">comuna</span> <span class="o">=</span> <span class="nf">type_string</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">description</span> <span class="o">=</span> <span class="s">&#34;Comuna de Chile que se desea consultar&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1"># crear chat</span>
+</span></span><span class="line"><span class="cl">  <span class="n">chat</span> <span class="o">&lt;-</span> <span class="nf">chat_anthropic</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">model</span> <span class="o">=</span> <span class="s">&#34;claude-haiku-4-5&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">system_prompt</span> <span class="o">=</span> <span class="s">&#34;Eres un chatbot respetuoso, útil y conciso. Responde muy 
+</span></span></span><span class="line"><span class="cl"><span class="s">                     brevemente solamente lo que se te pregunta, sin rodeos.&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1"># entregar la herramienta al modelo</span>
+</span></span><span class="line"><span class="cl">  <span class="n">chat</span><span class="o">$</span><span class="nf">register_tool</span><span class="p">(</span><span class="n">herramienta</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1"># conectarse a la base de conocimientos</span>
+</span></span><span class="line"><span class="cl">  <span class="n">store</span> <span class="o">&lt;-</span> <span class="nf">ragnar_store_connect</span><span class="p">(</span><span class="s">&#34;documentos.ragnar.duckdb&#34;</span><span class="p">,</span> <span class="n">read_only</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1"># registrar la herramienta de búsqueda en el modelo</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ragnar_register_tool_retrieve</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chat</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">store</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">store_description</span> <span class="o">=</span> <span class="s">&#34;Base de conocimientos sobre metodología 
+</span></span></span><span class="line"><span class="cl"><span class="s">    de cálculo de estimaciones de pobreza Casen 2024&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nf">observeEvent</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">chat_user_input</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stream</span> <span class="o">&lt;-</span> <span class="n">chat</span><span class="o">$</span><span class="nf">stream_async</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">chat_user_input</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">chat_append</span><span class="p">(</span><span class="s">&#34;chat&#34;</span><span class="p">,</span> <span class="n">stream</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">shinyApp</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span> <span class="n">server</span><span class="p">)</span>
+</span></span></code></pre></div>
+    </div>
+</details>
+<p>Igual que con las herramientas, esto va en el <code>server</code> junto al objeto <code>chat</code>. Una vez registrada, la IA decidirá cuándo necesita <strong>consultar los documentos</strong> para responder mejor, y lo hará automáticamente.</p>
+<p>Ahora volvemos a probar el chatbot con una pregunta compleja:</p>
+<a href="chatbot_prueba_5.png" target="_blank">
+
+  <img src="chatbot_prueba_5.png" style="border-radius: 5px; width: 80%; max-width: 400px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Ahora sí, en vez de chamullar una respuesta, el chatbot se basa en el documento entregado para dar una <strong>respuesta precisa informada por el texto!</strong></p>
+<hr>
+<p>Con estos tres elementos (el chatbot base, las 
+<a href="/blog/herramientas_llm/">herramientas de consulta de datos</a> y la 
+<a href="/blog/rag_ragnar/">consulta de documentos con RAG</a>), y sumándole un buen <em>system prompt</em>, puedes construir en nada de tiempo asistentes de IA útiles y confiables, adaptados completamente a tus datos y necesidades, sin depender de ninguna plataforma de chat externa.</p>
+<p>Estos asistentes puedes ponerlos en 
+<a href="/blog/shiny/">tus aplicaciones Shiny</a> y luego 
+<a href="/blog/shiny/#publicar-la-aplicaci%c3%b3n-en-internet">publicar tus apps a internet</a>, o insertarlos/embeberlos en otros sitios web.</p>
+<a href="chatbot_1.png" target="_blank">
+
+  <img src="chatbot_1.png" style="border-radius: 5px; width: 80%; max-width: 500px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Personalmente he desarrollado varios chatbots que consultan datos complejos de estudios, y su funcionamiento es excelente, incluso con los modelos de inteligencia artificial más pequeños, porque la gracia es que <strong>R apoya a la IA con datos e información para responder correctamente</strong>, en vez de depender de modelos de IA gigantes que aspiran a saberlo todo (cosa que es imposible).</p>
+<a href="chatbot_4.png" target="_blank">
+
+  <img src="chatbot_4.png" style="border-radius: 5px; width: 80%; max-width: 500px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+
+  <div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones sobre inteligencia artificial
+    </p>
+
+    <div style="/*border: 1px solid #9069C035;*/
+                border: solid 2px #A885C6AA;
+                border-radius: 8px;
+                overflow: hidden;
+                background-color: #9069C00d;">
+
+      <a href="/blog/rag_ragnar/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  
+                  ">
+
+          
+          <img src="/blog/rag_ragnar/diagrama_pensamiento_llm_rag-featured.png"
+               alt="Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R
+          </span>
+
+        </a>
+      <a href="/blog/funcion_consultar_datos/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/funcion_consultar_datos/funcion_consultar_datos_featured.png"
+               alt="Creando una función para consultar datos en R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Creando una función para consultar datos en R
+          </span>
+
+        </a>
+      <a href="/blog/herramientas_llm/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/herramientas_llm/herramientas-llm-featured.png"
+               alt="Potencia las capacidades de la IA entregándole herramientas (_tool calling_) basadas en R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Potencia las capacidades de la IA entregándole herramientas (<em>tool calling</em>) basadas en R
+          </span>
+
+        </a>
+      <a href="/blog/datos_estructurados_llm/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <div style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      border-radius: 4px;
+                      background-color: #9069C020;">
+          </div>
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Extracción de datos estructurados desde texto usando IA
+          </span>
+
+        </a>
+      <a href="/blog/ellmer/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/ellmer/r_ia_ellmer_featured.png"
+               alt="Interactúa con modelos de lenguaje (LLM) y chatea con IAs directamente desde R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Interactúa con modelos de lenguaje (LLM) y chatea con IAs directamente desde R
+          </span>
+
+        </a>
+      
+
+    </div>
+  </div>
+
+
+
+<div style = "height: 18px;">
+</div>
+<div>
+  <div style="display: flex;
+  justify-content: center;
+  align-items: center;">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="bastimapache" 
+    data-color="#D6B9E8" data-emoji="<i class='fa fa-mug-saucer'></i>"  data-font="Cookie" 
+    data-text="Regálame un cafecito" 
+    data-outline-color="#000000" data-font-color="#543A73" data-coffee-color="#ffffff" ></script>
+  </div>
+</div>
+
+
+
+
+
+<aside>
+  <div id="avisos" style="margin-top:32px;">
+    
+    <a href="/blog/curso_r_intro_3/">
+    <img src="/blog/curso_r_intro_3/curso-r-2026-junio-featured.jpeg" 
+      style="border-radius: 7px; max-height: 240px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;" 
+      alt="¿Quieres aprender R para analizar datos? Inscríbete a mi curso!">
+    </a>
+    
+    <div style="max-width: 320px; margin:auto; font-size:85%;opacity:60%;">
+      <p>¿Quieres aprender R para analizar datos? Participa del curso! <a href="/blog/curso_r_intro_3/">Inscríbete gratis!</a></p>
+      </div>
+  
+  </div>
+</aside>
+ 
+    </section>
+      
+    <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+    <a class="prev dtc pr2 tl v-top fw6"
+    href="https://bastianolea.rbind.io/blog/buscar_texto/">&larr; Búsquedas de texto por ranking de relevancia con R usando el algoritmo BM25</a>
+  
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="https://bastianolea.rbind.io/blog/2026-05-29/">Palíndromos de Chile &rarr;</a>
+  
+</div>
+
+    </footer>
+    
+  </article>
+    
+    <div class="post-comments pa0 pa4-l mt4">
+  
+    
+      <script src="https://utteranc.es/client.js"
+              repo="bastianolea/blog-R"
+              issue-term="pathname"
+              theme="github-light"
+              label="comments"
+              crossorigin="anonymous"
+              async
+              type="text/javascript">
+      </script>
+    
+  
+</div>
+
+    
+</section>
+  
+
+<section class="post-body pt5 pb4">
+  
+  <details closed class="f6 fw7 input-reset">
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Fecha de publicación:</dt>
+    <dd class="fw5 ml0">June 1, 2026</dd>
+  </dl>
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Extensión:</dt>
+    <dd class="fw5 ml0">15 minute read, 3026 words</dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Categorías:</dt>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/categories/tutoriales">Tutoriales</a> </dd>
+  </dl>
+  
+  
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Tags:</dt>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/shiny">shiny</a>  <a href="https://bastianolea.rbind.io/tags/inteligencia-artificial">inteligencia artificial</a> </dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Ver también:</dt>
+    
+    <dd class="fw5 ml0"><a href="/blog/rag_ragnar/">Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/funcion_consultar_datos/">Creando una función para consultar datos en R</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/shiny/">Tutorial: Crea aplicaciones web interactivas en R con Shiny</a></dd>
+    
+  </dl>
+</details>
+
+</section>
+</main>
+
+
+<aside class="page-sidebar" role="complementary">
+   
+   
+
+  <div class="blog-info ph4 pt4 pb4 pb0-l">
+    
+
+  <h1 class="f3">Blog</h1>
+  <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
+<a href="/tags/">temas</a>.</p>
+  
+
+   
+<h3 style="margin-bottom: 12px;">Temas:</h3>
+
+<div style="font-size:90%;">
+
+<div style="font-size: 90%;">
+  
+   
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/apps/">Apps</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/ggplot2/">Ggplot2</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/texto/">Texto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/ciencias-sociales/">Ciencias sociales</a></span>
+  </span>
+
+<a href="/tags/" style="margin-left: 3px;">y más!</a>
+</div>
+</div>
+  
+  
+   
+   
+
+</div>
+
+  
+  <div id="PageTableOfContents" style="margin-top: 24px; position: sticky; top: 108px;">
+        <div class="blog-info ph4 pb4 pb0-l">
+        <h3 style="margin-bottom: 12px;">Índice:</h3>
+          <div class="pl2 pr0 mh0" style = "font-size: 90%; margin-top: -8px; margin-left: -22px; margin-bottom: 32px;">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#preparación">Preparación</a></li>
+    <li><a href="#crear-un-chatbot-con-shiny">Crear un chatbot con Shiny</a>
+      <ul>
+        <li><a href="#interfaz-del-chat">Interfaz del chat</a></li>
+        <li><a href="#modelo-de-lenguaje-para-el-chatbot">Modelo de lenguaje para el chatbot</a></li>
+        <li><a href="#conectar-la-interfaz-con-el-modelo">Conectar la interfaz con el modelo</a></li>
+      </ul>
+    </li>
+    <li><a href="#entregar-herramientas-al-chatbot">Entregar herramientas al chatbot</a>
+      <ul>
+        <li><a href="#descargar-datos">Descargar datos</a></li>
+        <li><a href="#función-de-consulta-de-datos">Función de consulta de datos</a></li>
+        <li><a href="#registrar-la-herramienta">Registrar la herramienta</a></li>
+      </ul>
+    </li>
+    <li><a href="#darle-conocimientos-especializados-al-chatbot">Darle conocimientos especializados al chatbot</a></li>
+  </ul>
+</nav>
+          </div>
+        </div>
+    </div>
+  
+  
+
+</aside>
+
+        
+          <script id="partials/analytics.html" 
+  data-goatcounter="https://bastimapache.goatcounter.com/count"
+  async src="//gc.zgo.at/count.js"></script>
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2026 Bastián Olea Herrera, Chile
+      <span class="middot-divider"></span>
+      Hecho con <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source" style="color:#9069C0;">Hugo Apéro</a> 
+      y <a href="https://pkgs.rstudio.com/blogdown/" style="color:#9069C0;">{blogdown}</a></span>.
+      <br />
+      
+Basado en <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source" style="color:#9069C0;">Blogophonic</a></span>, de <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL" style="color:#9069C0;">Formspree</a>.
+
+Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlify</a></span>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+      <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
+      
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
+      
+      <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
+      
+      <a class="dib pv1 ph2 link" href="/tags/" title="Temas">Temas</a>
+      
+      <a class="dib pv1 ph2 link" href="/clases/" title="Clases">Clases</a>
+      
+      <a class="dib pv1 ph2 link" href="/code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
+      
+      <a class="dib pv1 ph2 link" href="/license/" title="Bastián Olea: Licencia">Licencia</a>
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>

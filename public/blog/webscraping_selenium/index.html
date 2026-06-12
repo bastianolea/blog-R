@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="generator" content="Hugo 0.136.5">
-<title>Tutorial: web scraping controlando un navegador web con {RSelenium} en R | Bastián Olea</title>
+<title>Extrae datos desde páginas de internet controlando un navegador web con `{RSelenium}` en R | Bastián Olea</title>
 
 
 <meta property="twitter:site" content="@bastimapache">
@@ -24,33 +24,33 @@
   
     
   
-<meta name="description" content="Selenium es una herramienta que permite realizar web scraping avanzado por medio del control programático de un navegador web, lo cual abre infinitas posibilidades al momento de automatizar la obtención de datos e información desde sitios web dinámicos y/o complejos. En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que automaticen el control de un navegador para interactuar con sitios web y así scrapear datos mas difíciles de obtener.">
+<meta name="description" content="Web scraping desde un navegador">
 
 
 <meta property="og:site_name" content="Bastián Olea">
-<meta property="og:title" content="Tutorial: web scraping controlando un navegador web con {RSelenium} en R | Bastián Olea">
-<meta property="og:description" content="Selenium es una herramienta que permite realizar web scraping avanzado por medio del control programático de un navegador web, lo cual abre infinitas posibilidades al momento de automatizar la obtención de datos e información desde sitios web dinámicos y/o complejos. En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que automaticen el control de un navegador para interactuar con sitios web y así scrapear datos mas difíciles de obtener." />
+<meta property="og:title" content="Extrae datos desde páginas de internet controlando un navegador web con `{RSelenium}` en R | Bastián Olea">
+<meta property="og:description" content="Web scraping desde un navegador" />
 <meta property="og:type" content="page" />
-<meta property="og:url" content="https://bastianoleah.netlify.app/blog/webscraping_selenium/" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/webscraping_selenium/" />
 <meta property="og:locale" content="es-ES">
 
 
 
 
     
-        <meta property="og:image" content="https://bastianoleah.netlify.app/blog/webscraping_selenium/featured.png" >
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/webscraping_selenium/featured.png" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="https://bastianoleah.netlify.app/blog/webscraping_selenium/featured.png" >
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/webscraping_selenium/featured.png" >
     
     
   
-  <meta itemprop="name" content="Tutorial: web scraping controlando un navegador web con {RSelenium} en R">
+  <meta itemprop="name" content="Extrae datos desde páginas de internet controlando un navegador web con `{RSelenium}` en R">
   <meta itemprop="description" content="Selenium es un programa para automatizar y controlar navegadores web, lo que lo vuelve en una buena herramienta para realizar web scraping. El paquete de R {RSelenium} nos permitirá controlar un navegador por medio de código de R, lo cual abre infinitas posibilidades al momento de automatizar la obtención de datos e información desde sitios web dinámicos y/o complejos.
 En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que automaticen el control de un navegador para interactuar con sitios web y así scrapear datos más difíciles de obtener.">
   <meta itemprop="datePublished" content="2025-07-15T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-07-15T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1751">
-  <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/webscraping_selenium/featured.png">
+  <meta itemprop="wordCount" content="1731">
+  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/webscraping_selenium/featured.png">
   <meta itemprop="keywords" content="Web scraping,Datos">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -58,25 +58,26 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.2d895d62345af9e2e72524b81407c43bc32960e92011f6c745d4db53ec6d0bd7.css" integrity="sha256-LYldYjRa&#43;eLnJSS4FAfEO8MpYOkgEfbHRdTbU&#43;xtC9c=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.d422480e848eb6a5d606350ae11db5d9667dd9d70bf949467ce465c539b2be4a.css" integrity="sha256-1CJIDoSOtqXWBjUK4R212WZ92dcL&#43;UlGfORlxTmyvko=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.caca34247ad208428a7269b9786cc8952a5bfd8b756a9b7391db731732bc56c5.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
   
   
-  <link rel="preload" href="https://bastianoleah.shinyapps.io/buscador/" as="image">
+  <link rel="preload" href="/buscador/" as="image">
+  
 </head>
 <body>
       <div class="grid-container single-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianoleah.netlify.app/" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
       <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -104,7 +105,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
       
         
         
@@ -148,7 +149,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -249,8 +250,8 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
   <section class="page-content mw7 center">
     <article class="post-content pa0 pr3-l">
       <header class="post-header" style="margin-top:-30px;">
-        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Tutorial: web scraping controlando un navegador web con {RSelenium} en R</h1>
-        
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Extrae datos desde páginas de internet controlando un navegador web con <code>{RSelenium}</code> en R</h1>
+        <h4 class="f4 mt0 mb4 lh-title measure">Web scraping desde un navegador</h4>
         
         
         <div style = "display: inline-block;">  
@@ -265,7 +266,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/web-scraping"
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/web-scraping"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -274,7 +275,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            web scraping</a>  <a href="https://bastianoleah.netlify.app/tags/datos"
+            web scraping</a>  <a href="https://bastianolea.rbind.io/tags/datos"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -317,72 +318,10 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
 </div>
 <p>En otro post aprendimos a 
 <a href="../../../blog/webscraping_rvest/">hacer web scraping con <code>{rvest}</code></a>, un paquete muy sencillo de usar para obtener información desde sitios web. Entonces ¿por qué aprender también <code>{RSelenium}</code>? La diferencia es que Selenium es capaz de controlar un <em>navegador web real</em> en tu computador, como Chrome o Firefox, lo cual puede marcar la diferencia para extraer datos de sitios que buscan dificultar o impedir el acceso a herramientas automatizadas de web scraping.</p>
-<div style="margin: 28px 0;">
-    <p class="titulo-panel">
-      Publicaciones relacionadas
-    </p>
 
-  <a href="/blog/r_introduccion/web_scraping/"
-     style="display: flex;
-            flex-direction: row;
-            align-items: stretch;
-            text-decoration: none;
-            color: inherit;
-            /*border: 1px solid #9069C035;*/
-            border: solid 2px #A885C6AA;
-            border-radius: 8px;
-            overflow: hidden;
-            /*background-color: #9069C00d;*/
-            background-color: #9069C020;
-            ">
-
-    
-    <figure style="flex-shrink: 0;
-                   position: relative;
-                   width: 140px;
-                   min-height: 80px;
-                   margin: 10px 0 10px 10px;
-                   overflow: hidden;
-                   border-radius: 5px;">
-      <img src="/blog/r_introduccion/web_scraping/featured.jpg"
-           alt="Web scraping con R"
-           style="position: absolute;
-                  inset: 0;
-                  width: 100%;
-                  height: 100%;
-                  object-fit: cover;
-                  object-position: center top;
-                  margin: 0;">
-    </figure>
-    
-
-    <div style="padding: 15px 20px;
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                gap: 6px;">
-
-      <p style="margin: 0;
-                font-size: 95%;
-                color: #9069C0;
-                font-weight: bold;
-                line-height: 1.35;">
-        Web scraping con R
-      </p>
-
-      
-      <p style="margin: 0;
-                font-size: 84%;
-                line-height: 1.5;">
-        Se trata del conjunto de técnicas que permiten extraer datos e información alojada en páginas web, usualmente en formatos que no son fácilmente convertibles a tablas de datos. En este post vemos tres…
-      </p>
-      
-
-    </div>
-  </a>
-  </div>
-
+  <span style="color: #c0392b; font-size: 90%;">
+    ⚠ <code>enlace_post</code>: no se encontró la página <code>blog/r_introduccion/web_scraping</code>
+  </span>
 
 
 
@@ -820,7 +759,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
 
           
           <img src="/blog/2025-07-27/featured.jpg"
-               alt="Descargar todos los archivos de la página web del Censo 2024 con {rvest}"
+               alt="Descargar todos los archivos de la página web del Censo 2024 con `{rvest}`"
                style="flex-shrink: 0;
                       width: 52px;
                       height: 38px;
@@ -834,7 +773,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                        color: #9069C0;
                        font-weight: 600;
                        line-height: 1.35;">
-            Descargar todos los archivos de la página web del Censo 2024 con {rvest}
+            Descargar todos los archivos de la página web del Censo 2024 con <code>{rvest}</code>
           </span>
 
         </a>
@@ -887,11 +826,27 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
     data-text="Regálame un cafecito" 
     data-outline-color="#000000" data-font-color="#543A73" data-coffee-color="#ffffff" ></script>
   </div>
+</div>
 
 
 
 
-</p>
+
+<aside>
+  <div id="avisos" style="margin-top:32px;">
+    
+    <a href="/blog/curso_r_intro_3/">
+    <img src="/blog/curso_r_intro_3/curso-r-2026-junio-featured.jpeg" 
+      style="border-radius: 7px; max-height: 240px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;" 
+      alt="¿Quieres aprender R para analizar datos? Inscríbete a mi curso!">
+    </a>
+    
+    <div style="max-width: 320px; margin:auto; font-size:85%;opacity:60%;">
+      <p>¿Quieres aprender R para analizar datos? Participa del curso! <a href="/blog/curso_r_intro_3/">Inscríbete gratis!</a></p>
+      </div>
+  
+  </div>
+</aside></p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -908,12 +863,12 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/webscraping_chromote/">&larr; Web scraping usando Google Chrome desde R con {chromote}</a>
+    href="https://bastianolea.rbind.io/blog/webscraping_chromote/">&larr; Web scraping usando Google Chrome desde R con `{chromote}`</a>
   
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/ggplot_purrr/">Generar múltiples gráficos automáticamente con R &rarr;</a>
+    href="https://bastianolea.rbind.io/blog/ggplot_purrr/">Generar múltiples gráficos automáticamente con R &rarr;</a>
   
 </div>
 
@@ -925,7 +880,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
   
     
       <script src="https://utteranc.es/client.js"
-              repo="bastianolea/blog-bastianolea-r"
+              repo="bastianolea/blog-R"
               issue-term="pathname"
               theme="github-light"
               label="comments"
@@ -950,29 +905,29 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">9 minute read, 1751 words</dd>
+    <dd class="fw5 ml0">9 minute read, 1731 words</dd>
   </dl>
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Categorías:</dt>
-    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/categories/tutoriales">Tutoriales</a> </dd>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/categories/tutoriales">Tutoriales</a> </dd>
   </dl>
   
   
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Tags:</dt>
-    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/web-scraping">web scraping</a>  <a href="https://bastianoleah.netlify.app/tags/datos">datos</a> </dd>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/web-scraping">web scraping</a>  <a href="https://bastianolea.rbind.io/tags/datos">datos</a> </dd>
   </dl>
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
+    <dd class="fw5 ml0"><a href="/blog/funcion_consultar_datos/">Creando una función para consultar datos en R</a></dd>
+    
     <dd class="fw5 ml0"><a href="/blog/herramientas_llm/">Potencia las capacidades de la IA entregándole herramientas (_tool calling_) basadas en R</a></dd>
     
     <dd class="fw5 ml0"><a href="/blog/censo_2024/">Explorar datos del Censo de Población y Vivienda 2024 con R</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/indice_brechas_genero/">Plataforma de análisis: Índice de Brechas de Género</a></dd>
     
   </dl>
 </details>
@@ -990,7 +945,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
 
   <h1 class="f3">Blog</h1>
   <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
-<a href="https://bastianoleah.shinyapps.io/buscador/" target="_blank" rel="noopener">buscador</a> para encontrar publicaciones o navega los 
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
 <a href="/tags/">temas</a>.</p>
   
 
@@ -1014,7 +969,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/chile/">Chile</a></span>
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
   </span>
  
   
@@ -1029,7 +984,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/datos/">Datos</a></span>
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
   </span>
  
   
@@ -1044,7 +999,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -1059,7 +1014,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -1074,7 +1029,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
   </span>
  
   
@@ -1089,7 +1044,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/blog/">Blog</a></span>
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -1104,7 +1059,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -1119,7 +1074,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
+      href="https://bastianolea.rbind.io/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -1134,7 +1089,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ggplot2/">Ggplot2</a></span>
+      href="https://bastianolea.rbind.io/tags/ggplot2/">Ggplot2</a></span>
   </span>
  
   
@@ -1149,7 +1104,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/web-scraping/">Web scraping</a></span>
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
   </span>
  
   
@@ -1164,7 +1119,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/b%C3%A1sico/">Básico</a></span>
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
   </span>
  
   
@@ -1179,7 +1134,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -1194,7 +1149,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -1209,7 +1164,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -1224,7 +1179,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/curiosidades/">Curiosidades</a></span>
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -1239,7 +1194,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -1254,7 +1209,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/quarto/">Quarto</a></span>
+      href="https://bastianolea.rbind.io/tags/texto/">Texto</a></span>
   </span>
  
   
@@ -1269,7 +1224,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/dplyr/">Dplyr</a></span>
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -1284,7 +1239,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/loops/">Loops</a></span>
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
   </span>
  
   
@@ -1299,7 +1254,7 @@ En este tutorial aprenderemos a usar {RSelenium} para programar scripts de R que
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ciencias-sociales/">Ciencias sociales</a></span>
+      href="https://bastianolea.rbind.io/tags/optimizaci%C3%B3n/">Optimización</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>
@@ -1351,7 +1306,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -1444,7 +1399,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
       
       <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
       
-      <a class="dib pv1 ph2 link" href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
       
       <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
       

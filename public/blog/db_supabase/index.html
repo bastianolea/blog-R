@@ -31,16 +31,16 @@
 <meta property="og:title" content="Crear y conectarse a una base de datos en R | Bastián Olea">
 <meta property="og:description" content="Coloquialmente se usa el término _base de datos_ para referirse a datos que están en Excel. Pero en realidad una base de datos es algo distinto: un sistema de almacenamiento y procesamiento de datos que puede contener múltiples tablas, alojado en un computador, servidor o en la nube, que puede entregar datos de forma rápida y eficiente de acuerdo a las solicitudes que se le hagan. En este post veremos cómo crear una base de datos **gratuita**, cómo conectarnos a ella desde R, a leer y escribir tablas, y procesar datos desde la base de datos remota." />
 <meta property="og:type" content="page" />
-<meta property="og:url" content="https://bastianoleah.netlify.app/blog/db_supabase/" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/db_supabase/" />
 <meta property="og:locale" content="es-ES">
 
 
 
 
     
-        <meta property="og:image" content="https://bastianoleah.netlify.app/blog/db_supabase/featured.png" >
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/db_supabase/featured.png" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="https://bastianoleah.netlify.app/blog/db_supabase/featured.png" >
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/db_supabase/featured.png" >
     
     
   
@@ -48,8 +48,8 @@
   <meta itemprop="description" content="Índice Qué es una base de datos Cuándo usar una base de datos Crear una base de datos en Supabase Conectarse a la base de datos Credenciales de acceso Variables de entorno Conexión a la base de datos Crear una tabla en la base de datos Leer una tabla desde la base de datos Procesar desde la base de datos con {dplyr} Avanzado Conexión por IPv4 Recursos Qué es una base de datos Cuando se habla de datos, mucha gente (me incluyo) usa coloquialmente el término base de datos para referirse a datos que están en Excel o csv 😣 Pero la realidad es que una base de datos es algo distinto: un sistema de almacenamiento y procesamiento de datos que puede contener múltiples tablas, que está hosteado en un computador, servidor o en la nube, y que entrega datos de acuerdo a las solicitudes que se le hagan. En este sentido una base de datos es distinto a leer un archivo, porque la base de datos siempre tiene cargados los datos, y está esperando que se los pidan para entregarlos de manera optimizada.">
   <meta itemprop="datePublished" content="2025-11-06T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-11-06T00:00:00+00:00">
-  <meta itemprop="wordCount" content="2212">
-  <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/db_supabase/featured.png">
+  <meta itemprop="wordCount" content="2233">
+  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/db_supabase/featured.png">
   <meta itemprop="keywords" content="Datos,Optimización,Dplyr">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -57,25 +57,26 @@
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.2d895d62345af9e2e72524b81407c43bc32960e92011f6c745d4db53ec6d0bd7.css" integrity="sha256-LYldYjRa&#43;eLnJSS4FAfEO8MpYOkgEfbHRdTbU&#43;xtC9c=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.d422480e848eb6a5d606350ae11db5d9667dd9d70bf949467ce465c539b2be4a.css" integrity="sha256-1CJIDoSOtqXWBjUK4R212WZ92dcL&#43;UlGfORlxTmyvko=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.caca34247ad208428a7269b9786cc8952a5bfd8b756a9b7391db731732bc56c5.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
   
   
-  <link rel="preload" href="https://bastianoleah.shinyapps.io/buscador/" as="image">
+  <link rel="preload" href="/buscador/" as="image">
+  
 </head>
 <body>
       <div class="grid-container single-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianoleah.netlify.app/" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
       <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -103,7 +104,7 @@
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
       
         
         
@@ -147,7 +148,7 @@
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -264,7 +265,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/datos"
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/datos"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -273,7 +274,7 @@
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            datos</a>  <a href="https://bastianoleah.netlify.app/tags/optimizaci%C3%B3n"
+            datos</a>  <a href="https://bastianolea.rbind.io/tags/optimizaci%C3%B3n"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -282,7 +283,7 @@
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            optimización</a>  <a href="https://bastianoleah.netlify.app/tags/dplyr"
+            optimización</a>  <a href="https://bastianolea.rbind.io/tags/dplyr"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -733,6 +734,8 @@ FROM (
 <li>
 <a href="https://pacha.dev/blog/2020/08/09/postgresql-for-r-users/" target="_blank" rel="noopener">A Crash Course on PostgreSQL for R Users</a>, por 
 <a href="https://pacha.dev" target="_blank" rel="noopener">Mauricio Vargas S.</a></li>
+<li>
+<a href="https://frodriguezsanchez.net/post/querying-data-from-large-cloud-databases-with-r-and-duckdb/" target="_blank" rel="noopener">Querying data from large cloud databases with R and DuckDB</a></li>
 </ul>
 <p><div style = "height: 18px;">
 </div>
@@ -745,11 +748,27 @@ FROM (
     data-text="Regálame un cafecito" 
     data-outline-color="#000000" data-font-color="#543A73" data-coffee-color="#ffffff" ></script>
   </div>
+</div>
 
 
 
 
-</p>
+
+<aside>
+  <div id="avisos" style="margin-top:32px;">
+    
+    <a href="/blog/curso_r_intro_3/">
+    <img src="/blog/curso_r_intro_3/curso-r-2026-junio-featured.jpeg" 
+      style="border-radius: 7px; max-height: 240px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;" 
+      alt="¿Quieres aprender R para analizar datos? Inscríbete a mi curso!">
+    </a>
+    
+    <div style="max-width: 320px; margin:auto; font-size:85%;opacity:60%;">
+      <p>¿Quieres aprender R para analizar datos? Participa del curso! <a href="/blog/curso_r_intro_3/">Inscríbete gratis!</a></p>
+      </div>
+  
+  </div>
+</aside></p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -769,12 +788,12 @@ FROM (
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/ggiraph/">&larr; Convierte gráficos `{ggplot2}` en visualizaciones interactivas con `{ggiraph}`</a>
+    href="https://bastianolea.rbind.io/blog/ggiraph/">&larr; Convierte gráficos `{ggplot2}` en visualizaciones interactivas con `{ggiraph}`</a>
   
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/shiny_optimizar/">Optimiza la velocidad de tus aplicaciones Shiny con `bindCache()` &rarr;</a>
+    href="https://bastianolea.rbind.io/blog/shiny_optimizar/">Optimiza la velocidad de tus aplicaciones Shiny con `bindCache()` &rarr;</a>
   
 </div>
 
@@ -786,7 +805,7 @@ FROM (
   
     
       <script src="https://utteranc.es/client.js"
-              repo="bastianolea/blog-bastianolea-r"
+              repo="bastianolea/blog-R"
               issue-term="pathname"
               theme="github-light"
               label="comments"
@@ -811,29 +830,29 @@ FROM (
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">11 minute read, 2212 words</dd>
+    <dd class="fw5 ml0">11 minute read, 2233 words</dd>
   </dl>
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Categorías:</dt>
-    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/categories/tutoriales">Tutoriales</a> </dd>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/categories/tutoriales">Tutoriales</a> </dd>
   </dl>
   
   
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Tags:</dt>
-    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/datos">datos</a>  <a href="https://bastianoleah.netlify.app/tags/optimizaci%C3%B3n">optimización</a>  <a href="https://bastianoleah.netlify.app/tags/dplyr">dplyr</a> </dd>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/datos">datos</a>  <a href="https://bastianolea.rbind.io/tags/optimizaci%C3%B3n">optimización</a>  <a href="https://bastianolea.rbind.io/tags/dplyr">dplyr</a> </dd>
   </dl>
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
+    <dd class="fw5 ml0"><a href="/blog/funcion_consultar_datos/">Creando una función para consultar datos en R</a></dd>
+    
     <dd class="fw5 ml0"><a href="/blog/herramientas_llm/">Potencia las capacidades de la IA entregándole herramientas (_tool calling_) basadas en R</a></dd>
     
     <dd class="fw5 ml0"><a href="/blog/censo_2024/">Explorar datos del Censo de Población y Vivienda 2024 con R</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/indice_brechas_genero/">Plataforma de análisis: Índice de Brechas de Género</a></dd>
     
   </dl>
 </details>
@@ -851,7 +870,7 @@ FROM (
 
   <h1 class="f3">Blog</h1>
   <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
-<a href="https://bastianoleah.shinyapps.io/buscador/" target="_blank" rel="noopener">buscador</a> para encontrar publicaciones o navega los 
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
 <a href="/tags/">temas</a>.</p>
   
 
@@ -875,7 +894,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/chile/">Chile</a></span>
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
   </span>
  
   
@@ -890,7 +909,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/datos/">Datos</a></span>
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
   </span>
  
   
@@ -905,7 +924,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -920,7 +939,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -935,7 +954,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -950,7 +969,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/blog/">Blog</a></span>
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
   </span>
  
   
@@ -965,7 +984,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -980,7 +999,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -995,7 +1014,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ggplot2/">Ggplot2</a></span>
+      href="https://bastianolea.rbind.io/tags/ggplot2/">Ggplot2</a></span>
   </span>
  
   
@@ -1010,7 +1029,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/web-scraping/">Web scraping</a></span>
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
   </span>
  
   
@@ -1025,7 +1044,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/b%C3%A1sico/">Básico</a></span>
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
   </span>
  
   
@@ -1040,7 +1059,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -1055,7 +1074,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -1070,7 +1089,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -1085,7 +1104,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/curiosidades/">Curiosidades</a></span>
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -1100,7 +1119,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -1115,7 +1134,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/quarto/">Quarto</a></span>
+      href="https://bastianolea.rbind.io/tags/texto/">Texto</a></span>
   </span>
  
   
@@ -1130,7 +1149,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/dplyr/">Dplyr</a></span>
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -1145,7 +1164,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/loops/">Loops</a></span>
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
   </span>
  
   
@@ -1160,7 +1179,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ciencias-sociales/">Ciencias sociales</a></span>
+      href="https://bastianolea.rbind.io/tags/automatizaci%C3%B3n/">Automatización</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>
@@ -1242,7 +1261,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -1335,7 +1354,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
       
       <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
       
-      <a class="dib pv1 ph2 link" href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
       
       <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
       

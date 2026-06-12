@@ -31,16 +31,16 @@
 <meta property="og:title" content="Potencia las capacidades de la IA entregándole herramientas (_tool calling_) basadas en R | Bastián Olea">
 <meta property="og:description" content="Enseña a la IA a usar R para potenciar sus capacidades" />
 <meta property="og:type" content="page" />
-<meta property="og:url" content="https://bastianoleah.netlify.app/blog/herramientas_llm/" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/herramientas_llm/" />
 <meta property="og:locale" content="es-ES">
 
 
 
 
     
-        <meta property="og:image" content="https://bastianoleah.netlify.app/blog/herramientas_llm/featured.png" >
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/herramientas_llm/herramientas-llm-featured.png" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="https://bastianoleah.netlify.app/blog/herramientas_llm/featured.png" >
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/herramientas_llm/herramientas-llm-featured.png" >
     
     
   
@@ -50,34 +50,35 @@ Por ejemplo, la IA puede saber mucho sobre Chile, pero no sabe con exactitud tod
 Poniendo a prueba el conocimiento de la IA Hagamos una consulta por un dato específico primero, y luego sobre población chilena al modelo Claude Haiku de Anthropic.">
   <meta itemprop="datePublished" content="2026-04-26T00:00:00+00:00">
   <meta itemprop="dateModified" content="2026-04-26T00:00:00+00:00">
-  <meta itemprop="wordCount" content="2387">
-  <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/herramientas_llm/featured.png">
-  <meta itemprop="keywords" content="Inteligencia artificial,Datos">
+  <meta itemprop="wordCount" content="2405">
+  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/herramientas_llm/herramientas-llm-featured.png">
+  <meta itemprop="keywords" content="Inteligencia artificial,Datos,Funciones">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.2d895d62345af9e2e72524b81407c43bc32960e92011f6c745d4db53ec6d0bd7.css" integrity="sha256-LYldYjRa&#43;eLnJSS4FAfEO8MpYOkgEfbHRdTbU&#43;xtC9c=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.d422480e848eb6a5d606350ae11db5d9667dd9d70bf949467ce465c539b2be4a.css" integrity="sha256-1CJIDoSOtqXWBjUK4R212WZ92dcL&#43;UlGfORlxTmyvko=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.caca34247ad208428a7269b9786cc8952a5bfd8b756a9b7391db731732bc56c5.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
   
   
-  <link rel="preload" href="https://bastianoleah.shinyapps.io/buscador/" as="image">
+  <link rel="preload" href="/buscador/" as="image">
+  
 </head>
 <body>
       <div class="grid-container single-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianoleah.netlify.app/" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
       <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -105,7 +106,7 @@ Poniendo a prueba el conocimiento de la IA Hagamos una consulta por un dato espe
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
       
         
         
@@ -149,7 +150,7 @@ Poniendo a prueba el conocimiento de la IA Hagamos una consulta por un dato espe
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -266,7 +267,7 @@ Poniendo a prueba el conocimiento de la IA Hagamos una consulta por un dato espe
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/inteligencia-artificial"
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/inteligencia-artificial"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -275,7 +276,7 @@ Poniendo a prueba el conocimiento de la IA Hagamos una consulta por un dato espe
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            inteligencia artificial</a>  <a href="https://bastianoleah.netlify.app/tags/datos"
+            inteligencia artificial</a>  <a href="https://bastianolea.rbind.io/tags/datos"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -284,7 +285,16 @@ Poniendo a prueba el conocimiento de la IA Hagamos una consulta por un dato espe
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            datos</a> </dd></em>
+            datos</a>  <a href="https://bastianolea.rbind.io/tags/funciones"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            funciones</a> </dd></em>
         </dl>
          
       
@@ -312,7 +322,7 @@ Poniendo a prueba el conocimiento de la IA Hagamos una consulta por un dato espe
   color: #EAD2FA; font-size: 10pt;
   padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
   margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
-  href="https://github.com/bastianolea/censo_poblacion_consultar" target="_blank" rel="noopener"><i class="fas fa-file-code fa-lg fa-fw mr2"></i>Código herramienta</a>
+  href="/blog/funcion_consultar_datos/" ><i class="fas fa-newspaper fa-lg fa-fw mr2"></i>Crear herramientas</a>
 
 </div>
 
@@ -344,75 +354,7 @@ Poniendo a prueba el conocimiento de la IA Hagamos una consulta por un dato espe
 </span></span><span class="line"><span class="cl"><span class="n">chat</span> <span class="o">&lt;-</span> <span class="nf">chat_anthropic</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">  <span class="n">model</span> <span class="o">=</span> <span class="s">&#34;claude-haiku-4-5&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
-</span></span></code></pre></div><div style="margin: 28px 0;">
-    <p class="titulo-panel">
-      Aprende a interactuar con modelos de IA desde R
-    </p>
-
-  <a href="/blog/ellmer/"
-     style="display: flex;
-            flex-direction: row;
-            align-items: stretch;
-            text-decoration: none;
-            color: inherit;
-            /*border: 1px solid #9069C035;*/
-            border: solid 2px #A885C6AA;
-            border-radius: 8px;
-            overflow: hidden;
-            /*background-color: #9069C00d;*/
-            background-color: #9069C020;
-            ">
-
-    
-    <figure style="flex-shrink: 0;
-                   position: relative;
-                   width: 140px;
-                   min-height: 80px;
-                   margin: 10px 0 10px 10px;
-                   overflow: hidden;
-                   border-radius: 5px;">
-      <img src="/blog/ellmer/featured.png"
-           alt="Interactúa con modelos de lenguaje (LLM) y chatea con IAs en R"
-           style="position: absolute;
-                  inset: 0;
-                  width: 100%;
-                  height: 100%;
-                  object-fit: cover;
-                  object-position: center top;
-                  margin: 0;">
-    </figure>
-    
-
-    <div style="padding: 15px 20px;
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                gap: 6px;">
-
-      <p style="margin: 0;
-                font-size: 95%;
-                color: #9069C0;
-                font-weight: bold;
-                line-height: 1.35;">
-        Interactúa con modelos de lenguaje (LLM) y chatea con IAs en R
-      </p>
-
-      
-      <p style="margin: 0;
-                font-size: 84%;
-                line-height: 1.5;">
-        Chatear con modelos de lenguaje (LLM) o IAs puede tener muchos usos para el análisis de datos: generar código de R para tus análisis, visualizaciones o exploraciones de datos; interpretar datos que…
-      </p>
-      
-
-    </div>
-  </a>
-  </div>
-
-
-
-<p>Con el modelo iniciado, le hacemos la pregunta:</p>
+</span></span></code></pre></div><p>Con el modelo iniciado, le hacemos la pregunta:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">chat</span><span class="o">$</span><span class="nf">chat</span><span class="p">(</span><span class="s">&#34;Cuál es la población de Curanilahue?&#34;</span><span class="p">)</span>
 </span></span></code></pre></div><p>El modelo responde:</p>
 <blockquote>
@@ -449,8 +391,8 @@ aproximadamente <strong>25.000 habitantes</strong>.</p>
                    margin: 10px 0 10px 10px;
                    overflow: hidden;
                    border-radius: 5px;">
-      <img src="/blog/ellmer/featured.png"
-           alt="Interactúa con modelos de lenguaje (LLM) y chatea con IAs en R"
+      <img src="/blog/ellmer/r_ia_ellmer_featured.png"
+           alt="Interactúa con modelos de lenguaje (LLM) y chatea con IAs directamente desde R"
            style="position: absolute;
                   inset: 0;
                   width: 100%;
@@ -473,14 +415,14 @@ aproximadamente <strong>25.000 habitantes</strong>.</p>
                 color: #9069C0;
                 font-weight: bold;
                 line-height: 1.35;">
-        Interactúa con modelos de lenguaje (LLM) y chatea con IAs en R
+        Interactúa con modelos de lenguaje (LLM) y chatea con IAs directamente desde R
       </p>
 
       
       <p style="margin: 0;
                 font-size: 84%;
                 line-height: 1.5;">
-        Chatear con modelos de lenguaje (LLM) o IAs puede tener muchos usos para el análisis de datos: generar código de R para tus análisis, visualizaciones o exploraciones de datos; interpretar datos que…
+        La IA es útil para distintos aspectos del análisis de datos, como interpretar resultados, explorar conjuntos de datos, redactar textos en base a datos, extraer datos estructurados (como entrevistas o…
       </p>
       
 
@@ -492,7 +434,16 @@ aproximadamente <strong>25.000 habitantes</strong>.</p>
 
 <p><strong>¿Qué pasa si pudiéramos entregarle los datos correctos al modelo de lenguaje?</strong></p>
 <p>Esto es posible mediante el <strong>uso de herramientas</strong> (<em>tool calling</em>), que, como su nombre indica, es la capacidad de ciertos modelos de inteligencia artificial de poder recibir herramientas para poder usarlas cuando sean necesarias.</p>
-<p>Esto significa que podemos <strong>crear funciones de R y entregárselas a la inteligencia artificial</strong> para que las use! 😮</p>
+<p>Esto significa que podemos <strong>
+<a href="/blog/funcion_consultar_datos/">crear funciones de R</a> y entregárselas a la inteligencia artificial</strong> para que las use! 😮</p>
+<p><a href="herramientas-llm-featured.png" target="_blank">
+
+  <img src="herramientas-llm-featured.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<div style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px;">
+  Esquema del funcionamiento del <em>tool calling</em> para asistir las respuestas de un modelo de lenguaje
+  </div></p>
 
 
 
@@ -503,8 +454,8 @@ aproximadamente <strong>25.000 habitantes</strong>.</p>
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h3>
-<p>En 
-<a href="https://github.com/bastianolea/censo_poblacion_consultar" target="_blank" rel="noopener">este repositorio</a> creé una función de R llamada <code>consultar_censo()</code>, que permite obtener datos de población del Censo 2024 en distintos niveles territoriales (país, región, provincia, comuna), y en distintas desagregaciones (total, sexo, grupos de edad).</p>
+<p>Para ejemplificar esta publicación, usaremos una <strong>función de R</strong> llamada <code>consultar_censo()</code>, que permite obtener datos de población del Censo 2024 en distintos niveles territoriales (país, región, provincia, comuna), y en distintas desagregaciones (total, sexo, grupos de edad).</p>
+<!--
 <div style="margin: 28px 0;">
   <p class="titulo-panel">
     Repositorio mencionado
@@ -545,30 +496,86 @@ aproximadamente <strong>25.000 habitantes</strong>.</p>
   </a>
 </div>
 
-<p>Para poder usarla en tu sesión de R, clona el repositorio, o descarga el script <code>consultar_censo.R</code> y el archivo <code>censo.rds</code> y ponlos en tu proyecto de R.</p>
-<p>La función se usa así:</p>
+
+--->
+<p>
+<a href="/blog/funcion_consultar_datos/">En este tutorial explico paso a paso cómo crear una <strong>función de consulta de datos</strong></a>, para que puedas crear una similar para tu propio proyecto, o usar la misma en tu computador.</p>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/funcion_consultar_datos/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/funcion_consultar_datos/funcion_consultar_datos_featured.png"
+           alt="Creando una función para consultar datos en R"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Creando una función para consultar datos en R
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        En R es muy fácil filtrar y seleccionar cualquier base de datos para obtener las cifras que quieras. Pero a veces necesitamos consultar muchas cifras, y repetir el código se vuelve engorroso. En este…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+<p>La función <code>consultar_censo()</code> se usa así:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">consultar_censo</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">  <span class="n">nivel</span> <span class="o">=</span> <span class="s">&#34;Comuna&#34;</span><span class="p">,</span> 
 </span></span><span class="line"><span class="cl">  <span class="n">territorio</span> <span class="o">=</span> <span class="s">&#34;Curanilahue&#34;</span><span class="p">)</span>
 </span></span></code></pre></div><pre tabindex="0"><code>→ datos a nivel comuna, Curanilahue
 ℹ población censada: 31.119
 [1] 31119
-</code></pre><div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
-            /*background-color: #A985C650;*/
-            background-color: #DEC4F2;
-            border-radius: 6px;
-            margin: 20px 40px 20px 40px;">
-  
-  <div style="flex-shrink: 0;">
-    <i class="fas fa-info-circle" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #9069C0;"></i>
-  </div>
-  
-  <aside style = "font-size: 90%;">
-    Pronto escribiré una publicación profundizando sobre esta función!
-  </aside>
-  
-</div>
-<p>La función <code>consultar_censo()</code> es útil para un ser humano, pero queremos que la IA pueda usarla también para que use esta información en sus respuestas.</p>
+</code></pre><p>La función <code>consultar_censo()</code> es útil para un ser humano, pero queremos que la IA pueda usarla también para que use esta información en sus respuestas.</p>
 
 
 
@@ -938,7 +945,74 @@ siguiente manera:</p>
 mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
 </blockquote>
 <p>Ahora sí 😉 La IA supo que necesitaba sumar los datos, así que esta vez recurrió a la herramienta y lo hizo bien.</p>
-<hr>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Ahora te toca a ti crear una herramienta!
+    </p>
+
+  <a href="/blog/funcion_consultar_datos/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/funcion_consultar_datos/funcion_consultar_datos_featured.png"
+           alt="Creando una función para consultar datos en R"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Creando una función para consultar datos en R
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        En R es muy fácil filtrar y seleccionar cualquier base de datos para obtener las cifras que quieras. Pero a veces necesitamos consultar muchas cifras, y repetir el código se vuelve engorroso. En este…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
 <p>Usar LLMs desde R tiene una potencialidad notable, con un ecosistema de paquetes maduro para implementar IA en el análisis de datos. Con lo que vimos en esta publicación se podría implementar un <em>chat bot</em> manejado por R que pueda realizar consultas a datos complejos y entregar información exacta, o hacer que los modelos de IA realicen operaciones complejas de cualquier tipo. Hay muchísimas posibilidades!</p>
 
   <div style="margin: 28px 0;">
@@ -952,7 +1026,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                 overflow: hidden;
                 background-color: #9069C00d;">
 
-      <a href="/blog/datos_estructurados_llm/"
+      <a href="/blog/shinychat/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -961,6 +1035,99 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                   padding: 8px 14px;
                   gap: 12px;
                   
+                  ">
+
+          
+          <img src="/blog/shinychat/chatbot_r_featured.png"
+               alt="Crea un chatbot de inteligencia artificial con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Crea un chatbot de inteligencia artificial con R
+          </span>
+
+        </a>
+      <a href="/blog/rag_ragnar/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/rag_ragnar/diagrama_pensamiento_llm_rag-featured.png"
+               alt="Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R
+          </span>
+
+        </a>
+      <a href="/blog/funcion_consultar_datos/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/funcion_consultar_datos/funcion_consultar_datos_featured.png"
+               alt="Creando una función para consultar datos en R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Creando una función para consultar datos en R
+          </span>
+
+        </a>
+      <a href="/blog/datos_estructurados_llm/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
                   ">
 
           
@@ -992,8 +1159,8 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                   ">
 
           
-          <img src="/blog/ellmer/featured.png"
-               alt="Interactúa con modelos de lenguaje (LLM) y chatea con IAs en R"
+          <img src="/blog/ellmer/r_ia_ellmer_featured.png"
+               alt="Interactúa con modelos de lenguaje (LLM) y chatea con IAs directamente desde R"
                style="flex-shrink: 0;
                       width: 52px;
                       height: 38px;
@@ -1007,97 +1174,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                        color: #9069C0;
                        font-weight: 600;
                        line-height: 1.35;">
-            Interactúa con modelos de lenguaje (LLM) y chatea con IAs en R
-          </span>
-
-        </a>
-      <a href="/blog/redactar_texto_llm/"
-           style="display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  text-decoration: none;
-                  color: inherit;
-                  padding: 8px 14px;
-                  gap: 12px;
-                  border-top: 1px solid #9069C030;
-                  ">
-
-          
-          <div style="flex-shrink: 0;
-                      width: 52px;
-                      height: 38px;
-                      border-radius: 4px;
-                      background-color: #9069C020;">
-          </div>
-          
-
-          <span style="font-size: 88%;
-                       color: #9069C0;
-                       font-weight: 600;
-                       line-height: 1.35;">
-            Redactar textos basados en datos usando IA desde R
-          </span>
-
-        </a>
-      <a href="/blog/btw/"
-           style="display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  text-decoration: none;
-                  color: inherit;
-                  padding: 8px 14px;
-                  gap: 12px;
-                  border-top: 1px solid #9069C030;
-                  ">
-
-          
-          <img src="/blog/btw/btw_featured.png"
-               alt="Interactúa desde R con una IA que conoce tus datos, archivos y paquetes"
-               style="flex-shrink: 0;
-                      width: 52px;
-                      height: 38px;
-                      object-fit: cover;
-                      object-position: center top;
-                      border-radius: 4px;
-                      margin: 0;">
-          
-
-          <span style="font-size: 88%;
-                       color: #9069C0;
-                       font-weight: 600;
-                       line-height: 1.35;">
-            Interactúa desde R con una IA que conoce tus datos, archivos y paquetes
-          </span>
-
-        </a>
-      <a href="/blog/gander/"
-           style="display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  text-decoration: none;
-                  color: inherit;
-                  padding: 8px 14px;
-                  gap: 12px;
-                  border-top: 1px solid #9069C030;
-                  ">
-
-          
-          <img src="/blog/gander/featured.png"
-               alt="Acelera tus análisis con `{gander}`, un asistente de IA integrado en RStudio"
-               style="flex-shrink: 0;
-                      width: 52px;
-                      height: 38px;
-                      object-fit: cover;
-                      object-position: center top;
-                      border-radius: 4px;
-                      margin: 0;">
-          
-
-          <span style="font-size: 88%;
-                       color: #9069C0;
-                       font-weight: 600;
-                       line-height: 1.35;">
-            Acelera tus análisis con <code>{gander}</code>, un asistente de IA integrado en RStudio
+            Interactúa con modelos de lenguaje (LLM) y chatea con IAs directamente desde R
           </span>
 
         </a>
@@ -1119,6 +1196,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
     data-text="Regálame un cafecito" 
     data-outline-color="#000000" data-font-color="#543A73" data-coffee-color="#ffffff" ></script>
   </div>
+</div>
  
     </section>
       
@@ -1127,12 +1205,12 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/mapas_sf/">&larr; Mapas y visualización de datos geoespaciales en R con {sf}</a>
+    href="https://bastianolea.rbind.io/blog/mapas_sf/">&larr; Mapas y visualización de datos geoespaciales en R con {sf}</a>
   
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/ggplot_dumbbell/">Gráficos de puntos comparativos o _dumbbell_ en `{ggplot2}` &rarr;</a>
+    href="https://bastianolea.rbind.io/blog/ggplot_dumbbell/">Gráficos de puntos comparativos o _dumbbell_ en `{ggplot2}` &rarr;</a>
   
 </div>
 
@@ -1144,7 +1222,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
   
     
       <script src="https://utteranc.es/client.js"
-              repo="bastianolea/blog-bastianolea-r"
+              repo="bastianolea/blog-R"
               issue-term="pathname"
               theme="github-light"
               label="comments"
@@ -1169,24 +1247,24 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">12 minute read, 2387 words</dd>
+    <dd class="fw5 ml0">12 minute read, 2405 words</dd>
   </dl>
   
   
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Tags:</dt>
-    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/inteligencia-artificial">inteligencia artificial</a>  <a href="https://bastianoleah.netlify.app/tags/datos">datos</a> </dd>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/inteligencia-artificial">inteligencia artificial</a>  <a href="https://bastianolea.rbind.io/tags/datos">datos</a>  <a href="https://bastianolea.rbind.io/tags/funciones">funciones</a> </dd>
   </dl>
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
-    <dd class="fw5 ml0"><a href="/blog/censo_2024/">Explorar datos del Censo de Población y Vivienda 2024 con R</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/shinychat/">Crea un chatbot de inteligencia artificial con R</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/indice_brechas_genero/">Plataforma de análisis: Índice de Brechas de Género</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/rag_ragnar/">Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/estudio_brechas_comunales/">Plataforma de visualización de resultados del Estudio de Brechas Comunales</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/funcion_consultar_datos/">Creando una función para consultar datos en R</a></dd>
     
   </dl>
 </details>
@@ -1204,7 +1282,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
 
   <h1 class="f3">Blog</h1>
   <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
-<a href="https://bastianoleah.shinyapps.io/buscador/" target="_blank" rel="noopener">buscador</a> para encontrar publicaciones o navega los 
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
 <a href="/tags/">temas</a>.</p>
   
 
@@ -1228,7 +1306,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/chile/">Chile</a></span>
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
   </span>
  
   
@@ -1243,7 +1321,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/datos/">Datos</a></span>
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
   </span>
  
   
@@ -1258,7 +1336,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -1273,7 +1351,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -1288,7 +1366,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
   </span>
  
   
@@ -1303,7 +1381,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/blog/">Blog</a></span>
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -1318,7 +1396,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -1333,7 +1411,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
+      href="https://bastianolea.rbind.io/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -1348,7 +1426,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ggplot2/">Ggplot2</a></span>
+      href="https://bastianolea.rbind.io/tags/ggplot2/">Ggplot2</a></span>
   </span>
  
   
@@ -1363,7 +1441,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/web-scraping/">Web scraping</a></span>
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
   </span>
  
   
@@ -1378,7 +1456,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/b%C3%A1sico/">Básico</a></span>
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
   </span>
  
   
@@ -1393,7 +1471,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -1408,7 +1486,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -1423,7 +1501,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -1438,7 +1516,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -1453,7 +1531,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/curiosidades/">Curiosidades</a></span>
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -1468,7 +1546,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/quarto/">Quarto</a></span>
+      href="https://bastianolea.rbind.io/tags/texto/">Texto</a></span>
   </span>
  
   
@@ -1483,7 +1561,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/dplyr/">Dplyr</a></span>
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -1498,7 +1576,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/optimizaci%C3%B3n/">Optimización</a></span>
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
   </span>
  
   
@@ -1513,7 +1591,7 @@ mayor de 20 años</strong> es de <strong>11,072 habitantes</strong>.</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/texto/">Texto</a></span>
+      href="https://bastianolea.rbind.io/tags/optimizaci%C3%B3n/">Optimización</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>
@@ -1587,7 +1665,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -1680,7 +1758,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
       
       <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
       
-      <a class="dib pv1 ph2 link" href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
       
       <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
       

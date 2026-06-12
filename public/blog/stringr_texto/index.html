@@ -31,16 +31,16 @@
 <meta property="og:title" content="Limpieza y recodificación de datos de texto en R con {stringr} | Bastián Olea">
 <meta property="og:description" content="Los datos que vienen como texto suelen necesitar una limpieza previa, y adicionalmente un procesamiento para poder aprovecharlos mejor. En este tutorial usamos el paquete `{stringr}` para limpiar y ordenar unos datos de texto." />
 <meta property="og:type" content="page" />
-<meta property="og:url" content="https://bastianoleah.netlify.app/blog/stringr_texto/" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/stringr_texto/" />
 <meta property="og:locale" content="es-ES">
 
 
 
 
     
-        <meta property="og:image" content="https://bastianoleah.netlify.app/blog/stringr_texto/featured.png" >
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/stringr_texto/featured.png" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="https://bastianoleah.netlify.app/blog/stringr_texto/featured.png" >
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/stringr_texto/featured.png" >
     
     
   
@@ -50,7 +50,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
   <meta itemprop="datePublished" content="2025-06-08T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-06-08T00:00:00+00:00">
   <meta itemprop="wordCount" content="1665">
-  <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/stringr_texto/featured.png">
+  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/stringr_texto/featured.png">
   <meta itemprop="keywords" content="Limpieza de datos,Texto">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -58,25 +58,26 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.2d895d62345af9e2e72524b81407c43bc32960e92011f6c745d4db53ec6d0bd7.css" integrity="sha256-LYldYjRa&#43;eLnJSS4FAfEO8MpYOkgEfbHRdTbU&#43;xtC9c=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.d422480e848eb6a5d606350ae11db5d9667dd9d70bf949467ce465c539b2be4a.css" integrity="sha256-1CJIDoSOtqXWBjUK4R212WZ92dcL&#43;UlGfORlxTmyvko=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.caca34247ad208428a7269b9786cc8952a5bfd8b756a9b7391db731732bc56c5.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
   
   
-  <link rel="preload" href="https://bastianoleah.shinyapps.io/buscador/" as="image">
+  <link rel="preload" href="/buscador/" as="image">
+  
 </head>
 <body>
       <div class="grid-container single-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianoleah.netlify.app/" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
       <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -104,7 +105,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
       
         
         
@@ -148,7 +149,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -265,7 +266,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/limpieza-de-datos"
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/limpieza-de-datos"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -274,7 +275,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            limpieza de datos</a>  <a href="https://bastianoleah.netlify.app/tags/texto"
+            limpieza de datos</a>  <a href="https://bastianolea.rbind.io/tags/texto"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -657,6 +658,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
     data-text="Regálame un cafecito" 
     data-outline-color="#000000" data-font-color="#543A73" data-coffee-color="#ffffff" ></script>
   </div>
+</div>
  
     </section>
       
@@ -665,12 +667,12 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/quarto_loop/">&larr; Generar contenido en serie usando loops en un reporte Quarto</a>
+    href="https://bastianolea.rbind.io/blog/quarto_loop/">&larr; Generar contenido en serie usando loops en un reporte Quarto</a>
   
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/datapasta/">Copia y pega datos en R con {datapasta} y {clipr} &rarr;</a>
+    href="https://bastianolea.rbind.io/blog/datapasta/">Copia y pega datos en R con {datapasta} y {clipr} &rarr;</a>
   
 </div>
 
@@ -682,7 +684,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
   
     
       <script src="https://utteranc.es/client.js"
-              repo="bastianolea/blog-bastianolea-r"
+              repo="bastianolea/blog-R"
               issue-term="pathname"
               theme="github-light"
               label="comments"
@@ -712,24 +714,24 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Categorías:</dt>
-    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/categories/tutoriales">tutoriales</a> </dd>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/categories/tutoriales">tutoriales</a> </dd>
   </dl>
   
   
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Tags:</dt>
-    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/limpieza-de-datos">limpieza de datos</a>  <a href="https://bastianoleah.netlify.app/tags/texto">texto</a> </dd>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/limpieza-de-datos">limpieza de datos</a>  <a href="https://bastianolea.rbind.io/tags/texto">texto</a> </dd>
   </dl>
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
-    <dd class="fw5 ml0"><a href="/blog/datos_estructurados_llm/">Extracción de datos estructurados desde texto usando IA</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/buscar_texto/">Búsquedas de texto por ranking de relevancia con R usando el algoritmo BM25</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/2026-02-25/">Renombrar archivos desde R</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/2026-05-29/">Palíndromos de Chile</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/redactar_texto_llm/">Redactar textos basados en datos usando IA desde R</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/rag_ragnar/">Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R</a></dd>
     
   </dl>
 </details>
@@ -747,7 +749,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
 
   <h1 class="f3">Blog</h1>
   <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
-<a href="https://bastianoleah.shinyapps.io/buscador/" target="_blank" rel="noopener">buscador</a> para encontrar publicaciones o navega los 
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
 <a href="/tags/">temas</a>.</p>
   
 
@@ -771,7 +773,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/chile/">Chile</a></span>
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
   </span>
  
   
@@ -786,7 +788,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/datos/">Datos</a></span>
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
   </span>
  
   
@@ -801,7 +803,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -816,7 +818,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -831,7 +833,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
   </span>
  
   
@@ -846,7 +848,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/blog/">Blog</a></span>
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -861,7 +863,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -876,7 +878,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -891,7 +893,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ggplot2/">Ggplot2</a></span>
+      href="https://bastianolea.rbind.io/tags/ggplot2/">Ggplot2</a></span>
   </span>
  
   
@@ -906,7 +908,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/web-scraping/">Web scraping</a></span>
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
   </span>
  
   
@@ -921,7 +923,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/b%C3%A1sico/">Básico</a></span>
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
   </span>
  
   
@@ -936,7 +938,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -951,7 +953,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -966,7 +968,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/curiosidades/">Curiosidades</a></span>
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -981,7 +983,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -996,7 +998,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -1011,7 +1013,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/quarto/">Quarto</a></span>
+      href="https://bastianolea.rbind.io/tags/texto/">Texto</a></span>
   </span>
  
   
@@ -1026,7 +1028,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/dplyr/">Dplyr</a></span>
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -1041,7 +1043,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/loops/">Loops</a></span>
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
   </span>
  
   
@@ -1056,7 +1058,7 @@ En general, los datos que vienen como texto suelen necesitar una limpieza previa
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ciencias-sociales/">Ciencias sociales</a></span>
+      href="https://bastianolea.rbind.io/tags/loops/">Loops</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>
@@ -1130,7 +1132,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -1223,7 +1225,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
       
       <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
       
-      <a class="dib pv1 ph2 link" href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
       
       <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
       

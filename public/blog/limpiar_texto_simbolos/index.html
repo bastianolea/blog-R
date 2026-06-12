@@ -31,16 +31,16 @@
 <meta property="og:title" content="Limpiar textos con símbolos, tildes o eñes en R | Bastián Olea">
 <meta property="og:description" content="Amamos el castellano, con sus tildes y eñes, y nos encanta que R no tenga problemas para usar estos símbolos en cualquier parte del lenguaje. Pero hay veces en las que necesitamos deshacernos de estos símbolos especiales, como tildes, eñes, e incluso mayúsculas. En este post te muestro varias opciones de limpieza de texto con R." />
 <meta property="og:type" content="page" />
-<meta property="og:url" content="https://bastianoleah.netlify.app/blog/limpiar_texto_simbolos/" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/limpiar_texto_simbolos/" />
 <meta property="og:locale" content="es-ES">
 
 
 
 
     
-        <meta property="og:image" content="https://bastianoleah.netlify.app/blog/limpiar_texto_simbolos/featured.png" >
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/limpiar_texto_simbolos/featured.png" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="https://bastianoleah.netlify.app/blog/limpiar_texto_simbolos/featured.png" >
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/limpiar_texto_simbolos/featured.png" >
     
     
   
@@ -50,8 +50,8 @@ Por ejemplo:
 Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistemas operativos o para subir archivos a internet), Si queremos buscar coincidencias de texto con stringr::str_detect() y queremos aumentar probabilidades de coincidir al omitir variaciones de los caracteres, Si queremos hacer un left_join() entre dos bases de datos con formas distintas de guardar los datos (todos en mayúscula, todos sin tilde pero con eñes, etc.) Hay muchas formas distintas de hacerlo, dependiendo de lo que necesitemos. El paquete {stringr} se enfoca en el procesamiento de texto y tiene varias funciones que nos pueden ayudar.">
   <meta itemprop="datePublished" content="2025-03-31T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-03-31T00:00:00+00:00">
-  <meta itemprop="wordCount" content="680">
-  <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/limpiar_texto_simbolos/featured.png">
+  <meta itemprop="wordCount" content="686">
+  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/limpiar_texto_simbolos/featured.png">
   <meta itemprop="keywords" content="Consejos,Texto,Limpieza de datos">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -59,25 +59,26 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.2d895d62345af9e2e72524b81407c43bc32960e92011f6c745d4db53ec6d0bd7.css" integrity="sha256-LYldYjRa&#43;eLnJSS4FAfEO8MpYOkgEfbHRdTbU&#43;xtC9c=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.d422480e848eb6a5d606350ae11db5d9667dd9d70bf949467ce465c539b2be4a.css" integrity="sha256-1CJIDoSOtqXWBjUK4R212WZ92dcL&#43;UlGfORlxTmyvko=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.caca34247ad208428a7269b9786cc8952a5bfd8b756a9b7391db731732bc56c5.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
   
   
-  <link rel="preload" href="https://bastianoleah.shinyapps.io/buscador/" as="image">
+  <link rel="preload" href="/buscador/" as="image">
+  
 </head>
 <body>
       <div class="grid-container single-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianoleah.netlify.app/" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
       <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -105,7 +106,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
       
         
         
@@ -149,7 +150,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -266,7 +267,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/consejos"
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/consejos"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -275,7 +276,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            consejos</a>  <a href="https://bastianoleah.netlify.app/tags/texto"
+            consejos</a>  <a href="https://bastianolea.rbind.io/tags/texto"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -284,7 +285,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            texto</a>  <a href="https://bastianoleah.netlify.app/tags/limpieza-de-datos"
+            texto</a>  <a href="https://bastianolea.rbind.io/tags/limpieza-de-datos"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -405,7 +406,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                 overflow: hidden;
                 background-color: #9069C00d;">
 
-      <a href="/blog/datos_estructurados_llm/"
+      <a href="/blog/buscar_texto/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -414,6 +415,96 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                   padding: 8px 14px;
                   gap: 12px;
                   
+                  ">
+
+          
+          <div style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      border-radius: 4px;
+                      background-color: #9069C020;">
+          </div>
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Búsquedas de texto por ranking de relevancia con R usando el algoritmo BM25
+          </span>
+
+        </a>
+      <a href="/blog/2026-05-29/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/2026-05-29/palindromos_chile-featured.jpg"
+               alt="Palíndromos de Chile"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Palíndromos de Chile
+          </span>
+
+        </a>
+      <a href="/blog/rag_ragnar/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/rag_ragnar/diagrama_pensamiento_llm_rag-featured.png"
+               alt="Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R
+          </span>
+
+        </a>
+      <a href="/blog/datos_estructurados_llm/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
                   ">
 
           
@@ -461,96 +552,6 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
           </span>
 
         </a>
-      <a href="/blog/redactar_texto_llm/"
-           style="display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  text-decoration: none;
-                  color: inherit;
-                  padding: 8px 14px;
-                  gap: 12px;
-                  border-top: 1px solid #9069C030;
-                  ">
-
-          
-          <div style="flex-shrink: 0;
-                      width: 52px;
-                      height: 38px;
-                      border-radius: 4px;
-                      background-color: #9069C020;">
-          </div>
-          
-
-          <span style="font-size: 88%;
-                       color: #9069C0;
-                       font-weight: 600;
-                       line-height: 1.35;">
-            Redactar textos basados en datos usando IA desde R
-          </span>
-
-        </a>
-      <a href="/blog/redactar_texto/"
-           style="display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  text-decoration: none;
-                  color: inherit;
-                  padding: 8px 14px;
-                  gap: 12px;
-                  border-top: 1px solid #9069C030;
-                  ">
-
-          
-          <img src="/blog/redactar_texto/featured.png"
-               alt="Redactar textos basados en datos automáticamente con R: describiendo resultados del censo de población"
-               style="flex-shrink: 0;
-                      width: 52px;
-                      height: 38px;
-                      object-fit: cover;
-                      object-position: center top;
-                      border-radius: 4px;
-                      margin: 0;">
-          
-
-          <span style="font-size: 88%;
-                       color: #9069C0;
-                       font-weight: 600;
-                       line-height: 1.35;">
-            Redactar textos basados en datos automáticamente con R: describiendo resultados del censo de población
-          </span>
-
-        </a>
-      <a href="/blog/2025-10-21b/"
-           style="display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  text-decoration: none;
-                  color: inherit;
-                  padding: 8px 14px;
-                  gap: 12px;
-                  border-top: 1px solid #9069C030;
-                  ">
-
-          
-          <img src="/blog/2025-10-21b/featured.png"
-               alt="Redactar palabras en plural en R"
-               style="flex-shrink: 0;
-                      width: 52px;
-                      height: 38px;
-                      object-fit: cover;
-                      object-position: center top;
-                      border-radius: 4px;
-                      margin: 0;">
-          
-
-          <span style="font-size: 88%;
-                       color: #9069C0;
-                       font-weight: 600;
-                       line-height: 1.35;">
-            Redactar palabras en plural en R
-          </span>
-
-        </a>
       
 
     </div>
@@ -570,7 +571,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                 overflow: hidden;
                 background-color: #9069C00d;">
 
-      <a href="/blog/2026-02-25/"
+      <a href="/blog/buscar_texto/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -579,6 +580,34 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                   padding: 8px 14px;
                   gap: 12px;
                   
+                  ">
+
+          
+          <div style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      border-radius: 4px;
+                      background-color: #9069C020;">
+          </div>
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Búsquedas de texto por ranking de relevancia con R usando el algoritmo BM25
+          </span>
+
+        </a>
+      <a href="/blog/2026-02-25/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
                   ">
 
           
@@ -688,37 +717,6 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
           </span>
 
         </a>
-      <a href="/blog/validacion_avanzada/"
-           style="display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  text-decoration: none;
-                  color: inherit;
-                  padding: 8px 14px;
-                  gap: 12px;
-                  border-top: 1px solid #9069C030;
-                  ">
-
-          
-          <img src="/blog/validacion_avanzada/pointblank-2-featured.png"
-               alt="Validación de datos con {testthat} y {pointblank}"
-               style="flex-shrink: 0;
-                      width: 52px;
-                      height: 38px;
-                      object-fit: cover;
-                      object-position: center top;
-                      border-radius: 4px;
-                      margin: 0;">
-          
-
-          <span style="font-size: 88%;
-                       color: #9069C0;
-                       font-weight: 600;
-                       line-height: 1.35;">
-            Validación de datos con {testthat} y {pointblank}
-          </span>
-
-        </a>
       
 
     </div>
@@ -734,12 +732,12 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/quarto_reportes/">&larr; Tutorial: presenta los resultados de tus análisis de datos con R creando reportes y documentos Quarto</a>
+    href="https://bastianolea.rbind.io/blog/quarto_reportes/">&larr; Tutorial: presenta los resultados de tus análisis de datos con R creando reportes y documentos Quarto</a>
   
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/2025-03-30/">Redactar una lista de palabras separadas por comas en R &rarr;</a>
+    href="https://bastianolea.rbind.io/blog/2025-03-30/">Redactar una lista de palabras separadas por comas en R &rarr;</a>
   
 </div>
 
@@ -751,7 +749,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
   
     
       <script src="https://utteranc.es/client.js"
-              repo="bastianolea/blog-bastianolea-r"
+              repo="bastianolea/blog-R"
               issue-term="pathname"
               theme="github-light"
               label="comments"
@@ -776,24 +774,24 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">4 minute read, 680 words</dd>
+    <dd class="fw5 ml0">4 minute read, 686 words</dd>
   </dl>
   
   
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Tags:</dt>
-    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/consejos">consejos</a>  <a href="https://bastianoleah.netlify.app/tags/texto">texto</a>  <a href="https://bastianoleah.netlify.app/tags/limpieza-de-datos">limpieza de datos</a> </dd>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/consejos">consejos</a>  <a href="https://bastianolea.rbind.io/tags/texto">texto</a>  <a href="https://bastianolea.rbind.io/tags/limpieza-de-datos">limpieza de datos</a> </dd>
   </dl>
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
-    <dd class="fw5 ml0"><a href="/blog/ggplot_extensiones/">Extensiones recomendadas para mejorar tus gráficos de `{ggplot2}`</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/buscar_texto/">Búsquedas de texto por ranking de relevancia con R usando el algoritmo BM25</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/datos_estructurados_llm/">Extracción de datos estructurados desde texto usando IA</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/2026-05-29/">Palíndromos de Chile</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/2026-02-25/">Renombrar archivos desde R</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/rag_ragnar/">Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R</a></dd>
     
   </dl>
 </details>
@@ -811,7 +809,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
 
   <h1 class="f3">Blog</h1>
   <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
-<a href="https://bastianoleah.shinyapps.io/buscador/" target="_blank" rel="noopener">buscador</a> para encontrar publicaciones o navega los 
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
 <a href="/tags/">temas</a>.</p>
   
 
@@ -835,7 +833,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/chile/">Chile</a></span>
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
   </span>
  
   
@@ -850,7 +848,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/datos/">Datos</a></span>
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
   </span>
  
   
@@ -865,7 +863,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -880,7 +878,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -895,7 +893,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
   </span>
  
   
@@ -910,7 +908,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/blog/">Blog</a></span>
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -925,7 +923,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -940,7 +938,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
+      href="https://bastianolea.rbind.io/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -955,7 +953,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ggplot2/">Ggplot2</a></span>
+      href="https://bastianolea.rbind.io/tags/ggplot2/">Ggplot2</a></span>
   </span>
  
   
@@ -970,7 +968,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/web-scraping/">Web scraping</a></span>
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
   </span>
  
   
@@ -985,7 +983,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/b%C3%A1sico/">Básico</a></span>
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
   </span>
  
   
@@ -1000,7 +998,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -1015,7 +1013,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -1030,7 +1028,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -1045,7 +1043,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -1060,7 +1058,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/curiosidades/">Curiosidades</a></span>
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -1075,7 +1073,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/quarto/">Quarto</a></span>
+      href="https://bastianolea.rbind.io/tags/texto/">Texto</a></span>
   </span>
  
   
@@ -1090,7 +1088,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/dplyr/">Dplyr</a></span>
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -1105,7 +1103,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/optimizaci%C3%B3n/">Optimización</a></span>
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
   </span>
  
   
@@ -1120,7 +1118,7 @@ Si queremos dar nombres a carpetas (porque puede dar conflictos con otros sistem
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/texto/">Texto</a></span>
+      href="https://bastianolea.rbind.io/tags/ciencias-sociales/">Ciencias sociales</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>
@@ -1187,7 +1185,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -1280,7 +1278,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
       
       <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
       
-      <a class="dib pv1 ph2 link" href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
       
       <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
       

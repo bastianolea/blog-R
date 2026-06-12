@@ -31,16 +31,16 @@
 <meta property="og:title" content="Creación y personalización de colores y paletas en R | Bastián Olea">
 <meta property="og:description" content="El uso del color es clave para comunicar, y el ecosistema de R tiene varios trucos convenientes para ayudarnos a usar el color de mejores formas. En este post reúno varios consejos y trucos para trabajar con colores: desde previsualizarlos, mezclarlos, combinarlos y usarlos como paletas en gráficos." />
 <meta property="og:type" content="page" />
-<meta property="og:url" content="https://bastianoleah.netlify.app/blog/colores/" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/colores/" />
 <meta property="og:locale" content="es-ES">
 
 
 
 
     
-        <meta property="og:image" content="https://bastianoleah.netlify.app/blog/colores/featured.png" >
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/colores/featured.png" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="https://bastianoleah.netlify.app/blog/colores/featured.png" >
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/colores/featured.png" >
     
     
   
@@ -50,8 +50,8 @@ En R, los colores se escriben como código, y a grandes rasgos pueden ser colore
 library(shades) library(scales) Previsualizar colores A lo largo de este post usaremos la función swatch() del paquete {shades}, que genera un gráfico que presenta el color o la paleta de colores a partir de un vector de colores, lo que nos ayudará a visualizar nuestros colores más fácil. Una alternativa es la función show_col() de {scales}, que hace lo mismo.">
   <meta itemprop="datePublished" content="2025-03-06T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-03-06T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1867">
-  <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/colores/featured.png">
+  <meta itemprop="wordCount" content="1868">
+  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/colores/featured.png">
   <meta itemprop="keywords" content="Visualización de datos,Ggplot2">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -59,25 +59,26 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.2d895d62345af9e2e72524b81407c43bc32960e92011f6c745d4db53ec6d0bd7.css" integrity="sha256-LYldYjRa&#43;eLnJSS4FAfEO8MpYOkgEfbHRdTbU&#43;xtC9c=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.d422480e848eb6a5d606350ae11db5d9667dd9d70bf949467ce465c539b2be4a.css" integrity="sha256-1CJIDoSOtqXWBjUK4R212WZ92dcL&#43;UlGfORlxTmyvko=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.caca34247ad208428a7269b9786cc8952a5bfd8b756a9b7391db731732bc56c5.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
   
   
-  <link rel="preload" href="https://bastianoleah.shinyapps.io/buscador/" as="image">
+  <link rel="preload" href="/buscador/" as="image">
+  
 </head>
 <body>
       <div class="grid-container single-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianoleah.netlify.app/" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
       <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -105,7 +106,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
       
         
         
@@ -149,7 +150,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -266,7 +267,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos"
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -275,7 +276,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            visualización de datos</a>  <a href="https://bastianoleah.netlify.app/tags/ggplot2"
+            visualización de datos</a>  <a href="https://bastianolea.rbind.io/tags/ggplot2"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -745,6 +746,8 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
 <a href="https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/" target="_blank" rel="noopener">https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/</a></li>
 <li>
 <a href="https://jbengler.github.io/tidyplots/articles/Color-schemes.html" target="_blank" rel="noopener">https://jbengler.github.io/tidyplots/articles/Color-schemes.html</a></li>
+<li>
+<a href="https://emilhvitfeldt.com/post/2019-10-01-manipulating-colors-with-prismatic/index.html" target="_blank" rel="noopener">https://emilhvitfeldt.com/post/2019-10-01-manipulating-colors-with-prismatic/index.html</a></li>
 </ul>
 <div style = "height: 18px;">
 </div>
@@ -757,6 +760,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
     data-text="Regálame un cafecito" 
     data-outline-color="#000000" data-font-color="#543A73" data-coffee-color="#ffffff" ></script>
   </div>
+</div>
  
     </section>
       
@@ -765,12 +769,12 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/patchwork/">&larr; Unir y combinar gráficos `{ggplot2}` con `{patchwork}`</a>
+    href="https://bastianolea.rbind.io/blog/patchwork/">&larr; Unir y combinar gráficos `{ggplot2}` con `{patchwork}`</a>
   
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/mapa_chile_horizontal/">Rotar un mapa de Chile en R para que quede horizontal &rarr;</a>
+    href="https://bastianolea.rbind.io/blog/mapa_chile_horizontal/">Rotar un mapa de Chile en R para que quede horizontal &rarr;</a>
   
 </div>
 
@@ -782,7 +786,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
   
     
       <script src="https://utteranc.es/client.js"
-              repo="bastianolea/blog-bastianolea-r"
+              repo="bastianolea/blog-R"
               issue-term="pathname"
               theme="github-light"
               label="comments"
@@ -807,24 +811,24 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">9 minute read, 1867 words</dd>
+    <dd class="fw5 ml0">9 minute read, 1868 words</dd>
   </dl>
   
   
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Tags:</dt>
-    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos">visualización de datos</a>  <a href="https://bastianoleah.netlify.app/tags/ggplot2">ggplot2</a> </dd>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos">visualización de datos</a>  <a href="https://bastianolea.rbind.io/tags/ggplot2">ggplot2</a> </dd>
   </dl>
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
+    <dd class="fw5 ml0"><a href="/blog/2026-05-29/">Palíndromos de Chile</a></dd>
+    
     <dd class="fw5 ml0"><a href="/blog/mapas_hexagonales/">Mapas hexagonales o cuadriculados con R</a></dd>
     
     <dd class="fw5 ml0"><a href="/blog/mapas_sf/">Mapas y visualización de datos geoespaciales en R con {sf}</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/ggplot_dumbbell/">Gráficos de puntos comparativos o _dumbbell_ en `{ggplot2}`</a></dd>
     
   </dl>
 </details>
@@ -842,7 +846,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
 
   <h1 class="f3">Blog</h1>
   <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
-<a href="https://bastianoleah.shinyapps.io/buscador/" target="_blank" rel="noopener">buscador</a> para encontrar publicaciones o navega los 
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
 <a href="/tags/">temas</a>.</p>
   
 
@@ -866,7 +870,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/chile/">Chile</a></span>
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
   </span>
  
   
@@ -881,7 +885,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/datos/">Datos</a></span>
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
   </span>
  
   
@@ -896,7 +900,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -911,7 +915,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -926,7 +930,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
   </span>
  
   
@@ -941,7 +945,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/blog/">Blog</a></span>
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -956,7 +960,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -971,7 +975,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -986,7 +990,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ggplot2/">Ggplot2</a></span>
+      href="https://bastianolea.rbind.io/tags/ggplot2/">Ggplot2</a></span>
   </span>
  
   
@@ -1001,7 +1005,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/web-scraping/">Web scraping</a></span>
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
   </span>
  
   
@@ -1016,7 +1020,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/b%C3%A1sico/">Básico</a></span>
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
   </span>
  
   
@@ -1031,7 +1035,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -1046,7 +1050,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -1061,7 +1065,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -1076,7 +1080,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -1091,7 +1095,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/curiosidades/">Curiosidades</a></span>
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -1106,7 +1110,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/quarto/">Quarto</a></span>
+      href="https://bastianolea.rbind.io/tags/texto/">Texto</a></span>
   </span>
  
   
@@ -1121,7 +1125,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/dplyr/">Dplyr</a></span>
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -1136,7 +1140,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/optimizaci%C3%B3n/">Optimización</a></span>
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
   </span>
  
   
@@ -1151,7 +1155,7 @@ library(shades) library(scales) Previsualizar colores A lo largo de este post us
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/texto/">Texto</a></span>
+      href="https://bastianolea.rbind.io/tags/optimizaci%C3%B3n/">Optimización</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>
@@ -1229,7 +1233,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -1322,7 +1326,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
       
       <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
       
-      <a class="dib pv1 ph2 link" href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
       
       <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
       

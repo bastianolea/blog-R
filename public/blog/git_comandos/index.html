@@ -31,51 +31,52 @@
 <meta property="og:title" content="Comandos comunes de Git | Bastián Olea">
 <meta property="og:description" content="Colección de comandos de `git` para realizar acciones comunes y resolver problemas frecuentes. `git` es una herramienta para el control de versiones de código, respaldo de código, y colaboración." />
 <meta property="og:type" content="page" />
-<meta property="og:url" content="https://bastianoleah.netlify.app/blog/git_comandos/" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/git_comandos/" />
 <meta property="og:locale" content="es-ES">
 
 
 
 
     
-        <meta property="og:image" content="https://bastianoleah.netlify.app/blog/sidebar-listing.jpg" >
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/sidebar-listing.jpg" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="https://bastianoleah.netlify.app/blog/sidebar-listing.jpg" >
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/sidebar-listing.jpg" >
     
     
   
   <meta itemprop="name" content="Comandos comunes de Git">
   <meta itemprop="description" content="git es una herramienta para el control de versiones de código, respaldo de código, y colaboración. En otro post hice un tutorial para aprender a usar git y GitHub con R y RStudio. En este post voy a mantener una lista1 de los comandos que más uso en git, así como los comandos que necesito para resolver los problemas más frecuentes.
-Otro recurso mucho más completo es ohshitgit.com, que como su nombre indica, está enfocado en resolver problemas comunes con git.">
+Publicaciones relacionadas Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub">
   <meta itemprop="datePublished" content="2025-10-27T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-10-27T00:00:00+00:00">
-  <meta itemprop="wordCount" content="761">
-  <meta itemprop="keywords" content="Git,Programación">
+  <meta itemprop="wordCount" content="1041">
+  <meta itemprop="keywords" content="Git,GitHub,Consejos">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.2d895d62345af9e2e72524b81407c43bc32960e92011f6c745d4db53ec6d0bd7.css" integrity="sha256-LYldYjRa&#43;eLnJSS4FAfEO8MpYOkgEfbHRdTbU&#43;xtC9c=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.d422480e848eb6a5d606350ae11db5d9667dd9d70bf949467ce465c539b2be4a.css" integrity="sha256-1CJIDoSOtqXWBjUK4R212WZ92dcL&#43;UlGfORlxTmyvko=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.caca34247ad208428a7269b9786cc8952a5bfd8b756a9b7391db731732bc56c5.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
   
   
-  <link rel="preload" href="https://bastianoleah.shinyapps.io/buscador/" as="image">
+  <link rel="preload" href="/buscador/" as="image">
+  
 </head>
 <body>
       <div class="grid-container single-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianoleah.netlify.app/" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
       <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -103,7 +104,7 @@ Otro recurso mucho más completo es ohshitgit.com, que como su nombre indica, es
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
       
         
         
@@ -147,7 +148,7 @@ Otro recurso mucho más completo es ohshitgit.com, que como su nombre indica, es
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -264,7 +265,7 @@ Otro recurso mucho más completo es ohshitgit.com, que como su nombre indica, es
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/git"
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/git"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -273,7 +274,7 @@ Otro recurso mucho más completo es ohshitgit.com, que como su nombre indica, es
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            git</a>  <a href="https://bastianoleah.netlify.app/tags/programaci%C3%B3n"
+            git</a>  <a href="https://bastianolea.rbind.io/tags/github"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -282,7 +283,16 @@ Otro recurso mucho más completo es ohshitgit.com, que como su nombre indica, es
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            programación</a> </dd></em>
+            GitHub</a>  <a href="https://bastianolea.rbind.io/tags/consejos"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            consejos</a> </dd></em>
         </dl>
          
       
@@ -295,6 +305,74 @@ Otro recurso mucho más completo es ohshitgit.com, que como su nombre indica, es
     <section class="post-body pt5 pb4">
         <p><code>git</code> es una herramienta para el control de versiones de código, respaldo de código, y colaboración. En otro post hice un tutorial para 
 <a href="/blog/r_introduccion/tutorial_github/">aprender a usar <code>git</code> y GitHub con R y RStudio</a>. En este post voy a mantener una lista<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> de los comandos que más uso en <code>git</code>, así como los comandos que necesito para resolver los <strong>problemas más frecuentes.</strong></p>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/r_introduccion/tutorial_github/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/r_introduccion/tutorial_github/titulo_github-featured.png"
+           alt="Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        En este tutorial se entregan los pasos para empezar a usar Git con tus proyectos de R. Git te permite llevar un registro de las versiones y un control de cambios en tu código, mientras que GitHub te…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
 <p>Otro recurso mucho más completo es 
 <a href="https://ohshitgit.com/es" target="_blank" rel="noopener">ohshitgit.com</a>, que como su nombre indica, está enfocado en resolver problemas comunes con <code>git</code>.</p>
 
@@ -349,8 +427,10 @@ Otro recurso mucho más completo es ohshitgit.com, que como su nombre indica, es
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h3>
+<p>Crearlo manualmente:</p>
 <pre tabindex="0"><code>git init
-</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">usethis</span><span class="o">::</span><span class="nf">use_git</span><span class="p">()</span>
+</code></pre><p><strong>Recomendado:</strong> crearlo con la ayuda del paquete <code>{usethis}</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">usethis</span><span class="o">::</span><span class="nf">use_git</span><span class="p">()</span>
 </span></span></code></pre></div><p>Para más información sobre la integración de R con <code>git</code>, 
 <a href="/blog/r_introduccion/tutorial_github/">revisa este post</a>. También existe el libro 
 <a href="https://happygitwithr.com" target="_blank" rel="noopener">Happy Git with R</a>, que detalla todos los pasos necesarios para poder usar <code>git</code> con R, incluyendo soluciones a problemas comunes.</p>
@@ -490,10 +570,10 @@ Otro recurso mucho más completo es ohshitgit.com, que como su nombre indica, es
     </svg></a>
 </h3>
 <p>Para cuando agregaste archivos al <em>commit</em> pero luego te das cuenta que no debías haberlo hecho. Por ejemplo, si agregaste un archivo muy grande por error:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">git</span> <span class="n">rm</span> <span class="o">--</span><span class="n">cached</span> <span class="s">&#34;archivo&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s">&#34;mensaje&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">branch</span>
-</span></span></code></pre></div><hr>
+<pre tabindex="0"><code>git rm --cached &#34;archivo&#34;
+git commit -m &#34;mensaje&#34;
+git push -u origin branch
+</code></pre><hr>
 
 
 
@@ -551,8 +631,8 @@ git reset HEAD@{index}
     </svg></a>
 </h3>
 <p>Por si no te deja subir los cambios, pero estás segurx de que quieres sobreescribir el repositorio remoto con tu versión local:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">main</span> <span class="o">--</span><span class="n">force</span>
-</span></span></code></pre></div>
+<pre tabindex="0"><code>git push origin main --force
+</code></pre>
 
 
 
@@ -578,6 +658,141 @@ git reset --hard origin/main
 </h3>
 <p>Aprende a 
 <a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">hacer ramas online aquí</a></p>
+
+
+
+
+<h2 id="configuraciones">Configuraciones
+  <a href="#configuraciones"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+
+
+
+
+<h3 id="cambiar-el-editor-de-texto-por-defecto">Cambiar el editor de texto por defecto
+  <a href="#cambiar-el-editor-de-texto-por-defecto"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Por si detestas Vim y quieres usar un editor más simple como Nano:</p>
+<pre tabindex="0"><code>git config --global core.editor &#34;nano&#34;
+</code></pre>
+
+
+
+<h3 id="cambiar-nombre-por-defecto-de-las-ramas">Cambiar nombre por defecto de las ramas
+  <a href="#cambiar-nombre-por-defecto-de-las-ramas"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Si te pasa como a mi y las ramas de tus proyectos usan el nombre antiguo, <em>master</em>, usa este comando para que en los siguientes proyectos pasen a llamarse <em>main</em>:</p>
+<pre tabindex="0"><code>git config --global init.defaultBranch main
+</code></pre><div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/r_introduccion/tutorial_github/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/r_introduccion/tutorial_github/titulo_github-featured.png"
+           alt="Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        En este tutorial se entregan los pasos para empezar a usar Git con tus proyectos de R. Git te permite llevar un registro de las versiones y un control de cambios en tu código, mientras que GitHub te…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+
+
+
+
+<h3 id="actualizar-_token_-vencido">Actualizar <em>token</em> vencido
+  <a href="#actualizar-_token_-vencido"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Si se vence el token que usas en tu computador (que se usa para darle permiso a tu computador para acceder a tu cuenta), genera uno nuevo en GitHub, cópialo, y en R ejecuta:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">gitcreds</span><span class="o">::</span><span class="nf">gitcreds_set</span><span class="p">()</span>
+</span></span></code></pre></div><p>Podrás pegar el nuevo token en la consola, y tu computador quedará autorizado para volver a hacer <em>pull</em> a tus repositorios.</p>
+<hr>
+
+
+
+
+<h2 id="recursos">Recursos
+  <a href="#recursos"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Recursos para aprender a usar <code>git</code> con R:</p>
+<ul>
+<li>
+<a href="/blog/r_introduccion/tutorial_github/">Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub</a></li>
+<li>
+<a href="https://happygitwithr.com" target="_blank" rel="noopener">Libro <em>Happy Git with R</em></a></li>
+<li>
+<a href="https://ohshitgit.com/es" target="_blank" rel="noopener">ohshitgit.com</a></li>
+</ul>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -594,12 +809,12 @@ git reset --hard origin/main
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/2025-10-29/">&larr; Crea una carpeta inteligente con todos tus proyectos de R en Mac</a>
+    href="https://bastianolea.rbind.io/blog/2025-10-29/">&larr; Crea una carpeta inteligente con todos tus proyectos de R en Mac</a>
   
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/taller_datos_unam/">Taller: Compartir y colaborar desde el cruce entre las ciencias de datos y las ciencias sociales &rarr;</a>
+    href="https://bastianolea.rbind.io/blog/taller_datos_unam/">Taller: Compartir y colaborar desde el cruce entre las ciencias de datos y las ciencias sociales &rarr;</a>
   
 </div>
 
@@ -611,7 +826,7 @@ git reset --hard origin/main
   
     
       <script src="https://utteranc.es/client.js"
-              repo="bastianolea/blog-bastianolea-r"
+              repo="bastianolea/blog-R"
               issue-term="pathname"
               theme="github-light"
               label="comments"
@@ -636,22 +851,24 @@ git reset --hard origin/main
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">4 minute read, 761 words</dd>
+    <dd class="fw5 ml0">5 minute read, 1041 words</dd>
   </dl>
   
   
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Tags:</dt>
-    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/git">git</a>  <a href="https://bastianoleah.netlify.app/tags/programaci%C3%B3n">programación</a> </dd>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/git">git</a>  <a href="https://bastianolea.rbind.io/tags/github">GitHub</a>  <a href="https://bastianolea.rbind.io/tags/consejos">consejos</a> </dd>
   </dl>
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
-    <dd class="fw5 ml0"><a href="/blog/tutorial_quarto_github_pages/">Tutorial: crea páginas web y blogs con R&#43;Quarto, y publícalos online con GitHub Pages</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/ggplot_extensiones/">Extensiones recomendadas para mejorar tus gráficos de `{ggplot2}`</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/r_introduccion/r_intermedio/">Herramientas básicas para programar con R</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/2026-02-18/">Crea árboles de las carpetas de tus proyectos con `{printtree}` en R</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/repetirse/">Cómo dejar de repetirte y escribir código más eficiente en R</a></dd>
     
   </dl>
 </details>
@@ -669,7 +886,7 @@ git reset --hard origin/main
 
   <h1 class="f3">Blog</h1>
   <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
-<a href="https://bastianoleah.shinyapps.io/buscador/" target="_blank" rel="noopener">buscador</a> para encontrar publicaciones o navega los 
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
 <a href="/tags/">temas</a>.</p>
   
 
@@ -693,7 +910,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/chile/">Chile</a></span>
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
   </span>
  
   
@@ -708,7 +925,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/datos/">Datos</a></span>
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
   </span>
  
   
@@ -723,7 +940,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -738,7 +955,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -753,7 +970,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
   </span>
  
   
@@ -768,7 +985,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/blog/">Blog</a></span>
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -783,7 +1000,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -798,7 +1015,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
+      href="https://bastianolea.rbind.io/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -813,7 +1030,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ggplot2/">Ggplot2</a></span>
+      href="https://bastianolea.rbind.io/tags/ggplot2/">Ggplot2</a></span>
   </span>
  
   
@@ -828,7 +1045,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/web-scraping/">Web scraping</a></span>
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
   </span>
  
   
@@ -843,7 +1060,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/b%C3%A1sico/">Básico</a></span>
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
   </span>
  
   
@@ -858,7 +1075,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -873,7 +1090,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -888,7 +1105,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -903,7 +1120,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/curiosidades/">Curiosidades</a></span>
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -918,7 +1135,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -933,7 +1150,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/quarto/">Quarto</a></span>
+      href="https://bastianolea.rbind.io/tags/texto/">Texto</a></span>
   </span>
  
   
@@ -948,7 +1165,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/dplyr/">Dplyr</a></span>
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -963,7 +1180,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/optimizaci%C3%B3n/">Optimización</a></span>
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
   </span>
  
   
@@ -978,7 +1195,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/texto/">Texto</a></span>
+      href="https://bastianolea.rbind.io/tags/ciencias-sociales/">Ciencias sociales</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>
@@ -1030,6 +1247,14 @@ git reset --hard origin/main
         <li><a href="#ramas">Ramas</a></li>
       </ul>
     </li>
+    <li><a href="#configuraciones">Configuraciones</a>
+      <ul>
+        <li><a href="#cambiar-el-editor-de-texto-por-defecto">Cambiar el editor de texto por defecto</a></li>
+        <li><a href="#cambiar-nombre-por-defecto-de-las-ramas">Cambiar nombre por defecto de las ramas</a></li>
+        <li><a href="#actualizar-_token_-vencido">Actualizar <em>token</em> vencido</a></li>
+      </ul>
+    </li>
+    <li><a href="#recursos">Recursos</a></li>
   </ul>
 </nav>
           </div>
@@ -1073,7 +1298,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -1166,7 +1391,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
       
       <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
       
-      <a class="dib pv1 ph2 link" href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
       
       <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
       

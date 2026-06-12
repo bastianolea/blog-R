@@ -24,32 +24,32 @@
   
     
   
-<meta name="description" content="En este post innecesariamente largo les comento mi irracional alegría de haber programado en R&#43;Shiny [un buscador para este mismo sitio](https://bastianoleah.shinyapps.io/buscador/) (funcionalidad que ya se estaba volviendo muy necesaria). En menos de media hora ya tenía un producto mínimo funcional gracias a lo simple que es programar con R. Esta funcionalidad nueva va a ayudar a poder encontrar posts sobre cualquier tema, sobre todo para mí, que uso este blog a diario para copiar y pegar mi propio código 😂">
+<meta name="description" content="En este post innecesariamente largo les comento mi irracional alegría de haber programado en R&#43;Shiny [un buscador para este mismo sitio](/buscar/) (funcionalidad que ya se estaba volviendo muy necesaria). En menos de media hora ya tenía un producto mínimo funcional gracias a lo simple que es programar con R. Esta funcionalidad nueva va a ayudar a poder encontrar posts sobre cualquier tema, sobre todo para mí, que uso este blog a diario para copiar y pegar mi propio código 😂">
 
 
 <meta property="og:site_name" content="Bastián Olea">
 <meta property="og:title" content="Desarrollando un buscador para mi blog con Shiny | Bastián Olea">
-<meta property="og:description" content="En este post innecesariamente largo les comento mi irracional alegría de haber programado en R&#43;Shiny [un buscador para este mismo sitio](https://bastianoleah.shinyapps.io/buscador/) (funcionalidad que ya se estaba volviendo muy necesaria). En menos de media hora ya tenía un producto mínimo funcional gracias a lo simple que es programar con R. Esta funcionalidad nueva va a ayudar a poder encontrar posts sobre cualquier tema, sobre todo para mí, que uso este blog a diario para copiar y pegar mi propio código 😂" />
+<meta property="og:description" content="En este post innecesariamente largo les comento mi irracional alegría de haber programado en R&#43;Shiny [un buscador para este mismo sitio](/buscar/) (funcionalidad que ya se estaba volviendo muy necesaria). En menos de media hora ya tenía un producto mínimo funcional gracias a lo simple que es programar con R. Esta funcionalidad nueva va a ayudar a poder encontrar posts sobre cualquier tema, sobre todo para mí, que uso este blog a diario para copiar y pegar mi propio código 😂" />
 <meta property="og:type" content="page" />
-<meta property="og:url" content="https://bastianoleah.netlify.app/blog/buscador/" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/buscador/" />
 <meta property="og:locale" content="es-ES">
 
 
 
 
     
-        <meta property="og:image" content="https://bastianoleah.netlify.app/blog/buscador/buscador-featured.png" >
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/buscador/buscador-featured.png" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="https://bastianoleah.netlify.app/blog/buscador/buscador-featured.png" >
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/buscador/buscador-featured.png" >
     
     
   
   <meta itemprop="name" content="Desarrollando un buscador para mi blog con Shiny">
-  <meta itemprop="description" content="Índice Generando el índice de búsqueda Obteniendo los datos del sitio Implementando la búsqueda Desarrollando la aplicación Obtener datos desde la app Búsqueda desde la app Salida de los resultados de búsqueda Apariencia de la app Conclusión Este blog ya lleva más de 100 publicaciones! 🎉 y si bien uso las etiquetas para mantener todo organizado y ayudar a descubrir nuevos posts, a veces hasta a mi me cuesta encontrar publicaciones entre tanta cosa 😅">
+  <meta itemprop="description" content="Índice Generando el índice de búsqueda Obteniendo los datos del sitio Implementando la búsqueda Actualización de algoritmo de búsqueda Desarrollando la aplicación Obtener datos desde la app Búsqueda desde la app Salida de los resultados de búsqueda Apariencia de la app Conclusión Este blog ya lleva más de 100 publicaciones! 🎉 y si bien uso las etiquetas para mantener todo organizado y ayudar a descubrir nuevos posts, a veces hasta a mi me cuesta encontrar publicaciones entre tanta cosa 😅">
   <meta itemprop="datePublished" content="2025-11-11T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-11-11T00:00:00+00:00">
-  <meta itemprop="wordCount" content="2017">
-  <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/buscador/buscador-featured.png">
+  <meta itemprop="wordCount" content="2090">
+  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/buscador/buscador-featured.png">
   <meta itemprop="keywords" content="Blog,Shiny">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -57,25 +57,26 @@
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.2d895d62345af9e2e72524b81407c43bc32960e92011f6c745d4db53ec6d0bd7.css" integrity="sha256-LYldYjRa&#43;eLnJSS4FAfEO8MpYOkgEfbHRdTbU&#43;xtC9c=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.d422480e848eb6a5d606350ae11db5d9667dd9d70bf949467ce465c539b2be4a.css" integrity="sha256-1CJIDoSOtqXWBjUK4R212WZ92dcL&#43;UlGfORlxTmyvko=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.caca34247ad208428a7269b9786cc8952a5bfd8b756a9b7391db731732bc56c5.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
   
   
-  <link rel="preload" href="https://bastianoleah.shinyapps.io/buscador/" as="image">
+  <link rel="preload" href="/buscador/" as="image">
+  
 </head>
 <body>
       <div class="grid-container single-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianoleah.netlify.app/" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
       <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -103,7 +104,7 @@
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
       
         
         
@@ -147,7 +148,7 @@
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -264,7 +265,7 @@
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/blog"
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/blog"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -273,7 +274,7 @@
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            blog</a>  <a href="https://bastianoleah.netlify.app/tags/shiny"
+            blog</a>  <a href="https://bastianolea.rbind.io/tags/shiny"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -329,7 +330,7 @@
   color: #EAD2FA; font-size: 10pt;
   padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
   margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
-  href="https://bastianoleah.shinyapps.io/buscador/" target="_blank" rel="noopener"><i class="fas fa-link fa-lg fa-fw mr2"></i>Aplicación</a>
+  href="/buscar/" ><i class="fas fa-link fa-lg fa-fw mr2"></i>Aplicación</a>
 
 </div>
 
@@ -356,7 +357,11 @@
   <ul>
     <li><a href="#generando-el-índice-de-búsqueda">Generando el índice de búsqueda</a></li>
     <li><a href="#obteniendo-los-datos-del-sitio">Obteniendo los datos del sitio</a></li>
-    <li><a href="#implementando-la-búsqueda">Implementando la búsqueda</a></li>
+    <li><a href="#implementando-la-búsqueda">Implementando la búsqueda</a>
+      <ul>
+        <li><a href="#actualización-de-algoritmo-de-búsqueda">Actualización de algoritmo de búsqueda</a></li>
+      </ul>
+    </li>
     <li><a href="#desarrollando-la-aplicación">Desarrollando la aplicación</a>
       <ul>
         <li><a href="#obtener-datos-desde-la-app">Obtener datos desde la app</a></li>
@@ -375,7 +380,7 @@
 <p>Este blog ya lleva más de 100 publicaciones! 🎉 y si bien 
 <a href="/tags/">uso las etiquetas</a> para mantener todo organizado y ayudar a descubrir nuevos posts, a veces hasta a mi me cuesta encontrar publicaciones entre tanta cosa 😅</p>
 <p>Por esa razón hace tiempo que quería <strong>implementar 
-<a href="https://bastianoleah.shinyapps.io/buscador/" target="_blank" rel="noopener">un buscador</a> en este sitio</strong>, cosa que resultó ser más complicada de lo que esperaba. Pero lo logré, y estoy irracionalmente feliz por eso 💜</p>
+<a href="/buscar/">un buscador</a> en este sitio</strong>, cosa que resultó ser más complicada de lo que esperaba. Pero lo logré, y estoy irracionalmente feliz por eso 💜</p>
 <blockquote>
 <p>Algo hermoso de programar es la sensación de logro y orgullo que provoca poder crear cosas bonitas y que funcionan! ✨</p>
 </blockquote>
@@ -472,6 +477,18 @@
 </span></span><span class="line"><span class="cl"><span class="n">resultado</span> <span class="o">&lt;-</span> <span class="n">datos</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="nf">str_detect</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">busqueda</span><span class="p">))</span>
 </span></span></code></pre></div><p>Y listo. Se obtiene el dataframe filtrado, limpio, bonito. Literalmente <strong>desde la obtención de los datos a los resultados de búsqueda en menos de 50 líneas</strong> de código. No hay mucho más que agregar, aguante R 😂</p>
+
+
+
+
+<h3 id="actualización-de-algoritmo-de-búsqueda">Actualización de algoritmo de búsqueda
+  <a href="#actualizaci%c3%b3n-de-algoritmo-de-b%c3%basqueda"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Meses después cambié la búsqueda para usar el algoritmo BM25, que más allá de decir si un texto contiene o no el término de búsqueda, le entrega a cada elemento un puntaje con respecto al término de búsqueda, y así se pueden ordenar los resultados por relevancia. 
+<a href="/blog/buscar_texto/">Más información en esta publicación.</a></p>
 
 
 
@@ -688,6 +705,21 @@
 
 
 
+<aside>
+  <div id="avisos" style="margin-top:32px;">
+    
+    <a href="/blog/curso_r_intro_3/">
+    <img src="/blog/curso_r_intro_3/curso-r-2026-junio-featured.jpeg" 
+      style="border-radius: 7px; max-height: 240px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;" 
+      alt="¿Quieres aprender R para analizar datos? Inscríbete a mi curso!">
+    </a>
+    
+    <div style="max-width: 320px; margin:auto; font-size:85%;opacity:60%;">
+      <p>¿Quieres aprender R para analizar datos? Participa del curso! <a href="/blog/curso_r_intro_3/">Inscríbete gratis!</a></p>
+      </div>
+  
+  </div>
+</aside>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -705,12 +737,12 @@
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/2025-11-13/">&larr; ¿Por qué programar para trabajar con datos?</a>
+    href="https://bastianolea.rbind.io/blog/2025-11-13/">&larr; ¿Por qué programar para trabajar con datos?</a>
   
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/waldo/">Encuentra diferencias entre objetos de R con {waldo} &rarr;</a>
+    href="https://bastianolea.rbind.io/blog/waldo/">Encuentra diferencias entre objetos de R con {waldo} &rarr;</a>
   
 </div>
 
@@ -722,7 +754,7 @@
   
     
       <script src="https://utteranc.es/client.js"
-              repo="bastianolea/blog-bastianolea-r"
+              repo="bastianolea/blog-R"
               issue-term="pathname"
               theme="github-light"
               label="comments"
@@ -747,24 +779,24 @@
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">10 minute read, 2017 words</dd>
+    <dd class="fw5 ml0">10 minute read, 2090 words</dd>
   </dl>
   
   
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Tags:</dt>
-    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/blog">blog</a>  <a href="https://bastianoleah.netlify.app/tags/shiny">Shiny</a> </dd>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/blog">blog</a>  <a href="https://bastianolea.rbind.io/tags/shiny">Shiny</a> </dd>
   </dl>
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
+    <dd class="fw5 ml0"><a href="/clases/curso_r_intro_3/">Curso: introducción al análisis de datos con R, 3ª versión</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/curso_r_intro_3/">Curso: introducción al análisis de datos con R, 3ª versión</a></dd>
+    
     <dd class="fw5 ml0"><a href="/blog/curso_gratis_r_intro_2/">Curso gratuito: introducción al análisis de datos con R, 2ª versión</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/indice_brechas_genero/">Plataforma de análisis: Índice de Brechas de Género</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/2026-03-26/">Galería de libros de _Goodreads_ para tu blog o sitio web con R y Quarto</a></dd>
     
   </dl>
 </details>
@@ -782,7 +814,7 @@
 
   <h1 class="f3">Blog</h1>
   <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
-<a href="https://bastianoleah.shinyapps.io/buscador/" target="_blank" rel="noopener">buscador</a> para encontrar publicaciones o navega los 
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
 <a href="/tags/">temas</a>.</p>
   
 
@@ -806,7 +838,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/chile/">Chile</a></span>
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
   </span>
  
   
@@ -821,7 +853,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/datos/">Datos</a></span>
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
   </span>
  
   
@@ -836,7 +868,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -851,7 +883,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -866,7 +898,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -881,7 +913,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/blog/">Blog</a></span>
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
   </span>
  
   
@@ -896,7 +928,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -911,7 +943,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -926,7 +958,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ggplot2/">Ggplot2</a></span>
+      href="https://bastianolea.rbind.io/tags/ggplot2/">Ggplot2</a></span>
   </span>
  
   
@@ -941,7 +973,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/web-scraping/">Web scraping</a></span>
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
   </span>
  
   
@@ -956,7 +988,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/b%C3%A1sico/">Básico</a></span>
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
   </span>
  
   
@@ -971,7 +1003,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -986,7 +1018,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -1001,7 +1033,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -1016,7 +1048,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -1031,7 +1063,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/curiosidades/">Curiosidades</a></span>
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -1046,7 +1078,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/quarto/">Quarto</a></span>
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -1061,7 +1093,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/dplyr/">Dplyr</a></span>
+      href="https://bastianolea.rbind.io/tags/texto/">Texto</a></span>
   </span>
  
   
@@ -1076,7 +1108,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/optimizaci%C3%B3n/">Optimización</a></span>
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
   </span>
  
   
@@ -1091,7 +1123,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/texto/">Texto</a></span>
+      href="https://bastianolea.rbind.io/tags/ciencias-sociales/">Ciencias sociales</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>
@@ -1113,7 +1145,11 @@
   <ul>
     <li><a href="#generando-el-índice-de-búsqueda">Generando el índice de búsqueda</a></li>
     <li><a href="#obteniendo-los-datos-del-sitio">Obteniendo los datos del sitio</a></li>
-    <li><a href="#implementando-la-búsqueda">Implementando la búsqueda</a></li>
+    <li><a href="#implementando-la-búsqueda">Implementando la búsqueda</a>
+      <ul>
+        <li><a href="#actualización-de-algoritmo-de-búsqueda">Actualización de algoritmo de búsqueda</a></li>
+      </ul>
+    </li>
     <li><a href="#desarrollando-la-aplicación">Desarrollando la aplicación</a>
       <ul>
         <li><a href="#obtener-datos-desde-la-app">Obtener datos desde la app</a></li>
@@ -1166,7 +1202,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -1259,7 +1295,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
       
       <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
       
-      <a class="dib pv1 ph2 link" href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
       
       <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
       

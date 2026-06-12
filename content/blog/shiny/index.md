@@ -1922,13 +1922,26 @@ Aquí dejo otros tutoriales de Shiny para perfeccionar y mejorar tus aplicacione
 
 ----
 
-Espero que te sirva este tutorial! Aprender Shiny es todo un mundo que abre muchísimas posibilidades! Si encuentras cualquier error, o hay algo que no hayas entendido, por favor [contáctame](/contacto/). 
+## Recursos
 
-{{< etiqueta "shiny" >}}
+Otros materiales para seguir aprendiendo:
+
+- [Qué es Shiny y para qué sirve](https://atelierdecodigo.com/posts/shiny.html), del blog Atelier de código
+- [Shiny basics](https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/), tutorial oficial de Posit
+- [Mastering Shiny](https://mastering-shiny.org), libro de Hadley Wickham
+- [Conferencia de SHiny 2025](https://www.shinyconf.com), con videos de expositores y ponencias
+- [Ganadores del concurso 2024 de Shiny](https://posit.co/blog/winners-of-the-2024-shiny-contest)
+- [Shiny Assistant](https://opensource.posit.co/blog/2024-10-09_shiny-assistant/), herramienta de IA para prototipar apps
+
+{{< etiqueta "shiny" "Más publicaciones sobre Shiny" >}}
 
 {{< relacionada "clases/spatiallab_shiny_2/" "Diapositivas y código de mi curso de Shiny" >}}
 
-Este tutorial se escribió sin ninguna asistencia de inteligencia artificial 😌 Si este tutorial te sirvió laboralmente, te agradecería una pequeña donación!
+----
+
+Espero que te sirva este tutorial! Aprender Shiny es todo un mundo que abre muchísimas posibilidades! Si encuentras cualquier error, o hay algo que no hayas entendido, por favor [contáctame](/contacto/). 
+
+Si este tutorial te sirvió laboralmente, te agradecería una pequeña donación!
 
 {{< cafecito >}}
 

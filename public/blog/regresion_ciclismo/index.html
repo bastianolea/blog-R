@@ -31,16 +31,16 @@
 <meta property="og:title" content="Aplicando una regresión lineal en la vida diaria: predecir kilómetros por recorrer en bicicleta | Bastián Olea">
 <meta property="og:description" content="Se me ocurrió aplicar estadísticas a una duda cotidiana: si se tiene un historial de kilómetros recorridos, ¿cómo podemos predecir los kilómetros que se recorrerán en el futuro? En este post aplicamos una regresión lineal en R para averiguarlo." />
 <meta property="og:type" content="page" />
-<meta property="og:url" content="https://bastianoleah.netlify.app/blog/regresion_ciclismo/" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/regresion_ciclismo/" />
 <meta property="og:locale" content="es-ES">
 
 
 
 
     
-        <meta property="og:image" content="https://bastianoleah.netlify.app/blog/regresion_ciclismo/featured.png" >
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/regresion_ciclismo/featured.png" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="https://bastianoleah.netlify.app/blog/regresion_ciclismo/featured.png" >
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/regresion_ciclismo/featured.png" >
     
     
   
@@ -50,7 +50,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
   <meta itemprop="datePublished" content="2024-12-03T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-12-03T00:00:00+00:00">
   <meta itemprop="wordCount" content="1233">
-  <meta itemprop="image" content="https://bastianoleah.netlify.app/blog/regresion_ciclismo/featured.png">
+  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/regresion_ciclismo/featured.png">
   <meta itemprop="keywords" content="Estadística,Ggplot2,Curiosidades">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -58,25 +58,26 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.2d895d62345af9e2e72524b81407c43bc32960e92011f6c745d4db53ec6d0bd7.css" integrity="sha256-LYldYjRa&#43;eLnJSS4FAfEO8MpYOkgEfbHRdTbU&#43;xtC9c=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.d422480e848eb6a5d606350ae11db5d9667dd9d70bf949467ce465c539b2be4a.css" integrity="sha256-1CJIDoSOtqXWBjUK4R212WZ92dcL&#43;UlGfORlxTmyvko=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.caca34247ad208428a7269b9786cc8952a5bfd8b756a9b7391db731732bc56c5.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
   
   
-  <link rel="preload" href="https://bastianoleah.shinyapps.io/buscador/" as="image">
+  <link rel="preload" href="/buscador/" as="image">
+  
 </head>
 <body>
       <div class="grid-container single-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianoleah.netlify.app/" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
       <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -104,7 +105,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
       
         
         
@@ -148,7 +149,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -265,7 +266,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/estad%C3%ADstica"
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/estad%C3%ADstica"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -274,7 +275,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            estadística</a>  <a href="https://bastianoleah.netlify.app/tags/ggplot2"
+            estadística</a>  <a href="https://bastianolea.rbind.io/tags/ggplot2"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -283,7 +284,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            ggplot2</a>  <a href="https://bastianoleah.netlify.app/tags/curiosidades"
+            ggplot2</a>  <a href="https://bastianolea.rbind.io/tags/curiosidades"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -474,12 +475,12 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/pal_asistentes_llm/">&larr; Crea tu propio asistente de programación en R con inteligencia artificial usando el paquete {pal}</a>
+    href="https://bastianolea.rbind.io/blog/pal_asistentes_llm/">&larr; Crea tu propio asistente de programación en R con inteligencia artificial usando el paquete {pal}</a>
   
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="https://bastianoleah.netlify.app/blog/portafolio_trabajos_r/">Portafolio de trabajos previos en R &rarr;</a>
+    href="https://bastianolea.rbind.io/blog/portafolio_trabajos_r/">Portafolio de trabajos previos en R &rarr;</a>
   
 </div>
 
@@ -491,7 +492,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
   
     
       <script src="https://utteranc.es/client.js"
-              repo="bastianolea/blog-bastianolea-r"
+              repo="bastianolea/blog-R"
               issue-term="pathname"
               theme="github-light"
               label="comments"
@@ -523,7 +524,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Tags:</dt>
-    <dd class="fw5 ml0"> <a href="https://bastianoleah.netlify.app/tags/estad%C3%ADstica">estadística</a>  <a href="https://bastianoleah.netlify.app/tags/ggplot2">ggplot2</a>  <a href="https://bastianoleah.netlify.app/tags/curiosidades">curiosidades</a> </dd>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/estad%C3%ADstica">estadística</a>  <a href="https://bastianolea.rbind.io/tags/ggplot2">ggplot2</a>  <a href="https://bastianolea.rbind.io/tags/curiosidades">curiosidades</a> </dd>
   </dl>
   
   <dl class="f6 lh-copy">
@@ -551,7 +552,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
 
   <h1 class="f3">Blog</h1>
   <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
-<a href="https://bastianoleah.shinyapps.io/buscador/" target="_blank" rel="noopener">buscador</a> para encontrar publicaciones o navega los 
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
 <a href="/tags/">temas</a>.</p>
   
 
@@ -575,7 +576,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/chile/">Chile</a></span>
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
   </span>
  
   
@@ -590,7 +591,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/datos/">Datos</a></span>
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
   </span>
  
   
@@ -605,7 +606,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -620,7 +621,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/consejos/">Consejos</a></span>
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -635,7 +636,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
   </span>
  
   
@@ -650,7 +651,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/blog/">Blog</a></span>
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -665,7 +666,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/apps/">Apps</a></span>
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -680,7 +681,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/apps/">Apps</a></span>
   </span>
  
   
@@ -695,7 +696,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/ggplot2/">Ggplot2</a></span>
+      href="https://bastianolea.rbind.io/tags/ggplot2/">Ggplot2</a></span>
   </span>
  
   
@@ -710,7 +711,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/web-scraping/">Web scraping</a></span>
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
   </span>
  
   
@@ -725,7 +726,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/b%C3%A1sico/">Básico</a></span>
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
   </span>
  
   
@@ -740,7 +741,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/mapas/">Mapas</a></span>
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -755,7 +756,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -770,7 +771,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -785,7 +786,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -800,7 +801,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/curiosidades/">Curiosidades</a></span>
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -815,7 +816,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/quarto/">Quarto</a></span>
+      href="https://bastianolea.rbind.io/tags/texto/">Texto</a></span>
   </span>
  
   
@@ -830,7 +831,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/dplyr/">Dplyr</a></span>
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -845,7 +846,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/optimizaci%C3%B3n/">Optimización</a></span>
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
   </span>
  
   
@@ -860,7 +861,7 @@ Resulta que un compañero del ultraciclismo, el destacado ciclista Andrés Arias
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianoleah.netlify.app/tags/texto/">Texto</a></span>
+      href="https://bastianolea.rbind.io/tags/ciencias-sociales/">Ciencias sociales</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>
@@ -912,7 +913,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastianoleah.shinyapps.io/buscador/" title="search" target="_blank" rel="me noopener"
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -1005,7 +1006,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
       
       <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
       
-      <a class="dib pv1 ph2 link" href="https://bastianoleah.shinyapps.io/buscador/" title="Buscador">Buscar</a>
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
       
       <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
       

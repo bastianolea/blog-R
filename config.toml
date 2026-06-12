@@ -1,4 +1,5 @@
-baseURL = "https://bastianoleah.netlify.app/"
+baseURL = "https://bastianolea.rbind.io/"
+# baseURL = "https://bastianoleah.netlify.app/"
 theme = "hugo-apero"
 languageCode = "es"
 locale = "es-ES"
