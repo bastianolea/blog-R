@@ -172,9 +172,29 @@ validar_rut(c("hola", "11111111", "19413730-3"))
 ```
 
 
-## Limpiar RUTs
+## Limpiar RUT
 
 {{< aviso "Publicación en construcción!" >}}
+
+Por mientras hago la función:
+
+
+```{r}
+library(stringr)
+
+rut <- "24.444.145-9"
+
+# eliminar puntos
+str_remove_all(rut, "\\.")
+
+# eliminar guiones
+str_remove_all(rut, "-")
+
+# extraer sólo números
+str_extract_all(rut, "\\d+", simplify = TRUE) |> 
+  paste(collapse = "")
+```
+
 
 ## Paquete de R
 
