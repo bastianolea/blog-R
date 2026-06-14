@@ -11,9 +11,9 @@ tags:
 links:
 - icon: file-pen
   icon_pack: fas
-  name: inscripciones abiertas
-  # url: https://bastianolea.rbind.io
-  url: https://bastianoleah.shinyapps.io/inscripcion_curso_r_intro_3/
+  name: inscripciones cerradas
+  url: https://bastianolea.rbind.io
+  # url: https://bastianoleah.shinyapps.io/inscripcion_curso_r_intro_3/
 # - icon: video
 #   icon_pack: fas
 #   name: grabaciones
@@ -62,11 +62,17 @@ Aprende **desde cero** a usar este lenguaje y complementa tu carrera con herrami
 
 ## Inscripciones
 
+<!---
 Las inscripciones se encuentran abiertas! Como este es un curso gratuito, por favor **sólo inscribirse si se tiene certeza de poder asistir!** Si te inscribes y no asistes estarás dejando a alguien fuera!
+
 
 Regístrate en el siguiente enlace:
 
 {{< boton "Inscripciones abiertas" "https://bastianoleah.shinyapps.io/inscripcion_curso_r_intro_3/" "fas fa-file-pen" >}}
+
+--->
+
+Inscripciones cerradas! Gracias a las más de **400 personas** que se inscribieron!
 
 | Requisitos         |                       |
 |--------------------|-----------------------|
@@ -77,7 +83,7 @@ Regístrate en el siguiente enlace:
 | Código de conducta | [Ver código de conducta](/code-of-conduct/)| 
 | Compromiso         | Asistir a todas las clases |
 
-El curso contará con **150 cupos**, los cuales se asignarán por orden de inscripción y priorizando según **criterios de inclusión** para la participación de grupos minoritarios (mujeres, disidencias de sexo y género, personas con discapacidad).
+El curso contará con **160 cupos**, los cuales se asignarán por orden de inscripción y priorizando según **criterios de inclusión** para la participación de grupos minoritarios (mujeres, disidencias de sexo y género, personas con discapacidad).
 
 Los criterios de inclusión se resumen (no exhaustivamente) a continuación:
 
@@ -86,7 +92,7 @@ Los criterios de inclusión se resumen (no exhaustivamente) a continuación:
 | **Género**         | _Mujeres y personas no binarias_ | +2   |
 | **Personas trans** | _Hombres o mujeres transgénero_ | +100 |
 | **Orientación**    | _Gays, Lesbianas, Bi, Pan, etc._ | +2   |
-| **Discapacidad**   | _Personas con credencial de discapacidad_ | +3  |
+| **Discapacidad**   | _Personas con credencial de discapacidad_ | +2  |
 | **Territorio**     | _Personas que vivan en Chile_ | +3  | 
 
 
@@ -119,7 +125,7 @@ Para inscribirte, rellena el siguiente formulario[^2] y te contactaré en caso d
 
 Las clases se realizan en línea mediante la plataforma Zoom. Las personas que obtengan un cupo recibirán un enlace privado de acceso. 
 
-Cualquier persona podrá ver las clases en vivo por Youtube.
+Cualquier persona podrá ver las grabaciones de las clases por Youtube.
 
 Las clases, incluyendo apuntes y diapositivas, se iran subiendo a esta página en la medida que se realizan.
 
