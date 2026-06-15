@@ -12,7 +12,7 @@ links:
 - icon: file-pen
   icon_pack: fas
   name: inscripciones cerradas
-  url: https://bastianolea.rbind.io
+  url: /blog/curso_r_intro_3
   # url: https://bastianoleah.shinyapps.io/inscripcion_curso_r_intro_3/
 # - icon: video
 #   icon_pack: fas
@@ -65,15 +65,6 @@ Aprende **desde cero** a usar este lenguaje y complementa tu carrera con herrami
 <!---
 Las inscripciones se encuentran abiertas! Como este es un curso gratuito, por favor **sólo inscribirse si se tiene certeza de poder asistir!** Si te inscribes y no asistes estarás dejando a alguien fuera!
 
-
-Regístrate en el siguiente enlace:
-
-{{< boton "Inscripciones abiertas" "https://bastianoleah.shinyapps.io/inscripcion_curso_r_intro_3/" "fas fa-file-pen" >}}
-
---->
-
-Inscripciones cerradas! Gracias a las más de **400 personas** que se inscribieron!
-
 | Requisitos         |                       |
 |--------------------|-----------------------|
 | Costo              | Gratuito              |
@@ -82,6 +73,14 @@ Inscripciones cerradas! Gracias a las más de **400 personas** que se inscribier
 | Materiales         | Conexión a internet   | 
 | Código de conducta | [Ver código de conducta](/code-of-conduct/)| 
 | Compromiso         | Asistir a todas las clases |
+
+Regístrate en el siguiente enlace:
+
+{{< boton "Inscripciones abiertas" "https://bastianoleah.shinyapps.io/inscripcion_curso_r_intro_3/" "fas fa-file-pen" >}}
+
+--->
+
+Inscripciones cerradas! Gracias a las más de **400 personas** que se inscribieron!
 
 El curso contará con **160 cupos**, los cuales se asignarán por orden de inscripción y priorizando según **criterios de inclusión** para la participación de grupos minoritarios (mujeres, disidencias de sexo y género, personas con discapacidad).
 
@@ -98,9 +97,32 @@ Los criterios de inclusión se resumen (no exhaustivamente) a continuación:
 
 Cada alumn@ debe comprometerse a asistir a todas las clases, ya que su cupo implica que otra persona se quede fuera! 
 
+### Composición del curso
+
+Se asignaron **163 cupos** a personas que postularon al curso. Los siguientes gráficos resumen la composición del curso:
+
+{{< imagen "/blog/curso_r_intro_3/genero.png" >}}
+{{< imagen "/blog/curso_r_intro_3/lgbt.png" >}}
+
+En estos gráficos se puede observar el efecto de la aplicación de criterios de inclusión para aumentar el porcentaje de cupos asignados a grupos minoritarios, en comparación con el porcentaje original de personas postulantes. 
+
+{{< detalles "Ver más gráficos" >}}
+
+En este gráfico podemos ver las áreas o disciplinas de donde vienen las y los estudiantes:
+
+{{< imagen "/blog/curso_r_intro_3/areas.png" >}}
+
+En el siguiente gráfico vemos los países de donde provienen:
+
+{{< imagen "/blog/curso_r_intro_3/paises.png" >}}
+
+{{< /detalles >}}
+
+
+
 ## Docente
 
-<img src="/img/bastian_olea.jpg" alt="Foto de Bastián Olea" width="140px" style="float: left; margin: 8px; margin-top: 0px; margin-right: 12px; border-radius: 100%;">
+<img src="/img/bastian_olea.jpg" alt="Foto de Bastián Olea" width="140px" style="float: left; margin: 8px; margin-top: 0px; margin-right: 12px; border-radius: 100%; opacity: 90%;">
 
 **[Bastián Olea Herrera](/about/)** es sociólogx y magíster en Sociología de la Universidad Católica de Chile. Se ha dedicado por más de 5 años al análisis de datos con R. Se desempeña al análisis de datos sociales en el Gobierno de Chile. Su experiencia consiste principalmente en [visualización de datos](/tags/gráficos/) y desarrollo de [aplicaciones interactivas](https://bastianolea.github.io/shiny_apps/) con R. También se dedica a [escribir tutoriales](/blog/) para ayudar a otr@s a [aprender R](https://bastianolea.github.io/aprende_r/).
 
