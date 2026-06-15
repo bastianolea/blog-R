@@ -45,14 +45,13 @@ blogdown::new_post(
 "content/blog/ggplot_densidad_puntos/index.qmd"
 "content/blog/mapas_bivariados/index.qmd"
 "content/blog/unpivotr/index.qmd"
-"content/blog/posit_assistant/index.md"
-# tutorial mapas: poner puntos a partir de tablas de datos en centroides
 "content/blog/ggtext/index.qmd"
 "content/blog/ggplot_numeros/index.qmd"
 "content/blog/ggplot_ordenar/index.qmd" #unir estos dos en ggplot_ajustes o algo así
 "content/blog/ggplot_sankey/index.qmd"
 "content/blog/googledrive/index.qmd"
 "content/blog/tutorial_digitalocean/index.md"
+# tutorial mapas: poner puntos a partir de tablas de datos en centroides
 
 
 # ideas ----
