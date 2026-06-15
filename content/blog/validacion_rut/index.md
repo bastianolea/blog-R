@@ -172,7 +172,7 @@ validar_rut <- function(rut) {
   
   return(
     unlist(validacion)
-    )
+  )
 }
 ```
 
@@ -247,6 +247,120 @@ str_extract_all(rut, "\\d+", simplify = TRUE) |>
 ```
 
     [1] "244441459"
+
+Aquí va lo que llevo de la función de limpieza de RUTs. Una duda es si debería incluir o no la validación del dígito verificador como parte de la limpieza, o considerarla como un paso separado (me inclino por ésto).
+
+``` r
+#' Limpiar RUTs
+#' 
+#' Recibe un vector de posibles RUT, y los limpia eliminando puntuación y espacios, extrayendo números, y separando el dígito verificador
+#'
+#' @param ruts Vector de texto con RUTs
+#'
+#' @returns Vector de texto con RUTs limpios en formato `xxxxxxx-y`
+#'
+#' @examples `limpiar_rut("24444145 9")`
+limpiar_rut <- function(ruts) {
+  require(stringr)
+  require(purrr)
+  require(tidyr)
+  require(dplyr)
+  require(cli)
+  
+  originales <- ruts
+  
+  ruts <- as.character(originales)
+  
+  ruts <- str_remove_all(ruts, "[:punct:]")
+  
+  ruts <- str_remove_all(ruts, " ")
+  
+  ruts <- str_extract_all(ruts, "\\d+")
+  
+  # procesar lista para casos donde no hay números
+  lista_ruts <- map(
+    ruts, 
+    \(rut) {
+      # rut <- ruts[6]
+      rut <- unlist(rut)
+      rut <- paste(rut, collapse = "")
+      rut <- ifelse(length(rut) == 0, "", rut)
+      return(rut)
+    }
+  )
+  
+  # convertir lista a vector
+  ruts_2 <- lista_ruts |> list_c()
+  
+  probar_largos_iguales <- length(ruts_2) == length(ruts)
+  if (!probar_largos_iguales) {
+    cli_abort("error procesando RUT: largo distintos ({length(ruts)} y {length(lista_ruts)})")
+  }
+  
+  ultimos_digitos <- ruts_2 |> 
+    str_extract("\\d{1}$") |> 
+    replace_na("")
+  
+  if (any(nchar(ultimos_digitos) != 1)) {
+    cli_alert_warning("algunos RUT no tienen últimos dígitos")
+  }
+  
+  sin_ultimos_digitos <- ruts_2 |> 
+    str_extract(".*(?=.$)") |> 
+    replace_na("")
+  
+  # revisar posibles problemas
+  if (any(sin_ultimos_digitos == "")) {
+    cli_alert_warning("algunos RUT vacíos luego de la limpieza")
+  } else if (any(nchar(sin_ultimos_digitos) < 7)) {
+    cli_alert_warning("algunos RUT sospechosamente cortos")
+  } else if (any(nchar(sin_ultimos_digitos) > 8)) {
+    cli_alert_warning("algunos RUT sospechosamente largos (o es alguien del futuro)")
+  }
+  
+  ruts_limpios <- paste(sin_ultimos_digitos, ultimos_digitos, sep = "-")
+  
+  ruts_limpios <- na_if(ruts_limpios, "-") 
+  
+  return(ruts_limpios)
+}
+```
+
+Prueba de la función de limpieza:
+
+``` r
+rut_sucios <- c("24.444.145-9",
+                "24444145 9",
+                "24 444 145 9",
+                "24,444,145,9",
+                "2M4A4P4A4C1H4E59",
+                "244441459",
+                "hola hola")
+
+limpiar_rut(rut_sucios)
+```
+
+    Loading required package: tidyr
+
+    Loading required package: dplyr
+
+
+    Attaching package: 'dplyr'
+
+    The following objects are masked from 'package:stats':
+
+        filter, lag
+
+    The following objects are masked from 'package:base':
+
+        intersect, setdiff, setequal, union
+
+    ! algunos RUT no tienen últimos dígitos
+
+    ! algunos RUT vacíos luego de la limpieza
+
+    [1] "24444145-9" "24444145-9" "24444145-9" "24444145-9" "24444145-9"
+    [6] "24444145-9" NA          
 
 ## Paquete de R
 

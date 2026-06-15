@@ -178,7 +178,6 @@ validar_rut(c("hola", "11111111", "19413730-3"))
 
 Por mientras hago la función:
 
-
 ```{r}
 library(stringr)
 
@@ -195,13 +194,23 @@ str_extract_all(rut, "\\d+", simplify = TRUE) |>
   paste(collapse = "")
 ```
 
-<!---
+Aquí va lo que llevo de la función de limpieza de RUTs. Una duda es si debería incluir o no la validación del dígito verificador como parte de la limpieza, o considerarla como un paso separado (me inclino por ésto).
 
 ```{r}
+#' Limpiar RUTs
+#' 
+#' Recibe un vector de posibles RUT, y los limpia eliminando puntuación y espacios, extrayendo números, y separando el dígito verificador
+#'
+#' @param ruts Vector de texto con RUTs
+#'
+#' @returns Vector de texto con RUTs limpios en formato `xxxxxxx-y`
+#'
+#' @examples `limpiar_rut("24444145 9")`
 limpiar_rut <- function(ruts) {
   require(stringr)
   require(purrr)
   require(tidyr)
+  require(dplyr)
   require(cli)
   
   originales <- ruts
@@ -225,11 +234,6 @@ limpiar_rut <- function(ruts) {
       return(rut)
     }
   )
-  
-  # probar_largos_iguales <- length(lista_ruts) == length(ruts)
-  # if (!probar_largos_iguales) {
-  #   cli_abort("error procesando RUT: largo distintos ({length(ruts)} y {length(lista_ruts)})")
-  # }
   
   # convertir lista a vector
   ruts_2 <- lista_ruts |> list_c()
@@ -268,6 +272,8 @@ limpiar_rut <- function(ruts) {
 }
 ```
 
+Prueba de la función de limpieza:
+
 ```{r}
 rut_sucios <- c("24.444.145-9",
                 "24444145 9",
@@ -280,7 +286,7 @@ rut_sucios <- c("24.444.145-9",
 limpiar_rut(rut_sucios)
 ```
 
---->
+
 
 ## Paquete de R
 
