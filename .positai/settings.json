@@ -1,5 +1,10 @@
 {
   "sandbox": {
     "enabled": false
+  },
+  "permission": {
+    "skill": {
+      "hugo-blog": "allow"
+    }
   }
 }

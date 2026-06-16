@@ -97,6 +97,30 @@ Los posts viven en `content/blog/`, no en la carpeta de la sección. El listado 
 2. Opcionalmente crear `content/nombre-categoria/_index.md` con metadata
 3. Agregar entrada en `[[menu.header]]` en `config.toml` apuntando a `/categories/nombre-categoria/`
 
+### Descripciones de páginas de etiquetas (tags)
+
+El layout `layouts/taxonomy/term.html` ya renderiza `.Description` bajo el título en todas las páginas de taxonomía (tanto categorías como tags). Para agregar texto descriptivo a una página de etiqueta como `/tags/limpieza-de-datos/`, basta con crear un archivo `_index.md` dentro de `content/tags/{slug}/`:
+
+```
+content/tags/limpieza-de-datos/_index.md
+```
+
+```yaml
+---
+title: Limpieza de datos
+description: |
+  Texto descriptivo de la etiqueta.
+---
+```
+
+**Notas sobre slugs**: Hugo slugifica los nombres de los tags eliminando acentos y reemplazando espacios con guiones. Ejemplos:
+- `visualización de datos` → `visualizacion-de-datos`
+- `gráficos` → `graficos`
+- `básico` → `basico`
+- `Chile` → `chile`
+
+Los `_index.md` de tags ya creados con descripción: `chile`, `datos`, `visualizacion-de-datos`, `consejos`, `graficos`, `shiny`, `apps`, `basico`, `ggplot2`, `web-scraping`, `limpieza-de-datos`.
+
 ## Configuración clave (config.toml)
 
 - `pagination.pagerSize = 20`
