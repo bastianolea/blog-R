@@ -9,10 +9,10 @@ cascade:
   show_post_time: false
   sidebar:
     show_sidebar_adunit: true
-    text_link_label: Tutoriales recientes
-    text_link_url: /tutoriales/
+    text_link_label: Paquetes de R
+    text_link_url: /paquetes/
 description: |
-  Publicaciones sobre R que contienen instrucciones detalladas y paso a paso para aprender algún aspecto del lenguaje. 
+  Pauqetes de R
 
 show_author_byline: false
 show_button_links: true
@@ -20,7 +20,7 @@ show_post_date: true
 show_post_thumbnail: true
 show_post_time: false
 
-title: Tutoriales de R
+title: Paquetes de R
 ---
 
 ** No content below YAML for the talk _index. This file provides front matter for the listing page layout and sidebar content. It is also a branch bundle, and all settings under `cascade` provide front matter for all pages inside talk/. You may still override any of these by changing them in a page's front matter.**

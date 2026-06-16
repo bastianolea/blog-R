@@ -21,11 +21,11 @@ blogdown::new_post(
 
 # crear un post tutorial
 blogdown::new_post(
-  title = "Aumenta el conocimiento especializado de inteligencias artificiales creando un sistema de RAG con R",
-  file = "blog/ragnar/index.md",
+  title = "`{rutera}`: un paquete de R para limpiar y procesar RUTs chilenos",
+  file = "blog/rutera/index.md",
   author = "Bastián Olea Herrera",
   tags = c("inteligencia artificial"),
-  categories = c("")
+  categories = c("Paquetes")
 )
 
 # draft: true

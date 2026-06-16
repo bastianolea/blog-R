@@ -38,7 +38,8 @@ content/
 ├── about/                 # Página "Sobre mí" (modular: header/, main/, sidebar/)
 ├── apps/                  # Apps Shiny
 ├── clases/                # Cursos
-├── tutoriales/            # Tutoriales
+├── tutoriales/            # Sección Tutoriales (solo _index.md, listado real en /categories/tutoriales/)
+├── paquetes/              # Sección Paquetes (solo _index.md, listado real en /categories/paquetes/)
 └── form/                  # Formularios de contacto
 ```
 
@@ -78,8 +79,23 @@ El cascade en `content/blog/_index.md` aplica por defecto:
 ## Taxonomías
 
 - `tags` — etiquetas temáticas (visualización de datos, shiny, inteligencia artificial, etc.)
-- `categories` — categorías principales (Tutoriales, etc.)
+- `categories` — categorías principales: `Tutoriales`, `Paquetes`
 - `series` — series de posts relacionados
+
+### Cómo funcionan las secciones por categoría (Tutoriales, Paquetes)
+
+Los posts viven en `content/blog/`, no en la carpeta de la sección. El listado de posts se obtiene via la taxonomía de Hugo:
+
+- Un post con `categories: [Tutoriales]` aparece automáticamente en `/categories/tutoriales/`
+- Un post con `categories: [Paquetes]` aparece automáticamente en `/categories/paquetes/`
+- Las carpetas `content/tutoriales/` y `content/paquetes/` existen solo con su `_index.md` (metadata de sección), pero **no contienen posts**
+- El menú en `config.toml` apunta directamente a la URL de taxonomía (ej. `/categories/paquetes/`)
+- El layout usado para estas páginas de taxonomía es `layouts/taxonomy/term.html`
+
+**Para agregar una nueva sección de categoría:**
+1. Agregar `categories: [NombreCategoria]` en el front matter del post
+2. Opcionalmente crear `content/nombre-categoria/_index.md` con metadata
+3. Agregar entrada en `[[menu.header]]` en `config.toml` apuntando a `/categories/nombre-categoria/`
 
 ## Configuración clave (config.toml)
 
@@ -143,7 +159,7 @@ format:
 
 ## Menús de navegación
 
-**Header**: Yo, Blog, Buscar (`/buscar/`), Temas (`/tags/`), Tutoriales (`/categories/tutoriales/`), Aprende R (externo), Cursos, Apps (externo), Datos (externo), Enlaces
+**Header**: Yo, Blog, Buscar (`/buscar/`), Temas (`/tags/`), Tutoriales (`/categories/tutoriales/`), Paquetes (`/categories/paquetes/`), Aprende R (externo), Cursos, Apps (externo), Datos (externo), Enlaces
 
 **Footer**: Licencia, Código de conducta, Contacto, Sobre mi, Buscar (`/buscar/`), Temas, Clases
 

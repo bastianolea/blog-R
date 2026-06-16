@@ -15,7 +15,7 @@ cascade:
     text_link_label: Ver clases
     text_link_url: /clases/
 description: |
-  Aquí hay un listado de clases y cursos que he impartido o estoy impartiendo. Accede a cada uno para mayor información sobre inscripciones, contenidos y/o grabaciones.
+  Aquí hay un listado de clases y cursos que he impartido o estoy impartiendo. Accede a cada uno para mayor información sobre inscripciones, contenidos y/o grabaciones. Si necesitas aprender R desde cero, [visita este sitio](https://bastianolea.github.io/aprende_r/) donde he recopilado tutoriales para una gran cantidad de temas.
 layout: list
 show_author_byline: false
 show_button_links: true

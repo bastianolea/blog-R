@@ -6,6 +6,7 @@ tags:
   - visualización de datos
   - ggplot2
   - consejos
+  - paquetes
 format:
   hugo-md:
     output-file: index
