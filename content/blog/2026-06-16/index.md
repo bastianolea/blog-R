@@ -7,6 +7,7 @@ categories: []
 tags:
   - consejos
   - blog
+  - curiosidades
 format:
   hugo-md:
     output-file: index
