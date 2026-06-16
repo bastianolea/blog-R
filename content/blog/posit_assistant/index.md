@@ -10,6 +10,7 @@ tags:
   - blog
   - inteligencia artificial
   - consejos
+  - básico
 format:
   hugo-md:
     output-file: index

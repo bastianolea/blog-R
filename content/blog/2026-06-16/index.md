@@ -6,6 +6,7 @@ slug: []
 categories: []
 tags:
   - consejos
+  - blog
 format:
   hugo-md:
     output-file: index
