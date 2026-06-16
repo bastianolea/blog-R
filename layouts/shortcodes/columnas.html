@@ -4,25 +4,25 @@
 {{- if not ($.Page.Scratch.Get "column_count") -}}
   <style>
       div.splitbox {
-        width:100%; 
-        overflow:auto;}
+        width: 100%; 
+        overflow: auto;}
 
       div.splitbox div.column-left {
                     width:48%;
                     padding: 2px;
-                    float:left;}
+                    float: left;}
       div.splitbox div.column-right {
                     width:48%;
-                    padding: 4px;
-                    float:right;}
+                    padding: 2px;
+                    float: right;}
 
       @media only screen and (max-width: 600px) {
       div.splitbox div.column-left {
-                    width:100%;
-                    float:left;}
+                    width: 100%;
+                    float: left;}
       div.splitbox div.column-right {
-                    width:100%;
-                    float:left;}
+                    width: 100%;
+                    float: left;}
       }
   </style>
 {{- end -}}

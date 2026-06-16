@@ -13,10 +13,10 @@ abrir_publicacion_reciente("modificado", cantidad = 10)
 
 # crear un post normal
 blogdown::new_post(
-  title = "Cargar texto desde archivos PDF en R",
+  title = "Tipografías lindas para programar en R: Fira Code",
   file = paste0("blog/", lubridate::today(), "/index.qmd"),
   author = "Bastián Olea Herrera",
-  tags = c("texto", "análisis de texto")
+  tags = c("consejos")
 )
 
 # crear un post tutorial
