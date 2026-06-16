@@ -48,4 +48,8 @@ Instala [Fira Code](https://github.com/tonsky/FiraCode) siguiendo estas [instruc
 
 También está disponible en [Google Fonts](https://fonts.google.com/specimen/Fira+Code).
 
-{{< etiqueta "consejos" >}}
+Si te gustó el tema moradito oscuro que uso en RStudio, lo puedes encontrar acá:
+
+{{< relacionada "/blog/tema_morado/" "Tema de RStudio" >}}
+
+{{< etiqueta "consejos" "Más publicaciones" >}}
