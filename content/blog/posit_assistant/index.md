@@ -94,13 +94,17 @@ No puedo dejar de destacar lo importante que es que la IA comparta tu entorno de
 {{< imagen "posit_assistant_13.png" >}}
 {{< bajada "Posit Assistant accediendo a objetos cargados en tu entorno de R" >}}
 
-Esto elimina todas las fricciones que existen al trabajar con IA, ya que literalmente **la IA trabaja a la par contigo en R.** Olvídate de copiar y pegar!
+Además de la integración con el entorno estadístico de R, Posit Assistant también se integra estrechamente con tu IDE o entorno de desarrollo, RStudio, siendo capaz de saber qué script estás mirando o editando, e incluso **sabe del código que tienes seleccionado** para poder hacer preguntas sobre partes específicas de tus proyectos!
+
+{{< imagen "posit_assistant_16.png" >}}
+{{< bajada "Puedes pedirle a Posit Assistant cosas relacionadas al script que tengas abierto y lo reconocerá, o incluso si seleccionas código puedes preguntarle directamente sobre ese código y lo reconocerá" >}}
+
+Todo lo anterior elimina todas las fricciones que existen al trabajar con IA, ya que literalmente **la IA trabaja a la par contigo en R.** Olvídate de copiar y pegar!
 
 Cuando a IA ejecuta código, lo ejecuta en tu misma consola, agregando una etiqueta de IA en la parte superior derecha.
 
 {{< imagen "posit_assistant_5.png" >}}
 {{< bajada "RStudio aplica una etiqueta de IA en la esquina superior derecha del código ejecutado por el asistente" >}}
-
 
 Naturamente, cuando se encuentra con errores, ya sea porque los datos cambiaron y no se dio cuenta, o porque le falta un paquete, el asistente se fija y puede recuperarse de los errores.
 

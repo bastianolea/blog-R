@@ -1,0 +1,305 @@
+---
+title: Recodificando variables ordinales cuando vienen sucias y/o desde respuestas abiertas
+subtitle: "Limpieza de datos de encuestas usando R"
+author: Bastián Olea Herrera
+date: '2026-06-18'
+slug: []
+categories: []
+tags:
+  - limpieza de datos
+  - texto
+  - blog
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+editor_options: 
+  chunk_output_type: console
+excerpt: "Siguiendo un caso real de limpieza de datos de una encuesta, en esta publicación veremos estrategias para recodificar respuestas de texto abierto en variables categóricas u ordinales usando R para pasar de cientos de respuestas diferentes a tan sólo 5 categorías."
+---
+
+Las **variables ordinales** son aquellas cuyos valores tienen un orden definido, pero la diferencia entre estos valores puede ser variable. Por ejemplo: *bajo, medio* y *alto.*
+
+En este caso me tocó enfrentarme a una encuesta con una variable ordinal que medía **velocidad de internet**, que es por naturaleza una variable contínua (números que representan la velocidad), pero que en este caso fue categorizada en intervalos (pasando del valor `36` a "Entre 20 y 50", por ejemplo) transformándola en una variable ordinal.
+
+Se trata de los datos de la *Encuesta de Realidad Tecnológica Municipal* levantada y publicada por el [Sistema Nacional de Información Municipal](https://www.sinim.gov.cl) (SINIM), que presenta datos de manera anual desde el año 2017.
+
+El **problema** con estos datos fue que, al estar presentes en varias mediciones de una misma encuesta, venía codificada de manera distinta en cada año, incluso con datos en el peor escenario posible: *texto libre* que requiere ser recodificado en categorías.
+
+En esta publicación iremos revisando estos datos del asco y limpiándolos hasta obtener una preciosa variable categórica ordinal a partir de texto limpio y desordenado.
+
+Descarga los datos de prueba[^1] si quieres seguir este post:
+
+[^1]: Los datos originales de la encuesta de Realidad Tecnológica Municipal [están disponibles aquí.](https://www.sinim.gov.cl/CentroDescargas/EvolTend_elec.php)
+
+{{< boton "Desacargar datos de prueba" "datos_internet.rds" "fas fa-file-download" >}}
+
+Carguemos los datos:
+```{r}
+#| message: false
+#| warning: false
+library(dplyr)
+library(readr)
+
+datos <- readr::read_rds("datos_internet.rds")
+
+head(datos)
+```
+
+En esta encuesta, la variable de _velocidad de internet_ supuestamente tiene sus datos en intervalos, como "Entre 50 y 100 mb", pero en realidad los datos venían con valores tan disímiles como:
+
+```{r}
+#| echo: false
+set.seed(4444)
+```
+
+```{r}
+datos |> 
+  distinct(valor) |> 
+  slice_sample(n = 10)
+```
+
+Como vemos, son TODOS distintos. Hay `{r} length(unique(datos$valor))` valores distintos en la variable! 😰
+
+Por algún motivo, la encuesta preguntó con un campo abierto de texto, antes de estandarizar las posibilidades de respuesta en años más recientes, pero no sin cometer el pecado de mantener un "otros" de texto abierto en caso de que alguien qusiera ponerse creativo/a 🙄
+
+Menciones honrosas a las personas que respondieron velocidades de internet como `1 gb` 🚀, `60mg` 💊, `36.18` ⏱️ y, por algún motivo, `luis antonio reyes espinoza` 👴🏼
+
+Para estandarizar las respuestas de texto abierto, primero conté las más repetidas:
+
+```{r}
+datos |> 
+  count(valor, sort = TRUE)
+```
+
+Vemos que hay variedad, pero también _cierto patrón._
+
+Luego, el primer paso de limpieza es cambiar todo a minúsculas con `str_to_lower()` (o a mayúsculas con `str_to_upper()`, pero me carga la gente gritona).
+
+```{r}
+library(stringr)
+
+# normalizar mayúsculas
+datos_2 <- datos |> 
+  mutate(valor = str_to_lower(valor))
+```
+
+```{r}
+datos_2 |> 
+  count(valor, sort = TRUE)
+```
+
+
+Con esto pasamos desde `{r} length(unique(datos$valor))` a `{r} length(unique(datos_2$valor))` formas diferentes de responder, o sea que habían `{r} length(unique(datos$valor))-length(unique(datos_2$valor))` alternativas de respuesta que solamente se diferenciaban por sus mayúsculas.
+
+Luego, haremos que solamente hayan respuestas que contengan algún número, porque sólo esas nos resultan relevantes para una variable de velocidad de internet. 
+
+Para dejar solamente **datos que incluyan números** usaremos `str_detect()` para detectar observaciones con el _regex_ `\\d`, que representa a cualquier dígito (también serviría `[0-9]`).
+
+Por ejemplo:
+
+```{r}
+library(stringr)
+
+valores <- c(1, 2, 3, "hola", "4 mapaches", NA)
+
+str_detect(valores, "\\d")
+```
+
+Entonces, si un valor _no_ contiene un número, convertiremos la observación en `NA` con `if_else()`.
+
+```{r}
+if_else(
+  str_detect(valores, "\\d"),
+  true = valores,
+  false = NA
+)
+```
+
+Entonces, vamos así con la limpieza:
+
+```{r}
+# dejar solamente observaciones con números
+datos_3 <- datos_2 |>
+  mutate(valor = if_else(
+    str_detect(valor, "\\d"), 
+    valor, 
+    NA)
+  )
+```
+
+```{r}
+datos_3 |> 
+  count(valor, sort = TRUE)
+```
+
+
+Bajamos a `{r} length(unique(datos_3$valor))` respuestas posibles! 👏🏼
+
+Ahora viene la parte más cabezona, que es **detectar patrones** en los datos. Si nos fijamos, varias respuestas siguen el patrón _"entre `x` y menos de `x` mb"_. Podemos detectar este patrón con _regex_, donde en realidad nos interesan los números que indican: _"entre 10 y 20 mb"_, _"entre 50 y 100 mb"_, etcétera.
+
+Para esto, usaremos nuevamente `str_detect()` y usaremos dos expresiones de _regex_: 
+- La expresión `.*`, que significa "cualquier cantidad de caracteres" o "cualquier cosa", que nos permitirá detectar dos números con cualquier cantidad de caracteres entre ellos.
+- La expresión `\\b` que representa el borde de una palabra; es decir, ya sea un espacio que separa la palabra con otra, o el fin del texto, entre otras. De esta forma, si buscamos `50\\b` detectaremos `50 mapaches` pero no `500 mapaches`.
+
+```{r}
+valores <- c(
+  "50 gigabites",
+  "entre 80 y 100",
+  "entre 50 y menos de 100 mb",
+  "entre 500 mb y menos de 1000 mb"
+)
+
+str_detect(valores, "50\\b.*100")
+```
+
+Pero además queremos que cada detección que hagamos nos permita **recodificar** los datos a una forma estandarizada. Para esto pondremos el `str_detect()` dentro de `case_when()`, función que nos permitirá recodificar para cada caso un valor distinto:
+
+```{r}
+datos_4 <- datos_3 |> 
+  mutate(valor = case_when(
+    # mención de términos/cifras específicas
+    str_detect(valor, "50\\b.*100") ~ "Entre 50 y menos de 100 mb",
+    str_detect(valor, "20\\b.*50") ~  "Entre 20 y menos de 50 mb",
+    str_detect(valor, "10\\b.*20") ~  "Entre 10 y menos de 20 mb",
+    .default = valor)
+  )
+```
+
+```{r}
+datos_4 |> 
+  count(valor, sort = TRUE)
+```
+
+
+Increíble, bajamos de `{r} length(unique(datos_3$valor))` valores únicos a `{r} length(unique(datos_4$valor))`! 🎉
+
+Es importante recordar poner `.default` al final del `case_when()` para que los textos no coincididos se mantengan sin cambios.
+
+Usando la misma técnica podemos hacernos cargo de otros casos que mencionan números y que podemos adecuar a las categorías de respuesta estandarizadas: 
+- Los que mencionan _gigabits_, que evidentemente son mayores a 100 megabits.
+- Los que dicen "más de 100", pero considerando la palabra con o sin tilde usando la expresión `(mas|más)`, que coincide con ambas formas, y junto a `.*` para abarcar casos que digan cualquier cosa entre el "más" y el "100"
+- Los casos que dicen "menor a 10", considerando varias formas de escribirlo y el borde de la palabra con `\\b`.
+
+```{r}
+datos_5 <- datos_4 |> 
+  mutate(valor = case_when(
+    # mención de términos/cifras específicas
+    str_detect(valor, "gb") ~ "Más de 100 mb",
+    str_detect(valor, "(mas|más).*100") ~ "Más de 100 mb",
+    str_detect(valor, "(menos|menor).*10\\b") ~ "Menos de 10 mb",
+    .default = valor)
+  )
+
+datos_5 |> 
+  count(valor, sort = TRUE)
+```
+
+Con estos casos puntuales resueltos, bajamos a `{r} length(unique(datos_5$valor))` 🏅
+
+Si vemos los conteos, ahora van quedando casi puras formas de responder que simplemente entregan un número:
+
+```{r}
+datos_5 |> 
+  distinct(valor) |> 
+  slice_sample(n = 10)
+```
+
+Para abarcar estos casos, usaremos un truquito de `regex` que ya vimos: la expresión _o_ (`|`). Si queremos hacer que una búsqueda de texto con `str_detect()` coincida con varios números, hacemos esto: 
+
+```{r}
+valores <- c(1, 2, 3, 4, 5, 6)
+
+str_detect(valores, "1|2|3|4|5")
+```
+
+En el fondo le decimos _encuentra 1 o 2 o 3..._ Entonces podemos **construir expresiones** que abarquen grandes cantidades de números, y usarlas para recodificar valores que en cualquier lugar del texto contengan esos números. Por ejemplo, para abarcar todos los valores entre 50 y 100:
+
+```{r}
+paste(50:99, collapse = "|")
+```
+
+Dios mío, qué eficiencia 🥹 Ahora es cosa de usar eso dentro de un `case_when()` para que cualquier observación que tenga ciertos números clasifique dentro de la categoría que le corresponda:
+
+```{r}
+datos_6 <- datos_5 |> 
+  mutate(valor = case_when(
+    str_detect(valor, paste(100:999, collapse = "|")) ~ "Más de 100 mb",
+    str_detect(valor, paste(050:099, collapse = "|")) ~ "Entre 50 y menos de 100 mb",
+    str_detect(valor, paste(020:049, collapse = "|")) ~ "Entre 20 y menos de 50 mb",
+    str_detect(valor, paste(010:019, collapse = "|")) ~ "Entre 10 y menos de 20 mb",
+    str_detect(valor, paste(001:009, collapse = "|")) ~ "Menos de 10 mb",
+    .default = valor)
+  )
+```
+
+```{r}
+datos_6 |> 
+  count(valor, sort = TRUE)
+```
+
+
+Impresionanteeeeee lo logramos! 🔥 Bajamos de `{r} length(unique(datos_5$valor))` a `{r} length(unique(datos_6$valor))` posibilidades de respuesta!
+
+Pero **ALTO!** Cometimos un error! 💀 Esta última estrategia va a aplicarse sobre las recodificaciones anteriores también! Si pisamos las recodificaciones anteriores podemos arruinarlo todo!
+
+Para **dejar intactas las recodificaciones anteriores**, y que las siguientes sólo se apliquen a los valores aún no recodificados, podríamos haber ido paso a paso creando columnas nuevas (`valor_1`, `valor_2`, etc.) y después unirlas con `coalesce()`, o bien podemos aprovechar un principio importante de `case_when()`, que es que si usas múltiples condicionales, las observaciones recodificadas por una condición **se excluyen** de las siguientes condicionales; es decir, las que son cambiadas por un `str_detect()` no vuelven a cambiarse con las siguientes condicionales, aunque coincidan. Esto significa que, si unimos todos los `case_when()` en uno sólo, tendremos una recodificación correcta. Y para poder confirmarlo, recodificaremos a una variable nueva (`valor_recod`) que nos permita verificar, en vez de ir pisando la variable original (`valor`):
+
+```{r}
+datos_recod <- datos |>
+  # normalizar mayúsculas
+  mutate(valor = str_to_lower(valor)) |>
+  # solamente observaciones con números
+  mutate(valor = if_else(str_detect(valor, "\\d"), valor, NA)) |>
+  # caso a caso
+  mutate(valor_recod = case_when(
+    # mención de términos/cifras específicas
+    str_detect(valor, "gb") ~ "Más de 100 mb",
+    str_detect(valor, "(mas|más).*100") ~ "Más de 100 mb",
+    str_detect(valor, ".*50\\b.*100") ~ "Entre 50 y menos de 100 mb",
+    str_detect(valor, ".*20\\b.*50") ~  "Entre 20 y menos de 50 mb",
+    str_detect(valor, ".*10\\b.*20") ~  "Entre 10 y menos de 20 mb",
+    str_detect(valor, "(menos|menor).*10($| )") ~ "Menos de 10 mb",
+    # mención de cifras intermedias
+    str_detect(valor, paste(100:999, collapse = "|")) ~ "Más de 100 mb",
+    str_detect(valor, paste(050:099, collapse = "|")) ~ "Entre 50 y menos de 100 mb",
+    str_detect(valor, paste(020:049, collapse = "|")) ~ "Entre 20 y menos de 50 mb",
+    str_detect(valor, paste(010:019, collapse = "|")) ~ "Entre 10 y menos de 20 mb",
+    str_detect(valor, paste(001:009, collapse = "|")) ~ "Menos de 10 mb",
+    .default = valor)
+  )
+```
+
+```{r}
+datos_recod |> 
+  count(valor_recod, sort = TRUE)
+```
+
+Estupendo, el resultado final y correcto pasó de los `{r} length(unique(datos$valor))` valores posibles originales a tan solo `{r} length(unique(datos_recod$valor_recod))` categorías bien escritas.
+
+Confirmemos que las recodificaciones fueron correctas:
+
+```{r}
+datos_recod |>
+  filter(valor_recod == "Entre 50 y menos de 100 mb") |>
+  count(valor_recod, valor, sort = TRUE) |>
+  print(n = 10)
+```
+
+```{r}
+datos_recod |>
+  filter(valor_recod == "Entre 20 y menos de 50 mb") |>
+  count(valor_recod, valor, sort = TRUE) |>
+  print(n = 10)
+```
+
+Todo en orden! Espero que te haya servido esta experiencia de recodificación de datos sucios 🥰
+
+{{< etiqueta "limpieza de datos" >}}
+
+
+## Referencias
+
+- [Sistema Nacional de Información Municipal, _Evolución y Tendencias_](https://www.sinim.gov.cl/CentroDescargas/EvolTend_elec.php)
+
+{{< cafecito >}}

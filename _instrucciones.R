@@ -13,10 +13,10 @@ abrir_publicacion_reciente("modificado", cantidad = 10)
 
 # crear un post normal
 blogdown::new_post(
-  title = "Tipografías lindas para programar en R: Fira Code",
+  title = "Recodificando variables ordinales cuando vienen extremadamente sucias",
   file = paste0("blog/", lubridate::today(), "/index.qmd"),
   author = "Bastián Olea Herrera",
-  tags = c("consejos")
+  tags = c("limpieza de datos")
 )
 
 # crear un post tutorial
