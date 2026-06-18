@@ -3,7 +3,7 @@ title: "Curso: introducción al análisis de datos con R, 3ª versión"
 subtitle: "Curso online de programación dirigido a estudiantes o profesionales de las ciencias sociales"
 excerpt: "Tercera versión del curso gratuito de introducción a R enfocado en las ciencias sociales. En este curso de cuatro sesiones aprenderemos a usar R para trabajar con datos sociales, revisando lo básico de la visualización de datos con R."
 author: Bastián Olea Herrera
-date: '2026-06-07'
+date: '2026-06-22'
 draft: false
 tags:
   - blog
