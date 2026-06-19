@@ -1,0 +1,49 @@
+{{/* 
+    0: Título del enlace (requerido)
+    1: URL externa (requerido)
+    2: URL de la imagen (opcional)
+    3: Descripción (opcional)
+*/}}
+
+{{- $title := .Get 0 | default "Título" -}}
+{{- $url   := .Get 1 | default "#" -}}
+{{- $img   := .Get 2 -}}
+{{- $desc  := .Get 3 -}}
+
+
+<div style="margin: 28px 0;">
+
+  <a href="{{ $url }}"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="externo-card">
+
+    {{ with $img }}
+    <figure class="externo-card-img paquete-card-img">
+      <img src="{{ . }}"
+           alt="{{ $title }}">
+    </figure>
+    {{ end }}
+
+    <div class="externo-card-text">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        {{ $title | markdownify }}
+      </p>
+
+      {{ with $desc }}
+      <p style="margin: 0;
+                color: #543A73;
+                font-size: 84%;
+                line-height: 1.5;">
+        {{ . | markdownify | plainify }}
+      </p>
+      {{ end }}
+
+    </div>
+  </a>
+</div>
