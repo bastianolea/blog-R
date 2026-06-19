@@ -203,11 +203,11 @@ titleCaseStyle = "firstupper"
     title = "Datos"
     url = "https://bastianolea.github.io/datos_sociales/"
     weight = 3.2
-  # [[menu.header]]
-  #   name = "Paquetes"
-  #   title = "Paquetes de R"
-  #   url = "/categories/paquetes/"
-  #   weight = 3.3
+  [[menu.header]]
+    name = "Paquetes"
+    title = "Paquetes de R"
+    url = "/categories/paquetes/"
+    weight = 3.3
   [[menu.header]]
     name = "Tutoriales"
     title = "Tutoriales"

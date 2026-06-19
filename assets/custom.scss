@@ -280,6 +280,37 @@ background-color: #A985C630;
     }
   }
 
+/* imagen completa para shortcode paquete.html (anula estilos de externo-card-img) */
+.paquete-card-img {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: 10px; */
+  overflow: visible;
+}
+.paquete-card-img img {
+  position: static;
+  inset: unset;
+  width: auto;
+  height: auto;
+  max-width: 140px;
+  max-height: 140px;
+  object-fit: contain;
+}
+@media (max-width: 500px) {
+  .paquete-card-img {
+    width: 100%;
+    height: auto;
+    margin: 10px 0 0 0;
+    border-radius: 0;
+  }
+  .paquete-card-img img {
+    max-width: 50%;
+    max-height: 120px;
+  }
+}
+
 
 .titulo-panel {
     margin: 0 0 6px 0;

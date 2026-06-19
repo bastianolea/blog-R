@@ -26,12 +26,19 @@ excerpt: >-
   (número entre `0` y `9` o `K`). En esta publicación entrego algunas funciones
   para realizar operaciones comunes con los RUT en R, como validarlos, calcular
   el dígito verificador, y limpiar los RUT.
+links:
+  - icon: registered
+    icon_pack: fas
+    name: Paquete
+    url: https://bastianolea.github.io/rutera/
 ---
 
 
-En Chile, los [RUT](https://es.wikipedia.org/wiki/Rol_Único_Nacional) son los números de identificación usados para ciudadanos y empresas. Tienen el formato `xxxxxxx-y`, donde `x` es el número o cuerpo, e `y` es el dígito verificador (número entre `0` y `9` o `K`). En esta publicación entrego algunas funciones para realizar operaciones comunes con los RUT en R, como validarlos, calcular el dígito verificador, y limpiar los RUT.
+En Chile, los [RUT](https://es.wikipedia.org/wiki/Rol_Único_Nacional) son los números de identificación usados para ciudadanos y empresas. Tienen el formato `xxxxxxx-y`, donde `x` es el número o cuerpo, e `y` es el dígito verificador (número entre `0` y `9` o `K`).
 
-{{< aviso "Publicación en construcción!" >}}
+En esta publicación entrego algunas funciones para realizar operaciones comunes con los RUT en R, como validarlos, calcular el dígito verificador, y limpiar los RUT, y además entrego estas mismas soluciones en la forma de funciones de [mi paquete `{rutera}`](../../../blog/rutera/).
+
+{{< relacionada "/blog/rutera/" >}}
 
 ## Calcular dígito verificador
 
@@ -42,63 +49,46 @@ El dígito verificador del RUT permite confirmar que se escribió correctamente 
 3.  A esta suma se le calcula el módulo (resto de la división entera) de 11, y el resultado se le resta a 11
 4.  El resultado de lo anterior es el dígito verificador; pero si el resultado es `11` o `10`, el dígito será `0` o `K`, respectivamente
 
-La siguiente función de R implementa el cálculo del código verificador de cualquier RUT sin código verificador:
+El siguiente ejemplo muestra cómo calcular el dígito verificador de cualquier RUT sin dígito verificador:
 
 ``` r
-#' Calcular dígito verificador del RUT
-#' 
-#' Calcula el dígito verificador para un RUT sin dígito verificador. Puede recibir uno o varios RUTs.
-#' 
-#' @returns Dígito verificador del cuerpo del RUT entregrado, en tipo caracter
-#' 
-#' @param rut_sin_digito Vector de RUTs sin dígito verificador
-#' 
-#' @example `calcular_digito(11111111)`
-#' 
-calcular_digito <- function(rut_sin_digito) {
-  require(stringr)
-  require(purrr)
-  
-  # separar números en dígitos
-  digitos_lista <- strsplit(as.character(rut_sin_digito), "")
-  
-  # calcular dígito verificador
-  digito <- map(
-    digitos_lista, 
-    \(digitos) {
-      digitos <- as.numeric(digitos)
-      
-      # secuencia cíclica de 2 a 7
-      pesos <- rep(2:7, length.out = length(digitos))
-      # sumar pesos invertidos con los dígitos
-      suma <- sum(digitos * rev(pesos))
-      # restar número 11 con el módulo 11 de la suma
-      digito <- 11 - (suma %% 11)
-      
-      return(
-        as.character(digito)
-      )
-    })
-  
-  digito <- list_c(digito)
-  
-  # casos especiales
-  digito <- ifelse(digito == "11", "0", digito)
-  digito <- ifelse(digito == "10", "K", digito)
-  
-  return(digito)
-}
+library(stringr)
+library(purrr)
+
+rut_sin_digito <- 24324110
+
+# separar números en dígitos
+digitos_lista <- strsplit(as.character(rut_sin_digito), "")
+
+digitos <- as.numeric(rut_sin_digito)
+
+# secuencia cíclica de 2 a 7
+pesos <- rep(2:7, length.out = length(digitos))
+
+# sumar pesos invertidos con los dígitos
+suma <- sum(digitos * rev(pesos))
+
+# restar número 11 con el módulo 11 de la suma
+digito <- 11 - (suma %% 11)
+
+digito <- as.character(digito)
+
+# casos especiales
+digito <- ifelse(digito == "11", "0", digito)
+digito <- ifelse(digito == "10", "K", digito)
+
+print(digito)
 ```
 
-Probemos la función con algunos RUT de prueba:
+    [1] "6"
+
+Este cálculo está incluido en la función `calcular_digito()` de [mi paquete `{rutera}`](../../../blog/rutera/):
 
 ``` r
+library(rutera)
+
 calcular_digito(24324110)
 ```
-
-    Loading required package: stringr
-
-    Loading required package: purrr
 
     [1] "3"
 
@@ -117,72 +107,41 @@ calcular_digito(
 Otra cosa que podemos necesitar hacer con los RUT es verificar si vienen en un formato determinado. En este caso, el formato apropiado será `xxxxxxxx-y`, y esta función verificará: que el RUT contiene un guión, que se sigue el formato `xxxxxxxx-y`, y que el dígito verificador que trae sea el correcto (usando la función `calcular_digito()`):
 
 ``` r
-#' Validar formato de un RUT
-#' 
-#' Aplica varias pruebas para confirmar que un RUT es válido.
-#' 
-#' Para confirmar que un RUT es válido, detecta que contenga un guión, verifica el formato "xxx-x", y valida que el dígito verificador sea correcto. Esta función acepta uno o varios RUTs.
-#' 
-#' @returns TRUE/FALSE
-#' 
-#' @param rut Vector de RUTs a consultar
-#' 
-#' @example `validar_rut("11111111-1")`
-#' 
-validar_rut <- function(rut) {
-  require(stringr)
-  require(cli)
-  require(purrr)
-  
-  # por cada RUT:
-  validacion <- map(
-    rut, 
-    \(rut) {
-      
-      # rut <- "18172852-3"
-      rut <- as.character(rut)
-      rut <- toupper(rut)
-      
-      # confirmar guión
-      confirmar_guion <- str_detect(rut, "-")
-      if (!confirmar_guion) {
-        cli_alert_warning("RUT {rut} no incluye guión")
-        return(FALSE)
-      }
-      
-      # verificar formato esperado
-      confirmar_formato <- str_detect(rut, "^[0-9]+-[0-9K]$")
-      if (!confirmar_formato) {
-        cli_alert_warning("RUT {rut} con formato incorrecto")
-        return(FALSE)
-      }
-      
-      # validar dígito verificador
-      digito_verificador <- str_extract(rut, "[0-9K]$")
-      rut_sin_digito <- str_remove_all(rut, "\\-[0-9K]$")
-      
-      confirmar_digito <- calcular_digito(rut_sin_digito) == digito_verificador
-      if (!confirmar_digito) {
-        cli_alert_warning("RUT {rut} con dígito verificador incorrecto")
-        return(FALSE)
-      }
-      
-      return(TRUE)
-    })
-  
-  return(
-    unlist(validacion)
-  )
-}
+library(stringr)
+library(cli)
+
+rut <- "11111111-1"
+
+rut <- as.character(rut)
+rut <- toupper(rut)
+
+# verificar formato esperado
+confirmar_formato <- str_detect(rut, "^[0-9]+-[0-9K]$")
+
+print(confirmar_formato)
 ```
 
-Probemos la función `validar_rut()` con algunos RUTs de prueba:
+    [1] TRUE
+
+Luego se podría separar el RUT de su dígito verificador, y confirmar si es correcto usando la función `rutera::calcular_digito()`:
 
 ``` r
-validar_rut("17505116-3")
+# validar dígito verificador
+digito_verificador <- str_extract(rut, "[0-9K]$")
+rut_sin_digito <- str_remove_all(rut, "\\-[0-9K]$")
+
+calcular_digito(rut_sin_digito) == digito_verificador
 ```
 
-    Loading required package: cli
+    [1] TRUE
+
+La validación de un RUT completa, incluyendo confirmación del dígito verificador, se puede hacer con la función `validar_rut()` de [mi paquete `{rutera}`](../../../blog/rutera/):
+
+``` r
+library(rutera)
+
+validar_rut("17505116-3")
+```
 
     [1] TRUE
 
@@ -211,16 +170,13 @@ validar_rut(c("hola", "11111111", "19413730-3"))
 ```
 
     ! RUT HOLA no incluye guión
-
     ! RUT 11111111 no incluye guión
 
     [1] FALSE FALSE  TRUE
 
 ## Limpiar RUT
 
-{{< aviso "Publicación en construcción!" >}}
-
-Por mientras hago la función:
+La limpieza de un RUT, a grandes rasgos, consiste en eliminar todos los símbolos que no son numéricos, y luego re-armar la estructura del RUT bajo una estructura estandarizada.
 
 ``` r
 library(stringr)
@@ -248,87 +204,11 @@ str_extract_all(rut, "\\d+", simplify = TRUE) |>
 
     [1] "244441459"
 
-Aquí va lo que llevo de la función de limpieza de RUTs. Una duda es si debería incluir o no la validación del dígito verificador como parte de la limpieza, o considerarla como un paso separado (me inclino por ésto).
+Con la función `limpiar_rut()` de [mi paquete `{rutera}`](../../../blog/rutera/) se realizan todos los pasos de limpieza y se retornan los RUT en formato `xxxxxxx-y`:
 
 ``` r
-#' Limpiar RUTs
-#' 
-#' Recibe un vector de posibles RUT, y los limpia eliminando puntuación y espacios, extrayendo números, y separando el dígito verificador
-#'
-#' @param ruts Vector de texto con RUTs
-#'
-#' @returns Vector de texto con RUTs limpios en formato `xxxxxxx-y`
-#'
-#' @examples `limpiar_rut("24444145 9")`
-limpiar_rut <- function(ruts) {
-  require(stringr)
-  require(purrr)
-  require(tidyr)
-  require(dplyr)
-  require(cli)
-  
-  originales <- ruts
-  
-  ruts <- as.character(originales)
-  
-  ruts <- str_remove_all(ruts, "[:punct:]")
-  
-  ruts <- str_remove_all(ruts, " ")
-  
-  ruts <- str_extract_all(ruts, "\\d+")
-  
-  # procesar lista para casos donde no hay números
-  lista_ruts <- map(
-    ruts, 
-    \(rut) {
-      # rut <- ruts[6]
-      rut <- unlist(rut)
-      rut <- paste(rut, collapse = "")
-      rut <- ifelse(length(rut) == 0, "", rut)
-      return(rut)
-    }
-  )
-  
-  # convertir lista a vector
-  ruts_2 <- lista_ruts |> list_c()
-  
-  probar_largos_iguales <- length(ruts_2) == length(ruts)
-  if (!probar_largos_iguales) {
-    cli_abort("error procesando RUT: largo distintos ({length(ruts)} y {length(lista_ruts)})")
-  }
-  
-  ultimos_digitos <- ruts_2 |> 
-    str_extract("\\d{1}$") |> 
-    replace_na("")
-  
-  if (any(nchar(ultimos_digitos) != 1)) {
-    cli_alert_warning("algunos RUT no tienen últimos dígitos")
-  }
-  
-  sin_ultimos_digitos <- ruts_2 |> 
-    str_extract(".*(?=.$)") |> 
-    replace_na("")
-  
-  # revisar posibles problemas
-  if (any(sin_ultimos_digitos == "")) {
-    cli_alert_warning("algunos RUT vacíos luego de la limpieza")
-  } else if (any(nchar(sin_ultimos_digitos) < 7)) {
-    cli_alert_warning("algunos RUT sospechosamente cortos")
-  } else if (any(nchar(sin_ultimos_digitos) > 8)) {
-    cli_alert_warning("algunos RUT sospechosamente largos (o es alguien del futuro)")
-  }
-  
-  ruts_limpios <- paste(sin_ultimos_digitos, ultimos_digitos, sep = "-")
-  
-  ruts_limpios <- na_if(ruts_limpios, "-") 
-  
-  return(ruts_limpios)
-}
-```
+library(rutera)
 
-Prueba de la función de limpieza:
-
-``` r
 rut_sucios <- c("24.444.145-9",
                 "24444145 9",
                 "24 444 145 9",
@@ -340,21 +220,6 @@ rut_sucios <- c("24.444.145-9",
 limpiar_rut(rut_sucios)
 ```
 
-    Loading required package: tidyr
-
-    Loading required package: dplyr
-
-
-    Attaching package: 'dplyr'
-
-    The following objects are masked from 'package:stats':
-
-        filter, lag
-
-    The following objects are masked from 'package:base':
-
-        intersect, setdiff, setequal, union
-
     ! algunos RUT no tienen últimos dígitos
 
     ! algunos RUT vacíos luego de la limpieza
@@ -364,7 +229,7 @@ limpiar_rut(rut_sucios)
 
 ## Paquete de R
 
-{{< info "Espero poder publicar estas funciones como un paquete de R, [aunque ya existe uno](https://jkunst.com/clrutr/index.html) que hace algo casi idéntico. Por mientras, estas funciones puede que sean útiles" >}}
+{{< relacionada "/blog/rutera/" >}}
 
 ## Otros
 
