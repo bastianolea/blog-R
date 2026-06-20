@@ -6,7 +6,7 @@
     <description>Recent content in Consejos on Bastián Olea</description>
     <generator>Hugo</generator>
     <language>es-ES</language>
-    <lastBuildDate>Fri, 27 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://bastianolea.rbind.io/tags/consejos/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Organizar el trabajo en Proyectos de RStudio</title>
@@ -21,6 +21,20 @@
       <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
       <guid>https://bastianolea.rbind.io/blog/r_introduccion/tutorial_github/</guid>
       <description>&lt;a href=&#34;titulo_github-featured.png&#34; target=&#34;_blank&#34;&gt;&#xA;&#xA;  &lt;img src=&#34;titulo_github-featured.png&#34; style=&#34;border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;&#34;&gt;&#xA;  &#xA;&lt;/a&gt;&#xA;&lt;br&gt;&#xA;&lt;br&gt;&#xA;&lt;p&gt;En este tutorial aprenderás a empezar a usar Git con tus proyectos de R, mediante la creación de repositorios. Git te permite llevar un registro de las versiones y un control de cambios en tu código, mientras que GitHub te permite subir tus repositorios a un servicio online, en el cual puedes compartir tu código con otras personas, descargar el código de otros, y colaborar en un mismo proyecto.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Tipografías lindas para programar en R: Fira Code</title>
+      <link>https://bastianolea.rbind.io/blog/2026-06-16/</link>
+      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/blog/2026-06-16/</guid>
+      <description>&lt;p&gt;&#xA;&lt;a href=&#34;https://github.com/tonsky/FiraCode&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Fira Code&lt;/a&gt; es una tipografía muy bonita para programar. Su característica principal es que usa las &lt;strong&gt;ligaduras&lt;/strong&gt;, una característica de la tipografía que une dos o más caracteres en un solo símbolo adaptado, para mostrar los símbolos usados en programación de forma más atractiva.&lt;/p&gt;&#xA;&lt;a href=&#34;pruebas_firacode.png&#34; target=&#34;_blank&#34;&gt;&#xA;&#xA;  &lt;img src=&#34;pruebas_firacode.png&#34; style=&#34;border-radius: 5px; width: 80%; max-width: 300px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;&#34;&gt;&#xA;  &#xA;&lt;/a&gt;&#xA;&lt;p&gt;Lo más destacable es que convierte el &#xA;&lt;a href=&#34;https://bastianolea.rbind.io/blog/r_introduccion/conectores/&#34;&gt;símbolo del conector&lt;/a&gt; o &lt;em&gt;pipe&lt;/em&gt; (&lt;code&gt;|&amp;gt;&lt;/code&gt;) en un triangulito, y a la &#xA;&lt;a href=&#34;https://bastianolea.rbind.io/blog/r_introduccion/r_basico/#asignaciones&#34;&gt;flecha de asignación&lt;/a&gt; (&lt;code&gt;&amp;lt;-&lt;/code&gt;) en una flecha de verdad.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Posit Assistant, una IA para análisis de datos integrada en RStudio</title>
+      <link>https://bastianolea.rbind.io/blog/posit_assistant/</link>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/blog/posit_assistant/</guid>
+      <description>&lt;p&gt;Recientemente &#xA;&lt;a href=&#34;https://posit.co&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Posit&lt;/a&gt;, la &lt;del&gt;empresa&lt;/del&gt; corporación de beneficio público detrás de RStudio, Positron, y responsable de &#xA;&lt;a href=&#34;https://posit.co/products/open-source/rpackages&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;muchos de los paquetes que más usamos en el ecosistema de R&lt;/a&gt;, anunció la &#xA;&lt;a href=&#34;https://posit.co/blog/introducing-ai-in-rstudio&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;integración oficial de inteligencia artificial en RStudio&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;&#xA;&lt;a href=&#34;https://posit-dev.github.io/assistant/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Posit Assistant&lt;/strong&gt;&lt;/a&gt; reside en la barra lateral de RStudio y sirve para hacer consultas a una IA relacionadas al análisis de datos, dentro del contexto del proyecto que estés realizando con R.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;posit_assistant_rstudio.png&#34; target=&#34;_blank&#34;&gt;&#xA;&#xA;  &lt;img src=&#34;posit_assistant_rstudio.png&#34; style=&#34;border-radius: 5px; width: 80%; max-width: 600px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;&#34;&gt;&#xA;  &#xA;&lt;/a&gt;&#xA;&lt;figcaption style=&#34;max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;&#34;&gt;&#xA;  En la parte superior de RStudio encuentras el botón Posit Assistant.&#xA;&lt;/figcaption&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Extensiones recomendadas para mejorar tus gráficos de `{ggplot2}`</title>

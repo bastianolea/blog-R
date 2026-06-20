@@ -6,8 +6,22 @@
     <description>Recent content in Limpieza de datos on Bastián Olea</description>
     <generator>Hugo</generator>
     <language>es-ES</language>
-    <lastBuildDate>Sat, 06 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://bastianolea.rbind.io/tags/limpieza-de-datos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>`{rutera}`: un paquete de R para limpiar y procesar RUTs chilenos</title>
+      <link>https://bastianolea.rbind.io/blog/rutera/</link>
+      <pubDate>Thu, 18 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/blog/rutera/</guid>
+      <description>&lt;p&gt;Paquete de R que entrega herramientas para limpiar, validar y verificar el número de cédula de identidad Chilena en R.&lt;/p&gt;&#xA;&lt;div style=&#34;margin: 28px 0;&#34;&gt;&#xA;&#xA;  &lt;a href=&#34;https://bastianolea.github.io/rutera/&#34;&#xA;     target=&#34;_blank&#34;&#xA;     rel=&#34;noopener noreferrer&#34;&#xA;     class=&#34;externo-card&#34;&gt;&#xA;&#xA;    &#xA;    &lt;figure class=&#34;externo-card-img paquete-card-img&#34;&gt;&#xA;      &lt;img src=&#34;hex-featured.png&#34;&#xA;           alt=&#34;Paquete `{rutera}`&#34;&gt;&#xA;    &lt;/figure&gt;&#xA;    &#xA;&#xA;    &lt;div class=&#34;externo-card-text&#34;&gt;&#xA;&#xA;      &lt;p style=&#34;margin: 0;&#xA;                font-size: 95%;&#xA;                color: #9069C0;&#xA;                font-weight: bold;&#xA;                line-height: 1.35;&#34;&gt;&#xA;        Paquete &lt;code&gt;{rutera}&lt;/code&gt;&#xA;      &lt;/p&gt;&#xA;&#xA;      &#xA;      &lt;p style=&#34;margin: 0;&#xA;                color: #543A73;&#xA;                font-size: 84%;&#xA;                line-height: 1.5;&#34;&gt;&#xA;        Herramientas para limpiar, validar y verificar el número de cédula de identidad Chilena en R. Estas funciones ayudan a realizar operaciones frecuentes para datos de ciudadanos chilenos que incluyen el RUT como identificador único.&#xA;      &lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Recodificando variables ordinales cuando vienen sucias y/o desde respuestas abiertas</title>
+      <link>https://bastianolea.rbind.io/blog/stringr_limpieza_ordinal/</link>
+      <pubDate>Thu, 18 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/blog/stringr_limpieza_ordinal/</guid>
+      <description>&lt;p&gt;Las &lt;strong&gt;variables ordinales&lt;/strong&gt; son aquellas cuyos valores tienen un orden definido, pero la diferencia entre estos valores puede ser variable. Por ejemplo: &lt;em&gt;bajo, medio&lt;/em&gt; y &lt;em&gt;alto.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;En este caso me tocó enfrentarme a una encuesta con una variable ordinal que medía &lt;strong&gt;velocidad de internet&lt;/strong&gt;, que es por naturaleza una variable contínua (números que representan la velocidad), pero que en este caso fue categorizada en intervalos (pasando del valor &lt;code&gt;36&lt;/code&gt; a &amp;ldquo;Entre 20 y 50&amp;rdquo;, por ejemplo) transformándola en una variable ordinal.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Búsquedas de texto por ranking de relevancia con R usando el algoritmo BM25</title>
       <link>https://bastianolea.rbind.io/blog/buscar_texto/</link>

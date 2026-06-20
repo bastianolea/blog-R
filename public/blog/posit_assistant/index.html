@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr"><head>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.136.5">
+<title>Posit Assistant, una IA para análisis de datos integrada en RStudio | Bastián Olea</title>
+
+
+<meta property="twitter:site" content="@bastimapache">
+<meta property="twitter:creator" content="@bastimapache">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="Reseña de mi experiencia con esta herramienta de inteligencia artificial especializada para análisis de datos">
+
+
+<meta property="og:site_name" content="Bastián Olea">
+<meta property="og:title" content="Posit Assistant, una IA para análisis de datos integrada en RStudio | Bastián Olea">
+<meta property="og:description" content="Reseña de mi experiencia con esta herramienta de inteligencia artificial especializada para análisis de datos" />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/posit_assistant/" />
+<meta property="og:locale" content="es-ES">
+
+
+
+
+    
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/posit_assistant/posit_assistant_featured.png" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/posit_assistant/posit_assistant_featured.png" >
+    
+    
+  
+  <meta itemprop="name" content="Posit Assistant, una IA para análisis de datos integrada en RStudio">
+  <meta itemprop="description" content="Recientemente Posit, la empresa corporación de beneficio público detrás de RStudio, Positron, y responsable de muchos de los paquetes que más usamos en el ecosistema de R, anunció la integración oficial de inteligencia artificial en RStudio.
+Posit Assistant reside en la barra lateral de RStudio y sirve para hacer consultas a una IA relacionadas al análisis de datos, dentro del contexto del proyecto que estés realizando con R.
+En la parte superior de RStudio encuentras el botón Posit Assistant.">
+  <meta itemprop="datePublished" content="2026-06-13T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2026-06-13T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1504">
+  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/posit_assistant/posit_assistant_featured.png">
+  <meta itemprop="keywords" content="Blog,Inteligencia artificial,Consejos,Básico">
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="false" type="image/x-icon">
+  <link rel="icon" href="false" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  
+  
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  
+  
+  <link rel="stylesheet" href="/css/syntax.css">
+  
+  
+  <link rel="preload" href="/buscador/" as="image">
+  
+</head>
+<body>
+      <div class="grid-container single-sidebar">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
+      <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/blog/" title="Bastián Olea: Blog de R">Blog</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/aprende_r/" title="Aprende R">Aprende R</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/shiny_apps/" title="Apps">Apps</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/tutoriales/" title="Tutoriales">Tutoriales</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/tags/" title="Temas">Temas</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/clases/" title="Cursos">Cursos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/about/" title="Bastián Olea: Sobre mi">Yo</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      
+      
+      
+      <div class="dib v-mid", style = "padding: 4px; margin-top: 4px;">
+        <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+      </div>
+      
+    </div>
+  </nav>
+</header>
+
+
+                       
+ 
+
+<main class="page-main pa4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header" style="margin-top:-30px;">
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Posit Assistant, una IA para análisis de datos integrada en RStudio</h1>
+        <h4 class="f4 mt0 mb4 lh-title measure">Reseña de mi experiencia con esta herramienta de inteligencia artificial especializada para análisis de datos</h4>
+        
+        
+        <div style = "display: inline-block;">  
+          <p class="f7 db mv0 ttu" style = "display: inline-block;">
+            13/6/2026</p>
+          
+          
+          
+        </div>
+          
+        
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/blog"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            blog</a>  <a href="https://bastianolea.rbind.io/tags/inteligencia-artificial"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            inteligencia artificial</a>  <a href="https://bastianolea.rbind.io/tags/consejos"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            consejos</a>  <a href="https://bastianolea.rbind.io/tags/b%C3%A1sico"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            básico</a> </dd></em>
+        </dl>
+         
+      
+        
+      
+      <div class="ph0 pt3">
+        
+
+<div style="margin-top:-24px;">
+
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+      
+    
+  <a class="btn-links mr2 ba dib" 
+  style = "background-color: #9069C0; border-radius: 4px; 
+  color: #EAD2FA; font-size: 10pt;
+  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
+  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
+  href="https://posit-dev.github.io/assistant/" target="_blank" rel="noopener"><i class="fas fa-registered fa-lg fa-fw mr2"></i>Posit Assistant</a>
+
+</div>
+
+      </div>
+      
+      
+    </header>
+      
+      
+    <section class="post-body pt5 pb4">
+        <p>Recientemente 
+<a href="https://posit.co" target="_blank" rel="noopener">Posit</a>, la <del>empresa</del> corporación de beneficio público detrás de RStudio, Positron, y responsable de 
+<a href="https://posit.co/products/open-source/rpackages" target="_blank" rel="noopener">muchos de los paquetes que más usamos en el ecosistema de R</a>, anunció la 
+<a href="https://posit.co/blog/introducing-ai-in-rstudio" target="_blank" rel="noopener">integración oficial de inteligencia artificial en RStudio</a>.</p>
+<p>
+<a href="https://posit-dev.github.io/assistant/" target="_blank" rel="noopener"><strong>Posit Assistant</strong></a> reside en la barra lateral de RStudio y sirve para hacer consultas a una IA relacionadas al análisis de datos, dentro del contexto del proyecto que estés realizando con R.</p>
+<p><a href="posit_assistant_rstudio.png" target="_blank">
+
+  <img src="posit_assistant_rstudio.png" style="border-radius: 5px; width: 80%; max-width: 600px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  En la parte superior de RStudio encuentras el botón Posit Assistant.
+</figcaption></p>
+<p>Su potencial reside en que se <strong>integra profundamente con R</strong> y con tu trabajo:</p>
+<ul>
+<li>Revisa los <em>scripts</em> de tu proyecto para <strong>entender</strong> lo que estás haciendo</li>
+<li>Puede ver y manipular directamente los <strong>datos</strong> con los que estás trabajando</li>
+<li>Ejecuta código para <strong>comprender</strong> tus datos, hace <strong>experimentos y pruebas</strong> con código de R sobre tus datos, y explora visualmente tus datos</li>
+<li>Sabe qué archivo estás editando, y puede leerlo, buscar las partes que mencionas y editarlas o corregirlas (con tu permiso)</li>
+<li>Puede analizar lo que has hecho y <strong>crear reportes</strong>, escribir neuvos scripts, o sugerirte formas de avanzar</li>
+</ul>
+<p>Las capacidades de Posit Assistant van mucho más allá que las de cualquier otro <em>harness</em> de inteligencia artificial que he probado (como Claude Code), dado que puede <strong>ejecutar código de R en tu misma sesión</strong>. Si bien otras soluciones de IA también pueden ejecutar código, Posit Assistant accede a los datos que ya tienes cargados porque <strong>comparte tu entorno de R</strong>, y tiene la posibilidad de ejecutar código para <strong>entender tus datos</strong> y <strong>experimentar</strong> con ellos.</p>
+<p>Posit Assistant funciona con modelos de Anthropic, así que puedes elegir entre Haiku, Sonnet, u Opus, o bien usar Gemma 4, que es mucho más económico.</p>
+<p><a href="posit_assistant_featured.png" target="_blank">
+
+  <img src="posit_assistant_featured.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  Pantalla de inicio de Posit Assistant
+</figcaption></p>
+
+
+
+
+<h3 id="mi-experiencia">Mi experiencia
+  <a href="#mi-experiencia"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Durante varias semanas he estado usando este servicio y mi veredicto es que es muy bueno! 💜</p>
+<p>Me gusta que está diseñado para ser muy cuidadoso al proceder. Lo primero que hace Posit Assistant al activarlo en un proyecto es pedirte permiso para acceder a tus archivos.</p>
+<p><a href="posit_assistant_14.png" target="_blank">
+
+  <img src="posit_assistant_14.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  Pantalla de permiso al inciar una sesión con el asistente de IA
+</figcaption></p>
+<p>Esto le permite al asistente <strong>leer tus archivos y navegar tu proyecto</strong> para conocer su estructura. Luego, a medida que avanzas, el asistente va <strong>pidiendo permisos</strong> antes de hacer cambios, y es precavido en términos metodológicos antes de sugerir estrategias.</p>
+<p><a href="posit_assistant_3.png" target="_blank">
+
+  <img src="posit_assistant_3.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  Posit Assistant mostrando los cambios que realizó y pidiendo permiso para aplicarlos
+</figcaption></p>
+<p>También me gusta el <strong>modo planificación</strong> que te resume lo que va a hacer paso por paso, para que comprendas los cambios antes de aprobarlos y realizarlos (muy recomendado para mantener el control del proyecto). Luego de definir el plan, te lo presenta de manera ordenada para que puedas modificarlo o implementarlo.</p>
+<p><a href="posit_assistant_15.png" target="_blank">
+
+  <img src="posit_assistant_15.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  Modo de planificación de Posit Assistant ofreciendo guardar los pasos a seguir, modificarlos o implementarlos
+</figcaption></p>
+<p>Incluso fuera del modo de planificación, el asistente <strong>sugiere</strong> estrategias y te pide retroalimentación antes de implementarlas. No funciona a ciegas, sino que <strong>trabaja junto a ti</strong>, quien eres el/la experto/a.</p>
+<p><a href="posit_assistant_9.png" target="_blank">
+
+  <img src="posit_assistant_9.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  Posit Assistant planificando la generación de un reporte, preguntando primero si estás de acuerdo con su plan
+</figcaption></p>
+<p>Esto es súper importante a la hora de trabajar con inteligencia artificial y datos: a pesar de que la IA haga parte del trabajo, es tu responsabilidad <strong>comprender lo que la IA está haciendo</strong>, y <strong>controlar el proceso</strong> en todo momento.</p>
+<p>Cuando empiezas a involucrar a Posit Assistant en tu proyecto, el asistente primero <strong>revisa tu código, carpetas y archivos</strong>, intentando entender para trabajar siempre dentro del contexto de tu trabajo.</p>
+<p><a href="posit_assistant_4.png" target="_blank">
+
+  <img src="posit_assistant_4.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  Posit Assistant leyendo archivos por su propia cuenta para entender tu proyecto
+</figcaption></p>
+<p>Es interesante ver cómo revisa la estructura de tus scripts y los va leyendo para entender, o busca términos dentro de ellos, o líneas específicas. Incluso a veces puede salir a buscar documentos que están fuera de tu proyecto de R (en otras carpetas de tu computadora), pero siempre avisando y pidiendo permiso.</p>
+<p>Al momento de trabajar con datos, siempre se dedica a <strong>explorar las variables</strong> primero para tomar todas las precauciones:</p>
+<p><a href="posit_assistant_6.png" target="_blank">
+
+  <img src="posit_assistant_6.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  Posit Assistant explorando aspectos puntuales de los datos para poder tomar decisiones
+</figcaption></p>
+<p>Incluso, si detecta que le falta algo pero ve que está disponible en tu código o en tus directorios, puede llegar y cargarlo si cree que lo necesita:</p>
+<p><a href="posit_assistant_2.png" target="_blank">
+
+  <img src="posit_assistant_2.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  Posit Assistant cargando datos para explorarlos y tomar decisiones, explicando sus razones
+</figcaption></p>
+<p>No puedo dejar de destacar lo importante que es que la IA comparta tu entorno de R: significa que puede <strong>acceder directamente a tus datos</strong>, sin intermediarios, o sea que puedes decirle &ldquo;mira el dataframe <code>blabla</code>&rdquo;, y luego actualizar los datos y decirle &ldquo;revisa de nuevo porque cambié algo&rdquo;, e inmediatamente la IA va a ver los cambios en el código y continuar.</p>
+<p><a href="posit_assistant_13.png" target="_blank">
+
+  <img src="posit_assistant_13.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  Posit Assistant accediendo a objetos cargados en tu entorno de R
+</figcaption></p>
+<p>Además de la integración con el entorno estadístico de R, Posit Assistant también se integra estrechamente con tu IDE o entorno de desarrollo, RStudio, siendo capaz de saber qué script estás mirando o editando, e incluso <strong>sabe del código que tienes seleccionado</strong> para poder hacer preguntas sobre partes específicas de tus proyectos!</p>
+<p><a href="posit_assistant_16.png" target="_blank">
+
+  <img src="posit_assistant_16.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  Puedes pedirle a Posit Assistant cosas relacionadas al script que tengas abierto y lo reconocerá, o incluso si seleccionas código puedes preguntarle directamente sobre ese código y lo reconocerá
+</figcaption></p>
+<p>Todo lo anterior elimina todas las fricciones que existen al trabajar con IA, ya que literalmente <strong>la IA trabaja a la par contigo en R.</strong> Olvídate de copiar y pegar!</p>
+<p>Cuando a IA ejecuta código, lo ejecuta en tu misma consola, agregando una etiqueta de IA en la parte superior derecha.</p>
+<p><a href="posit_assistant_5.png" target="_blank">
+
+  <img src="posit_assistant_5.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  RStudio aplica una etiqueta de IA en la esquina superior derecha del código ejecutado por el asistente
+</figcaption></p>
+<p>Naturamente, cuando se encuentra con errores, ya sea porque los datos cambiaron y no se dio cuenta, o porque le falta un paquete, el asistente se fija y puede recuperarse de los errores.</p>
+<p><a href="posit_assistant_7.png" target="_blank">
+
+  <img src="posit_assistant_7.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  Posit Assistant recuperándose de errores que pueden surgir cuando ejecuta código
+</figcaption></p>
+<p>Si al ejecutar código llega a un momento donde necesita tu feedback, tiene interfaces para hacerte consultas interactivas y luego continuar con tu input:</p>
+<p><a href="posit_assistant_12.png" target="_blank">
+
+  <img src="posit_assistant_12.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  Posit Assistant presentando alternativas por su propia cuenta para que el/la usuario/a decida
+</figcaption></p>
+<p>También aprecio que siempre puedes <strong>cancelar una acción dándole indicaciones</strong> para corregir el rumbo de lo que está haciendo:</p>
+<p><a href="posit_assistant_8.png" target="_blank">
+
+  <img src="posit_assistant_8.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  Posibilidad de rechazar una acción sugerida por Posit Assistant, y sugerir un rumbo distinto
+</figcaption></p>
+<p>Al terminar una sesión de trabajo, puedes <strong>guardar o exportar la conversación</strong>. Personalmente encuentro que esto es muy útil para ir manteniendo una documentación de sesiones pasadas que luego puedes volver a revisar, o copiar cosas desde ellas.</p>
+<p><a href="posit_assistant_10.png" target="_blank">
+
+  <img src="posit_assistant_10.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  Exportación de conversaciones como documentos HTML o Quarto para mantener registro de las decisiones tomadas
+</figcaption></p>
+<p>La implementación de Posit Assistant está llena de detalles que intentan mantener un cierto orden y responsabilidad en el trabajo del/la analista con la IA. Por ejemplo, cuando le pides que genere reportes de lo que han analizado, agrega elementos que indican que el contenido fue generado por IA y que tiene pendiente su revisión, para <strong>explicitar la revisión humana del output de la IA</strong> y así mantener responsabilidad y autoría cognitiva de sus outputs.</p>
+<p><a href="posit_assistant_11.png" target="_blank">
+
+  <img src="posit_assistant_11.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  Posit Assistant agregando elementos en los reportes que incentivan una responsabilidad sobre la autoría y la revisión de contenido generado con IA
+</figcaption></p>
+
+
+
+
+<h3 id="privacidad">Privacidad
+  <a href="#privacidad"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Posit tiene un acuerdo con Anthropic para <strong>mantener la privacidad de tus datos</strong>, como indican en su 
+<a href="https://docs.posit.co/posit-ai/user/faq/#privacy-data-storage" target="_blank" rel="noopener">documentación</a>. Esta política de <em>cero retención de datos</em> significa que los datos que envíes se descartan inmediatamente luego de ser usados para ofrecerte el servicio.</p>
+
+
+
+
+<h3 id="conclusiones">Conclusiones
+  <a href="#conclusiones"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p><em><strong>Para usuarixs principiantes:</strong></em> es muy útil para poder avanzar cuando sentimos que nuestra falta de conocimientos nos bloquea, o para resolver problemas técnicos que nos distraen de nuestra tarea principal. Siempre está la tentación de que la guía haga todo sola, pero creo que es mejor usarla para que nos ayude a entender.</p>
+<p><em><strong>Para usuarixs intermedios/avanzados:</strong></em> ayuda bastante poder consultar y recibir ayuda de manera inmediata y siempre contextualizada correctamente a lo que estás haciendo, así como poder encontrar solución a problemas que no se encuentran fácilmente en internet, y claro, tener la opción de poder realizar análisis, reportes y otros productos de forma mucho más rápida.</p>
+<p>Recomiendo mucho probar esta herramienta. Me ha ayudado a destrabar ciertas situaciones, a explorar posibilidades más rápido, y a implementar cambios tediosos o de contenidos que no domino y que no me interesa dominar aún en el corto plazo (como la gestión de este blog, jaja).</p>
+<p>Pero no olvidar que la inteligencia artificial nunca es un reemplazo de nuestra intención y agencia, y que debemos usarla de manera responsable y complementaria a nuestro propio trabajo y aprendizaje.</p>
+
+
+
+
+<div class = "db pt1"
+style = "margin-bottom: 34px;">
+
+<a class = "btn-links mr2 ba dib"
+href = "https://posit-dev.github.io/assistant/" target="_blank"
+style = "padding: 12px; padding-bottom: 8px; border-radius: 5px; padding-right: 18px; text-decoration: none; border: 1px solid; color: #EAD2FA; background-color: #9069C0; margin-bottom: -12px;">
+<i class="fab fa-r-project fa-lg fa-fw mr2" style="color: #EAD2FA;"></i>
+Prueba Posit Assistant en RStudio</a>
+
+</div>
+
+  <div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones sobre inteligencia artificial
+    </p>
+
+    <div style="/*border: 1px solid #9069C035;*/
+                border: solid 2px #A885C6AA;
+                border-radius: 8px;
+                overflow: hidden;
+                background-color: #9069C00d;">
+
+      <a href="/blog/shinychat/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  
+                  ">
+
+          
+          <img src="/blog/shinychat/chatbot_r_featured.png"
+               alt="Crea un chatbot de inteligencia artificial con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Crea un chatbot de inteligencia artificial con R
+          </span>
+
+        </a>
+      <a href="/blog/rag_ragnar/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/rag_ragnar/diagrama_pensamiento_llm_rag-featured.png"
+               alt="Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R
+          </span>
+
+        </a>
+      <a href="/blog/funcion_consultar_datos/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/funcion_consultar_datos/funcion_consultar_datos_featured.png"
+               alt="Creando una función para consultar datos en R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Creando una función para consultar datos en R
+          </span>
+
+        </a>
+      <a href="/blog/herramientas_llm/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/herramientas_llm/herramientas-llm-featured.png"
+               alt="Potencia las capacidades de la IA entregándole herramientas (_tool calling_) basadas en R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Potencia las capacidades de la IA entregándole herramientas (<em>tool calling</em>) basadas en R
+          </span>
+
+        </a>
+      <a href="/blog/datos_estructurados_llm/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <div style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      border-radius: 4px;
+                      background-color: #9069C020;">
+          </div>
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Extracción de datos estructurados desde texto usando IA
+          </span>
+
+        </a>
+      
+
+    </div>
+  </div>
+
+
+
+<div style = "height: 18px;">
+</div>
+<div>
+  <div style="display: flex;
+  justify-content: center;
+  align-items: center;">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="bastimapache" 
+    data-color="#D6B9E8" data-emoji="<i class='fa fa-mug-saucer'></i>"  data-font="Cookie" 
+    data-text="Regálame un cafecito" 
+    data-outline-color="#000000" data-font-color="#543A73" data-coffee-color="#ffffff" ></script>
+  </div>
+</div>
+
+
+
+
+
+<aside>
+  <div id="avisos" style="margin-top:32px;">
+    
+    <a href="/blog/curso_r_intro_3/">
+    <img src="/blog/curso_r_intro_3/curso-r-2026-junio-featured.jpeg" 
+      style="border-radius: 7px; max-height: 240px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;" 
+      alt="¿Quieres aprender R para analizar datos? Inscríbete a mi curso!">
+    </a>
+    
+    <div style="max-width: 320px; margin:auto; font-size:85%;opacity:60%;">
+      <p>¿Quieres aprender R para analizar datos? Participa del curso! <a href="/blog/curso_r_intro_3/">Inscríbete gratis!</a></p>
+      </div>
+  
+  </div>
+</aside>
+ 
+    </section>
+      
+    <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+    <a class="prev dtc pr2 tl v-top fw6"
+    href="https://bastianolea.rbind.io/blog/2026-06-16/">&larr; Tipografías lindas para programar en R: Fira Code</a>
+  
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="https://bastianolea.rbind.io/blog/validacion_rut/">Limpieza y validación de RUT en R &rarr;</a>
+  
+</div>
+
+    </footer>
+    
+  </article>
+    
+    <div class="post-comments pa0 pa4-l mt4">
+  
+</div>
+
+    
+</section>
+  
+
+<section class="post-body pt5 pb4">
+  
+  <details closed class="f6 fw7 input-reset">
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Fecha de publicación:</dt>
+    <dd class="fw5 ml0">June 13, 2026</dd>
+  </dl>
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Extensión:</dt>
+    <dd class="fw5 ml0">8 minute read, 1504 words</dd>
+  </dl>
+  
+  
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Tags:</dt>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/blog">blog</a>  <a href="https://bastianolea.rbind.io/tags/inteligencia-artificial">inteligencia artificial</a>  <a href="https://bastianolea.rbind.io/tags/consejos">consejos</a>  <a href="https://bastianolea.rbind.io/tags/b%C3%A1sico">básico</a> </dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Ver también:</dt>
+    
+    <dd class="fw5 ml0"><a href="/clases/curso_r_intro_3/">Curso: introducción al análisis de datos con R, 3ª versión</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/curso_r_intro_3/">Curso: introducción al análisis de datos con R, 3ª versión</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/stringr_limpieza_ordinal/">Recodificando variables ordinales cuando vienen sucias y/o desde respuestas abiertas</a></dd>
+    
+  </dl>
+</details>
+
+</section>
+</main>
+
+
+<aside class="page-sidebar" role="complementary">
+   
+   
+
+  <div class="blog-info ph4 pt4 pb4 pb0-l">
+    
+
+  <h1 class="f3">Blog</h1>
+  <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
+<a href="/tags/">temas</a>.</p>
+  
+
+   
+<h3 style="margin-bottom: 12px;">Temas:</h3>
+
+<div style="font-size:90%;">
+
+<div style="font-size: 90%;">
+  
+   
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/apps/">Aplicaciones</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/texto/">Procesamiento de texto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/ciencias-sociales/">Ciencias sociales</a></span>
+  </span>
+
+<a href="/tags/" style="margin-left: 3px;">y más!</a>
+</div>
+</div>
+  
+  
+   
+   
+
+</div>
+
+  
+  
+  
+
+</aside>
+
+        
+          <script id="partials/analytics.html" 
+  data-goatcounter="https://bastimapache.goatcounter.com/count"
+  async src="//gc.zgo.at/count.js"></script>
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2026 Bastián Olea Herrera, Chile
+      <span class="middot-divider"></span>
+      Hecho con <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source" style="color:#9069C0;">Hugo Apéro</a> 
+      y <a href="https://pkgs.rstudio.com/blogdown/" style="color:#9069C0;">{blogdown}</a></span>.
+      <br />
+      
+Basado en <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source" style="color:#9069C0;">Blogophonic</a></span>, de <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL" style="color:#9069C0;">Formspree</a>.
+
+Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlify</a></span>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+      <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
+      
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
+      
+      <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
+      
+      <a class="dib pv1 ph2 link" href="/tags/" title="Temas">Temas</a>
+      
+      <a class="dib pv1 ph2 link" href="/clases/" title="Clases">Clases</a>
+      
+      <a class="dib pv1 ph2 link" href="/code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
+      
+      <a class="dib pv1 ph2 link" href="/license/" title="Bastián Olea: Licencia">Licencia</a>
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>

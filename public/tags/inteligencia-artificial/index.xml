@@ -6,8 +6,15 @@
     <description>Recent content in Inteligencia artificial on Bastián Olea</description>
     <generator>Hugo</generator>
     <language>es-ES</language>
-    <lastBuildDate>Mon, 01 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 13 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://bastianolea.rbind.io/tags/inteligencia-artificial/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Posit Assistant, una IA para análisis de datos integrada en RStudio</title>
+      <link>https://bastianolea.rbind.io/blog/posit_assistant/</link>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/blog/posit_assistant/</guid>
+      <description>&lt;p&gt;Recientemente &#xA;&lt;a href=&#34;https://posit.co&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Posit&lt;/a&gt;, la &lt;del&gt;empresa&lt;/del&gt; corporación de beneficio público detrás de RStudio, Positron, y responsable de &#xA;&lt;a href=&#34;https://posit.co/products/open-source/rpackages&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;muchos de los paquetes que más usamos en el ecosistema de R&lt;/a&gt;, anunció la &#xA;&lt;a href=&#34;https://posit.co/blog/introducing-ai-in-rstudio&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;integración oficial de inteligencia artificial en RStudio&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;&#xA;&lt;a href=&#34;https://posit-dev.github.io/assistant/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Posit Assistant&lt;/strong&gt;&lt;/a&gt; reside en la barra lateral de RStudio y sirve para hacer consultas a una IA relacionadas al análisis de datos, dentro del contexto del proyecto que estés realizando con R.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;posit_assistant_rstudio.png&#34; target=&#34;_blank&#34;&gt;&#xA;&#xA;  &lt;img src=&#34;posit_assistant_rstudio.png&#34; style=&#34;border-radius: 5px; width: 80%; max-width: 600px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;&#34;&gt;&#xA;  &#xA;&lt;/a&gt;&#xA;&lt;figcaption style=&#34;max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;&#34;&gt;&#xA;  En la parte superior de RStudio encuentras el botón Posit Assistant.&#xA;&lt;/figcaption&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Crea un chatbot de inteligencia artificial con R</title>
       <link>https://bastianolea.rbind.io/blog/shinychat/</link>
@@ -27,7 +34,7 @@
       <link>https://bastianolea.rbind.io/blog/funcion_consultar_datos/</link>
       <pubDate>Sat, 23 May 2026 00:00:00 +0000</pubDate>
       <guid>https://bastianolea.rbind.io/blog/funcion_consultar_datos/</guid>
-      <description>&lt;p&gt;En este tutorial veremos cómo &lt;strong&gt;crear una función&lt;/strong&gt; en R diseñada para consultar datos. Este puede ser el primer paso para crear una API, una &#xA;&lt;a href=&#34;../../../blog/herramientas_llm/&#34;&gt;herramienta para entregarle a una inteligencia artificial&lt;/a&gt;, o simplemente algo conveniente de hacer para consultar datos.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;funcion_consultar_datos_featured.png&#34; target=&#34;_blank&#34;&gt;&#xA;&#xA;  &lt;img src=&#34;funcion_consultar_datos_featured.png&#34; style=&#34;border-radius: 5px; width: 80%; max-width: 500px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;&#34;&gt;&#xA;  &#xA;&lt;/a&gt;&#xA;&lt;div style=&#34;max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px;&#34;&gt;&#xA;  Pasaremos de tener una tabla de datos que necesitamos manipular, a una función conveniente que nos entregue las cifras que necesitamos&#xA;  &lt;/div&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;En este tutorial veremos cómo &lt;strong&gt;crear una función&lt;/strong&gt; en R diseñada para consultar datos. Este puede ser el primer paso para crear una API, una &#xA;&lt;a href=&#34;../../../blog/herramientas_llm/&#34;&gt;herramienta para entregarle a una inteligencia artificial&lt;/a&gt;, o simplemente algo conveniente de hacer para consultar datos.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;funcion_consultar_datos_featured.png&#34; target=&#34;_blank&#34;&gt;&#xA;&#xA;  &lt;img src=&#34;funcion_consultar_datos_featured.png&#34; style=&#34;border-radius: 5px; width: 80%; max-width: 500px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;&#34;&gt;&#xA;  &#xA;&lt;/a&gt;&#xA;&lt;figcaption style=&#34;max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;&#34;&gt;&#xA;  Pasaremos de tener una tabla de datos que necesitamos manipular, a una función conveniente que nos entregue las cifras que necesitamos&#xA;&lt;/figcaption&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Potencia las capacidades de la IA entregándole herramientas (_tool calling_) basadas en R</title>

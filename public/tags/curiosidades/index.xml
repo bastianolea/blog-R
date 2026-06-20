@@ -6,8 +6,15 @@
     <description>Recent content in Curiosidades on Bastián Olea</description>
     <generator>Hugo</generator>
     <language>es-ES</language>
-    <lastBuildDate>Thu, 23 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://bastianolea.rbind.io/tags/curiosidades/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tipografías lindas para programar en R: Fira Code</title>
+      <link>https://bastianolea.rbind.io/blog/2026-06-16/</link>
+      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/blog/2026-06-16/</guid>
+      <description>&lt;p&gt;&#xA;&lt;a href=&#34;https://github.com/tonsky/FiraCode&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Fira Code&lt;/a&gt; es una tipografía muy bonita para programar. Su característica principal es que usa las &lt;strong&gt;ligaduras&lt;/strong&gt;, una característica de la tipografía que une dos o más caracteres en un solo símbolo adaptado, para mostrar los símbolos usados en programación de forma más atractiva.&lt;/p&gt;&#xA;&lt;a href=&#34;pruebas_firacode.png&#34; target=&#34;_blank&#34;&gt;&#xA;&#xA;  &lt;img src=&#34;pruebas_firacode.png&#34; style=&#34;border-radius: 5px; width: 80%; max-width: 300px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;&#34;&gt;&#xA;  &#xA;&lt;/a&gt;&#xA;&lt;p&gt;Lo más destacable es que convierte el &#xA;&lt;a href=&#34;https://bastianolea.rbind.io/blog/r_introduccion/conectores/&#34;&gt;símbolo del conector&lt;/a&gt; o &lt;em&gt;pipe&lt;/em&gt; (&lt;code&gt;|&amp;gt;&lt;/code&gt;) en un triangulito, y a la &#xA;&lt;a href=&#34;https://bastianolea.rbind.io/blog/r_introduccion/r_basico/#asignaciones&#34;&gt;flecha de asignación&lt;/a&gt; (&lt;code&gt;&amp;lt;-&lt;/code&gt;) en una flecha de verdad.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Temas morados oscuro y claro para RStudio</title>
       <link>https://bastianolea.rbind.io/blog/tema_morado/</link>

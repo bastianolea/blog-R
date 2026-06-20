@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Texto on Bastián Olea</title>
+    <title>Procesamiento de texto on Bastián Olea</title>
     <link>https://bastianolea.rbind.io/tags/texto/</link>
-    <description>Recent content in Texto on Bastián Olea</description>
+    <description>Recent content in Procesamiento de texto on Bastián Olea</description>
     <generator>Hugo</generator>
     <language>es-ES</language>
-    <lastBuildDate>Sat, 06 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://bastianolea.rbind.io/tags/texto/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Recodificando variables ordinales cuando vienen sucias y/o desde respuestas abiertas</title>
+      <link>https://bastianolea.rbind.io/blog/stringr_limpieza_ordinal/</link>
+      <pubDate>Thu, 18 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/blog/stringr_limpieza_ordinal/</guid>
+      <description>&lt;p&gt;Las &lt;strong&gt;variables ordinales&lt;/strong&gt; son aquellas cuyos valores tienen un orden definido, pero la diferencia entre estos valores puede ser variable. Por ejemplo: &lt;em&gt;bajo, medio&lt;/em&gt; y &lt;em&gt;alto.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;En este caso me tocó enfrentarme a una encuesta con una variable ordinal que medía &lt;strong&gt;velocidad de internet&lt;/strong&gt;, que es por naturaleza una variable contínua (números que representan la velocidad), pero que en este caso fue categorizada en intervalos (pasando del valor &lt;code&gt;36&lt;/code&gt; a &amp;ldquo;Entre 20 y 50&amp;rdquo;, por ejemplo) transformándola en una variable ordinal.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Limpieza y validación de RUT en R</title>
+      <link>https://bastianolea.rbind.io/blog/validacion_rut/</link>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/blog/validacion_rut/</guid>
+      <description>&lt;p&gt;En Chile, los &#xA;&lt;a href=&#34;https://es.wikipedia.org/wiki/Rol_%c3%9anico_Nacional&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;RUT&lt;/a&gt; son los números de identificación usados para ciudadanos y empresas. Tienen el formato &lt;code&gt;xxxxxxx-y&lt;/code&gt;, donde &lt;code&gt;x&lt;/code&gt; es el número o cuerpo, e &lt;code&gt;y&lt;/code&gt; es el dígito verificador (número entre &lt;code&gt;0&lt;/code&gt; y &lt;code&gt;9&lt;/code&gt; o &lt;code&gt;K&lt;/code&gt;).&lt;/p&gt;&#xA;&lt;p&gt;En esta publicación entrego algunas funciones para realizar operaciones comunes con los RUT en R, como validarlos, calcular el dígito verificador, y limpiar los RUT, y además entrego estas mismas soluciones en la forma de funciones de &#xA;&lt;a href=&#34;../../../blog/rutera/&#34;&gt;mi paquete &lt;code&gt;{rutera}&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Búsquedas de texto por ranking de relevancia con R usando el algoritmo BM25</title>
       <link>https://bastianolea.rbind.io/blog/buscar_texto/</link>
