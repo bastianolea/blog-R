@@ -2,7 +2,7 @@
 {{- range .Site.Pages -}}
   {{- if in (slice "post" "blog" "tutoriales") .Type -}}
     {{- if gt (len .Content) 0 -}}
-      {{- $pageData := dict "title" .Title "href" .Permalink "date" .Params.Date "tags" (delimit (default (slice) .Params.tags) " ; ") "excerpt" (default .Summary .Params.excerpt | plainify | htmlUnescape) "content" (.Plain | htmlUnescape) -}}
+      {{- $pageData := dict "title" .Title "href" .Permalink "date" .Params.Date "tags" (delimit (default (slice) .Params.tags) " ; ") "excerpt" (default .Summary .Params.excerpt | plainify | htmlUnescape) "content" (.Plain | plainify | lower | replaceRE "\\s+" " " | truncate 10000 | htmlUnescape) -}}
       {{- $pagesIndex = $pagesIndex | append $pageData -}}
     {{- end -}}
   {{- end -}}
