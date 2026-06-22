@@ -21,7 +21,7 @@ links:
 - icon: chalkboard-user
   icon_pack: fas
   name: Diapositivas
-  url: https://bastianolea.github.io/https://bastianolea.github.io/curso_intro_R_3/
+  url: https://bastianolea.github.io/curso_intro_R_3/
 - icon: file-code
   icon_pack: fas
   name: Código
