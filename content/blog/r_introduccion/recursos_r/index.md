@@ -96,6 +96,7 @@ _Conoce a otras personas que usan R o únete a una comunidad de usuarios/as!_
 #### Otras comunidades de R
 - [rainbowR](https://rainbowr.org) 🏳️‍🌈 comunidad de usuarixs de R enfocada en diversidad y disidencias sexo-genéricas y activismo de datos
 - [Data Science Learning Community](https://dslc.io)
+- [R Forwards](https://forwards.github.io/), grupo de trabajo de [R Foundation](https://www.r-project.org/foundation/) para apoyar a mujeres y grupos desrepresentados en la comunidad 
 
 ### <i class='fas fa-person-dress'></i> Usuari@s de R
 - [Julia Silge](https://juliasilge.com), análisis de texto, machine learning
@@ -120,6 +121,7 @@ _Conoce a otras personas que usan R o únete a una comunidad de usuarios/as!_
 - [Rony Rodríguez-Ramírez](https://rrmaximiliano.github.io) 🇳🇮
 - [Alejandro Romero González](https://alejandroromerog.github.io) 🇲🇽
 - [Emil Hvitfeldt](https://emilhvitfeldt.com/blog)
+- [Natalia Da Silva](https://natydasilva.github.io/natydasilva/), cofundadora de [LatinR](https://latin-r.com)
 
 #### Blogs sobre R
 - [R-Bloggers](https://www.r-bloggers.com/), blog que reúne cientos de posts desde blogs de usuarios y desarrolladores de R
