@@ -1,5 +1,6 @@
 ---
 title: 'Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub'
+subtitle: "Control de versiones, respaldos y colaboración"
 author: Bastián Olea Herrera
 format: hugo-md
 date: 2025-02-07T00:00:00.000Z
@@ -118,6 +119,8 @@ En la pestaña de Terminal de RStudio también puedes interactuar con Git, de ma
 
 El comando `git add .` agrega a todos los nuevos archivos y archivos modificados a la fase de _staging,_ que significa que son archivos considerados para el _commit,_ y luego el comando `git commit -m "mensaje"` te permite crear el commit. Debes poner entre comillas el mensaje asociado al _commit._ Si en alguna momento tienes alguna duda, puedes ejecutar `git status` para conocer el estado de tu repositorio.
 
+{{< relacionada "/blog/git_comandos/" "Comandos más frecuentes de git" >}}
+
 ----
 
 ## Configurar GitHub en R
@@ -136,6 +139,8 @@ Ejecuta el comando `gitcreds::gitcreds_set()` y entrégale el _token_ que copias
 
 ### Configurar tu cuenta
 Solamente queda un último paso de configuración, que es guardar la información básica de tu cuenta en R. Ejecuta el comando `usethis::use_git_config(user.name = "usuario", user.email = "correo")`, indicando en sus argumentos tu nombre de usuario y tu correo de tu cuenta GitHub.
+
+Puedes confirmar que la configuración de git fue correcta ejecutando el comando: `usethis::git_sitrep()`
 
 ----
 
@@ -156,7 +161,6 @@ Recuerda que los repositorios en GitHub son por defecto **públicos y visibles**
 
 ### Recursos
 El libro [Happy Git with R](https://happygitwithr.com) detalla todos los pasos necesarios para poder usar Git con R, incluyendo soluciones a problemas comunes.
-
 
 {{< relacionada "/blog/git_comandos/" >}}
 
