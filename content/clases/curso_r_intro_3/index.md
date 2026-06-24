@@ -177,3 +177,12 @@ title="Diapositivas" frameborder="0"></iframe>
 <!----
 {{< boton "Descargar diapositivas en PDF" "/blog/curso_gratis_r_intro_2/curso_intro_r_v2.pdf" "fas fa-file-pen" >}}
 --->
+
+### Grabaciones
+
+A continuación comparto las grabaciones de las clases! Las iré subiendo a medida se realicen.
+
+#### Clase 1: Introducción a R
+_22 de junio, 2026_
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/L9fDnJHcV1w?si=p050lQ1AHKCcPawK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
