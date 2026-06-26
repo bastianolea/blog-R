@@ -13,7 +13,7 @@ abrir_publicacion_reciente("modificado", cantidad = 10)
 
 # crear un post normal
 blogdown::new_post(
-  title = "Recodificando variables ordinales cuando vienen extremadamente sucias",
+  title = "Truquitos",
   file = paste0("blog/", lubridate::today(), "/index.qmd"),
   author = "Bastián Olea Herrera",
   tags = c("limpieza de datos")
@@ -41,6 +41,7 @@ blogdown::new_post(
 #     url: https://gist.github.com/bastianolea/8ea85fa8169b302d2144e05434668c89
 
 ## borradores ----
+"content/blog/2026-06-26/"
 "content/blog/arrow/index.qmd" # !
 "content/blog/ggplot_densidad_puntos/index.qmd"
 "content/blog/mapas_bivariados/index.qmd"
