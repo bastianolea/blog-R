@@ -53,7 +53,6 @@ blogdown::new_post(
 "content/blog/tutorial_digitalocean/index.md"
 # tutorial mapas: poner puntos a partir de tablas de datos en centroides
 
-
 # ideas ----
 # tip shiny actualizar css
 # {futurize} https://www.jottr.org/2026/01/22/futurize-0.1.0/
@@ -105,7 +104,6 @@ blogdown::new_post(
 
 # destacar código
 # ```r {hl_lines=["5-9"]}
-
 
 ## archivos ----
 "content/blog/r_introduccion/recursos_r/index.md" # páginas
