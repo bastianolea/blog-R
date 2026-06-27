@@ -182,7 +182,20 @@ title="Diapositivas" frameborder="0"></iframe>
 
 A continuación comparto las grabaciones de las clases! Las iré subiendo a medida se realicen.
 
+
 #### Clase 1: Introducción a R
 _22 de junio, 2026_
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/L9fDnJHcV1w?si=p050lQ1AHKCcPawK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+#### Clase 2: exploración de datos con `{dplyr}`
+_24 de junio, 2026_
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5eg2ZNkEZN0?si=RZEgNhG0x2b20vjh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+#### Clase 3: manipulación de datos con `{dplyr}`, resúmenes y cruces
+_25 de junio, 2026_
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/T7_5XnRgwJs?si=BNYQPIRu6C-B-_as" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
