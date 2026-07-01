@@ -166,7 +166,6 @@ Todos los horarios son en hora de Chile continental (GMT-4).
 ### Diapositivas
 En las diapositivas del curso se resumen los temas, se muestran ejemplos de código, y se entregan para **descargar** los datos necesarios. También cada temática va acompañada de un tutorial para profundizar.
 
-
 <!---
 <iframe width="100%" height="480" 
 src="https://bastianolea.github.io/curso_intro_R_gratis_v2" 
@@ -174,9 +173,7 @@ title="Diapositivas" frameborder="0"></iframe>
 ---->
 {{< boton "Ver diapositivas del curso" "https://bastianolea.github.io/curso_intro_R_3/" "fas fa-chalkboard-user" >}}
 
-<!----
-{{< boton "Descargar diapositivas en PDF" "/blog/curso_gratis_r_intro_2/curso_intro_r_v2.pdf" "fas fa-file-pen" >}}
---->
+{{< boton "Descargar diapositivas en PDF" "/blog/curso_intro_R_3/curso_intro_r_v3.pdf" "fas fa-file-pen" >}}
 
 ### Grabaciones
 
@@ -199,3 +196,21 @@ _24 de junio, 2026_
 _25 de junio, 2026_
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/T7_5XnRgwJs?si=BNYQPIRu6C-B-_as" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+#### Clase 4: transformación de con `{tidyr}`, visualización de datos con `{ggplot2}`
+_29 de junio, 2026_
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6nW88bsLtW4?si=VL978abNqTxi3ZQy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+### Código
+
+En el repositorio del curso, en la carpeta `clases`, encontrarás los scripts que revisamos en clases, con comentarios para explicar paso a paso lo que vimos.
+
+{{< boton "Ver código de las clases" "https://github.com/bastianolea/curso_intro_R_3/tree/master/clases" "fas fa-file-code" >}}
+
+
+
+Si te gustó el curso y sólo si tienes los medios para hacerlo, puedes hacerme una donación para poder comprarme una cosita dulce con menos culpa:
+
+{{< cafecito >}}
