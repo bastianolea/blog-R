@@ -31,3 +31,4 @@ En esta publicación voy a mantener una galería de errores de visualización de
 {{< imagen_cuadricula "Unknown.jpeg" >}}
 {{< imagen_cuadricula "wGGVLQUhKFsEwAAAABJRU5ErkJggg.jpeg" "Mucho texto" >}}
 {{< imagen_cuadricula "grafico_horrible_2.png" "Fuente: Censo" >}}
+{{< imagen_cuadricula "4e1e15b9-caea-4f79-9dfc-d8819738c326.png" >}}
