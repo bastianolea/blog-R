@@ -17,7 +17,7 @@ links:
 - icon: video
   icon_pack: fas
   name: Grabaciones
-  url: https://www.youtube.com/@bastianolea
+  url: https://bastianolea.rbind.io/clases/curso_r_intro_3/#grabaciones
 - icon: chalkboard-user
   icon_pack: fas
   name: Diapositivas
@@ -25,7 +25,7 @@ links:
 - icon: file-code
   icon_pack: fas
   name: Código
-  url: https://github.com/bastianolea/curso_intro_R_3
+  url: https://github.com/bastianolea/curso_intro_R_3/tree/master/clases
 
 ---
 
@@ -164,8 +164,7 @@ Todos los horarios son en hora de Chile continental (GMT-4).
 
 
 ### Diapositivas
-En las diapositivas del curso se resumen los temas, se muestran ejemplos de código, y se entregan para **descargar** los datos necesarios. También cada temática va acompañada de un tutorial para profundizar.
-
+En las diapositivas del curso se resumen los temas, se muestran ejemplos de código, y se entregan enlaces para descargar los datos necesarios. También cada temática va acompañada de un tutorial para profundizar.
 
 <!---
 <iframe width="100%" height="480" 
@@ -174,13 +173,13 @@ title="Diapositivas" frameborder="0"></iframe>
 ---->
 {{< boton "Ver diapositivas del curso" "https://bastianolea.github.io/curso_intro_R_3/" "fas fa-chalkboard-user" >}}
 
-<!----
-{{< boton "Descargar diapositivas en PDF" "/blog/curso_gratis_r_intro_2/curso_intro_r_v2.pdf" "fas fa-file-pen" >}}
---->
+También puedes descargar las diapositivas en el siguiente enlace:
+
+{{< boton "Descargar diapositivas en PDF" "/blog/curso_r_intro_3/curso_intro_r_v3.pdf" "fas fa-file-pen" >}}
 
 ### Grabaciones
 
-A continuación comparto las grabaciones de las clases! Las iré subiendo a medida se realicen.
+A continuación comparto las grabaciones de las clases! Puedes verlas todas [en mi canal de Youtube.](https://www.youtube.com/@bastianolea)
 
 
 #### Clase 1: Introducción a R
@@ -199,3 +198,28 @@ _24 de junio, 2026_
 _25 de junio, 2026_
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/T7_5XnRgwJs?si=BNYQPIRu6C-B-_as" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+#### Clase 4: transformación de con `{tidyr}`, visualización de datos con `{ggplot2}`
+_29 de junio, 2026_
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6nW88bsLtW4?si=VL978abNqTxi3ZQy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+### Código
+
+En el repositorio del curso, en la carpeta `clases`, encontrarás los scripts que revisamos en clases, con comentarios para explicar paso a paso lo que vimos.
+
+{{< boton "Ver código de las clases" "https://github.com/bastianolea/curso_intro_R_3/tree/master/clases" "fas fa-file-code" >}}
+
+
+### Descargar curso 
+
+Puedes descargar el curso completo, incluyendo los scripts, los datos, el proyecto de R y las diapositivas en PDF en el siguiente enlace:
+
+{{< boton "Descargar curso completo" "/blog/curso_r_intro_3/curso_intro_r_v3.zip" "fas fa-file-download" >}}
+
+Espero que el curso les haya ayudado! 💜 Siempre pueden [contactarme con sus dudas](/contacto/), yo feliz de ayudar.
+
+Si te gustó el curso y sólo si tienes los medios para hacerlo, puedes hacerme una donación para poder comprarme una cosita dulce con menos culpa:
+
+{{< cafecito >}}
