@@ -179,6 +179,8 @@ Encuentra una lista que compila todas las paletas de colores de la comunidad de 
 
 La forma más simple de usar colores en gráficos de `{ggplot2}` es definiéndolos en la escala de color apropiada.
 
+{{< relacionada "/blog/r_introduccion/tutorial_visualizacion_ggplot/" >}}
+
 Para una variable _discreta_ o _categórica_, los colores se aplican en la capa `scale_color_manual()` y se aplican en el orden de la variable:
 
 ```{r}
@@ -197,6 +199,7 @@ iris |>
   theme(legend.title = element_blank(),
         axis.title = element_blank())
 ```
+
 O bien, se puede aplicar cada color a cada valor específico de la variable:
 
 ```{r}
@@ -555,7 +558,9 @@ swatch(color)
 ```
 
 
+---- 
 
+{{< etiqueta "visualización de datos" >}}
 
 
 ## Avanzado
