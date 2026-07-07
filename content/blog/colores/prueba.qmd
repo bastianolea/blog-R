@@ -1,0 +1,33 @@
+---
+title: "prueba"
+format: html
+---
+
+```{r}
+#| output: asis
+#| echo: false
+
+colores <- colors(distinct = T) |> 
+  stringr::str_subset("gray", negate = T)
+
+estilo <- "color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6;"
+oscuros <- c("black", "blue", "blue2",
+             "blue3", "blue4", "midnightblue", "navy", "slateblue4", "purple4",
+             "firebrick4", "darkred", "deeppink4", "indianred4", "maroon4", "mediumpurple4", "sienna4", "tomato4", "darkgreen", "violetred4", "orangered4"
+)
+
+cuadritos <- purrr::map(
+  colores,
+  \(color) {
+    shiny::span(
+      color, 
+      style = paste("background-color:", gplots::col2hex(color), ";",
+                    estilo,
+                    paste("color:", ifelse(color %in% oscuros, "white", "black"))
+      ),
+    )
+  })
+
+shiny::tagList(cuadritos)
+```
+
