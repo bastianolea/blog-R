@@ -2,7 +2,8 @@
 title: Colores y paletas de colores en R
 subtitle: Todo sobre la creación, personalización, modificación y uso de colores y paletas en R
 author: Bastián Olea Herrera
-date: '2025-03-06'
+# date: '2025-03-06'
+date: '2026-07-07'
 format:
   hugo-md:
     output-file: "index"
@@ -22,39 +23,6 @@ El uso del color es clave para comunicar, y el ecosistema de R tiene varios truc
 
 En R, los colores se escriben como código, y a grandes rasgos pueden ser colores con **nombre** (por ejemplo, `"purple"`), colores **hexadecimales** (escritos como códigos de al menos 6 dígitos, como `#FFFFFF`), o como parte de funciones que producen **paletas** de colores.
 
-## Previsualizar colores
-
-A lo largo de este post usaremos la función `swatch()` del paquete `{shades}`, que genera un gráfico que presenta el color o la paleta de colores a partir de un vector de colores, lo que nos ayudará a visualizar nuestros colores más fácil. Una alternativa es la función `show_col()` de `{scales}`, que hace lo mismo.
-
-``` r
-library(shades)
-library(scales)
-```
-
-``` r
-colores <- c("#EAD2FA", "#9069C0", "#6E3A98")
-```
-
-{{< columnas >}}
-
-{{< columna >}}
-
-``` r
-shades::swatch(colores)
-```
-
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" alt="" width="672" />
-
-{{< columna >}}
-
-``` r
-scales::show_col(colores)
-```
-
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" alt="" width="1120" />
-
-{{< fin_columnas >}}
-
 ## Usar colores
 
 La forma más básica de elegir un color en R es por su *nombre*.
@@ -62,422 +30,448 @@ Por defecto, en R **existen 657 colores** con nombre.
 
 Aquí puedes ver los principales colores de R y copiar sus nombres para usarlos:
 
-<span style="background-color: #FFFFFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">white</span>
-<span style="background-color: #F0F8FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">aliceblue</span>
-<span style="background-color: #FAEBD7 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">antiquewhite</span>
-<span style="background-color: #FFEFDB ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">antiquewhite1</span>
-<span style="background-color: #EEDFCC ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">antiquewhite2</span>
-<span style="background-color: #CDC0B0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">antiquewhite3</span>
-<span style="background-color: #8B8378 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">antiquewhite4</span>
-<span style="background-color: #7FFFD4 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">aquamarine</span>
-<span style="background-color: #76EEC6 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">aquamarine2</span>
-<span style="background-color: #66CDAA ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">aquamarine3</span>
-<span style="background-color: #458B74 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">aquamarine4</span>
-<span style="background-color: #F0FFFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">azure</span>
-<span style="background-color: #E0EEEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">azure2</span>
-<span style="background-color: #C1CDCD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">azure3</span>
-<span style="background-color: #838B8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">azure4</span>
-<span style="background-color: #F5F5DC ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">beige</span>
-<span style="background-color: #FFE4C4 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">bisque</span>
-<span style="background-color: #EED5B7 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">bisque2</span>
-<span style="background-color: #CDB79E ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">bisque3</span>
-<span style="background-color: #8B7D6B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">bisque4</span>
-<span style="background-color: #000000 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">black</span>
-<span style="background-color: #FFEBCD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">blanchedalmond</span>
-<span style="background-color: #0000FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">blue</span>
-<span style="background-color: #0000EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">blue2</span>
-<span style="background-color: #0000CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">blue3</span>
-<span style="background-color: #00008B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">blue4</span>
-<span style="background-color: #8A2BE2 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">blueviolet</span>
-<span style="background-color: #A52A2A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">brown</span>
-<span style="background-color: #FF4040 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">brown1</span>
-<span style="background-color: #EE3B3B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">brown2</span>
-<span style="background-color: #CD3333 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">brown3</span>
-<span style="background-color: #8B2323 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">brown4</span>
-<span style="background-color: #DEB887 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">burlywood</span>
-<span style="background-color: #FFD39B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">burlywood1</span>
-<span style="background-color: #EEC591 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">burlywood2</span>
-<span style="background-color: #CDAA7D ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">burlywood3</span>
-<span style="background-color: #8B7355 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">burlywood4</span>
-<span style="background-color: #5F9EA0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">cadetblue</span>
-<span style="background-color: #98F5FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">cadetblue1</span>
-<span style="background-color: #8EE5EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">cadetblue2</span>
-<span style="background-color: #7AC5CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">cadetblue3</span>
-<span style="background-color: #53868B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">cadetblue4</span>
-<span style="background-color: #7FFF00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">chartreuse</span>
-<span style="background-color: #76EE00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">chartreuse2</span>
-<span style="background-color: #66CD00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">chartreuse3</span>
-<span style="background-color: #458B00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">chartreuse4</span>
-<span style="background-color: #D2691E ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">chocolate</span>
-<span style="background-color: #FF7F24 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">chocolate1</span>
-<span style="background-color: #EE7621 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">chocolate2</span>
-<span style="background-color: #CD661D ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">chocolate3</span>
-<span style="background-color: #8B4513 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">chocolate4</span>
-<span style="background-color: #FF7F50 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">coral</span>
-<span style="background-color: #FF7256 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">coral1</span>
-<span style="background-color: #EE6A50 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">coral2</span>
-<span style="background-color: #CD5B45 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">coral3</span>
-<span style="background-color: #8B3E2F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">coral4</span>
-<span style="background-color: #6495ED ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">cornflowerblue</span>
-<span style="background-color: #FFF8DC ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">cornsilk</span>
-<span style="background-color: #EEE8CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">cornsilk2</span>
-<span style="background-color: #CDC8B1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">cornsilk3</span>
-<span style="background-color: #8B8878 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">cornsilk4</span>
-<span style="background-color: #00FFFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">cyan</span>
-<span style="background-color: #00EEEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">cyan2</span>
-<span style="background-color: #00CDCD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">cyan3</span>
-<span style="background-color: #008B8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">cyan4</span>
-<span style="background-color: #B8860B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkgoldenrod</span>
-<span style="background-color: #FFB90F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkgoldenrod1</span>
-<span style="background-color: #EEAD0E ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkgoldenrod2</span>
-<span style="background-color: #CD950C ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkgoldenrod3</span>
-<span style="background-color: #8B6508 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkgoldenrod4</span>
-<span style="background-color: #006400 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">darkgreen</span>
-<span style="background-color: #BDB76B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkkhaki</span>
-<span style="background-color: #8B008B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkmagenta</span>
-<span style="background-color: #556B2F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkolivegreen</span>
-<span style="background-color: #CAFF70 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkolivegreen1</span>
-<span style="background-color: #BCEE68 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkolivegreen2</span>
-<span style="background-color: #A2CD5A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkolivegreen3</span>
-<span style="background-color: #6E8B3D ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkolivegreen4</span>
-<span style="background-color: #FF8C00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkorange</span>
-<span style="background-color: #FF7F00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkorange1</span>
-<span style="background-color: #EE7600 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkorange2</span>
-<span style="background-color: #CD6600 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkorange3</span>
-<span style="background-color: #8B4500 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkorange4</span>
-<span style="background-color: #9932CC ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkorchid</span>
-<span style="background-color: #BF3EFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkorchid1</span>
-<span style="background-color: #B23AEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkorchid2</span>
-<span style="background-color: #9A32CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkorchid3</span>
-<span style="background-color: #68228B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkorchid4</span>
-<span style="background-color: #8B0000 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">darkred</span>
-<span style="background-color: #E9967A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darksalmon</span>
-<span style="background-color: #8FBC8F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkseagreen</span>
-<span style="background-color: #C1FFC1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkseagreen1</span>
-<span style="background-color: #B4EEB4 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkseagreen2</span>
-<span style="background-color: #9BCD9B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkseagreen3</span>
-<span style="background-color: #698B69 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkseagreen4</span>
-<span style="background-color: #483D8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkslateblue</span>
-<span style="background-color: #00CED1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkturquoise</span>
-<span style="background-color: #9400D3 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">darkviolet</span>
-<span style="background-color: #FF1493 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">deeppink</span>
-<span style="background-color: #EE1289 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">deeppink2</span>
-<span style="background-color: #CD1076 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">deeppink3</span>
-<span style="background-color: #8B0A50 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">deeppink4</span>
-<span style="background-color: #00BFFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">deepskyblue</span>
-<span style="background-color: #00B2EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">deepskyblue2</span>
-<span style="background-color: #009ACD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">deepskyblue3</span>
-<span style="background-color: #00688B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">deepskyblue4</span>
-<span style="background-color: #1E90FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">dodgerblue</span>
-<span style="background-color: #1C86EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">dodgerblue2</span>
-<span style="background-color: #1874CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">dodgerblue3</span>
-<span style="background-color: #104E8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">dodgerblue4</span>
-<span style="background-color: #B22222 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">firebrick</span>
-<span style="background-color: #FF3030 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">firebrick1</span>
-<span style="background-color: #EE2C2C ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">firebrick2</span>
-<span style="background-color: #CD2626 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">firebrick3</span>
-<span style="background-color: #8B1A1A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">firebrick4</span>
-<span style="background-color: #FFFAF0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">floralwhite</span>
-<span style="background-color: #228B22 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">forestgreen</span>
-<span style="background-color: #DCDCDC ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">gainsboro</span>
-<span style="background-color: #F8F8FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">ghostwhite</span>
-<span style="background-color: #FFD700 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">gold</span>
-<span style="background-color: #EEC900 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">gold2</span>
-<span style="background-color: #CDAD00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">gold3</span>
-<span style="background-color: #8B7500 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">gold4</span>
-<span style="background-color: #DAA520 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">goldenrod</span>
-<span style="background-color: #FFC125 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">goldenrod1</span>
-<span style="background-color: #EEB422 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">goldenrod2</span>
-<span style="background-color: #CD9B1D ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">goldenrod3</span>
-<span style="background-color: #8B6914 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">goldenrod4</span>
-<span style="background-color: #00FF00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">green</span>
-<span style="background-color: #00EE00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">green2</span>
-<span style="background-color: #00CD00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">green3</span>
-<span style="background-color: #008B00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">green4</span>
-<span style="background-color: #ADFF2F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">greenyellow</span>
-<span style="background-color: #F0FFF0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">honeydew</span>
-<span style="background-color: #E0EEE0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">honeydew2</span>
-<span style="background-color: #C1CDC1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">honeydew3</span>
-<span style="background-color: #838B83 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">honeydew4</span>
-<span style="background-color: #FF69B4 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">hotpink</span>
-<span style="background-color: #FF6EB4 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">hotpink1</span>
-<span style="background-color: #EE6AA7 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">hotpink2</span>
-<span style="background-color: #CD6090 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">hotpink3</span>
-<span style="background-color: #8B3A62 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">hotpink4</span>
-<span style="background-color: #CD5C5C ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">indianred</span>
-<span style="background-color: #FF6A6A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">indianred1</span>
-<span style="background-color: #EE6363 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">indianred2</span>
-<span style="background-color: #CD5555 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">indianred3</span>
-<span style="background-color: #8B3A3A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">indianred4</span>
-<span style="background-color: #FFFFF0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">ivory</span>
-<span style="background-color: #EEEEE0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">ivory2</span>
-<span style="background-color: #CDCDC1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">ivory3</span>
-<span style="background-color: #8B8B83 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">ivory4</span>
-<span style="background-color: #F0E68C ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">khaki</span>
-<span style="background-color: #FFF68F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">khaki1</span>
-<span style="background-color: #EEE685 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">khaki2</span>
-<span style="background-color: #CDC673 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">khaki3</span>
-<span style="background-color: #8B864E ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">khaki4</span>
-<span style="background-color: #E6E6FA ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lavender</span>
-<span style="background-color: #FFF0F5 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lavenderblush</span>
-<span style="background-color: #EEE0E5 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lavenderblush2</span>
-<span style="background-color: #CDC1C5 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lavenderblush3</span>
-<span style="background-color: #8B8386 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lavenderblush4</span>
-<span style="background-color: #7CFC00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lawngreen</span>
-<span style="background-color: #FFFACD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lemonchiffon</span>
-<span style="background-color: #EEE9BF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lemonchiffon2</span>
-<span style="background-color: #CDC9A5 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lemonchiffon3</span>
-<span style="background-color: #8B8970 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lemonchiffon4</span>
-<span style="background-color: #ADD8E6 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightblue</span>
-<span style="background-color: #BFEFFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightblue1</span>
-<span style="background-color: #B2DFEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightblue2</span>
-<span style="background-color: #9AC0CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightblue3</span>
-<span style="background-color: #68838B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightblue4</span>
-<span style="background-color: #F08080 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightcoral</span>
-<span style="background-color: #E0FFFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightcyan</span>
-<span style="background-color: #D1EEEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightcyan2</span>
-<span style="background-color: #B4CDCD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightcyan3</span>
-<span style="background-color: #7A8B8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightcyan4</span>
-<span style="background-color: #EEDD82 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightgoldenrod</span>
-<span style="background-color: #FFEC8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightgoldenrod1</span>
-<span style="background-color: #EEDC82 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightgoldenrod2</span>
-<span style="background-color: #CDBE70 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightgoldenrod3</span>
-<span style="background-color: #8B814C ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightgoldenrod4</span>
-<span style="background-color: #FAFAD2 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightgoldenrodyellow</span>
-<span style="background-color: #90EE90 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightgreen</span>
-<span style="background-color: #FFB6C1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightpink</span>
-<span style="background-color: #FFAEB9 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightpink1</span>
-<span style="background-color: #EEA2AD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightpink2</span>
-<span style="background-color: #CD8C95 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightpink3</span>
-<span style="background-color: #8B5F65 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightpink4</span>
-<span style="background-color: #FFA07A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightsalmon</span>
-<span style="background-color: #EE9572 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightsalmon2</span>
-<span style="background-color: #CD8162 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightsalmon3</span>
-<span style="background-color: #8B5742 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightsalmon4</span>
-<span style="background-color: #20B2AA ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightseagreen</span>
-<span style="background-color: #87CEFA ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightskyblue</span>
-<span style="background-color: #B0E2FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightskyblue1</span>
-<span style="background-color: #A4D3EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightskyblue2</span>
-<span style="background-color: #8DB6CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightskyblue3</span>
-<span style="background-color: #607B8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightskyblue4</span>
-<span style="background-color: #8470FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightslateblue</span>
-<span style="background-color: #B0C4DE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightsteelblue</span>
-<span style="background-color: #CAE1FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightsteelblue1</span>
-<span style="background-color: #BCD2EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightsteelblue2</span>
-<span style="background-color: #A2B5CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightsteelblue3</span>
-<span style="background-color: #6E7B8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightsteelblue4</span>
-<span style="background-color: #FFFFE0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightyellow</span>
-<span style="background-color: #EEEED1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightyellow2</span>
-<span style="background-color: #CDCDB4 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightyellow3</span>
-<span style="background-color: #8B8B7A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">lightyellow4</span>
-<span style="background-color: #32CD32 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">limegreen</span>
-<span style="background-color: #FAF0E6 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">linen</span>
-<span style="background-color: #FF00FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">magenta</span>
-<span style="background-color: #EE00EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">magenta2</span>
-<span style="background-color: #CD00CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">magenta3</span>
-<span style="background-color: #B03060 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">maroon</span>
-<span style="background-color: #FF34B3 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">maroon1</span>
-<span style="background-color: #EE30A7 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">maroon2</span>
-<span style="background-color: #CD2990 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">maroon3</span>
-<span style="background-color: #8B1C62 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">maroon4</span>
-<span style="background-color: #BA55D3 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">mediumorchid</span>
-<span style="background-color: #E066FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">mediumorchid1</span>
-<span style="background-color: #D15FEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">mediumorchid2</span>
-<span style="background-color: #B452CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">mediumorchid3</span>
-<span style="background-color: #7A378B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">mediumorchid4</span>
-<span style="background-color: #9370DB ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">mediumpurple</span>
-<span style="background-color: #AB82FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">mediumpurple1</span>
-<span style="background-color: #9F79EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">mediumpurple2</span>
-<span style="background-color: #8968CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">mediumpurple3</span>
-<span style="background-color: #5D478B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">mediumpurple4</span>
-<span style="background-color: #3CB371 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">mediumseagreen</span>
-<span style="background-color: #7B68EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">mediumslateblue</span>
-<span style="background-color: #00FA9A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">mediumspringgreen</span>
-<span style="background-color: #48D1CC ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">mediumturquoise</span>
-<span style="background-color: #C71585 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">mediumvioletred</span>
-<span style="background-color: #191970 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">midnightblue</span>
-<span style="background-color: #F5FFFA ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">mintcream</span>
-<span style="background-color: #FFE4E1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">mistyrose</span>
-<span style="background-color: #EED5D2 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">mistyrose2</span>
-<span style="background-color: #CDB7B5 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">mistyrose3</span>
-<span style="background-color: #8B7D7B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">mistyrose4</span>
-<span style="background-color: #FFE4B5 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">moccasin</span>
-<span style="background-color: #FFDEAD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">navajowhite</span>
-<span style="background-color: #EECFA1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">navajowhite2</span>
-<span style="background-color: #CDB38B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">navajowhite3</span>
-<span style="background-color: #8B795E ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">navajowhite4</span>
-<span style="background-color: #000080 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">navy</span>
-<span style="background-color: #FDF5E6 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">oldlace</span>
-<span style="background-color: #6B8E23 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">olivedrab</span>
-<span style="background-color: #C0FF3E ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">olivedrab1</span>
-<span style="background-color: #B3EE3A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">olivedrab2</span>
-<span style="background-color: #9ACD32 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">olivedrab3</span>
-<span style="background-color: #698B22 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">olivedrab4</span>
-<span style="background-color: #FFA500 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">orange</span>
-<span style="background-color: #EE9A00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">orange2</span>
-<span style="background-color: #CD8500 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">orange3</span>
-<span style="background-color: #8B5A00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">orange4</span>
-<span style="background-color: #FF4500 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">orangered</span>
-<span style="background-color: #EE4000 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">orangered2</span>
-<span style="background-color: #CD3700 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">orangered3</span>
-<span style="background-color: #8B2500 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">orangered4</span>
-<span style="background-color: #DA70D6 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">orchid</span>
-<span style="background-color: #FF83FA ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">orchid1</span>
-<span style="background-color: #EE7AE9 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">orchid2</span>
-<span style="background-color: #CD69C9 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">orchid3</span>
-<span style="background-color: #8B4789 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">orchid4</span>
-<span style="background-color: #EEE8AA ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">palegoldenrod</span>
-<span style="background-color: #98FB98 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">palegreen</span>
-<span style="background-color: #9AFF9A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">palegreen1</span>
-<span style="background-color: #7CCD7C ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">palegreen3</span>
-<span style="background-color: #548B54 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">palegreen4</span>
-<span style="background-color: #AFEEEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">paleturquoise</span>
-<span style="background-color: #BBFFFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">paleturquoise1</span>
-<span style="background-color: #AEEEEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">paleturquoise2</span>
-<span style="background-color: #96CDCD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">paleturquoise3</span>
-<span style="background-color: #668B8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">paleturquoise4</span>
-<span style="background-color: #DB7093 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">palevioletred</span>
-<span style="background-color: #FF82AB ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">palevioletred1</span>
-<span style="background-color: #EE799F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">palevioletred2</span>
-<span style="background-color: #CD6889 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">palevioletred3</span>
-<span style="background-color: #8B475D ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">palevioletred4</span>
-<span style="background-color: #FFEFD5 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">papayawhip</span>
-<span style="background-color: #FFDAB9 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">peachpuff</span>
-<span style="background-color: #EECBAD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">peachpuff2</span>
-<span style="background-color: #CDAF95 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">peachpuff3</span>
-<span style="background-color: #8B7765 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">peachpuff4</span>
-<span style="background-color: #CD853F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">peru</span>
-<span style="background-color: #FFC0CB ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">pink</span>
-<span style="background-color: #FFB5C5 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">pink1</span>
-<span style="background-color: #EEA9B8 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">pink2</span>
-<span style="background-color: #CD919E ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">pink3</span>
-<span style="background-color: #8B636C ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">pink4</span>
-<span style="background-color: #DDA0DD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">plum</span>
-<span style="background-color: #FFBBFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">plum1</span>
-<span style="background-color: #EEAEEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">plum2</span>
-<span style="background-color: #CD96CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">plum3</span>
-<span style="background-color: #8B668B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">plum4</span>
-<span style="background-color: #B0E0E6 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">powderblue</span>
-<span style="background-color: #A020F0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">purple</span>
-<span style="background-color: #9B30FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">purple1</span>
-<span style="background-color: #912CEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">purple2</span>
-<span style="background-color: #7D26CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">purple3</span>
-<span style="background-color: #551A8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">purple4</span>
-<span style="background-color: #FF0000 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">red</span>
-<span style="background-color: #EE0000 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">red2</span>
-<span style="background-color: #CD0000 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">red3</span>
-<span style="background-color: #BC8F8F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">rosybrown</span>
-<span style="background-color: #FFC1C1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">rosybrown1</span>
-<span style="background-color: #EEB4B4 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">rosybrown2</span>
-<span style="background-color: #CD9B9B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">rosybrown3</span>
-<span style="background-color: #8B6969 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">rosybrown4</span>
-<span style="background-color: #4169E1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">royalblue</span>
-<span style="background-color: #4876FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">royalblue1</span>
-<span style="background-color: #436EEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">royalblue2</span>
-<span style="background-color: #3A5FCD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">royalblue3</span>
-<span style="background-color: #27408B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">royalblue4</span>
-<span style="background-color: #FA8072 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">salmon</span>
-<span style="background-color: #FF8C69 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">salmon1</span>
-<span style="background-color: #EE8262 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">salmon2</span>
-<span style="background-color: #CD7054 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">salmon3</span>
-<span style="background-color: #8B4C39 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">salmon4</span>
-<span style="background-color: #F4A460 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">sandybrown</span>
-<span style="background-color: #2E8B57 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">seagreen</span>
-<span style="background-color: #54FF9F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">seagreen1</span>
-<span style="background-color: #4EEE94 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">seagreen2</span>
-<span style="background-color: #43CD80 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">seagreen3</span>
-<span style="background-color: #FFF5EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">seashell</span>
-<span style="background-color: #EEE5DE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">seashell2</span>
-<span style="background-color: #CDC5BF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">seashell3</span>
-<span style="background-color: #8B8682 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">seashell4</span>
-<span style="background-color: #A0522D ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">sienna</span>
-<span style="background-color: #FF8247 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">sienna1</span>
-<span style="background-color: #EE7942 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">sienna2</span>
-<span style="background-color: #CD6839 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">sienna3</span>
-<span style="background-color: #8B4726 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">sienna4</span>
-<span style="background-color: #87CEEB ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">skyblue</span>
-<span style="background-color: #87CEFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">skyblue1</span>
-<span style="background-color: #7EC0EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">skyblue2</span>
-<span style="background-color: #6CA6CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">skyblue3</span>
-<span style="background-color: #4A708B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">skyblue4</span>
-<span style="background-color: #6A5ACD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">slateblue</span>
-<span style="background-color: #836FFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">slateblue1</span>
-<span style="background-color: #7A67EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">slateblue2</span>
-<span style="background-color: #6959CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">slateblue3</span>
-<span style="background-color: #473C8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">slateblue4</span>
-<span style="background-color: #FFFAFA ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">snow</span>
-<span style="background-color: #EEE9E9 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">snow2</span>
-<span style="background-color: #CDC9C9 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">snow3</span>
-<span style="background-color: #8B8989 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">snow4</span>
-<span style="background-color: #00FF7F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">springgreen</span>
-<span style="background-color: #00EE76 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">springgreen2</span>
-<span style="background-color: #00CD66 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">springgreen3</span>
-<span style="background-color: #008B45 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">springgreen4</span>
-<span style="background-color: #4682B4 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">steelblue</span>
-<span style="background-color: #63B8FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">steelblue1</span>
-<span style="background-color: #5CACEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">steelblue2</span>
-<span style="background-color: #4F94CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">steelblue3</span>
-<span style="background-color: #36648B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">steelblue4</span>
-<span style="background-color: #D2B48C ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">tan</span>
-<span style="background-color: #FFA54F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">tan1</span>
-<span style="background-color: #EE9A49 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">tan2</span>
-<span style="background-color: #8B5A2B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">tan4</span>
-<span style="background-color: #D8BFD8 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">thistle</span>
-<span style="background-color: #FFE1FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">thistle1</span>
-<span style="background-color: #EED2EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">thistle2</span>
-<span style="background-color: #CDB5CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">thistle3</span>
-<span style="background-color: #8B7B8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">thistle4</span>
-<span style="background-color: #FF6347 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">tomato</span>
-<span style="background-color: #EE5C42 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">tomato2</span>
-<span style="background-color: #CD4F39 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">tomato3</span>
-<span style="background-color: #8B3626 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">tomato4</span>
-<span style="background-color: #40E0D0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">turquoise</span>
-<span style="background-color: #00F5FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">turquoise1</span>
-<span style="background-color: #00E5EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">turquoise2</span>
-<span style="background-color: #00C5CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">turquoise3</span>
-<span style="background-color: #00868B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">turquoise4</span>
-<span style="background-color: #EE82EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">violet</span>
-<span style="background-color: #D02090 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">violetred</span>
-<span style="background-color: #FF3E96 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">violetred1</span>
-<span style="background-color: #EE3A8C ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">violetred2</span>
-<span style="background-color: #CD3278 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">violetred3</span>
-<span style="background-color: #8B2252 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: white">violetred4</span>
-<span style="background-color: #F5DEB3 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">wheat</span>
-<span style="background-color: #FFE7BA ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">wheat1</span>
-<span style="background-color: #EED8AE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">wheat2</span>
-<span style="background-color: #CDBA96 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">wheat3</span>
-<span style="background-color: #8B7E66 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">wheat4</span>
-<span style="background-color: #FFFF00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">yellow</span>
-<span style="background-color: #EEEE00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">yellow2</span>
-<span style="background-color: #CDCD00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">yellow3</span>
-<span style="background-color: #8B8B00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6; color: black">yellow4</span>
+<span style="background-color: #FFFFFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #ABABAB ;">white</span>
+<span style="background-color: #F0F8FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #72ADD2 ;">aliceblue</span>
+<span style="background-color: #FAEBD7 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #BA9B64 ;">antiquewhite</span>
+<span style="background-color: #FFEFDB ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #C39C56 ;">antiquewhite1</span>
+<span style="background-color: #EEDFCC ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AC9470 ;">antiquewhite2</span>
+<span style="background-color: #CDC0B0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #90816D ;">antiquewhite3</span>
+<span style="background-color: #8B8378 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5F5A54 ;">antiquewhite4</span>
+<span style="background-color: #7FFFD4 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #00B189 ;">aquamarine</span>
+<span style="background-color: #76EEC6 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #07A680 ;">aquamarine2</span>
+<span style="background-color: #66CDAA ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #338D71 ;">aquamarine3</span>
+<span style="background-color: #458B74 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #2E6050 ;">aquamarine4</span>
+<span style="background-color: #F0FFFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #4FB9B9 ;">azure</span>
+<span style="background-color: #E0EEEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #84A4A4 ;">azure2</span>
+<span style="background-color: #C1CDCD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #7C8C8C ;">azure3</span>
+<span style="background-color: #838B8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5A5F5F ;">azure4</span>
+<span style="background-color: #F5F5DC ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A7A769 ;">beige</span>
+<span style="background-color: #FFE4C4 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #C39542 ;">bisque</span>
+<span style="background-color: #EED5B7 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AF8D59 ;">bisque2</span>
+<span style="background-color: #CDB79E ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #937B5B ;">bisque3</span>
+<span style="background-color: #8B7D6B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5F564B ;">bisque4</span>
+<span style="background-color: #000000 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #000000 ;">black</span>
+<span style="background-color: #FFEBCD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #C09B46 ;">blanchedalmond</span>
+<span style="background-color: #0000FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #0606BA ;">blue</span>
+<span style="background-color: #0000EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #0505AE ;">blue2</span>
+<span style="background-color: #0000CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #02029A ;">blue3</span>
+<span style="background-color: #00008B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #02026D ;">blue4</span>
+<span style="background-color: #8A2BE2 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #6700B1 ;">blueviolet</span>
+<span style="background-color: #A52A2A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #741F1F ;">brown</span>
+<span style="background-color: #FF4040 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #C10303 ;">brown1</span>
+<span style="background-color: #EE3B3B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B21010 ;">brown2</span>
+<span style="background-color: #CD3333 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #892C2C ;">brown3</span>
+<span style="background-color: #8B2323 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #671515 ;">brown4</span>
+<span style="background-color: #DEB887 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A27A36 ;">burlywood</span>
+<span style="background-color: #FFD39B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #C08A00 ;">burlywood1</span>
+<span style="background-color: #EEC591 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B18127 ;">burlywood2</span>
+<span style="background-color: #CDAA7D ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #927244 ;">burlywood3</span>
+<span style="background-color: #8B7355 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #60503C ;">burlywood4</span>
+<span style="background-color: #5F9EA0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #446C6D ;">cadetblue</span>
+<span style="background-color: #98F5FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #05ABB6 ;">cadetblue1</span>
+<span style="background-color: #8EE5EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #01A1AB ;">cadetblue2</span>
+<span style="background-color: #7AC5CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #388990 ;">cadetblue3</span>
+<span style="background-color: #53868B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #385D60 ;">cadetblue4</span>
+<span style="background-color: #7FFF00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #54AC02 ;">chartreuse</span>
+<span style="background-color: #76EE00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #4EA101 ;">chartreuse2</span>
+<span style="background-color: #66CD00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #448C05 ;">chartreuse3</span>
+<span style="background-color: #458B00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #2E6100 ;">chartreuse4</span>
+<span style="background-color: #D2691E ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8F4920 ;">chocolate</span>
+<span style="background-color: #FF7F24 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B35400 ;">chocolate1</span>
+<span style="background-color: #EE7621 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A45019 ;">chocolate2</span>
+<span style="background-color: #CD661D ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8D471D ;">chocolate3</span>
+<span style="background-color: #8B4513 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #662E00 ;">chocolate4</span>
+<span style="background-color: #FF7F50 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #BD4C00 ;">coral</span>
+<span style="background-color: #FF7256 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #C33C00 ;">coral1</span>
+<span style="background-color: #EE6A50 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B03F22 ;">coral2</span>
+<span style="background-color: #CD5B45 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8A4235 ;">coral3</span>
+<span style="background-color: #8B3E2F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #622C22 ;">coral4</span>
+<span style="background-color: #6495ED ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #2A66B8 ;">cornflowerblue</span>
+<span style="background-color: #FFF8DC ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B8A743 ;">cornsilk</span>
+<span style="background-color: #EEE8CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A69D69 ;">cornsilk2</span>
+<span style="background-color: #CDC8B1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8D886A ;">cornsilk3</span>
+<span style="background-color: #8B8878 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5F5D54 ;">cornsilk4</span>
+<span style="background-color: #00FFFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #0AACAC ;">cyan</span>
+<span style="background-color: #00EEEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #09A1A1 ;">cyan2</span>
+<span style="background-color: #00CDCD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #088B8B ;">cyan3</span>
+<span style="background-color: #008B8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #006060 ;">cyan4</span>
+<span style="background-color: #B8860B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #7F5C05 ;">darkgoldenrod</span>
+<span style="background-color: #FFB90F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AE7D02 ;">darkgoldenrod1</span>
+<span style="background-color: #EEAD0E ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A37500 ;">darkgoldenrod2</span>
+<span style="background-color: #CD950C ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8D6502 ;">darkgoldenrod3</span>
+<span style="background-color: #8B6508 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #624602 ;">darkgoldenrod4</span>
+<span style="background-color: #006400 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #014701 ;">darkgreen</span>
+<span style="background-color: #BDB76B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #817D3E ;">darkkhaki</span>
+<span style="background-color: #8B008B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #660066 ;">darkmagenta</span>
+<span style="background-color: #556B2F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #384C0D ;">darkolivegreen</span>
+<span style="background-color: #CAFF70 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #81AE03 ;">darkolivegreen1</span>
+<span style="background-color: #BCEE68 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #78A306 ;">darkolivegreen2</span>
+<span style="background-color: #A2CD5A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #6A8C2A ;">darkolivegreen3</span>
+<span style="background-color: #6E8B3D ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #4A6024 ;">darkolivegreen4</span>
+<span style="background-color: #FF8C00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B05F01 ;">darkorange</span>
+<span style="background-color: #FF7F00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B05601 ;">darkorange1</span>
+<span style="background-color: #EE7600 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A55000 ;">darkorange2</span>
+<span style="background-color: #CD6600 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8F4602 ;">darkorange3</span>
+<span style="background-color: #8B4500 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #643001 ;">darkorange4</span>
+<span style="background-color: #9932CC ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #6D2093 ;">darkorchid</span>
+<span style="background-color: #BF3EFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #9000C5 ;">darkorchid1</span>
+<span style="background-color: #B23AEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8601B9 ;">darkorchid2</span>
+<span style="background-color: #9A32CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #6E2093 ;">darkorchid3</span>
+<span style="background-color: #68228B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #530173 ;">darkorchid4</span>
+<span style="background-color: #8B0000 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #670000 ;">darkred</span>
+<span style="background-color: #E9967A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B25C34 ;">darksalmon</span>
+<span style="background-color: #8FBC8F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #588258 ;">darkseagreen</span>
+<span style="background-color: #C1FFC1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #2DB92D ;">darkseagreen1</span>
+<span style="background-color: #B4EEB4 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #4FA94F ;">darkseagreen2</span>
+<span style="background-color: #9BCD9B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #559055 ;">darkseagreen3</span>
+<span style="background-color: #698B69 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #4B5F4B ;">darkseagreen4</span>
+<span style="background-color: #483D8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #332B68 ;">darkslateblue</span>
+<span style="background-color: #00CED1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #0F8C8E ;">darkturquoise</span>
+<span style="background-color: #9400D3 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #6A0099 ;">darkviolet</span>
+<span style="background-color: #FF1493 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B50166 ;">deeppink</span>
+<span style="background-color: #EE1289 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AA005F ;">deeppink2</span>
+<span style="background-color: #CD1076 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #940153 ;">deeppink3</span>
+<span style="background-color: #8B0A50 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #68013A ;">deeppink4</span>
+<span style="background-color: #00BFFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #0382AF ;">deepskyblue</span>
+<span style="background-color: #00B2EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #0779A3 ;">deepskyblue2</span>
+<span style="background-color: #009ACD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #016A8E ;">deepskyblue3</span>
+<span style="background-color: #00688B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #004963 ;">deepskyblue4</span>
+<span style="background-color: #1E90FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #0C63B3 ;">dodgerblue</span>
+<span style="background-color: #1C86EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #225CA1 ;">dodgerblue2</span>
+<span style="background-color: #1874CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #1C508D ;">dodgerblue3</span>
+<span style="background-color: #104E8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #003768 ;">dodgerblue4</span>
+<span style="background-color: #B22222 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #7F1919 ;">firebrick</span>
+<span style="background-color: #FF3030 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #BB0303 ;">firebrick1</span>
+<span style="background-color: #EE2C2C ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AE0808 ;">firebrick2</span>
+<span style="background-color: #CD2626 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #8D2121 ;">firebrick3</span>
+<span style="background-color: #8B1A1A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #6B0606 ;">firebrick4</span>
+<span style="background-color: #FFFAF0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #BFA65E ;">floralwhite</span>
+<span style="background-color: #228B22 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #046204 ;">forestgreen</span>
+<span style="background-color: #DCDCDC ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #949494 ;">gainsboro</span>
+<span style="background-color: #F8F8FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #9E9EF7 ;">ghostwhite</span>
+<span style="background-color: #FFD700 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AD9101 ;">gold</span>
+<span style="background-color: #EEC900 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A28800 ;">gold2</span>
+<span style="background-color: #CDAD00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8C7607 ;">gold3</span>
+<span style="background-color: #8B7500 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #615103 ;">gold4</span>
+<span style="background-color: #DAA520 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #967004 ;">goldenrod</span>
+<span style="background-color: #FFC125 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AE8207 ;">goldenrod1</span>
+<span style="background-color: #EEB422 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A37A05 ;">goldenrod2</span>
+<span style="background-color: #CD9B1D ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8E6901 ;">goldenrod3</span>
+<span style="background-color: #8B6914 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #624903 ;">goldenrod4</span>
+<span style="background-color: #00FF00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #09AC09 ;">green</span>
+<span style="background-color: #00EE00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #0AA10A ;">green2</span>
+<span style="background-color: #00CD00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #078C07 ;">green3</span>
+<span style="background-color: #008B00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #016101 ;">green4</span>
+<span style="background-color: #ADFF2F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #72AC09 ;">greenyellow</span>
+<span style="background-color: #F0FFF0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5CBD5C ;">honeydew</span>
+<span style="background-color: #E0EEE0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #86A686 ;">honeydew2</span>
+<span style="background-color: #C1CDC1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #7D8D7D ;">honeydew3</span>
+<span style="background-color: #838B83 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5A5F5A ;">honeydew4</span>
+<span style="background-color: #FF69B4 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #D00284 ;">hotpink</span>
+<span style="background-color: #FF6EB4 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #D30284 ;">hotpink1</span>
+<span style="background-color: #EE6AA7 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #C12179 ;">hotpink2</span>
+<span style="background-color: #CD6090 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #943D64 ;">hotpink3</span>
+<span style="background-color: #8B3A62 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #642846 ;">hotpink4</span>
+<span style="background-color: #CD5C5C ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #913E3E ;">indianred</span>
+<span style="background-color: #FF6A6A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #D60404 ;">indianred1</span>
+<span style="background-color: #EE6363 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #BE2626 ;">indianred2</span>
+<span style="background-color: #CD5555 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8F3A3A ;">indianred3</span>
+<span style="background-color: #8B3A3A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #612A2A ;">indianred4</span>
+<span style="background-color: #FFFFF0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AFAF47 ;">ivory</span>
+<span style="background-color: #EEEEE0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A1A182 ;">ivory2</span>
+<span style="background-color: #CDCDC1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8B8B7B ;">ivory3</span>
+<span style="background-color: #8B8B83 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5F5F5A ;">ivory4</span>
+<span style="background-color: #F0E68C ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A69C09 ;">khaki</span>
+<span style="background-color: #FFF68F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AFA60A ;">khaki1</span>
+<span style="background-color: #EEE685 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A49C06 ;">khaki2</span>
+<span style="background-color: #CDC673 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8D8732 ;">khaki3</span>
+<span style="background-color: #8B864E ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #605C34 ;">khaki4</span>
+<span style="background-color: #E6E6FA ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #9696D8 ;">lavender</span>
+<span style="background-color: #FFF0F5 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #E487AD ;">lavenderblush</span>
+<span style="background-color: #EEE0E5 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B0919D ;">lavenderblush2</span>
+<span style="background-color: #CDC1C5 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #908186 ;">lavenderblush3</span>
+<span style="background-color: #8B8386 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5F5A5C ;">lavenderblush4</span>
+<span style="background-color: #7CFC00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #52AA05 ;">lawngreen</span>
+<span style="background-color: #FFFACD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B3AA27 ;">lemonchiffon</span>
+<span style="background-color: #EEE9BF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A59E55 ;">lemonchiffon2</span>
+<span style="background-color: #CDC9A5 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8D895C ;">lemonchiffon3</span>
+<span style="background-color: #8B8970 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5F5E4F ;">lemonchiffon4</span>
+<span style="background-color: #ADD8E6 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5596A8 ;">lightblue</span>
+<span style="background-color: #BFEFFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #31A9C3 ;">lightblue1</span>
+<span style="background-color: #B2DFEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #509CB0 ;">lightblue2</span>
+<span style="background-color: #9AC0CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #568593 ;">lightblue3</span>
+<span style="background-color: #68838B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #495A5F ;">lightblue4</span>
+<span style="background-color: #F08080 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #C93737 ;">lightcoral</span>
+<span style="background-color: #E0FFFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #3FB8B8 ;">lightcyan</span>
+<span style="background-color: #D1EEEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #6EA6A6 ;">lightcyan2</span>
+<span style="background-color: #B4CDCD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #6D8D8D ;">lightcyan3</span>
+<span style="background-color: #7A8B8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #555F5F ;">lightcyan4</span>
+<span style="background-color: #EEDD82 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A69502 ;">lightgoldenrod</span>
+<span style="background-color: #FFEC8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B29F05 ;">lightgoldenrod1</span>
+<span style="background-color: #EEDC82 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A69501 ;">lightgoldenrod2</span>
+<span style="background-color: #CDBE70 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8E8132 ;">lightgoldenrod3</span>
+<span style="background-color: #8B814C ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #605933 ;">lightgoldenrod4</span>
+<span style="background-color: #FAFAD2 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #ABAB47 ;">lightgoldenrodyellow</span>
+<span style="background-color: #90EE90 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #06AA06 ;">lightgreen</span>
+<span style="background-color: #FFB6C1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #DD5D77 ;">lightpink</span>
+<span style="background-color: #FFAEB9 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #DD5770 ;">lightpink1</span>
+<span style="background-color: #EEA2AD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #C15C6E ;">lightpink2</span>
+<span style="background-color: #CD8C95 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #995963 ;">lightpink3</span>
+<span style="background-color: #8B5F65 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #5E4347 ;">lightpink4</span>
+<span style="background-color: #FFA07A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #C85E00 ;">lightsalmon</span>
+<span style="background-color: #EE9572 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B65B26 ;">lightsalmon2</span>
+<span style="background-color: #CD8162 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #90573F ;">lightsalmon3</span>
+<span style="background-color: #8B5742 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #603D30 ;">lightsalmon4</span>
+<span style="background-color: #20B2AA ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #057A75 ;">lightseagreen</span>
+<span style="background-color: #87CEFA ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #0890C0 ;">lightskyblue</span>
+<span style="background-color: #B0E2FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #319FC8 ;">lightskyblue1</span>
+<span style="background-color: #A4D3EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #4793B4 ;">lightskyblue2</span>
+<span style="background-color: #8DB6CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #507E94 ;">lightskyblue3</span>
+<span style="background-color: #607B8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #44555F ;">lightskyblue4</span>
+<span style="background-color: #8470FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5925FF ;">lightslateblue</span>
+<span style="background-color: #B0C4DE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #6A86A6 ;">lightsteelblue</span>
+<span style="background-color: #CAE1FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5E9BD3 ;">lightsteelblue1</span>
+<span style="background-color: #BCD2EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #6A90B7 ;">lightsteelblue2</span>
+<span style="background-color: #A2B5CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #647C97 ;">lightsteelblue3</span>
+<span style="background-color: #6E7B8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #4D555E ;">lightsteelblue4</span>
+<span style="background-color: #FFFFE0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AFAF37 ;">lightyellow</span>
+<span style="background-color: #EEEED1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A2A26A ;">lightyellow2</span>
+<span style="background-color: #CDCDB4 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8B8B6C ;">lightyellow3</span>
+<span style="background-color: #8B8B7A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5F5F55 ;">lightyellow4</span>
+<span style="background-color: #32CD32 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #1D8C1D ;">limegreen</span>
+<span style="background-color: #FAF0E6 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #BB9E79 ;">linen</span>
+<span style="background-color: #FF00FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B201B2 ;">magenta</span>
+<span style="background-color: #EE00EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A700A7 ;">magenta2</span>
+<span style="background-color: #CD00CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #910091 ;">magenta3</span>
+<span style="background-color: #B03060 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #7A2543 ;">maroon</span>
+<span style="background-color: #FF34B3 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #BA007F ;">maroon1</span>
+<span style="background-color: #EE30A7 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AF0077 ;">maroon2</span>
+<span style="background-color: #CD2990 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #921865 ;">maroon3</span>
+<span style="background-color: #8B1C62 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #6C0149 ;">maroon4</span>
+<span style="background-color: #BA55D3 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8A2F9E ;">mediumorchid</span>
+<span style="background-color: #E066FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B400D2 ;">mediumorchid1</span>
+<span style="background-color: #D15FEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A900C5 ;">mediumorchid2</span>
+<span style="background-color: #B452CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #833196 ;">mediumorchid3</span>
+<span style="background-color: #7A378B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #5B2169 ;">mediumorchid4</span>
+<span style="background-color: #9370DB ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #6B43B1 ;">mediumpurple</span>
+<span style="background-color: #AB82FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8732F5 ;">mediumpurple1</span>
+<span style="background-color: #9F79EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #7A3AD8 ;">mediumpurple2</span>
+<span style="background-color: #8968CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #61449B ;">mediumpurple3</span>
+<span style="background-color: #5D478B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #423263 ;">mediumpurple4</span>
+<span style="background-color: #3CB371 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #327A50 ;">mediumseagreen</span>
+<span style="background-color: #7B68EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5433D9 ;">mediumslateblue</span>
+<span style="background-color: #00FA9A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #0BA967 ;">mediumspringgreen</span>
+<span style="background-color: #48D1CC ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #07908C ;">mediumturquoise</span>
+<span style="background-color: #C71585 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #90015E ;">mediumvioletred</span>
+<span style="background-color: #191970 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #020272 ;">midnightblue</span>
+<span style="background-color: #F5FFFA ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5BBB94 ;">mintcream</span>
+<span style="background-color: #FFE4E1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #DD8679 ;">mistyrose</span>
+<span style="background-color: #EED5D2 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B58982 ;">mistyrose2</span>
+<span style="background-color: #CDB7B5 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #947977 ;">mistyrose3</span>
+<span style="background-color: #8B7D7B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5F5655 ;">mistyrose4</span>
+<span style="background-color: #FFE4B5 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #BE9723 ;">moccasin</span>
+<span style="background-color: #FFDEAD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #BF921A ;">navajowhite</span>
+<span style="background-color: #EECFA1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AF893C ;">navajowhite2</span>
+<span style="background-color: #CDB38B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #92784B ;">navajowhite3</span>
+<span style="background-color: #8B795E ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5F5442 ;">navajowhite4</span>
+<span style="background-color: #000080 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #020266 ;">navy</span>
+<span style="background-color: #FDF5E6 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #BBA364 ;">oldlace</span>
+<span style="background-color: #6B8E23 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #476300 ;">olivedrab</span>
+<span style="background-color: #C0FF3E ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #7EAD08 ;">olivedrab1</span>
+<span style="background-color: #B3EE3A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #76A200 ;">olivedrab2</span>
+<span style="background-color: #9ACD32 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #678B1C ;">olivedrab3</span>
+<span style="background-color: #698B22 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #466100 ;">olivedrab4</span>
+<span style="background-color: #FFA500 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AE7005 ;">orange</span>
+<span style="background-color: #EE9A00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A36800 ;">orange2</span>
+<span style="background-color: #CD8500 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8E5B00 ;">orange3</span>
+<span style="background-color: #8B5A00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #633E00 ;">orange4</span>
+<span style="background-color: #FF4500 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AD341A ;">orangered</span>
+<span style="background-color: #EE4000 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A42E11 ;">orangered2</span>
+<span style="background-color: #CD3700 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #922400 ;">orangered3</span>
+<span style="background-color: #8B2500 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #661900 ;">orangered4</span>
+<span style="background-color: #DA70D6 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A837A5 ;">orchid</span>
+<span style="background-color: #FF83FA ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #D604D1 ;">orchid1</span>
+<span style="background-color: #EE7AE9 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #C80DC3 ;">orchid2</span>
+<span style="background-color: #CD69C9 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #983D94 ;">orchid3</span>
+<span style="background-color: #8B4789 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #633161 ;">orchid4</span>
+<span style="background-color: #EEE8AA ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A59E35 ;">palegoldenrod</span>
+<span style="background-color: #98FB98 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #0CB30C ;">palegreen</span>
+<span style="background-color: #9AFF9A ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #0FB50F ;">palegreen1</span>
+<span style="background-color: #7CCD7C ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #3F8F3F ;">palegreen3</span>
+<span style="background-color: #548B54 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #3B603B ;">palegreen4</span>
+<span style="background-color: #AFEEEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #3CA8A8 ;">paleturquoise</span>
+<span style="background-color: #BBFFFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #00B6B6 ;">paleturquoise1</span>
+<span style="background-color: #AEEEEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #3AA8A8 ;">paleturquoise2</span>
+<span style="background-color: #96CDCD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #4C8F8F ;">paleturquoise3</span>
+<span style="background-color: #668B8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #485F5F ;">paleturquoise4</span>
+<span style="background-color: #DB7093 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A64065 ;">palevioletred</span>
+<span style="background-color: #FF82AB ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #DC1C75 ;">palevioletred1</span>
+<span style="background-color: #EE799F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #C4316D ;">palevioletred2</span>
+<span style="background-color: #CD6889 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #94435E ;">palevioletred3</span>
+<span style="background-color: #8B475D ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #603341 ;">palevioletred4</span>
+<span style="background-color: #FFEFD5 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #C09E4B ;">papayawhip</span>
+<span style="background-color: #FFDAB9 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #C58C3E ;">peachpuff</span>
+<span style="background-color: #EECBAD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B28553 ;">peachpuff2</span>
+<span style="background-color: #CDAF95 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #947556 ;">peachpuff3</span>
+<span style="background-color: #8B7765 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5F5248 ;">peachpuff4</span>
+<span style="background-color: #CD853F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8C5B2E ;">peru</span>
+<span style="background-color: #FFC0CB ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #DE6581 ;">pink</span>
+<span style="background-color: #FFB5C5 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #DD5C80 ;">pink1</span>
+<span style="background-color: #EEA9B8 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #C0617A ;">pink2</span>
+<span style="background-color: #CD919E ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #9A5C6B ;">pink3</span>
+<span style="background-color: #8B636C ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5E464B ;">pink4</span>
+<span style="background-color: #DDA0DD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AC5DAC ;">plum</span>
+<span style="background-color: #FFBBFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #DB55DB ;">plum1</span>
+<span style="background-color: #EEAEEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #BF5FBF ;">plum2</span>
+<span style="background-color: #CD96CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #9A5C9A ;">plum3</span>
+<span style="background-color: #8B668B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5F485F ;">plum4</span>
+<span style="background-color: #B0E0E6 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #529DA4 ;">powderblue</span>
+<span style="background-color: #A020F0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #7402B2 ;">purple</span>
+<span style="background-color: #9B30FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #7201C4 ;">purple1</span>
+<span style="background-color: #912CEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #6C01B8 ;">purple2</span>
+<span style="background-color: #7D26CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #5C0C9D ;">purple3</span>
+<span style="background-color: #551A8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #440075 ;">purple4</span>
+<span style="background-color: #FF0000 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B30303 ;">red</span>
+<span style="background-color: #EE0000 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A80202 ;">red2</span>
+<span style="background-color: #CD0000 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #930101 ;">red3</span>
+<span style="background-color: #BC8F8F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #875F5F ;">rosybrown</span>
+<span style="background-color: #FFC1C1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #E06767 ;">rosybrown1</span>
+<span style="background-color: #EEB4B4 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #C06C6C ;">rosybrown2</span>
+<span style="background-color: #CD9B9B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #9A6363 ;">rosybrown3</span>
+<span style="background-color: #8B6969 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5E4A4A ;">rosybrown4</span>
+<span style="background-color: #4169E1 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #2948A3 ;">royalblue</span>
+<span style="background-color: #4876FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #004ECD ;">royalblue1</span>
+<span style="background-color: #436EEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #1E4AB5 ;">royalblue2</span>
+<span style="background-color: #3A5FCD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #2E438A ;">royalblue3</span>
+<span style="background-color: #27408B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #152D6C ;">royalblue4</span>
+<span style="background-color: #FA8072 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #D03700 ;">salmon</span>
+<span style="background-color: #FF8C69 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #C65000 ;">salmon1</span>
+<span style="background-color: #EE8262 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B34F25 ;">salmon2</span>
+<span style="background-color: #CD7054 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8D4D3B ;">salmon3</span>
+<span style="background-color: #8B4C39 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #61362A ;">salmon4</span>
+<span style="background-color: #F4A460 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B36A02 ;">sandybrown</span>
+<span style="background-color: #2E8B57 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #18613A ;">seagreen</span>
+<span style="background-color: #54FF9F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #07AF62 ;">seagreen1</span>
+<span style="background-color: #4EEE94 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #03A35B ;">seagreen2</span>
+<span style="background-color: #43CD80 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #328B58 ;">seagreen3</span>
+<span style="background-color: #FFF5EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #CC9D6E ;">seashell</span>
+<span style="background-color: #EEE5DE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AB9888 ;">seashell2</span>
+<span style="background-color: #CDC5BF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8F847D ;">seashell3</span>
+<span style="background-color: #8B8682 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5F5C5A ;">seashell4</span>
+<span style="background-color: #A0522D ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #6F3A23 ;">sienna</span>
+<span style="background-color: #FF8247 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #BA5200 ;">sienna1</span>
+<span style="background-color: #EE7942 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AA4F1C ;">sienna2</span>
+<span style="background-color: #CD6839 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #894A32 ;">sienna3</span>
+<span style="background-color: #8B4726 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #643118 ;">sienna4</span>
+<span style="background-color: #87CEEB ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #0991B1 ;">skyblue</span>
+<span style="background-color: #87CEFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #0C8FC4 ;">skyblue1</span>
+<span style="background-color: #7EC0EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #0C86B8 ;">skyblue2</span>
+<span style="background-color: #6CA6CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #3F7292 ;">skyblue3</span>
+<span style="background-color: #4A708B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #344E61 ;">skyblue4</span>
+<span style="background-color: #6A5ACD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #4A3C9A ;">slateblue</span>
+<span style="background-color: #836FFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5824FF ;">slateblue1</span>
+<span style="background-color: #7A67EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5332D9 ;">slateblue2</span>
+<span style="background-color: #6959CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #493B9A ;">slateblue3</span>
+<span style="background-color: #473C8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #332A68 ;">slateblue4</span>
+<span style="background-color: #FFFAFA ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #E89191 ;">snow</span>
+<span style="background-color: #EEE9E9 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A89B9B ;">snow2</span>
+<span style="background-color: #CDC9C9 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8D8787 ;">snow3</span>
+<span style="background-color: #8B8989 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5F5E5E ;">snow4</span>
+<span style="background-color: #00FF7F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #1BAC57 ;">springgreen</span>
+<span style="background-color: #00EE76 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #05A14E ;">springgreen2</span>
+<span style="background-color: #00CD66 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #068C44 ;">springgreen3</span>
+<span style="background-color: #008B45 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #00612E ;">springgreen4</span>
+<span style="background-color: #4682B4 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #385978 ;">steelblue</span>
+<span style="background-color: #63B8FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #007FBF ;">steelblue1</span>
+<span style="background-color: #5CACEE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #1177B2 ;">steelblue2</span>
+<span style="background-color: #4F94CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #36668E ;">steelblue3</span>
+<span style="background-color: #36648B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #244663 ;">steelblue4</span>
+<span style="background-color: #D2B48C ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #977849 ;">tan</span>
+<span style="background-color: #FFA54F ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B66D04 ;">tan1</span>
+<span style="background-color: #EE9A49 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AA6604 ;">tan2</span>
+<span style="background-color: #8B5A2B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #643E16 ;">tan4</span>
+<span style="background-color: #D8BFD8 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #9E7C9E ;">thistle</span>
+<span style="background-color: #FFE1FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #DE76DE ;">thistle1</span>
+<span style="background-color: #EED2EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B682B6 ;">thistle2</span>
+<span style="background-color: #CDB5CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #947694 ;">thistle3</span>
+<span style="background-color: #8B7B8B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5F555F ;">thistle4</span>
+<span style="background-color: #FF6347 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #BF3400 ;">tomato</span>
+<span style="background-color: #EE5C42 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AC381F ;">tomato2</span>
+<span style="background-color: #CD4F39 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #883C32 ;">tomato3</span>
+<span style="background-color: #8B3626 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #64261A ;">tomato4</span>
+<span style="background-color: #40E0D0 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #05998D ;">turquoise</span>
+<span style="background-color: #00F5FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #0FA5AC ;">turquoise1</span>
+<span style="background-color: #00E5EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #0E9BA1 ;">turquoise2</span>
+<span style="background-color: #00C5CD ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #0D868C ;">turquoise3</span>
+<span style="background-color: #00868B ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #055D61 ;">turquoise4</span>
+<span style="background-color: #EE82EE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #C820C8 ;">violet</span>
+<span style="background-color: #D02090 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #980367 ;">violetred</span>
+<span style="background-color: #FF3E96 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #BE0268 ;">violetred1</span>
+<span style="background-color: #EE3A8C ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B20762 ;">violetred2</span>
+<span style="background-color: #CD3278 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8B2953 ;">violetred3</span>
+<span style="background-color: #8B2252 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: white ; border: solid 1px #6B0C3B ;">violetred4</span>
+<span style="background-color: #F5DEB3 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #B39442 ;">wheat</span>
+<span style="background-color: #FFE7BA ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #BD9929 ;">wheat1</span>
+<span style="background-color: #EED8AE ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #AC9049 ;">wheat2</span>
+<span style="background-color: #CDBA96 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #917D52 ;">wheat3</span>
+<span style="background-color: #8B7E66 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #5F5748 ;">wheat4</span>
+<span style="background-color: #FFFF00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #ABAB00 ;">yellow</span>
+<span style="background-color: #EEEE00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #A0A007 ;">yellow2</span>
+<span style="background-color: #CDCD00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8B8B08 ;">yellow3</span>
+<span style="background-color: #8B8B00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #606002 ;">yellow4</span>
 
 Para usarlos, simplemente usa su nombre:
 
 ``` r
 colores <- c("indianred", "steelblue", "grey60")
-swatch(colores)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #CD5C5C ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #A14A4A ;">indianred</div>
+<div style="background-color: #4682B4 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #446687 ;">steelblue</div>
+<div style="background-color: #999999 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #787878 ;">grey60</div>
+</div>
 
 Casi todos estos colores pueden ser modificados agregando un número del 1 al 4 al final del nombre; por ejemplo, `mediumorchid` puede hacerse levemente más claro o más oscuro:
 
 ``` r
 escala <- c("mediumorchid", "mediumorchid1", "mediumorchid2", "mediumorchid3", "mediumorchid4")
-swatch(escala)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #BA55D3 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #983DAE ;">mediumorchid</div>
+<div style="background-color: #E066FF ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C331E2 ;">mediumorchid1</div>
+<div style="background-color: #D15FEE ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B532D1 ;">mediumorchid2</div>
+<div style="background-color: #B452CD ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #913EA6 ;">mediumorchid3</div>
+<div style="background-color: #7A378B ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #642A72 ;">mediumorchid4</div>
+</div>
 
 Los grises (`gray`) tienen la particularidad de que puedes ponerles un número entre 1 y 99 para ajustar su brillo:
 
 ``` r
 escala <- c("gray2", "gray10", "gray30", "gray50", "gray70", "gray90")
-swatch(escala)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #050505 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #040404 ;">gray2</div>
+<div style="background-color: #1A1A1A ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #161616 ;">gray10</div>
+<div style="background-color: #4D4D4D ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #3E3E3E ;">gray30</div>
+<div style="background-color: #7F7F7F ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #646464 ;">gray50</div>
+<div style="background-color: #B3B3B3 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #8C8C8C ;">gray70</div>
+<div style="background-color: #E5E5E5 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B2B2B2 ;">gray90</div>
+</div>
+
+Si tienes **colores hexadecimales**, que puedes encontrar en internet en muchas páginas, como [coolors.co](https://coolors.co), recuerda ponerlos entre comillas y anteponer el signo gato:
+
+``` r
+colores <- c("#DEC5F2", "#9069C0", "#6E3A98")
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #DEC5F2 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B595CD ;">#DEC5F2</div>
+<div style="background-color: #9069C0 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #725399 ;">#9069C0</div>
+<div style="background-color: #6E3A98 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #582F7A ;">#6E3A98</div>
+</div>
 
 ## Paletas de colores
 
@@ -499,8 +493,7 @@ iris |>
   aes(x = Sepal.Length, y = Sepal.Width, color = Species) +
   geom_point(size = 4, alpha = 0.7) +
   # usar la paleta "PuRd"
-  scale_color_brewer(palette = "PuRd") +
-  theme_classic()
+  scale_color_brewer(palette = "PuRd")
 ```
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" alt="" width="672" />
@@ -524,8 +517,7 @@ iris |>
   geom_point(size = 4, alpha = 0.7) +
   # usar la paleta "Sunset" para una variable continua
   colorspace::scale_color_continuous_sequential(palette = "Sunset") +
-  scale_y_continuous(expand = expansion(c(0, 0.1))) +
-  theme_classic()
+  scale_y_continuous(expand = expansion(c(0, 0.1)))
 ```
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" alt="" width="672" />
@@ -551,7 +543,6 @@ iris |>
   scale_color_manual(
     values = c("#cc3b7b", "#705ce6", "#668cf6")
   ) +
-  theme_classic() +
   theme(legend.title = element_blank(),
         axis.title = element_blank())
 ```
@@ -572,7 +563,6 @@ iris |>
                "virginica" = "#705ce6", 
                "setosa" = "#668cf6")
   ) +
-  theme_classic() +
   theme(legend.title = element_blank(),
         axis.title = element_blank())
 ```
@@ -605,8 +595,7 @@ iris |>
   ggplot() +
   geom_bar(aes(Petal.Width, fill = Species)) +
   colorspace::scale_fill_discrete_qualitative(palette = "Dark 3") +
-  scale_y_continuous(expand = expansion(c(0, 0.1))) +
-  theme_classic()
+  scale_y_continuous(expand = expansion(c(0, 0.1)))
 ```
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" alt="" width="672" />
@@ -617,7 +606,6 @@ iris |>
   ggplot() +
   geom_point(aes(Sepal.Width, Sepal.Length, color = Petal.Width, size = Petal.Length), alpha = .8) +
   colorspace::scale_color_continuous_sequential(palette = "Sunset", na.value = "white") +
-  theme_classic() +
   guides(size = guide_legend(override.aes = list(color = "#784FA1")),
          color = guide_colorsteps()) +
   theme(legend.title = element_blank(),
@@ -632,7 +620,6 @@ iris |>
   ggplot() +
   geom_point(aes(Petal.Length, Sepal.Width, color = Petal.Width, size = Sepal.Length), alpha = .8) +
   viridis::scale_colour_viridis("viridis", na.value = "white") +
-  theme_classic() +
   guides(size = guide_legend(override.aes = list(color = "#88D181")),
          color = guide_colorsteps()) +
   theme(legend.title = element_blank(),
@@ -647,7 +634,6 @@ Algunas de las funciones para aplicar paletas de colores tienen funcionalidades 
 grafico <- iris |> 
   ggplot() +
   geom_point(aes(Sepal.Width, Sepal.Length, color = Petal.Width), size = 3, alpha = .8) +
-  theme_classic() +
   guides(color = guide_colorsteps()) +
   theme(legend.title = element_blank(),
         axis.title = element_blank())
@@ -681,40 +667,47 @@ También podemos usar funciones de R para crear paletas de colores personalizada
 
 Las paletas secuenciales consiste en un degradado entre dos o más colores. Suelen usarse para representar una variable continua o numérica, cuyo valor va cambiando de forma cuantitativa.
 
-La función `sequential_hcl()` del paquete `{colorspace}` permite crear paletas secuenciales
+La función `sequential_hcl()` del paquete `{colorspace}` permite crear paletas secuenciales. El primer argumento es la **cantidad de colores** que deseas, y luego el **tono** desde el que quieres empezar la paleta:
 
 ``` r
-colorspace::sequential_hcl(8, h = 300) |> swatch()
+colores <- colorspace::sequential_hcl(6, h = 300)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #850094 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #6D0179 ;">#850094</div>
+<div style="background-color: #9757A3 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #73497B ;">#9757A3</div>
+<div style="background-color: #B089B8 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #8D6A95 ;">#B089B8</div>
+<div style="background-color: #C6B2CB ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #9D8AA2 ;">#C6B2CB</div>
+<div style="background-color: #D8D1DA ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #AAA2AC ;">#D8D1DA</div>
+<div style="background-color: #E2E2E2 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B0B0B0 ;">#E2E2E2</div>
+</div>
 
 ``` r
-colorspace::sequential_hcl(8, h = c(300, 100)) |> swatch()
+colores <- colorspace::sequential_hcl(8, h = c(300, 100)) |> swatch()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-2.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-19-1.png" alt="" width="672" />
 
 ``` r
-colorspace::sequential_hcl(5, h = 260,
+colores <- colorspace::sequential_hcl(5, h = 260,
                            c = c(45, 25), l = c(25, 85), power = .9) |> swatch()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-3.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" alt="" width="672" />
 
-También se pueden obtener vectores de colores a partir de las paletas existentes que vienen con el paquete {colorspace}:
+También se pueden obtener vectores de colores a partir de las paletas existentes que vienen con el paquete `{colorspace}`:
 
 ``` r
 colorspace::sequential_hcl(5, palette = "Red-Blue") |> swatch()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-18-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" alt="" width="672" />
 
 ``` r
 colorspace::sequential_hcl(5, palette = "Purple-Orange") |> swatch()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-18-2.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-2.png" alt="" width="672" />
 
 ### Crear paletas cualitativas
 
@@ -723,37 +716,37 @@ Como su nombre ética, en las paletas cualitativas los colores van saltando para
 La función `rainbow_hcl()` de `{colorspace}` entrega una típica paleta de arcoíris, pero con la posibilidad de modificar sus atributos de color en sus argumentos, tales como las tonalidades (*hue*) de inicio o final, la intensidad (*chroma*) de los tonos
 
 ``` r
-colorspace::rainbow_hcl(7, c = 70) |> swatch()
+colores <- colorspace::rainbow_hcl(7, c = 70) |> swatch()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-19-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" alt="" width="672" />
 
 ``` r
-colorspace::rainbow_hcl(7, c = 100, start = 190, end = 380) |> swatch()
+colores <- colorspace::rainbow_hcl(7, c = 100, start = 190, end = 380) |> swatch()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-19-2.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-2.png" alt="" width="672" />
 
 ``` r
-colorspace::rainbow_hcl(6, c = 60, l = 30, start = 230, end = 370) |> swatch()
+colores <- colorspace::rainbow_hcl(6, c = 60, l = 30, start = 230, end = 370) |> swatch()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-19-3.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-3.png" alt="" width="672" />
 Éste tipo de paletas usualmente reúne colores en una escala tipo arcoíris, o bien reúne colores temáticos, distintos entre ellos, pero armónicos entre sí.
 
 También pueden usarse los nombres de las paredes preexistentes para generar una secuencia cualitativa con ellos.
 
 ``` r
-colorspace::qualitative_hcl(6, palette = "Cold", c = 80) |> swatch()
+colores <- colorspace::qualitative_hcl(6, palette = "Cold", c = 80) |> swatch()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" alt="" width="672" />
 
 ``` r
-colorspace::qualitative_hcl(6, palette = "Warm", c = 80) |> swatch()
+colores <- colorspace::qualitative_hcl(6, palette = "Warm", c = 80) |> swatch()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-2.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-2.png" alt="" width="672" />
 
 ### Crear paletas divergentes
 
@@ -763,19 +756,19 @@ Las paletas divergentes se utilizan cuando una variable expresa a dos polos, una
 colorspace::diverging_hcl(n = 5, h = c(200, 300)) |> swatch()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" alt="" width="672" />
 
 ``` r
 colorspace::diverging_hcl(n = 7, h = c(700, 180)) |> swatch()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-2.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-2.png" alt="" width="672" />
 
 ``` r
 colorspace::diverging_hcl(n = 7, h = c(700, 180), c = 130, alpha = .7) |> swatch()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-3.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-3.png" alt="" width="672" />
 
 ### Extender paletas de colores
 
@@ -783,19 +776,19 @@ Si tienes un vector de colores y necesitas alargarlo para tener más colores bas
 
 ``` r
 # paleta de 5 colores
-paleta <- c("#f4b43f", "#ec6a2d", "#cc3b7b", "#705ce6", "#668cf6")
+colores <- c("#f4b43f", "#ec6a2d", "#cc3b7b", "#705ce6", "#668cf6")
 
-swatch(paleta)
+swatch(colores)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" alt="" width="672" />
 
 ``` r
 # extender la paleta de 5 colores a 12 colores
-colorRampPalette(paleta)(12) |> swatch()
+colorRampPalette(colores)(12) |> swatch()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-2.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-2.png" alt="" width="672" />
 
 También podemos usar esta función para crear con facilidad una paleta secuencial entre dos o más colores:
 
@@ -806,7 +799,7 @@ colores <- c("#df65b2", "#fae55f")
 colorRampPalette(colores)(8) |> swatch()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-26-1.png" alt="" width="672" />
 
 ## Personalizar y crear colores
 
@@ -824,7 +817,7 @@ color <- "#f65b74"
 swatch(color)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-27-1.png" alt="" width="672" />
 
 ``` r
 hue(color)
@@ -838,7 +831,7 @@ Obtenemos que, para el color definido, el valor de su tonalidad es 350. Podemos 
 swatch(c(color, hue(color, 370)))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-28-1.png" alt="" width="672" />
 
 Podemos obtener mismos resultados utilizando el *delta* de la tonalidad del color; es decir, sumándole restándole una cantidad de grados a el valor de la tonalidad del color mismo:
 
@@ -846,7 +839,7 @@ Podemos obtener mismos resultados utilizando el *delta* de la tonalidad del colo
 swatch(c(color, hue(color, delta(50))))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-26-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-29-1.png" alt="" width="672" />
 Al usar la función `delta()`, lo que hacemos es pedirle que cambie la tonalidad del color en 50°, volviéndose en un tono amarillo.
 
 Podemos obtener un resultado similar usando `col_shift()` del paquete `{scales}`:
@@ -856,7 +849,7 @@ library(scales)
 show_col(c(color, col_shift(color, 20)))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-27-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-30-1.png" alt="" width="672" />
 
 El **brillo** (*brighness*) va de cero a uno, mientras que la claridad (*lightness*) va de cero a 100.
 
@@ -864,13 +857,13 @@ El **brillo** (*brighness*) va de cero a uno, mientras que la claridad (*lightne
 color |> brightness(0.7) |> swatch()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-28-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-31-1.png" alt="" width="672" />
 
 ``` r
 color |> lightness(delta(20)) |> swatch()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-28-2.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-31-2.png" alt="" width="672" />
 
 Con `{scales}`, la función `col_lighter()` realiza el mismo propósito:
 
@@ -878,7 +871,7 @@ Con `{scales}`, la función `col_lighter()` realiza el mismo propósito:
 col_lighter(color, 20) |> show_col()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-29-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" alt="" width="672" />
 
 Por su parte, la **saturación** aumenta la intensidad del color.
 
@@ -886,7 +879,7 @@ Por su parte, la **saturación** aumenta la intensidad del color.
 color |> saturation(delta(30)) |> swatch()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-30-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-33-1.png" alt="" width="672" />
 
 Podemos utilizar la función `delta()` para crear una sencilla paleta de colores a partir de un mismo color, aumentando y disminuyendo su intensidad (*chroma*):
 
@@ -898,7 +891,7 @@ swatch(
 )
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-31-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-34-1.png" alt="" width="672" />
 
 En `{scales}`, la función es `col_saturate()`:
 
@@ -906,7 +899,7 @@ En `{scales}`, la función es `col_saturate()`:
 col_saturate(color, -50) |> show_col()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-35-1.png" alt="" width="672" />
 
 Podemos combinar estas técnicas para crear una paleta de colores más compleja, construida toda a partir de un solo color al cual se le va aumentando o disminuyendo sus valores de claridad e intensidad. El beneficio de hacerlo de esta manera es que luego basta con cambiar el color principal para obtener una paleta de iguales características, pero basada en una tonalidad distinta.
 
@@ -925,7 +918,7 @@ swatch(c(color_principal,
          color_texto))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-33-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-36-1.png" alt="" width="672" />
 
 ``` r
 color_principal = "#3170ac"
@@ -942,7 +935,7 @@ swatch(c(color_principal,
          color_texto))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-34-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-37-1.png" alt="" width="672" />
 
 Notar que el código es igual, y sólo se cambió el valor del `color_principal`. Esta estrategia es muy útil si se están produciendo visualizaciones o aplicaciones que ocupan una paleta de colores monocroma.
 
@@ -956,7 +949,7 @@ swatch(c("#70f1d5",
          "#fae55f"))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-35-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-38-1.png" alt="" width="672" />
 
 ``` r
 swatch(c("#3377f7",
@@ -964,7 +957,7 @@ swatch(c("#3377f7",
          "#ec4e3c"))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-36-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-39-1.png" alt="" width="672" />
 
 ``` r
 swatch(c("#f9ce45",
@@ -972,7 +965,7 @@ swatch(c("#f9ce45",
          "#77d671"))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-37-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-40-1.png" alt="" width="672" />
 
 El paquete `{scales}` también provee una función para mezclar colores. Se puede usar esta función para tomar una paleta de colores y volverla más coherente al aplicarle una pequeña fracción de otro color, en este caso naranja:
 
@@ -982,7 +975,7 @@ col_mix(a = c("#77d671", "#70f1d5", "#fae55f", "#ff479c"),
         amount = 0.2) |> show_col()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-38-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-41-1.png" alt="" width="672" />
 
 ### Crear colores
 
@@ -993,13 +986,13 @@ color <- hsv(h = 0, s = 1, v = 1)
 swatch(color)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-39-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-42-1.png" alt="" width="672" />
 
 Para guiarse, la siguiente gráfica muestra la tonalidad de colores entre `0` y `1`,
 
     ## Warning: package 'purrr' was built under R version 4.4.3
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-40-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-43-1.png" alt="" width="672" />
 
 Siguiendo el gráfico anterior, vemos que el tono `0.8` corresponde al color morado, así que podemos crearlo con `hsv()`:
 
@@ -1008,7 +1001,7 @@ color <- hsv(0.85, 1, 1)
 swatch(color)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-41-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-44-1.png" alt="" width="672" />
 
 Luego podemos modificar la saturación y brillo del color con los otros dos argumentos de `hsv()`:
 
@@ -1017,11 +1010,44 @@ color <- hsv(0.82, 0.5, 0.4)
 swatch(color)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-42-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-45-1.png" alt="" width="672" />
 
 ------------------------------------------------------------------------
 
 {{< etiqueta “visualización de datos” >}}
+
+## Previsualizar colores
+
+A lo largo de esta publicación puede usar la función `swatch()` del paquete `{shades}` para previsualizar cualquier color o vector de colores. Una alternativa es la función `show_col()` de `{scales}`, que hace lo mismo.
+
+``` r
+library(shades)
+library(scales)
+```
+
+``` r
+colores <- c("#DEC5F2", "#9069C0", "#6E3A98")
+```
+
+{{< columnas >}}
+
+{{< columna >}}
+
+``` r
+shades::swatch(colores)
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-48-1.png" alt="" width="672" />
+
+{{< columna >}}
+
+``` r
+scales::show_col(colores)
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-49-1.png" alt="" width="1120" />
+
+{{< fin_columnas >}}
 
 ## Avanzado
 
@@ -1031,13 +1057,13 @@ swatch(color)
 colorspace::hclplot(sequential_hcl(7, h = 260, c = 80, l = c(35, 95), power = 1.5))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-43-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-50-1.png" alt="" width="672" />
 
 ``` r
 colorspace::hclplot(sequential_hcl(7, h = c(260, 220), c = c(50, 75, 0), l = c(30, 95), power = 1))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-43-2.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-50-2.png" alt="" width="672" />
 
 ------------------------------------------------------------------------
 

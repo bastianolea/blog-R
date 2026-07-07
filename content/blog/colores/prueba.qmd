@@ -10,11 +10,7 @@ format: html
 colores <- colors(distinct = T) |> 
   stringr::str_subset("gray", negate = T)
 
-estilo <- "color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6;"
-oscuros <- c("black", "blue", "blue2",
-             "blue3", "blue4", "midnightblue", "navy", "slateblue4", "purple4",
-             "firebrick4", "darkred", "deeppink4", "indianred4", "maroon4", "mediumpurple4", "sienna4", "tomato4", "darkgreen", "violetred4", "orangered4"
-)
+estilo <- "color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9;"
 
 cuadritos <- purrr::map(
   colores,
@@ -23,8 +19,13 @@ cuadritos <- purrr::map(
       color, 
       style = paste("background-color:", gplots::col2hex(color), ";",
                     estilo,
-                    paste("color:", ifelse(color %in% oscuros, "white", "black"))
-      ),
+                    paste("color:", 
+                          ifelse(
+                            colorspace::contrast_ratio(color, "black") < 4, 
+                            "white", "black"),
+                          ";"),
+                    paste("border: solid 1px", colorspace::darken(color, 0.3), ";")
+      )
     )
   })
 

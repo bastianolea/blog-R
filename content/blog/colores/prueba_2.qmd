@@ -1,0 +1,95 @@
+---
+title: "prueba"
+format: html
+---
+
+```{r}
+#| output: asis
+#| echo: false
+
+colores <- colors(distinct = T) |> 
+  stringr::str_subset("gray", negate = T)
+
+tamaño <- "width: 90px; height: 90px; font-size: 12px;"
+forma <- "border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all;"
+centrar <- "align-items: center; justify-content: center; text-align: center;"
+
+estilo <- paste(tamaño, forma, centrar)
+```
+
+```{r}
+cuadritos <- purrr::map(
+  # colores[45:55],
+  # sample(colores, 10),
+  sample(colores, 3),
+  # colores,
+  \(color) {
+    shiny::div(
+      color, 
+      style = paste(
+        paste("background-color:", gplots::col2hex(color), ";"),
+        estilo,
+        paste("color:", 
+              ifelse(
+                colorspace::contrast_ratio(color, "black") < 4, 
+                "white", "black"),
+              ";")
+      ),
+    )
+  })
+
+shiny::div(style = centrar,
+           shiny::tagList(cuadritos)
+)
+```
+
+
+
+```{r}
+paleta <- function(colores) {
+  
+  # colores <- colors(distinct = T) |> 
+  #   stringr::str_subset("gray", negate = T)
+  
+  tamaño <- "width: 90px; height: 90px; font-size: 12px;"
+  forma <- "border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all;"
+  centrar <- "align-items: center; justify-content: center; text-align: center;"
+  
+  estilo <- paste(tamaño, forma, centrar)
+  
+  cuadritos <- purrr::map(
+    colores,
+    \(color) {
+      shiny::div(
+        color, 
+        style = paste(
+          paste("background-color:", gplots::col2hex(color), ";"),
+          estilo,
+          paste("color:", 
+                ifelse(
+                  colorspace::contrast_ratio(color, "black") < 4, 
+                  "white", "black"),
+                ";"),
+          paste("border: solid 1px", colorspace::darken(color, 0.3), ";")
+        ),
+      )
+    })
+  
+  
+  output <- shiny::div(style = centrar,
+                       shiny::tagList(cuadritos)
+  ) 
+  
+  return(output)
+}
+```
+
+```{r}
+
+paleta(
+  sample(colors(), 10)
+  # sample(colors(), 3)
+  # colors()
+)
+```
+

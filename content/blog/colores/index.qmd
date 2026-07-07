@@ -2,7 +2,8 @@
 title: Colores y paletas de colores en R
 subtitle: Todo sobre la creación, personalización, modificación y uso de colores y paletas en R
 author: Bastián Olea Herrera
-date: '2025-03-06'
+# date: '2025-03-06'
+date: '2026-07-07'
 format:
   hugo-md:
     output-file: "index"
@@ -23,41 +24,66 @@ El uso del color es clave para comunicar, y el ecosistema de R tiene varios truc
 
 En R, los colores se escriben como código, y a grandes rasgos pueden ser colores con **nombre** (por ejemplo, `"purple"`), colores **hexadecimales** (escritos como códigos de al menos 6 dígitos, como `#FFFFFF`), o como parte de funciones que producen **paletas** de colores.
 
-
-## Previsualizar colores
-
-A lo largo de este post usaremos la función `swatch()` del paquete `{shades}`, que genera un gráfico que presenta el color o la paleta de colores a partir de un vector de colores, lo que nos ayudará a visualizar nuestros colores más fácil. Una alternativa es la función `show_col()` de `{scales}`, que hace lo mismo. 
-
-```{r}
-#| message: false
+```{r setup}
+#| echo: false
 library(shades)
 library(scales)
+library(ggplot2)
+
+theme_set(
+  theme_classic(
+    paper = "#EAD1FA",
+    accent = "#9069C0",
+    ink = "#553A74"
+  ) +
+    theme(legend.title = element_blank(),
+          axis.title = element_blank()) +
+    theme(panel.background = element_rect(fill = "white",
+                                          color = "#DEC5F2", linewidth = 1),
+          legend.key = element_rect(fill = NA, color = NA))
+)
 ```
 
-```{r}
-colores <- c("#EAD2FA", "#9069C0", "#6E3A98")
+
+```{r funcion}
+#| echo: false
+paleta <- function(colores) {
+  
+  # colores <- colors(distinct = T) |> 
+  #   stringr::str_subset("gray", negate = T)
+  
+  tamaño <- "width: 90px; height: 90px; font-size: 12px;"
+  forma <- "border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all;"
+  centrar <- "align-items: center; justify-content: center; text-align: center;"
+  
+  estilo <- paste(tamaño, forma, centrar)
+  
+  cuadritos <- purrr::map(
+    colores,
+    \(color) {
+      shiny::div(
+        color, 
+        style = paste(
+          paste("background-color:", gplots::col2hex(color), ";"),
+          estilo,
+          paste("color:", 
+                ifelse(
+                  colorspace::contrast_ratio(color, "black") < 4, 
+                  "white", "black"), ";",
+                paste("border: solid 1px", colorspace::darken(color, 0.2), ";")
+          )
+        ),
+      )
+    })
+  
+  
+  output <- shiny::div(style = centrar,
+                       shiny::tagList(cuadritos)
+  ) 
+  
+  return(output)
+}
 ```
-
-{{< columnas >}}
-
-{{< columna >}}
-```{r}
-#| fig-height: 3
-
-shades::swatch(colores)
-```
-
-{{< columna >}}
-```{r}
-#| fig-width: 4
-#| fig-height: 4
-#| fig-dpi: 280
-scales::show_col(colores)
-```
-
-{{< fin_columnas >}}
-
-
 
 
 ## Usar colores
@@ -67,18 +93,14 @@ Por defecto, en R **existen `r length(colors())` colores** con nombre.
 
 Aquí puedes ver los principales colores de R y copiar sus nombres para usarlos:
 
-```{r}
+```{r cuadritos}
 #| output: asis
 #| echo: false
 
 colores <- colors(distinct = T) |> 
   stringr::str_subset("gray", negate = T)
 
-estilo <- "color: black; border-radius: 4px; padding: 1px 4px; margin: 1px; line-height: 1.6;"
-oscuros <- c("black", "blue", "blue2",
-             "blue3", "blue4", "midnightblue", "navy", "slateblue4", "purple4",
-             "firebrick4", "darkred", "deeppink4", "indianred4", "maroon4", "mediumpurple4", "sienna4", "tomato4", "darkgreen", "violetred4", "orangered4"
-)
+estilo <- "color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9;"
 
 cuadritos <- purrr::map(
   colores,
@@ -87,8 +109,13 @@ cuadritos <- purrr::map(
       color, 
       style = paste("background-color:", gplots::col2hex(color), ";",
                     estilo,
-                    paste("color:", ifelse(color %in% oscuros, "white", "black"))
-      ),
+                    paste("color:", 
+                          ifelse(
+                            colorspace::contrast_ratio(color, "black") < 4, 
+                            "white", "black"),
+                          ";"),
+                    paste("border: solid 1px", colorspace::darken(color, 0.3), ";")
+      )
     )
   })
 
@@ -98,29 +125,47 @@ shiny::tagList(cuadritos)
 Para usarlos, simplemente usa su nombre:
 
 ```{r}
-#| fig-height: 3
 colores <- c("indianred", "steelblue", "grey60")
-swatch(colores)
+```
+
+```{r}
+#| echo: false
+paleta(colores)
 ```
 
 Casi todos estos colores pueden ser modificados agregando un número del 1 al 4 al final del nombre; por ejemplo, `mediumorchid` puede hacerse levemente más claro o más oscuro:
 
 ```{r}
-#| fig-height: 3
 escala <- c("mediumorchid", "mediumorchid1", "mediumorchid2", "mediumorchid3", "mediumorchid4")
-swatch(escala)
+```
+
+```{r}
+#| echo: false
+paleta(escala)
 ```
 
 Los grises (`gray`) tienen la particularidad de que puedes ponerles un número entre 1 y 99 para ajustar su brillo:
 
 ```{r}
-#| fig-height: 3
 escala <- c("gray2", "gray10", "gray30", "gray50", "gray70", "gray90")
-swatch(escala)
 ```
 
+```{r}
+#| echo: false
+paleta(escala)
+```
+
+Si tienes **colores hexadecimales**, que puedes encontrar en internet en muchas páginas, como [coolors.co](https://coolors.co), recuerda ponerlos entre comillas y anteponer el signo gato:
 
 
+```{r}
+colores <- c("#DEC5F2", "#9069C0", "#6E3A98")
+```
+
+```{r}
+#| echo: false
+paleta(colores)
+```
 
 
 ## Paletas de colores
@@ -143,8 +188,7 @@ iris |>
   aes(x = Sepal.Length, y = Sepal.Width, color = Species) +
   geom_point(size = 4, alpha = 0.7) +
   # usar la paleta "PuRd"
-  scale_color_brewer(palette = "PuRd") +
-  theme_classic()
+  scale_color_brewer(palette = "PuRd")
 ```
 
 Con el paquete `{colorspace}` también podemos ver otras paletas disponibles:
@@ -168,8 +212,7 @@ iris |>
   geom_point(size = 4, alpha = 0.7) +
   # usar la paleta "Sunset" para una variable continua
   colorspace::scale_color_continuous_sequential(palette = "Sunset") +
-  scale_y_continuous(expand = expansion(c(0, 0.1))) +
-  theme_classic()
+  scale_y_continuous(expand = expansion(c(0, 0.1)))
 ```
 
 Encuentra una lista que compila todas las paletas de colores de la comunidad de R [en este repositorio.](https://github.com/EmilHvitfeldt/r-color-palettes)
@@ -194,10 +237,7 @@ iris |>
   geom_point(size = 2, alpha = .8) +
   scale_color_manual(
     values = c("#cc3b7b", "#705ce6", "#668cf6")
-  ) +
-  theme_classic() +
-  theme(legend.title = element_blank(),
-        axis.title = element_blank())
+  )
 ```
 
 O bien, se puede aplicar cada color a cada valor específico de la variable:
@@ -213,10 +253,7 @@ iris |>
     values = c("versicolor" = "#cc3b7b", 
                "virginica" = "#705ce6", 
                "setosa" = "#668cf6")
-  ) +
-  theme_classic() +
-  theme(legend.title = element_blank(),
-        axis.title = element_blank())
+  )
 ```
 
 Muchas paquetes incorporan funciones de escalas de colores (`scale_color_x()`, `scale_fill_x()`) para aplicar una paleta de color fácilmente a un gráfico creado `{ggplot2}`.
@@ -231,30 +268,23 @@ iris |>
   ggplot() +
   geom_bar(aes(Petal.Width, fill = Species)) +
   colorspace::scale_fill_discrete_qualitative(palette = "Dark 3") +
-  scale_y_continuous(expand = expansion(c(0, 0.1))) +
-  theme_classic()
+  scale_y_continuous(expand = expansion(c(0, 0.1)))
 
 # escalas para variables continuas
 iris |> 
   ggplot() +
   geom_point(aes(Sepal.Width, Sepal.Length, color = Petal.Width, size = Petal.Length), alpha = .8) +
   colorspace::scale_color_continuous_sequential(palette = "Sunset", na.value = "white") +
-  theme_classic() +
   guides(size = guide_legend(override.aes = list(color = "#784FA1")),
-         color = guide_colorsteps()) +
-  theme(legend.title = element_blank(),
-        axis.title = element_blank())
+         color = guide_colorsteps())
 
 # escalas para variables continuas
 iris |> 
   ggplot() +
   geom_point(aes(Petal.Length, Sepal.Width, color = Petal.Width, size = Sepal.Length), alpha = .8) +
   viridis::scale_colour_viridis("viridis", na.value = "white") +
-  theme_classic() +
   guides(size = guide_legend(override.aes = list(color = "#88D181")),
-         color = guide_colorsteps()) +
-  theme(legend.title = element_blank(),
-        axis.title = element_blank())
+         color = guide_colorsteps())
 ```
 
 Algunas de las funciones para aplicar paletas de colores tienen funcionalidades extras. Por ejemplo, las funciones de `{colorspace}` permiten modificar sus paletas en términos de la saturación (_chroma_) y el brillo del color (_luminance_), entregándote más libertad al momento de definir una apariencia específica:
@@ -263,10 +293,7 @@ Algunas de las funciones para aplicar paletas de colores tienen funcionalidades 
 grafico <- iris |> 
   ggplot() +
   geom_point(aes(Sepal.Width, Sepal.Length, color = Petal.Width), size = 3, alpha = .8) +
-  theme_classic() +
-  guides(color = guide_colorsteps()) +
-  theme(legend.title = element_blank(),
-        axis.title = element_blank())
+  guides(color = guide_colorsteps())
 
 grafico +
   colorspace::scale_color_continuous_sequential(
@@ -293,18 +320,29 @@ También podemos usar funciones de R para crear paletas de colores personalizada
 
 Las paletas secuenciales consiste en un degradado entre dos o más colores. Suelen usarse para representar una variable continua o numérica, cuyo valor va cambiando de forma cuantitativa.
 
-La función `sequential_hcl()` del paquete `{colorspace}` permite crear paletas secuenciales
+La función `sequential_hcl()` del paquete `{colorspace}` permite crear paletas secuenciales. El primer argumento es la **cantidad de colores** que deseas, y luego el **tono** desde el que quieres empezar la paleta:
 
 ```{r}
-colorspace::sequential_hcl(8, h = 300) |> swatch()
-
-colorspace::sequential_hcl(8, h = c(300, 100)) |> swatch()
-
-colorspace::sequential_hcl(5, h = 260,
-                           c = c(45, 25), l = c(25, 85), power = .9) |> swatch()
+colores <- colorspace::sequential_hcl(6, h = 300)
 ```
 
-También se pueden obtener vectores de colores a partir de las paletas existentes que vienen con el paquete {colorspace}:
+```{r echo=FALSE}
+paleta(colores)
+```
+
+
+```{r}
+colores <- colorspace::sequential_hcl(8, h = c(300, 100)) |> swatch()
+```
+
+```{r}
+colores <- colorspace::sequential_hcl(5, h = 260,
+                                      c = c(45, 25), l = c(25, 85), power = .9) |> swatch()
+```
+
+
+
+También se pueden obtener vectores de colores a partir de las paletas existentes que vienen con el paquete `{colorspace}`:
 
 ```{r}
 colorspace::sequential_hcl(5, palette = "Red-Blue") |> swatch()
@@ -318,18 +356,18 @@ Como su nombre ética, en las paletas cualitativas los colores van saltando para
 
 La función `rainbow_hcl()` de `{colorspace}` entrega una típica paleta de arcoíris, pero con la posibilidad de modificar sus atributos de color en sus argumentos, tales como las tonalidades (_hue_) de inicio o final, la intensidad (_chroma_) de los tonos
 ```{r}
-colorspace::rainbow_hcl(7, c = 70) |> swatch()
+colores <- colorspace::rainbow_hcl(7, c = 70) |> swatch()
 
-colorspace::rainbow_hcl(7, c = 100, start = 190, end = 380) |> swatch()
+colores <- colorspace::rainbow_hcl(7, c = 100, start = 190, end = 380) |> swatch()
 
-colorspace::rainbow_hcl(6, c = 60, l = 30, start = 230, end = 370) |> swatch()
+colores <- colorspace::rainbow_hcl(6, c = 60, l = 30, start = 230, end = 370) |> swatch()
 ```
 Éste tipo de paletas usualmente reúne colores en una escala tipo arcoíris, o bien reúne colores temáticos, distintos entre ellos, pero armónicos entre sí.
 
 También pueden usarse los nombres de las paredes preexistentes para generar una secuencia cualitativa con ellos.
 ```{r}
-colorspace::qualitative_hcl(6, palette = "Cold", c = 80) |> swatch()
-colorspace::qualitative_hcl(6, palette = "Warm", c = 80) |> swatch()
+colores <- colorspace::qualitative_hcl(6, palette = "Cold", c = 80) |> swatch()
+colores <- colorspace::qualitative_hcl(6, palette = "Warm", c = 80) |> swatch()
 ```
 
 
@@ -352,12 +390,12 @@ Si tienes un vector de colores y necesitas alargarlo para tener más colores bas
 
 ```{r}
 # paleta de 5 colores
-paleta <- c("#f4b43f", "#ec6a2d", "#cc3b7b", "#705ce6", "#668cf6")
+colores <- c("#f4b43f", "#ec6a2d", "#cc3b7b", "#705ce6", "#668cf6")
 
-swatch(paleta)
+swatch(colores)
 
 # extender la paleta de 5 colores a 12 colores
-colorRampPalette(paleta)(12) |> swatch()
+colorRampPalette(colores)(12) |> swatch()
 ```
 
 También podemos usar esta función para crear con facilidad una paleta secuencial entre dos o más colores:
@@ -525,10 +563,10 @@ library(dplyr)
 secuencia <- seq(0.0, 1.0, 0.1)
 
 colores <- map(secuencia,
-    ~hsv(h = .x, s = 1, v = 1))
-  
+               ~hsv(h = .x, s = 1, v = 1))
+
 tabla <- tibble(secuencia,
-       colores = unlist(colores))
+                colores = unlist(colores))
 
 library(ggplot2)
 
@@ -561,6 +599,42 @@ swatch(color)
 ---- 
 
 {{< etiqueta "visualización de datos" >}}
+
+
+
+## Previsualizar colores
+
+A lo largo de esta publicación puede usar la función `swatch()` del paquete `{shades}` para previsualizar cualquier color o vector de colores. Una alternativa es la función `show_col()` de `{scales}`, que hace lo mismo. 
+
+```{r}
+#| message: false
+library(shades)
+library(scales)
+```
+
+```{r}
+colores <- c("#DEC5F2", "#9069C0", "#6E3A98")
+```
+
+{{< columnas >}}
+
+{{< columna >}}
+```{r}
+#| fig-height: 3
+
+shades::swatch(colores)
+```
+
+{{< columna >}}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+#| fig-dpi: 280
+scales::show_col(colores)
+```
+
+{{< fin_columnas >}}
+
 
 
 ## Avanzado
