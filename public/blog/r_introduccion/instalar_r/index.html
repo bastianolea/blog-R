@@ -45,11 +45,12 @@
     
   
   <meta itemprop="name" content="Primer paso: instalar R">
-  <meta itemprop="description" content="Para adentrarte en el mundo del análisis de datos, la visualización de datos, y la programación, el primer paso es instalar R, el lenguaje, y RStudio, la interfaz que nos va a permitir trabajar con el lenguaje.
-1. Descargar e instalar R R es el lenguaje de programación y análisis estadístico base, el cual se caracteriza por operar mediante paquetes o librerías que expanden sus prestaciones.">
+  <meta itemprop="description" content="Para adentrarte en el mundo del análisis de datos, la visualización de datos, y la programación, el primer paso es instalar R, el lenguaje de programación estadística, e instalar RStudio, la interfaz que nos va a permitir trabajar con el lenguaje.
+R, como cualquier otro lenguaje de programación, suele usarse dentro de otros programas que te ayudan a usarlo; en este caso, el entorno de desarrollo RStudio.
+Es importante entender que R es el lenguaje que necesitamos tener instalado, pero RStudio es la aplicación que usaremos día a día para aprender y trabajar con datos. 1. Descargar e instalar R R es el lenguaje de programación y análisis estadístico base, el cual se caracteriza por operar mediante paquetes o librerías que expanden sus prestaciones.">
   <meta itemprop="datePublished" content="2024-11-07T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-11-07T00:00:00+00:00">
-  <meta itemprop="wordCount" content="350">
+  <meta itemprop="wordCount" content="490">
   <meta itemprop="image" content="https://bastianolea.rbind.io/blog/r_introduccion/instalar_r/logo_r_morado-featured.png">
   <meta itemprop="keywords" content="Básico">
   
@@ -70,7 +71,11 @@
   <link rel="stylesheet" href="/css/syntax.css">
   
   
-  <link rel="preload" href="/buscador/" as="image">
+  
+  
+  
+  
+  <meta name="google-site-verification" content="yaiYGBAfSJpjE7mfPuFVP1yoNIqLadRJQIzCOula8TI" />
   
 </head>
 <body>
@@ -275,7 +280,23 @@
         
       </header>
       <section class="post-body pt5 pb4">
-        <p>Para adentrarte en el mundo del análisis de datos, la visualización de datos, y la programación, el primer paso es instalar R, el lenguaje, y RStudio, la interfaz que nos va a permitir trabajar con el lenguaje.</p>
+        <p>Para adentrarte en el mundo del análisis de datos, la visualización de datos, y la programación, el primer paso es <strong>instalar R</strong>, el lenguaje de programación estadística, e <strong>instalar RStudio</strong>, la interfaz que nos va a permitir trabajar con el lenguaje.</p>
+<p>R, como cualquier otro lenguaje de programación, suele usarse <em>dentro</em> de otros programas que te ayudan a usarlo; en este caso, el entorno de desarrollo RStudio.</p>
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            /*background-color: #A985C650;*/
+            background-color: #DEC4F2;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-info-circle" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #9069C0;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%;">
+    Es importante entender que R es el lenguaje que necesitamos tener instalado, pero <strong>RStudio es la aplicación que usaremos</strong> día a día para aprender y trabajar con datos.
+  </aside>
+  
+</div>
 
 
 
@@ -287,27 +308,27 @@
     </svg></a>
 </h3>
 <p>R es el lenguaje de programación y análisis estadístico base, el cual se caracteriza por operar mediante paquetes o librerías que expanden sus prestaciones.</p>
-<div style="text-align: center;">
+<div style="text-align: center; opacity: 0.8;">
 <figure><img src="/blog/r_introduccion/instalar_r/logo_r_morado-featured.png" width="128">
 </figure>
 
 </div>
-<p>El siguiente enlace es del 
-<a href="https://cran.r-project.org" target="_blank" rel="noopener">sitio oficial de R,</a> donde pueden descargarlo para el sistema operativo que utilicen:
+<p>Necesitamos instalar R en nuestros computadores para que RStudio funcione.</p>
 
-<a href="https://cran.r-project.org" target="_blank" rel="noopener">https://cran.r-project.org</a></p>
+
+
+
+<div class = "db pt1"
+style = "margin-bottom: 34px;">
+
+<a class = "btn-links mr2 ba dib"
+href = "https://cran.r-project.org" target="_blank"
+style = "padding: 12px; padding-bottom: 8px; border-radius: 5px; padding-right: 18px; text-decoration: none; border: 1px solid; color: #EAD2FA; background-color: #9069C0; margin-bottom: -12px;">
+<i class="fas fa-download fa-lg fa-fw mr2" style="color: #EAD2FA;"></i>
+Descargar R</a>
+
+</div>
 <p>Elige la descarga correspondiente a tu sistema operativo, e instálalo. Si usas Windows, es probable que tengas que instalar otro software llamado <em>Rtools,</em> cuyo enlace aparece en el mismo enlace anterior cuando eliges Windows.</p>
-
-
-
-
-<h3 id="r-y-rstudio">R y RStudio
-  <a href="#r-y-rstudio"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 0h24v24H0z" fill="currentColor"></path>
-      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
-    </svg></a>
-</h3>
-<p>R funciona a través de la línea de comandos (la línea de comandos es el nivel más bajo de interacción con un computador), lo que significa que hay que escribirle instrucciones exactas para que trabaje, y retorna resultados en forma de texto. Como esto resulta un poco tedioso, se suele utilizar R a través de un entorno de desarrollo, RStudio, que facilita su uso.</p>
 
 
 
@@ -319,37 +340,395 @@
     </svg></a>
 </h3>
 <p>RStudio es el entorno de desarrollo integrado (IDE) que facilita el trabajo con R. También funciona con Python, y también hay otras alternativas de IDE, pero RStudio es la más usada.</p>
-<div style="text-align: center;">
+<div style="text-align: center; opacity: 0.8;">
 <figure><img src="/blog/r_introduccion/instalar_r/logo_rstudio_morado.png" width="128">
 </figure>
 
 </div>
-<p>Descargar e instalar RStudio para su sistema operativo:
-
-<a href="https://posit.co/download/rstudio-desktop/#download" target="_blank" rel="noopener">https://posit.co/download/rstudio-desktop/#download</a></p>
 <p>Principalmente, lo que hace RStudio es presentarnos una consola de R junto a otros paneles: el panel de visualización, donde exploramos los gráficos, la ventana de entorno (environment) donde vemos los elementos con los que estamos trabajando, y la ventana de script o source, donde podemos ir elaborando uno o varios documentos con instrucciones para R. Además de estos paneles, RStudio facilita tareas como la importación de datos, la instalación de paquetes, la gestión de cambios, y otros.</p>
-<p>Teniendo ambas cosas instaladas, podemos abrir RStudio y verificar está funcionando escribiendo en la consola: “2+2” (sin comillas), y presionamos enter. Si obtenemos una respuesta, significa que la instalación funciona.</p>
-<hr>
 
 
 
 
+<div class = "db pt1"
+style = "margin-bottom: 34px;">
 
-<aside>
-  <div id="avisos" style="margin-top:32px;">
-    
-    <a href="/blog/curso_r_intro_3/">
-    <img src="/blog/curso_r_intro_3/curso-r-2026-junio-featured.jpeg" 
-      style="border-radius: 7px; max-height: 240px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;" 
-      alt="¿Quieres aprender R para analizar datos? Inscríbete a mi curso!">
-    </a>
-    
-    <div style="max-width: 320px; margin:auto; font-size:85%;opacity:60%;">
-      <p>¿Quieres aprender R para analizar datos? Participa del curso! <a href="/blog/curso_r_intro_3/">Inscríbete gratis!</a></p>
-      </div>
-  
+<a class = "btn-links mr2 ba dib"
+href = "https://posit.co/download/rstudio-desktop/#download" target="_blank"
+style = "padding: 12px; padding-bottom: 8px; border-radius: 5px; padding-right: 18px; text-decoration: none; border: 1px solid; color: #EAD2FA; background-color: #9069C0; margin-bottom: -12px;">
+<i class="fas fa-download fa-lg fa-fw mr2" style="color: #EAD2FA;"></i>
+Descargar RStudio</a>
+
+</div>
+<p>Teniendo ambas cosas instaladas, podemos abrir RStudio y verificar está funcionando escribiendo en la consola: <code>2+2</code>, y presionamos enter. Si obtenemos una respuesta, significa que la instalación funciona!</p>
+<p>Para trabajar con R, usaremos <strong>RStudio</strong>.</p>
+
+
+
+
+<h3 id="alternativa-usar-rstudio-en-la-nube">Alternativa: usar RStudio en la nube
+  <a href="#alternativa-usar-rstudio-en-la-nube"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Si no quieres o no puedes instalar R y/o RStudio en tu computador, o si tienes problemas con la instalación, puedes usar RStudio desde el navegador web con 
+<a href="https://posit.cloud/" target="_blank" rel="noopener">Posit Cloud</a>. Debes crearte una cuenta, y luego en la parte superior derecha eliges <em>New project &gt; New RStudio Project</em>. Así tendrás una instancia para usar R en el navegador, con las mismas características que en el computador.</p>
+
+  <div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones sobre básico
+    </p>
+
+    <div style="/*border: 1px solid #9069C035;*/
+                border: solid 2px #A885C6AA;
+                border-radius: 8px;
+                overflow: hidden;
+                background-color: #9069C00d;">
+
+      <a href="/clases/curso_r_intro_3/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  
+                  ">
+
+          
+          <img src="/clases/curso_r_intro_3/curso-r-2026-junio-featured.jpeg"
+               alt="Curso: introducción al análisis de datos con R, 3ª versión"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Curso: introducción al análisis de datos con R, 3ª versión
+          </span>
+
+        </a>
+      <a href="/blog/curso_r_intro_3/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/curso_r_intro_3/curso-r-2026-junio-featured.jpeg"
+               alt="Curso: introducción al análisis de datos con R, 3ª versión"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Curso: introducción al análisis de datos con R, 3ª versión
+          </span>
+
+        </a>
+      <a href="/blog/posit_assistant/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/posit_assistant/posit_assistant_featured.png"
+               alt="Posit Assistant, una IA para análisis de datos integrada en RStudio"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Posit Assistant, una IA para análisis de datos integrada en RStudio
+          </span>
+
+        </a>
+      <a href="/blog/curso_gratis_r_intro_2/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/curso_gratis_r_intro_2/curso_r_featured.png"
+               alt="Curso gratuito: introducción al análisis de datos con R, 2ª versión"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Curso gratuito: introducción al análisis de datos con R, 2ª versión
+          </span>
+
+        </a>
+      <a href="/blog/curso_gratis_r_intro_1/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/curso_gratis_r_intro_1/curso_r_featured.png"
+               alt="Curso gratuito: introducción al análisis de datos con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Curso gratuito: introducción al análisis de datos con R
+          </span>
+
+        </a>
+      
+
+    </div>
   </div>
-</aside>
+
+
+
+
+  <div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones sobre tutoriales
+    </p>
+
+    <div style="/*border: 1px solid #9069C035;*/
+                border: solid 2px #A885C6AA;
+                border-radius: 8px;
+                overflow: hidden;
+                background-color: #9069C00d;">
+
+      <a href="/blog/shinychat/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  
+                  ">
+
+          
+          <img src="/blog/shinychat/chatbot_r_featured.png"
+               alt="Crea un chatbot de inteligencia artificial con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Crea un chatbot de inteligencia artificial con R
+          </span>
+
+        </a>
+      <a href="/blog/shiny/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/shiny/shiny-apps-featured.jpg"
+               alt="Tutorial: Crea aplicaciones web interactivas en R con Shiny"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Tutorial: Crea aplicaciones web interactivas en R con Shiny
+          </span>
+
+        </a>
+      <a href="/blog/mapas_hexagonales/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/mapas_hexagonales/featured.png"
+               alt="Mapas hexagonales o cuadriculados con R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Mapas hexagonales o cuadriculados con R
+          </span>
+
+        </a>
+      <a href="/blog/mapas_sf/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/mapas_sf/mapa_rm_featured.png"
+               alt="Mapas y visualización de datos geoespaciales en R con {sf}"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Mapas y visualización de datos geoespaciales en R con {sf}
+          </span>
+
+        </a>
+      <a href="/blog/ggplot_dumbbell/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/ggplot_dumbbell/estadisticas_delitos_chile_featured.png"
+               alt="Gráficos de puntos comparativos o _dumbbell_ en `{ggplot2}`"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Gráficos de puntos comparativos o <em>dumbbell</em> en <code>{ggplot2}</code>
+          </span>
+
+        </a>
+      
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
 
       </section>
       <footer class="post-footer">

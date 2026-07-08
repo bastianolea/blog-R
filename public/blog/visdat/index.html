@@ -49,7 +49,7 @@
 library(dplyr) # manipulación de datos library(messy) # ensuciar datos # agregar datos perdidos al azar iris_m &lt;- iris |&gt; messy::make_missing(cols = names(iris)) iris_m |&gt; # resumir los datos summarize( # en todas las columnas across(everything(), # contar la cantidad de missing ~sum(is.na(.x)) ) ) Sepal.Length Sepal.Width Petal.Length Petal.Width Species 1 12 21 16 21 11 Pero hay formas más convenientes de hacerlo!">
   <meta itemprop="datePublished" content="2025-08-08T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-08-08T00:00:00+00:00">
-  <meta itemprop="wordCount" content="363">
+  <meta itemprop="wordCount" content="352">
   <meta itemprop="image" content="https://bastianolea.rbind.io/blog/visdat/featured.png">
   <meta itemprop="keywords" content="Visualización de datos,Datos perdidos,Limpieza de datos,Consejos">
   
@@ -70,7 +70,11 @@ library(dplyr) # manipulación de datos library(messy) # ensuciar datos # agrega
   <link rel="stylesheet" href="/css/syntax.css">
   
   
-  <link rel="preload" href="/buscador/" as="image">
+  
+  
+  
+  
+  <meta name="google-site-verification" content="yaiYGBAfSJpjE7mfPuFVP1yoNIqLadRJQIzCOula8TI" />
   
 </head>
 <body>
@@ -424,21 +428,8 @@ library(dplyr) # manipulación de datos library(messy) # ensuciar datos # agrega
 
 
 
-<aside>
-  <div id="avisos" style="margin-top:32px;">
-    
-    <a href="/blog/curso_r_intro_3/">
-    <img src="/blog/curso_r_intro_3/curso-r-2026-junio-featured.jpeg" 
-      style="border-radius: 7px; max-height: 240px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;" 
-      alt="¿Quieres aprender R para analizar datos? Inscríbete a mi curso!">
-    </a>
-    
-    <div style="max-width: 320px; margin:auto; font-size:85%;opacity:60%;">
-      <p>¿Quieres aprender R para analizar datos? Participa del curso! <a href="/blog/curso_r_intro_3/">Inscríbete gratis!</a></p>
-      </div>
-  
-  </div>
-</aside></p>
+
+</p>
  
     </section>
       
@@ -477,7 +468,7 @@ library(dplyr) # manipulación de datos library(messy) # ensuciar datos # agrega
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">2 minute read, 363 words</dd>
+    <dd class="fw5 ml0">2 minute read, 352 words</dd>
   </dl>
   
   
@@ -490,11 +481,11 @@ library(dplyr) # manipulación de datos library(messy) # ensuciar datos # agrega
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
+    <dd class="fw5 ml0"><a href="/blog/colores/">Colores y paletas de colores en R</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/territorial/">`{territorial}`: un paquete de R para trabajar con datos de comunas y regiones de Chile</a></dd>
+    
     <dd class="fw5 ml0"><a href="/blog/stringr_limpieza_ordinal/">Recodificando variables ordinales cuando vienen sucias y/o desde respuestas abiertas</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/rutera/">`{rutera}`: un paquete de R para limpiar y procesar RUTs chilenos</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/2026-06-16/">Tipografías lindas para programar en R: Fira Code</a></dd>
     
   </dl>
 </details>
@@ -686,21 +677,6 @@ library(dplyr) # manipulación de datos library(messy) # ensuciar datos # agrega
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
@@ -717,6 +693,21 @@ library(dplyr) # manipulación de datos library(messy) # ensuciar datos # agrega
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -761,7 +752,7 @@ library(dplyr) # manipulación de datos library(messy) # ensuciar datos # agrega
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/texto/">Procesamiento de texto</a></span>
   </span>
  
   
@@ -776,7 +767,7 @@ library(dplyr) # manipulación de datos library(messy) # ensuciar datos # agrega
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/texto/">Procesamiento de texto</a></span>
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -821,7 +812,7 @@ library(dplyr) # manipulación de datos library(messy) # ensuciar datos # agrega
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/ciencias-sociales/">Ciencias sociales</a></span>
+      href="https://bastianolea.rbind.io/tags/automatizaci%C3%B3n/">Automatización</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

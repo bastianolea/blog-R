@@ -49,7 +49,7 @@
 Publicaciones relacionadas Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub">
   <meta itemprop="datePublished" content="2025-10-27T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-10-27T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1041">
+  <meta itemprop="wordCount" content="1295">
   <meta itemprop="keywords" content="Git,GitHub,Consejos">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -69,7 +69,11 @@ Publicaciones relacionadas Tutorial: crear un repositorio Git para tu proyecto d
   <link rel="stylesheet" href="/css/syntax.css">
   
   
-  <link rel="preload" href="/buscador/" as="image">
+  
+  
+  
+  
+  <meta name="google-site-verification" content="yaiYGBAfSJpjE7mfPuFVP1yoNIqLadRJQIzCOula8TI" />
   
 </head>
 <body>
@@ -432,11 +436,11 @@ Publicaciones relacionadas Tutorial: crear un repositorio Git para tu proyecto d
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h3>
-<p>Crearlo manualmente:</p>
-<pre tabindex="0"><code>git init
-</code></pre><p><strong>Recomendado:</strong> crearlo con la ayuda del paquete <code>{usethis}</code>:</p>
+<p><strong>Recomendado:</strong> crearlo con la ayuda del paquete <code>{usethis}</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">usethis</span><span class="o">::</span><span class="nf">use_git</span><span class="p">()</span>
-</span></span></code></pre></div><p>Para más información sobre la integración de R con <code>git</code>, 
+</span></span></code></pre></div><p>Crearlo manualmente por la terminal, verificando que esté apuntando a la carpeta de tu proyecto de R:</p>
+<pre tabindex="0"><code>git init
+</code></pre><p>Para más información sobre la integración de R con <code>git</code>, 
 <a href="/blog/r_introduccion/tutorial_github/">revisa este post</a>. También existe el libro 
 <a href="https://happygitwithr.com" target="_blank" rel="noopener">Happy Git with R</a>, que detalla todos los pasos necesarios para poder usar <code>git</code> con R, incluyendo soluciones a problemas comunes.</p>
 
@@ -461,11 +465,12 @@ Publicaciones relacionadas Tutorial: crear un repositorio Git para tu proyecto d
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h3>
-<p>Cuando creaste o modificaste archivoc, y quieres registrarlos para ser agregados a la nueva versión del proyecto:</p>
+<p>Cuando creaste o modificaste archivos, y quieres registrarlos para ser agregados a la nueva versión del proyecto:</p>
 <pre tabindex="0"><code>git add archivo.R
 </code></pre><p>Para agregar todos los archivos cambiados desde el último <em>commit</em>:</p>
 <pre tabindex="0"><code>git add .
-</code></pre>
+</code></pre><p>Esto hará que los archivos pasen al área de <em>staging</em> o preparación, para que estén listos para hacer el <em>commit</em> y guardar una nueva versión del código.</p>
+
 
 
 
@@ -475,8 +480,10 @@ Publicaciones relacionadas Tutorial: crear un repositorio Git para tu proyecto d
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h3>
-<p>Un <em>commit</em> es la operación en la que tomas los archivos del área de preparación y los guardas como una nueva versión del proyecto. Siempre hay que agregar un mensaje que describa los cambios de esta versión:</p>
-<pre tabindex="0"><code>git commit -m &#34;script de procesamiento de datos actualizado&#34;
+<p>Un <em>commit</em> es la operación en la que tomas los archivos del área de preparación (agregados con <code>git add</code>) y los guardas como una nueva versión del proyecto.</p>
+<p>Recomiendo primero confirmar el estado de los archivos con <code>git status</code>, así sabemos qué cosas están modificadas y no <em>staged</em> (no se agregan a la versión), cuáles están <em>staged</em> (sí se agregan a la versión), y otros temas.</p>
+<p>Luego creamos el <em>commit</em>, agregando un mensaje que describa los cambios de esta versión:</p>
+<pre tabindex="0"><code>git commit -m &#34;procesamiento de datos actualizado&#34;
 </code></pre>
 
 
@@ -487,7 +494,7 @@ Publicaciones relacionadas Tutorial: crear un repositorio Git para tu proyecto d
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h3>
-<p>Por si te equivocaste en el mensaje de commit, te permite cambiar el mensaje, siempre que lo ejecutes antes de haber hecho <em>push</em></p>
+<p>Por si te equivocaste en el mensaje del <em>commit</em> anterior, te permite cambiar el mensaje, siempre que lo ejecutes antes de haber hecho <em>push</em></p>
 <pre tabindex="0"><code>git commit --amend -m &#34;nuevo mensaje de commit&#34;
 </code></pre>
 
@@ -519,6 +526,44 @@ Publicaciones relacionadas Tutorial: crear un repositorio Git para tu proyecto d
 </code></pre><p>Si no has creado una versión remota de tu repositorio aún, puedes usar el comando <code>use_github()</code> para crear una rápidamente.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">usethis</span><span class="o">::</span><span class="nf">use_github</span><span class="p">()</span>
 </span></span></code></pre></div><hr>
+
+
+
+
+<h2 id="ramas">Ramas
+  <a href="#ramas"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Crear rama</p>
+<pre tabindex="0"><code>git branch ramita
+</code></pre><p>Cambiarse de rama</p>
+<pre tabindex="0"><code>git switch ramita
+</code></pre><hr>
+
+
+
+
+<h2 id="evitar-problemas">Evitar problemas
+  <a href="#evitar-problemas"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+
+
+
+
+<h3 id="_vacunar_-tu-proyecto-de-r"><em>Vacunar</em> tu proyecto de R
+  <a href="#_vacunar_-tu-proyecto-de-r"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Agregar archivos generalmente indeseables de R a tu <code>.gitignore</code> para prevenir problemas.</p>
+<pre tabindex="0"><code>usethis::git_vaccinate()
+</code></pre><hr>
 
 
 
@@ -556,14 +601,37 @@ Publicaciones relacionadas Tutorial: crear un repositorio Git para tu proyecto d
 
 
 
-<h3 id="deshacer-commit">Deshacer <code>commit</code>
-  <a href="#deshacer-commit"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+<h3 id="modificar-el-_commit_-anterior">Modificar el <em>commit</em> anterior
+  <a href="#modificar-el-_commit_-anterior"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Hacer el cambio, luego <code>git add {cambio}</code>:</p>
+<pre tabindex="0"><code>commit --amend --no-edit
+</code></pre>
+
+
+
+<h3 id="deshacer-_commit_">Deshacer <em>commit</em>
+  <a href="#deshacer-_commit_"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 0h24v24H0z" fill="currentColor"></path>
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h3>
 <p>Si guardaste una versión del código pero ésta tenía archivos equivocados, puedes deshacer el <em>commit</em> pero <strong>sin perder los cambios</strong> que hiciste. Con esto, tu repositorio volverá a la versión antes del commit, pero el código y archivos nuevos no se perderán, y estarán disponibles para volver a agregarlos con <code>git add</code> y rehacer la versión con <code>git commit</code>.</p>
 <pre tabindex="0"><code>git reset --soft HEAD~1
+</code></pre>
+
+
+
+<h3 id="deshacer-_commit_-con-violencia">Deshacer <em>commit</em> con violencia
+  <a href="#deshacer-_commit_-con-violencia"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<pre tabindex="0"><code>git reset HEAD~ --hard
 </code></pre>
 
 
@@ -578,6 +646,17 @@ Publicaciones relacionadas Tutorial: crear un repositorio Git para tu proyecto d
 <pre tabindex="0"><code>git rm --cached &#34;archivo&#34;
 git commit -m &#34;mensaje&#34;
 git push -u origin branch
+</code></pre>
+
+
+
+<h3 id="cambiar-mensaje-del-último-_commit_">Cambiar mensaje del último <em>commit</em>
+  <a href="#cambiar-mensaje-del-%c3%baltimo-_commit_"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<pre tabindex="0"><code>git commit --amend -m &#39;nuevo mensaje del ultimo commit&#39;
 </code></pre><hr>
 
 
@@ -593,7 +672,34 @@ git push -u origin branch
 
 
 
-<h3 id="volver-al-último-commit">Volver al último <code>commit</code>
+<h3 id="deshacer-un-_commit_">Deshacer un <em>commit</em>
+  <a href="#deshacer-un-_commit_"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Buscar el <em>hash</em> del commit problemático:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">git</span> <span class="n">log</span>
+</span></span></code></pre></div><p>Y cuando identifiquemos el commit que queremos revertir:</p>
+<pre tabindex="0"><code>git revert 7104ab4eadb6a69fcff94e3b41945e91a55f7294
+</code></pre>
+
+
+
+<h3 id="revertir-un-archivo-a-una-versión-anterior">Revertir un archivo a una versión anterior
+  <a href="#revertir-un-archivo-a-una-versi%c3%b3n-anterior"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Identificar el <em>hash</em> del <em>commit</em> que cambió el archivo con `git log``</p>
+<pre tabindex="0"><code>git restore archivo.R --source=89f46bd5f0a7ccee8c94eb11061e7f9c5dc7d6d2
+</code></pre><p>Y el archivo volverá a su versión anterior. Luego también puedes volver a hacerlo para ir saltando entre versiones.</p>
+
+
+
+
+<h3 id="volver-al-último-commit">Volver al último commit
   <a href="#volver-al-%c3%baltimo-commit"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 0h24v24H0z" fill="currentColor"></path>
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
@@ -655,8 +761,8 @@ git reset --hard origin/main
 
 
 
-<h3 id="ramas">Ramas
-  <a href="#ramas"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+<h3 id="ramas-1">Ramas
+  <a href="#ramas-1"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 0h24v24H0z" fill="currentColor"></path>
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
@@ -677,6 +783,17 @@ git reset --hard origin/main
 
 
 
+<h3 id="revisar-si-la-configuración-de-git-y-github-son-correctas">Revisar si la configuración de git y GitHub son correctas
+  <a href="#revisar-si-la-configuraci%c3%b3n-de-git-y-github-son-correctas"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">usethis</span><span class="o">::</span><span class="nf">git_sitrep</span><span class="p">()</span>
+</span></span></code></pre></div>
+
+
+
 <h3 id="cambiar-el-editor-de-texto-por-defecto">Cambiar el editor de texto por defecto
   <a href="#cambiar-el-editor-de-texto-por-defecto"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 0h24v24H0z" fill="currentColor"></path>
@@ -685,7 +802,8 @@ git reset --hard origin/main
 </h3>
 <p>Por si detestas Vim y quieres usar un editor más simple como Nano:</p>
 <pre tabindex="0"><code>git config --global core.editor &#34;nano&#34;
-</code></pre>
+</code></pre><p>Así cuando necesitas introducir texto al usar git, se abre un editor más amigable para escribir mensajes de <em>commit</em> y otros. Puedes revisar esta configuración con <code>saperlipopette::exo_check_editor(&quot;.&quot;)</code></p>
+
 
 
 
@@ -844,7 +962,7 @@ git reset --hard origin/main
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">5 minute read, 1041 words</dd>
+    <dd class="fw5 ml0">7 minute read, 1295 words</dd>
   </dl>
   
   
@@ -993,7 +1111,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/apps/">Aplicaciones</a></span>
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -1008,7 +1126,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/apps/">Aplicaciones</a></span>
   </span>
  
   
@@ -1053,21 +1171,6 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
@@ -1084,6 +1187,21 @@ git reset --hard origin/main
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -1188,7 +1306,7 @@ git reset --hard origin/main
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/ciencias-sociales/">Ciencias sociales</a></span>
+      href="https://bastianolea.rbind.io/tags/automatizaci%C3%B3n/">Automatización</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>
@@ -1219,17 +1337,28 @@ git reset --hard origin/main
         <li><a href="#subir-los-cambios-guardados-al-repositorio-remoto">Subir los cambios guardados al repositorio remoto</a></li>
       </ul>
     </li>
+    <li><a href="#ramas">Ramas</a></li>
+    <li><a href="#evitar-problemas">Evitar problemas</a>
+      <ul>
+        <li><a href="#_vacunar_-tu-proyecto-de-r"><em>Vacunar</em> tu proyecto de R</a></li>
+      </ul>
+    </li>
     <li><a href="#solucionar-problemas">Solucionar problemas</a>
       <ul>
         <li><a href="#deshacer-git-add-archivor">Deshacer <code>git add archivo.R</code></a></li>
         <li><a href="#deshacer-git-add-">Deshacer <code>git add .</code></a></li>
-        <li><a href="#deshacer-commit">Deshacer <code>commit</code></a></li>
+        <li><a href="#modificar-el-_commit_-anterior">Modificar el <em>commit</em> anterior</a></li>
+        <li><a href="#deshacer-_commit_">Deshacer <em>commit</em></a></li>
+        <li><a href="#deshacer-_commit_-con-violencia">Deshacer <em>commit</em> con violencia</a></li>
         <li><a href="#eliminar-archivos-agregados-con-git-add-después-del-commit">Eliminar archivos agregados con <code>git add</code> después del commit</a></li>
+        <li><a href="#cambiar-mensaje-del-último-_commit_">Cambiar mensaje del último <em>commit</em></a></li>
       </ul>
     </li>
     <li><a href="#recuperar-cambios">Recuperar cambios</a>
       <ul>
-        <li><a href="#volver-al-último-commit">Volver al último <code>commit</code></a></li>
+        <li><a href="#deshacer-un-_commit_">Deshacer un <em>commit</em></a></li>
+        <li><a href="#revertir-un-archivo-a-una-versión-anterior">Revertir un archivo a una versión anterior</a></li>
+        <li><a href="#volver-al-último-commit">Volver al último commit</a></li>
         <li><a href="#volver-a-una-versión-anterior-de-tu-código">Volver a una versión anterior de tu código</a></li>
       </ul>
     </li>
@@ -1237,11 +1366,12 @@ git reset --hard origin/main
       <ul>
         <li><a href="#forzar-push">Forzar push</a></li>
         <li><a href="#forzar-pull">Forzar pull</a></li>
-        <li><a href="#ramas">Ramas</a></li>
+        <li><a href="#ramas-1">Ramas</a></li>
       </ul>
     </li>
     <li><a href="#configuraciones">Configuraciones</a>
       <ul>
+        <li><a href="#revisar-si-la-configuración-de-git-y-github-son-correctas">Revisar si la configuración de git y GitHub son correctas</a></li>
         <li><a href="#cambiar-el-editor-de-texto-por-defecto">Cambiar el editor de texto por defecto</a></li>
         <li><a href="#cambiar-nombre-por-defecto-de-las-ramas">Cambiar nombre por defecto de las ramas</a></li>
         <li><a href="#actualizar-_token_-vencido">Actualizar <em>token</em> vencido</a></li>

@@ -24,12 +24,12 @@
   
     
   
-<meta name="description" content="En este tutorial se entregan los pasos para empezar a usar Git con tus proyectos de R. Git te permite llevar un registro de las versiones y un control de cambios en tu código, mientras que GitHub te permite subir tus repositorios a un servicio online, en el cual puedes compartir tu código con otras personas, descargar el código de otros, y colaborar en un mismo proyecto.">
+<meta name="description" content="Control de versiones, respaldos y colaboración">
 
 
 <meta property="og:site_name" content="Bastián Olea">
 <meta property="og:title" content="Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub | Bastián Olea">
-<meta property="og:description" content="En este tutorial se entregan los pasos para empezar a usar Git con tus proyectos de R. Git te permite llevar un registro de las versiones y un control de cambios en tu código, mientras que GitHub te permite subir tus repositorios a un servicio online, en el cual puedes compartir tu código con otras personas, descargar el código de otros, y colaborar en un mismo proyecto." />
+<meta property="og:description" content="Control de versiones, respaldos y colaboración" />
 <meta property="og:type" content="page" />
 <meta property="og:url" content="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_github/" />
 <meta property="og:locale" content="es-ES">
@@ -48,7 +48,7 @@
   <meta itemprop="description" content="En este tutorial aprenderás a empezar a usar Git con tus proyectos de R, mediante la creación de repositorios. Git te permite llevar un registro de las versiones y un control de cambios en tu código, mientras que GitHub te permite subir tus repositorios a un servicio online, en el cual puedes compartir tu código con otras personas, descargar el código de otros, y colaborar en un mismo proyecto.">
   <meta itemprop="datePublished" content="2025-02-07T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-02-07T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1679">
+  <meta itemprop="wordCount" content="1730">
   <meta itemprop="image" content="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_github/titulo_github-featured.png">
   <meta itemprop="keywords" content="Git,GitHub,Consejos,Básico">
   
@@ -69,7 +69,11 @@
   <link rel="stylesheet" href="/css/syntax.css">
   
   
-  <link rel="preload" href="/buscador/" as="image">
+  
+  
+  
+  
+  <meta name="google-site-verification" content="yaiYGBAfSJpjE7mfPuFVP1yoNIqLadRJQIzCOula8TI" />
   
 </head>
 <body>
@@ -252,7 +256,7 @@
     <article class="post-content pa0 pl3-l">
       <header class="post-header">
         <h1 class="f1 lh-solid measure-narrow mb3 fw4">Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub</h1>
-        
+        <h4 class="f4 mt0 mb4 lh-title measure">Control de versiones, respaldos y colaboración</h4>
         
         <p class="f7 db mv0 ttu">7/2/2025</p>
         
@@ -483,6 +487,56 @@
 </h4>
 <p>En la pestaña de Terminal de RStudio también puedes interactuar con Git, de manera más directa.</p>
 <p>El comando <code>git add .</code> agrega a todos los nuevos archivos y archivos modificados a la fase de <em>staging,</em> que significa que son archivos considerados para el <em>commit,</em> y luego el comando <code>git commit -m &quot;mensaje&quot;</code> te permite crear el commit. Debes poner entre comillas el mensaje asociado al <em>commit.</em> Si en alguna momento tienes alguna duda, puedes ejecutar <code>git status</code> para conocer el estado de tu repositorio.</p>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Comandos más frecuentes de git
+    </p>
+
+  <a href="/blog/git_comandos/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Comandos comunes de Git
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        Colección de comandos de git para realizar acciones comunes y resolver problemas frecuentes. git es una herramienta para el control de versiones de código, respaldo de código, y colaboración.
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
 <hr>
 
 
@@ -512,6 +566,7 @@
     </svg></a>
 </h3>
 <p>Solamente queda un último paso de configuración, que es guardar la información básica de tu cuenta en R. Ejecuta el comando <code>usethis::use_git_config(user.name = &quot;usuario&quot;, user.email = &quot;correo&quot;)</code>, indicando en sus argumentos tu nombre de usuario y tu correo de tu cuenta GitHub.</p>
+<p>Puedes confirmar que la configuración de git fue correcta ejecutando el comando: <code>usethis::git_sitrep()</code></p>
 <hr>
 
 

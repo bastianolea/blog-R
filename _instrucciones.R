@@ -55,6 +55,7 @@ blogdown::new_post(
 # tutorial mapas: poner puntos a partir de tablas de datos en centroides
 
 # ideas ----
+# agregar usos de {territorial} a posts
 # tip shiny actualizar css
 # {futurize} https://www.jottr.org/2026/01/22/futurize-0.1.0/
 # hacer que R te pregunte cosas
