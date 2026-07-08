@@ -8,7 +8,7 @@ format:
   hugo-md:
     output-file: "index"
     output-ext: "md"
-    fig-height: 2
+    fig-height: 4
 slug: []
 categories: []
 tags:
@@ -16,7 +16,8 @@ tags:
   - ggplot2
 execute:
   message: false
-excerpt: "El uso del color es clave para comunicar, y el ecosistema de R tiene varios trucos convenientes para ayudarnos a usar el color de mejores formas. En este post reúno varios consejos y trucos para trabajar con colores: desde previsualizarlos, mezclarlos, combinarlos y usarlos como paletas en gráficos."
+  warning: false
+excerpt: "El uso del color es clave para comunicar, y el ecosistema de R tiene varios trucos convenientes para ayudarnos a usar el color de mejores formas. En este post veremos consejos y trucos para trabajar con colores: incluyendo previsualizarlos, mezclarlos, modificarlos y usarlos como paletas en gráficos."
 ---
 
 El uso del color es clave para comunicar, y el ecosistema de R tiene varios trucos convenientes para ayudarnos a usar el color de mejores formas.
@@ -28,7 +29,7 @@ En R, los colores se escriben como código, y a grandes rasgos pueden ser colore
 La forma más básica de elegir un color en R es por su *nombre*.
 Por defecto, en R **existen 657 colores** con nombre.
 
-Aquí puedes ver los principales colores de R y copiar sus nombres para usarlos:
+Aquí puedes ver una lista de los **principales colores de R** y copiar sus nombres para usarlos:
 
 <span style="background-color: #FFFFFF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #ABABAB ;">white</span>
 <span style="background-color: #F0F8FF ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #72ADD2 ;">aliceblue</span>
@@ -420,6 +421,12 @@ Aquí puedes ver los principales colores de R y copiar sus nombres para usarlos:
 <span style="background-color: #CDCD00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #8B8B08 ;">yellow3</span>
 <span style="background-color: #8B8B00 ; color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9; color: black ; border: solid 1px #606002 ;">yellow4</span>
 
+{{< detalles “Ver un gráfico con todos los colores de R” >}}
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/colores-de-R-1.png" alt="" width="2240" />
+
+{{< /detalles >}}
+
 Para usarlos, simplemente usa su nombre:
 
 ``` r
@@ -475,15 +482,125 @@ colores <- c("#DEC5F2", "#9069C0", "#6E3A98")
 
 ## Paletas de colores
 
-Varios paquetes de R contienen sus propias paletas de colores prediseñadas. Uno de los conjuntos de paletas principales en visualización de datos, sobre todo para mapas, son las de [Color Brewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3), a las que puedes acceder con el paquete `{RColorBrewer}`:
+Varios paquetes de R contienen sus propias paletas de colores prediseñadas. Veremos algunas.
+
+Uno de los conjuntos de paletas principales en visualización de datos, sobre todo para mapas, son las de [Color Brewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3), a las que puedes acceder con el paquete `{RColorBrewer}`.
+
+Éstas son algunas de las paletas de Color Brewer:
+
+``` r
+library(RColorBrewer)
+```
+
+``` r
+colores <- brewer.pal(name = "PuRd", n = 5)
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #F1EEF6 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #BFB7CB ;">#F1EEF6</div>
+<div style="background-color: #D7B5D8 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #AD8BAE ;">#D7B5D8</div>
+<div style="background-color: #DF65B0 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #BD4291 ;">#DF65B0</div>
+<div style="background-color: #DD1C77 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #AB245E ;">#DD1C77</div>
+<div style="background-color: #980043 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #7D0036 ;">#980043</div>
+</div>
+
+``` r
+colores <- brewer.pal(name = "BuPu", n = 5)
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #EDF8FB ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #A5C5CD ;">#EDF8FB</div>
+<div style="background-color: #B3CDE3 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #86A1B7 ;">#B3CDE3</div>
+<div style="background-color: #8C96C6 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #6D76A0 ;">#8C96C6</div>
+<div style="background-color: #8856A7 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #68487D ;">#8856A7</div>
+<div style="background-color: #810F7C ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #6D0068 ;">#810F7C</div>
+</div>
+
+``` r
+colores <- brewer.pal(name = "Purples", n = 5)
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #F2F0F7 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #BFB9CC ;">#F2F0F7</div>
+<div style="background-color: #CBC9E2 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #9E9CB8 ;">#CBC9E2</div>
+<div style="background-color: #9E9AC8 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #7C78A2 ;">#9E9AC8</div>
+<div style="background-color: #756BB1 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #5D5689 ;">#756BB1</div>
+<div style="background-color: #54278F ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #481681 ;">#54278F</div>
+</div>
+
+``` r
+colores <- brewer.pal(name = "Blues", n = 5)
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #EFF3FF ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #ADBDE7 ;">#EFF3FF</div>
+<div style="background-color: #BDD7E7 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #8CA9BA ;">#BDD7E7</div>
+<div style="background-color: #6BAED6 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #498AAD ;">#6BAED6</div>
+<div style="background-color: #3182BD ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #37668F ;">#3182BD</div>
+<div style="background-color: #08519C ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #024180 ;">#08519C</div>
+</div>
+
+``` r
+colores <- brewer.pal(name = "Set2", n = 5)
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #66C2A5 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #4E9881 ;">#66C2A5</div>
+<div style="background-color: #FC8D62 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #CE6A3E ;">#FC8D62</div>
+<div style="background-color: #8DA0CB ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #6D7EA3 ;">#8DA0CB</div>
+<div style="background-color: #E78AC3 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C0659E ;">#E78AC3</div>
+<div style="background-color: #A6D854 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #7FAA2E ;">#A6D854</div>
+</div>
+
+``` r
+colores <- brewer.pal(name = "Pastel1", n = 5)
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #FBB4AE ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #D4867E ;">#FBB4AE</div>
+<div style="background-color: #B3CDE3 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #86A1B7 ;">#B3CDE3</div>
+<div style="background-color: #CCEBC5 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #96BA8E ;">#CCEBC5</div>
+<div style="background-color: #DECBE4 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B29CB9 ;">#DECBE4</div>
+<div style="background-color: #FED9A6 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #CFA769 ;">#FED9A6</div>
+</div>
+
+``` r
+colores <- brewer.pal(name = "PRGn", n = 5)
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #7B3294 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #65257B ;">#7B3294</div>
+<div style="background-color: #C2A5CF ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #9B80A7 ;">#C2A5CF</div>
+<div style="background-color: #F7F7F7 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C0C0C0 ;">#F7F7F7</div>
+<div style="background-color: #A6DBA0 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #7BAD75 ;">#A6DBA0</div>
+<div style="background-color: #008837 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #006C2A ;">#008837</div>
+</div>
+
+``` r
+colores <- brewer.pal(name = "RdYlBu", n = 5)
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #D7191C ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #A82021 ;">#D7191C</div>
+<div style="background-color: #FDAE61 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #CF852A ;">#FDAE61</div>
+<div style="background-color: #FFFFBF ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C8C86F ;">#FFFFBF</div>
+<div style="background-color: #ABD9E9 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #7AABBB ;">#ABD9E9</div>
+<div style="background-color: #2C7BB6 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #31618B ;">#2C7BB6</div>
+</div>
+
+Puedes verlas todas ejecutando `RColorBrewer::display.brewer.all()`!
+
+{{< detalles “Ver todas las paletas de Color Brewer” >}}
 
 ``` r
 RColorBrewer::display.brewer.all()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" alt="" width="960" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/paletas-de-colores-color-brewer-R-1.png" alt="" width="960" />
 
-Cuando elijas una de las paletas, puedes usarla [en cualquier gráfico de `{ggplot2}`](/blog/r_introduccion/tutorial_visualizacion_ggplot/) con la función `scale_color_brewer()` o `scale_fill_brewer()`, según corresponda:
+{{< /detalles >}}
+
+Cuando **elijas** una de las paletas, puedes usarla [en cualquier gráfico de `{ggplot2}`](/blog/r_introduccion/tutorial_visualizacion_ggplot/) con la función `scale_color_brewer()` o `scale_fill_brewer()`, según corresponda a la variable que quieres pintar, y elije la paleta por medio de su nombre:
 
 ``` r
 library(ggplot2)
@@ -491,22 +608,123 @@ library(ggplot2)
 iris |> 
   ggplot() +
   aes(x = Sepal.Length, y = Sepal.Width, color = Species) +
-  geom_point(size = 4, alpha = 0.7) +
+  geom_point(size = 3, alpha = 0.8) +
   # usar la paleta "PuRd"
-  scale_color_brewer(palette = "PuRd")
+  scale_color_brewer(palette = "Set2")
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-26-1.png" alt="" width="672" />
 
 Con el paquete `{colorspace}` también podemos ver otras paletas disponibles:
 
 ``` r
 library(colorspace)
+```
 
+    ## 
+    ## Attaching package: 'colorspace'
+
+    ## The following object is masked from 'package:shades':
+    ## 
+    ##     coords
+
+Aquí van algunas de ellas:
+
+``` r
+colores <- colorspace::sequential_hcl(5, palette = "Red-Blue")
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #A93154 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #812F44 ;">#A93154</div>
+<div style="background-color: #BA4B8E ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #8E416E ;">#BA4B8E</div>
+<div style="background-color: #BC6EB9 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #965694 ;">#BC6EB9</div>
+<div style="background-color: #B494D5 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #9072AE ;">#B494D5</div>
+<div style="background-color: #AEB6E5 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #868EBC ;">#AEB6E5</div>
+</div>
+
+``` r
+colores <- colorspace::sequential_hcl(5, palette = "Purple-Orange")
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #5B3794 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #492C78 ;">#5B3794</div>
+<div style="background-color: #9953A1 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #75467A ;">#9953A1</div>
+<div style="background-color: #C87AAD ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #A55B8C ;">#C87AAD</div>
+<div style="background-color: #EBA8BA ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C27F92 ;">#EBA8BA</div>
+<div style="background-color: #F8DCD9 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #D2A6A1 ;">#F8DCD9</div>
+</div>
+
+``` r
+colores <- colorspace::sequential_hcl(5, palette = "Heat 2")
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #D33F6A ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #A03B55 ;">#D33F6A</div>
+<div style="background-color: #E1704C ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B2583C ;">#E1704C</div>
+<div style="background-color: #E99A2C ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B97817 ;">#E99A2C</div>
+<div style="background-color: #E8C33C ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B89801 ;">#E8C33C</div>
+<div style="background-color: #E2E6BD ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B0B487 ;">#E2E6BD</div>
+</div>
+
+``` r
+colores <- colorspace::sequential_hcl(5, palette = "BurgYl")
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #772C4B ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #63213D ;">#772C4B</div>
+<div style="background-color: #A74F5A ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #7B454B ;">#A74F5A</div>
+<div style="background-color: #D6765D ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #AA5D48 ;">#D6765D</div>
+<div style="background-color: #EDAA7D ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C08356 ;">#EDAA7D</div>
+<div style="background-color: #F8DFC1 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #CAAC84 ;">#F8DFC1</div>
+</div>
+
+``` r
+colores <- colorspace::sequential_hcl(5, palette = "Mint")
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #005D67 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #004B53 ;">#005D67</div>
+<div style="background-color: #1B817F ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #0A6765 ;">#1B817F</div>
+<div style="background-color: #64A79A ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #548279 ;">#64A79A</div>
+<div style="background-color: #9FCEBA ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #77A290 ;">#9FCEBA</div>
+<div style="background-color: #E0F2E6 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #A3C0AD ;">#E0F2E6</div>
+</div>
+
+``` r
+colores <- colorspace::sequential_hcl(5, palette = "PinkYl")
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #E24C80 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B73765 ;">#E24C80</div>
+<div style="background-color: #EF7E71 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C45E51 ;">#EF7E71</div>
+<div style="background-color: #F6A972 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C88249 ;">#F6A972</div>
+<div style="background-color: #FAD18B ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #CAA252 ;">#FAD18B</div>
+<div style="background-color: #FDF6B5 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C8C06C ;">#FDF6B5</div>
+</div>
+
+``` r
+colores <- colorspace::sequential_hcl(5, palette = "Sunset")
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #704D9E ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #574077 ;">#704D9E</div>
+<div style="background-color: #BC5AA9 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #934985 ;">#BC5AA9</div>
+<div style="background-color: #ED7C97 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C45B75 ;">#ED7C97</div>
+<div style="background-color: #F9B282 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #CB8856 ;">#F9B282</div>
+<div style="background-color: #F3E79A ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C0B45F ;">#F3E79A</div>
+</div>
+
+Puedes ver todas las paletas de colores de `{colorspace}` ejecutando `colorspace::hcl_palettes(plot = TRUE)`.
+
+{{< detalles “Ver todas las paletas de colores de `{colorspace}`” >}}
+
+``` r
 colorspace::hcl_palettes(plot = TRUE)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" alt="" width="1152" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/paletas-de-colores-colorspace-R-1.png" alt="" width="1152" />
+
+{{< /detalles >}}
 
 Usar estas paletas en `{ggplot2}` es tan fácil como agregar la función de escala apropiada para definir los colores del gráfico:
 
@@ -514,17 +732,19 @@ Usar estas paletas en `{ggplot2}` es tan fácil como agregar la función de esca
 iris |> 
   ggplot() +
   aes(Petal.Width, Sepal.Width, color = Sepal.Length) +
-  geom_point(size = 4, alpha = 0.7) +
+  geom_point(size = 3, alpha = 0.7) +
   # usar la paleta "Sunset" para una variable continua
   colorspace::scale_color_continuous_sequential(palette = "Sunset") +
   scale_y_continuous(expand = expansion(c(0, 0.1)))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-42-1.png" alt="" width="672" />
 
 Encuentra una lista que compila todas las paletas de colores de la comunidad de R [en este repositorio.](https://github.com/EmilHvitfeldt/r-color-palettes)
 
-## Usar paletas de colores
+## Usar paletas de colores en gráficos
+
+### Gráficos con colores manuales
 
 La forma más simple de usar colores en gráficos de `{ggplot2}` es definiéndolos en la escala de color apropiada.
 
@@ -542,12 +762,10 @@ iris |>
   geom_point(size = 2, alpha = .8) +
   scale_color_manual(
     values = c("#cc3b7b", "#705ce6", "#668cf6")
-  ) +
-  theme(legend.title = element_blank(),
-        axis.title = element_blank())
+  )
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-43-1.png" alt="" width="672" />
 
 O bien, se puede aplicar cada color a cada valor específico de la variable:
 
@@ -562,71 +780,71 @@ iris |>
     values = c("versicolor" = "#cc3b7b", 
                "virginica" = "#705ce6", 
                "setosa" = "#668cf6")
-  ) +
-  theme(legend.title = element_blank(),
-        axis.title = element_blank())
+  )
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-44-1.png" alt="" width="672" />
 
-Muchas paquetes incorporan funciones de escalas de colores (`scale_color_x()`, `scale_fill_x()`) para aplicar una paleta de color fácilmente a un gráfico creado `{ggplot2}`.
+### Paletas de colores predefinidos
+
+Muchos paquetes de R incorporan funciones de escalas de colores (`scale_color_x()`, `scale_fill_x()`) para aplicar una paleta de color fácilmente a un gráfico creado `{ggplot2}`.
+
+Por ejemplo, las paletas de `{colorspace}` que vimos más arriba:
 
 ``` r
 library(ggplot2)
-library(dplyr)
-```
 
-    ## Warning: package 'dplyr' was built under R version 4.4.3
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
-``` r
 # escalas para variables discretas
 iris |> 
   ggplot() +
-  geom_bar(aes(Petal.Width, fill = Species)) +
+  aes(Petal.Width, fill = Species) +
+  geom_bar() +
   colorspace::scale_fill_discrete_qualitative(palette = "Dark 3") +
   scale_y_continuous(expand = expansion(c(0, 0.1)))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-45-1.png" alt="" width="672" />
 
 ``` r
 # escalas para variables continuas
 iris |> 
   ggplot() +
-  geom_point(aes(Sepal.Width, Sepal.Length, color = Petal.Width, size = Petal.Length), alpha = .8) +
+  aes(Sepal.Width, Sepal.Length, color = Petal.Width, size = Petal.Length) +
+  geom_point(alpha = .8) +
   colorspace::scale_color_continuous_sequential(palette = "Sunset", na.value = "white") +
-  guides(size = guide_legend(override.aes = list(color = "#784FA1")),
-         color = guide_colorsteps()) +
-  theme(legend.title = element_blank(),
-        axis.title = element_blank())
+  scale_size_continuous(range = c(1, 3)) +
+  guides(color = guide_colorsteps())
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-2.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-46-1.png" alt="" width="672" />
 
 ``` r
 # escalas para variables continuas
 iris |> 
   ggplot() +
-  geom_point(aes(Petal.Length, Sepal.Width, color = Petal.Width, size = Sepal.Length), alpha = .8) +
+  aes(Petal.Length, Sepal.Width, color = Petal.Width, size = Sepal.Length) +
+  geom_point(alpha = .8) +
   viridis::scale_colour_viridis("viridis", na.value = "white") +
-  guides(size = guide_legend(override.aes = list(color = "#88D181")),
-         color = guide_colorsteps()) +
-  theme(legend.title = element_blank(),
-        axis.title = element_blank())
+  scale_size_continuous(range = c(1, 3)) +
+  guides(color = guide_colorsteps())
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-3.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-47-1.png" alt="" width="672" />
+
+O bien, las paletas de `{RColorBrewer}` que vimos antes:
+
+``` r
+library(ggplot2)
+
+iris |> 
+  ggplot() +
+  aes(x = Sepal.Length, y = Sepal.Width, color = Species) +
+  geom_point(size = 3, alpha = 0.9) +
+  # usar la paleta "Set2" de Color Brewer
+  scale_color_brewer(palette = "Accent")
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-48-1.png" alt="" width="672" />
 
 Algunas de las funciones para aplicar paletas de colores tienen funcionalidades extras. Por ejemplo, las funciones de `{colorspace}` permiten modificar sus paletas en términos de la saturación (*chroma*) y el brillo del color (*luminance*), entregándote más libertad al momento de definir una apariencia específica:
 
@@ -634,28 +852,28 @@ Algunas de las funciones para aplicar paletas de colores tienen funcionalidades 
 grafico <- iris |> 
   ggplot() +
   geom_point(aes(Sepal.Width, Sepal.Length, color = Petal.Width), size = 3, alpha = .8) +
-  guides(color = guide_colorsteps()) +
-  theme(legend.title = element_blank(),
-        axis.title = element_blank())
-
-grafico +
-  colorspace::scale_color_continuous_sequential(
-    palette = "TealGrn", 
-    c1 = 50, # intensidad del color
-    l1 = 60) # brillo del color
+  guides(color = guide_colorsteps())
 ```
-
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" alt="" width="672" />
 
 ``` r
 grafico +
   colorspace::scale_color_continuous_sequential(
     palette = "TealGrn", 
-    c1 = 20, # intensidad del color
+    c1 = 50, # intensidad del color
+    l1 = 40) # brillo del color
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-50-1.png" alt="" width="672" />
+
+``` r
+grafico +
+  colorspace::scale_color_continuous_sequential(
+    palette = "TealGrn", 
+    c1 = 10, # intensidad del color
     l1 = 30) # brillo del color
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-2.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-51-1.png" alt="" width="672" />
 
 {{< aviso “Si quieres aprender `{ggplot2}`, revisa [este tutorial sobre visualización de datos desde cero!](/blog/r_introduccion/tutorial_visualizacion_ggplot/)” >}}
 
@@ -667,7 +885,7 @@ También podemos usar funciones de R para crear paletas de colores personalizada
 
 Las paletas secuenciales consiste en un degradado entre dos o más colores. Suelen usarse para representar una variable continua o numérica, cuyo valor va cambiando de forma cuantitativa.
 
-La función `sequential_hcl()` del paquete `{colorspace}` permite crear paletas secuenciales. El primer argumento es la **cantidad de colores** que deseas, y luego el **tono** desde el que quieres empezar la paleta:
+La función `sequential_hcl()` del paquete `{colorspace}` permite crear paletas secuenciales que, por defecto, se van degradando hacia blanco. El primer argumento es la **cantidad de colores** que deseas, y luego `h` es el **tono** desde el que quieres empezar la paleta:
 
 ``` r
 colores <- colorspace::sequential_hcl(6, h = 300)
@@ -682,93 +900,209 @@ colores <- colorspace::sequential_hcl(6, h = 300)
 <div style="background-color: #E2E2E2 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B0B0B0 ;">#E2E2E2</div>
 </div>
 
-``` r
-colores <- colorspace::sequential_hcl(8, h = c(300, 100)) |> swatch()
-```
-
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-19-1.png" alt="" width="672" />
+Ahora, una paleta de 6 colores, que empiece en el tono 300 y termine por el tono 100, a la vez que va aclarándose:
 
 ``` r
-colores <- colorspace::sequential_hcl(5, h = 260,
-                           c = c(45, 25), l = c(25, 85), power = .9) |> swatch()
+colores <- colorspace::sequential_hcl(8, h = c(300, 100))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #850094 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #6D0179 ;">#850094</div>
+<div style="background-color: #6858A9 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #52497C ;">#6858A9</div>
+<div style="background-color: #5585B1 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #4C6885 ;">#5585B1</div>
+<div style="background-color: #67A4B4 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #52818D ;">#67A4B4</div>
+<div style="background-color: #90BCB9 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #6C9492 ;">#90BCB9</div>
+<div style="background-color: #B8CEC4 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #8DA298 ;">#B8CEC4</div>
+<div style="background-color: #D5DBD6 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #A5ABA6 ;">#D5DBD6</div>
+<div style="background-color: #E2E2E2 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B0B0B0 ;">#E2E2E2</div>
+</div>
+
+Puedes explorar los argumentos para personalizar la paleta. Por ejemplo: 6 colores por el tono 200 definido en `h`, cambiando la intensidad del color en el argumento `c`, y pasando de una luminancia de `25` a una de `85`
+
+``` r
+colores <- colorspace::sequential_hcl(5, 
+                                      h = 200,
+                                      c = c(45, 25), 
+                                      l = c(25, 80)
+)
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #004B53 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #013D44 ;">#004B53</div>
+<div style="background-color: #00757B ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #085D62 ;">#00757B</div>
+<div style="background-color: #5A9DA2 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #4E7B7E ;">#5A9DA2</div>
+<div style="background-color: #88BDC1 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #639599 ;">#88BDC1</div>
+<div style="background-color: #A1CFD3 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #76A3A7 ;">#A1CFD3</div>
+</div>
 
 También se pueden obtener vectores de colores a partir de las paletas existentes que vienen con el paquete `{colorspace}`:
 
 ``` r
-colorspace::sequential_hcl(5, palette = "Red-Blue") |> swatch()
+colores <- colorspace::sequential_hcl(5, palette = "Red-Blue")
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #A93154 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #812F44 ;">#A93154</div>
+<div style="background-color: #BA4B8E ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #8E416E ;">#BA4B8E</div>
+<div style="background-color: #BC6EB9 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #965694 ;">#BC6EB9</div>
+<div style="background-color: #B494D5 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #9072AE ;">#B494D5</div>
+<div style="background-color: #AEB6E5 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #868EBC ;">#AEB6E5</div>
+</div>
 
 ``` r
-colorspace::sequential_hcl(5, palette = "Purple-Orange") |> swatch()
+colores <- colorspace::sequential_hcl(5, palette = "Purple-Orange")
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-2.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #5B3794 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #492C78 ;">#5B3794</div>
+<div style="background-color: #9953A1 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #75467A ;">#9953A1</div>
+<div style="background-color: #C87AAD ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #A55B8C ;">#C87AAD</div>
+<div style="background-color: #EBA8BA ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C27F92 ;">#EBA8BA</div>
+<div style="background-color: #F8DCD9 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #D2A6A1 ;">#F8DCD9</div>
+</div>
 
 ### Crear paletas cualitativas
 
 Como su nombre ética, en las paletas cualitativas los colores van saltando para maximizar la diferencia entre ellos. Se utilizan para variables cualitativas, categóricas o discretas, donde cada elemento de una secuencia es independiente de los demás, y el objetivo del uso del color es poder distinguirlos.
 
-La función `rainbow_hcl()` de `{colorspace}` entrega una típica paleta de arcoíris, pero con la posibilidad de modificar sus atributos de color en sus argumentos, tales como las tonalidades (*hue*) de inicio o final, la intensidad (*chroma*) de los tonos
+La función `rainbow_hcl()` de `{colorspace}` entrega una típica paleta de arcoíris, pero con la posibilidad de modificar sus atributos de color en sus argumentos, tales como las tonalidades (*hue*) de inicio o final, la intensidad (*chroma*) de los tonos, y más.
+
+Por ejemplo, una paleta de arcoíris de 6 colores con intensidad de color de 70:
 
 ``` r
-colores <- colorspace::rainbow_hcl(7, c = 70) |> swatch()
+colores <- colorspace::rainbow_hcl(6, c = 70)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #F68BA2 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #CD657D ;">#F68BA2</div>
+<div style="background-color: #D0A544 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #A48131 ;">#D0A544</div>
+<div style="background-color: #76BD58 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #60944B ;">#76BD58</div>
+<div style="background-color: #00C5B3 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #0F9A8C ;">#00C5B3</div>
+<div style="background-color: #5EB3F0 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #398DC4 ;">#5EB3F0</div>
+<div style="background-color: #DB8FEA ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B569C4 ;">#DB8FEA</div>
+</div>
+
+Un arcoíris de 7 colores de *croma* 100, que empiece en la tonalidad 190 y termine en la 380:
 
 ``` r
-colores <- colorspace::rainbow_hcl(7, c = 100, start = 190, end = 380) |> swatch()
+colores <- colorspace::rainbow_hcl(6, 
+                                   c = 100, 
+                                   start = 190,
+                                   end = 380)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-2.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #00CDC9 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #03A19E ;">#00CDC9</div>
+<div style="background-color: #00BFFF ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #0896C9 ;">#00BFFF</div>
+<div style="background-color: #9F9EFF ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #7978E4 ;">#9F9EFF</div>
+<div style="background-color: #F67AFF ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #D349DC ;">#F67AFF</div>
+<div style="background-color: #FF72C3 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #DC44A1 ;">#FF72C3</div>
+<div style="background-color: #FF876E ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #D36449 ;">#FF876E</div>
+</div>
+
+Un arcoíris de 6 colores con intensidad de 60, luminancia de 30, que empiece en el tono 230 y termine en el 370:
 
 ``` r
-colores <- colorspace::rainbow_hcl(6, c = 60, l = 30, start = 230, end = 370) |> swatch()
+colores <- colorspace::rainbow_hcl(6, 
+                                   c = 60, 
+                                   l = 30, 
+                                   start = 230, 
+                                   end = 370)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-3.png" alt="" width="672" />
-Éste tipo de paletas usualmente reúne colores en una escala tipo arcoíris, o bien reúne colores temáticos, distintos entre ellos, pero armónicos entre sí.
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #00537E ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #004367 ;">#00537E</div>
+<div style="background-color: #21438B ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #183674 ;">#21438B</div>
+<div style="background-color: #642C87 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #551D76 ;">#642C87</div>
+<div style="background-color: #7D1674 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #6B0163 ;">#7D1674</div>
+<div style="background-color: #841956 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #730048 ;">#841956</div>
+<div style="background-color: #7E292E ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #662225 ;">#7E292E</div>
+</div>
 
-También pueden usarse los nombres de las paredes preexistentes para generar una secuencia cualitativa con ellos.
+También pueden usarse los nombres de las paletas preexistentes para generar una secuencia cualitativa con ellos.
+
+Por ejemplo, 6 colores de la paleta de colores fríos, con intensidad (*chroma*) de 80:
 
 ``` r
-colores <- colorspace::qualitative_hcl(6, palette = "Cold", c = 80) |> swatch()
+colores <- colorspace::qualitative_hcl(6, 
+                                       palette = "Cold", 
+                                       c = 80)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #AC9FFF ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #8777E2 ;">#AC9FFF</div>
+<div style="background-color: #62B0FD ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #3F8BCF ;">#62B0FD</div>
+<div style="background-color: #00BEEB ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #0295B9 ;">#00BEEB</div>
+<div style="background-color: #00C6CF ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #019BA3 ;">#00C6CF</div>
+<div style="background-color: #00C8AB ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #019D86 ;">#00C8AB</div>
+<div style="background-color: #00C681 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #019C65 ;">#00C681</div>
+</div>
+
+Seis colores de la paleta de colores cálidos, con intensidad (*chroma*) de 70:
 
 ``` r
-colores <- colorspace::qualitative_hcl(6, palette = "Warm", c = 80) |> swatch()
+colores <- colorspace::qualitative_hcl(6, 
+                                       palette = "Warm", 
+                                       c = 70)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-2.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #ABB234 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #868C27 ;">#ABB234</div>
+<div style="background-color: #C9A83D ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #9E8432 ;">#C9A83D</div>
+<div style="background-color: #E19D60 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B7793A ;">#E19D60</div>
+<div style="background-color: #F09286 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C56E62 ;">#F09286</div>
+<div style="background-color: #F78AAB ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #CF6486 ;">#F78AAB</div>
+<div style="background-color: #F387CC ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #CE5EA8 ;">#F387CC</div>
+</div>
 
 ### Crear paletas divergentes
 
-Las paletas divergentes se utilizan cuando una variable expresa a dos polos, una una misma magnitud donde los extremos son separados por una brecha central.
+Las paletas divergentes se utilizan cuando una variable expresa dos polos; una una misma magnitud donde los extremos son separados por una brecha central.
 
 ``` r
-colorspace::diverging_hcl(n = 5, h = c(200, 300)) |> swatch()
+colores <- colorspace::diverging_hcl(n = 5, 
+                                     h = c(35, 200),
+                                     l = c(50, 90))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #B2630F ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #8F4E03 ;">#B2630F</div>
+<div style="background-color: #D7B4A4 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #AC8C7D ;">#D7B4A4</div>
+<div style="background-color: #E2E2E2 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B0B0B0 ;">#E2E2E2</div>
+<div style="background-color: #8FC4C9 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #689B9F ;">#8FC4C9</div>
+<div style="background-color: #00919D ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #04737C ;">#00919D</div>
+</div>
 
 ``` r
-colorspace::diverging_hcl(n = 7, h = c(700, 180)) |> swatch()
+colores <- colorspace::diverging_hcl(n = 6, h = c(320, 180))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-2.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #92007C ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #770165 ;">#92007C</div>
+<div style="background-color: #BB86AE ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #98678C ;">#BB86AE</div>
+<div style="background-color: #DBD0D8 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #AEA1AA ;">#DBD0D8</div>
+<div style="background-color: #C9D6D4 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #9AA8A6 ;">#C9D6D4</div>
+<div style="background-color: #4EA49A ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #448079 ;">#4EA49A</div>
+<div style="background-color: #006250 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #004F40 ;">#006250</div>
+</div>
 
 ``` r
-colorspace::diverging_hcl(n = 7, h = c(700, 180), c = 130, alpha = .7) |> swatch()
+colores <- colorspace::diverging_hcl(n = 6, 
+                                     h = c(360, 180), 
+                                     c = 30,
+                                     l = 60)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-3.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #B4848D ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #8F676F ;">#B4848D</div>
+<div style="background-color: #A28B8F ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #7F6E71 ;">#A28B8F</div>
+<div style="background-color: #948F90 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #747171 ;">#948F90</div>
+<div style="background-color: #8D9291 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #6F7372 ;">#8D9291</div>
+<div style="background-color: #7B9692 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #637673 ;">#7B9692</div>
+<div style="background-color: #5B9C94 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #4F7A74 ;">#5B9C94</div>
+</div>
+
+Como podemos ver, todas las paletas divergentes pasan por un tono blanco en el intermedio.
 
 ### Extender paletas de colores
 
@@ -777,29 +1111,115 @@ Si tienes un vector de colores y necesitas alargarlo para tener más colores bas
 ``` r
 # paleta de 5 colores
 colores <- c("#f4b43f", "#ec6a2d", "#cc3b7b", "#705ce6", "#668cf6")
-
-swatch(colores)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #F4B43F ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C38C05 ;">#f4b43f</div>
+<div style="background-color: #EC6A2D ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B75630 ;">#ec6a2d</div>
+<div style="background-color: #CC3B7B ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #9B3961 ;">#cc3b7b</div>
+<div style="background-color: #705CE6 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #5840D1 ;">#705ce6</div>
+<div style="background-color: #668CF6 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #486ECD ;">#668cf6</div>
+</div>
 
 ``` r
 # extender la paleta de 5 colores a 12 colores
-colorRampPalette(colores)(12) |> swatch()
+colores <- colorRampPalette(colores)(12)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-2.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #F4B43F ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C38C05 ;">#F4B43F</div>
+<div style="background-color: #F19938 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C2760A ;">#F19938</div>
+<div style="background-color: #EE7E31 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #BB632A ;">#EE7E31</div>
+<div style="background-color: #E96534 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B55233 ;">#E96534</div>
+<div style="background-color: #DD5450 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B1413D ;">#DD5450</div>
+<div style="background-color: #D1436C ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #9F3D57 ;">#D1436C</div>
+<div style="background-color: #BB418E ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #8E3B6E ;">#BB418E</div>
+<div style="background-color: #994DB5 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #754289 ;">#994DB5</div>
+<div style="background-color: #7859DC ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #6141BE ;">#7859DC</div>
+<div style="background-color: #6D69EA ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #524DD2 ;">#6D69EA</div>
+<div style="background-color: #697AF0 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #4C5ECE ;">#697AF0</div>
+<div style="background-color: #668CF6 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #486ECD ;">#668CF6</div>
+</div>
 
 También podemos usar esta función para crear con facilidad una paleta secuencial entre dos o más colores:
 
 ``` r
 colores <- c("#df65b2", "#fae55f")
-
-# extender la paleta a 8 colores
-colorRampPalette(colores)(8) |> swatch()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-26-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #DF65B2 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #BD4293 ;">#df65b2</div>
+<div style="background-color: #FAE55F ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C6B304 ;">#fae55f</div>
+</div>
+
+``` r
+# extender la paleta a 8 colores
+colores <- colorRampPalette(colores)(16)
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #DF65B2 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #BD4293 ;">#DF65B2</div>
+<div style="background-color: #E06DAC ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #BC4C8C ;">#E06DAC</div>
+<div style="background-color: #E276A6 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #BC5685 ;">#E276A6</div>
+<div style="background-color: #E47EA1 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #BC5D7F ;">#E47EA1</div>
+<div style="background-color: #E6879B ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #BD6579 ;">#E6879B</div>
+<div style="background-color: #E88F96 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #BE6C73 ;">#E88F96</div>
+<div style="background-color: #E99890 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #BE746C ;">#E99890</div>
+<div style="background-color: #EBA08B ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #BF7B66 ;">#EBA08B</div>
+<div style="background-color: #EDA985 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C0825F ;">#EDA985</div>
+<div style="background-color: #EFB180 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C28857 ;">#EFB180</div>
+<div style="background-color: #F1BA7A ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C3904B ;">#F1BA7A</div>
+<div style="background-color: #F2C275 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C49640 ;">#F2C275</div>
+<div style="background-color: #F4CB6F ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C59E2F ;">#F4CB6F</div>
+<div style="background-color: #F6D36A ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C6A417 ;">#F6D36A</div>
+<div style="background-color: #F8DC64 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C6AB00 ;">#F8DC64</div>
+<div style="background-color: #FAE55F ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C6B304 ;">#FAE55F</div>
+</div>
+
+### Usando las paletas de colores creadas
+
+Una vez que pensaste una paleta de colores, puedes usarla en cualquier gráfico de `{ggplot2}` usando `scale_color_manual()` o `scale_fill_manual()`, según corresponda, teniendo en consideración que tienes que crear la cantidad de colores que necesites según tus datos.
+
+En este ejemplo, usamos la paleta de colores fríos para un gráfico de dispersión de la base de datos `msleep` que viene con `{ggplot2}`:
+
+``` r
+library(ggplot2)
+library(dplyr)
+```
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+``` r
+# preparar datos de prueba
+datos <- msleep |> 
+  filter_out(is.na(vore))
+
+# ver cuántos valores únicos tiene la variable
+n_casos <- n_distinct(datos$vore)
+
+# crear una paleta con esa cantidad de colores
+colores <- colorspace::qualitative_hcl(n_casos, 
+                                       palette = "Cold", 
+                                       c = 80)
+
+# visualizar
+datos |> 
+  ggplot() +
+  aes(x = vore, y = sleep_total, color = vore) +
+  geom_jitter(size = 3, alpha = 0.7, width = 0.3) +
+  scale_color_manual(values = colores)
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-86-1.png" alt="" width="672" />
 
 ## Personalizar y crear colores
 
@@ -810,96 +1230,115 @@ Las funciones del paquete `{shades}` nos permitan obtener información detallada
 Por ejemplo, definamos un color, y luego obtengamos el valor de su tonalidad. Recordemos que la tonalidad de los colores se expresan como grados entre 0° y 360°.
 
 ``` r
-library(shades)
-
 color <- "#f65b74"
-
-swatch(color)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-27-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #F65B74 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #CF3955 ;">#f65b74</div>
+</div>
 
 ``` r
-hue(color)
+shades::hue(color)
 ```
 
     ## [1] 350.3226
 
-Obtenemos que, para el color definido, el valor de su tonalidad es 350. Podemos usar esta información para modificar levemente el mismo color y así obtener una variable del mismo color levemente más anaranjada.
+Obtenemos que, para el color definido, el valor de su tonalidad es 350.3226125. Podemos usar esta información para modificar levemente el mismo color y así obtener una variable del mismo color levemente más anaranjada.
 
 ``` r
-swatch(c(color, hue(color, 370)))
+color2 <- shades::hue(color, 370)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-28-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #F65B74 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #CF3955 ;">#f65b74</div>
+<div style="background-color: #F6755B ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #CB563B ;">#F6755B</div>
+</div>
 
 Podemos obtener mismos resultados utilizando el *delta* de la tonalidad del color; es decir, sumándole restándole una cantidad de grados a el valor de la tonalidad del color mismo:
 
 ``` r
-swatch(c(color, hue(color, delta(50))))
+color3 <- shades::hue(color, delta(50))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-29-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #F65B74 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #CF3955 ;">#f65b74</div>
+<div style="background-color: #F6C35B ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C7970A ;">#F6C35B</div>
+</div>
+
 Al usar la función `delta()`, lo que hacemos es pedirle que cambie la tonalidad del color en 50°, volviéndose en un tono amarillo.
 
 Podemos obtener un resultado similar usando `col_shift()` del paquete `{scales}`:
 
 ``` r
-library(scales)
-show_col(c(color, col_shift(color, 20)))
+color2 <- scales::col_shift(color, 20)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-30-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #F65B74 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #CF3955 ;">#f65b74</div>
+<div style="background-color: #E86D2B ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B25932FF ;">#E86D2BFF</div>
+</div>
 
-El **brillo** (*brighness*) va de cero a uno, mientras que la claridad (*lightness*) va de cero a 100.
+El **brillo** (*brightness*) va de cero a uno, mientras que la claridad (*lightness*) va de cero a 100.
 
 ``` r
-color |> brightness(0.7) |> swatch()
+color <- color |> brightness(0.7)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-31-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #B34254 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #833E48 ;">#B34254</div>
+</div>
 
 ``` r
-color |> lightness(delta(20)) |> swatch()
+color <- color |> lightness(delta(20))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-31-2.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #EE7786 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C55766 ;">#EE7786</div>
+</div>
 
 Con `{scales}`, la función `col_lighter()` realiza el mismo propósito:
 
 ``` r
-col_lighter(color, 20) |> show_col()
+color <- col_lighter(color, 20)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #F9D2D7 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #D69CA4 ;">#F9D2D7</div>
+</div>
 
 Por su parte, la **saturación** aumenta la intensidad del color.
 
 ``` r
-color |> saturation(delta(30)) |> swatch()
+color <- color |> saturation(delta(30))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-33-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #F90020 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C80017 ;">#F90020</div>
+</div>
 
 Podemos utilizar la función `delta()` para crear una sencilla paleta de colores a partir de un mismo color, aumentando y disminuyendo su intensidad (*chroma*):
 
 ``` r
-swatch(
-  c(color |> chroma(delta(30)), 
-    color,
-    color |> chroma(delta(-30)))
-)
+colores <- c(color |> chroma(delta(30)), 
+             color,
+             color |> chroma(delta(-30)))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-34-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #FF0000 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #CC0303 ;">#FF0000</div>
+<div style="background-color: #F90020 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C80017 ;">#F90020</div>
+<div style="background-color: #D94C3E ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #A6423A ;">#D94C3E</div>
+</div>
 
 En `{scales}`, la función es `col_saturate()`:
 
 ``` r
-col_saturate(color, -50) |> show_col()
+color <- col_saturate(color, -50)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-35-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #BB3E4E ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #883D45 ;">#BB3E4E</div>
+</div>
 
 Podemos combinar estas técnicas para crear una paleta de colores más compleja, construida toda a partir de un solo color al cual se le va aumentando o disminuyendo sus valores de claridad e intensidad. El beneficio de hacerlo de esta manera es que luego basta con cambiar el color principal para obtener una paleta de iguales características, pero basada en una tonalidad distinta.
 
@@ -911,14 +1350,22 @@ color_detalle = color_principal |> lightness(20) |> chroma(40)
 color_destacado = color_principal |> lightness(50) |> chroma(65)
 color_texto = color_principal |> lightness(80)
 
-swatch(c(color_principal,
-         color_fondo,
-         color_detalle,
-         color_destacado,
-         color_texto))
+colores <- c(color_principal,
+             color_fondo,
+             color_detalle,
+             color_destacado,
+             color_texto)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-36-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #4D4484 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #3E3768 ;">#4D4484</div>
+<div style="background-color: #221E39 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #1D1444 ;">#221E39</div>
+<div style="background-color: #2D2863 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #231C63 ;">#2D2863</div>
+<div style="background-color: #7467D7 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #5B4EBA ;">#7467D7</div>
+<div style="background-color: #CCBCFF ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #A48DE4 ;">#CCBCFF</div>
+</div>
+
+Ahora usamos el mismo código, pero cambiando el color de origen:
 
 ``` r
 color_principal = "#3170ac"
@@ -928,54 +1375,81 @@ color_detalle = color_principal |> lightness(20) |> chroma(40)
 color_destacado = color_principal |> lightness(50) |> chroma(65)
 color_texto = color_principal |> lightness(80)
 
-swatch(c(color_principal,
-         color_fondo,
-         color_detalle,
-         color_destacado,
-         color_texto))
+colores <- c(color_principal,
+             color_fondo,
+             color_detalle,
+             color_destacado,
+             color_texto)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-37-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #3170AC ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #325983 ;">#3170ac</div>
+<div style="background-color: #03233D ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #011E35 ;">#03233D</div>
+<div style="background-color: #00346C ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #012B5A ;">#00346C</div>
+<div style="background-color: #007EE6 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #2564AF ;">#007EE6</div>
+<div style="background-color: #96CAFF ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #679FD3 ;">#96CAFF</div>
+</div>
 
-Notar que el código es igual, y sólo se cambió el valor del `color_principal`. Esta estrategia es muy útil si se están produciendo visualizaciones o aplicaciones que ocupan una paleta de colores monocroma.
+Notar que el código es igual, y sólo se cambió el valor del `color_principal`. Esta estrategia es muy útil si se están produciendo visualizaciones o aplicaciones que ocupan una paleta de colores monocromática.
 
 ### Mezclar colores
 
-Las funciones `submix()` y `addmix()` del paquete {shades} facilitan el mezclado de colores sustraje ctivo y aditivo, respectivamente. A partir de dos colores, entrega la mezcla de ellos, abriendo muchas posibilidades para la experimentación y creación de nuevos colores:
+Las funciones `submix()` y `addmix()` del paquete {shades} facilitan el mezclado de colores sustraje ctivo y aditivo, respectivamente.
+
+A partir de dos colores, entrega la mezcla de ellos, abriendo muchas posibilidades para la experimentación y creación de nuevos colores.
+
+Los siguientes ejemplos muestran en el centro la mezcla que resulta de los otros dos colores:
 
 ``` r
-swatch(c("#70f1d5",
-         submix("#70f1d5", "#fae55f"),
-         "#fae55f"))
+colores <- c("#70f1d5",
+             submix("#70f1d5", "#fae55f"),
+             "#fae55f")
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-38-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #70F1D5 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #2FC0A5 ;">#70f1d5</div>
+<div style="background-color: #6BD735 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #56A832 ;">#6BD735</div>
+<div style="background-color: #FAE55F ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C6B304 ;">#fae55f</div>
+</div>
 
 ``` r
-swatch(c("#3377f7",
-         addmix("#3377f7", "#ec4e3c"),
-         "#ec4e3c"))
+colores <- c("#3377f7",
+             addmix("#3377f7", "#ec4e3c"),
+             "#ec4e3c")
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-39-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #3377F7 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #285EC5 ;">#3377f7</div>
+<div style="background-color: #FFC5FF ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #DE8BDE ;">#FFC5FF</div>
+<div style="background-color: #EC4E3C ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #BD3C2D ;">#ec4e3c</div>
+</div>
 
 ``` r
-swatch(c("#f9ce45",
-         submix("#f9ce45", "#77d671", amount = 0.5),
-         "#77d671"))
+colores <- c("#f9ce45",
+             submix("#f9ce45", "#77d671", amount = 0.5),
+             "#77d671")
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-40-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #F9CE45 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C6A000 ;">#f9ce45</div>
+<div style="background-color: #B5BA00 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #8E9205 ;">#B5BA00</div>
+<div style="background-color: #77D671 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #4FAA48 ;">#77d671</div>
+</div>
 
 El paquete `{scales}` también provee una función para mezclar colores. Se puede usar esta función para tomar una paleta de colores y volverla más coherente al aplicarle una pequeña fracción de otro color, en este caso naranja:
 
 ``` r
-col_mix(a = c("#77d671", "#70f1d5", "#fae55f", "#ff479c"),
-        b = "orange2", 
-        amount = 0.2) |> show_col()
+colores <- col_mix(a = c("#77d671", "#70f1d5", "#fae55f", "#ff479c"),
+                   b = "orange2", 
+                   amount = 0.2)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-41-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #8FCA5A ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #6F9F44 ;">#8FCA5A</div>
+<div style="background-color: #89E0AA ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #61B180 ;">#89E0AA</div>
+<div style="background-color: #F8D64C ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C5A701 ;">#F8D64C</div>
+<div style="background-color: #FC587D ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #D6325E ;">#FC587D</div>
+</div>
 
 ### Crear colores
 
@@ -983,42 +1457,39 @@ Puedes crear un color en R definiendo su tonalidad (*hue*), saturación (*satura
 
 ``` r
 color <- hsv(h = 0, s = 1, v = 1)
-swatch(color)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-42-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #FF0000 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #CC0303 ;">#FF0000</div>
+</div>
 
 Para guiarse, la siguiente gráfica muestra la tonalidad de colores entre `0` y `1`,
 
-    ## Warning: package 'purrr' was built under R version 4.4.3
-
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-43-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-123-1.png" alt="" width="672" />
 
 Siguiendo el gráfico anterior, vemos que el tono `0.8` corresponde al color morado, así que podemos crearlo con `hsv()`:
 
 ``` r
 color <- hsv(0.85, 1, 1)
-swatch(color)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-44-1.png" alt="" width="672" />
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #FF00E6 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #CB02B7 ;">#FF00E6</div>
+</div>
 
 Luego podemos modificar la saturación y brillo del color con los otros dos argumentos de `hsv()`:
 
 ``` r
 color <- hsv(0.82, 0.5, 0.4)
-swatch(color)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-45-1.png" alt="" width="672" />
-
-------------------------------------------------------------------------
-
-{{< etiqueta “visualización de datos” >}}
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #623366 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: white ; border: solid 1px #542558 ;">#623366</div>
+</div>
 
 ## Previsualizar colores
 
-A lo largo de esta publicación puede usar la función `swatch()` del paquete `{shades}` para previsualizar cualquier color o vector de colores. Una alternativa es la función `show_col()` de `{scales}`, que hace lo mismo.
+En R puedes usar la función `swatch()` del paquete `{shades}` para previsualizar cualquier color o vector de colores. Una alternativa es la función `show_col()` de `{scales}`, que hace lo mismo.
 
 ``` r
 library(shades)
@@ -1037,7 +1508,7 @@ colores <- c("#DEC5F2", "#9069C0", "#6E3A98")
 shades::swatch(colores)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-48-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-130-1.png" alt="" width="672" />
 
 {{< columna >}}
 
@@ -1045,27 +1516,26 @@ shades::swatch(colores)
 scales::show_col(colores)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-49-1.png" alt="" width="1120" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-131-1.png" alt="" width="384" />
 
 {{< fin_columnas >}}
 
+Así puedes experimentar visualizando de inmediato las mezclas de colores y paletas de colores que crees.
+
+<!---
 ## Avanzado
-
-`{colorspace}` incluye funciones para poder visualizar secuencias de colores en proyecciones del espacio de color HCL (*hue, chroma, luminance*), lo que nos permite contextualizar las paletas en un espacio perceptual del color basado en estos tres parámetros.
-
-``` r
+&#10;`{colorspace}` incluye funciones para poder visualizar secuencias de colores en proyecciones del espacio de color HCL (_hue, chroma, luminance_), lo que nos permite contextualizar las paletas en un espacio perceptual del color basado en estos tres parámetros.
+&#10;``` r
 colorspace::hclplot(sequential_hcl(7, h = 260, c = 80, l = c(35, 95), power = 1.5))
 ```
-
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-50-1.png" alt="" width="672" />
-
-``` r
+&#10;<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-132-1.png" alt="" width="672" />
+&#10;``` r
 colorspace::hclplot(sequential_hcl(7, h = c(260, 220), c = c(50, 75, 0), l = c(30, 95), power = 1))
 ```
+&#10;<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-132-2.png" alt="" width="672" />
+--->
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-50-2.png" alt="" width="672" />
-
-------------------------------------------------------------------------
+{{< etiqueta “visualización de datos” >}}
 
 ## Fuentes y recursos
 
