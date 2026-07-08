@@ -21,11 +21,11 @@ blogdown::new_post(
 
 # crear un post tutorial
 blogdown::new_post(
-  title = "`{rutera}`: un paquete de R para limpiar y procesar RUTs chilenos",
-  file = "blog/rutera/index.md",
+  title = "Mapas de las regiones de Chile por macrozonas",
+  file = "blog/mapa_chile_macrozonas/index.qmd",
   author = "Bastián Olea Herrera",
-  tags = c("inteligencia artificial"),
-  categories = c("Paquetes")
+  tags = c("mapas"),
+  categories = c()
 )
 
 # draft: true
@@ -55,16 +55,19 @@ blogdown::new_post(
 # tutorial mapas: poner puntos a partir de tablas de datos en centroides
 
 # ideas ----
+# mapas de regiones de chile para que aparezcan en google, por clasificación con {territorial}
+# mapas de chile por macrozonas, todos juntos, con {territorial}
+# generar html con R (usar ejemplos del post de colores)
 # agregar usos de {territorial} a posts
+# hacer que R te pregunte cosas
+# How do I replace NA values with zeros in an R dataframe?
+
 # tip shiny actualizar css
 # {futurize} https://www.jottr.org/2026/01/22/futurize-0.1.0/
-# hacer que R te pregunte cosas
 # mapas de chile con comunas pero sin líneas en la costa
 # pildoritas en shiny y en ggiraph
-# subir apps Shiny a posit connect
 # tablas gt con flechitas
 # datos de género en chile (mmeg, subcomisión, datos.gob, red chilena, ibg)
-# How do I replace NA values with zeros in an R dataframe?
 # https://www.linkedin.com/feed/update/urn:li:activity:7405241344316841984?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB9if5MBe0keh4VrsmJOFbZxmIK9T9GSkYM
 "content/blog/dt_tablas/index.qmd"
 "https://cran.r-project.org/web/packages/janitor/vignettes/tabyls.html" # plagiar

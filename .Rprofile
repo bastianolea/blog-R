@@ -9,15 +9,19 @@ if (file.exists("~/.Rprofile")) {
 
 
 # abrir script al iniciar RStudio
-setHook("rstudio.sessionInit", function(newSession) {
-  if (newSession)
-    rstudioapi::filesPaneNavigate(here::here("content/blog/"))
-  rstudioapi::documentOpen("_instrucciones.R")
-}, action = "append")
+setHook(
+  "rstudio.sessionInit",
+  function(newSession) {
+    if (newSession) {
+      rstudioapi::filesPaneNavigate(here::here("content/blog/"))
+    }
+    rstudioapi::documentOpen("_instrucciones.R")
+  },
+  action = "append"
+)
 
 # funciones
 source("R/funciones.R")
-
 
 
 # Now set options to customize the behavior of blogdown for this project. Below
@@ -33,4 +37,4 @@ options(
 )
 
 # fix Hugo version
-options(blogdown.hugo.version = "0.136.5")
+# options(blogdown.hugo.version = "0.136.5")
