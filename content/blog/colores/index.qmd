@@ -17,6 +17,15 @@ tags:
 execute:
   message: false
   warning: false
+links:
+  - icon: registered
+    icon_pack: fas
+    name: colorspace
+    url: https://colorspace.r-forge.r-project.org/articles/colorspace.html
+  - icon: registered
+    icon_pack: fas
+    name: shades
+    url: https://github.com/jonclayden/shades
 excerpt: "El uso del color es clave para comunicar, y el ecosistema de R tiene varios trucos convenientes para ayudarnos a usar el color de mejores formas. En este post veremos consejos y trucos para trabajar con colores: incluyendo previsualizarlos, mezclarlos, modificarlos y usarlos como paletas en gráficos."
 ---
 
@@ -35,7 +44,8 @@ theme_set(
   theme_classic(
     paper = "#EAD1FA",
     accent = "#9069C0",
-    ink = "#553A74"
+    ink = "#553A74",
+    base_family = "Atkinson Hyperlegible"
   ) +
     theme(
       legend.title = element_blank(),
@@ -100,9 +110,26 @@ Aquí puedes ver una lista de los **principales colores de R** y copiar sus nomb
 ```{r cuadritos}
 #| output: asis
 #| echo: false
+# toma todos los colores con nombres desde `colors()` y los ordena por tono, intensidad y brillo, y genera html con todos los colores en pildoritas
 
 colores <- colors(distinct = T) |> 
   stringr::str_subset("gray", negate = T)
+
+library(dplyr)
+
+tabla_colores <- tibble(color = colores) |> 
+  mutate(hex = gplots::col2hex(color)) |> 
+  mutate(tono = shades::hue(color)) |> 
+  mutate(brillo = shades::lightness(color)) |> 
+  mutate(croma = shades::chroma(color)) |> 
+  # mutate(contraste = colorspace::contrast_ratio(color, "black")) |> 
+  mutate(across(where(is.numeric), ~round(.x, 0) |> signif(2))) |> 
+  arrange(desc(tono), desc(croma), desc(brillo)) |>
+  filter(!color %in% c("black", "white"))
+
+colores <- tabla_colores$color
+
+colores <- c("white", colores, "grey", "black")
 
 estilo <- "color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9;"
 
@@ -143,7 +170,58 @@ colors(distinct = T) |>
 
 {{< /detalles >}}
 
-Para usarlos, simplemente usa su nombre:
+{{< detalles "Ver código para generar los cuadritos con colores que aparecen arriba" >}}
+
+```r
+#| output: asis
+# toma todos los colores con nombres desde `colors()` y los ordena por tono, intensidad y brillo, y genera html con todos los colores en pildoritas
+
+colores <- colors(distinct = T) |> 
+  stringr::str_subset("gray", negate = T)
+
+library(dplyr)
+
+tabla_colores <- tibble(color = colores) |> 
+  mutate(hex = gplots::col2hex(color)) |> 
+  mutate(tono = shades::hue(color)) |> 
+  mutate(brillo = shades::lightness(color)) |> 
+  mutate(croma = shades::chroma(color)) |> 
+  # mutate(contraste = colorspace::contrast_ratio(color, "black")) |> 
+  mutate(across(where(is.numeric), ~round(.x, 0) |> signif(2))) |> 
+  arrange(desc(tono), desc(croma), desc(brillo)) |>
+  filter(!color %in% c("black", "white"))
+
+colores <- tabla_colores$color
+
+colores <- c("white", colores, "grey", "black")
+
+estilo <- "color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9;"
+
+cuadritos <- purrr::map(
+  colores,
+  \(color) {
+    shiny::span(
+      color, 
+      style = paste("background-color:", gplots::col2hex(color), ";",
+                    estilo,
+                    paste("color:", 
+                          ifelse(
+                            colorspace::contrast_ratio(color, "black") < 4, 
+                            "white", "black"),
+                          ";"),
+                    paste("border: solid 1px", colorspace::darken(color, 0.3), ";")
+      )
+    )
+  })
+
+shiny::tagList(cuadritos)
+```
+
+{{< /detalles >}}
+
+<br>
+
+Para usar colores en R, simplemente usa su nombre en las funciones donde se puedan usar colores:
 
 ```{r}
 colores <- c("indianred", "steelblue", "grey60")
@@ -154,7 +232,7 @@ colores <- c("indianred", "steelblue", "grey60")
 paleta(colores)
 ```
 
-Casi todos estos colores pueden ser modificados agregando un número del 1 al 4 al final del nombre; por ejemplo, `mediumorchid` puede hacerse levemente más claro o más oscuro:
+Casi todos estos colores pueden ser modificados agregando un número del 1 al 4 al final del nombre; por ejemplo, el color `mediumorchid` puede hacerse levemente más claro o más oscuro:
 
 ```{r}
 escala <- c("mediumorchid", "mediumorchid1", "mediumorchid2", "mediumorchid3", "mediumorchid4")
@@ -186,6 +264,52 @@ colores <- c("#DEC5F2", "#9069C0", "#6E3A98")
 ```{r echo=FALSE}
 paleta(colores)
 ```
+
+{{< detalles "Ver código para generar estos círculos con colores" >}}
+
+```r
+paleta <- function(colores) {
+  
+  # colores <- colors(distinct = T) |> 
+  #   stringr::str_subset("gray", negate = T)
+  
+  tamaño <- "width: 90px; height: 90px; font-size: 12px;"
+  forma <- "border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all;"
+  centrar <- "align-items: center; justify-content: center; text-align: center;"
+  
+  estilo <- paste(tamaño, forma, centrar)
+  
+  cuadritos <- purrr::map(
+    colores,
+    \(color) {
+      shiny::div(
+        color, 
+        style = paste(
+          paste("background-color:", gplots::col2hex(color), ";"),
+          estilo,
+          paste("color:", 
+                ifelse(
+                  colorspace::contrast_ratio(color, "black") < 4, 
+                  "white", "black"), ";",
+                paste("border: solid 1px", colorspace::darken(color, 0.2), ";")
+          )
+        ),
+      )
+    })
+  
+  
+  output <- shiny::div(style = centrar,
+                       shiny::tagList(cuadritos)
+  ) 
+  
+  return(output)
+}
+
+# usar
+paleta(c("#DEC5F2", "#9069C0", "#6E3A98"))
+```
+
+{{< /detalles >}}
 
 
 ## Paletas de colores
@@ -900,7 +1024,7 @@ Notar que el código es igual, y sólo se cambió el valor del `color_principal`
 
 ### Mezclar colores
 
-Las funciones `submix()` y `addmix()` del paquete {shades} facilitan el mezclado de colores sustraje ctivo y aditivo, respectivamente. 
+Las funciones `submix()` y `addmix()` del paquete `{shades}` facilitan el mezclado de colores sustraje ctivo y aditivo, respectivamente. 
 
 A partir de dos colores, entrega la mezcla de ellos, abriendo muchas posibilidades para la experimentación y creación de nuevos colores.
 
@@ -937,12 +1061,23 @@ colores <- c("#f9ce45",
 paleta(colores)
 ```
 
-El paquete `{scales}` también provee una función para mezclar colores. Se puede usar esta función para tomar una paleta de colores y volverla más coherente al aplicarle una pequeña fracción de otro color, en este caso naranja:
+### Aplicar una tonalidad a una paleta de colores
+
+El paquete `{scales}` también provee una función para **mezclar** colores: `col_mix()`. Cualquiera de estas funciones, ya sea `scales:col_mix()` o `shades::addmix()` y `shades::submix()` pueden usarse para tomar una paleta de colores y volverla más **coherente** al aplicarle una pequeña fracción de otro color. Veamos primero la paleta:
+
+```{r echo=FALSE}
+paleta(c("#77d671", "#70f1d5", "#fae55f", "#ff479c"))
+```
+
+Ahora agreguémosle un 20% de naranjo a todos sus colores:
+
 ```{r}
 colores <- col_mix(a = c("#77d671", "#70f1d5", "#fae55f", "#ff479c"),
                    b = "orange2", 
                    amount = 0.2)
 ```
+
+Ahora vemos que la paleta mantiene la diferencia entre sus colores, pero ahora todos se perciben más coherentes al compartir una tonalidad común:
 
 ```{r echo=FALSE}
 paleta(colores)
@@ -1000,6 +1135,36 @@ tabla |>
   theme(axis.text.x = element_text(margin = margin(t = 1, b = 6)))
 ```
 
+{{< detalles "Ver código de la secuencia de colores y el gráfico" >}}
+
+```r
+library(purrr)
+library(dplyr)
+library(ggplot2)
+
+secuencia <- seq(0.0, 1.0, 0.1)
+
+colores <- map(secuencia,
+~hsv(h = .x, s = 1, v = 1))
+
+tabla <- tibble(secuencia,
+colores = unlist(colores))
+
+tabla |> 
+ggplot() +
+aes(x = secuencia, y = 1,
+fill = colores) +
+geom_tile(color = "#EAD1FA") +
+scale_fill_identity() +
+scale_x_continuous(breaks = secuencia) +
+theme_void(
+paper = "#EAD1FA",
+accent = "#9069C0",
+ink = "#553A74") +
+theme(axis.text.x = element_text(margin = margin(t = 1, b = 6)))
+```
+
+{{< /detalles >}}
 
 Siguiendo el gráfico anterior, vemos que el tono `0.8` corresponde al color morado, así que podemos crearlo con `hsv()`:
 
@@ -1057,29 +1222,168 @@ scales::show_col(colores)
 
 Así puedes experimentar visualizando de inmediato las mezclas de colores y paletas de colores que crees.
 
-<!---
-## Avanzado
-
-`{colorspace}` incluye funciones para poder visualizar secuencias de colores en proyecciones del espacio de color HCL (_hue, chroma, luminance_), lo que nos permite contextualizar las paletas en un espacio perceptual del color basado en estos tres parámetros.
-```{r}
-#| fig-height: 5
-colorspace::hclplot(sequential_hcl(7, h = 260, c = 80, l = c(35, 95), power = 1.5))
-
-colorspace::hclplot(sequential_hcl(7, h = c(260, 220), c = c(50, 75, 0), l = c(30, 95), power = 1))
-```
---->
-
 
 {{< etiqueta "visualización de datos" >}}
 
+
+## Avanzado
+
+### Analizar colores
+
+Si tenemos un conjunto de colores, podemos analizar sus propiedades, como tono (_hue_), brillo, e intensidad del color (_chroma_).
+
+```{r}
+colores <- colors()
+```
+
+```{r}
+library(dplyr)
+
+# crear una tabla con el vector de colores
+tabla <- tibble(color = colores)
+```
+
+Con las funciones `hue()`, `lightness()` y `chroma()` del paquete `{shades}` podemos calcular el tono, brillo e intensidad de cada color:
+
+```{r}
+library(shades)
+
+tabla <- tabla |> 
+  mutate(tono = shades::hue(color)) |> 
+  mutate(brillo = shades::lightness(color)) |> 
+  mutate(croma = shades::chroma(color)) |> 
+  # redondear los valores
+  mutate(across(where(is.numeric), ~round(.x, 0))) |> 
+  # ordenar los colores
+  arrange(desc(tono), desc(croma), desc(brillo))
+```
+
+Así obtenemos una tabla con las características de los colores, con lo que podemos ordenarlos por tono, desde menos a más claros, o realizar otras operaciones.
+
+```{r}
+tabla
+```
+
+También podemos visualizar esta información con la función `specplot()` de `{colorspace}`:
+
+```{r}
+colores <- colorspace::sequential_hcl(5, h = 290, c = 70)
+
+colorspace::specplot(colores)
+```
+
+En el gráfico anterior vemos que los colores de la paleta no cambian de tono (_hue_), pero sí aumentan en brillo (_luminance_) y bajan en intensidad (_chroma_). Usualmente se recomienda que las paletas tengan también un cambio de tono, lo que ayuda con la accesibilidad. Así que podemos hacer un cambio en la paleta para mejorarla un poco, indicando que queretmos que el tono (argumento `h`) cambie:
+
+```{r}
+colores <- colorspace::sequential_hcl(5, h = c(290, 350), c = 70)
+```
+
+```{r echo=FALSE}
+paleta(colores)
+```
+
+
+### Analizar el contraste de colores
+
+Para mejorar la visibilidad y accesibilidad de tus visualizaciones de datos, puedes calcular el valor de contraste que tienen tus colores en comparación con otro. Por ejemplo, medir el contraste que tendría un texto negro encima de los colores de tu paleta:
+
+```{r}
+# paleta de morados de distinta intensidad
+colores <- colorspace::sequential_hcl(5, h = 290, c = 70)
+```
+
+```{r}
+#| fig-height: 2.5
+colorspace::contrast_ratio(colores, "black", plot = TRUE)
+```
+
+```{r}
+#| fig-height: 2.5
+colorspace::contrast_ratio(colores, "white", plot = TRUE)
+```
+
+La función `contrast_ratio()` del paquete `{colorspace}` retorna números que representan el contraste, donde un valor menor significa menor contraste, y por lo tanto menor visibilidad del color en comparación con el color de referencia.
+
+Esto mismo se puede hacer con páginas como [WebAIM](https://webaim.org/resources/contrastchecker/), pero la gracia de hacerlo con R es que podemos usar la información del contraste para tomar decisiones: por ejemplo, decidir automáticamente si un texto debe ser blanco o negro dependiendo del color que le corresponde:
+
+```{r}
+#| fig-height: 1
+
+library(dplyr)
+library(ggplot2)
+library(colorspace)
+
+# paleta de morados de distinta intensidad
+colores <- colorspace::sequential_hcl(5, h = 290, c = 70)
+
+# poner colores en tabla
+tabla <- tibble(colores = colores,
+                secuencia = seq_along(colores)) |> 
+  # calcular contraste de cada color respecto al color negro
+  mutate(contraste = contrast_ratio(colores, "black"))
+
+# gráfico simple para mostrar los colores
+tabla |> 
+  ggplot() +
+  # gráfico de mosaicos
+  aes(x = secuencia, y = 1,
+      fill = colores) +
+  geom_tile(color = "#EAD1FA") +
+  # texto con nombre de colores
+  geom_text(
+    aes(label = colores),
+    # definir color del texto según el contraste
+    color = ifelse(tabla$contraste > 7, "black", "white")
+    ) +
+  # aplicar el color que viene en la columna usada para el `fill`
+  scale_fill_identity() +
+  theme_void(
+    base_family = "Atkinson Hyperlegible",
+    paper = "#EAD1FA",
+    accent = "#9069C0",
+    ink = "#553A74")
+```
+
+Ahora el color del texto se decide dependiendo del contraste del color de fondo!
+
+### Convertir colores a código hecadecimal
+
+Si tenemos colores definidos como nombres, podemos convertirlos a su valor hexadecimal con la función `col2hex()` [del paquete `{gplots}`:](https://talgalili.github.io/gplots/)
+
+```{r}
+color <- "mediumpurple"
+
+gplots::col2hex(color)
+```
+
+### Visualizar paletas en espacios de color
+
+`{colorspace}` incluye funciones para poder visualizar secuencias de colores en proyecciones del espacio de color HCL (_hue, chroma, luminance_), lo que nos permite contextualizar las paletas en un espacio perceptual del color basado en estos tres parámetros.
+
+```{r}
+#| fig-height: 5
+
+colores <- sequential_hcl(7, h = 280, c = 80, l = c(35, 95))
+
+colorspace::hclplot(colores)
+```
+
+```{r}
+#| fig-height: 5
+
+colores <- sequential_hcl(7, h = c(280, 220), c = c(50, 70, 20), l = c(30, 90), power = 1.1)
+
+colorspace::hclplot(colores)
+```
+
+
+{{< etiqueta "gráficos" >}}
+
 ## Fuentes y recursos
 
-- https://github.com/EmilHvitfeldt/r-color-palettes
-- https://r-graph-gallery.com/ggplot2-color.html
-- https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/
-- https://jbengler.github.io/tidyplots/articles/Color-schemes.html
-- https://emilhvitfeldt.com/post/2019-10-01-manipulating-colors-with-prismatic/index.html
-
-
+- [R Color Palettes](https://emilhvitfeldt.github.io/r-color-palettes/), lista de paletas discretas por Emil Hvitfeldt
+- [Dealing with colors in ggplot2](https://r-graph-gallery.com/ggplot2-color.html)
+- [Top R Color Palettes to Know for Great Data Visualization](https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/)
+- [Paletas de colores usadas en el paquete `{tidyplots}`](https://jbengler.github.io/tidyplots/articles/Color-schemes.html)
 
 {{< cafecito >}}

@@ -1,0 +1,50 @@
+---
+title: "prueba_3"
+format: html
+---
+
+
+```{r cuadritos}
+#| output: asis
+#| echo: false
+
+colores <- colors(distinct = T) |> 
+  stringr::str_subset("gray", negate = T)
+
+library(dplyr)
+
+tabla_colores <- tibble(color = colores) |> 
+  mutate(hex = gplots::col2hex(color)) |> 
+  mutate(tono = shades::hue(color)) |> 
+  mutate(brillo = shades::lightness(color)) |> 
+  mutate(croma = shades::chroma(color)) |> 
+  mutate(contraste = colorspace::contrast_ratio(color, "black")) |> 
+  mutate(across(where(is.numeric), ~round(.x, 0) |> signif(2))) |> 
+  arrange(desc(tono), desc(croma), desc(contraste)) |>
+  filter(!color %in% c("black", "white"))
+
+colores <- tabla_colores$color
+
+colores <- c("white", colores, "grey", "black")
+
+estilo <- "color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9;"
+
+cuadritos <- purrr::map(
+  colores,
+  \(color) {
+    shiny::span(
+      color, 
+      style = paste("background-color:", gplots::col2hex(color), ";",
+                    estilo,
+                    paste("color:", 
+                          ifelse(
+                            colorspace::contrast_ratio(color, "black") < 4, 
+                            "white", "black"),
+                          ";"),
+                    paste("border: solid 1px", colorspace::darken(color, 0.3), ";")
+      )
+    )
+  })
+
+shiny::tagList(cuadritos)
+```
