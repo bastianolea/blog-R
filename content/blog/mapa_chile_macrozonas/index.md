@@ -1,8 +1,8 @@
 ---
 title: Mapas de las regiones de Chile según macrozonas
 author: Bastián Olea Herrera
-draft: true
-date: '2026-07-08'
+draft: false
+date: '2026-07-09'
 format:
   hugo-md:
     output-file: index

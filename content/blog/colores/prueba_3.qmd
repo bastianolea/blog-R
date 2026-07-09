@@ -9,7 +9,8 @@ format: html
 #| echo: false
 
 colores <- colors(distinct = T) |> 
-  stringr::str_subset("gray", negate = T)
+  stringr::str_subset("gray", negate = T) |> 
+  stringr::str_subset("4", negate = T)
 
 library(dplyr)
 

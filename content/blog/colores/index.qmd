@@ -113,7 +113,8 @@ Aquí puedes ver una lista de los **principales colores de R** y copiar sus nomb
 # toma todos los colores con nombres desde `colors()` y los ordena por tono, intensidad y brillo, y genera html con todos los colores en pildoritas
 
 colores <- colors(distinct = T) |> 
-  stringr::str_subset("gray", negate = T)
+  stringr::str_subset("gray", negate = T) |> 
+  stringr::str_subset("4", negate = T)
 
 library(dplyr)
 
@@ -177,7 +178,8 @@ colors(distinct = T) |>
 # toma todos los colores con nombres desde `colors()` y los ordena por tono, intensidad y brillo, y genera html con todos los colores en pildoritas
 
 colores <- colors(distinct = T) |> 
-  stringr::str_subset("gray", negate = T)
+  stringr::str_subset("gray", negate = T) |> 
+  stringr::str_subset("4", negate = T)
 
 library(dplyr)
 
