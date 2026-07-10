@@ -41,10 +41,10 @@ blogdown::new_post(
 #     url: https://gist.github.com/bastianolea/8ea85fa8169b302d2144e05434668c89
 
 ## borradores ----
-"content/blog/2026-06-26/"
+"content/blog/desarrollo_paquetes/index.md"
+"content/blog/mapas_bivariados/index.qmd"
 "content/blog/arrow/index.qmd" # !
 "content/blog/ggplot_densidad_puntos/index.qmd"
-"content/blog/mapas_bivariados/index.qmd"
 "content/blog/unpivotr/index.qmd"
 "content/blog/ggtext/index.qmd"
 "content/blog/ggplot_numeros/index.qmd"
@@ -55,6 +55,7 @@ blogdown::new_post(
 # tutorial mapas: poner puntos a partir de tablas de datos en centroides
 
 # ideas ----
+# mejorar: "https://bastianolea.rbind.io/blog/validacion_avanzada/"
 # mapas de regiones de chile para que aparezcan en google, por clasificación con {territorial}
 # mapas de chile por macrozonas, todos juntos, con {territorial}
 # generar html con R (usar ejemplos del post de colores)

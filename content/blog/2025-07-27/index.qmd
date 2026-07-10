@@ -1,5 +1,5 @@
 ---
-title: Descargar todos los archivos de la página web del Censo 2024 con {rvest}
+title: Descargar todos los archivos de la página web del Censo 2024 con `{rvest}`
 author: Bastián Olea Herrera
 date: '2025-07-27'
 slug: []

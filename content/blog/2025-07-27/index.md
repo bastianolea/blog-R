@@ -30,8 +30,6 @@ Veamos un mini ejemplo de automatización de tareas con R: los resultados del Ce
 
 En un script de R, con `{rvest}` extraemos todos los enlaces del sitio, y con `{purrr}` descargamos todos los archivos de una 🚀
 
-{{< relacionada "/blog/webscraping_rvest/" >}}
-
 Beneficios? Muchos!
 - No tendrás que apretar 20 veces un botón como un perdedor/a 😎
 - Obtendrás una fuente reproducible de los datos originales 🤓
@@ -40,7 +38,7 @@ Beneficios? Muchos!
 - Creaste un proceso que puedes aplicar a otros sitios!
 - Fastidiaste a la gente del INE descargando 20 archivos en menos de 1 segundo 😣
 
-Lo primero obtener el código fuente de la página y extraer los en enlaces que están en cada botón con [web scraping](/blog/web_scraping/). Puedes aprender cómo extraer elementos de una página web con [este tutorial de web scraping](/blog/webscraping_rvest/) o viendo [este taller donde lo explico en un video](https://bastianolea.rbind.io/blog/taller_corrupcion_cesi/).
+Lo primero obtener el código fuente de la página y extraer los en enlaces que están en cada botón con [web scraping](https://bastianolea.rbind.io/blog/web_scraping/). Puedes aprender cómo extraer elementos de una página web con [este tutorial de web scraping](https://bastianolea.rbind.io/blog/webscraping_rvest/) o viendo [este taller donde lo explico en un video](https://bastianolea.rbind.io/blog/taller_corrupcion_cesi/).
 
 ``` r
 enlace <- "https://censo2024.ine.gob.cl/estadisticas/"
@@ -132,5 +130,3 @@ seq_along(enlaces) |>
 Con este breve script obtuviste un proceso que te permite descargar automáticamente todos los datos, lo cual es una forma certera de crear una trazabilidad y una fuente real de los datos, además de darte un proceso que puedes volver a utilizar en otros sitios para optimizar tu trabajo!
 
 Puedes encontrar el código de este ejemplo (y los datos) en [este repositorio sobre extracción y limpieza de los datos del Censo 2024.](https://github.com/bastianolea/censo_2024)
-
-{{< etiqueta "web scraping" >}}
