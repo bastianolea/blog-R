@@ -1,9 +1,8 @@
 ---
-title: Mapas y visualización de datos geoespaciales en R con {sf}
+title: Mapas y visualización de datos geoespaciales en R con `{sf}`
 author: Bastián Olea Herrera
 date: '2026-04-29'
-draft: false
-freeze: false
+freeze: true
 slug: []
 categories:
   - tutoriales
@@ -50,13 +49,6 @@ Y cargarlo junto a `{dplyr}` para empezar a trabajar con datos geoespaciales.
 
 ``` r
 library(sf)
-```
-
-```
-## Warning: package 'sf' was built under R version 4.4.3
-```
-
-``` r
 library(dplyr)
 ```
 
@@ -268,7 +260,7 @@ mapa |>
           linewidth = 0.1)
 ```
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/mapa_basico-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/mapa_basico-1.png" alt="" width="672" />
 
 {{< aviso "Si necesitas aprender lo básico de `{ggplot2}` para visualización de datos, [revisa este completo tutorial](/blog/r_introduccion/tutorial_visualizacion_ggplot/)." >}}
 
@@ -319,7 +311,7 @@ mapa_centroide <- mapa |>
 ## 3857             Córdoba POINT (-63.76859 -32.07319)
 ```
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/mapa_centroide-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/mapa_centroide-1.png" alt="" width="672" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -386,7 +378,7 @@ mapa_centroide_coordenadas <- mapa_centroide |>
 ```
 
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/barras_latitud-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/barras_latitud-1.png" alt="" width="672" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -425,7 +417,7 @@ mapa_buffer <- mapa |>
                             max_cells = 10000))
 ```
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/mapa_buffer-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/mapa_buffer-1.png" alt="" width="672" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -471,7 +463,7 @@ rectangulo <- caja |>
   st_as_sfc(crs = st_crs(mapa))
 ```
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-18-1.png" alt="" width="672" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -512,7 +504,7 @@ punto <- coordenadas |>
 ```
 
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-21-1.png" alt="" width="672" />
 
 {{< detalles "Ver código del gráfico">}}
 
@@ -548,7 +540,7 @@ puntos <- coordenadas |>
            crs = st_crs(mapa))
 ```
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-24-1.png" alt="" width="672" />
 {{< detalles "Ver código del gráfico">}}
 
 ``` r
@@ -598,7 +590,7 @@ cuadrado <- punto |>
 ```
 
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-27-1.png" alt="" width="672" />
 
 {{< detalles "Ver código del gráfico">}}
 
@@ -621,7 +613,7 @@ ggplot() +
 
 Paso a paso, el proceso de crear el punto, agrandarlo, y formarlo en un cuadrado se vería así:
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-29-1.png" alt="" width="672" />
 
 {{< detalles "Ver código del proceso y del gráfico">}}
 
@@ -677,7 +669,7 @@ rectangulo <- puntos |>
   st_as_sfc(crs = st_crs(mapa))
 ```
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-32-1.png" alt="" width="672" />
 {{< detalles "Ver código del gráfico">}}
 
 ``` r
@@ -720,7 +712,7 @@ poligono <- puntos |>
   st_cast("POLYGON")
 ```
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/poligonos_1-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/poligonos_1-1.png" alt="" width="672" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -769,7 +761,7 @@ poligono <- puntos |>
   st_cast("POLYGON")
 ```
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/poligonos_2-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/poligonos_2-1.png" alt="" width="672" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -828,7 +820,7 @@ chile_recortado <- chile |>
 
 En este caso, hacemos un recorte para obtener el territorio continental de Chile (excluyendo las islas Juan Fernández, Isla de Pascua y Antártica)
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-40-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-40-1.png" alt="" width="672" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -852,7 +844,7 @@ mapa_completo + mapa_recortado
 
 También podemos hacer recortes que pasen por encima de los polígonos, eliminando la geografía que quede fuera del recorte. En este caso hacemos un recorte más cercano a la zona costera de Temuco y Valdivia:
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-42-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-42-1.png" alt="" width="672" />
 
 
 #### Recortar un mapa a partir de otro mapa
@@ -878,7 +870,7 @@ regiones <- chile |>
   filter(region %in% c("O'Higgins", "Maule", "Ñuble", "Biobío", "La Araucanía", "Los Ríos"))
 ```
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-44-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-44-1.png" alt="" width="672" />
 
 
 {{< detalles "Ver código del gráfico" >}}
@@ -902,7 +894,7 @@ region <- regiones |>
   filter(region == "Ñuble")
 ```
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-47-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-47-1.png" alt="" width="672" />
 
 
 {{< detalles "Ver código del gráfico" >}}
@@ -931,7 +923,7 @@ fondo_region <- regiones |>
 ## all geometries
 ```
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-50-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-50-1.png" alt="" width="672" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -947,7 +939,7 @@ fondo_region |>
 
 Obtenemos el mapa del país recortado a la caja del mapa regional. Luego podemos combinar ambos para una visualización de un mapa regional que tenga contexto de sus alrededores:
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-52-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-52-1.png" alt="" width="672" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -980,7 +972,7 @@ fondo_region <- regiones |>
 ## all geometries
 ```
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-55-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-55-1.png" alt="" width="672" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -995,7 +987,7 @@ fondo_region |>
 {{< /detalles >}}
 
 Ahora combinamos ambas capas, mapa de fondo recortado, y mapa principal:
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-57-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-57-1.png" alt="" width="672" />
 
 
 {{< detalles "Ver código del gráfico" >}}
@@ -1039,7 +1031,7 @@ puntos <- tribble(~nombre, ~lon,     ~lat,
 
 Así se ven los puntitos por sí solos: 
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-60-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-60-1.png" alt="" width="672" />
 
 Ahora recortemos el mapa de Chile para enfocarnos en la zona donde están los puntos. [Creamos un _buffer_](#calcular-buffer) alrededor de los puntos para agrandarlos con `st_buffer()`, y luego [calculamos la caja que los contiene](#calcular-caja-de-un-polígono) con `st_bbox()` para usarla como recorte.
 
@@ -1061,7 +1053,7 @@ chile_recorte <- chile |>
   st_crop(caja_puntos)
 ```
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-63-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-63-1.png" alt="" width="672" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -1116,7 +1108,7 @@ Lo que sumemos o restemos a las coordenadas depende del sistema de coordenadas d
 
 En el gráfico vemos en color más tenue las posiciones originales de los puntos que fueron modificados.
 
-<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-67-1.png" width="672" />
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-67-1.png" alt="" width="672" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -1344,6 +1336,10 @@ https://dominicroye.github.io/blog/inserted-map/
 {{< imagen "sf_cheatsheet_1.jpeg" >}}
 {{< imagen "sf_cheatsheet_2.jpeg" >}}
 </div>
+
+#### OpenStreetMap con R
+
+[Revisa esta hoja de apuntes](https://zenodo.org/records/20842874) por Louis Laurian y Timothée Giraud.
 
 
 ### Libros

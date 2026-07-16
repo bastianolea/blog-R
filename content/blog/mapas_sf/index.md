@@ -1,9 +1,8 @@
 ---
-title: Mapas y visualización de datos geoespaciales en R con {sf}
+title: Mapas y visualización de datos geoespaciales en R con `{sf}`
 author: Bastián Olea Herrera
 date: '2026-04-29'
-draft: false
-freeze: false
+freeze: true
 slug: []
 categories:
   - tutoriales
@@ -15,8 +14,8 @@ format:
     output-file: index
     output-ext: md
 links:
-  - icon: r-project
-    icon_pack: fab
+  - icon: registered
+    icon_pack: fas
     name: SF
     url: https://r-spatial.github.io/sf/
 execute:
@@ -1363,13 +1362,13 @@ https://dominicroye.github.io/blog/inserted-map/
 {{< imagen "sf_cheatsheet_1.jpeg" >}}
 {{< imagen "sf_cheatsheet_2.jpeg" >}}
 
+#### OpenStreetMap con R
+
+[Revisa esta hoja de apuntes](https://zenodo.org/records/20842874) por Louis Laurian y Timothée Giraud.
+
 ### Libros
 
 - [Drawing beautiful maps programmatically with R, sf and ggplot2](https://r-spatial.org/r/2018/10/25/ggplot2-sf.html)
 - [Geocomputation with R](https://bookdown.org/robinlovelace/geocompr/)
 - [Spatial Data Science With Applications in R](https://r-spatial.org/book/)
 - [Using Spatial Data with R](https://cengel.github.io/R-spatial/)
-
-{{< cafecito >}}
-
-{{< cursos >}}

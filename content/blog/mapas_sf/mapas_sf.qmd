@@ -1,9 +1,8 @@
 ---
-title: Mapas y visualización de datos geoespaciales en R con {sf}
+title: Mapas y visualización de datos geoespaciales en R con `{sf}`
 author: Bastián Olea Herrera
 date: '2026-04-29'
-draft: false
-freeze: false
+freeze: true
 slug: []
 categories:
   - tutoriales
@@ -1531,6 +1530,10 @@ https://dominicroye.github.io/blog/inserted-map/
 {{< imagen "sf_cheatsheet_1.jpeg" >}}
 {{< imagen "sf_cheatsheet_2.jpeg" >}}
 </div>
+
+#### OpenStreetMap con R
+
+[Revisa esta hoja de apuntes](https://zenodo.org/records/20842874) por Louis Laurian y Timothée Giraud.
 
 
 ### Libros
