@@ -181,6 +181,49 @@ format:
     output-ext: "md"
 ```
 
+## Gráficos con fondo transparente (mapas y ggplot2)
+
+Los gráficos deben tener **fondo transparente** para integrarse con el color de fondo del blog (morado claro). Hay dos piezas necesarias:
+
+**1. Dispositivo transparente** (front matter del `.qmd`):
+```yaml
+knitr:
+  opts_chunk:
+    dev: "ragg_png"
+    dev.args:
+      bg: transparent
+      background: transparent
+```
+
+**2. `plot.background` transparente en el tema.** Ojo: en ggplot2 4.0 el argumento `paper` de los temas (`theme_void(paper = ...)`, `theme_grey(paper = ...)`) **rellena `plot.background` con un color opaco**, lo que anula la transparencia del dispositivo. Hay que sobrescribirlo explícitamente:
+```r
+theme_set(
+  theme_void(paper = "#EAD1FA", ink = "#543A73", accent = "#9069C0") +
+    theme(plot.margin = unit(c(2, 2, 2, 2), "mm")) +
+    # imprescindible: paper deja fondo opaco, esto lo vuelve transparente
+    theme(plot.background = element_rect(fill = "transparent", color = "transparent"))
+)
+```
+
+Para verificar la transparencia de un PNG generado: `sips -g hasAlpha archivo.png` (debe decir `hasAlpha: yes`) y el pixel de esquina debe ser `srgba(0,0,0,0)`, no blanco.
+
+## Doble render de figuras: `figure-html` con fondo blanco (usar `freeze`)
+
+**Problema:** en algunos posts las figuras aparecen con **bordes/fondo blanco** en el sitio, aunque el `.qmd` esté bien configurado. Al renderizar aparecen **dos** carpetas de figuras:
+- `index.markdown_strict_files/figure-markdown_strict/` → transparentes (salida real de `quarto render`, respeta `dev.args`).
+- `index_files/figure-html/` → **blancas** (dispositivo por defecto, ignora `dev.args`).
+
+**Causa:** no es Quarto ni el `.qmd` (renderizar el mismo `.qmd` en aislamiento con `quarto render` produce una sola carpeta transparente). El `figure-html` blanco lo genera el **re-render automático de blogdown** (`blogdown.knit.on_save = TRUE` + servidor `serve_site` activo), que reprocesa el post por su pipeline knitr clásico usando un dispositivo con fondo blanco.
+
+**Solución (comprobada):** replicar lo que hace el post `mapas_sf`, que es inmune porque nunca re-ejecuta el código:
+1. En el YAML del post: `freeze: true`.
+2. Crear un `_quarto.yml` **vacío** en la carpeta del post (lo vuelve un proyecto Quarto para que `_freeze/` se guarde ahí).
+3. Renderizar una vez con `quarto render` (con los datos disponibles) para poblar `_freeze/`.
+
+Con freeze activo, tanto Quarto como blogdown reutilizan las figuras congeladas transparentes y no vuelve a ocurrir la pasada con dispositivo blanco. Los posts `mapas_sf` y `mapas_hexagonales` ya usan este patrón (`_quarto.yml` vacío + `freeze: true`).
+
+Alternativa más ligera: desactivar `blogdown.knit.on_save` para que solo mande `quarto render`, pero el patrón con `freeze` es el recomendado.
+
 ## Menús de navegación
 
 **Header**: Yo, Blog, Buscar (`/buscar/`), Temas (`/tags/`), Tutoriales (`/categories/tutoriales/`), Paquetes (`/categories/paquetes/`), Aprende R (externo), Cursos, Apps (externo), Datos (externo), Enlaces

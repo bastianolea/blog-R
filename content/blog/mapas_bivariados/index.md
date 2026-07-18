@@ -1,15 +1,17 @@
 ---
 title: Crea mapas bivariados en R para visualizar la relación entre dos variables
+subtitle: Visualización de datos geoespaciales por polígonos bivariados
 author: Bastián Olea Herrera
 date: '2026-07-17'
 slug: []
 draft: false
-freeze: false
+freeze: true
 categories:
   - Tutoriales
 tags:
   - mapas
   - visualización de datos
+  - Chile
 format:
   hugo-md:
     output-file: index
@@ -23,7 +25,7 @@ knitr:
     dev.args:
       bg: transparent
 editor_options:
-  chunk_output_type: console
+  chunk_output_type: inline
 excerpt: >-
   Un mapa bivariado permite visualizar dos variables al mismo tiempo sobre un
   territorio, usando una paleta de colores en dos dimensiones. Así podemos
@@ -38,9 +40,9 @@ links:
 ---
 
 
-Normalmente, cuando [creamos un mapa](../../../tags/mapas/) que visualice datos mediante color sólo podemos mostrar **un fenómeno a la vez**: la población de cada territorio, el ingreso promedio, el porcentaje de algo, etc. Pero, ¿qué pasa si queremos observar **cómo se relacionan dos variables** en un mismo mapa? Para eso existen los **mapas bivariados**! En vez de usar una [escala de colores](../../../blog/colores/) en una sola dimensión (por ejemplo, un color que va desde claro a oscuro), un mapa bivariado usa una **paleta de colores en dos dimensiones**: una cuadrícula de colores donde cada eje representa una variable distinta. De este modo, el color de cada territorio nos indica al mismo tiempo el valor de las dos variables, y podemos detectar visualmente en qué lugares ambas coinciden en ser altas, bajas, o una alta y la otra baja.
+Normalmente, cuando [creamos un mapa](./tags/mapas/) que visualice datos mediante color sólo podemos mostrar **un fenómeno a la vez**: la población de cada territorio, el ingreso promedio, el porcentaje de algo, etc. Pero, ¿qué pasa si queremos observar **cómo se relacionan dos variables** en un mismo mapa? Para eso existen los **mapas bivariados**! En vez de usar una [escala de colores](./blog/colores/) en una sola dimensión (por ejemplo, un color que va desde claro a oscuro), un mapa bivariado usa una **paleta de colores en dos dimensiones**: una cuadrícula de colores donde cada eje representa una variable distinta. De este modo, el color de cada territorio nos indica al mismo tiempo el valor de las dos variables, y podemos detectar visualmente en qué lugares ambas coinciden en ser altas, bajas, o una alta y la otra baja.
 
-En este tutorial crearemos un mapa bivariado de nivel comunal que cruza el **promedio de escolaridad**, obtenido del [Censo de Población y Vivienda 2024](../../../blog/censo_2024/), con la **pobreza por ingresos**, estimada por el [Ministerio de Desarrollo Social de Chile](https://bidat.gob.cl/directorio/Pobreza%20comunal/estimaciones-de-pobreza-comunal-2024).
+En este tutorial crearemos un mapa bivariado de nivel comunal que cruza el **promedio de escolaridad**, obtenido del [Censo de Población y Vivienda 2024](./blog/censo_2024/), con la **pobreza por ingresos**, estimada por el [Ministerio de Desarrollo Social de Chile](https://bidat.gob.cl/directorio/Pobreza%20comunal/estimaciones-de-pobreza-comunal-2024).
 
 ## Obtención de datos
 
@@ -49,11 +51,11 @@ Nuestro objetivo es obtener una tabla con dos indicadores por comuna:
 1.  **Promedio de años de escolaridad** de los habitantes de cada comuna de Chile, según el Censo 2024.
 2.  **Porcentaje de personas en situación de pobreza por ingresos**, según las estimaciones comunales realizadas por el Ministerio de Desarrollo Social en 2024.
 
-Como los datos vienen de dos fuentes distintas, los prepararemos por separado y luego los [uniremos](../../../blog/left_join/) por comuna.
+Como los datos vienen de dos fuentes distintas, los prepararemos por separado y luego los [uniremos](./blog/left_join/) por comuna.
 
 ### Escolaridad según el Censo 2024
 
-Los datos de escolaridad los obtenemos del Censo, que ya hemos usado [en tutoriales anteriores](../../../blog/censo_2024/), donde también vimos cómo descargar los microdatos y cargarlos como base de datos. Aquí repasaremos el proceso de forma más resumida, así que si no tienes experiencia con este conjunto de datos te recomiendo revisar ese tutorial primero.
+Los datos de escolaridad los obtenemos del Censo, que ya hemos usado [en tutoriales anteriores](./blog/censo_2024/), donde también vimos cómo descargar los microdatos y cargarlos como base de datos. Aquí repasaremos el proceso de forma más resumida, así que si no tienes experiencia con este conjunto de datos te recomiendo revisar ese tutorial primero.
 
 {{< relacionada "/blog/censo_2024/" "Tutorial relacionado" >}}
 
@@ -61,7 +63,7 @@ Lo primero es descargar los microdatos del Censo, [disponibles en su sitio ofici
 
 {{< boton "Resultados Censo 2024" "https://censo2024.ine.gob.cl/resultados/" "fas fa-file-download" >}}
 
-Cargamos la base de *personas* con la función `open_dataset()` de `{arrow}`, que abre los datos como [una base de datos](../../../blog/censo_2024/#cargar-datos-del-censo-en-r): esto significa que podemos filtrar y consultar millones de observaciones de forma eficiente, incluso cuando los datos son más grandes que la memoria de nuestras computadoras, y solamente cuando terminamos de manipular los datos copiamos los resultados a la memoria con la función `collect()`.
+Cargamos la base de *personas* con la función `open_dataset()` de `{arrow}`, que abre los datos como [una base de datos](./blog/censo_2024/#cargar-datos-del-censo-en-r): esto significa que podemos filtrar y consultar millones de observaciones de forma eficiente, incluso cuando los datos son más grandes que la memoria de nuestras computadoras, y solamente cuando terminamos de manipular los datos copiamos los resultados a la memoria con la función `collect()`.
 
 ``` r
 library(arrow)
@@ -110,7 +112,7 @@ Obtenemos una tabla con el promedio de años de escolaridad por cada código de 
 
 ### Pobreza por ingresos
 
-El segundo indicador proviene de las [estimaciones de pobreza comunal por ingresos](https://bidat.gob.cl/directorio/Pobreza%20comunal/estimaciones-de-pobreza-comunal-2024) (2024) calculadas por el Ministerio de Desarrollo Social de Chile a partir de la [encuesta Casen](../../../blog/casen_introduccion/).
+El segundo indicador proviene de las [estimaciones de pobreza comunal por ingresos](https://bidat.gob.cl/directorio/Pobreza%20comunal/estimaciones-de-pobreza-comunal-2024) (2024) calculadas por el Ministerio de Desarrollo Social de Chile a partir de la [encuesta Casen](./blog/casen_introduccion/).
 
 {{< boton "Descargar datos de pobreza" "sae_ingresos_2024.xlsx" "fas fa-file-download" >}}
 
@@ -181,7 +183,7 @@ Obtenemos una tabla con una fila por comuna y dos columnas de interés: `escolar
 
 ## Unir los datos con el mapa
 
-Ahora necesitamos obtener los **polígonos de las comunas** de Chile para poder dibujar el mapa. Obtendremos los mapas de Chile desde el [paquete `{chilemapas}`](https://pacha.dev/chilemapas/), como hemos visto en [otros tutoriales de mapas](../../../blog/tutorial_mapa_chile/) de este blog.
+Ahora necesitamos obtener los **polígonos de las comunas** de Chile para poder dibujar el mapa. Obtendremos los mapas de Chile desde el [paquete `{chilemapas}`](https://pacha.dev/chilemapas/), como hemos visto en [otros tutoriales de mapas](./blog/tutorial_mapa_chile/) de este blog.
 
 Si no tienes `{chilemapas}`, instálalo:
 
@@ -343,7 +345,7 @@ leyenda
 
 ### Mapa bivariado
 
-Creamos el mapa con `{ggplot2}` y `geom_sf()` (como vimos en el [tutorial de mapas con `{sf}`](../../../blog/mapas_sf/)), definiendo la escala de colores con `bi_scale_fill()` de `{biscale}` para expresar la columna `bi_class` en la paleta de colores en dos dimensiones. Ocultamos la leyenda automática (`show.legend = FALSE`) porque usaremos la leyenda personalizada que creamos recién.
+Creamos el mapa con `{ggplot2}` y `geom_sf()` (como vimos en el [tutorial de mapas con `{sf}`](./blog/mapas_sf/)), definiendo la escala de colores con `bi_scale_fill()` de `{biscale}` para expresar la columna `bi_class` en la paleta de colores en dos dimensiones. Ocultamos la leyenda automática (`show.legend = FALSE`) porque usaremos la leyenda personalizada que creamos recién.
 
 ``` r
 mapa <- mapa_datos_bi |>
@@ -360,13 +362,13 @@ mapa
 
 <img src="index.markdown_strict_files/figure-markdown_strict/mapa-bivariado-rm-sin-leyenda-1.png" width="768" />
 
-Tenemos un papa bivariado!
+Tenemos un mapa bivariado! Pero aún tenemos que agregarle la leyenda para que pueda ser interpretable.
 
 {{< relacionada "/blog/r_introduccion/tutorial_visualizacion_ggplot/" >}}
 
 ### Combinar mapa y leyenda
 
-Finalmente, usamos el paquete [`{patchwork}`](../../../blog/patchwork/) para **insertar la leyenda dentro del mapa** con `inset_element()`, ubicándola en una esquina. Los argumentos `left`, `bottom`, `right` y `top` definen la posición y el tamaño de la leyenda, en una escala de 0 a 1 relativa al gráfico.
+Finalmente, usamos el paquete [`{patchwork}`](./blog/patchwork/) para **insertar la leyenda dentro del mapa** con `inset_element()`, ubicándola en una esquina. Los argumentos `left`, `bottom`, `right` y `top` definen la posición y el tamaño de la leyenda, en una escala de 0 a 1 relativa al gráfico.
 
 ``` r
 library(patchwork)
@@ -386,9 +388,69 @@ mapa_bivariado
 
 Obtenemos un mapa bivariado donde cada comuna se colorea según la combinación de sus dos variables. Siguiendo la leyenda, las comunas del color más oscuro (arriba a la derecha) son aquellas donde coinciden una **alta escolaridad promedio** y una **alta pobreza por ingresos**, mientras que los colores más tenues (abajo a la izquierda) corresponden a comunas con baja escolaridad y baja pobreza. La visualización nos permite distinguit comunas con **alta escolaridad y baja pobreza** (en celeste/calipso), y comunas con **baja escolaridad y alta pobreza** (en rosado/fucsia), que reflejan la relación inversa que solemos esperar entre educación y pobreza. Sin embargo, para afirmar que existe una asociación estadística entre ambas variables habría que aplicar las pruebas estadísticas apropiadas.
 
+{{< etiqueta "mapas" >}}
+
 Lo bueno de haber **parametrizado** la región y las dimensiones al comienzo es que puedes reutilizar todo este código cambiando solo un par de valores: prueba cambiando la región (`region_mapa`), otra cantidad de dimensiones, o incluso otras variables para construir tus propios mapas bivariados![^2]
 
-{{< etiqueta "mapas" >}}
+Para probar la parametrización, **repitamos el proceso** para generar otro mapa de una región distinta, repitiendo el código anterior, con leves ajustes para posicionar la leyenda correctamente:
+
+``` r
+library(ggplot2)
+library(biscale)
+library(sf)
+
+# parámetros para la visualización
+region_mapa <- 6
+dimensiones <- 3
+paleta <- "DkViolet2"
+
+# preparar datos bivariados
+mapa_datos_bi <- mapa_datos |>
+  filter(codigo_region == region_mapa) |>
+  bi_class(x = escolaridad,
+           y = pobreza,
+           style = "quantile",
+           dim = dimensiones)
+
+# generar la leyenda
+leyenda <- bi_legend(pal = paleta,
+                     dim = dimensiones,
+                     xlab = "Escolaridad",
+                     ylab = "Pobreza",
+                     size = 8) +
+  # fondo transparente para insertarla sobre el mapa
+  theme(plot.background = element_blank(),
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.title = element_text(color = "#543A73"))
+
+# mapa bivariado
+mapa <- mapa_datos_bi |>
+  st_as_sf() |>
+  ggplot() +
+  aes(fill = bi_class) +
+  geom_sf(show.legend = FALSE,
+          linewidth = 0.1, color = "white") +
+  # escala de colores bivariada
+  bi_scale_fill(pal = paleta, dim = dimensiones)
+
+# mapa + leyenda y textos
+mapa_bivariado <- mapa +
+  labs(title = "Región de O'Higgins",
+       subtitle = "Relación entre porcentaje de pobreza y escolaridad promedio",
+       caption = "Fuente: Censo 2024, Casen 2024\nHecho por Bastián Olea H.") +
+  # agregar espacios abajo para ajustar la leyenda
+  theme(plot.margin = unit(c(2, 2, 12, 2), "mm"),
+        plot.caption = element_text(margin = margin(t = 20))) +
+  # leyenda
+  inset_element(leyenda,
+                left = -0.05, bottom = -0.2,
+                right = 0.2, top = 0.15)
+
+mapa_bivariado
+```
+
+<img src="index.markdown_strict_files/figure-markdown_strict/mapa-bivariado-ohiggins-escolaridad-pobreza-1.png" width="672" />
 
 ## Recursos para aprender más
 

@@ -1,15 +1,17 @@
 ---
 title: Crea mapas bivariados en R para visualizar la relación entre dos variables
+subtitle: Visualización de datos geoespaciales por polígonos bivariados
 author: Bastián Olea Herrera
 date: '2026-07-17'
 slug: []
 draft: false
-freeze: false
+freeze: true
 categories:
   - Tutoriales
 tags:
   - mapas
   - visualización de datos
+  - Chile
 format:
   hugo-md:
     output-file: index
@@ -23,7 +25,7 @@ knitr:
     dev.args:
       bg: transparent
 editor_options:
-  chunk_output_type: console
+  chunk_output_type: inline
 excerpt: "Un mapa bivariado permite visualizar dos variables al mismo tiempo sobre un territorio, usando una paleta de colores en dos dimensiones. Así podemos explorar visualmente cómo se relacionan geográficamente dos fenómenos. En este tutorial crearemos un mapa bivariado que cruza el promedio de escolaridad con la pobreza por ingresos en las comunas de Chile."
 links:
   - icon: registered
@@ -425,7 +427,7 @@ mapa
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/mapa-bivariado-rm-sin-leyenda-1.png" alt="" width="672" />
 
-Tenemos un papa bivariado!
+Tenemos un mapa bivariado! Pero aún tenemos que agregarle la leyenda para que pueda ser interpretable.
 
 {{< relacionada "/blog/r_introduccion/tutorial_visualizacion_ggplot/" >}}
 
@@ -452,11 +454,76 @@ mapa_bivariado
 
 Obtenemos un mapa bivariado donde cada comuna se colorea según la combinación de sus dos variables. Siguiendo la leyenda, las comunas del color más oscuro (arriba a la derecha) son aquellas donde coinciden una **alta escolaridad promedio** y una **alta pobreza por ingresos**, mientras que los colores más tenues (abajo a la izquierda) corresponden a comunas con baja escolaridad y baja pobreza. La visualización nos permite distinguit comunas con **alta escolaridad y baja pobreza** (en celeste/calipso), y comunas con **baja escolaridad y alta pobreza** (en rosado/fucsia), que reflejan la relación inversa que solemos esperar entre educación y pobreza. Sin embargo, para afirmar que existe una asociación estadística entre ambas variables habría que aplicar las pruebas estadísticas apropiadas.
 
+{{< etiqueta "mapas" >}}
+
 Lo bueno de haber **parametrizado** la región y las dimensiones al comienzo es que puedes reutilizar todo este código cambiando solo un par de valores: prueba cambiando la región (`region_mapa`), otra cantidad de dimensiones, o incluso otras variables para construir tus propios mapas bivariados![^2]
 
 [^2]: _Disclaimer:_ usé un LLM para escribir el boceto de este post, porque tenía el código escrito hace mucho tiempo, pero no encontraba el tiempo para terminarlo.
 
-{{< etiqueta "mapas" >}}
+Para probar la parametrización, **repitamos el proceso** para generar otro mapa de una región distinta, repitiendo el código anterior, con leves ajustes para posicionar la leyenda correctamente:
+
+
+
+``` r
+library(ggplot2)
+library(biscale)
+library(sf)
+
+# parámetros para la visualización
+region_mapa <- 6
+dimensiones <- 3
+paleta <- "DkViolet2"
+
+# preparar datos bivariados
+mapa_datos_bi <- mapa_datos |>
+  filter(codigo_region == region_mapa) |>
+  bi_class(x = escolaridad,
+           y = pobreza,
+           style = "quantile",
+           dim = dimensiones)
+
+# generar la leyenda
+leyenda <- bi_legend(pal = paleta,
+                     dim = dimensiones,
+                     xlab = "Escolaridad",
+                     ylab = "Pobreza",
+                     size = 8) +
+  # fondo transparente para insertarla sobre el mapa
+  theme(plot.background = element_blank(),
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.title = element_text(color = "#543A73"))
+
+# mapa bivariado
+mapa <- mapa_datos_bi |>
+  st_as_sf() |>
+  ggplot() +
+  aes(fill = bi_class) +
+  geom_sf(show.legend = FALSE,
+          linewidth = 0.1, color = "white") +
+  # escala de colores bivariada
+  bi_scale_fill(pal = paleta, dim = dimensiones)
+
+# mapa + leyenda y textos
+mapa_bivariado <- mapa +
+  labs(title = "Región de O'Higgins",
+       subtitle = "Relación entre porcentaje de pobreza y escolaridad promedio",
+       caption = "Fuente: Censo 2024, Casen 2024\nHecho por Bastián Olea H.") +
+  # agregar espacios abajo para ajustar la leyenda
+  theme(plot.margin = unit(c(2, 2, 12, 2), "mm"),
+        plot.caption = element_text(margin = margin(t = 20))) +
+  # leyenda
+  inset_element(leyenda,
+                left = -0.05, bottom = -0.2,
+                right = 0.2, top = 0.15)
+
+mapa_bivariado
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/mapa-bivariado-ohiggins-escolaridad-pobreza-1.png" alt="" width="672" />
+
+
+
 
 ## Recursos para aprender más
 
