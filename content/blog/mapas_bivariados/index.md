@@ -386,9 +386,11 @@ mapa_bivariado
 
 <img src="index.markdown_strict_files/figure-markdown_strict/mapa-bivariado-rm-escolaridad-pobreza-1.png" width="576" />
 
-Obtenemos un mapa bivariado donde cada comuna se colorea según la combinación de sus dos variables. Siguiendo la leyenda, las comunas del color más oscuro (arriba a la derecha) son aquellas donde coinciden una **alta escolaridad promedio** y una **alta pobreza por ingresos**, mientras que los colores más tenues (abajo a la izquierda) corresponden a comunas con baja escolaridad y baja pobreza. La visualización nos permite distinguit comunas con **alta escolaridad y baja pobreza** (en celeste/calipso), y comunas con **baja escolaridad y alta pobreza** (en rosado/fucsia), que reflejan la relación inversa que solemos esperar entre educación y pobreza. Sin embargo, para afirmar que existe una asociación estadística entre ambas variables habría que aplicar las pruebas estadísticas apropiadas.
+Obtenemos un mapa bivariado donde cada comuna se colorea según la combinación de sus dos variables.
 
-{{< etiqueta "mapas" >}}
+{{< relacionada "blog/patchwork/" >}}
+
+Siguiendo la leyenda, las comunas del color más oscuro (arriba a la derecha) son aquellas donde coinciden una **alta escolaridad promedio** y una **alta pobreza por ingresos**, mientras que los colores más tenues (abajo a la izquierda) corresponden a comunas con baja escolaridad y baja pobreza. La visualización nos permite distinguit comunas con **alta escolaridad y baja pobreza** (en celeste/calipso), y comunas con **baja escolaridad y alta pobreza** (en rosado/fucsia), que reflejan la relación inversa que solemos esperar entre educación y pobreza. Sin embargo, para afirmar que existe una asociación estadística entre ambas variables habría que aplicar las pruebas estadísticas apropiadas.
 
 Lo bueno de haber **parametrizado** la región y las dimensiones al comienzo es que puedes reutilizar todo este código cambiando solo un par de valores: prueba cambiando la región (`region_mapa`), otra cantidad de dimensiones, o incluso otras variables para construir tus propios mapas bivariados![^2]
 
@@ -452,9 +454,11 @@ mapa_bivariado
 
 <img src="index.markdown_strict_files/figure-markdown_strict/mapa-bivariado-ohiggins-escolaridad-pobreza-1.png" width="672" />
 
-## Recursos para aprender más
+Dos mapas por el precio de uno! Pero en este segundo mapa pusimos la leyenda un poco distinto: hicimos espacio debajo del mapa en la capa `theme()` del gráfico, dado que la forma del mapa no dejaba muchos espacios para poner la leyenda.
 
-Este tutorial se inspira en varios recursos excelentes sobre mapas bivariados:
+{{< etiqueta "mapas" >}}
+
+## Recursos
 
 - [Bivariate maps with ggplot2 and sf](https://timogrossenbacher.ch/bivariate-maps-with-ggplot2-and-sf/), por Timo Grossenbacher.
 - [Make a bivariate choropleth map](https://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/), por Joshua Stevens.
