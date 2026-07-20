@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Publicaciones por temática on Bastián Olea</title>
+    <link>https://bastianolea.rbind.io/tags/</link>
+    <description>Recent content in Publicaciones por temática on Bastián Olea</description>
+    <generator>Hugo</generator>
+    <language>es-ES</language>
+    <lastBuildDate>Wed, 29 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://bastianolea.rbind.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quarto</title>
+      <link>https://bastianolea.rbind.io/tags/quarto/</link>
+      <pubDate>Thu, 26 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/quarto/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Chile</title>
+      <link>https://bastianolea.rbind.io/tags/chile/</link>
+      <pubDate>Fri, 17 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/chile/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mapas</title>
+      <link>https://bastianolea.rbind.io/tags/mapas/</link>
+      <pubDate>Fri, 17 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/mapas/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Visualización de datos</title>
+      <link>https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/</link>
+      <pubDate>Fri, 17 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ggplot2</title>
+      <link>https://bastianolea.rbind.io/tags/ggplot2/</link>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/ggplot2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Limpieza de datos</title>
+      <link>https://bastianolea.rbind.io/tags/limpieza-de-datos/</link>
+      <pubDate>Sat, 27 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/limpieza-de-datos/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Paquetes de R</title>
+      <link>https://bastianolea.rbind.io/tags/paquetes/</link>
+      <pubDate>Sat, 27 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/paquetes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Básico</title>
+      <link>https://bastianolea.rbind.io/tags/b%C3%A1sico/</link>
+      <pubDate>Mon, 22 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/b%C3%A1sico/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Blog</title>
+      <link>https://bastianolea.rbind.io/tags/blog/</link>
+      <pubDate>Mon, 22 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/blog/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Procesamiento de texto</title>
+      <link>https://bastianolea.rbind.io/tags/texto/</link>
+      <pubDate>Thu, 18 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/texto/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Consejos</title>
+      <link>https://bastianolea.rbind.io/tags/consejos/</link>
+      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/consejos/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Curiosidades</title>
+      <link>https://bastianolea.rbind.io/tags/curiosidades/</link>
+      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/curiosidades/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Inteligencia artificial</title>
+      <link>https://bastianolea.rbind.io/tags/inteligencia-artificial/</link>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/inteligencia-artificial/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Funciones</title>
+      <link>https://bastianolea.rbind.io/tags/funciones/</link>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/funciones/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Procesamiento de datos</title>
+      <link>https://bastianolea.rbind.io/tags/procesamiento-de-datos/</link>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/procesamiento-de-datos/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Análisis de texto</title>
+      <link>https://bastianolea.rbind.io/tags/an%C3%A1lisis-de-texto/</link>
+      <pubDate>Sat, 06 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/an%C3%A1lisis-de-texto/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Shiny</title>
+      <link>https://bastianolea.rbind.io/tags/shiny/</link>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/shiny/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Datos</title>
+      <link>https://bastianolea.rbind.io/tags/datos/</link>
+      <pubDate>Sat, 23 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/datos/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Aplicaciones</title>
+      <link>https://bastianolea.rbind.io/tags/apps/</link>
+      <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/apps/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gráficos</title>
+      <link>https://bastianolea.rbind.io/tags/gr%C3%A1ficos/</link>
+      <pubDate>Fri, 24 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/gr%C3%A1ficos/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Web scraping</title>
+      <link>https://bastianolea.rbind.io/tags/web-scraping/</link>
+      <pubDate>Thu, 26 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/web-scraping/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Automatización</title>
+      <link>https://bastianolea.rbind.io/tags/automatizaci%C3%B3n/</link>
+      <pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/automatizaci%C3%B3n/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Loops</title>
+      <link>https://bastianolea.rbind.io/tags/loops/</link>
+      <pubDate>Wed, 18 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/loops/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Optimización</title>
+      <link>https://bastianolea.rbind.io/tags/optimizaci%C3%B3n/</link>
+      <pubDate>Wed, 18 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/optimizaci%C3%B3n/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Género</title>
+      <link>https://bastianolea.rbind.io/tags/g%C3%A9nero/</link>
+      <pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/g%C3%A9nero/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Videos</title>
+      <link>https://bastianolea.rbind.io/tags/videos/</link>
+      <pubDate>Mon, 09 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/videos/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Estadísticas</title>
+      <link>https://bastianolea.rbind.io/tags/estad%C3%ADsticas/</link>
+      <pubDate>Tue, 27 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/estad%C3%ADsticas/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tablas</title>
+      <link>https://bastianolea.rbind.io/tags/tablas/</link>
+      <pubDate>Tue, 20 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/tablas/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Dplyr</title>
+      <link>https://bastianolea.rbind.io/tags/dplyr/</link>
+      <pubDate>Sun, 14 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/dplyr/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Excel</title>
+      <link>https://bastianolea.rbind.io/tags/excel/</link>
+      <pubDate>Tue, 09 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/excel/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tidyr</title>
+      <link>https://bastianolea.rbind.io/tags/tidyr/</link>
+      <pubDate>Sat, 29 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/tidyr/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ciencias sociales</title>
+      <link>https://bastianolea.rbind.io/tags/ciencias-sociales/</link>
+      <pubDate>Wed, 26 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/ciencias-sociales/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Datos perdidos</title>
+      <link>https://bastianolea.rbind.io/tags/datos-perdidos/</link>
+      <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/datos-perdidos/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Git</title>
+      <link>https://bastianolea.rbind.io/tags/git/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/git/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub</title>
+      <link>https://bastianolea.rbind.io/tags/github/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/github/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Animaciones</title>
+      <link>https://bastianolea.rbind.io/tags/animaciones/</link>
+      <pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/animaciones/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Arte generativo</title>
+      <link>https://bastianolea.rbind.io/tags/arte-generativo/</link>
+      <pubDate>Wed, 27 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/arte-generativo/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Fechas</title>
+      <link>https://bastianolea.rbind.io/tags/fechas/</link>
+      <pubDate>Fri, 22 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/fechas/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Control de flujo</title>
+      <link>https://bastianolea.rbind.io/tags/control-de-flujo/</link>
+      <pubDate>Thu, 07 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/control-de-flujo/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Purrr</title>
+      <link>https://bastianolea.rbind.io/tags/purrr/</link>
+      <pubDate>Sun, 27 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/purrr/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Estadística</title>
+      <link>https://bastianolea.rbind.io/tags/estad%C3%ADstica/</link>
+      <pubDate>Wed, 09 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://bastianolea.rbind.io/tags/estad%C3%ADstica/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

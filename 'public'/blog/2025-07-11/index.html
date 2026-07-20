@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr"><head>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.145.0">
+<title>Gráfico de densidad tipo Joy Division en {ggplot2} | Bastián Olea</title>
+
+
+<meta property="twitter:site" content="@bastimapache">
+<meta property="twitter:creator" content="@bastimapache">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="Existe un gráfico estadístico muy famoso por haber aparecido en la portada del disco _Unknown Pleasures_ de Joy Division. Se trata de un gráfico de densidad, donde las densidades están apiladas verticalmente y se sobreponen, dando una apariencia montañosa, cordillerana y casi tridimensional. En este post reproduciremos este gráfico en R, usando datos socioeconómicos de la Encuesta de caracterización socioeconómica nacional (Casen) 2022.">
+
+
+<meta property="og:site_name" content="Bastián Olea">
+<meta property="og:title" content="Gráfico de densidad tipo Joy Division en {ggplot2} | Bastián Olea">
+<meta property="og:description" content="Existe un gráfico estadístico muy famoso por haber aparecido en la portada del disco _Unknown Pleasures_ de Joy Division. Se trata de un gráfico de densidad, donde las densidades están apiladas verticalmente y se sobreponen, dando una apariencia montañosa, cordillerana y casi tridimensional. En este post reproduciremos este gráfico en R, usando datos socioeconómicos de la Encuesta de caracterización socioeconómica nacional (Casen) 2022." />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/2025-07-11/" />
+<meta property="og:locale" content="es-ES">
+
+
+
+
+    
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/2025-07-11/featured.png" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/2025-07-11/featured.png" >
+    
+    
+  
+  <meta itemprop="name" content="Gráfico de densidad tipo Joy Division en {ggplot2}">
+  <meta itemprop="description" content="Existe un gráfico estadístico muy famoso por haber aparecido en la portada del disco Unknown Pleasures de Joy Division:
+Se trata de un gráfico de densidad, donde las densidades están apiladas verticalmente y se sobreponen, dando una apariencia montañosa, cordillerana y casi tridimensional.
+En este post reproduciremos este gráfico en R, pero usando datos socioeconómicos de la Encuesta de caracterización socioeconómica nacional (Casen) 2022.">
+  <meta itemprop="datePublished" content="2025-07-12T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-07-12T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1474">
+  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/2025-07-11/featured.png">
+  <meta itemprop="keywords" content="ggplot2,Gráficos">
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="false" type="image/x-icon">
+  <link rel="icon" href="false" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  
+  
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.3c3af999b79169f0222ad6048d940d31333adc32d2658e8ae07284fef52a6db9.js" type="text/javascript"></script>
+  
+  
+  <link rel="stylesheet" href="/css/syntax.css">
+  
+  
+  
+  
+  
+  
+  <meta name="google-site-verification" content="yaiYGBAfSJpjE7mfPuFVP1yoNIqLadRJQIzCOula8TI" />
+  
+</head>
+<body>
+      <div class="grid-container single-sidebar">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
+      <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/blog/" title="Bastián Olea: Blog de R">Blog</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/aprende_r/" title="Aprende R">Aprende R</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/shiny_apps/" title="Apps">Apps</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/tutoriales/" title="Tutoriales">Tutoriales</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/tags/" title="Temas">Temas</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/clases/" title="Cursos">Cursos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/about/" title="Bastián Olea: Sobre mi">Yo</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      
+      
+      
+      <div class="dib v-mid", style = "padding: 4px; margin-top: 4px;">
+        <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+      </div>
+      
+    </div>
+  </nav>
+</header>
+
+
+                       
+ 
+
+<main class="page-main pa4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header" style="margin-top:-30px;">
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Gráfico de densidad tipo Joy Division en {ggplot2}</h1>
+        
+        
+        
+        <div style = "display: inline-block;">  
+          <p class="f7 db mv0 ttu" style = "display: inline-block;">
+            12/7/2025</p>
+          
+          
+          
+        </div>
+          
+        
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/ggplot2"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            ggplot2</a>  <a href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            gráficos</a> </dd></em>
+        </dl>
+         
+      
+        
+      
+      
+    </header>
+      
+      
+    <section class="post-body pt5 pb4">
+        <p>Existe un gráfico estadístico muy famoso por haber aparecido en la portada del disco <em>Unknown Pleasures</em> de Joy Division:</p>
+<a href="joy_division.jpg" target="_blank">
+
+  <img src="joy_division.jpg" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Se trata de un gráfico de densidad, donde las densidades están apiladas verticalmente y se sobreponen, dando una apariencia montañosa, cordillerana y casi tridimensional.</p>
+<p>En este post reproduciremos este gráfico en R, pero usando datos socioeconómicos de la 
+<a href="https://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-casen-2022" target="_blank" rel="noopener">Encuesta de caracterización socioeconómica nacional (Casen) 2022.</a></p>
+
+
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            background-color: #493365;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-triangle-exclamation" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #EAD2FA;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%; color: #EAD2FA;">
+    Este post es sobre visualización de datos con <code>{ggplot2}</code>. Si quieres aprender, puedes revisar 
+<a href="/blog/r_introduccion/tutorial_visualizacion_ggplot/">este tutorial sobre visualización de datos desde cero!</a>
+  </aside>
+  
+</div>
+<p>Los paquetes que usaremos son los siguientes:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">arrow</span><span class="p">)</span> <span class="c1"># carga de datos en formato parquet</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span> <span class="c1"># manipulación de datos</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span> <span class="c1"># visualización de datos</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">scales</span><span class="p">)</span> <span class="c1"># escalas para gráficos</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggridges</span><span class="p">)</span> <span class="c1"># geometría de densidad apilada para {ggplot2}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">forcats</span><span class="p">)</span> <span class="c1"># orden ordenamiento de datos tipo factor</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span> <span class="c1"># transformación y ordenamiento de datos </span>
+</span></span></code></pre></div><p>Vamos a obtener los datos de la Casen de forma más rápida desde un 
+<a href="https://github.com/bastianolea/casen_comparador_ingresos" target="_blank" rel="noopener">repositorio de datos de ingresos de la encuesta Casen</a>, en el cual dispongo los datos en un formato 
+<a href="https://arrow.apache.org/docs/r/" target="_blank" rel="noopener">más rápido</a> de cargar.</p>
+<p>Como dato al margen, los datos de ese repositorio se usan en una 
+<a href="https://bastianoleah.shinyapps.io/casen_comparador_ingresos" target="_blank" rel="noopener">aplicación interactiva desarrollada en R</a>. donde puedes comparar la densidades de las distribuciones de ingreso de cualquier comuna de Chile.</p>
+<div style="max-width:340px; margin:auto;">
+<a href="comparador_ingresos_casen.jpg" target="_blank">
+
+  <img src="comparador_ingresos_casen.jpg" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  Aplicación web comparador de ingresos Casen, desarrollada en R. 
+<a href="https://bastianoleah.shinyapps.io/casen_comparador_ingresos" target="_blank" rel="noopener">Pruébala aquí</a>.
+</figcaption>
+</div>
+
+
+
+
+<h3 id="datos">Datos
+  <a href="#datos"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Primero cargamos los datos de población comunal, que solamente usaremos para luego seleccionar las comunas con mayor población del país. Como en el siguiente código los datos se cargan directamente desde el repositorio, no necesita descargar ningún archivo para poder ejecutar este código en tu computadora.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># cargar datos de población</span>
+</span></span><span class="line"><span class="cl"><span class="n">poblacion</span> <span class="o">&lt;-</span> <span class="n">arrow</span><span class="o">::</span><span class="nf">read_parquet</span><span class="p">(</span><span class="s">&#34;https://github.com/bastianolea/casen_comparador_ingresos/raw/main/datos/censo_proyecciones_año.parquet&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># obtener población comunal</span>
+</span></span><span class="line"><span class="cl"><span class="n">poblacion_comunas</span> <span class="o">&lt;-</span> <span class="n">poblacion</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">año</span> <span class="o">==</span> <span class="m">2024</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">arrange</span><span class="p">(</span><span class="nf">desc</span><span class="p">(</span><span class="n">población</span><span class="p">))</span>
+</span></span></code></pre></div><p>Luego cargamos los datos de la encuesta Casen desde el repositorio:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># cargar encuesta casen</span>
+</span></span><span class="line"><span class="cl"><span class="n">casen2022_2</span> <span class="o">&lt;-</span> <span class="n">arrow</span><span class="o">::</span><span class="nf">read_parquet</span><span class="p">(</span><span class="s">&#34;https://github.com/bastianolea/casen_comparador_ingresos/raw/main/datos/casen_ingresos.parquet&#34;</span><span class="p">)</span>
+</span></span></code></pre></div>
+
+
+
+<h3 id="procesamiento">Procesamiento
+  <a href="#procesamiento"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Para poder usar estos datos de la forma correcta necesitamos procesarlos en base al 
+<a href="https://bastianolea.rbind.io/blog/casen_introduccion/#conteo-de-encuestas-de-muestreo-complejo" target="_blank" rel="noopener">diseño de encuestas de muestreo complejo</a>, en el que se basa la Casen. Esto debido a que la encuesta requiere de la aplicación de factores de expansión para poder obtener resultados que busquen representar a la población real. Para más información, 
+<a href="https://bastianolea.rbind.io/blog/casen_introduccion/" target="_blank" rel="noopener">revisa este post donde lo explico.</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># procesar encuesta de diseño complejo</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">srvyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">casen_svy</span> <span class="o">&lt;-</span> <span class="n">casen2022_2</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># filtrar 80 comunas con más población</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">comuna</span> <span class="o">%in%</span> <span class="n">poblacion_comunas</span><span class="o">$</span><span class="n">comuna[1</span><span class="o">:</span><span class="m">80</span><span class="n">]</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># crear diseño de encuestas complejas</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">as_survey</span><span class="p">(</span><span class="n">weights</span> <span class="o">=</span> <span class="n">expc</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">strata</span> <span class="o">=</span> <span class="n">estrato</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">ids</span> <span class="o">=</span> <span class="n">id_persona</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">nest</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span></code></pre></div><p>En el código anterior se cargó el conjunto de datos, se filtraron las 80 comunas con más población, para no tener un gráfico eterno, y se aplicó el diseño de encuestas complejas con <code>as_survey()</code>.</p>
+<p>Una vez que tenemos el objeto <code>survey</code> que nos permite trabajar con los datos usando la metodología apropiada de factor de expansión, calculamos la cantidad de personas a la que representa cada observación en la encuesta. Usaremos la variable de ingresos propios de la ocupación principal, <code>yoprcor</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># calcular cantidades usando factor de expansión</span>
+</span></span><span class="line"><span class="cl"><span class="n">casen_ingresos</span> <span class="o">&lt;-</span> <span class="n">casen_svy</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">group_by</span><span class="p">(</span><span class="n">comuna</span><span class="p">,</span> <span class="n">yoprcor</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">summarize</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="nf">survey_total</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">p</span> <span class="o">=</span> <span class="nf">survey_mean</span><span class="p">())</span>
+</span></span></code></pre></div><p>Si realizamos los datos, nos encontramos con las observaciones de la encuesta, que incluyen la información de la comuna y la variable de ingresos que elegimos, pero además, tenemos la columna <code>n</code> que nos indica a cuántas personas representa cada observación de la encuesta, gracias a la aplicación del factor de expansión.</p>
+<pre tabindex="0"><code># A tibble: 9,155 × 6
+# Groups:   comuna [80]
+   comuna        yoprcor     n  n_se        p     p_se
+   &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+ 1 Alto Hospicio   14789    36  36   0.000260 0.000233
+ 2 Alto Hospicio   20000    32  32   0.000231 0.000213
+ 3 Alto Hospicio   30000   211 109.  0.00152  0.000691
+ 4 Alto Hospicio   40000    36  36   0.000260 0.000233
+ 5 Alto Hospicio   45000    36  36   0.000260 0.000233
+ 6 Alto Hospicio   50000   527 262.  0.00380  0.00124 
+ 7 Alto Hospicio   60000   405 333.  0.00292  0.00207 
+ 8 Alto Hospicio   70000    48  48   0.000346 0.000334
+ 9 Alto Hospicio   75000    77  52.1 0.000556 0.000332
+10 Alto Hospicio   80000   264 136.  0.00191  0.000779
+# ℹ 9,145 more rows
+</code></pre><p>Ahora limpiamos un poco los datos, calculamos las medianas de ingresos comunales, y limitamos los ingresos máximos en una cifra que considero un ingreso suficientemente alto como para mostrar la inequidad de ingresos sin que los ingresos bajos se vuelvan invisibles.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># limpiar datos y limitar ingresos</span>
+</span></span><span class="line"><span class="cl"><span class="n">casen_ingresos_2</span> <span class="o">&lt;-</span> <span class="n">casen_ingresos</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">rename</span><span class="p">(</span><span class="n">variable</span> <span class="o">=</span> <span class="n">yoprcor</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">variable</span><span class="p">))</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># calcular mediana de ingresos</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">group_by</span><span class="p">(</span><span class="n">comuna</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">mediana</span> <span class="o">=</span> <span class="nf">median</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="bp">T</span><span class="p">))</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># limitar ingresos máximos, ordenar comunas</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">variable</span> <span class="o">&lt;</span> <span class="m">2500000</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">ungroup</span><span class="p">()</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># ordenar las comunas de mayor a menor por su mediana de ingresos</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">comuna</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">comuna</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">         <span class="n">comuna</span> <span class="o">=</span> <span class="nf">fct_reorder</span><span class="p">(</span><span class="n">comuna</span><span class="p">,</span> <span class="n">mediana</span><span class="p">))</span>
+</span></span></code></pre></div><p>Finalmente, preparamos los datos para la visualización. 
+<a href="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_visualizacion_ggplot/#densidad" target="_blank" rel="noopener">El tipo de visualización que vamos a usar, el <strong>gráfico de densidad</strong></a>, realiza un cálculo de densidades; es decir, distribuye todas las observaciones a través del eje horizontal del gráfico, y eleva a una curva en relación a la cantidad de personas que percibe los ingresos correspondientes a cada punto del eje.</p>
+<p>Entonces, necesitamos que cada observación de nuestra tabla corresponda a una <em>persona</em> que percibe un ingreso específico.</p>
+<p>Como vimos más atrás, tenemos una columna de <code>comunas</code>, una columna de la cifra de los ingresos (<code>yoprcor</code>), y la columna <code>n</code> que indica cuántas personas perciben cada ingreso. Por lo tanto, tenemos que <em>alargar</em> nuestra base de datos para que cada ingreso percibido aparezca repetido en tantas filas como personas se indican en <code>n</code>. En otras palabras, tenemos que hacer el ejercicio inverso a <em>contar</em> las personas que perciben un ingreso; es decir, <em>des-contar</em> la tabla de datos: justamente lo que hace la función <code>uncount()</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># expandir observaciones</span>
+</span></span><span class="line"><span class="cl"><span class="n">casen_ingresos_3</span> <span class="o">&lt;-</span> <span class="n">casen_ingresos_2</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="nf">as.integer</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">uncount</span><span class="p">(</span><span class="n">weights</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span>
+</span></span></code></pre></div><p>Obtenemos una tabla de datos con 6 millones de filas, donde cada fila representa a una <em>persona.</em></p>
+
+
+
+
+<h3 id="gráfico-de-densidad-apilada">Gráfico de densidad apilada
+  <a href="#gr%c3%a1fico-de-densidad-apilada"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>El gráfico que queremos hacer tiene en el eje horizontal los ingresos, y en el eje vertical las comunas, y cada una de estas filas del eje vertical mostrará la densidad de ingresos de cada comuna.</p>
+<p>En su versión más básica sería algo así:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">casen_ingresos_3</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">variable</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">comuna</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_density_ridges</span><span class="p">()</span>
+</span></span></code></pre></div><a href="grafico_base.png" target="_blank">
+
+  <img src="grafico_base.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>A este gráfico horripilante le aplicaremos un poco de magia de <code>{ggplot2}</code> para darle la apariencia que merece.</p>
+<p>El punto clave es la función <code>geom_density_ridges()</code>, que produce las densidades apiladas o <em>crestas</em>. El argumento <code>scale</code> define la elevación de cada densidad por encima de la que tiene detrás, y <code>bandwidth</code> controla que tanto se suavizan los datos al calcular la curva de densidad, aumentando disminuyendo el detalle de las figuras. Al extremo derecho del gráfico agregué la mediana de ingresos de cada comuna con <code>geom_text()</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">number_options</span><span class="p">(</span><span class="n">decimal.mark</span> <span class="o">=</span> <span class="s">&#34;,&#34;</span><span class="p">,</span> <span class="n">big.mark</span> <span class="o">=</span> <span class="s">&#34;.&#34;</span><span class="p">)</span> <span class="c1"># opciones de números grandes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">casen_ingresos_3</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">variable</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">comuna</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># densidades</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_density_ridges</span><span class="p">(</span><span class="n">rel_min_height</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">bandwidth</span> <span class="o">=</span> <span class="m">30000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;black&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># textos de medianas a la derecha</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_text</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="o">~</span><span class="nf">distinct</span><span class="p">(</span><span class="n">.x</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">comuna</span><span class="p">,</span> <span class="n">mediana</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">aes</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="nf">label_currency</span><span class="p">()(</span><span class="n">mediana</span> <span class="o">|&gt;</span> <span class="nf">signif</span><span class="p">(</span><span class="n">digits</span> <span class="o">=</span> <span class="m">2</span><span class="p">)),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">x</span> <span class="o">=</span> <span class="m">2500000</span><span class="p">),</span> <span class="n">nudge_x</span> <span class="o">=</span> <span class="m">120000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">2.5</span><span class="p">,</span> <span class="n">check_overlap</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span> <span class="n">hjust</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">vjust</span> <span class="o">=</span> <span class="m">0.3</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># expandir escala horizontal</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">expand</span> <span class="o">=</span> <span class="nf">expansion</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0.09</span><span class="p">)),</span> 
+</span></span><span class="line"><span class="cl">                     <span class="n">breaks</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">.5</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1.5</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">2.5</span><span class="p">)</span><span class="o">*</span><span class="m">1000000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">labels</span> <span class="o">=</span> <span class="nf">label_currency</span><span class="p">())</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># no cortar geometrías fuera del plano de coordenadas</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">coord_cartesian</span><span class="p">(</span><span class="n">clip</span> <span class="o">=</span> <span class="s">&#34;off&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># tema</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme_void</span><span class="p">(</span><span class="n">base_family</span> <span class="o">=</span> <span class="s">&#34;Helvetica&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># texto eje horizontal</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">6</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">,</span> <span class="n">margin</span> <span class="o">=</span> <span class="nf">margin</span><span class="p">(</span><span class="n">t</span> <span class="o">=</span> <span class="m">4</span><span class="p">)))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># texto eje vertical</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.y</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">7</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">,</span> <span class="n">hjust</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">vjust</span> <span class="o">=</span> <span class="m">0.3</span><span class="p">,</span> <span class="n">margin</span> <span class="o">=</span> <span class="nf">margin</span><span class="p">(</span><span class="n">r</span> <span class="o">=</span> <span class="m">7</span><span class="p">)))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># fondo</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme</span><span class="p">(</span><span class="n">panel.background</span> <span class="o">=</span> <span class="nf">element_rect</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;black&#34;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">plot.background</span> <span class="o">=</span> <span class="nf">element_rect</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;black&#34;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">plot.margin</span> <span class="o">=</span> <span class="nf">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">4</span><span class="p">),</span> <span class="s">&#34;mm&#34;</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme</span><span class="p">(</span><span class="n">plot.title</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">hjust</span> <span class="o">=</span> <span class="m">0.4</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">,</span> <span class="n">margin</span> <span class="o">=</span> <span class="nf">margin</span><span class="p">(</span><span class="n">b</span> <span class="o">=</span> <span class="m">3</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">plot.subtitle</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">8</span><span class="p">,</span> <span class="n">hjust</span> <span class="o">=</span> <span class="m">0.4</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">,</span> <span class="n">margin</span> <span class="o">=</span> <span class="nf">margin</span><span class="p">(</span><span class="n">b</span> <span class="o">=</span> <span class="m">6</span><span class="p">)))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># textos</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&#34;Distribución de ingresos por comuna: Chile&#34;</span> <span class="o">|&gt;</span> <span class="nf">toupper</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">       <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&#34;Ingreso de la ocupación principal, CASEN 2022&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><a href="grafico_densidad_joy_division.jpg">
+<img src="grafico_densidad_joy_division.jpg" style="border-radius: 7px; width: 100%; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  Toca la imagen o 
+<a href="grafico_densidad_joy_division.jpg">este enlace</a> para ver en tamaño completo
+</figcaption>
+<p>Evidentemente, este gráfico es más estético que funcional. Sin embargo, se trata de un ejercicio de visualización basada en datos reales. El gráfico nos permite ver rápidamente la concentración de ingresos en la mayoría de las comunas en torno al sueldo mínimo, cada una con distintas desviaciones respecto a esta columna montañosa. Las densidades de más arriba corresponden a comunas de mayores ingresos, y por lo tanto sus distribuciones muestran una mayor cantidad de personas que perciben ingresos mayores a 500.000, incluso formándose una pequeña montañita sobre los 2 millones. A medida que bajamos la vista por el gráfico vemos como las demás comunas van acercando sus densidades hacia la mediana nacional.</p>
+<hr>
+<div style = "height: 18px;">
+</div>
+<div>
+  <div style="display: flex;
+  justify-content: center;
+  align-items: center;">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="bastimapache" 
+    data-color="#D6B9E8" data-emoji="<i class='fa fa-mug-saucer'></i>"  data-font="Cookie" 
+    data-text="Regálame un cafecito" 
+    data-outline-color="#000000" data-font-color="#543A73" data-coffee-color="#ffffff" ></script>
+  </div>
+</div>
+
+
+
+
+
+
+
+ 
+    </section>
+      
+    <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+    <a class="prev dtc pr2 tl v-top fw6"
+    href="https://bastianolea.rbind.io/blog/ggplot_purrr/">&larr; Generar múltiples gráficos automáticamente con R</a>
+  
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="https://bastianolea.rbind.io/blog/ggrepel/">Etiquetas de texto que se repelen entre sí con {ggrepel} &rarr;</a>
+  
+</div>
+
+    </footer>
+    
+  </article>
+    
+    <div class="post-comments pa0 pa4-l mt4">
+  
+</div>
+
+    
+</section>
+  
+
+<section class="post-body pt5 pb4">
+  
+  <details closed class="f6 fw7 input-reset">
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Fecha de publicación:</dt>
+    <dd class="fw5 ml0">July 12, 2025</dd>
+  </dl>
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Extensión:</dt>
+    <dd class="fw5 ml0">7 minute read, 1474 words</dd>
+  </dl>
+  
+  
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Tags:</dt>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/ggplot2">ggplot2</a>  <a href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos">gráficos</a> </dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Ver también:</dt>
+    
+    <dd class="fw5 ml0"><a href="/blog/colores/">Colores y paletas de colores en R</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/ggplot_dumbbell/">Gráficos de puntos comparativos o _dumbbell_ en `{ggplot2}`</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/app_densidad_comunas/">Aplicación: Visualizador de densidad de población urbana en comunas de Chile</a></dd>
+    
+  </dl>
+</details>
+
+</section>
+</main>
+
+
+<aside class="page-sidebar" role="complementary">
+   
+   
+
+  <div class="blog-info ph4 pt4 pb4 pb0-l">
+    
+
+  <h1 class="f3">Blog</h1>
+  <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
+<a href="/tags/">temas</a>.</p>
+  
+
+   
+<h3 style="margin-bottom: 12px;">Temas:</h3>
+
+<div style="font-size:90%;">
+
+<div style="font-size: 90%;">
+  
+   
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/apps/">Aplicaciones</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/texto/">Procesamiento de texto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/ciencias-sociales/">Ciencias sociales</a></span>
+  </span>
+
+<a href="/tags/" style="margin-left: 3px;">y más!</a>
+</div>
+</div>
+  
+  
+   
+   
+
+</div>
+
+  
+  
+  
+
+</aside>
+
+        
+          <script id="partials/analytics.html" 
+  data-goatcounter="https://bastimapache.goatcounter.com/count"
+  async src="//gc.zgo.at/count.js"></script>
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2026 Bastián Olea Herrera, Chile
+      <span class="middot-divider"></span>
+      Hecho con <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source" style="color:#9069C0;">Hugo Apéro</a> 
+      y <a href="https://pkgs.rstudio.com/blogdown/" style="color:#9069C0;">{blogdown}</a></span>.
+      <br />
+      
+Basado en <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source" style="color:#9069C0;">Blogophonic</a></span>, de <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL" style="color:#9069C0;">Formspree</a>.
+
+Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlify</a></span>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+      <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
+      
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
+      
+      <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
+      
+      <a class="dib pv1 ph2 link" href="/tags/" title="Temas">Temas</a>
+      
+      <a class="dib pv1 ph2 link" href="/clases/" title="Clases">Clases</a>
+      
+      <a class="dib pv1 ph2 link" href="/code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
+      
+      <a class="dib pv1 ph2 link" href="/license/" title="Bastián Olea: Licencia">Licencia</a>
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>

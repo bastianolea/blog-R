@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr"><head>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.145.0">
+<title>Introducción al manejo de datos con {dplyr} | Bastián Olea</title>
+
+
+<meta property="twitter:site" content="@bastimapache">
+<meta property="twitter:creator" content="@bastimapache">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="Luego de haber aprendido las funcionalidades básicas del lenguaje y R, y habernos familiarizado con herramientas un poco más avanzadas de la programación en este lenguaje, ahora podemos aplicar estos aprendizajes a los datos. Aprenderemos a explorar, comprender, y navegar tablas de datos, tanto en la forma nativa de trabajar con R, como con la ayuda del paquete {dplyr}.">
+
+
+<meta property="og:site_name" content="Bastián Olea">
+<meta property="og:title" content="Introducción al manejo de datos con {dplyr} | Bastián Olea">
+<meta property="og:description" content="Luego de haber aprendido las funcionalidades básicas del lenguaje y R, y habernos familiarizado con herramientas un poco más avanzadas de la programación en este lenguaje, ahora podemos aplicar estos aprendizajes a los datos. Aprenderemos a explorar, comprender, y navegar tablas de datos, tanto en la forma nativa de trabajar con R, como con la ayuda del paquete {dplyr}." />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/r_introduccion/dplyr_intro/" />
+<meta property="og:locale" content="es-ES">
+
+
+
+
+    
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/r_introduccion/sidebar-featured.jpg" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/r_introduccion/sidebar-featured.jpg" >
+    
+    
+  
+  <meta itemprop="name" content="Introducción al manejo de datos con {dplyr}">
+  <meta itemprop="description" content="Luego de haber aprendido las funcionalidades básicas del lenguaje R, y habernos familiarizado con herramientas un poco más avanzadas de la programación en este lenguaje, ahora podemos aplicar estos aprendizajes a los datos. Aprenderemos a explorar, comprender, y navegar tablas de datos, tanto en la forma nativa de trabajar con R, como con la ayuda del paquete {dplyr}.
+{dplyr} La herramienta que utilizaremos para explorar, manipular, y transformar datos será el paquete {dplyr}. Este paquete, parte central del conjunto Tidyverse de herramientas para el análisis de datos con R, es uno de los más usados por la comunidad de R por su facilidad de uso.">
+  <meta itemprop="datePublished" content="2025-02-15T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-02-15T00:00:00+00:00">
+  <meta itemprop="wordCount" content="3420">
+  <meta itemprop="keywords" content="Dplyr,Datos,Básico">
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="false" type="image/x-icon">
+  <link rel="icon" href="false" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  
+  
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.3c3af999b79169f0222ad6048d940d31333adc32d2658e8ae07284fef52a6db9.js" type="text/javascript"></script>
+  
+  
+  <link rel="stylesheet" href="/css/syntax.css">
+  
+  
+  
+  
+  
+  
+  <meta name="google-site-verification" content="yaiYGBAfSJpjE7mfPuFVP1yoNIqLadRJQIzCOula8TI" />
+  
+</head>
+<body>
+      <div class="grid-container single-series">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
+      <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/blog/" title="Bastián Olea: Blog de R">Blog</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/aprende_r/" title="Aprende R">Aprende R</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/shiny_apps/" title="Apps">Apps</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/tutoriales/" title="Tutoriales">Tutoriales</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/tags/" title="Temas">Temas</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/clases/" title="Cursos">Cursos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/about/" title="Bastián Olea: Sobre mi">Yo</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      
+      
+      
+      <div class="dib v-mid", style = "padding: 4px; margin-top: 4px;">
+        <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+      </div>
+      
+    </div>
+  </nav>
+</header>
+
+                       
+<main class="page-main pa4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pl3-l">
+      <header class="post-header">
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Introducción al manejo de datos con {dplyr}</h1>
+        
+        
+        <p class="f7 db mv0 ttu">15/2/2025</p>
+        
+         
+        
+  <dl class="f6 lh-copy">
+    <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/dplyr"
+    style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 10pt;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px; ">
+      dplyr</a>  <a href="https://bastianolea.rbind.io/tags/datos"
+    style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 10pt;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px; ">
+      datos</a>  <a href="https://bastianolea.rbind.io/tags/b%C3%A1sico"
+    style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 10pt;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px; ">
+      básico</a> </dd></em>
+  </dl>
+ 
+        
+      </header>
+      <section class="post-body pt5 pb4">
+        <p>Luego de haber aprendido las 
+<a href="../../../../blog/r_introduccion/r_basico/">funcionalidades básicas del lenguaje R</a>, y habernos familiarizado con 
+<a href="../../../../blog/r_introduccion/r_intermedio/">herramientas un poco más avanzadas de la programación</a> en este lenguaje, ahora podemos aplicar estos aprendizajes a los datos. Aprenderemos a explorar, comprender, y navegar tablas de datos, tanto en la forma nativa de trabajar con R, como con la ayuda del paquete {dplyr}.</p>
+
+
+
+
+<h2 id="dplyr"><code>{dplyr}</code>
+  <a href="#dplyr"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<img src = dplyr.png style = "float: left; max-width: 128px; margin-right: 20px;">
+<p>La herramienta que utilizaremos para explorar, manipular, y transformar datos será 
+<a href="https://dplyr.tidyverse.org/articles/dplyr.html" target="_blank" rel="noopener">el paquete <code>{dplyr}</code></a>. Este paquete, parte central del 
+<a href="https://www.tidyverse.org" target="_blank" rel="noopener">conjunto <em>Tidyverse</em> de herramientas para el análisis de datos con R</a>, es uno de los más usados por la comunidad de R por su facilidad de uso.</p>
+<p>Se caracteriza porque casi todas sus funciones son escritas por medio de <em>verbos</em>, lo que hace que su sintaxis sea muy legible, ya que cada función se corresponde con una acción que estamos realizando sobre nuestros datos.</p>
+
+
+
+
+<h5 id="nota-sobre-el-uso-de-dplyr">Nota sobre el uso de {dplyr}
+  <a href="#nota-sobre-el-uso-de-dplyr"></a>
+</h5>
+<p>Probablemente el 98% de las cosas que necesitemos hacer con tablas de datos en R puedan hacerse por medio de {dplyr} y otros paquetes adyacentes a él. En mi opinión esto es bueno, porque creo que {dplyr} hace todo más sencillo, ordenado y fácil de interpretar. Sin embargo, creo que también es importante entender cómo se realizan las operaciones básicas sobre los datos con R base. Esto porque un entendimiento &mdash;aunque sea básico&mdash; de R base nos va a ayudar a comprender mejor el funcionamiento del lenguaje, y nos puede sacar de posibles problemas que encontremos. Es por esto que en este tutorial iremos viendo cómo realizar las operaciones básicas de manipulación de datos primero con R base y luego con {dplyr}.</p>
+
+
+
+
+<h3 id="instalación">Instalación
+  <a href="#instalaci%c3%b3n"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Para usar el paquete <code>{dplyr}</code>, así como cualquier otro paquete de R que no venga instalado por defecto, tenemos que instalarlo desde internet. La instalación de los paquetes en R se facilita por la función <code>install.packages()</code>, que se conecta a un servidor centralizado donde todos los paquetes son revisados y verificados manualmente por revisores humanos, para garantizar que sean seguros de usar y funcionales.</p>
+<p>Instalamos <code>{dplyr}</code> con el siguiente comando:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;dplyr&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Así como cuando instalamos una aplicación en nuestro celular o computador, solamente necesitamos instalar el paquete una vez. Pero cuando queramos usar el paquete, debemos <strong>cargarlo</strong>, que sería equivalente a abrir una aplicación ya instalada en tu celular o computador.</p>
+<p>Para cargar un paquete se utiliza la función <code>library()</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="s">&#34;dplyr&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>Attaching package: 'dplyr'
+
+The following objects are masked from 'package:stats':
+
+    filter, lag
+
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+</code></pre>
+<p>Después de cargar un paquete puede ser que aparezcan mensajes en la consola, pero en general podemos ignorarlos.</p>
+
+
+
+
+<h2 id="datos">Datos
+  <a href="#datos"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Las tablas de datos, también conocidas como <em>dataframes</em>, son formas de almacenar información por medio de filas y columnas. Usualmente, las filas corresponden a observaciones, y las columnas corresponden a variables, pero no siempre esto se cumple. Otra característica de las tablas o <em>dataframes</em> es que son rectangulares: todas las columnas tienen la misma cantidad de filas.</p>
+<p>Usemos {dplyr} para tener nuestra primera aproximación a los datos en tablas construyendo una tabla. Cómo planteamos en el primer tutorial, las tablas de datos en R son construidas a partir de vectores, o dicho de otra forma, las columnas de las tablas son vectores.</p>
+
+
+
+
+<h3 id="crear-una-tabla">Crear una tabla
+  <a href="#crear-una-tabla"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Creemos unos vectores y luego hagamos una tabla a partir de ellos:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">animal</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;gato&#34;</span><span class="p">,</span> <span class="s">&#34;paloma&#34;</span><span class="p">,</span> <span class="s">&#34;rana&#34;</span><span class="p">,</span> <span class="s">&#34;pollo&#34;</span><span class="p">,</span> <span class="s">&#34;mapache&#34;</span><span class="p">,</span> <span class="s">&#34;serpiente&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tipo</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;mamífero&#34;</span><span class="p">,</span> <span class="s">&#34;ave&#34;</span><span class="p">,</span> <span class="s">&#34;anfibio&#34;</span><span class="p">,</span> <span class="s">&#34;ave&#34;</span><span class="p">,</span> <span class="s">&#34;mamífero&#34;</span><span class="p">,</span> <span class="s">&#34;reptil&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">patas</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+</span></span></code></pre></div><p>Creamos tres vectores, que serán las columnas de nuestra tabla. Confirmemos que tienen el mismo largo:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># confirmar que los tres casos se cumplen</span>
+</span></span><span class="line"><span class="cl"><span class="nf">all</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span> <span class="o">==</span> <span class="m">6</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">length</span><span class="p">(</span><span class="n">tipo</span><span class="p">)</span> <span class="o">==</span> <span class="m">6</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">length</span><span class="p">(</span><span class="n">patas</span><span class="p">)</span> <span class="o">==</span> <span class="m">6</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>[1] TRUE
+</code></pre>
+<p>Ahora, usemos los vectores para crear una tabla con {dplyr}:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># crear una tabla con los vectores</span>
+</span></span><span class="line"><span class="cl"><span class="n">tabla</span> <span class="o">&lt;-</span> <span class="nf">tibble</span><span class="p">(</span><span class="n">animal</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">tipo</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">patas</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tabla</span>
+</span></span></code></pre></div><pre><code># A tibble: 6 × 3
+  animal    tipo     patas
+  &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;
+1 gato      mamífero     4
+2 paloma    ave          2
+3 rana      anfibio      4
+4 pollo     ave          2
+5 mapache   mamífero     4
+6 serpiente reptil       0
+</code></pre>
+<p>Esta es la salida en la consola que tienen los <em>dataframes</em> creados con {dplyr}. En ella, podemos ver en la primera fila de texto en largo y ancho de la tabla (número de filas y columnas). Luego vemos los <strong>nombres</strong> de las tres columnas, y debajo de ellos vemos el <strong>tipo</strong> de cada columna (caracter, caracter y numérico). Las siguientes filas corresponden a los datos mismos de la tabla.</p>
+
+
+
+
+<h3 id="explorar-una-tabla">Explorar una tabla
+  <a href="#explorar-una-tabla"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Exploremos un poco las características de una tabla o <em>dataframe</em>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>[1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;
+</code></pre>
+<p>Las tablas creadas con {dplyr} son de la clase <code>&quot;tbl_df&quot;</code>, que hace referencia a <em>tibble,</em> el tipo específico de tablas de datos de este paquete, que son más amigables y fáciles de leer.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">length</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>[1] 3
+</code></pre>
+<p>Se consultamos el largo del objeto con <code>length()</code>, obtenemos el número de columnas. Si queremos saber el número de filas, usamos <code>nrow()</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">nrow</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>[1] 6
+</code></pre>
+<p>Si queremos saber los nombres de las columnas de una tabla, podemos usar <code>names()</code>, o bien, la función <code>glimpse()</code>, que nos entrega un conveniente <em>vistazo</em> de los datos de nuestra tabla:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">names</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>[1] &quot;animal&quot; &quot;tipo&quot;   &quot;patas&quot; 
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">glimpse</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>Rows: 6
+Columns: 3
+$ animal &lt;chr&gt; &quot;gato&quot;, &quot;paloma&quot;, &quot;rana&quot;, &quot;pollo&quot;, &quot;mapache&quot;, &quot;serpiente&quot;
+$ tipo   &lt;chr&gt; &quot;mamífero&quot;, &quot;ave&quot;, &quot;anfibio&quot;, &quot;ave&quot;, &quot;mamífero&quot;, &quot;reptil&quot;
+$ patas  &lt;dbl&gt; 4, 2, 4, 2, 4, 0
+</code></pre>
+
+
+
+
+<h3 id="seleccionar-datos">Seleccionar datos
+  <a href="#seleccionar-datos"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Recordemos que podemos extraer subconjuntos de los vectores usando los corchetes <code>[]</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">animal[5]</span>
+</span></span></code></pre></div><pre><code>[1] &quot;mapache&quot;
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">animal[4</span><span class="o">:</span><span class="m">5</span><span class="n">]</span>
+</span></span></code></pre></div><pre><code>[1] &quot;pollo&quot;   &quot;mapache&quot;
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">animal</span><span class="nf">[c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">4</span><span class="p">)</span><span class="n">]</span>
+</span></span></code></pre></div><pre><code>[1] &quot;gato&quot;   &quot;paloma&quot; &quot;pollo&quot; 
+</code></pre>
+<p>Con los vectores es sencillo, porque un vector es una unidad de datos unidimensional, donde con un número podemos seleccionar cualquiera de los elementos contenidos en el vector.</p>
+<p>Las tablas de datos no son unidimensionales, sino <strong>bidimensionales</strong>, dado que tienen filas y columnas. Entonces, para poder extraer elementos de distintas posiciones de una tabla, dentro de los corchetes habrá que indicar sus filas y/o columnas. Tenemos que indicar ya no sólo uno, sino dos argumentos: el primero refiere a las <strong>filas</strong>, y el segundo a las <strong>columnas</strong>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tabla[2</span><span class="p">,</span> <span class="m">3</span><span class="n">]</span>
+</span></span></code></pre></div><pre><code># A tibble: 1 × 1
+  patas
+  &lt;dbl&gt;
+1     2
+</code></pre>
+<p>En este caso, extrajimos la observación que se encuentra en la fila <code>2</code> y en la columna <code>3</code>.</p>
+
+
+
+
+<h4 id="filas">Filas
+  <a href="#filas"></a>
+</h4>
+<p>Para extraer una fila de una tabla, dentro de los corchetes debemos indicar la posición de la fila, separado por una coma, y dejar en blanco el segundo argumento, que sería la selección de columnas.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tabla[1</span><span class="p">,</span> <span class="n">]</span>
+</span></span></code></pre></div><pre><code># A tibble: 1 × 3
+  animal tipo     patas
+  &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;
+1 gato   mamífero     4
+</code></pre>
+<p>Indicando sólo el número de fila <code>1</code> y dejando en blanco la ubicación de la columna, seleccionamos la fila 1 entera.</p>
+<p>También podemos usar la función <code>slice()</code> para extraer una fila de una tabla:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">slice</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code># A tibble: 1 × 3
+  animal  tipo     patas
+  &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt;
+1 mapache mamífero     4
+</code></pre>
+<p>Si queremos extraer la última fila de una tabla, podemos combinar <code>slice()</code> con la función <code>nrow()</code> que nos entrega la cantidad de filas de una tabla, resultando en extraer la fila que corresponde con el número de filas; es decir, la última:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">slice</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">tabla</span><span class="p">))</span>
+</span></span></code></pre></div><pre><code># A tibble: 1 × 3
+  animal    tipo   patas
+  &lt;chr&gt;     &lt;chr&gt;  &lt;dbl&gt;
+1 serpiente reptil     0
+</code></pre>
+
+
+
+
+<h4 id="columnas">Columnas
+  <a href="#columnas"></a>
+</h4>
+<p>Para extraer una columna, debemos indicar su posición en el segundo argumento dentro de los corchetes, dejando el primero vacío:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tabla[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span>
+</span></span></code></pre></div><pre><code># A tibble: 6 × 1
+  animal   
+  &lt;chr&gt;    
+1 gato     
+2 paloma   
+3 rana     
+4 pollo    
+5 mapache  
+6 serpiente
+</code></pre>
+<p>También podemos indicar el nombre de la columna, entre comillas, para seleccionarla:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tabla[</span><span class="p">,</span> <span class="s">&#34;animal&#34;</span><span class="n">]</span>
+</span></span></code></pre></div><pre><code># A tibble: 6 × 1
+  animal   
+  &lt;chr&gt;    
+1 gato     
+2 paloma   
+3 rana     
+4 pollo    
+5 mapache  
+6 serpiente
+</code></pre>
+<p>Puede para ser extraño dejar la coma por sí sola dentro del corchete, así que en su lugar podemos usar la función <code>select()</code> para seleccionar columnas:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">select</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code># A tibble: 6 × 1
+  animal   
+  &lt;chr&gt;    
+1 gato     
+2 paloma   
+3 rana     
+4 pollo    
+5 mapache  
+6 serpiente
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">select</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="s">&#34;tipo&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code># A tibble: 6 × 1
+  tipo    
+  &lt;chr&gt;   
+1 mamífero
+2 ave     
+3 anfibio 
+4 ave     
+5 mamífero
+6 reptil  
+</code></pre>
+<p>Otra forma de extraer una columna de una tabla de datos es <em>abrir</em> la tabla usando el operador <code>$</code>. Al escribir el nombre de la tabla de datos seguido del operador <code>$</code>, RStudio sugerirá los nombres de las columnas para que puedas extraerlas:</p>
+<a href="dplyr_1.png" target="_blank">
+
+  <img src="dplyr_1.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tabla</span><span class="o">$</span><span class="n">animal</span>
+</span></span></code></pre></div><pre><code>[1] &quot;gato&quot;      &quot;paloma&quot;    &quot;rana&quot;      &quot;pollo&quot;     &quot;mapache&quot;   &quot;serpiente&quot;
+</code></pre>
+<p>A usar el operador <code>$</code> para extraer columnas, se obtiene el vector que se usó para crear la columna, así que recibimos los datos en forma de vector.</p>
+<p>La misma extracción de una columna como vector puede hacerse con la función <code>pull()</code> de {dplyr}, donde se entrega la tabla y la columna, y se obtiene la columna como vector:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">pull</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="n">animal</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>[1] &quot;gato&quot;      &quot;paloma&quot;    &quot;rana&quot;      &quot;pollo&quot;     &quot;mapache&quot;   &quot;serpiente&quot;
+</code></pre>
+
+
+
+
+<h3 id="crear-columnas">Crear columnas
+  <a href="#crear-columnas"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Si queremos agregar una nueva columna a nuestro <em>dataframe</em>, tenemos que hacer una mezcla entre la extracción de columnas con el operador <code>$</code> y la asignación de nuevos objetos:</p>
+<p>Si intentamos extraer una columna que no existe, recibimos un error:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tabla</span><span class="o">$</span><span class="n">habitat</span>
+</span></span></code></pre></div><pre><code>Warning: Unknown or uninitialised column: `habitat`.
+
+NULL
+</code></pre>
+<p>Sin embargo, si creamos un vector encima de esta columna que aún no existe, ésta se crea:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tabla</span><span class="o">$</span><span class="n">habitat</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;urbano&#34;</span><span class="p">,</span> <span class="s">&#34;urbano&#34;</span><span class="p">,</span> <span class="s">&#34;rural&#34;</span><span class="p">,</span> <span class="s">&#34;rural&#34;</span><span class="p">,</span> <span class="s">&#34;urbano&#34;</span><span class="p">,</span> <span class="s">&#34;rural&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tabla</span>
+</span></span></code></pre></div><pre><code># A tibble: 6 × 4
+  animal    tipo     patas habitat
+  &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;  
+1 gato      mamífero     4 urbano 
+2 paloma    ave          2 urbano 
+3 rana      anfibio      4 rural  
+4 pollo     ave          2 rural  
+5 mapache   mamífero     4 urbano 
+6 serpiente reptil       0 rural  
+</code></pre>
+<p>En otras palabras, para crear una nueva columna simplemente especificamos su nombre como parte de la tabla existente, y asignamos los datos que queremos que se contengan en esta nueva columna.</p>
+<p>Otra forma de crear columnas es con la función <code>mutate()</code>, que nos permite crear o modificar columnas existentes:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">mutate</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="n">cola</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;sí&#34;</span><span class="p">,</span> <span class="s">&#34;sí&#34;</span><span class="p">,</span> <span class="s">&#34;no&#34;</span><span class="p">,</span> <span class="s">&#34;no&#34;</span><span class="p">,</span> <span class="s">&#34;sí&#34;</span><span class="p">,</span> <span class="s">&#34;toda&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><pre><code># A tibble: 6 × 5
+  animal    tipo     patas habitat cola 
+  &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;
+1 gato      mamífero     4 urbano  sí   
+2 paloma    ave          2 urbano  sí   
+3 rana      anfibio      4 rural   no   
+4 pollo     ave          2 rural   no   
+5 mapache   mamífero     4 urbano  sí   
+6 serpiente reptil       0 rural   toda 
+</code></pre>
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            /*background-color: #A985C650;*/
+            background-color: #DEC4F2;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-info-circle" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #9069C0;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%;">
+    Revisa un tutorial completo y en profundida de <code>mutate()</code> 
+<a href="https://bastianolea.rbind.io/blog/r_introduccion/dplyr_mutate/" target="_blank" rel="noopener">en este post!</a>
+  </aside>
+  
+</div>
+<p>La diferencia es que con <code>mutate()</code> solamente estamos previsualizando el cambio, dado que no hemos asignado nada. Si queremos que la columna realmente se guarde en el <em>dataframe</em>, debemos asignar el resultado a un objeto nuevo, o sobreescribir el actual:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># sobreescribir la tabla con la columna nueva</span>
+</span></span><span class="line"><span class="cl"><span class="n">tabla</span> <span class="o">&lt;-</span> <span class="nf">mutate</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="n">cola</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;sí&#34;</span><span class="p">,</span> <span class="s">&#34;sí&#34;</span><span class="p">,</span> <span class="s">&#34;no&#34;</span><span class="p">,</span> <span class="s">&#34;no&#34;</span><span class="p">,</span> <span class="s">&#34;sí&#34;</span><span class="p">,</span> <span class="s">&#34;toda&#34;</span><span class="p">))</span>
+</span></span></code></pre></div>
+
+
+
+<h3 id="filtrar-datos">Filtrar datos
+  <a href="#filtrar-datos"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Una de las tareas más recurrentes que vamos a hacer con tablas de datos, sobre todo cuando son muy grandes, es filtrar la información. El filtrado de datos funciona a partir de <strong>comparaciones</strong>, dado que al filtrar estamos especificando un criterio que deben cumplir los valores para mantenerse en la tabla, y todos los valores que no cumplan este criterio serán removidos.</p>
+<p>Entonces, para filtrar datos, escribimos una comparación que coincida (retorne <code>TRUE</code>) con los valores que deseamos recibir.</p>
+<p>Supongamos que queremos ver solamente las observaciones donde el valor de la variable <code>patas</code> sea mayor que 2. Primero, planteemos la comparación:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># extraer los valores de la columna `patas`</span>
+</span></span><span class="line"><span class="cl"><span class="n">tabla</span><span class="o">$</span><span class="n">patas</span> 
+</span></span></code></pre></div><pre><code>[1] 4 2 4 2 4 0
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># comparar los valores con el número 2</span>
+</span></span><span class="line"><span class="cl"><span class="n">tabla</span><span class="o">$</span><span class="n">patas</span> <span class="o">&gt;</span> <span class="m">2</span>
+</span></span></code></pre></div><pre><code>[1]  TRUE FALSE  TRUE FALSE  TRUE FALSE
+</code></pre>
+<p>A partir de las comparaciones, recibimos una secuencia de valores lógicos (<code>TRUE</code>/<code>FALSE</code>) que indican si cada elemento del vector cumplió o no con la comparación planteada. Entonces, en principio, queremos mantener solamente las observaciones que retornaron <code>TRUE</code>.</p>
+<p>Recordemos que para filtrar filas de una tabla, dentro de los corchetes especificamos en la primera posición las filas que queremos extraer.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tabla[1</span><span class="p">,</span> <span class="n">]</span>
+</span></span></code></pre></div><pre><code># A tibble: 1 × 5
+  animal tipo     patas habitat cola 
+  &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;
+1 gato   mamífero     4 urbano  sí   
+</code></pre>
+<p>Esto, sumado a lo anterior, son los principios que usaremos para filtrar las filas de una tabla de datos:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tabla[tabla</span><span class="o">$</span><span class="n">patas</span> <span class="o">&gt;</span> <span class="m">2</span><span class="p">,</span> <span class="n">]</span>
+</span></span></code></pre></div><pre><code># A tibble: 3 × 5
+  animal  tipo     patas habitat cola 
+  &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;
+1 gato    mamífero     4 urbano  sí   
+2 rana    anfibio      4 rural   no   
+3 mapache mamífero     4 urbano  sí   
+</code></pre>
+<p>Usamos la comparación que retorna verdaderos y falsos dentro de los corchetes para seleccionar las filas de la tabla. Entonces, como el vector de la comparación entre el mismo largo que las filas de la tabla, en cada posición de la comparación que se obtuvo <code>TRUE</code>, se muestra la fila correspondiente, y si se obtuvo <code>FALSE</code>, se omite.</p>
+<p>Otros ejemplos de filtrado:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tabla</span><span class="o">$</span><span class="n">animal</span> <span class="o">==</span> <span class="s">&#34;mapache&#34;</span>
+</span></span></code></pre></div><pre><code>[1] FALSE FALSE FALSE FALSE  TRUE FALSE
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tabla[tabla</span><span class="o">$</span><span class="n">animal</span> <span class="o">==</span> <span class="s">&#34;mapache&#34;</span><span class="p">,</span> <span class="n">]</span>
+</span></span></code></pre></div><pre><code># A tibble: 1 × 5
+  animal  tipo     patas habitat cola 
+  &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;
+1 mapache mamífero     4 urbano  sí   
+</code></pre>
+<p>Una segunda opción es usar la función <code>subset()</code> de R base para filtrar tablas:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">subset</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="n">patas</span> <span class="o">&lt;</span> <span class="m">3</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code># A tibble: 3 × 5
+  animal    tipo   patas habitat cola 
+  &lt;chr&gt;     &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;
+1 paloma    ave        2 urbano  sí   
+2 pollo     ave        2 rural   no   
+3 serpiente reptil     0 rural   toda 
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">subset</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="n">animal</span> <span class="o">==</span> <span class="s">&#34;pollo&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code># A tibble: 1 × 5
+  animal tipo  patas habitat cola 
+  &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;
+1 pollo  ave       2 rural   no   
+</code></pre>
+<p>La alternativa de {dplyr}, <code>filter()</code>, es similar a <code>subset()</code>, pero tiene otras conveniencias que aprenderemos más adelante:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">filter</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="n">tipo</span> <span class="o">!=</span> <span class="s">&#34;ave&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code># A tibble: 4 × 5
+  animal    tipo     patas habitat cola 
+  &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;
+1 gato      mamífero     4 urbano  sí   
+2 rana      anfibio      4 rural   no   
+3 mapache   mamífero     4 urbano  sí   
+4 serpiente reptil       0 rural   toda 
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">filter</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="n">animal</span> <span class="o">%in%</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;mapache&#34;</span><span class="p">,</span> <span class="s">&#34;gato&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><pre><code># A tibble: 2 × 5
+  animal  tipo     patas habitat cola 
+  &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;
+1 gato    mamífero     4 urbano  sí   
+2 mapache mamífero     4 urbano  sí   
+</code></pre>
+
+
+
+
+<h3 id="renombrar-columnas">Renombrar columnas
+  <a href="#renombrar-columnas"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Para cambiar el nombre de una de las columnas, hay varias formas.</p>
+<p>Una forma, quizás más rudimentaria, sería crear una columna nueva con el nombre que deseamos, a partir de una columna existente, para luego eliminar la columna original:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># columna original</span>
+</span></span><span class="line"><span class="cl"><span class="n">tabla</span><span class="o">$</span><span class="n">habitat</span>
+</span></span></code></pre></div><pre><code>[1] &quot;urbano&quot; &quot;urbano&quot; &quot;rural&quot;  &quot;rural&quot;  &quot;urbano&quot; &quot;rural&quot; 
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># crear columna nueva a partir de la original</span>
+</span></span><span class="line"><span class="cl"><span class="n">tabla</span><span class="o">$</span><span class="n">zona</span> <span class="o">&lt;-</span> <span class="n">tabla</span><span class="o">$</span><span class="n">habitat</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># eliminar la columna original</span>
+</span></span><span class="line"><span class="cl"><span class="n">tabla</span><span class="o">$</span><span class="n">habitat</span> <span class="o">&lt;-</span> <span class="kc">NULL</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># revisar cambios</span>
+</span></span><span class="line"><span class="cl"><span class="nf">names</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>[1] &quot;animal&quot; &quot;tipo&quot;   &quot;patas&quot;  &quot;cola&quot;   &quot;zona&quot;  
+</code></pre>
+<p>Éste procedimiento es similar al que vimos para crear nuevas columnas, ya que implica crear una columna que no existe aún (<code>zona</code>), a partir de un valor, en este caso, una columna de la misma tabla (<code>tabla$habitat</code>). De esta forma, duplicamos la columna, para luego <strong>eliminar</strong> la columna original al asignarle el valor nulo, <code>NULL</code>.</p>
+<p>Otra forma de renombrar columnas, aunque un poco confusa, es usando la función <code>names()</code>, que nos entrega los nombres de las columnas:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># obtener columnas</span>
+</span></span><span class="line"><span class="cl"><span class="nf">names</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>[1] &quot;animal&quot; &quot;tipo&quot;   &quot;patas&quot;  &quot;cola&quot;   &quot;zona&quot;  
+</code></pre>
+<p>Al obtener los nombres de las columnas, realizamos una selección de la columna que queremos, usando los corchetes. Luego habría que asignar el nombre nuevo a la columna que sleeccionamos:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># seleccionar columna a renombrar</span>
+</span></span><span class="line"><span class="cl"><span class="nf">names</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span><span class="nf">[names</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#34;patas&#34;</span><span class="n">]</span>
+</span></span></code></pre></div><pre><code>[1] &quot;patas&quot;
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># asignar nuevo nombre a la columna seleccionada</span>
+</span></span><span class="line"><span class="cl"><span class="nf">names</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span><span class="nf">[names</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#34;patas&#34;</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="s">&#34;piernas&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ver cambios</span>
+</span></span><span class="line"><span class="cl"><span class="nf">names</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>[1] &quot;animal&quot;  &quot;tipo&quot;    &quot;piernas&quot; &quot;cola&quot;    &quot;zona&quot;   
+</code></pre>
+<p>Finalmente, la alternativa que entrega {dplyr} para renombrar columnas es la función <code>rename()</code>, a la cual se le entrega la tabla, y luego se le entrega el nombre nuevo de la columna, el signo <code>=</code> y el nombre original:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tabla</span> <span class="o">&lt;-</span> <span class="nf">rename</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="n">nombre</span> <span class="o">=</span> <span class="n">animal</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ver cambios</span>
+</span></span><span class="line"><span class="cl"><span class="nf">names</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>[1] &quot;nombre&quot;  &quot;tipo&quot;    &quot;piernas&quot; &quot;cola&quot;    &quot;zona&quot;   
+</code></pre>
+
+
+
+
+<h3 id="ordenar-observaciones">Ordenar observaciones
+  <a href="#ordenar-observaciones"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Otra operación común con tallas de datos es ordenar una tabla según una variable numérica, para que las observaciones estén en orden decreciente o ascendente.</p>
+<p>Primero, si queremos ordenar un vector, podemos usar la función <code>sort()</code> para obtener los valores del vector de menor a mayor:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sort</span><span class="p">(</span><span class="n">tabla</span><span class="o">$</span><span class="n">piernas</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>[1] 0 2 2 4 4 4
+</code></pre>
+<p>En cierto sentido, ordenar una tabla es la misma operación que extraer filas de una tabla, solamente extraemos las filas de la tabla en el orden que deseamos. Por ejemplo:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tabla</span>
+</span></span></code></pre></div><pre><code># A tibble: 6 × 5
+  nombre    tipo     piernas cola  zona  
+  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+1 gato      mamífero       4 sí    urbano
+2 paloma    ave            2 sí    urbano
+3 rana      anfibio        4 no    rural 
+4 pollo     ave            2 no    rural 
+5 mapache   mamífero       4 sí    urbano
+6 serpiente reptil         0 toda  rural 
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># extraer filas de la tabla en un orden específico</span>
+</span></span><span class="line"><span class="cl"><span class="n">tabla</span><span class="nf">[c</span><span class="p">(</span><span class="m">6</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">),</span> <span class="n">]</span>
+</span></span></code></pre></div><pre><code># A tibble: 3 × 5
+  nombre    tipo   piernas cola  zona 
+  &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
+1 serpiente reptil       0 toda  rural
+2 pollo     ave          2 no    rural
+3 pollo     ave          2 no    rural
+</code></pre>
+<p>En este ejemplo, extrajimos tres filas de la tabla, pero la extracción que hacemos es específicamente de la fila que tiene valor 0 en la variable <code>piernas</code>, y luego las dos filas que tienen valor 2.</p>
+<p>Como memos, en este caso no nos serviría la función <code>sort()</code>. Porque para ordenar una tabla no necesitamos los <em>valores ordenados</em> del vector, sino las <strong>posiciones</strong> de los valores del vector ordenadas de manera que podamos mover las filas de una tabla. Para eso nos sirve la función <code>order()</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># posiciones de los elementos ordenados</span>
+</span></span><span class="line"><span class="cl"><span class="nf">order</span><span class="p">(</span><span class="n">tabla</span><span class="o">$</span><span class="n">piernas</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>[1] 6 2 4 1 3 5
+</code></pre>
+<p>Esta función si no se entrega la posición de los elementos del vector o de la columna en el orden de menor a mayor, y con estas posiciones podemos reordenar las filas de la tabla:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># ordenar de menor a mayor</span>
+</span></span><span class="line"><span class="cl"><span class="n">tabla</span><span class="nf">[order</span><span class="p">(</span><span class="n">tabla</span><span class="o">$</span><span class="n">piernas</span><span class="p">),</span> <span class="n">]</span>
+</span></span></code></pre></div><pre><code># A tibble: 6 × 5
+  nombre    tipo     piernas cola  zona  
+  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+1 serpiente reptil         0 toda  rural 
+2 paloma    ave            2 sí    urbano
+3 pollo     ave            2 no    rural 
+4 gato      mamífero       4 sí    urbano
+5 rana      anfibio        4 no    rural 
+6 mapache   mamífero       4 sí    urbano
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># ordenar de mayor a menor</span>
+</span></span><span class="line"><span class="cl"><span class="n">tabla</span><span class="nf">[order</span><span class="p">(</span><span class="n">tabla</span><span class="o">$</span><span class="n">piernas</span><span class="p">,</span> <span class="n">decreasing</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span> <span class="n">]</span>
+</span></span></code></pre></div><pre><code># A tibble: 6 × 5
+  nombre    tipo     piernas cola  zona  
+  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+1 gato      mamífero       4 sí    urbano
+2 rana      anfibio        4 no    rural 
+3 mapache   mamífero       4 sí    urbano
+4 paloma    ave            2 sí    urbano
+5 pollo     ave            2 no    rural 
+6 serpiente reptil         0 toda  rural 
+</code></pre>
+<p>La función <code>arrange()</code> de {dplyr} nos permite ordenar una tabla tan sólo entregándole la columna por la cual queremos ordenar:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">arrange</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="n">piernas</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code># A tibble: 6 × 5
+  nombre    tipo     piernas cola  zona  
+  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+1 serpiente reptil         0 toda  rural 
+2 paloma    ave            2 sí    urbano
+3 pollo     ave            2 no    rural 
+4 gato      mamífero       4 sí    urbano
+5 rana      anfibio        4 no    rural 
+6 mapache   mamífero       4 sí    urbano
+</code></pre>
+<p>¡Mucho más sencillo! Si deseamos ordenar en orden descendiente (mayor a menor), debemos meter la columna dentro de la función <code>desc()</code> (por <em>descending</em>):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">arrange</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="nf">desc</span><span class="p">(</span><span class="n">piernas</span><span class="p">))</span>
+</span></span></code></pre></div><pre><code># A tibble: 6 × 5
+  nombre    tipo     piernas cola  zona  
+  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+1 gato      mamífero       4 sí    urbano
+2 rana      anfibio        4 no    rural 
+3 mapache   mamífero       4 sí    urbano
+4 paloma    ave            2 sí    urbano
+5 pollo     ave            2 no    rural 
+6 serpiente reptil         0 toda  rural 
+</code></pre>
+
+
+
+
+<h2 id="bonus">Bonus
+  <a href="#bonus"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+
+
+
+
+<h3 id="crear-tablas-manualmente">Crear tablas manualmente
+  <a href="#crear-tablas-manualmente"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Si queremos crear una tabla de datos de prueba, para explorar estos aprendizajes, o bien porque nuestros datos son muy poquitos, podemos usar la función <code>tribble()</code> para escribir la tabla como si la estuviéramos haciendo en una aplicación de planillas de cálculo:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">tribble</span><span class="p">(</span><span class="o">~</span><span class="n">días</span><span class="p">,</span>    <span class="o">~</span><span class="n">n</span><span class="p">,</span> <span class="o">~</span><span class="n">caso</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;jueves&#34;</span><span class="p">,</span>  <span class="m">0</span><span class="p">,</span>  <span class="m">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;viernes&#34;</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span>  <span class="m">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;sábado&#34;</span><span class="p">,</span>  <span class="m">2</span><span class="p">,</span>  <span class="m">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span></code></pre></div><pre><code># A tibble: 3 × 3
+  días        n  caso
+  &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1 jueves      0     1
+2 viernes     4     0
+3 sábado      2     1
+</code></pre>
+<p>Simplemente escribe los nombres de las columnas con una colita de chancho antes (<code>~</code>) en la primera fila, y hacia abajo puedes ir rellenando los valores de cada columna.</p>
+<hr>
+<p>En ese tutorial nuevamente aprendimos herramientas básicas de R, esta vez orientadas a trabajar con datos en forma de tabla. Para esto, combinamos varios de los aprendizajes anteriores que habíamos aplicado a vectores, para reutilizarlos en esta nueva forma de organizar la información. Con los conocimientos obtenidos hasta ahora, ya sería posible llevar a cabo la mayor parte de las operaciones necesarias para la exploración de datos!</p>
+<p><strong>El siguiente paso</strong> es aprender a 
+<a href="../../../../blog/r_introduccion/dplyr_intermedio/">transformar datos con <code>{dplyr}</code> y <code>{tidyr}</code></a>, o bien puedes pasar a los tutoriales aplicados, donde practicaremos estos aprendizajes en conjunto de datos reales: con 
+<a href="../../../../blog/r_introduccion/tutorial_dplyr_censo/">datos de proyecciones de población provenientes del Censo</a>, y con 
+<a href="../../../../blog/r_introduccion/tutorial_dplyr_campamentos/">datos de un catastro de asentamientos de vivienda informales</a>.</p>
+<p><div style = "height: 18px;">
+</div>
+<div>
+  <div style="display: flex;
+  justify-content: center;
+  align-items: center;">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="bastimapache" 
+    data-color="#D6B9E8" data-emoji="<i class='fa fa-mug-saucer'></i>"  data-font="Cookie" 
+    data-text="Regálame un cafecito" 
+    data-outline-color="#000000" data-font-color="#543A73" data-coffee-color="#ffffff" ></script>
+  </div>
+</div>
+
+
+
+
+
+
+</p>
+
+      </section>
+      <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+    <a class="prev dtc pr2 tl v-top fw6"
+    href="https://bastianolea.rbind.io/blog/r_introduccion/proyectos/">&larr; Organizar el trabajo en Proyectos de RStudio</a>
+  
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="https://bastianolea.rbind.io/blog/r_introduccion/dplyr_mutate/">Crear variables nuevas con `dplyr::mutate()` &rarr;</a>
+  
+</div>
+
+      </footer>
+    </article>
+    
+      <div class="post-comments pa0 pa4-l mt4">
+  
+</div>
+
+    
+  </section>
+</main>
+
+<aside class="page-sidebar" role="complementary">
+
+   
+                         
+ 
+
+
+
+<div class="flex items-start sticky ph4 pb4">
+  <div class="w-two-thirds w-50-l ph0">
+    
+    <h2 class="mt3 mb3 f5 fw7 ttu tracked"><a class="no-underline dim" href="/blog/r_introduccion/">Publicaciones de la serie</a></h2>
+    <nav id="SeriesTableOfContents">
+        <ul>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/instalar_r/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/instalar_r/">Primer paso: instalar R</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/por_que_r/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/por_que_r/">¿Por qué usar R?</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/r_basico/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/r_basico/">Introducción al lenguaje de programación R</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/r_intermedio/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/r_intermedio/">Herramientas básicas para programar con R</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/conectores/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/conectores/">Aprendiendo a usar conectores o <em>pipes</em></a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/proyectos/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/proyectos/">Organizar el trabajo en Proyectos de RStudio</a></li>
+        
+          
+          <li class="active" hugo-nav="/blog/r_introduccion/dplyr_intro/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/dplyr_intro/">Introducción al manejo de datos con {dplyr}</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/dplyr_mutate/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/dplyr_mutate/">Crear variables nuevas con <code>dplyr::mutate()</code></a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/dplyr_summarize/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/dplyr_summarize/">Calcular resúmenes de datos con <code>dplyr::summarize()</code></a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/tidyr_pivotar/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/tidyr_pivotar/">Transformación de datos entre formato <em>ancho</em> y <em>largo</em> con {tidyr}</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/tutorial_dplyr_censo/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_dplyr_censo/">Tutorial: introducción a {dplyr} con datos de población</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/tutorial_dplyr_campamentos/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_dplyr_campamentos/">Tutorial: introducción a {dplyr} usando datos de campamentos</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/tutorial_visualizacion_ggplot/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_visualizacion_ggplot/">Tutorial: visualización de datos con {ggplot2}</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/tutorial_shiny_1/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_shiny_1/">Tutorial: introducción al desarrollo de apps con Shiny</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/tutorial_shinyapps/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_shinyapps/">Tutorial: publicar una app Shiny en shinyapps.io</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/tutorial_github/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_github/">Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/recursos_r/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/recursos_r/">Recursos, blogs y otros sitios sobre R</a></li>
+        
+        </ul>
+      </nav>
+  </div>
+  
+  
+  <details open id="PageTableOfContents">
+    <summary><h2 class="mv0 f5 fw7 ttu tracked dib">Índice</h2></summary>
+    <div class="pl2 pr0 mh0" style = "font-size: 95%;">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#dplyr"><code>{dplyr}</code></a>
+      <ul>
+        <li></li>
+        <li><a href="#instalación">Instalación</a></li>
+      </ul>
+    </li>
+    <li><a href="#datos">Datos</a>
+      <ul>
+        <li><a href="#crear-una-tabla">Crear una tabla</a></li>
+        <li><a href="#explorar-una-tabla">Explorar una tabla</a></li>
+        <li><a href="#seleccionar-datos">Seleccionar datos</a></li>
+        <li><a href="#crear-columnas">Crear columnas</a></li>
+        <li><a href="#filtrar-datos">Filtrar datos</a></li>
+        <li><a href="#renombrar-columnas">Renombrar columnas</a></li>
+        <li><a href="#ordenar-observaciones">Ordenar observaciones</a></li>
+      </ul>
+    </li>
+    <li><a href="#bonus">Bonus</a>
+      <ul>
+        <li><a href="#crear-tablas-manualmente">Crear tablas manualmente</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </details>
+  
+</div>
+
+
+ 
+  
+</aside>
+
+
+        
+          <script id="partials/analytics.html" 
+  data-goatcounter="https://bastimapache.goatcounter.com/count"
+  async src="//gc.zgo.at/count.js"></script>
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2026 Bastián Olea Herrera, Chile
+      <span class="middot-divider"></span>
+      Hecho con <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source" style="color:#9069C0;">Hugo Apéro</a> 
+      y <a href="https://pkgs.rstudio.com/blogdown/" style="color:#9069C0;">{blogdown}</a></span>.
+      <br />
+      
+Basado en <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source" style="color:#9069C0;">Blogophonic</a></span>, de <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL" style="color:#9069C0;">Formspree</a>.
+
+Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlify</a></span>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+      <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
+      
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
+      
+      <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
+      
+      <a class="dib pv1 ph2 link" href="/tags/" title="Temas">Temas</a>
+      
+      <a class="dib pv1 ph2 link" href="/clases/" title="Clases">Clases</a>
+      
+      <a class="dib pv1 ph2 link" href="/code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
+      
+      <a class="dib pv1 ph2 link" href="/license/" title="Bastián Olea: Licencia">Licencia</a>
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>

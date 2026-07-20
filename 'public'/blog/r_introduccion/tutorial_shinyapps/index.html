@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr"><head>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.145.0">
+<title>Tutorial: publicar una app Shiny en shinyapps.io | Bastián Olea</title>
+
+
+<meta property="twitter:site" content="@bastimapache">
+<meta property="twitter:creator" content="@bastimapache">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="¿Desarrollaste una aplicación con Shiny, y quieres compartirla con el mundo? shinyapps.io es, en mi experiencia, el servicio más sencillo de usar para poder hacer públicas tus aplicaciones Shiny. Este post contiene instrucciones paso a paso para que publiques y compartas tus aplicaciones.">
+
+
+<meta property="og:site_name" content="Bastián Olea">
+<meta property="og:title" content="Tutorial: publicar una app Shiny en shinyapps.io | Bastián Olea">
+<meta property="og:description" content="¿Desarrollaste una aplicación con Shiny, y quieres compartirla con el mundo? shinyapps.io es, en mi experiencia, el servicio más sencillo de usar para poder hacer públicas tus aplicaciones Shiny. Este post contiene instrucciones paso a paso para que publiques y compartas tus aplicaciones." />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_shinyapps/" />
+<meta property="og:locale" content="es-ES">
+
+
+
+
+    
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_shinyapps/featured.png" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_shinyapps/featured.png" >
+    
+    
+  
+  <meta itemprop="name" content="Tutorial: publicar una app Shiny en shinyapps.io">
+  <meta itemprop="description" content="¿Desarrollaste una aplicación con Shiny, y quieres compartirla con el mundo? shinyapps.io es, en mi experiencia, el servicio más sencillo de usar para poder hacer públicas tus aplicaciones Shiny.
+El primer paso es, lógicamente, tener una app Shiny funcionando. Para asegurarte que tu app funcione sin problemas, acá van soluciones a los errores más frecuentes de las apps Shiny:
+Asegúrate de que tus scripts (app.R, o bien, ui.R y server.R) estén todos dentro de una misma carpeta Confirma que los datos que cargue tu app estén en la misma carpeta que tu script, o bien, entro de carpetas que estén al mismo nivel que tus scripts. En otras palabras, si tu app carga datos, las rutas deberían/ser/así.csv o así.rds, y no ~/users/tu/documents/cosas/app/datos.xlsx ni tampoco C:\Users\Desktop\app\datos\data.csv. Reinicia tu sesión de R (Session &gt; Restart R) y confirma que tu aplicación funciona correctamente. Así confirmas que tu app carga todos los paquetes necesarios, y que no depende de algo que estaba en tu entorno de R pero que no era reproducible desde su código. Luego, debes crearte una cuenta en shinyapps.io. Las cuentas gratuitas permiten tener hasta 5 aplicaciones, con 25 horas de uso mensual (en total, entre todos tus usuarios). Ésto es más que suficiente para apps de pruebas y con pocos usuarios, considerando que al superar el límite de horas no te interrumpen imnediatamente el acceso a tu aplicación. El plan inicial (13USD) permite 25 aplicaciones y 1000 horas de uso mensual.">
+  <meta itemprop="datePublished" content="2024-11-07T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-11-07T00:00:00+00:00">
+  <meta itemprop="wordCount" content="749">
+  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_shinyapps/featured.png">
+  <meta itemprop="keywords" content="Shiny">
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="false" type="image/x-icon">
+  <link rel="icon" href="false" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  
+  
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.3c3af999b79169f0222ad6048d940d31333adc32d2658e8ae07284fef52a6db9.js" type="text/javascript"></script>
+  
+  
+  <link rel="stylesheet" href="/css/syntax.css">
+  
+  
+  
+  
+  
+  
+  <meta name="google-site-verification" content="yaiYGBAfSJpjE7mfPuFVP1yoNIqLadRJQIzCOula8TI" />
+  
+</head>
+<body>
+      <div class="grid-container single-series">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
+      <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/blog/" title="Bastián Olea: Blog de R">Blog</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/aprende_r/" title="Aprende R">Aprende R</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/shiny_apps/" title="Apps">Apps</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/tutoriales/" title="Tutoriales">Tutoriales</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/tags/" title="Temas">Temas</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/clases/" title="Cursos">Cursos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/about/" title="Bastián Olea: Sobre mi">Yo</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      
+      
+      
+      <div class="dib v-mid", style = "padding: 4px; margin-top: 4px;">
+        <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+      </div>
+      
+    </div>
+  </nav>
+</header>
+
+                       
+<main class="page-main pa4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pl3-l">
+      <header class="post-header">
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Tutorial: publicar una app Shiny en shinyapps.io</h1>
+        
+        
+        <p class="f7 db mv0 ttu">7/11/2024</p>
+        
+         
+        
+  <dl class="f6 lh-copy">
+    <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/shiny"
+    style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 10pt;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px; ">
+      shiny</a> </dd></em>
+  </dl>
+ 
+        
+      </header>
+      <section class="post-body pt5 pb4">
+        <p>¿Desarrollaste una aplicación con Shiny, y quieres compartirla con el mundo? 
+<a href="https://www.shinyapps.io" target="_blank" rel="noopener">shinyapps.io</a> es, en mi experiencia, el servicio más sencillo de usar para poder hacer públicas tus aplicaciones Shiny.</p>
+<p>El primer paso es, lógicamente, tener una app Shiny funcionando. Para asegurarte que tu app funcione sin problemas, acá van soluciones a los errores más frecuentes de las apps Shiny:</p>
+<ul>
+<li>Asegúrate de que tus scripts (<code>app.R</code>, o bien, <code>ui.R</code> y <code>server.R</code>) estén todos dentro de una misma carpeta</li>
+<li>Confirma que los datos que cargue tu app estén en la misma carpeta que tu script, o bien, entro de carpetas que estén al mismo nivel que tus scripts. En otras palabras, si tu app carga datos, las rutas <code>deberían/ser/así.csv</code> o <code>así.rds</code>, y no <code>~/users/tu/documents/cosas/app/datos.xlsx</code> ni tampoco <code>C:\Users\Desktop\app\datos\data.csv</code>.</li>
+<li>Reinicia tu sesión de R (Session &gt; Restart R) y confirma que tu aplicación funciona correctamente. Así confirmas que tu app carga todos los paquetes necesarios, y que no depende de algo que estaba en tu entorno de R pero que no era reproducible desde su código.</li>
+</ul>
+<p>Luego, debes crearte una cuenta en 
+<a href="https://www.shinyapps.io" target="_blank" rel="noopener">shinyapps.io</a>. Las cuentas gratuitas permiten tener hasta 5 aplicaciones, con 25 horas de uso mensual (en total, entre todos tus usuarios). Ésto es más que suficiente para apps de pruebas y con pocos usuarios, considerando que al superar el límite de horas no te interrumpen imnediatamente el acceso a tu aplicación. El plan inicial (13USD) permite 25 aplicaciones y 1000 horas de uso mensual.</p>
+<a href="tutorial_shinyapps_5.png" target="_blank">
+
+  <img src="tutorial_shinyapps_5.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Después, en tu sesión de R, debes instalar el paquete <code>{rsconnect}</code>, que permite la conexión entre R y el servicio:</p>
+<pre tabindex="0"><code>install.packages(&#39;rsconnect&#39;)
+</code></pre>
+
+
+
+<h2 id="conectar-tu-cuenta-a-rstudio">Conectar tu cuenta a RStudio
+  <a href="#conectar-tu-cuenta-a-rstudio"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Una vez que tengas tu cuenta y R preparado, debes autorizar tu cuenta de shinyapps.io en RStudio, para que tu cuenta quede guardada en RStudio y así puedas subir cosas. Para ello, ShinyApps te entrega un código secreto asociado a tu cuenta, el cual debes registrar en tu sesión de R.</p>
+<a href="tutorial_shinyapps_1.png" target="_blank">
+
+  <img src="tutorial_shinyapps_1.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Al crear tu cuenta, el sitio te explica ésto, y te entrega un bloque de código similar al que pongo a continuación. Al ejecutar ese código en tu sesión de R, registra tu cuenta de shinyapps.io con tu computadora.</p>
+<pre tabindex="0"><code>rsconnect::setAccountInfo(name=‘cuenta’,
+			  token=‘&lt;TOKEN&gt;,
+			  secret=&#39;&lt;SECRET&gt;&#39;)
+</code></pre><p>Si ya tienes tu cuenta, pero necesitas conectarla con RStudio, en el menú superior del sitio puedes entrar a <em>Tokens</em> y crear una nueva llave.</p>
+<a href="tutorial_shinyapps_2.png" target="_blank">
+
+  <img src="tutorial_shinyapps_2.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Ahí creas una nueva llave, y puedes realizar el proceso de enlazamiento de tu cuenta con RStudio desde RStudio: en el botón azul <em>publicar</em> en la esquina superior derecha de tu panel de scripts de RStudio, y presiona <em>Manage Accounts,</em> o bien, abre las opciones globales de RStudio (menú Tools &gt; Global Options) y entra al panel <em>Publishing.</em></p>
+<a href="tutorial_shinyapps_4.png" target="_blank">
+
+  <img src="tutorial_shinyapps_4.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Dentro del menú que se abre, elige el botón <em>Connect</em> para agregar una cuenta nueva, y pegas el bloque de código con tu <em>token</em> y <em>secret.</em></p>
+<a href="tutorial_shinyapps_3.png" target="_blank">
+
+  <img src="tutorial_shinyapps_3.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+
+
+
+
+<h2 id="publicar-una-aplicación">Publicar una aplicación
+  <a href="#publicar-una-aplicaci%c3%b3n"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Una vez realizados los pasos anteriores podrás subir tus aplicaciones. Cuando abras un script de una app Shiny, verás el botón azul de <em>publicar</em> al lado del botón <em>Run App.</em> En este botón eliges <em>Publish Application</em> para empezar el proceso de subir tu aplicación local a shinyapps.io.</p>
+<a href="tutorial_shinyapps_8.png" target="_blank">
+
+  <img src="tutorial_shinyapps_8.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>En la ventana que se abre, debes seleccionar los scripts y archivos que se requieren para que tu aplicación funcione. Puedes des-seleccionar los que no sean cruciales para el funcionamiento de la app. Luego le das un nombre a tu splicación (que será parte del enlace que la gente usará para acceder a tu app, así que elige bien), y presionas <em>Publish.</em></p>
+<a href="tutorial_shinyapps_7.png" target="_blank">
+
+  <img src="tutorial_shinyapps_7.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Se abrirá un panel nuevo en tu panel de consola, titulado <em>Deploy,</em> donde se indicará el avance de la construcción de tu aplicación. Dependiendo de la cantidad de paquetes que uses, se demorará más o menos en generar el entorno de tu aplicación. Finalmente, el mismo panel te entregará el enlace a tu aplicación, y si seleccionaste la opción en el paso anterior, tu app se abrirá en tu navegador web. ¡Listo! Tu app fue publicada en los servidores de shinyapps.io, y ya está lista para ser compartida.</p>
+
+
+
+
+<h2 id="solución-de-problemas">Solución de problemas
+  <a href="#soluci%c3%b3n-de-problemas"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Si tu aplicación remota (la versión que acabas de publicar) no se ejecuta, o arroja errores, puedes entrar a tu perfil en shinyapps.io, elegir la aplicación, y revisar los registros (logs) de tu aplicación para ver lo que dicen los errores. Usualmente puede ocurrir porque faltó cargar un paquete, o una ruta estaba mal especificada.</p>
+<a href="tutorial_shinyapps_9.png" target="_blank">
+
+  <img src="tutorial_shinyapps_9.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>En el panel de logs también puedes ver los mensajes que tu aplicación emite, lo que puede ayudarte a detectar problemas.</p>
+<hr>
+<div style = "height: 18px;">
+</div>
+<div>
+  <div style="display: flex;
+  justify-content: center;
+  align-items: center;">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="bastimapache" 
+    data-color="#D6B9E8" data-emoji="<i class='fa fa-mug-saucer'></i>"  data-font="Cookie" 
+    data-text="Regálame un cafecito" 
+    data-outline-color="#000000" data-font-color="#543A73" data-coffee-color="#ffffff" ></script>
+  </div>
+</div>
+
+      </section>
+      <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+    <a class="prev dtc pr2 tl v-top fw6"
+    href="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_shiny_1/">&larr; Tutorial: introducción al desarrollo de apps con Shiny</a>
+  
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_github/">Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub &rarr;</a>
+  
+</div>
+
+      </footer>
+    </article>
+    
+      <div class="post-comments pa0 pa4-l mt4">
+  
+</div>
+
+    
+  </section>
+</main>
+
+<aside class="page-sidebar" role="complementary">
+
+   
+                         
+ 
+
+
+
+<div class="flex items-start sticky ph4 pb4">
+  <div class="w-two-thirds w-50-l ph0">
+    
+    <h2 class="mt3 mb3 f5 fw7 ttu tracked"><a class="no-underline dim" href="/blog/r_introduccion/">Publicaciones de la serie</a></h2>
+    <nav id="SeriesTableOfContents">
+        <ul>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/instalar_r/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/instalar_r/">Primer paso: instalar R</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/por_que_r/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/por_que_r/">¿Por qué usar R?</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/r_basico/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/r_basico/">Introducción al lenguaje de programación R</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/r_intermedio/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/r_intermedio/">Herramientas básicas para programar con R</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/conectores/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/conectores/">Aprendiendo a usar conectores o <em>pipes</em></a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/proyectos/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/proyectos/">Organizar el trabajo en Proyectos de RStudio</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/dplyr_intro/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/dplyr_intro/">Introducción al manejo de datos con {dplyr}</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/dplyr_mutate/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/dplyr_mutate/">Crear variables nuevas con <code>dplyr::mutate()</code></a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/dplyr_summarize/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/dplyr_summarize/">Calcular resúmenes de datos con <code>dplyr::summarize()</code></a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/tidyr_pivotar/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/tidyr_pivotar/">Transformación de datos entre formato <em>ancho</em> y <em>largo</em> con {tidyr}</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/tutorial_dplyr_censo/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_dplyr_censo/">Tutorial: introducción a {dplyr} con datos de población</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/tutorial_dplyr_campamentos/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_dplyr_campamentos/">Tutorial: introducción a {dplyr} usando datos de campamentos</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/tutorial_visualizacion_ggplot/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_visualizacion_ggplot/">Tutorial: visualización de datos con {ggplot2}</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/tutorial_shiny_1/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_shiny_1/">Tutorial: introducción al desarrollo de apps con Shiny</a></li>
+        
+          
+          <li class="active" hugo-nav="/blog/r_introduccion/tutorial_shinyapps/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_shinyapps/">Tutorial: publicar una app Shiny en shinyapps.io</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/tutorial_github/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_github/">Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub</a></li>
+        
+          
+          <li class="" hugo-nav="/blog/r_introduccion/recursos_r/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/recursos_r/">Recursos, blogs y otros sitios sobre R</a></li>
+        
+        </ul>
+      </nav>
+  </div>
+  
+  
+  <details open id="PageTableOfContents">
+    <summary><h2 class="mv0 f5 fw7 ttu tracked dib">Índice</h2></summary>
+    <div class="pl2 pr0 mh0" style = "font-size: 95%;">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#conectar-tu-cuenta-a-rstudio">Conectar tu cuenta a RStudio</a></li>
+    <li><a href="#publicar-una-aplicación">Publicar una aplicación</a></li>
+    <li><a href="#solución-de-problemas">Solución de problemas</a></li>
+  </ul>
+</nav>
+    </div>
+  </details>
+  
+</div>
+
+
+ 
+  
+</aside>
+
+
+        
+          <script id="partials/analytics.html" 
+  data-goatcounter="https://bastimapache.goatcounter.com/count"
+  async src="//gc.zgo.at/count.js"></script>
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2026 Bastián Olea Herrera, Chile
+      <span class="middot-divider"></span>
+      Hecho con <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source" style="color:#9069C0;">Hugo Apéro</a> 
+      y <a href="https://pkgs.rstudio.com/blogdown/" style="color:#9069C0;">{blogdown}</a></span>.
+      <br />
+      
+Basado en <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source" style="color:#9069C0;">Blogophonic</a></span>, de <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL" style="color:#9069C0;">Formspree</a>.
+
+Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlify</a></span>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+      <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
+      
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
+      
+      <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
+      
+      <a class="dib pv1 ph2 link" href="/tags/" title="Temas">Temas</a>
+      
+      <a class="dib pv1 ph2 link" href="/clases/" title="Clases">Clases</a>
+      
+      <a class="dib pv1 ph2 link" href="/code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
+      
+      <a class="dib pv1 ph2 link" href="/license/" title="Bastián Olea: Licencia">Licencia</a>
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>

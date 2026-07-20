@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr"><head>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.145.0">
+<title>Unir o cruzar datos con left_join() | Bastián Olea</title>
+
+
+<meta property="twitter:site" content="@bastimapache">
+<meta property="twitter:creator" content="@bastimapache">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="Un _left join_ realiza una unión o combinación entre dos tablas de datos a partir de una variable en común o _clave_ (_key_). En otras palabras, un _left join_ toma dos tablas que tienen datos distintos, pero que comparten una variable o columna en común, y usa esta variable en común para unir las observaciones de ambas tablas. En este tutorial explico a hacer _left joins_ con frutas, animales, y uso irregular de licencias médicas.">
+
+
+<meta property="og:site_name" content="Bastián Olea">
+<meta property="og:title" content="Unir o cruzar datos con left_join() | Bastián Olea">
+<meta property="og:description" content="Un _left join_ realiza una unión o combinación entre dos tablas de datos a partir de una variable en común o _clave_ (_key_). En otras palabras, un _left join_ toma dos tablas que tienen datos distintos, pero que comparten una variable o columna en común, y usa esta variable en común para unir las observaciones de ambas tablas. En este tutorial explico a hacer _left joins_ con frutas, animales, y uso irregular de licencias médicas." />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/left_join/" />
+<meta property="og:locale" content="es-ES">
+
+
+
+
+    
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/left_join/featured.png" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/left_join/featured.png" >
+    
+    
+  
+  <meta itemprop="name" content="Unir o cruzar datos con left_join()">
+  <meta itemprop="description" content="El left join es una de las operaciones básicas del trabajo con datos, en el sentido de que realiza una operación sencilla que a la vez es muy útil. Sirve tanto para limpiar datos como para procesarlos y obtener nuevas relaciones entre ellos.
+Un left join realiza una unión o combinación entre dos tablas de datos a partir de una variable en común o clave (key). En otras palabras, un left join toma dos tablas que tienen datos distintos, pero que comparten una variable o columna en común, y usa esta variable en común para unir las observaciones de ambas tablas.">
+  <meta itemprop="datePublished" content="2025-08-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-08-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1535">
+  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/left_join/featured.png">
+  <meta itemprop="keywords" content="Procesamiento de datos,Limpieza de datos,Básico">
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="false" type="image/x-icon">
+  <link rel="icon" href="false" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  
+  
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.3c3af999b79169f0222ad6048d940d31333adc32d2658e8ae07284fef52a6db9.js" type="text/javascript"></script>
+  
+  
+  <link rel="stylesheet" href="/css/syntax.css">
+  
+  
+  
+  
+  
+  
+  <meta name="google-site-verification" content="yaiYGBAfSJpjE7mfPuFVP1yoNIqLadRJQIzCOula8TI" />
+  
+</head>
+<body>
+      <div class="grid-container single-sidebar">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
+      <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/blog/" title="Bastián Olea: Blog de R">Blog</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/aprende_r/" title="Aprende R">Aprende R</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/shiny_apps/" title="Apps">Apps</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/tutoriales/" title="Tutoriales">Tutoriales</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/tags/" title="Temas">Temas</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/clases/" title="Cursos">Cursos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/about/" title="Bastián Olea: Sobre mi">Yo</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      
+      
+      
+      <div class="dib v-mid", style = "padding: 4px; margin-top: 4px;">
+        <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+      </div>
+      
+    </div>
+  </nav>
+</header>
+
+
+                       
+ 
+
+<main class="page-main pa4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header" style="margin-top:-30px;">
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Unir o cruzar datos con left_join()</h1>
+        
+        
+        
+        <div style = "display: inline-block;">  
+          <p class="f7 db mv0 ttu" style = "display: inline-block;">
+            16/8/2025</p>
+          
+          
+          
+        </div>
+          
+        
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/procesamiento-de-datos"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            procesamiento de datos</a>  <a href="https://bastianolea.rbind.io/tags/limpieza-de-datos"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            limpieza de datos</a>  <a href="https://bastianolea.rbind.io/tags/b%C3%A1sico"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            básico</a> </dd></em>
+        </dl>
+         
+      
+        
+      
+      
+    </header>
+      
+      
+    <section class="post-body pt5 pb4">
+        <p>El <em>left join</em> es una de las operaciones básicas del trabajo con datos, en el sentido de que realiza una operación sencilla que a la vez es muy útil. Sirve tanto para limpiar datos como para procesarlos y obtener nuevas relaciones entre ellos.</p>
+<p>Un <em>left join</em> realiza una unión o combinación entre dos tablas de datos a partir de una variable en común o <em>clave</em> (<em>key</em>). En otras palabras, un <em>left join</em> toma dos tablas que tienen datos distintos, pero que comparten una variable o columna en común, y usa esta variable en común para <strong>unir las observaciones de ambas tablas</strong>.</p>
+<p><a href="left_join_a.png" target="_blank">
+
+  <img src="left_join_a.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  Esquema de una unión entre tablas con <em>left join</em>
+</figcaption></p>
+<p>En el ejemplo anterior, tenemos dos tablas, ambas con tres variables distintas, pero en ambas tablas tenemos una variable que contiene información equivalente. En la vida real, esto podrían ser nombres de personas, nombres de países, identificadores únicos de personas o instituciones, fechas, etcétera. Esta variable compartida entre las tablas es la <strong>llave</strong> que usaremos para la unión.</p>
+<p>Al realiazr la unión con <em>left join</em> obtenemos una nueva tabla que combina las observaciones de ambas, uniendo las filas de la primera tabla (<em>x</em>) con las filas de al segunda tabla (<em>y</em>) que se correspondan según la llave en común.</p>
+<p><a href="left_join_b.png" target="_blank">
+
+  <img src="left_join_b.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
+  Esquema del resultado del <em>left join</em>
+</figcaption></p>
+
+
+
+
+<h2 id="ejemplo-de-una-unión-de-tablas-en-r">Ejemplo de una unión de tablas en R
+  <a href="#ejemplo-de-una-uni%c3%b3n-de-tablas-en-r"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Para unir dos tablas en R, usamos la función <code>left_join()</code> de <code>{dplyr}</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span></code></pre></div><p>Primero creemos una tabla de base con datos de ejemplo.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">frutas_x</span> <span class="o">&lt;-</span> <span class="nf">tibble</span><span class="p">(</span><span class="n">fruta</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;pera&#34;</span><span class="p">,</span> <span class="s">&#34;manzana&#34;</span><span class="p">,</span> <span class="s">&#34;uva&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">color</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;verde&#34;</span><span class="p">,</span> <span class="s">&#34;roja&#34;</span><span class="p">,</span> <span class="s">&#34;morada&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">fruta</th>
+          <th style="text-align: center">color</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">pera</td>
+          <td style="text-align: center">verde</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">manzana</td>
+          <td style="text-align: center">roja</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">uva</td>
+          <td style="text-align: center">morada</td>
+      </tr>
+  </tbody>
+</table>
+<p>En esa tabla tenemos tres observaciones que corresponden a animales, descritos en la primera columna, y una segunda columna con características de los mismos.</p>
+<p>Ahora creemos una segunda tabla, que además de tener la misma columna que describe las frutas, agrega una nueva variable sobre las frutitas 🍐🍎🍇</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">frutas_y</span> <span class="o">&lt;-</span> <span class="nf">tibble</span><span class="p">(</span><span class="n">fruta</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;pera&#34;</span><span class="p">,</span> <span class="s">&#34;manzana&#34;</span><span class="p">,</span> <span class="s">&#34;uva&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">sabor</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;deliciosa&#34;</span><span class="p">,</span> <span class="s">&#34;buena&#34;</span><span class="p">,</span> <span class="s">&#34;ricolina&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">fruta</th>
+          <th style="text-align: center">sabor</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">pera</td>
+          <td style="text-align: center">deliciosa</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">manzana</td>
+          <td style="text-align: center">buena</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">uva</td>
+          <td style="text-align: center">ricolina</td>
+      </tr>
+  </tbody>
+</table>
+<p>Dado que ambas tablas comparten la variable <code>fruta</code>, si hacemos un <em>left join</em> ambas tablas se cruzarán en base a esta variable, resultando en una tabla nueva:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">frutas_2</span> <span class="o">&lt;-</span> <span class="nf">left_join</span><span class="p">(</span><span class="n">frutas_x</span><span class="p">,</span> <span class="n">frutas_y</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>Joining with `by = join_by(fruta)`
+</code></pre>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">fruta</th>
+          <th style="text-align: center">color</th>
+          <th style="text-align: center">sabor</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">pera</td>
+          <td style="text-align: center">verde</td>
+          <td style="text-align: center">deliciosa</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">manzana</td>
+          <td style="text-align: center">roja</td>
+          <td style="text-align: center">buena</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">uva</td>
+          <td style="text-align: center">morada</td>
+          <td style="text-align: center">ricolina</td>
+      </tr>
+  </tbody>
+</table>
+<p>El resultado de la unión es una nueva tabla que tiene las tres variables únicas obtenidas del cruce de las dos tablas distintas. En este caso, el <em>left join</em> nos permite agregar información sobre una misma unidad de observación proveniente de distintas fuentes.</p>
+
+
+
+
+<h2 id="otro-ejemplo">Otro ejemplo
+  <a href="#otro-ejemplo"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Veamos un segundo ejemplo con más filas y más columnas, ésta vez sobre animalitos 🐈🐀🐕</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">animales_x</span> <span class="o">&lt;-</span> <span class="nf">tibble</span><span class="p">(</span><span class="n">animal</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;gato&#34;</span><span class="p">,</span> <span class="s">&#34;ratón&#34;</span><span class="p">,</span> <span class="s">&#34;perro&#34;</span><span class="p">,</span> <span class="s">&#34;pez&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">color</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;gris&#34;</span><span class="p">,</span> <span class="s">&#34;negro&#34;</span><span class="p">,</span> <span class="s">&#34;blanco&#34;</span><span class="p">,</span> <span class="s">&#34;azul&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">tamaño</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">34</span><span class="p">,</span> <span class="m">16</span><span class="p">,</span> <span class="m">50</span><span class="p">,</span> <span class="m">3</span><span class="p">))</span>
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">animal</th>
+          <th style="text-align: center">color</th>
+          <th style="text-align: center">tamaño</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">gato</td>
+          <td style="text-align: center">gris</td>
+          <td style="text-align: center">34</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">ratón</td>
+          <td style="text-align: center">negro</td>
+          <td style="text-align: center">16</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">perro</td>
+          <td style="text-align: center">blanco</td>
+          <td style="text-align: center">50</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">pez</td>
+          <td style="text-align: center">azul</td>
+          <td style="text-align: center">3</td>
+      </tr>
+  </tbody>
+</table>
+<p>La primera tabla contiene los nombres de animales (identificador único), sus colores y sus medidas. La segunda tabla también contiene nombres, pero agrega su cantidad de patas<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> y sus edades.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">animales_y</span> <span class="o">&lt;-</span> <span class="nf">tibble</span><span class="p">(</span><span class="n">animal</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;perro&#34;</span><span class="p">,</span> <span class="s">&#34;gato&#34;</span><span class="p">,</span> <span class="s">&#34;pez&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">patas</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">edad</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">8</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">animal</th>
+          <th style="text-align: center">patas</th>
+          <th style="text-align: center">edad</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">perro</td>
+          <td style="text-align: center">4</td>
+          <td style="text-align: center">8</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">gato</td>
+          <td style="text-align: center">3</td>
+          <td style="text-align: center">3</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">pez</td>
+          <td style="text-align: center">0</td>
+          <td style="text-align: center">1</td>
+      </tr>
+  </tbody>
+</table>
+<p>Las dos tablas tienen distinta cantidad de observaciones, y además las observaciones clave (columna <code>animal</code>) que se usarán como llave de unión están desordenadas.</p>
+<p>Cuando los data frames tienen distinta cantidad de filas, el <em>orden</em> en que hacemos la unión es importante: en un <em><strong>left</strong> join</em> la primera tabla (o izquierda) es la tabla principal, a la cual se le agregan las columnas de una segunda tabla, en base a las coincidencias de la columna clave. Por lo tanto, si unimos o cruzamos las tablas poniendo primero la tabla más grande y después la más pequeña, obtendremos casos perdidos por las filas de la primera tabla que no obtuvieron coincidencias en la segunda.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">animales_3</span> <span class="o">&lt;-</span> <span class="nf">left_join</span><span class="p">(</span><span class="n">animales_x</span><span class="p">,</span> <span class="n">animales_y</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>Joining with `by = join_by(animal)`
+</code></pre>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">animal</th>
+          <th style="text-align: center">color</th>
+          <th style="text-align: center">tamaño</th>
+          <th style="text-align: center">patas</th>
+          <th style="text-align: center">edad</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">gato</td>
+          <td style="text-align: center">gris</td>
+          <td style="text-align: center">34</td>
+          <td style="text-align: center">3</td>
+          <td style="text-align: center">3</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">ratón</td>
+          <td style="text-align: center">negro</td>
+          <td style="text-align: center">16</td>
+          <td style="text-align: center">NA</td>
+          <td style="text-align: center">NA</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">perro</td>
+          <td style="text-align: center">blanco</td>
+          <td style="text-align: center">50</td>
+          <td style="text-align: center">4</td>
+          <td style="text-align: center">8</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">pez</td>
+          <td style="text-align: center">azul</td>
+          <td style="text-align: center">3</td>
+          <td style="text-align: center">0</td>
+          <td style="text-align: center">1</td>
+      </tr>
+  </tbody>
+</table>
+<p>Como podemos ver, obtenemos celdas con <code>NA</code> en la observación <em>ratón</em>, debido a que en la segunda tabla (<code>animales_y</code>) no habían datos sobre este animalito. Una pena 😔</p>
+<p>También sería una opción hacer el cruce al revés, poniendo primero la tabla <code>animales_y</code> (3 filas) y después <code>animales_x</code> (4 filas), con el objetivo de que las observaciones de la tabla <code>animales_x</code> complementen las observaciones de <code>animales_y</code> donde hayan coincidencias, y descartando los casos que no tienen en común:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">animales_3</span> <span class="o">&lt;-</span> <span class="nf">left_join</span><span class="p">(</span><span class="n">animales_y</span><span class="p">,</span> <span class="n">animales_x</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>Joining with `by = join_by(animal)`
+</code></pre>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">animal</th>
+          <th style="text-align: center">patas</th>
+          <th style="text-align: center">edad</th>
+          <th style="text-align: center">color</th>
+          <th style="text-align: center">tamaño</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">perro</td>
+          <td style="text-align: center">4</td>
+          <td style="text-align: center">8</td>
+          <td style="text-align: center">blanco</td>
+          <td style="text-align: center">50</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">gato</td>
+          <td style="text-align: center">3</td>
+          <td style="text-align: center">3</td>
+          <td style="text-align: center">gris</td>
+          <td style="text-align: center">34</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">pez</td>
+          <td style="text-align: center">0</td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center">azul</td>
+          <td style="text-align: center">3</td>
+      </tr>
+  </tbody>
+</table>
+<p>Ahora no tenemos datos perdidos, porque si bien <code>animales_x</code> tenía más observaciones que <code>animales_y</code>, <code>animales_y</code> contenía todas las observaciones de <code>animales_x</code> identificadas por la variable <code>animal</code>, lo que podemos confirmar 
+<a href="../../../blog/diferencias">comparando las diferencias entre ambas columnas con la función <code>waldo::compare()</code></a>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">waldo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">compare</span><span class="p">(</span><span class="nf">sort</span><span class="p">(</span><span class="n">animales_x</span><span class="o">$</span><span class="n">animal</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">        <span class="nf">sort</span><span class="p">(</span><span class="n">animales_y</span><span class="o">$</span><span class="n">animal</span><span class="p">))</span>
+</span></span></code></pre></div><pre><code>`old`: &quot;gato&quot; &quot;perro&quot; &quot;pez&quot; &quot;ratón&quot;
+`new`: &quot;gato&quot; &quot;perro&quot; &quot;pez&quot;        
+</code></pre>
+
+
+
+
+<h2 id="caso-licencias-falsas">Caso licencias falsas
+  <a href="#caso-licencias-falsas"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Un caso icónico de uso de <em>left join</em> fue el 
+<a href="https://www.biobiochile.cl/noticias/nacional/chile/2025/05/20/contraloria-detecta-que-25-mil-funcionarios-publicos-salieron-del-pais-mientras-estaban-con-licencia.shtml" target="_blank" rel="noopener">estudio realizado por la Contraloría General de la República de Chile</a>, donde se cruzaron bases de datos que tenían en común la posibilidad de identificar funcionarios públicos:</p>
+<blockquote>
+<p>Se trata de un estudio a partir del cruce de información de las salidas del país registradas por la Policía de Investigaciones (PDI), la base de funcionarios públicos y las licencias médicas que se otorgaron entre el 2023 y 2024. (Fuente: 
+<a href="https://www.biobiochile.cl/noticias/nacional/chile/2025/05/20/contraloria-detecta-que-25-mil-funcionarios-publicos-salieron-del-pais-mientras-estaban-con-licencia.shtml" target="_blank" rel="noopener">Bío Bío</a>)</p></blockquote>
+<p>La hipótesis sería que una persona que sale del país durante su licencia médica sería probablemente una persona que consiguió una licencia falsa para tomarse vacaciones 🏖️☀️</p>
+<p>Simulemos lo que podría haber hecho la Contraloría para detectar estos casos. Asumimos que contaron con (al menos) tres bases de datos: una de funcionarios públicos, una de licencias médicas, y otra de viajes al extranjero, las tres teniendo en común el RUN (código de identificación único de ciudadanos chilenos) para poder cruzar las personas.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">options</span><span class="p">(</span><span class="n">scipen</span> <span class="o">=</span> <span class="m">9999</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">funcionarios</span> <span class="o">&lt;-</span> <span class="nf">tibble</span><span class="p">(</span><span class="n">run</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">10000001</span><span class="p">,</span> <span class="m">10000002</span><span class="p">,</span> <span class="m">10000003</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">nombre</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;maría&#34;</span><span class="p">,</span> <span class="s">&#34;pepito&#34;</span><span class="p">,</span> <span class="s">&#34;juanito&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">ministerio</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;defensa&#34;</span><span class="p">,</span> <span class="s">&#34;economía&#34;</span><span class="p">,</span> <span class="s">&#34;hacienda&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">run</th>
+          <th style="text-align: center">nombre</th>
+          <th style="text-align: center">ministerio</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">10000001</td>
+          <td style="text-align: center">maría</td>
+          <td style="text-align: center">defensa</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">10000002</td>
+          <td style="text-align: center">pepito</td>
+          <td style="text-align: center">economía</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">10000003</td>
+          <td style="text-align: center">juanito</td>
+          <td style="text-align: center">hacienda</td>
+      </tr>
+  </tbody>
+</table>
+<p>Tenemos identificados tres funcionarios públicos de distintos servicios.</p>
+<p>Luego tenemos una base de datos con licencias médicas de trabajadores que pueden o no ser funcionarios públicos. Con la base de los RUN de funcionarios públicos podemos identificar si las licencias corresponden a funcionarios públicos y no a trabajadores del sector privado.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">licencias</span> <span class="o">&lt;-</span> <span class="nf">tibble</span><span class="p">(</span><span class="n">run</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">10000001</span><span class="p">,</span> <span class="m">10000002</span><span class="p">,</span> <span class="m">10000003</span><span class="p">,</span> <span class="m">10000004</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">licencia</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="kc">FALSE</span><span class="p">,</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">licencia_inicio</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span> <span class="s">&#34;2024-04-10&#34;</span><span class="p">,</span> <span class="s">&#34;2024-02-04&#34;</span><span class="p">,</span> <span class="s">&#34;2010-09-18&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">licencia_fin</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span> <span class="s">&#34;2024-04-13&#34;</span><span class="p">,</span> <span class="s">&#34;2024-02-18&#34;</span><span class="p">,</span> <span class="s">&#34;2030-12-31&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">run</th>
+          <th style="text-align: center">licencia</th>
+          <th style="text-align: center">licencia_inicio</th>
+          <th style="text-align: center">licencia_fin</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">10000001</td>
+          <td style="text-align: center">FALSE</td>
+          <td style="text-align: center">NA</td>
+          <td style="text-align: center">NA</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">10000002</td>
+          <td style="text-align: center">FALSE</td>
+          <td style="text-align: center">2024-04-10</td>
+          <td style="text-align: center">2024-04-13</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">10000003</td>
+          <td style="text-align: center">TRUE</td>
+          <td style="text-align: center">2024-02-04</td>
+          <td style="text-align: center">2024-02-18</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">10000004</td>
+          <td style="text-align: center">TRUE</td>
+          <td style="text-align: center">2010-09-18</td>
+          <td style="text-align: center">2030-12-31</td>
+      </tr>
+  </tbody>
+</table>
+<p>Lo importante de esta tabla es que tenemos una fecha de inicio y una fecha de fin de la licencia médica.</p>
+<p>Finalmente tenemos la información de salidas del país de distintas personas, que pueden o no ser funcionarios públicos, y que pueden o no haber estado con licencia médica 🤔</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">viajes</span> <span class="o">&lt;-</span> <span class="nf">tibble</span><span class="p">(</span><span class="n">run</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">10000005</span><span class="p">,</span> <span class="m">10000001</span><span class="p">,</span> <span class="m">10000002</span><span class="p">,</span> <span class="m">10000003</span><span class="p">,</span> <span class="m">10000008</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">viaje_destino</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;Bolivia&#34;</span><span class="p">,</span> <span class="s">&#34;Perú&#34;</span><span class="p">,</span> <span class="s">&#34;Argentina&#34;</span><span class="p">,</span> <span class="s">&#34;Italia&#34;</span><span class="p">,</span> <span class="s">&#34;España&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">viaje_fecha</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;2021-01-06&#34;</span><span class="p">,</span> <span class="s">&#34;2021-02-15&#34;</span><span class="p">,</span> <span class="s">&#34;2023-06-23&#34;</span><span class="p">,</span> <span class="s">&#34;2024-02-09&#34;</span><span class="p">,</span> <span class="s">&#34;2025-08-17&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">run</th>
+          <th style="text-align: center">viaje_destino</th>
+          <th style="text-align: center">viaje_fecha</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">10000005</td>
+          <td style="text-align: center">Bolivia</td>
+          <td style="text-align: center">2021-01-06</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">10000001</td>
+          <td style="text-align: center">Perú</td>
+          <td style="text-align: center">2021-02-15</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">10000002</td>
+          <td style="text-align: center">Argentina</td>
+          <td style="text-align: center">2023-06-23</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">10000003</td>
+          <td style="text-align: center">Italia</td>
+          <td style="text-align: center">2024-02-09</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">10000008</td>
+          <td style="text-align: center">España</td>
+          <td style="text-align: center">2025-08-17</td>
+      </tr>
+  </tbody>
+</table>
+<p>Ahora que tenemos datos simulados, usaremos <code>{dplyr}</code> para trabajar con los datos y encontrar respuestas.</p>
+
+
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            background-color: #493365;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-triangle-exclamation" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #EAD2FA;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%; color: #EAD2FA;">
+    Si necesitas aprender lo básico del manejo de datos con R, revisa este 
+<a href="/blog/r_introduccion/dplyr_intro/">tutorial básico de <code>{dplyr}</code>!</a>
+  </aside>
+  
+</div>
+<p>Lo primero sería <strong>filtrar las licencias médicas</strong> para que solamente correspondan con funcionarios públicos (también podría hacerse con <code>left_join()</code> pero creo que es más pertinente un filtro)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">licencias_f</span> <span class="o">&lt;-</span> <span class="n">licencias</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># sólo funcionarios públicos</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">run</span> <span class="o">%in%</span> <span class="n">funcionarios</span><span class="o">$</span><span class="n">run</span><span class="p">)</span>
+</span></span></code></pre></div><p>Luego, <strong>cruzamos los datos</strong> de licencias de funcionarios públicos con el registro de salidas del país:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># cruzar con viajes</span>
+</span></span><span class="line"><span class="cl"><span class="n">cruce</span> <span class="o">&lt;-</span> <span class="n">licencias_f</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">left_join</span><span class="p">(</span><span class="n">viajes</span><span class="p">,</span> <span class="nf">join_by</span><span class="p">(</span><span class="n">run</span><span class="p">))</span>
+</span></span></code></pre></div><p>Finalmente revisamos si los viajes fueron durante el tiempo de licencia médica, y si los viajes fueron fuera del país. Podemos hacer esto con un filtro, o preferentemente creando una columna nueva (<code>irregular</code>) que indique si se cumple o no la evaluación.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># revisar si viajaron fuera del país durante licencia</span>
+</span></span><span class="line"><span class="cl"><span class="n">resultado</span> <span class="o">&lt;-</span> <span class="n">cruce</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># crear una nueva variable</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">irregular</span> <span class="o">=</span> 
+</span></span><span class="line"><span class="cl">           <span class="n">licencia</span> <span class="o">==</span> <span class="kc">TRUE</span> <span class="o">&amp;</span> <span class="c1"># personas on licencia</span>
+</span></span><span class="line"><span class="cl">           <span class="n">viaje_destino</span> <span class="o">!=</span> <span class="s">&#34;Chile&#34;</span> <span class="o">&amp;</span> <span class="c1"># viajes fuera de Chile</span>
+</span></span><span class="line"><span class="cl">           <span class="nf">between</span><span class="p">(</span><span class="n">viaje_fecha</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                   <span class="n">licencia_inicio</span><span class="p">,</span> <span class="n">licencia_fin</span><span class="p">)</span> <span class="c1"># viaje durante el tiempo de licencia</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="n">viaje_destino</span><span class="p">)</span>
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">run</th>
+          <th style="text-align: center">licencia</th>
+          <th style="text-align: center">licencia_inicio</th>
+          <th style="text-align: center">licencia_fin</th>
+          <th style="text-align: center">viaje_fecha</th>
+          <th style="text-align: center">irregular</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">10000001</td>
+          <td style="text-align: center">FALSE</td>
+          <td style="text-align: center">NA</td>
+          <td style="text-align: center">NA</td>
+          <td style="text-align: center">2021-02-15</td>
+          <td style="text-align: center">FALSE</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">10000002</td>
+          <td style="text-align: center">FALSE</td>
+          <td style="text-align: center">2024-04-10</td>
+          <td style="text-align: center">2024-04-13</td>
+          <td style="text-align: center">2023-06-23</td>
+          <td style="text-align: center">FALSE</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">10000003</td>
+          <td style="text-align: center">TRUE</td>
+          <td style="text-align: center">2024-02-04</td>
+          <td style="text-align: center">2024-02-18</td>
+          <td style="text-align: center">2024-02-09</td>
+          <td style="text-align: center">TRUE</td>
+      </tr>
+  </tbody>
+</table>
+<p>⚠️ Detectamos un caso de funcionario público que viajó fuera del país durante su licencia médica! La última columna marca <code>TRUE</code> si se trata de un caso irregular.</p>
+
+
+
+
+<h2 id="conclusión">Conclusión
+  <a href="#conclusi%c3%b3n"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Podemos usar <code>left_join()</code> para <strong>completar los datos</strong> sobre nuestra unidad de análisis si la información viene diseminada en distintas tablas o archivos. Pero también podemos utilizarla para <strong>complementar datos</strong> desde distintas fuentes, aumentando la información que tenemos sobre las observaciones que estemos estudiando, o bien, para realizar <strong>cruces de información</strong> que nos entreguen coincidencias relevantes.</p>
+<p><div style = "height: 18px;">
+</div>
+<div>
+  <div style="display: flex;
+  justify-content: center;
+  align-items: center;">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="bastimapache" 
+    data-color="#D6B9E8" data-emoji="<i class='fa fa-mug-saucer'></i>"  data-font="Cookie" 
+    data-text="Regálame un cafecito" 
+    data-outline-color="#000000" data-font-color="#543A73" data-coffee-color="#ffffff" ></script>
+  </div>
+</div>
+
+
+
+
+
+
+</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>el gatito lamentablemente sufrió un accidente y perdió una patita trasera 😿&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+ 
+    </section>
+      
+    <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+    <a class="prev dtc pr2 tl v-top fw6"
+    href="https://bastianolea.rbind.io/blog/2025-08-22/">&larr; Convertir zonas horarias con R</a>
+  
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="https://bastianolea.rbind.io/blog/excel_openxlsx/">Crea planillas de Excel con formato personalizado desde R con {openxlsx} &rarr;</a>
+  
+</div>
+
+    </footer>
+    
+  </article>
+    
+    <div class="post-comments pa0 pa4-l mt4">
+  
+</div>
+
+    
+</section>
+  
+
+<section class="post-body pt5 pb4">
+  
+  <details closed class="f6 fw7 input-reset">
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Fecha de publicación:</dt>
+    <dd class="fw5 ml0">August 16, 2025</dd>
+  </dl>
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Extensión:</dt>
+    <dd class="fw5 ml0">8 minute read, 1535 words</dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Categorías:</dt>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/categories/tutoriales">tutoriales</a> </dd>
+  </dl>
+  
+  
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Tags:</dt>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/procesamiento-de-datos">procesamiento de datos</a>  <a href="https://bastianolea.rbind.io/tags/limpieza-de-datos">limpieza de datos</a>  <a href="https://bastianolea.rbind.io/tags/b%C3%A1sico">básico</a> </dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Ver también:</dt>
+    
+    <dd class="fw5 ml0"><a href="/blog/territorial/">`{territorial}`: un paquete de R para trabajar con datos de comunas y regiones de Chile</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/clases/curso_r_intro_3/">Curso: introducción al análisis de datos con R, 3ª versión</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/curso_r_intro_3/">Curso: introducción al análisis de datos con R, 3ª versión</a></dd>
+    
+  </dl>
+</details>
+
+</section>
+</main>
+
+
+<aside class="page-sidebar" role="complementary">
+   
+   
+
+  <div class="blog-info ph4 pt4 pb4 pb0-l">
+    
+
+  <h1 class="f3">Blog</h1>
+  <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
+<a href="/tags/">temas</a>.</p>
+  
+
+   
+<h3 style="margin-bottom: 12px;">Temas:</h3>
+
+<div style="font-size:90%;">
+
+<div style="font-size: 90%;">
+  
+   
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/apps/">Aplicaciones</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/texto/">Procesamiento de texto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/optimizaci%C3%B3n/">Optimización</a></span>
+  </span>
+
+<a href="/tags/" style="margin-left: 3px;">y más!</a>
+</div>
+</div>
+  
+  
+   
+   
+
+</div>
+
+  
+  <div id="PageTableOfContents" style="margin-top: 24px; position: sticky; top: 108px;">
+        <div class="blog-info ph4 pb4 pb0-l">
+        <h3 style="margin-bottom: 12px;">Índice:</h3>
+          <div class="pl2 pr0 mh0" style = "font-size: 90%; margin-top: -8px; margin-left: -22px; margin-bottom: 32px;">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#ejemplo-de-una-unión-de-tablas-en-r">Ejemplo de una unión de tablas en R</a></li>
+    <li><a href="#otro-ejemplo">Otro ejemplo</a></li>
+    <li><a href="#caso-licencias-falsas">Caso licencias falsas</a></li>
+    <li><a href="#conclusión">Conclusión</a></li>
+  </ul>
+</nav>
+          </div>
+        </div>
+    </div>
+  
+  
+
+</aside>
+
+        
+          <script id="partials/analytics.html" 
+  data-goatcounter="https://bastimapache.goatcounter.com/count"
+  async src="//gc.zgo.at/count.js"></script>
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2026 Bastián Olea Herrera, Chile
+      <span class="middot-divider"></span>
+      Hecho con <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source" style="color:#9069C0;">Hugo Apéro</a> 
+      y <a href="https://pkgs.rstudio.com/blogdown/" style="color:#9069C0;">{blogdown}</a></span>.
+      <br />
+      
+Basado en <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source" style="color:#9069C0;">Blogophonic</a></span>, de <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL" style="color:#9069C0;">Formspree</a>.
+
+Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlify</a></span>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+      <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
+      
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
+      
+      <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
+      
+      <a class="dib pv1 ph2 link" href="/tags/" title="Temas">Temas</a>
+      
+      <a class="dib pv1 ph2 link" href="/clases/" title="Clases">Clases</a>
+      
+      <a class="dib pv1 ph2 link" href="/code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
+      
+      <a class="dib pv1 ph2 link" href="/license/" title="Bastián Olea: Licencia">Licencia</a>
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>

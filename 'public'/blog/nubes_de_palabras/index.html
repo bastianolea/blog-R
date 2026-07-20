@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr"><head>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.145.0">
+<title>Visualizando texto como nubes de palabras en R | Bastián Olea</title>
+
+
+<meta property="twitter:site" content="@bastimapache">
+<meta property="twitter:creator" content="@bastimapache">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="Blog de Bastián Olea, sociólogx y analista de datos">
+
+
+<meta property="og:site_name" content="Bastián Olea">
+<meta property="og:title" content="Visualizando texto como nubes de palabras en R | Bastián Olea">
+<meta property="og:description" content="Blog de Bastián Olea, sociólogx y analista de datos" />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/nubes_de_palabras/" />
+<meta property="og:locale" content="es-ES">
+
+
+
+
+    
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/nubes_de_palabras/featured.png" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/nubes_de_palabras/featured.png" >
+    
+    
+  
+  <meta itemprop="name" content="Visualizando texto como nubes de palabras en R">
+  <meta itemprop="description" content="Una de las formas más intuitivas de visualizar datos de texto son las nubes de palabras. En las nubes de palabras seleccionamos un subconjunto de las palabras del texto que queremos analizar y las distribuimos en un gráfico, donde las palabras que aparecen más frecuentemente aparecen más grandes, y usualmente al centro. Sirven para ver rápidamente los conceptos clave de un documento o un corpus de documentos.
+En este post veremos dos formas de crear nubes de palabras con R: con {wordcloud2} y con {ggplot2}. Para empezar, necesitamos una base de datos que tenga información de texto; por ejemplo, una base donde cada fila contenga una respuesta abierta de una encuesta, una reseña de un producto, un párrafo de un texto, un capítulo de un libro, o un libro completo.">
+  <meta itemprop="datePublished" content="2025-07-05T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-07-05T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1742">
+  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/nubes_de_palabras/featured.png">
+  <meta itemprop="keywords" content="Visualización de datos,Gráficos,ggplot2,Análisis de texto">
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="false" type="image/x-icon">
+  <link rel="icon" href="false" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  
+  
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.3c3af999b79169f0222ad6048d940d31333adc32d2658e8ae07284fef52a6db9.js" type="text/javascript"></script>
+  
+  
+  <link rel="stylesheet" href="/css/syntax.css">
+  
+  
+  
+  
+  
+  
+  <meta name="google-site-verification" content="yaiYGBAfSJpjE7mfPuFVP1yoNIqLadRJQIzCOula8TI" />
+  
+</head>
+<body>
+      <div class="grid-container single-sidebar">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
+      <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/blog/" title="Bastián Olea: Blog de R">Blog</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/aprende_r/" title="Aprende R">Aprende R</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/shiny_apps/" title="Apps">Apps</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/tutoriales/" title="Tutoriales">Tutoriales</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/tags/" title="Temas">Temas</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/clases/" title="Cursos">Cursos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/about/" title="Bastián Olea: Sobre mi">Yo</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      
+      
+      
+      <div class="dib v-mid", style = "padding: 4px; margin-top: 4px;">
+        <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+      </div>
+      
+    </div>
+  </nav>
+</header>
+
+
+                       
+ 
+
+<main class="page-main pa4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header" style="margin-top:-30px;">
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Visualizando texto como nubes de palabras en R</h1>
+        
+        
+        
+        <div style = "display: inline-block;">  
+          <p class="f7 db mv0 ttu" style = "display: inline-block;">
+            5/7/2025</p>
+          
+          
+          
+        </div>
+          
+        
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            visualización de datos</a>  <a href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            gráficos</a>  <a href="https://bastianolea.rbind.io/tags/ggplot2"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            ggplot2</a>  <a href="https://bastianolea.rbind.io/tags/an%C3%A1lisis-de-texto"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            análisis de texto</a> </dd></em>
+        </dl>
+         
+      
+        
+      
+      
+    </header>
+      
+      
+    <section class="post-body pt5 pb4">
+        <p>Una de las formas más intuitivas de visualizar datos de texto son las nubes de palabras. En las nubes de palabras seleccionamos un subconjunto de las palabras del texto que queremos analizar y las distribuimos en un gráfico, donde las palabras que aparecen más frecuentemente aparecen más grandes, y usualmente al centro. Sirven para ver rápidamente los conceptos clave de un documento o un corpus de documentos.</p>
+<p>En este post veremos dos formas de crear nubes de palabras con R: con <code>{wordcloud2}</code> y con <code>{ggplot2}</code>. Para empezar, necesitamos una base de datos que tenga información de texto; por ejemplo, una base donde cada fila contenga una respuesta abierta de una encuesta, una reseña de un producto, un párrafo de un texto, un capítulo de un libro, o un libro completo.</p>
+<p>Con el siguiente código descargaremos una base de datos con 10.000 documentos de texto, en este caso se trata de noticias de la prensa chilena. Los datos son obtenidos de 
+<a href="https://github.com/bastianolea/prensa_chile" target="_blank" rel="noopener">este repositorio de obtención automatizada de textos de noticias de prensa escrita chilena.</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>Warning: package 'dplyr' was built under R version 4.4.3
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># dirección web donde se encuentran los datos</span>
+</span></span><span class="line"><span class="cl"><span class="n">url_datos</span> <span class="o">&lt;-</span> <span class="s">&#34;https://raw.githubusercontent.com/bastianolea/prensa_chile/refs/heads/main/prensa_datos_muestra.csv&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># lectura de los datos ubicados en internet</span>
+</span></span><span class="line"><span class="cl"><span class="n">noticias</span> <span class="o">&lt;-</span> <span class="n">readr</span><span class="o">::</span><span class="nf">read_csv2</span><span class="p">(</span><span class="n">url_datos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">noticias</span> <span class="o">|&gt;</span> <span class="nf">select</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">cuerpo</span><span class="p">,</span> <span class="n">fecha</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code># A tibble: 10,000 × 3
+   titulo                                                      cuerpo fecha     
+   &lt;chr&gt;                                                       &lt;chr&gt;  &lt;date&gt;    
+ 1 &quot;Hombre de 66 años fue asesinado en plena vía pública en M… &quot;El h… 2024-07-21
+ 2 &quot;Revive el cuarto capítulo de Indecisos: Candidatos a alca… &quot;Este… 2024-09-03
+ 3 &quot;Menos personas circulando y miedo de los residentes: Así … &quot;Poca… 2024-04-08
+ 4 &quot;CEO de Walmart Chile sostiene que si la empresa no da “se… &quot;Hace… 2024-12-22
+ 5 &quot;Pdte. Boric entregó mensaje por la muerte de Piñera y rec… &quot;El p… 2024-02-06
+ 6 &quot;Encuentran dos cadáveres en un canal de regadío en Pirque&quot; &quot;Pers… 2024-07-13
+ 7 &quot;Magisterio denuncia \&quot;abandono de la educación pública\&quot; … &quot;Carl… 2024-02-21
+ 8 &quot;“El día que la democracia triunfó sobre la dictadura”: Mi… &quot;Los … 2024-10-05
+ 9 &quot;Accidente de tránsito deja un fallecido y tres heridos en… &quot;En h… 2024-12-22
+10 &quot;Dos personas resultan baleadas tras intentar evitar asalt… &quot;Aton… 2024-11-02
+# ℹ 9,990 more rows
+</code></pre>
+<p>En este conjunto de datos, los textos completos de los documentos vienen en la columna <code>cuerpo</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">noticias</span> <span class="o">|&gt;</span> <span class="nf">select</span><span class="p">(</span><span class="n">cuerpo</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code># A tibble: 10,000 × 1
+   cuerpo                                                                       
+   &lt;chr&gt;                                                                        
+ 1 &quot;El hecho ocurrió en horas de la madrugada, cuando la víctima fue abordada p…
+ 2 &quot;Este martes 3 de septiembre fue el cuarto capítulo de la nueva temporada de…
+ 3 &quot;Pocas personas circulan en la toma \&quot;Nuevo Amanecer\&quot; de Cerrillos, luego d…
+ 4 &quot;Hace unos días, Walmart Chile anunció un plan de inversión en Chile de US$1…
+ 5 &quot;El presidente Gabriel Boric lamentó el fallecimiento del expresidente Sebas…
+ 6 &quot;Personal del Grupo de Operaciones Policiales Especiales (GOPE) de Carabiner…
+ 7 &quot;Carlos Rodríguez, presidente regional de los Profesores, aseguró que el Min…
+ 8 &quot;Los ministros de Educación, Nicolás Cataldo, y del Interior, Carolina Tohá,…
+ 9 &quot;En horas de la mañana de este domingo, ocurrió un lamentable accidente en l…
+10 &quot;Aton / Imagen Referencial Dos personas resultaron heridas a bala en un inte…
+# ℹ 9,990 more rows
+</code></pre>
+<p>Usualmente los datos de texto van a venir de esta forma, con <strong>todo el texto de cada documento dentro de una celda.</strong> Para poder analizar los datos en este formato tenemos que <em>tokenizar</em> los textos: transformar la estructura de los datos para pasar desde filas que contienen documentos, párrafos u oraciones, a <strong>filas que contienen palabras individuales</strong>, una palabra por observación.</p>
+<p>Usaremos la función <code>unnest_tokens</code> de 
+<a href="https://www.tidytextmining.com/tidytext" target="_blank" rel="noopener"><code>{tidytext}</code></a> para tokenizar y limpiar<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> el texto:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">tidytext</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">palabras</span> <span class="o">&lt;-</span> <span class="n">noticias</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># tokenizar columna que contiene los documentos</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">unnest_tokens</span><span class="p">(</span><span class="n">input</span> <span class="o">=</span> <span class="n">cuerpo</span><span class="p">,</span> <span class="n">drop</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">output</span> <span class="o">=</span> <span class="n">palabra</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">token</span> <span class="o">=</span> <span class="s">&#34;words&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="c1"># limpieza mínima de texto</span>
+</span></span><span class="line"><span class="cl">                <span class="n">to_lower</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">strip_punct</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">strip_numeric</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># eliminar stopwords o palabras vacías</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="n">palabra</span> <span class="o">%in%</span> <span class="n">stopwords</span><span class="o">::</span><span class="nf">stopwords</span><span class="p">(</span><span class="s">&#34;spanish&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">palabras</span> <span class="o">|&gt;</span> <span class="nf">select</span><span class="p">(</span><span class="n">palabra</span><span class="p">,</span> <span class="n">cuerpo</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code># A tibble: 1,817,901 × 2
+   palabra   cuerpo                                                             
+   &lt;chr&gt;     &lt;chr&gt;                                                              
+ 1 hecho     &quot;El hecho ocurrió en horas de la madrugada, cuando la víctima fue …
+ 2 ocurrió   &quot;El hecho ocurrió en horas de la madrugada, cuando la víctima fue …
+ 3 horas     &quot;El hecho ocurrió en horas de la madrugada, cuando la víctima fue …
+ 4 madrugada &quot;El hecho ocurrió en horas de la madrugada, cuando la víctima fue …
+ 5 víctima   &quot;El hecho ocurrió en horas de la madrugada, cuando la víctima fue …
+ 6 abordada  &quot;El hecho ocurrió en horas de la madrugada, cuando la víctima fue …
+ 7 grupo     &quot;El hecho ocurrió en horas de la madrugada, cuando la víctima fue …
+ 8 sujetos   &quot;El hecho ocurrió en horas de la madrugada, cuando la víctima fue …
+ 9 atacó     &quot;El hecho ocurrió en horas de la madrugada, cuando la víctima fue …
+10 arma      &quot;El hecho ocurrió en horas de la madrugada, cuando la víctima fue …
+# ℹ 1,817,891 more rows
+</code></pre>
+<p>Luego de tokenización, vemos que la columna que contiene el texto completo de los documentos está acompañada de una nueva variable que contiene <strong>cada palabra por separado.</strong> De esta forma puedes continuar analizando el documento con palabras individuales, pero teniendo como referencia al texto completo donde aparece cada palabra si es que lo necesitas.</p>
+<p>A partir de la variable de palabras individuales, vamos a hacer un <strong>conteo de las palabras más frecuentes</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">palabras_conteo</span> <span class="o">&lt;-</span> <span class="n">palabras</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">count</span><span class="p">(</span><span class="n">palabra</span><span class="p">,</span> <span class="n">sort</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">palabras_conteo</span>
+</span></span></code></pre></div><pre><code># A tibble: 74,911 × 2
+   palabra      n
+   &lt;chr&gt;    &lt;int&gt;
+ 1 chile     7208
+ 2 años      5457
+ 3 según     5071
+ 4 parte     4952
+ 5 personas  4921
+ 6 si        4912
+ 7 región    4830
+ 8 ser       4656
+ 9 país      4628
+10 gobierno  4599
+# ℹ 74,901 more rows
+</code></pre>
+<p>Rápidamente podemos ver dos problemas: tenemos demasiadas palabras individuales (más de 80 mil), y tenemos palabras muy cortas, como la palabra <code>si</code>, así que haremos una pequeña limpieza:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">palabras_conteo</span> <span class="o">&lt;-</span> <span class="n">palabras_conteo</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># largo mínimo de palabras</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="nf">nchar</span><span class="p">(</span><span class="n">palabra</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="m">3</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># sólo las palabras más frecuentes</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">slice_max</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">2000</span><span class="p">)</span>
+</span></span></code></pre></div><p>También podemos realizar una <strong>búsqueda</strong> dentro de las palabras y contar cuántas veces aparece cada una:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">palabras_conteo</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">palabra</span> <span class="o">%in%</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;guerra&#34;</span><span class="p">,</span> <span class="s">&#34;paz&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><pre><code># A tibble: 2 × 2
+  palabra     n
+  &lt;chr&gt;   &lt;int&gt;
+1 guerra    398
+2 paz       267
+</code></pre>
+<hr>
+
+
+
+
+<h2 id="nube-de-palabras-con-wordcloud2">Nube de palabras con <code>{wordcloud2}</code>
+  <a href="#nube-de-palabras-con-wordcloud2"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>
+<a href="https://github.com/Lchiffon/wordcloud2" target="_blank" rel="noopener"><code>{wordcloud2}</code></a> es un paquete muy sencillo de usar que permite visualizar datos de nubes de palabras con muy poca configuración.</p>
+<p>Si no tienes el paquete instalado, puedes instalarlo con el siguiente código:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#34;lchiffon/wordcloud2&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Para crear una nube de palabras con <code>{wordcloud2}</code> solo necesitas que la primera columna del dataframe contenga las palabras, y la segunda contenga el conteo de frecuencia de las palabras:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">wordcloud2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">palabras_conteo</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># sólo palabras que aparezcan n veces</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="m">1000</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">wordcloud2</span><span class="p">(</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="s">&#34;#EAD1FA&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">             <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#543A74&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><iframe src="/nube_1.html" width="100%" height="500px" style="border:none;"></iframe>
+<p>Usamos algunas de las opciones de personalización de <code>wordcloud2()</code> para obtener el resultado que necesitamos. Personalmente no me gusta mucho que las palabras aparezcan tan en ángulo, y prefiero que las palabras sean menos grandes para que se vea una mayor cantidad.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">palabras_conteo</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="m">1000</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">wordcloud2</span><span class="p">(</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="s">&#34;#EAD1FA&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">             <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#543A74&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">             <span class="c1"># personalización</span>
+</span></span><span class="line"><span class="cl">             <span class="n">rotateRatio</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">,</span> <span class="c1"># rotación máxima</span>
+</span></span><span class="line"><span class="cl">             <span class="n">gridSize</span> <span class="o">=</span> <span class="m">8</span><span class="p">,</span> <span class="c1"># espaciado entre cada palabra</span>
+</span></span><span class="line"><span class="cl">             <span class="n">size</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">,</span> <span class="c1"># tamaño del texto en general</span>
+</span></span><span class="line"><span class="cl">             <span class="n">minSize</span> <span class="o">=</span> <span class="m">11</span><span class="p">)</span> <span class="c1"># tamaño mínimo de las letras</span>
+</span></span></code></pre></div><iframe src="/nube_2.html" width="100%" height="500px" style="border:none;"></iframe>
+</iframe>
+<hr>
+
+
+
+
+<h2 id="nube-de-palabras-con-ggplot2-y-ggwordcloud">Nube de palabras con <code>{ggplot2}</code> y <code>{ggwordcloud}</code>
+  <a href="#nube-de-palabras-con-ggplot2-y-ggwordcloud"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Otra forma de hacer nubes de palabras es agregando una geometría personalizada a <code>{ggplot2}</code>: <code>geom_text_wordcloud()</code> del paquete 
+<a href="https://lepennec.github.io/ggwordcloud/" target="_blank" rel="noopener"><code>{ggwordcloud}</code></a></p>
+<p>Instalar el paquete:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#34;lepennec/ggwordcloud&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Configuramos un tema general para los gráficos, para que se vean bonitos aquí 🥰</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggwordcloud</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># definir el tema para todos los gráficos</span>
+</span></span><span class="line"><span class="cl"><span class="nf">theme_set</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme_void</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme</span><span class="p">(</span><span class="n">plot.background</span> <span class="o">=</span> <span class="nf">element_rect</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;#EAD1FA&#34;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="m">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>Para crear la nube de palabras con <code>{ggplot2}</code>, solamente tenemos que especificar en la estética <code>aes()</code> la variable que contiene las palabras (<code>palabra</code>) y la variable que controla el tamaño de las mismas (<code>n</code>). Luego simplemente indicar que los datos van a visualizarse por medio de la geometría <code>geom_text_wordcloud()</code>, que se encargará de distribuir los textos en el área del gráfico.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">palabras_conteo</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="m">2000</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">aes</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="n">palabra</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_text_wordcloud</span><span class="p">(</span><span class="n">shape</span> <span class="o">=</span> <span class="s">&#34;circle&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                      <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#543A74&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># definir rango de tamaños de las palabras</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_size_continuous</span><span class="p">(</span><span class="n">range</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">20</span><span class="p">))</span>
+</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
+<p>El beneficio de usar esta estrategia es que te entrega toda la flexibilidad de visualizar datos con <code>{ggplot2}</code>. Por ejemplo, podemos agregar un mapeo de la transparencia y el color para crear una nube donde las palabras menos frecuentes sean más transparentes y donde ciertas palabras claves tengan un color distinto:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">palabras_conteo</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="m">2000</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">clave</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">palabra</span> <span class="o">%in%</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;gobierno&#34;</span><span class="p">,</span> <span class="s">&#34;presidente&#34;</span><span class="p">,</span> <span class="s">&#34;boric&#34;</span><span class="p">,</span> <span class="s">&#34;ministerio&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                         <span class="s">&#34;clave&#34;</span><span class="p">,</span> <span class="s">&#34;otras&#34;</span><span class="p">))</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">aes</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="n">palabra</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">      <span class="n">alpha</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">      <span class="n">color</span> <span class="o">=</span> <span class="n">clave</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_text_wordcloud</span><span class="p">(</span><span class="n">shape</span> <span class="o">=</span> <span class="s">&#34;circle&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                      <span class="n">grid_size</span> <span class="o">=</span> <span class="m">6</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># definir rango de tamaño de palabras</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_size_continuous</span><span class="p">(</span><span class="n">range</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">15</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># especificar colores de las palabras clave</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;clave&#34;</span> <span class="o">=</span> <span class="s">&#34;#D93E98&#34;</span><span class="p">,</span> <span class="s">&#34;otras&#34;</span> <span class="o">=</span> <span class="s">&#34;#543A74&#34;</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># definir el rango de la transparencia de palabras</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_alpha_continuous</span><span class="p">(</span><span class="n">range</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.4</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
+</span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png" width="768" />
+<p>También podemos crear una variable que destaques ciertas palabras específicas dentro de la nube:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">palabras_conteo</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="m">1500</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># crear variable que destaque palabras específicas</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">clave</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">palabra</span> <span class="o">%in%</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;gobierno&#34;</span><span class="p">,</span> <span class="s">&#34;chile&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                       <span class="s">&#34;presidente&#34;</span><span class="p">,</span> <span class="s">&#34;boric&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                       <span class="s">&#34;ministerio&#34;</span><span class="p">,</span> <span class="s">&#34;ministra&#34;</span><span class="p">,</span> <span class="s">&#34;interior&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                       <span class="s">&#34;partido&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                       <span class="s">&#34;público&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                         <span class="s">&#34;clave&#34;</span><span class="p">,</span> <span class="s">&#34;otras&#34;</span><span class="p">))</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">aes</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="n">palabra</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">      <span class="c1"># mapear transparencia a la variable con palabras clave</span>
+</span></span><span class="line"><span class="cl">      <span class="n">alpha</span> <span class="o">=</span> <span class="n">clave</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_text_wordcloud</span><span class="p">(</span><span class="n">shape</span> <span class="o">=</span> <span class="s">&#34;circle&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;#543A74&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="n">rm_outside</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># especificar rango de tamaños</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_size_continuous</span><span class="p">(</span><span class="n">range</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">15</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># especificar nivel de transparencia de las palabras clave y de las demás</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_alpha_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;clave&#34;</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="s">&#34;otras&#34;</span> <span class="o">=</span> <span class="m">0.3</span><span class="p">))</span>
+</span></span></code></pre></div><pre><code>Warning in wordcloud_boxes(data_points = points_valid_first, boxes = boxes, :
+Some words could not fit on page. They have been removed.
+</code></pre>
+<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-14-1.png" width="768" />
+<p>Con esta aproximación podemos crear visualizaciones más personalizadas y complejas a partir de datos de texto, sobre todo si tenemos variables adicionales que nos digan más información sobre las palabras que queremos graficar, cómo puede ser alguna otro criterio de prevalencia de palabras en los documentos, alguna clasificación de las palabras en tópicos o temas, una agrupación de los documentos de donde provienen las palabras, etc.</p>
+<hr>
+<p>
+
+
+
+
+
+
+<div style = "height: 18px;">
+</div>
+<div>
+  <div style="display: flex;
+  justify-content: center;
+  align-items: center;">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="bastimapache" 
+    data-color="#D6B9E8" data-emoji="<i class='fa fa-mug-saucer'></i>"  data-font="Cookie" 
+    data-text="Regálame un cafecito" 
+    data-outline-color="#000000" data-font-color="#543A73" data-coffee-color="#ffffff" ></script>
+  </div>
+</div></p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>La limpieza del texto es un paso clave en este tipo de análisis, que para simplificar esta guía, omitiremos. Es muy importante procesar los textos para poder eliminar palabras vacías, palabras mal escritas, remover símbolos, remover palabras irrelevantes, e incluso lematizar palabras para agrupar diferentes conjugaciones de una misma palabra en una sola.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+ 
+    </section>
+      
+    <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+    <a class="prev dtc pr2 tl v-top fw6"
+    href="https://bastianolea.rbind.io/blog/2025-07-08/">&larr; Reduce el tamaño de tus reportes Quarto con este truco</a>
+  
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="https://bastianolea.rbind.io/blog/ordenar_comunas/">Ordenar las comunas de Chile de norte a sur en R &rarr;</a>
+  
+</div>
+
+    </footer>
+    
+  </article>
+    
+    <div class="post-comments pa0 pa4-l mt4">
+  
+</div>
+
+    
+</section>
+  
+
+<section class="post-body pt5 pb4">
+  
+  <details closed class="f6 fw7 input-reset">
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Fecha de publicación:</dt>
+    <dd class="fw5 ml0">July 5, 2025</dd>
+  </dl>
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Extensión:</dt>
+    <dd class="fw5 ml0">9 minute read, 1742 words</dd>
+  </dl>
+  
+  
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Tags:</dt>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos">visualización de datos</a>  <a href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos">gráficos</a>  <a href="https://bastianolea.rbind.io/tags/ggplot2">ggplot2</a>  <a href="https://bastianolea.rbind.io/tags/an%C3%A1lisis-de-texto">análisis de texto</a> </dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Ver también:</dt>
+    
+    <dd class="fw5 ml0"><a href="/blog/mapas_bivariados/">Crea mapas bivariados en R para visualizar la relación entre dos variables</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/colores/">Colores y paletas de colores en R</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/buscar_texto/">Búsquedas de texto por ranking de relevancia con R usando el algoritmo BM25</a></dd>
+    
+  </dl>
+</details>
+
+</section>
+</main>
+
+
+<aside class="page-sidebar" role="complementary">
+   
+   
+
+  <div class="blog-info ph4 pt4 pb4 pb0-l">
+    
+
+  <h1 class="f3">Blog</h1>
+  <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
+<a href="/tags/">temas</a>.</p>
+  
+
+   
+<h3 style="margin-bottom: 12px;">Temas:</h3>
+
+<div style="font-size:90%;">
+
+<div style="font-size: 90%;">
+  
+   
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/apps/">Aplicaciones</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/texto/">Procesamiento de texto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/ciencias-sociales/">Ciencias sociales</a></span>
+  </span>
+
+<a href="/tags/" style="margin-left: 3px;">y más!</a>
+</div>
+</div>
+  
+  
+   
+   
+
+</div>
+
+  
+  <div id="PageTableOfContents" style="margin-top: 24px; position: sticky; top: 108px;">
+        <div class="blog-info ph4 pb4 pb0-l">
+        <h3 style="margin-bottom: 12px;">Índice:</h3>
+          <div class="pl2 pr0 mh0" style = "font-size: 90%; margin-top: -8px; margin-left: -22px; margin-bottom: 32px;">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#nube-de-palabras-con-wordcloud2">Nube de palabras con <code>{wordcloud2}</code></a></li>
+    <li><a href="#nube-de-palabras-con-ggplot2-y-ggwordcloud">Nube de palabras con <code>{ggplot2}</code> y <code>{ggwordcloud}</code></a></li>
+  </ul>
+</nav>
+          </div>
+        </div>
+    </div>
+  
+  
+
+</aside>
+
+        
+          <script id="partials/analytics.html" 
+  data-goatcounter="https://bastimapache.goatcounter.com/count"
+  async src="//gc.zgo.at/count.js"></script>
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2026 Bastián Olea Herrera, Chile
+      <span class="middot-divider"></span>
+      Hecho con <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source" style="color:#9069C0;">Hugo Apéro</a> 
+      y <a href="https://pkgs.rstudio.com/blogdown/" style="color:#9069C0;">{blogdown}</a></span>.
+      <br />
+      
+Basado en <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source" style="color:#9069C0;">Blogophonic</a></span>, de <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL" style="color:#9069C0;">Formspree</a>.
+
+Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlify</a></span>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+      <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
+      
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
+      
+      <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
+      
+      <a class="dib pv1 ph2 link" href="/tags/" title="Temas">Temas</a>
+      
+      <a class="dib pv1 ph2 link" href="/clases/" title="Clases">Clases</a>
+      
+      <a class="dib pv1 ph2 link" href="/code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
+      
+      <a class="dib pv1 ph2 link" href="/license/" title="Bastián Olea: Licencia">Licencia</a>
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>

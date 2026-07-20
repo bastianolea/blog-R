@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr"><head>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.145.0">
+<title>Extrae datos desde páginas de internet haciendo web scraping en R con `{rvest}` | Bastián Olea</title>
+
+
+<meta property="twitter:site" content="@bastimapache">
+<meta property="twitter:creator" content="@bastimapache">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="Blog de Bastián Olea, sociólogx y analista de datos">
+
+
+<meta property="og:site_name" content="Bastián Olea">
+<meta property="og:title" content="Extrae datos desde páginas de internet haciendo web scraping en R con `{rvest}` | Bastián Olea">
+<meta property="og:description" content="Blog de Bastián Olea, sociólogx y analista de datos" />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/webscraping_rvest/" />
+<meta property="og:locale" content="es-ES">
+
+
+
+
+    
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/webscraping_rvest/scraping_4-featured.jpeg" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/webscraping_rvest/scraping_4-featured.jpeg" >
+    
+    
+  
+  <meta itemprop="name" content="Extrae datos desde páginas de internet haciendo web scraping en R con `{rvest}`">
+  <meta itemprop="description" content="Se denomina web scraping a un conjunto de técnicas usadas para obtener datos desde páginas web. Esto significa poder transformar la información que vemos en distintos sitios de internet en datos que podamos utilizar.
+Se usa el web scraping cuando un sitio web presenta información, cifras, datos, números, o cualquier otro elemento que nos pueda servir, pero sin facilitar acceso a los datos, como sería un enlace de descarga, una API para obtener los datos, o alguna forma de exportar la información. En estos casos tenemos que recurrir al scraping para transformar lo que vemos en la web en datos analizables.">
+  <meta itemprop="datePublished" content="2024-12-27T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-12-27T00:00:00+00:00">
+  <meta itemprop="wordCount" content="3369">
+  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/webscraping_rvest/scraping_4-featured.jpeg">
+  <meta itemprop="keywords" content="Web scraping,Datos">
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="false" type="image/x-icon">
+  <link rel="icon" href="false" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  
+  
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.3c3af999b79169f0222ad6048d940d31333adc32d2658e8ae07284fef52a6db9.js" type="text/javascript"></script>
+  
+  
+  <link rel="stylesheet" href="/css/syntax.css">
+  
+  
+  
+  
+  
+  
+  <meta name="google-site-verification" content="yaiYGBAfSJpjE7mfPuFVP1yoNIqLadRJQIzCOula8TI" />
+  
+</head>
+<body>
+      <div class="grid-container single-sidebar">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
+      <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/blog/" title="Bastián Olea: Blog de R">Blog</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/aprende_r/" title="Aprende R">Aprende R</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/shiny_apps/" title="Apps">Apps</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/tutoriales/" title="Tutoriales">Tutoriales</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/tags/" title="Temas">Temas</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/clases/" title="Cursos">Cursos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/about/" title="Bastián Olea: Sobre mi">Yo</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      
+      
+      
+      <div class="dib v-mid", style = "padding: 4px; margin-top: 4px;">
+        <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+      </div>
+      
+    </div>
+  </nav>
+</header>
+
+
+                       
+ 
+
+<main class="page-main pa4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header" style="margin-top:-30px;">
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Extrae datos desde páginas de internet haciendo web scraping en R con <code>{rvest}</code></h1>
+        
+        
+        
+        <div style = "display: inline-block;">  
+          <p class="f7 db mv0 ttu" style = "display: inline-block;">
+            27/12/2024</p>
+          
+          
+          
+        </div>
+          
+        
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/web-scraping"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            web scraping</a>  <a href="https://bastianolea.rbind.io/tags/datos"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            datos</a> </dd></em>
+        </dl>
+         
+      
+        
+      
+      
+    </header>
+      
+      
+    <section class="post-body pt5 pb4">
+        <p>Se denomina web scraping a un conjunto de técnicas usadas para <strong>obtener datos desde páginas web</strong>. Esto significa poder transformar la información que vemos en distintos sitios de internet en datos que podamos utilizar.</p>
+<p>Se usa el web scraping cuando un sitio web presenta información, cifras, datos, números, o cualquier otro elemento que nos pueda servir, pero sin facilitar acceso a los datos, como sería un enlace de descarga, una API para obtener los datos, o alguna forma de exportar la información. En estos casos tenemos que recurrir al scraping para transformar lo que vemos en la web en datos analizables.</p>
+<p>En este tutorial aprenderemos a hacer web scraping en R para <strong>extraer cualquier información que veamos en un sitio web</strong>, y traerla a nuestro entorno de R para poder procesarla como deseemos.</p>
+
+  <span style="color: #c0392b; font-size: 90%;">
+    ⚠ <code>enlace_post</code>: no se encontró la página <code>blog/r_introduccion/web_scraping</code>
+  </span>
+
+
+
+
+
+
+<h2 id="web-scraping-con-rvest">Web scraping con {rvest}
+  <a href="#web-scraping-con-rvest"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>La primera opción a la hora de hacer web scraping de sitios web con R es 
+<a href="https://rvest.tidyverse.org" target="_blank" rel="noopener">el paquete {rvest}</a> (<em>harvest,</em> o <em>cosechar</em> en español). Este paquete, parte del 
+<a href="https://www.tidyverse.org/" target="_blank" rel="noopener">Tidyverse</a>, suele ser la opción más sencilla, más popular y mejor documentada para extraer datos desde sitios web estáticos en R.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># install.packages(&#34;rvest&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">rvest</span><span class="p">)</span>
+</span></span></code></pre></div><p>Existen otros paquetes para el web scraping, como 
+<a href="https://docs.ropensci.org/RSelenium/index.html" target="_blank" rel="noopener">{RSelenium}</a>, que se caracteriza por permitirnos obtener datos desde sitios web dinámicos, pero a su vez es menos intuitivo y más difícil de configurar, lo que hace que sea necesario explicarlo en un tutorial aparte.</p>
+
+
+
+
+<h3 id="extraer-tablas-desde-un-sitio-web">Extraer tablas desde un sitio web
+  <a href="#extraer-tablas-desde-un-sitio-web"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Como primer paso, extraeremos los datos de una tabla alojada en internet. Cuando las tablas están formateadas apropiadamente, como las tablas que podemos encontrar en Wikipedia, extraerlas resulta muy sencillo.</p>
+<p>El primer paso es definir la dirección del sitio que queremos scrapear, y luego usamos dos funciones para obtener el código de fuente de este sitio: la función <code>session()</code>, que nos permite conectarnos al sitio web creando una <em>sesión</em>, y luego la función <code>read_html()</code>, que descargará el código del sitio y nos permitirá extraer información desde el mismo.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">url</span> <span class="o">&lt;-</span> <span class="s">&#34;https://es.wikipedia.org/wiki/Chile&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sitio_chile</span> <span class="o">&lt;-</span> <span class="nf">session</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">read_html</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sitio_chile</span>
+</span></span></code></pre></div><pre><code>{html_document}
+&lt;html class=&quot;client-nojs vector-feature-language-in-header-enabled vector-feature-language-in-main-page-header-disabled vector-feature-sticky-header-disabled vector-feature-page-tools-pinned-disabled vector-feature-toc-pinned-clientpref-1 vector-feature-main-menu-pinned-disabled vector-feature-limited-width-clientpref-1 vector-feature-limited-width-content-enabled vector-feature-custom-font-size-clientpref-1 vector-feature-appearance-pinned-clientpref-1 vector-feature-night-mode-enabled skin-theme-clientpref-day vector-toc-available&quot; lang=&quot;es&quot; dir=&quot;ltr&quot;&gt;
+[1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8 ...
+[2] &lt;body class=&quot;skin--responsive skin-vector skin-vector-search-vue mediawik ...
+</code></pre>
+<p>El objeto resultante es un documento HTML del cual podremos extraer los elementos del sitio que nos interesen.</p>
+<p>Intentemos extraer la tabla del sitio que posee datos sobre población indígena en el país:</p>
+<p><img src="/blog/webscraping_rvest/scraping_1.jpeg" alt=""></p>
+<p>Para extraer las tablas de este sitio, usamos la función <code>html_table()</code>. Las funciones que extraen elementos de los sitios empiezan con <code>html</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tablas</span> <span class="o">&lt;-</span> <span class="n">sitio_chile</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">html_table</span><span class="p">()</span>
+</span></span></code></pre></div><p>El resultado de esta extracción va a ser una lista. En R, una lista es un tipo de objeto que dentro de sí puede contener múltiples elementos de distinto tipo, forma, o tamaño. En este caso, esta lista contiene todas las tablas que habían en la página. Entonces, tenemos que elegir la tabla que nos interesa analizar.</p>
+<p>En este caso, nos interesa la octava tabla, que contiene información sobre pueblos indígenas en Chile, por lo que la extraemos de la lista:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># extraer tabla de la lista</span>
+</span></span><span class="line"><span class="cl"><span class="n">tabla_1</span> <span class="o">&lt;-</span> <span class="n">tablas[[8]]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tabla_1</span>
+</span></span></code></pre></div><pre><code># A tibble: 12 × 3
+   Pueblos indígenas de Chile (2…¹ Pueblos indígenas de…² Pueblos indígenas de…³
+   &lt;chr&gt;                           &lt;chr&gt;                  &lt;chr&gt;                 
+ 1 Etnia                           Población              %                     
+ 2 Mapuche                         1 745 147              79,8                  
+ 3 Aimara                          156 754                7,2                   
+ 4 Diaguita                        88 474                 4,1                   
+ 5 Quechua                         33 868                 1,6                   
+ 6 Lican Antai                     30 369                 1,4                   
+ 7 Colla                           20 744                 0,9                   
+ 8 Rapanui                         9399                   0,4                   
+ 9 Kawésqar                        3448                   0,1                   
+10 Yagán                           1600                   0,1                   
+11 Otro o ignorado                 95 989                 4,4                   
+12 Total                           2 185 792              100,0                 
+# ℹ abbreviated names: ¹​`Pueblos indígenas de Chile (2017)[8]​`,
+#   ²​`Pueblos indígenas de Chile (2017)[8]​`,
+#   ³​`Pueblos indígenas de Chile (2017)[8]​`
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># limpiar datos de la tabla</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># renombrar columnas</span>
+</span></span><span class="line"><span class="cl"><span class="n">tabla_1a</span> <span class="o">&lt;-</span> <span class="n">tabla_1</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">janitor</span><span class="o">::</span><span class="nf">row_to_names</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">janitor</span><span class="o">::</span><span class="nf">clean_names</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># convertir variables a numéricas</span>
+</span></span><span class="line"><span class="cl"><span class="n">tabla_1b</span> <span class="o">&lt;-</span> <span class="n">tabla_1a</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># remover espacios</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">poblacion</span> <span class="o">=</span> <span class="n">stringr</span><span class="o">::</span><span class="nf">str_remove_all</span><span class="p">(</span><span class="n">poblacion</span><span class="p">,</span> <span class="s">&#34;\\s+&#34;</span><span class="p">))</span> <span class="o">|&gt;</span>  
+</span></span><span class="line"><span class="cl">  <span class="c1"># reemplazar comas por puntos</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">percent</span> <span class="o">=</span> <span class="n">stringr</span><span class="o">::</span><span class="nf">str_replace</span><span class="p">(</span><span class="n">percent</span><span class="p">,</span> <span class="s">&#34;,&#34;</span><span class="p">,</span> <span class="s">&#34;.&#34;</span><span class="p">))</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># convertir a numéricas</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="nf">across</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">poblacion</span><span class="p">,</span> <span class="n">percent</span><span class="p">),</span> <span class="n">as.numeric</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tabla_1b</span>
+</span></span></code></pre></div><pre><code># A tibble: 11 × 3
+   etnia           poblacion percent
+   &lt;chr&gt;               &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Mapuche           1745147    79.8
+ 2 Aimara             156754     7.2
+ 3 Diaguita            88474     4.1
+ 4 Quechua             33868     1.6
+ 5 Lican Antai         30369     1.4
+ 6 Colla               20744     0.9
+ 7 Rapanui              9399     0.4
+ 8 Kawésqar             3448     0.1
+ 9 Yagán                1600     0.1
+10 Otro o ignorado     95989     4.4
+11 Total             2185792   100  
+</code></pre>
+<p>¡Listo! Extrajimos datos desde una tabla de Wikipedia, y ahora podemos usarlos para lo que necesitemos.</p>
+
+
+
+
+<h3 id="extraer-datos-de-un-sitio-usando-etiquetas">Extraer datos de un sitio usando etiquetas
+  <a href="#extraer-datos-de-un-sitio-usando-etiquetas"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Para scrapear elementos puntuales de un sitio, necesitamos identificarlos, y así extraer solamente lo que nos interesa. Cada elemento en un sitio web, ya sea texto, tablas o imágenes, se crea a partir de 
+<a href="https://developer.mozilla.org/es/docs/Web/HTML/Element" target="_blank" rel="noopener">etiquetas HTML</a>. Si identificamos las etiquetas HTML de los datos que necesitamos, podemos usarlas para extraerlos.</p>
+<p>Probemos con otra página de Wikipedia:</p>
+<p><img src="/blog/webscraping_rvest/scraping_2.jpeg" alt=""></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">url</span> <span class="o">&lt;-</span> <span class="s">&#34;https://es.wikipedia.org/wiki/Mapache&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sitio_mapache</span> <span class="o">&lt;-</span> <span class="nf">session</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">read_html</span><span class="p">()</span>
+</span></span></code></pre></div><p>Para extraer elementos de un sitio, usamos la función <code>html_elements()</code>, cuyo argumento será el identificador del elemento que queremos extraer. Para extraer el título de la página, usualmente podemos usar la etiqueta HTML <code>h1</code>, que se usa para títulos de mayor jerarquía (existen etiquetas de títulos <code>h1</code>, <code>h2</code>&hellip; hasta <code>h6</code>).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">sitio_mapache</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">html_elements</span><span class="p">(</span><span class="s">&#34;h1&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>{xml_nodeset (1)}
+[1] &lt;h1 id=&quot;firstHeading&quot; class=&quot;firstHeading mw-first-heading&quot;&gt;&lt;span class=&quot; ...
+</code></pre>
+<p>Obtenemos un elemento que empieza con <code>&lt;h1...</code>, lo que significa que extrajimos un elemento en el sitio con dicha etiqueta <code>h1</code>. Para convertir este elemento a texto, usamos la función <code>html_text()</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">sitio_mapache</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">html_elements</span><span class="p">(</span><span class="s">&#34;h1&#34;</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">html_text</span><span class="p">()</span>
+</span></span></code></pre></div><pre><code>[1] &quot;Procyon&quot;
+</code></pre>
+<p>Del mismo modo, podemos extraer otros elementos del sitio, tales como los subtítulos de etiqueta <code>h2</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">sitio_mapache</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">html_elements</span><span class="p">(</span><span class="s">&#34;h2&#34;</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">html_text</span><span class="p">()</span>
+</span></span></code></pre></div><pre><code>[1] &quot;Contenidos&quot;                        &quot;Descripción&quot;                      
+[3] &quot;Hábitat y comportamiento&quot;          &quot;Nombre&quot;                           
+[5] &quot;Especies&quot;                          &quot;Especies relacionadas y similares&quot;
+[7] &quot;Véase también&quot;                     &quot;Referencias&quot;                      
+[9] &quot;Enlaces externos&quot;                 
+</code></pre>
+<p>Si deseamos extraer todo el texto del sitio, apuntamos a la etiqueta de párrafo, que es <code>p</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">texto</span> <span class="o">&lt;-</span> <span class="n">sitio_mapache</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">html_elements</span><span class="p">(</span><span class="s">&#34;p&#34;</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">html_text</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">texto[3</span><span class="o">:</span><span class="m">5</span><span class="n">]</span>
+</span></span></code></pre></div><pre><code>[1] &quot;Tiene un tamaño mediano y puede llegar a medir entre 40 cm y 55 cm de alto. Es un poco mayor y más grueso que un gato, de pelo medianamente largo y de color gris plateado (más oscuro en el centro del lomo), el pelo de las extremidades casi blanco, cola larga y anillada (gris plateado con blanco o casi blanco) y una característica mancha de pelo negro que va desde cada mejilla a cada ojo, lo que lo hace muy reconocible, pues parece que lleva un antifaz. En ocasiones se sienta sobre sus cuartos traseros (muslos y glúteos), como hacen los osos, y, como ellos, es de patas traseras plantígradas. En sus extremidades posee cinco dedos largos y ágiles (el tacto es su sentido predominante). Puede pesar hasta 15 kg.   \n&quot;
+[2] &quot;Las manos de los mapaches tienen ciertas similitudes con las de los primates, producto de la convergencia evolutiva, ya que no están estrechamente relacionados entre sí. Su distribución de los dedos es ideal para que sea capaz de apretar y manipular objetos, aunque no presentan un pulgar oponible  \n&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                   
+[3] &quot;Es un animal de bosque, especialmente cerca de ríos, aunque ha aprendido a vivir también en áreas habitadas. En su hábitat natural come de todo, desde ranas hasta frutos, pero en las ciudades y suburbios echa mano de los contenedores de basura para comerse los restos de alimentos arrojados en ellos. Los mapaches son nocturnos, tienen un agudo sentido del olfato y son buenos trepadores.\n&quot;                                                                                                                                                                                                                                                                                                                                          
+</code></pre>
+<p>El objeto resultante es un vector de texto, separado en párrafos.</p>
+
+
+
+
+<h3 id="extraer-datos-de-un-sitio-usando-clases">Extraer datos de un sitio usando clases
+  <a href="#extraer-datos-de-un-sitio-usando-clases"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Hagamos otro ejemplo sobre un sitio menos estructurado que Wikipedia: queremos obtener una lista de animales endémicos de Chile desde el sitio web 
+<a href="https://animalia.bio/es/endemic-lists/country/endemic-animals-of-chile" target="_blank" rel="noopener">animalia.bio</a>.</p>
+<p>En este sitio, cada títuar de los párrafos contiene el nombre de un animal endémico. Por alguna razón, este sitio impide que le hagamos scraping si nos conectamos con la función <code>session()</code><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, pero también es posible extraer el código directamente del sitio, sin crear una sesión. Cuándo se hace web scraping es posible encontrarse con problemas de este tipo, como sitios que evitan entregar su información, o que lo hacen un poco más complicado de lo normal.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">url</span> <span class="o">&lt;-</span> <span class="s">&#34;https://animalia.bio/es/endemic-lists/country/endemic-animals-of-chile&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># extraer código de fuente del sitio sin abrir una sesión</span>
+</span></span><span class="line"><span class="cl"><span class="n">sitio_animales</span> <span class="o">&lt;-</span> <span class="nf">read_html</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sitio_animales</span>
+</span></span></code></pre></div><pre><code>{html_document}
+&lt;html lang=&quot;es&quot;&gt;
+[1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8 ...
+[2] &lt;style&gt;\n @media  only screen and (max-width: 992px) {\n  .mob_banner {\n ...
+[3] &lt;body class=&quot;page-collection &quot; bucket_url=&quot;https://s3.animalia.bio&quot;&gt;\n    ...
+</code></pre>
+<p>Con este sitio web no nos resulta extraer la etiqueta <code>h2</code>, <code>h3</code> o <code>h4</code> que se usan usualmente para los titulares en sus distintos niveles, sencillamente porque este sitio web no usa esas etiquetas para crear sus titulares.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">sitio_animales</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">html_elements</span><span class="p">(</span><span class="s">&#34;h2&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>{xml_nodeset (0)}
+</code></pre>
+<p>En estos casos, tenemos que entrar al sitio web e identificar manualmente cómo se distinguen entre el resto del código los elementos que queremos extraer.</p>
+<p>Accedemos al sitio web con un navegador web cualquiera, y entramos al inspector web de nuestro navegador. Podemos hacer clic derecho en algún elemento del sitio, y elegir la opción <em>Inspeccionar</em> para abrir el inspector:</p>
+<p><img src="/blog/webscraping_rvest/scraping_3.jpeg" alt=""></p>
+<p>Se abrirá un <strong>inspector web</strong> donde veremos el código de fuente del sitio al lado del sitio mismo. Si movemos nuestro cursor sobre las líneas del código, se destacarán los elementos del sitio web que corresponden a cada línea, o viceversa. De esta forma, podemos encontrar exactamente cuál línea de código se corresponde con el elemento que queremos extraer.</p>
+<p><img src="/blog/webscraping_rvest/scraping_4-featured.jpeg" alt=""></p>
+<p>En este caso, la línea de código de los titulares de cada animal es a una etiqueta <code>span</code>, que corresponde a un contenedor de texto. Por sí sola, esta etiqueta no identifica de manera única a los datos que queremos extraer, por lo tanto, tenemos que encontrar otro identificador dentro de esta etiqueta que nos sirva.</p>
+<p>En la mayoría de los casos, los elementos de un sitio web que comparten un mismo estilo gráfico (tipografía, tamaño de texto, color, etc.) comparten también una <strong>clase CSS</strong>. Una clase CSS es una forma de definir la apariencia de una parte de un sitio web, como un titular, un párrafo de texto, o un botón, definiendo su apariencia en una hoja de estilos CSS a partir del nombre de la clase, para luego aplicar esta misma clase a múltiples elementos del sitio. Por lo tanto, <strong>identificar la clase de un elemento web usualmente nos permite extraer múltiples elementos de un sitio que comparten una misma jerarquía o apariencia.</strong></p>
+<p>En la siguiente imagen se destacan con líneas de colores los elementos del sitio que comparten un estilo y jerarquía, y por ende podemos asumir que comparten una clase en común entre ellos:</p>
+<p><img src="/blog/webscraping_rvest/scraping_5.jpeg" alt=""></p>
+<p>En el caso de este sitio, y como vemos en el código del inspector web de nuestro navegador, todos los títulos de los animales del sitio poseen la clase <code>collection-animal-title</code>. Entonces, podemos usar esa clase para extraer los elementos usando la función <code>html_elements()</code>. Pero hay que tener en consideración que las clases CSS se escriben anteponiéndoles un punto, por lo que usamos <code>&quot;.collection-animal-title&quot;</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">animales</span> <span class="o">&lt;-</span> <span class="n">sitio_animales</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">html_elements</span><span class="p">(</span><span class="s">&#34;.collection-animal-title&#34;</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">html_text</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">animales[1</span><span class="o">:</span><span class="m">10</span><span class="n">]</span>
+</span></span></code></pre></div><pre><code> [1] &quot;Degú&quot;                        &quot;Chinchilla de cola corta&quot;   
+ [3] &quot;Chinchilla de cola larga&quot;    &quot;Zorro chilote&quot;              
+ [5] &quot;Delfín chileno&quot;              &quot;Rana chilena&quot;               
+ [7] &quot;Remolinera costera chilena&quot;  &quot;Cachudito de juan fernández&quot;
+ [9] &quot;Turca&quot;                       &quot;Chiricoca&quot;                  
+</code></pre>
+<p>Al extraer los elementos que comparten una misma clase, <code>{rvest}</code> nos entrega un vector que contiene todos elementos del sitio que usan en esa clase; en este caso, los títulos de los animales.</p>
+<p>Si seguimos viendo el código de fuente del sitio, notamos que también hay otras clases que describen los elementos asociados a cada animal: la clase <code>collection-desc</code> que se aplica a los párrafos, y la clase <code>animal-link</code> que contiene el enlace a cada animal.</p>
+<p>Para extraer los textos, apuntamos a la clase <code>.collection-desc</code>, y usamos <code>html_text2()</code>, que además de convertir a texto, también ayuda removiendo caracteres en blanco como espacios o saltos de línea:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">textos</span> <span class="o">&lt;-</span> <span class="n">sitio_animales</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">html_elements</span><span class="p">(</span><span class="s">&#34;.collection-desc&#34;</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">html_text2</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">textos[1</span><span class="o">:</span><span class="m">5</span><span class="n">]</span>
+</span></span></code></pre></div><pre><code>[1] &quot;El degú (&lt; mapudungun dewü, rata, ratón) (Octodon degus) es una especie de roedor histricomorfo de la familia Octodontidae. Es conocido también por multitud de otros nombres, como degú/ratón cola de pincel, degú/ratón de las pircas, ardilla chilena o, incluso, ratón cola de trompeta. Sin embargo, este pequeño caviomorfo endémico de Chile es usualmente denominado degú común, para distinguirlo de los otros miembros del género Octodon. El término degú ...por sí solo, no obstante, puede usarse para referirse al género Octodon o, de forma común, a Octodon degus. Otros caviomorfos con los que los degús están estrechamente relacionados son las chinchillas y los conejillos de Indias (ver infraorden Caviomorpha). Menos&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+[2] &quot;La chinchilla de cola corta (Chinchilla chinchilla), también llamada chinchilla Peruana, chinchilla del altiplano, chinchilla cordillerana y chinchilla real, es una especie de roedor de la familia Chinchillidae. Habita el altiplano andino, desde el sur del Perú y el oeste de Bolivia, hasta el noreste de Chile y el norte de Argentina. Por ser su piel altamente demandada, su caza indiscriminada produjo que la población se reduzca dr ...amáticamente. La UICN estimó una reducción del 90% de la población en sólo 3 generaciones (15 años), colocándola entre las especies amenazadas.En Perú y Bolivia no existen colectas de individuos desde hace 50 años; sin embargo reportes recientes, basados en entrevistas con gente local y observaciones de guardaparques, en la Reserva nacional Eduardo Abaroa en el Departamento de Potosí, en la región del sudoeste boliviano fronteriza con la Región de Antofagasta de Chile, parecen indicar poblaciones extensas. En Bolivia, es poco probable que la especie se encuentre en otros sitios de su rango distribucional histórico. Actualmente existen registros de poblaciones en Argentina y Chile; se encuentra extinta en Perú, y su presencia en Bolivia es incierta. Menos&quot;
+[3] &quot;La chinchilla de cola larga (Chinchilla lanigera), también conocida como chinchilla chilena, costera o menor, es una especie de roedor de la familia Chinchillidae. Es una de las dos especies del género Chinchilla, la otra es Chinchilla chinchilla. Menos&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+[4] &quot;El zorro chilote o zorro de Darwin (Lycalopex fulvipes) es un cánido endémico del sur de Chile. Fue descrito por primera vez en 1834 por Charles Darwin, quien lo clasificó erróneamente como una subespecie del zorro chilla (L. griseus). Se considera la especie de cánido en mayor riesgo de extinción en el mundo. No tiene subespecies. Menos&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+[5] &quot;El delfín chileno (Cephalorhynchus eutropia), también conocido como delfín negro y tonina es una especie de cetáceo odontoceto de la familia Delphinidae que se encuentra mayoritariamente en las costas de Chile y muy escasamente también en la Patagonia argentina. Menos&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+</code></pre>
+<p>Para extraer los enlaces, el proceso es levemente distinto, porque si extraemos el texto de los enlaces desde la clase <code>.animal-link</code>, solamente obtendremos el texto, no el enlace en sí mismo:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">sitio_animales</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">html_elements</span><span class="p">(</span><span class="s">&#34;.animal-link&#34;</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">html_text</span><span class="p">()</span>
+</span></span></code></pre></div><pre><code> [1] &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot;
+ [5] &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot;
+ [9] &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot;
+[13] &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot;
+[17] &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot;
+[21] &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot;
+[25] &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot;
+[29] &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot;
+[33] &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot;
+[37] &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot; &quot;Descubrir más  &quot;
+[41] &quot;Descubrir más  &quot; &quot;Descubrir más  &quot;
+</code></pre>
+<p>Notamos que la etiqueta HTML que se usa para crear los enlaces es la etiqueta <code>a</code>, y dentro de esta etiqueta, además de la clase tenemos otros <strong>atributos</strong>, tales como el atributo <code>href</code> (<em>hypertext reference</em>), que contiene la dirección a la que apunta el enlace:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">sitio_animales</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">html_elements</span><span class="p">(</span><span class="s">&#34;.animal-link&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>{xml_nodeset (42)}
+ [1] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/degu?endemic=35&quot;&gt;De ...
+ [2] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/short-tailed-chinch ...
+ [3] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/long-tailed-chinchi ...
+ [4] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/darwins-fox?endemic ...
+ [5] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/chilean-dolphin?end ...
+ [6] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/calyptocephalella?e ...
+ [7] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/chilean-seaside-cin ...
+ [8] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/juan-fernndez-tit-t ...
+ [9] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/moustached-turca?en ...
+[10] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/crag-chilia?endemic ...
+[11] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/juan-fernndez-firec ...
+[12] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/slender-billed-para ...
+[13] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/chilean-tinamou?end ...
+[14] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/chilean-woodstar?en ...
+[15] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/masafuera-rayadito? ...
+[16] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/de-filippis-petrel? ...
+[17] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/white-throated-tapa ...
+[18] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/telmatobufo-bullock ...
+[19] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/telmatobufo-venustu ...
+[20] &lt;a class=&quot;animal-link&quot; href=&quot;https://animalia.bio/es/rhinella-atacamensi ...
+...
+</code></pre>
+<p>Para extraer este atributo de los elementos de etiqueta <code>a</code>, usamos la función <code>html_attr()</code>, especificando el atributo que queremos extraer:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">enlaces</span> <span class="o">&lt;-</span> <span class="n">sitio_animales</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">html_elements</span><span class="p">(</span><span class="s">&#34;.animal-link&#34;</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">html_attr</span><span class="p">(</span><span class="s">&#34;href&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">enlaces[1</span><span class="o">:</span><span class="m">10</span><span class="n">]</span>
+</span></span></code></pre></div><pre><code> [1] &quot;https://animalia.bio/es/degu?endemic=35&quot;                     
+ [2] &quot;https://animalia.bio/es/short-tailed-chinchilla?endemic=35&quot;  
+ [3] &quot;https://animalia.bio/es/long-tailed-chinchilla?endemic=35&quot;   
+ [4] &quot;https://animalia.bio/es/darwins-fox?endemic=35&quot;              
+ [5] &quot;https://animalia.bio/es/chilean-dolphin?endemic=35&quot;          
+ [6] &quot;https://animalia.bio/es/calyptocephalella?endemic=35&quot;        
+ [7] &quot;https://animalia.bio/es/chilean-seaside-cinclodes?endemic=35&quot;
+ [8] &quot;https://animalia.bio/es/juan-fernndez-tit-tyrant?endemic=35&quot; 
+ [9] &quot;https://animalia.bio/es/moustached-turca?endemic=35&quot;         
+[10] &quot;https://animalia.bio/es/crag-chilia?endemic=35&quot;              
+</code></pre>
+<p>Una vez que hayamos extraído los elementos del sitio que necesitamos, y considerando que los elementos extraídos tienen todos el mismo largo (dado que cada animal del sitio tenía exactamente un título, un párrafo y un enlace), podemos unir todos los resultados en una tabla para <strong>construir un dataframe a partir de los datos scrapeados.</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tabla_animales</span> <span class="o">&lt;-</span> <span class="nf">tibble</span><span class="p">(</span><span class="n">animales</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                         <span class="n">textos</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                         <span class="n">enlaces</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tabla_animales</span>
+</span></span></code></pre></div><pre><code># A tibble: 42 × 3
+   animales                    textos                                    enlaces
+   &lt;chr&gt;                       &lt;chr&gt;                                     &lt;chr&gt;  
+ 1 Degú                        El degú (&lt; mapudungun dewü, rata, ratón)… https:…
+ 2 Chinchilla de cola corta    La chinchilla de cola corta (Chinchilla … https:…
+ 3 Chinchilla de cola larga    La chinchilla de cola larga (Chinchilla … https:…
+ 4 Zorro chilote               El zorro chilote o zorro de Darwin (Lyca… https:…
+ 5 Delfín chileno              El delfín chileno (Cephalorhynchus eutro… https:…
+ 6 Rana chilena                La rana chilena (Calyptocephalella gayi)… https:…
+ 7 Remolinera costera chilena  La remolinera costera chilena (Cinclodes… https:…
+ 8 Cachudito de juan fernández El cachudito de Juan Fernández (Anairete… https:…
+ 9 Turca                       La turca o huet-huet turca (Pteroptochos… https:…
+10 Chiricoca                   La chiricoca (Ochetorhynchus melanurus),… https:…
+# ℹ 32 more rows
+</code></pre>
+<p>Creamos una tabla con los resultados de los tres datos que scrapeamos!</p>
+<p>En general, ésta es la lógica básica del web scraping. Se debe identificar el sitio web que necesitas, luego explorar el código de fuente del sitio para entender cuáles son las clases de los elementos que quieres extraer, para finalmente extraerlos y procesarlos, de ser necesario. En muchos casos, lo que se hace es obtener una cierta cantidad de enlaces que contienen información que está estructurada de una manera homogénea, y luego se ejecuta el proceso de scraping a cada uno de los enlaces a través de un loop o iteración, por ejemplo con la función <code>purrr::map()</code>.</p>
+<p>El web scraping es una herramienta muy útil para acelerar tus procesos y automatizar obtenciones y actualizaciones de datos, y es algo que resulta muy atractivo para personas interesadas en los datos. Pero ojo, que he visto mucha gente que quiere <em>entrar</em> al análisis de datos <em>empezando</em> por aprender web scraping. En mi experiencia, si bien el web scraping de por si no es algo complejo, sí es una herramienta que requiere de un <strong>dominio de estructuras de datos complejas</strong>, así como de <strong>habilidades avanzadas de limpieza de datos</strong>. Ello debido a que los datos que obtenemos por web scraping pueden venir literalmente en <em>cualquier</em> formato, con infinidad de problemas inesperados, y será tarea de el/la analista resolver esos desafíos de interpretación y limpieza de datos de forma creativa, de manera que los resultados salgan correctos tanto para 1 como para 100 páginas de un mismo sitio web.</p>
+<p>
+  <div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones sobre web scraping
+    </p>
+
+    <div style="/*border: 1px solid #9069C035;*/
+                border: solid 2px #A885C6AA;
+                border-radius: 8px;
+                overflow: hidden;
+                background-color: #9069C00d;">
+
+      <a href="/blog/2026-03-26/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  
+                  ">
+
+          
+          <img src="/blog/2026-03-26/featured.jpg"
+               alt="Galería de libros de _Goodreads_ para tu blog o sitio web con R y Quarto"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Galería de libros de <em>Goodreads</em> para tu blog o sitio web con R y Quarto
+          </span>
+
+        </a>
+      <a href="/blog/2025-12-16/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <div style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      border-radius: 4px;
+                      background-color: #9069C020;">
+          </div>
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Automatizar el scroll de una página web desde R con <code>{RSelenium}</code>
+          </span>
+
+        </a>
+      <a href="/blog/elecciones_presidenciales_2025/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/elecciones_presidenciales_2025/featured.jpg"
+               alt="Visualización y scraping de resultados de las elecciones presidenciales 2025"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Visualización y scraping de resultados de las elecciones presidenciales 2025
+          </span>
+
+        </a>
+      <a href="/blog/2025-07-27/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/2025-07-27/featured.jpg"
+               alt="Descargar todos los archivos de la página web del Censo 2024 con `{rvest}`"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Descargar todos los archivos de la página web del Censo 2024 con <code>{rvest}</code>
+          </span>
+
+        </a>
+      <a href="/blog/taller_corrupcion_cesi/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/taller_corrupcion_cesi/afiche-featured.webp"
+               alt="Video: Taller Medición y Análisis de la Corrupción en Chile desde el Análisis de Datos y Herramientas Abiertas"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Video: Taller Medición y Análisis de la Corrupción en Chile desde el Análisis de Datos y Herramientas Abiertas
+          </span>
+
+        </a>
+      
+
+    </div>
+  </div>
+
+
+
+<div style = "height: 18px;">
+</div>
+<div>
+  <div style="display: flex;
+  justify-content: center;
+  align-items: center;">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="bastimapache" 
+    data-color="#D6B9E8" data-emoji="<i class='fa fa-mug-saucer'></i>"  data-font="Cookie" 
+    data-text="Regálame un cafecito" 
+    data-outline-color="#000000" data-font-color="#543A73" data-coffee-color="#ffffff" ></script>
+  </div>
+</div>
+
+
+
+
+
+
+</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Lo más probable sea que este sitio identifique que estamos conectándonos desde un paquete de R que hace web scraping, y por lo tanto cancela la conexión entregando un error 403 (prohibido). Esto se debe a que cualquier interfaz que se conecte una página web entrega un <em>user agent</em> que los identifica, y muchos sitios usan esta información para prohibir el acceso o mostrar distintos elementos dependiendo del navegador que uses.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+ 
+    </section>
+      
+    <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+    <a class="prev dtc pr2 tl v-top fw6"
+    href="https://bastianolea.rbind.io/blog/2024-12-31/">&larr; Web scraping de noticias: avances de fin de año</a>
+  
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="https://bastianolea.rbind.io/blog/2024-12-26/">Haciendo que un loop muy largo termine sin cancelarlo &rarr;</a>
+  
+</div>
+
+    </footer>
+    
+  </article>
+    
+    <div class="post-comments pa0 pa4-l mt4">
+  
+</div>
+
+    
+</section>
+  
+
+<section class="post-body pt5 pb4">
+  
+  <details closed class="f6 fw7 input-reset">
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Fecha de publicación:</dt>
+    <dd class="fw5 ml0">December 27, 2024</dd>
+  </dl>
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Extensión:</dt>
+    <dd class="fw5 ml0">16 minute read, 3369 words</dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Categorías:</dt>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/categories/tutoriales">tutoriales</a> </dd>
+  </dl>
+  
+  
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Tags:</dt>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/web-scraping">web scraping</a>  <a href="https://bastianolea.rbind.io/tags/datos">datos</a> </dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Ver también:</dt>
+    
+    <dd class="fw5 ml0"><a href="/blog/funcion_consultar_datos/">Creando una función para consultar datos en R</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/herramientas_llm/">Potencia las capacidades de la IA entregándole herramientas (_tool calling_) basadas en R</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/censo_2024/">Explorar datos del Censo de Población y Vivienda 2024 con R</a></dd>
+    
+  </dl>
+</details>
+
+</section>
+</main>
+
+
+<aside class="page-sidebar" role="complementary">
+   
+   
+
+  <div class="blog-info ph4 pt4 pb4 pb0-l">
+    
+
+  <h1 class="f3">Blog</h1>
+  <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
+<a href="/tags/">temas</a>.</p>
+  
+
+   
+<h3 style="margin-bottom: 12px;">Temas:</h3>
+
+<div style="font-size:90%;">
+
+<div style="font-size: 90%;">
+  
+   
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/apps/">Aplicaciones</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/texto/">Procesamiento de texto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/optimizaci%C3%B3n/">Optimización</a></span>
+  </span>
+
+<a href="/tags/" style="margin-left: 3px;">y más!</a>
+</div>
+</div>
+  
+  
+   
+   
+
+</div>
+
+  
+  <div id="PageTableOfContents" style="margin-top: 24px; position: sticky; top: 108px;">
+        <div class="blog-info ph4 pb4 pb0-l">
+        <h3 style="margin-bottom: 12px;">Índice:</h3>
+          <div class="pl2 pr0 mh0" style = "font-size: 90%; margin-top: -8px; margin-left: -22px; margin-bottom: 32px;">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#web-scraping-con-rvest">Web scraping con {rvest}</a>
+      <ul>
+        <li><a href="#extraer-tablas-desde-un-sitio-web">Extraer tablas desde un sitio web</a></li>
+        <li><a href="#extraer-datos-de-un-sitio-usando-etiquetas">Extraer datos de un sitio usando etiquetas</a></li>
+        <li><a href="#extraer-datos-de-un-sitio-usando-clases">Extraer datos de un sitio usando clases</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+          </div>
+        </div>
+    </div>
+  
+  
+
+</aside>
+
+        
+          <script id="partials/analytics.html" 
+  data-goatcounter="https://bastimapache.goatcounter.com/count"
+  async src="//gc.zgo.at/count.js"></script>
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2026 Bastián Olea Herrera, Chile
+      <span class="middot-divider"></span>
+      Hecho con <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source" style="color:#9069C0;">Hugo Apéro</a> 
+      y <a href="https://pkgs.rstudio.com/blogdown/" style="color:#9069C0;">{blogdown}</a></span>.
+      <br />
+      
+Basado en <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source" style="color:#9069C0;">Blogophonic</a></span>, de <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL" style="color:#9069C0;">Formspree</a>.
+
+Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlify</a></span>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+      <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
+      
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
+      
+      <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
+      
+      <a class="dib pv1 ph2 link" href="/tags/" title="Temas">Temas</a>
+      
+      <a class="dib pv1 ph2 link" href="/clases/" title="Clases">Clases</a>
+      
+      <a class="dib pv1 ph2 link" href="/code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
+      
+      <a class="dib pv1 ph2 link" href="/license/" title="Bastián Olea: Licencia">Licencia</a>
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>

@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr"><head>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.145.0">
+<title>Crea planillas de Excel con formato personalizado desde R con {openxlsx} | Bastián Olea</title>
+
+
+<meta property="twitter:site" content="@bastimapache">
+<meta property="twitter:creator" content="@bastimapache">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="El paquete `{openxlsx}` nos entrega funciones para generar archivos Excel desde R que contengan todo tipo de formato, estilo de tablas, y manipulación celda por celda del archivo resultante, con lo que podemos generar planillas de Excel atractivas desde R. La gracia es que podremos usar estas herramientas de forma reproducible (poder re-hacer gratis la planilla con datos actualizados o corregidos), y también podremos combinar la programación de R para crear estilos condicionales, crear cientos de archivos Excel, o planillas de cientos de hojas, y mucho más.">
+
+
+<meta property="og:site_name" content="Bastián Olea">
+<meta property="og:title" content="Crea planillas de Excel con formato personalizado desde R con {openxlsx} | Bastián Olea">
+<meta property="og:description" content="El paquete `{openxlsx}` nos entrega funciones para generar archivos Excel desde R que contengan todo tipo de formato, estilo de tablas, y manipulación celda por celda del archivo resultante, con lo que podemos generar planillas de Excel atractivas desde R. La gracia es que podremos usar estas herramientas de forma reproducible (poder re-hacer gratis la planilla con datos actualizados o corregidos), y también podremos combinar la programación de R para crear estilos condicionales, crear cientos de archivos Excel, o planillas de cientos de hojas, y mucho más." />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/excel_openxlsx/" />
+<meta property="og:locale" content="es-ES">
+
+
+
+
+    
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/excel_openxlsx/featured.jpg" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/excel_openxlsx/featured.jpg" >
+    
+    
+  
+  <meta itemprop="name" content="Crea planillas de Excel con formato personalizado desde R con {openxlsx}">
+  <meta itemprop="description" content="Al terminar el procesamiento o limpieza de un conjunto de datos, usualmente necesitamos entregar la base en un formato más amigable para otros colegas o usuarios/as, lo que significa: Excel. Exportar datos de R a Excel es fácil: con la función writexl::write_xlsx() podemos guardar cualquier dataframe en Excel. Pero esta función hace sólo eso, y el archivo resultante es básico y hasta feo.
+Sin embargo, existe el paquete {openxlsx}, que además de leer y escribir archivos Excel, nos entrega funciones para generar archivos Excel desde R que contengan todo tipo de formato, estilo de tablas, y manipulación celda por celda del archivo resultante, con lo que podemos generar planillas de Excel atractivas desde R.">
+  <meta itemprop="datePublished" content="2025-08-08T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-08-08T00:00:00+00:00">
+  <meta itemprop="wordCount" content="2233">
+  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/excel_openxlsx/featured.jpg">
+  <meta itemprop="keywords" content="Limpieza de datos,Procesamiento de datos,Automatización,Tablas,Excel">
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="false" type="image/x-icon">
+  <link rel="icon" href="false" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  
+  
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.3c3af999b79169f0222ad6048d940d31333adc32d2658e8ae07284fef52a6db9.js" type="text/javascript"></script>
+  
+  
+  <link rel="stylesheet" href="/css/syntax.css">
+  
+  
+  
+  
+  
+  
+  <meta name="google-site-verification" content="yaiYGBAfSJpjE7mfPuFVP1yoNIqLadRJQIzCOula8TI" />
+  
+</head>
+<body>
+      <div class="grid-container single-sidebar">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
+      <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/blog/" title="Bastián Olea: Blog de R">Blog</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/aprende_r/" title="Aprende R">Aprende R</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/shiny_apps/" title="Apps">Apps</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/tutoriales/" title="Tutoriales">Tutoriales</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/tags/" title="Temas">Temas</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/clases/" title="Cursos">Cursos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/about/" title="Bastián Olea: Sobre mi">Yo</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      
+      
+      
+      <div class="dib v-mid", style = "padding: 4px; margin-top: 4px;">
+        <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+      </div>
+      
+    </div>
+  </nav>
+</header>
+
+
+                       
+ 
+
+<main class="page-main pa4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header" style="margin-top:-30px;">
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Crea planillas de Excel con formato personalizado desde R con {openxlsx}</h1>
+        
+        
+        
+        <div style = "display: inline-block;">  
+          <p class="f7 db mv0 ttu" style = "display: inline-block;">
+            8/8/2025</p>
+          
+          
+          
+        </div>
+          
+        
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/limpieza-de-datos"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            limpieza de datos</a>  <a href="https://bastianolea.rbind.io/tags/procesamiento-de-datos"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            procesamiento de datos</a>  <a href="https://bastianolea.rbind.io/tags/automatizaci%C3%B3n"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            automatización</a>  <a href="https://bastianolea.rbind.io/tags/tablas"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            tablas</a>  <a href="https://bastianolea.rbind.io/tags/excel"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            Excel</a> </dd></em>
+        </dl>
+         
+      
+        
+      
+      <div class="ph0 pt3">
+        
+
+<div style="margin-top:-24px;">
+
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+      
+    
+  <a class="btn-links mr2 ba dib" 
+  style = "background-color: #9069C0; border-radius: 4px; 
+  color: #EAD2FA; font-size: 10pt;
+  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
+  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
+  href="https://ycphs.github.io/openxlsx/" target="_blank" rel="noopener"><i class="fas fa-registered fa-lg fa-fw mr2"></i>openxlsx</a>
+
+</div>
+
+      </div>
+      
+      
+    </header>
+      
+      
+    <section class="post-body pt5 pb4">
+        <p>Al terminar el procesamiento o limpieza de un conjunto de datos, usualmente necesitamos <em>entregar</em> la base en un formato más amigable para otros colegas o usuarios/as, lo que significa: Excel. Exportar datos de R a Excel es fácil: con la función <code>writexl::write_xlsx()</code> podemos guardar cualquier dataframe en Excel. Pero esta función hace sólo eso, y el archivo resultante es básico y hasta feo.</p>
+<p>Sin embargo, existe el 
+<a href="https://ycphs.github.io/openxlsx/" target="_blank" rel="noopener">paquete <code>{openxlsx}</code></a>, que además de leer y escribir archivos Excel, nos entrega funciones para generar archivos Excel desde R que contengan <strong>todo tipo de formato, estilo de tablas, y manipulación celda por celda</strong> del archivo resultante, con lo que podemos <strong>generar planillas de Excel atractivas desde R.</strong></p>
+<p>La gracia es que podremos usar estas herramientas de forma reproducible (poder re-hacer gratis la planilla con datos actualizados o corregidos), y también podremos combinar la programación de R para crear <strong>estilos condicionales</strong>, crear <strong>cientos de archivos Excel</strong>, o <strong>planillas de cientos de hojas</strong>, y mucho más.</p>
+<hr>
+<p>Carguemos un conjunto de datos de indicadores de calidad de vida urbana de Chile, del 
+<a href="https://github.com/bastianolea/siedu_indicadores_urbanos" target="_blank" rel="noopener">Sistema de Indicadores y Estándares de Desarrollo Urbano</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">arrow</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">datos</span> <span class="o">&lt;-</span> <span class="nf">read_parquet</span><span class="p">(</span><span class="s">&#34;https://github.com/bastianolea/siedu_indicadores_urbanos/raw/main/datos/siedu_indicadores_desarrollo_urbano.parquet&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">datos</span>
+</span></span></code></pre></div><pre><code># A tibble: 6,701 × 12
+   codigo_comuna codigo_region codigo_provincia nombre_region nombre_provincia
+           &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;            &lt;chr&gt;         &lt;chr&gt;           
+ 1          1107 01            011              Tarapacá      Iquique         
+ 2          1107 01            011              Tarapacá      Iquique         
+ 3          1107 01            011              Tarapacá      Iquique         
+ 4          1107 01            011              Tarapacá      Iquique         
+ 5          1107 01            011              Tarapacá      Iquique         
+ 6          1107 01            011              Tarapacá      Iquique         
+ 7          1107 01            011              Tarapacá      Iquique         
+ 8          1107 01            011              Tarapacá      Iquique         
+ 9          1107 01            011              Tarapacá      Iquique         
+10          1107 01            011              Tarapacá      Iquique         
+# ℹ 6,691 more rows
+# ℹ 7 more variables: nombre_comuna &lt;chr&gt;, id &lt;chr&gt;, año &lt;dbl&gt;, variable &lt;chr&gt;,
+#   valor &lt;dbl&gt;, medida &lt;chr&gt;, estandar &lt;chr&gt;
+</code></pre>
+<p>Filtremos los datos para dejar tres indicadores, y sólo los valores más recientes para cada unidad territorial.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">datos</span> <span class="o">&lt;-</span> <span class="n">datos</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># filtrar variables</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">variable</span> <span class="o">%in%</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;Distancia a plazas públicas&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                         <span class="s">&#34;Número de víctimas mortales en siniestros de tránsito por cada 100.000 habitantes&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                         <span class="s">&#34;Porcentaje de cobertura de la red de ciclovía sobre la red vial&#34;</span><span class="p">))</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1"># dejar sólo valores más recientes por comuna</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">group_by</span><span class="p">(</span><span class="n">nombre_region</span><span class="p">,</span> <span class="n">nombre_comuna</span><span class="p">,</span> <span class="n">variable</span><span class="p">)</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">año</span> <span class="o">==</span> <span class="nf">max</span><span class="p">(</span><span class="n">año</span><span class="p">))</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ungroup</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">datos</span> <span class="o">|&gt;</span> <span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="nf">starts_with</span><span class="p">(</span><span class="s">&#34;codigo&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><pre><code># A tibble: 340 × 9
+   nombre_region      nombre_provincia nombre_comuna id      año variable  valor
+   &lt;chr&gt;              &lt;chr&gt;            &lt;chr&gt;         &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+ 1 Tarapacá           Iquique          Alto Hospicio BPU_…  2018 Distanc… 275.  
+ 2 Tarapacá           Iquique          Alto Hospicio DE_28  2021 Número …   9.70
+ 3 Tarapacá           Iquique          Alto Hospicio EA_93  2021 Porcent…   1.46
+ 4 La Araucanía       Malleco          Angol         BPU_…  2018 Distanc… 342.  
+ 5 La Araucanía       Malleco          Angol         DE_28  2021 Número …  12.4 
+ 6 La Araucanía       Malleco          Angol         EA_93  2021 Porcent…   4.59
+ 7 Antofagasta        Antofagasta      Antofagasta   BPU_…  2018 Distanc… 426.  
+ 8 Antofagasta        Antofagasta      Antofagasta   DE_28  2021 Número …   7.84
+ 9 Antofagasta        Antofagasta      Antofagasta   EA_93  2021 Porcent…   2.74
+10 Arica y Parinacota Arica            Arica         BPU_…  2018 Distanc… 324.  
+# ℹ 330 more rows
+# ℹ 2 more variables: medida &lt;chr&gt;, estandar &lt;chr&gt;
+</code></pre>
+<p>Ahora pivotemos los datos para crear una típica tabla de Excel donde los indicadores estén en columnas hacia el lado, mientras que hacia abajo están las unidades u observaciones; en este caso, comunas.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">datos</span> <span class="o">&lt;-</span> <span class="n">datos</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="n">nombre_region</span><span class="p">,</span> <span class="n">nombre_comuna</span><span class="p">,</span> <span class="n">codigo_comuna</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">valor</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">pivot_wider</span><span class="p">(</span><span class="n">names_from</span> <span class="o">=</span> <span class="n">variable</span><span class="p">,</span> <span class="n">values_from</span> <span class="o">=</span> <span class="n">valor</span><span class="p">)</span> <span class="o">|&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">arrange</span><span class="p">(</span><span class="n">codigo_comuna</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">datos</span> <span class="o">|&gt;</span> <span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="nf">starts_with</span><span class="p">(</span><span class="s">&#34;codigo&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><pre><code># A tibble: 117 × 5
+   nombre_region nombre_comuna   Distancia a plazas púb…¹ Número de víctimas m…²
+   &lt;chr&gt;         &lt;chr&gt;                              &lt;dbl&gt;                  &lt;dbl&gt;
+ 1 Tarapacá      Iquique                             282.                   3.52
+ 2 Tarapacá      Alto Hospicio                       275.                   9.70
+ 3 Antofagasta   Antofagasta                         426.                   7.84
+ 4 Antofagasta   Calama                              274.                   8.28
+ 5 Atacama       Copiapó                             245.                   8.66
+ 6 Atacama       Tierra Amarilla                     289.                  41.7 
+ 7 Atacama       Vallenar                            241.                  12.2 
+ 8 Coquimbo      La Serena                           303.                   6.29
+ 9 Coquimbo      Coquimbo                            291.                  10.3 
+10 Coquimbo      Ovalle                              275.                  18.0 
+# ℹ 107 more rows
+# ℹ abbreviated names: ¹​`Distancia a plazas públicas`,
+#   ²​`Número de víctimas mortales en siniestros de tránsito por cada 100.000 habitantes`
+# ℹ 1 more variable:
+#   `Porcentaje de cobertura de la red de ciclovía sobre la red vial` &lt;dbl&gt;
+</code></pre>
+<p>Si guardamos este archivo con <code>{writexl}</code>, obtenemos una planilla básica de Excel:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">writexl</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">write_xlsx</span><span class="p">(</span><span class="n">datos</span><span class="p">,</span> <span class="s">&#34;indicadores.xlsx&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><a href="openxlsx_0.png" target="_blank">
+
+  <img src="openxlsx_0.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Este resultado puede ser suficiente para algo rápido, pero definitivamente no es algo presentable ni atractivo.</p>
+
+
+
+
+<h2 id="crear-planillas-excel-personalizadas-con-openxlsx">Crear planillas Excel personalizadas con <code>{openxlsx}</code>
+  <a href="#crear-planillas-excel-personalizadas-con-openxlsx"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>El primer paso para crear nuestro Excel es crear la planilla con la función <code>createWorkbook()</code>. Esta función se asigna a un objeto que representará a nuestra planilla.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">openxlsx</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tabla</span> <span class="o">&lt;-</span> <span class="nf">createWorkbook</span><span class="p">()</span>
+</span></span></code></pre></div><p>Iremos aplicando distintas funciones de <code>{openxlsx}</code> sobre este objeto <code>tabla</code> para ir modificando la planilla Excel resultante.</p>
+<p>Con nuestra planilla creada, tenemos que crear una <em>hoja</em> de Excel para que podamos ponerle datos a la planilla.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">addWorksheet</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="s">&#34;Hoja&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Podemos usar esta función una o varias veces para crear una o varias hojas en nuestra planilla.</p>
+
+
+
+
+<h3 id="guardar-la-planilla-excel">Guardar la planilla Excel
+  <a href="#guardar-la-planilla-excel"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>En cualquier momento del proceso puedes guardar la planilla como archivo Excel para previsualizar como está quedando tu tabla, aunque en este paso del tutorial nuestra planilla está vacía.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># guardar</span>
+</span></span><span class="line"><span class="cl"><span class="nf">saveWorkbook</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">             <span class="s">&#34;indicadores.xlsx&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">             <span class="n">overwrite</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span></code></pre></div>
+
+
+
+<h3 id="escribir-datos-en-la-hoja-de-excel">Escribir datos en la hoja de Excel
+  <a href="#escribir-datos-en-la-hoja-de-excel"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Ahora tenemos que rellenar la planilla con datos con la función <code>writeDataTable()</code>, a la que hay que especificarle primero la planilla que vamos a editar (<code>tabla</code>), y la hoja (<code>&quot;Hoja&quot;</code>) en que queremos escribir los datos. En el argumento <code>x</code> entregamos el dataframe que queremos escribir en la hoja de la planilla.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># tabla con formato personalizado</span>
+</span></span><span class="line"><span class="cl"><span class="nf">writeDataTable</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="s">&#34;Hoja&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">               <span class="n">x</span> <span class="o">=</span> <span class="n">datos</span><span class="p">,</span>  <span class="c1"># la tabla que queremos escribir en el Excel</span>
+</span></span><span class="line"><span class="cl">               <span class="n">tableStyle</span> <span class="o">=</span> <span class="s">&#34;TableStyleLight9&#34;</span><span class="p">,</span> <span class="c1"># estilo de la tabla</span>
+</span></span><span class="line"><span class="cl">               <span class="n">startRow</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">startCol</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">               <span class="n">colNames</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">               <span class="n">bandedCols</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">               <span class="n">bandedRows</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">               <span class="n">withFilter</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">               <span class="c1"># keepNA = TRUE, </span>
+</span></span><span class="line"><span class="cl">               <span class="c1"># na.string = &#34;sin datos&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>Esta función tiene varios argumentos que permiten personalizar la planilla. El más relevante es <code>tableStyle</code>, con el que le damos uno de los temas de Excel a la tabla. Podemos encontrar los temas de Excel en el botón <em>Dar formato como tabla</em> del panel <em>Inicio</em> de Excel.</p>
+<a href="openxlsx_1.png" target="_blank">
+
+  <img src="openxlsx_1.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>En este panel, si pones el cursor sobre los íconos puedes ver que cada estilo tiene un número (9 es una tabla azul con fila de encabezado, 13 es la misma pero morada, 5 es una tabla celeste con encabezado sin relleno, etc.), y una intensidad (<em>claro, medio</em> y <em>oscuro</em>)</p>
+<a href="openxlsx_2.png" target="_blank">
+
+  <img src="openxlsx_2.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Así va quedando nuestra planilla!</p>
+
+
+
+
+<h3 id="modificar-ancho-de-columnas">Modificar ancho de columnas
+  <a href="#modificar-ancho-de-columnas"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Si tenemos columnas que requieren más ancho, podemos definirlo con <code>setColWidths()</code>. En esta y otras funciones de <code>{openxlsx}</code>, en el argumento <code>cols</code> le decimos qué columnas queremos afectar, y luego le decimos el valor que queremos darle a cada columna correspondiente.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># ancho de columnas</span>
+</span></span><span class="line"><span class="cl"><span class="nf">setColWidths</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="s">&#34;Hoja&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">             <span class="n">cols</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">6</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">             <span class="n">widths</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">22</span><span class="p">,</span> <span class="m">22</span><span class="p">,</span> <span class="m">13</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="m">30</span><span class="p">,</span> <span class="m">30</span><span class="p">,</span> <span class="m">30</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>En este ejemplo, afectamos las 6 columnas: a las 1 y 2 le damos <code>22</code> de ancho, luego a la 3 le damos <code>13</code>, y a las tres finales (columnas con los indicadores) les damos un mayor ancho de <code>30</code>.</p>
+<a href="openxlsx_3.png" target="_blank">
+
+  <img src="openxlsx_3.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Si el texto aún no cabe en las celdas, podemos <strong>definir un estilo</strong> a las celdas para que el texto se corte y aumente el alto de las celdas con mucho texto. Para definir un estilo usamos <code>addStyle()</code> y le damos un estilo que se hace con <code>createStyle()</code>. Luego, se define las filas (<code>rows</code>) y columnas (<code>cols</code>) que recibirán este estilo.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># flujo de texto </span>
+</span></span><span class="line"><span class="cl"><span class="nf">addStyle</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="s">&#34;Hoja&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="n">style</span> <span class="o">=</span> <span class="nf">createStyle</span><span class="p">(</span><span class="n">wrapText</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">rows</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span><span class="m">+1</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">cols</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">6</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">stack</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">gridExpand</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>  
+</span></span></code></pre></div><p>En este caso le puse que las filas a las que se aplica el estilo sean todas las filas del dataframe (<code>nrow(datos)</code>) más <code>1</code>, porque recordemos que en Excel la fila de los nombres de columna cuenta como una fila. Por eso el estilo se aplica desde la fila <code>1</code> a la <code>nrow(datos)+1</code>.</p>
+<a href="openxlsx_4.png" target="_blank">
+
+  <img src="openxlsx_4.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+
+
+
+
+<h3 id="definir-estilo-de-texto">Definir estilo de texto
+  <a href="#definir-estilo-de-texto"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Ahora quiero que las primeras dos columnas vayan en negrita. Hacemos lo mismo que en el paso anterior, pero ahora creamos un estilo distinto con <code>createStyle()</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># celdas en negrita</span>
+</span></span><span class="line"><span class="cl"><span class="nf">addStyle</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="s">&#34;Hoja&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="n">style</span> <span class="o">=</span> <span class="nf">createStyle</span><span class="p">(</span><span class="n">textDecoration</span> <span class="o">=</span> <span class="s">&#34;BOLD&#34;</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">rows</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span><span class="m">+1</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">cols</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">stack</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">gridExpand</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+</span></span></code></pre></div><p>Es importante definir los argumentos <code>stack = TRUE, gridExpand = T</code> para que los estilos se sumen en vez de reemplazarse.</p>
+<a href="openxlsx_5.png" target="_blank">
+
+  <img src="openxlsx_5.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Notamos que, cuando el texto de las celdas <em>fluye</em> para usar múltiples líneas, los valores quedan alineados verticalmente hacia abajo, y se ven feos, así que los alinearemos verticalmente en el centro:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># centrado vertical</span>
+</span></span><span class="line"><span class="cl"><span class="nf">addStyle</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="s">&#34;Hoja&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="n">style</span> <span class="o">=</span> <span class="nf">createStyle</span><span class="p">(</span><span class="n">valign</span> <span class="o">=</span> <span class="s">&#34;center&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">         <span class="n">rows</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span><span class="m">+1</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">cols</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">datos</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">stack</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">gridExpand</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+</span></span></code></pre></div><p>Nótese que aplicamos este estilo a todas las filas (<code>1:nrow(datos)+1</code>) y a todas las columnas <code>1:length(datos)</code>.</p>
+<a href="openxlsx_6.png" target="_blank">
+
+  <img src="openxlsx_6.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+
+
+
+
+<h3 id="formatear-variables-numéricas">Formatear variables numéricas
+  <a href="#formatear-variables-num%c3%a9ricas"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Los números con decimales pueden ser ajustados definiendo el estilo <code>createStyle(numFmt = &quot;0.00&quot;)</code> o similar, donde el texto representa la cantidad de decimales que queremos mostrar:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># decimales</span>
+</span></span><span class="line"><span class="cl"><span class="nf">addStyle</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="s">&#34;Hoja&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="n">style</span> <span class="o">=</span> <span class="nf">createStyle</span><span class="p">(</span><span class="n">numFmt</span> <span class="o">=</span> <span class="s">&#34;0.00&#34;</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">rows</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span><span class="m">+1</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">6</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">         <span class="n">stack</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">gridExpand</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">addStyle</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="s">&#34;Hoja&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="n">style</span> <span class="o">=</span> <span class="nf">createStyle</span><span class="p">(</span><span class="n">numFmt</span> <span class="o">=</span> <span class="s">&#34;0.0&#34;</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">rows</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span><span class="m">+1</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">         <span class="n">stack</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">gridExpand</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span></code></pre></div><a href="openxlsx_7.png" target="_blank">
+
+  <img src="openxlsx_7.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+
+
+
+
+<h3 id="estilo-condicional-de-celdas-de-acuerdo-a-los-valores-de-los-datos">Estilo condicional de celdas de acuerdo a los valores de los datos
+  <a href="#estilo-condicional-de-celdas-de-acuerdo-a-los-valores-de-los-datos"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Como hemos visto hasta ahora, todos los estilos se aplican definiendo la posición de las filas y columnas que queremos modificar. Por ejemplo, si queremos modificar la cuarta fila de la segunda columna, sería <code>rows = 4, cols = 2</code>.</p>
+<p>Podemos aprovechar esta lógica para aplicar estilos que dependan del valor de los datos.</p>
+<p>Por ejemplo, si tenemos un vector de datos:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">datos[[4]]</span>
+</span></span></code></pre></div><pre><code>  [1]  282.38  274.86  425.99  273.83  245.02  288.62  241.10  303.18  291.29
+ [10]  275.40  698.60  331.96  337.03 1014.74  487.85  422.81  195.91  258.19
+ [19]  335.53  349.64  692.08  463.75  383.77  579.18  418.08  326.72  533.01
+ [28]  629.13 1066.37  394.09  193.46  341.26  309.32  271.24  237.21  626.54
+ [37]  196.91  261.74  243.70  277.05  250.93  334.88  260.42  298.01  397.34
+ [46]  630.78  278.38  250.96  269.13  361.94  842.69  174.37  268.58  241.55
+ [55]  249.80  242.14  405.63  342.34  269.90  211.65  459.62  203.42  223.62
+ [64]  302.26  355.57  241.34  207.37  198.72  260.57  271.98  264.33  325.99
+ [73]  379.62  206.06  218.95  196.25  442.02  330.57  475.15  213.77  197.15
+ [82]  238.16  170.11  349.66  260.62  219.73  345.05  185.01  206.69  344.91
+ [91]  260.17  216.00  252.60  429.94  224.27  444.36  187.97  692.96  708.93
+[100]  263.33  302.88  519.54  220.60  303.81  489.65  327.53  335.11  196.11
+[109]  385.91  468.69  255.61  313.70  385.68  323.99  232.25  313.80  288.51
+</code></pre>
+<p>Podemos evaluar una comparación para ver qué valores cumplen o no; en este caso, qué valores son superiores a <code>400</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">datos[[4]]</span> <span class="o">&gt;</span> <span class="m">400</span>
+</span></span></code></pre></div><pre><code>  [1] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+ [13] FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE
+ [25]  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+ [37] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+ [49] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
+ [61]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [73] FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+ [85] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
+ [97] FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE
+[109] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+</code></pre>
+<p>Ahora que sabemos qué valores cumplen, con la función <code>which()</code> podemos obtener su posición:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">which</span><span class="p">(</span><span class="n">datos[[4]]</span> <span class="o">&gt;</span> <span class="m">400</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code> [1]   3  11  14  15  16  21  22  24  25  27  28  29  36  46  51  57  61  77  79
+[20]  94  96  98  99 102 105 110
+</code></pre>
+<p>Es decir, obtenemos un vector que dice en qué filas se cumple la condición. Teniendo esto, podemos crear formatos condicionales según los datos: creamos un estilo con <code>createStyle()</code> que defina un relleno, borde y color de borde, <strong>que se aplique solamente a las celdas donde se cumple la condición</strong>, pero sumándole 1 para saltarnos la primera fila (nombres de columnas en Excel).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># color condicional</span>
+</span></span><span class="line"><span class="cl"><span class="nf">addStyle</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="s">&#34;Hoja&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="c1"># crear estilo de color de relleno</span>
+</span></span><span class="line"><span class="cl">         <span class="n">style</span> <span class="o">=</span> <span class="nf">createStyle</span><span class="p">(</span><span class="n">fgFill</span> <span class="o">=</span> <span class="s">&#34;#E6B8B7&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                             <span class="n">border</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;top&#34;</span><span class="p">,</span> <span class="s">&#34;bottom&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                             <span class="n">borderColour</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;#DA9694&#34;</span><span class="p">,</span> <span class="s">&#34;#DA9694&#34;</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">         <span class="c1"># filas a las que se va a aplicar el estilo</span>
+</span></span><span class="line"><span class="cl">         <span class="n">rows</span> <span class="o">=</span> <span class="nf">which</span><span class="p">(</span><span class="n">datos[[4]]</span> <span class="o">&gt;</span> <span class="m">400</span><span class="p">)</span><span class="m">+1</span><span class="p">,</span> <span class="c1"># celdas donde x es mayor a 400, + 1 para saltarse la primera fila</span>
+</span></span><span class="line"><span class="cl">         <span class="n">cols</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">stack</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">gridExpand</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># otro estilo para otra columna</span>
+</span></span><span class="line"><span class="cl"><span class="nf">addStyle</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="s">&#34;Hoja&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="n">style</span> <span class="o">=</span> <span class="nf">createStyle</span><span class="p">(</span><span class="n">fgFill</span> <span class="o">=</span> <span class="s">&#34;#E6B8B7&#34;</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">                             <span class="n">border</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;top&#34;</span><span class="p">,</span> <span class="s">&#34;bottom&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                             <span class="n">borderColour</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;#DA9694&#34;</span><span class="p">,</span> <span class="s">&#34;#DA9694&#34;</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">         <span class="n">rows</span> <span class="o">=</span> <span class="nf">which</span><span class="p">(</span><span class="n">datos[[5]]</span> <span class="o">&gt;</span> <span class="m">10</span><span class="p">)</span><span class="m">+1</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">cols</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">stack</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">gridExpand</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># un tercer estilo con colores distintos</span>
+</span></span><span class="line"><span class="cl"><span class="nf">addStyle</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="s">&#34;Hoja&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="n">style</span> <span class="o">=</span> <span class="nf">createStyle</span><span class="p">(</span><span class="n">fgFill</span> <span class="o">=</span> <span class="s">&#34;#D7E4BC&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                             <span class="n">border</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;top&#34;</span><span class="p">,</span> <span class="s">&#34;bottom&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                             <span class="n">borderColour</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;#C4D79B&#34;</span><span class="p">,</span> <span class="s">&#34;#C4D79B&#34;</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">         <span class="n">rows</span> <span class="o">=</span> <span class="nf">which</span><span class="p">(</span><span class="n">datos[[6]]</span> <span class="o">&gt;</span> <span class="m">5</span><span class="p">)</span><span class="m">+1</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">cols</span> <span class="o">=</span> <span class="m">6</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">stack</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">gridExpand</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+</span></span></code></pre></div><p>En este ejemplo aplicamos tres estilos condicionales a tres columnas distintas, cada uno con un criterio personalizado para destacar celdas con valores que cumplen la condición apropiada.</p>
+<a href="openxlsx_8.png" target="_blank">
+
+  <img src="openxlsx_8.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Cuando estemos satisfechxs con nuestra planilla, la guardamos como Excel.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># guardar</span>
+</span></span><span class="line"><span class="cl"><span class="nf">saveWorkbook</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">             <span class="s">&#34;indicadores.xlsx&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">             <span class="n">overwrite</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span></code></pre></div>
+
+
+
+<h3 id="otros">Otros
+  <a href="#otros"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Aquí voy a ir dejando otras funcionalidades útiles de <code>{openxlsx}</code>:</p>
+<p>Definir el tamaño que tendrá la ventana al abrir la planilla</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># tamaño de la ventana</span>
+</span></span><span class="line"><span class="cl"><span class="nf">setWindowSize</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="n">yWindow</span> <span class="o">=</span> <span class="m">12</span><span class="p">,</span> <span class="n">xWindow</span> <span class="o">=</span> <span class="m">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="n">windowWidth</span> <span class="o">=</span> <span class="s">&#34;20000&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="n">windowHeight</span> <span class="o">=</span> <span class="s">&#34;15000&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Cambiar la altura de las celdas:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># altura para celdas con texto</span>
+</span></span><span class="line"><span class="cl"><span class="nf">setRowHeights</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="s">&#34;Hoja&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="n">rows</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">6</span><span class="p">,</span> <span class="m">7</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">13</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">              <span class="n">heights</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">64</span><span class="p">,</span> <span class="m">64</span><span class="p">,</span> <span class="m">64</span><span class="p">))</span>
+</span></span></code></pre></div><hr>
+
+
+
+
+<h2 id="otros-tutoriales">Otros tutoriales:
+  <a href="#otros-tutoriales"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<ul>
+<li>
+<a href="https://www.r-bloggers.com/2024/11/creating-professional-excel-reports-with-r-a-comprehensive-guide-to-openxlsx-package/" target="_blank" rel="noopener">Creating Professional Excel Reports with R: A Comprehensive Guide to openxlsx Package</a></li>
+<li>
+<a href="https://guslipkin.medium.com/making-pretty-excel-files-in-r-46a15c7a2ee8" target="_blank" rel="noopener">Making pretty Excel files in R</a></li>
+</ul>
+<hr>
+<p><div style = "height: 18px;">
+</div>
+<div>
+  <div style="display: flex;
+  justify-content: center;
+  align-items: center;">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="bastimapache" 
+    data-color="#D6B9E8" data-emoji="<i class='fa fa-mug-saucer'></i>"  data-font="Cookie" 
+    data-text="Regálame un cafecito" 
+    data-outline-color="#000000" data-font-color="#543A73" data-coffee-color="#ffffff" ></script>
+  </div>
+</div>
+
+
+
+
+
+
+</p>
+ 
+    </section>
+      
+    <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+    <a class="prev dtc pr2 tl v-top fw6"
+    href="https://bastianolea.rbind.io/blog/left_join/">&larr; Unir o cruzar datos con left_join()</a>
+  
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="https://bastianolea.rbind.io/blog/visdat/">Echa un vistazo preliminar a tus datos con {visdat} &rarr;</a>
+  
+</div>
+
+    </footer>
+    
+  </article>
+    
+    <div class="post-comments pa0 pa4-l mt4">
+  
+</div>
+
+    
+</section>
+  
+
+<section class="post-body pt5 pb4">
+  
+  <details closed class="f6 fw7 input-reset">
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Fecha de publicación:</dt>
+    <dd class="fw5 ml0">August 8, 2025</dd>
+  </dl>
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Extensión:</dt>
+    <dd class="fw5 ml0">11 minute read, 2233 words</dd>
+  </dl>
+  
+  
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Tags:</dt>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/limpieza-de-datos">limpieza de datos</a>  <a href="https://bastianolea.rbind.io/tags/procesamiento-de-datos">procesamiento de datos</a>  <a href="https://bastianolea.rbind.io/tags/automatizaci%C3%B3n">automatización</a>  <a href="https://bastianolea.rbind.io/tags/tablas">tablas</a>  <a href="https://bastianolea.rbind.io/tags/excel">Excel</a> </dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Ver también:</dt>
+    
+    <dd class="fw5 ml0"><a href="/blog/territorial/">`{territorial}`: un paquete de R para trabajar con datos de comunas y regiones de Chile</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/stringr_limpieza_ordinal/">Recodificando variables ordinales cuando vienen sucias y/o desde respuestas abiertas</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/rutera/">`{rutera}`: un paquete de R para limpiar y procesar RUTs chilenos</a></dd>
+    
+  </dl>
+</details>
+
+</section>
+</main>
+
+
+<aside class="page-sidebar" role="complementary">
+   
+   
+
+  <div class="blog-info ph4 pt4 pb4 pb0-l">
+    
+
+  <h1 class="f3">Blog</h1>
+  <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
+<a href="/tags/">temas</a>.</p>
+  
+
+   
+<h3 style="margin-bottom: 12px;">Temas:</h3>
+
+<div style="font-size:90%;">
+
+<div style="font-size: 90%;">
+  
+   
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/apps/">Aplicaciones</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/texto/">Procesamiento de texto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/ciencias-sociales/">Ciencias sociales</a></span>
+  </span>
+
+<a href="/tags/" style="margin-left: 3px;">y más!</a>
+</div>
+</div>
+  
+  
+   
+   
+
+</div>
+
+  
+  <div id="PageTableOfContents" style="margin-top: 24px; position: sticky; top: 108px;">
+        <div class="blog-info ph4 pb4 pb0-l">
+        <h3 style="margin-bottom: 12px;">Índice:</h3>
+          <div class="pl2 pr0 mh0" style = "font-size: 90%; margin-top: -8px; margin-left: -22px; margin-bottom: 32px;">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#crear-planillas-excel-personalizadas-con-openxlsx">Crear planillas Excel personalizadas con <code>{openxlsx}</code></a>
+      <ul>
+        <li><a href="#guardar-la-planilla-excel">Guardar la planilla Excel</a></li>
+        <li><a href="#escribir-datos-en-la-hoja-de-excel">Escribir datos en la hoja de Excel</a></li>
+        <li><a href="#modificar-ancho-de-columnas">Modificar ancho de columnas</a></li>
+        <li><a href="#definir-estilo-de-texto">Definir estilo de texto</a></li>
+        <li><a href="#formatear-variables-numéricas">Formatear variables numéricas</a></li>
+        <li><a href="#estilo-condicional-de-celdas-de-acuerdo-a-los-valores-de-los-datos">Estilo condicional de celdas de acuerdo a los valores de los datos</a></li>
+        <li><a href="#otros">Otros</a></li>
+      </ul>
+    </li>
+    <li><a href="#otros-tutoriales">Otros tutoriales:</a></li>
+  </ul>
+</nav>
+          </div>
+        </div>
+    </div>
+  
+  
+
+</aside>
+
+        
+          <script id="partials/analytics.html" 
+  data-goatcounter="https://bastimapache.goatcounter.com/count"
+  async src="//gc.zgo.at/count.js"></script>
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2026 Bastián Olea Herrera, Chile
+      <span class="middot-divider"></span>
+      Hecho con <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source" style="color:#9069C0;">Hugo Apéro</a> 
+      y <a href="https://pkgs.rstudio.com/blogdown/" style="color:#9069C0;">{blogdown}</a></span>.
+      <br />
+      
+Basado en <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source" style="color:#9069C0;">Blogophonic</a></span>, de <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL" style="color:#9069C0;">Formspree</a>.
+
+Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlify</a></span>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+      <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
+      
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
+      
+      <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
+      
+      <a class="dib pv1 ph2 link" href="/tags/" title="Temas">Temas</a>
+      
+      <a class="dib pv1 ph2 link" href="/clases/" title="Clases">Clases</a>
+      
+      <a class="dib pv1 ph2 link" href="/code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
+      
+      <a class="dib pv1 ph2 link" href="/license/" title="Bastián Olea: Licencia">Licencia</a>
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>
