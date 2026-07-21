@@ -41,6 +41,7 @@ blogdown::new_post(
 #     url: https://gist.github.com/bastianolea/8ea85fa8169b302d2144e05434668c89
 
 ## borradores ----
+"content/blog/2026-06-26/" #multicursor
 "content/blog/desarrollo_paquetes/index.md"
 "content/blog/mapas_bivariados/index.qmd"
 "content/blog/arrow/index.qmd" # !
