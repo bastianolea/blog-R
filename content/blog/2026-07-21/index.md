@@ -1,0 +1,172 @@
+---
+title: Números pequeños en R
+author: Bastián Olea Herrera
+format: hugo-md
+date: '2026-07-21'
+tags:
+  - curiosidades
+  - básico
+excerpt: >-
+  En la mayoría de los lenguajes de programación, la comparación exacta de
+  números decimales puede dar resultados inesperados, por cómo las computadoras
+  representan los números de punto flotante internamente. Aquí vemos algunos
+  casos de matemáticas de punto flotante con R.
+---
+
+
+Tenía un conjunto de datos con una variable cuyos valores eran cercanos a cero, y quería filtrar las observaciones donde los valores fueran iguales o muy cercanos a cero. Así me encontré con una curiosidad de R (y en realidad, de casi todos los lenguajes de programación) sobre los números de *punto flotante*.
+
+------------------------------------------------------------------------
+
+Si quiero tratar números bajo cierto umbral de decimales como si fueran cero, lo primero que se me ocurre es comparar directamente. Por ejemplo, usemos un número muy pequeño:
+
+``` r
+0.000001 == 0
+```
+
+    [1] FALSE
+
+Aunque el número sea muy cercano a cero, no es igual a cero, lógico.
+
+Una opción para forzar la igualdad entre números pequeños y cero es **redondear** la cifra con `round()` antes de comparar:
+
+``` r
+round(0.000001, 3) == 0
+```
+
+    [1] TRUE
+
+Pero la solución más adecuada sería comparar con una **tolerancia** definida, en vez de buscar igualdad exacta. La función `near()` de `{dplyr}` permite definir qué tan "cerca" deben estar dos números para considerarlos iguales:
+
+``` r
+library(dplyr)
+
+near(0, 0.000001, tol = 0.0001)
+```
+
+    [1] TRUE
+
+Entré a la función `near()` para ver cómo funcionaba, y resulta ser muy elegante: para calcular que dos números son iguales, revisa que la resta entre los dos números, en valores absolutos, sea menor al umbral de tolerancia. Entonces:
+
+``` r
+abs(0 - 0.000001) < 0.0001
+```
+
+    [1] TRUE
+
+Elegante!
+
+Luego, cuando revisé la ayuda de `near()` con `?near`, vi que la tolerancia por defecto de la función es `.Machine$double.eps`, un valor misterioso y desconocido, y ahí me entró la curiosidad.
+
+Pasa que comparar números pequeños funciona sin problemas...
+
+``` r
+0.000001 == 0.000001
+```
+
+    [1] TRUE
+
+...pero hay un límite en la precisión con que las computadoras representan los números decimales. En cierto punto, dos números que deberían ser distintos pueden volverse indistinguibles:
+
+``` r
+1.0000000000000000 == 1.0000000000000001
+```
+
+    [1] TRUE
+
+¡R dice que son iguales! 😨 ¿Será un error?
+
+Esto ocurre porque los números de *punto flotante* tienen **precisión finita**. Por defecto, R muestra los números con 7 dígitos significativos. Podemos ver esto con el número `pi`:
+
+``` r
+pi
+```
+
+    [1] 3.141593
+
+Pero si aumentamos los dígitos que muestra R, vemos más decimales:
+
+``` r
+options(digits = 12)
+pi
+```
+
+    [1] 3.14159265359
+
+``` r
+options(digits = 20)
+pi
+```
+
+    [1] 3.141592653589793116
+
+Entonces estamos revelando que los números que vemos no siempre muestran toda su información. R siempre supo que la cifra tenía todos esos decimales, pero no los muestra a menos que se lo pidamos. La precisión máxima de un decimal o *epsilon* se puede consultar con `.Machine$double.eps`, definido como el número positivo más pequeño `x` tal que `1 + x != 1`:
+
+``` r
+.Machine$double.eps
+```
+
+    [1] 2.2204460492503130808e-16
+
+El resultado aparece en **notación científica**, y se lee como el número que aparece ahí, antecedido por `16` ceros. Para ver el número completo, podemos cambiar la opción `scipen` (*scientific penalty*), que controla cuándo R decide usar notación científica:
+
+``` r
+options(scipen = 999)
+
+.Machine$double.eps
+```
+
+    [1] 0.00000000000000022204460492503130808
+
+O bien usar `format()` directamente para sacarle la notación científica:
+
+``` r
+format(.Machine$double.eps, scientific = FALSE)
+```
+
+    [1] "0.00000000000000022204460492503130808"
+
+Ese valor es aproximadamente `0.000000000000000222`, el número más pequeño que se puede expresar con números flotantes de precisión doble, a grandes rasgos. Esto significa que cualquier diferencia menor a ese umbral será invisible. Pero esto también se extiende a la precisión de **cualquier número**.
+
+El ejemplo más claro del problema de precisión es el siguiente: ¿cuánto es `0.1 + 0.2`?
+
+``` r
+options(digits = 7)
+
+0.1 + 0.2
+```
+
+    [1] 0.3
+
+Parece que da `0.3`, así que `0.1 + 0.2 == 0.3` debería ser `TRUE`, ¿cierto? 🤔
+
+``` r
+0.1 + 0.2 == 0.3
+```
+
+    [1] FALSE
+
+Pero el resultado es `FALSE`! Con más dígitos de decimales podemos ver qué número está creando R realmente:
+
+``` r
+options(digits = 20)
+0.1 + 0.2
+```
+
+    [1] 0.30000000000000004441
+
+El resultado real de `0.1 + 0.2` no es exactamente `0.3`, sino un número levemente, minúsculamente mayor! Esa diferencia mínima, invisible con la precisión por defecto, es suficiente para que la comparación con `==` falle.
+
+Al igual que con casos como el del inicio de esta publicación, donde queremos comparar números que parecen ser iguales pero pueden diferir por errores de redondeo, la solución es usar `near()` para comparar con una tolerancia:
+
+``` r
+suma <- 0.1 + 0.2
+
+near(suma, 0.3)
+```
+
+    [1] TRUE
+
+Yey!
+
+{{< etiqueta "curiosidades" >}}

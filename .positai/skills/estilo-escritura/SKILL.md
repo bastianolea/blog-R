@@ -30,6 +30,11 @@ Las palabras en inglés se ponen en itálicas.
 Existen varios _shortcodes_ que uso constantemente para hacer más entretenidas y dinámicas las publicaciones, que puedes revisar en [references/shortcodes.md](references/shortcodes.md) de esta skill.
 
 
+## Consideraciones
+- Cuando en un chunk de código R se cargue `library(dplyr)`, agrega `#| message: false` y `#| warning: false` para omitir los mensajes del paquete. No quiero que en las publicaciones hayan mensajes irrelevantes que puedan confundir a las personas.
+- Los paquetes los escribo así: `{dplyr}`
+
+
 ## Indicaciones para redacción de IA
 
 - No usar artículos en títulos: en vez de decir "El problema", usa "Problemas"
