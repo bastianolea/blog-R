@@ -1,17 +1,14 @@
 ---
-title: Números pequeños en R
+title: Sobre números pequeños y con muchos decimales
 author: Bastián Olea Herrera
 format: hugo-md
 date: '2026-07-21'
 tags:
   - curiosidades
-  - básico
-excerpt: "En la mayoría de los lenguajes de programación, la comparación exacta de números decimales puede dar resultados inesperados, por cómo las computadoras representan los números de punto flotante internamente. Aquí vemos algunos casos de matemáticas de punto flotante con R."
+excerpt: "En la mayoría de los lenguajes de programación, la comparación exacta de números decimales puede dar resultados inesperados, debido a cómo las computadoras representan los números internamente. Aquí veremos algunos casos curiosos de matemáticas de punto flotante en R."
 ---
 
 Tenía un conjunto de datos con una variable cuyos valores eran cercanos a cero, y quería filtrar las observaciones donde los valores fueran iguales o muy cercanos a cero. Así me encontré con una curiosidad de R (y en realidad, de casi todos los lenguajes de programación) sobre los números de _punto flotante_.
-
-----
 
 Si quiero tratar números bajo cierto umbral de decimales como si fueran cero, lo primero que se me ocurre es comparar directamente. Por ejemplo, usemos un número muy pequeño:
 
