@@ -4,7 +4,8 @@
   },
   "permission": {
     "skill": {
-      "hugo-blog": "allow"
+      "hugo-blog": "allow",
+      "estilo-escritura": "allow"
     }
   }
 }

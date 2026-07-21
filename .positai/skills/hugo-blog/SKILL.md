@@ -8,15 +8,15 @@ description: >
   shortcode, layout, theme, deploy, or Netlify.
 ---
 
-# Hugo Blog Reference
+# Referencia para blog Hugo
 
 Blog de análisis de datos de Bastián Olea Herrera.
-- **URL**: https://bastianoleah.netlify.app/ (alias: https://bastianolea.rbind.io/)
+- **URL**: https://bastianolea.rbind.io/
 - **Idioma**: Español (es-ES)
 
 ## Stack
 
-- **Hugo** 0.136.5 con tema **Hugo Apéro**
+- **Hugo** con tema **Hugo Apéro**
 - **blogdown** para integración con RStudio
 - **Formatos de contenido**: `.qmd` (Quarto), `.Rmd`, `.md`
 - **Deploy**: Netlify (auto-deploy desde Git)
@@ -76,11 +76,13 @@ El cascade en `content/blog/_index.md` aplica por defecto:
 - `show_post_date: true`
 - `show_page_views: false` (medidas con GoatCounter)
 
+
 ## Taxonomías
 
 - `tags` — etiquetas temáticas (visualización de datos, shiny, inteligencia artificial, etc.)
 - `categories` — categorías principales: `Tutoriales`, `Paquetes`
 - `series` — series de posts relacionados
+
 
 ### Cómo funcionan las secciones por categoría (Tutoriales, Paquetes)
 
@@ -96,6 +98,7 @@ Los posts viven en `content/blog/`, no en la carpeta de la sección. El listado 
 1. Agregar `categories: [NombreCategoria]` en el front matter del post
 2. Opcionalmente crear `content/nombre-categoria/_index.md` con metadata
 3. Agregar entrada en `[[menu.header]]` en `config.toml` apuntando a `/categories/nombre-categoria/`
+
 
 ### Descripciones de páginas de etiquetas (tags)
 
@@ -121,6 +124,7 @@ description: |
 
 Los `_index.md` de tags ya creados con descripción: `chile`, `datos`, `visualizacion-de-datos`, `consejos`, `graficos`, `shiny`, `apps`, `basico`, `ggplot2`, `web-scraping`, `limpieza-de-datos`.
 
+
 ## Configuración clave (config.toml)
 
 - `pagination.pagerSize = 20`
@@ -129,6 +133,7 @@ Los `_index.md` de tags ya creados con descripción: `chile`, `datos`, `visualiz
 - `mainSections = ["blog", "apps", "about"]`
 - `outputs.home = ["HTML", "RSS", "JSON"]` (JSON para buscador)
 - Syntax highlighting: estilo `rose-pine-moon` con CSS personalizado en `static/css/syntax.css`
+
 
 ## Flujo de trabajo (blogdown + RStudio)
 
@@ -181,6 +186,7 @@ format:
     output-ext: "md"
 ```
 
+
 ## Gráficos con fondo transparente (mapas y ggplot2)
 
 Los gráficos deben tener **fondo transparente** para integrarse con el color de fondo del blog (morado claro). Hay dos piezas necesarias:
@@ -207,6 +213,7 @@ theme_set(
 
 Para verificar la transparencia de un PNG generado: `sips -g hasAlpha archivo.png` (debe decir `hasAlpha: yes`) y el pixel de esquina debe ser `srgba(0,0,0,0)`, no blanco.
 
+
 ## Doble render de figuras: `figure-html` con fondo blanco (usar `freeze`)
 
 **Problema:** en algunos posts las figuras aparecen con **bordes/fondo blanco** en el sitio, aunque el `.qmd` esté bien configurado. Al renderizar aparecen **dos** carpetas de figuras:
@@ -224,6 +231,7 @@ Con freeze activo, tanto Quarto como blogdown reutilizan las figuras congeladas 
 
 Alternativa más ligera: desactivar `blogdown.knit.on_save` para que solo mande `quarto render`, pero el patrón con `freeze` es el recomendado.
 
+
 ## Menús de navegación
 
 **Header**: Yo, Blog, Buscar (`/buscar/`), Temas (`/tags/`), Tutoriales (`/categories/tutoriales/`), Paquetes (`/categories/paquetes/`), Aprende R (externo), Cursos, Apps (externo), Datos (externo), Enlaces
@@ -232,9 +240,11 @@ Alternativa más ligera: desactivar `blogdown.knit.on_save` para que solo mande 
 
 El ícono de lupa en `params.social` (header) también apunta a `/buscar/`.
 
+
 ## Redirects
 
 Archivo `static/_redirects` para migraciones de URL y dominios. Redirecciones de `bastianoleah.netlify.com` → `bastianolea.rbind.io`.
+
 
 ## Archivos clave (mapa rápido)
 
@@ -260,6 +270,7 @@ Archivo `static/_redirects` para migraciones de URL y dominios. Redirecciones de
 | Funciones R custom | `R/funciones.R` |
 | Instrucciones workflow | `_instrucciones.R` |
 
+
 ## Shortcodes
 
 Ver [references/shortcodes.md](references/shortcodes.md) para la referencia completa.
@@ -274,6 +285,7 @@ Shortcodes más usados:
 - `{{</* indice */>}}` — tabla de contenidos auto-generada
 - `{{</* relacionada "blog/estudio_brechas_comunales/" */>}}` — caja con publicación relacionada, con imagen y resumen
 - `{{</* etiqueta "apps" */>}}` — caja que contiene varias publicaciones recientes de un tag
+
 
 ## Páginas personalizadas con iframe
 
@@ -291,9 +303,11 @@ La página `/buscar/` embebe la app Shiny del buscador (`https://bastianoleah.sh
 
 **JS estático en Hugo**: los archivos en `static/` se sirven desde la raíz del sitio. Por ej. `static/js/foo.js` → `/js/foo.js`. Preferir scripts descargados localmente sobre CDN externos.
 
+
 ## Layouts y templates
 
 Ver [references/layouts.md](references/layouts.md) para el mapa completo de layouts.
+
 
 ## Tema y colores
 
