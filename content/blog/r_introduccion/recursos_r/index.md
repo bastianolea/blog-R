@@ -32,6 +32,7 @@ _Sitios con contenido educacional para que aprendas R._
 - [Large Language Model tools for R](https://luisdva.github.io/llmsr-book/), Inteligencia artificial y modelos de lenguaje en R
 - [Learning statistics with R: A tutorial for psychology students and other beginners](https://learningstatisticswithr.com/book/) (en inglés)
 - [Atelier de código](https://atelierdecodigo.com), sitio para el aprendizaje de ciencia de datos con foco en investigación y docencia
+- [DataSciencePlus](https://datascienceplus.com), sitio que agrega tutoriales de R para ciencia de datos
 
 ### <i class='fas fa-chart-line'></i> Visualización de datos en R
 - [R Graph Gallery](https://www.r-graph-gallery.com/), galería de gráficos y visualizaciones de datos hechas con R
