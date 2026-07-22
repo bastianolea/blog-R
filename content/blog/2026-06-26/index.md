@@ -3,7 +3,7 @@ title: "Truco de RStudio: escribe en múltiples líneas al mismo tiempo"
 author: Bastián Olea Herrera
 date: '2026-07-22'
 slug: []
-draft: true
+draft: false
 tags:
   - consejos
 excerpt: "Mi truco favorito de RStudio, que ayuda mucho a editar texto o código cuando se tienen que hacer varios cambios al mismo tiempo, o cuando se trabaja con un mismo patrón de texto en varias líneas de código. Siempre que hago esto en clases mis estudiantes me preguntan cómo lo hice!"
