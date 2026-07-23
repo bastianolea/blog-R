@@ -1,0 +1,62 @@
+---
+title: "index"
+format: html
+draft: true
+---
+
+```{r}
+# crear una escala de 4x4 entre dos colores en nivel bajo/alto
+
+var_alto <- hsv(h = .95, s = .7, v = .8)
+niv_alto <- hsv(h = .62, s = .7, v = .8)
+
+show_col(
+  c(var_alto, niv_alto)
+)
+
+var_bajo <- var_alto |> col_lighter(25) |> col_shift(10) |> col_saturate(-20)
+niv_bajo <- niv_alto |> col_lighter(25) |> col_shift(10) |> col_saturate(-20)
+
+show_col(
+  c(var_bajo, var_alto,
+    niv_bajo, niv_alto)
+)
+
+c(
+  col_mix(var_alto, niv_bajo, 0.3),
+  col_mix(var_alto, niv_alto, 0.5) |> col_lighter(5),
+  col_mix(var_bajo, niv_bajo, 0.5),
+  col_mix(var_bajo, niv_alto, 0.7)
+) |> 
+  show_col()
+```
+
+```{r}
+
+library(colorspace)
+
+# escala secuencial de colores para macrozonas
+colores <- sequential_hcl(4, h = c(50, 270), l = c(80, 60), c = c(60, 60))
+
+library(scales)
+
+colores_triple <- c(
+  "Norte/Rural" = colores[1] |> col_lighter(12),
+  "Norte/Mixta" = colores[1],
+  "Norte/Urbana" = colores[1] |> col_saturate(2) |> col_darker(10),
+  "Centro/Rural" = colores[2] |> col_lighter(18),
+  "Centro/Mixta" = colores[2],
+  "Centro/Urbana" = colores[2] |> col_saturate(4) |> col_darker(12),
+  "Sur/Rural" = colores[3] |> col_lighter(28) |> col_saturate(-42),
+  "Sur/Mixta" = colores[3],
+  "Sur/Urbana" = colores[3] |> col_saturate(2) |> col_darker(6),
+  "Austral/Rural" = colores[4] |> col_lighter(10),
+  "Austral/Mixta" = colores[4],
+  "Austral/Urbana" = colores[4] |> col_saturate(2) |> col_darker(6)
+)
+
+shades::swatch(
+  colores_triple
+)
+```
+
