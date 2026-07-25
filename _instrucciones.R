@@ -41,10 +41,9 @@ blogdown::new_post(
 #     url: https://gist.github.com/bastianolea/8ea85fa8169b302d2144e05434668c89
 
 ## borradores ----
-"content/blog/2026-07-23/index.qmd"
-"content/blog/2026-07-22/index.qmd"
+"content/blog/2026-07-23/index.qmd" # escala bivariada
 "content/blog/desarrollo_paquetes/index.md"
-"content/blog/arrow/index.qmd" # !
+"content/blog/arrow/index.qmd" # ! como base de datos
 "content/blog/ggplot_densidad_puntos/index.qmd"
 "content/blog/unpivotr/index.qmd"
 "content/blog/ggtext/index.qmd"
