@@ -242,6 +242,7 @@ Con esta modalidad de documentos Quarto podemos crear un sitio web con múltiple
 
 
 ### Crear el sitio web Quarto
+
 Al crear un nuevo proyecto desde RStudio podemos elegir la opción _Quarto Website_:
 
 {{< imagen "img/website_1.png" >}}
@@ -330,7 +331,8 @@ Siguiendo estas instrucciones ya tendrás tu sitio web básico listo! ¡Y gratis
 
 
 
-## Blogs Quarto en GitHub Pages
+## Blog Quarto en GitHub Pages
+
 Una tercera opción para presentarte al mundo por internet usando Quarto es [crear un blog Quarto.](https://quarto.org/docs/websites/website-blog.html)
 
 Un blog funciona casi igual que un sitio web Quarto, con la diferencia de que el contenido está centrado en múltiples documentos Quarto que poseen más metadatos que le permiten agruparlos en categorías, en base a etiquetas, y ordenarlos por fechas. De este modo, tendrás un sitio web de presentación pero al que además podrás ir subiéndole contenido periódicamente para ir compartiendo las cosas que haces. 
@@ -350,6 +352,7 @@ De la misma forma que cuando creamos el sitio web Quarto, el proyecto aparecerá
 
 
 ### Agregar posts al blog Quarto
+
 El funcionamiento del blog es idéntico al del sitio web, con la distinción de que la idea es ir agregando publicaciones.
 
 Dentro de la carpeta `posts` veremos que se encuentran las dos publicaciones de ejemplo que vienen con el proyecto. Si abrimos una de ellas, veremos que en su encabezado posee los metadatos que caracterizan a cada publicación:
@@ -363,9 +366,16 @@ categories: [noticias, R, programación]
 image: "image.jpg"
 ---
 ```
+
 Entonces, para crear una nueva publicación, creamos una carpeta dentro de `posts` (el nombre de la carpeta será la dirección de la publicación), y dentro de la carpeta creamos un documento Quarto llamado `index.qmd` con un encabezado que contenga título, autor, fecha, y etiquetas. 
 
-Si presionamos _Render_ para generar el post, veremos que en el panel _Viewer_ de RStudio se previsualiza nuestro blog!
+También podemos crear un post:
+
+```r
+quarto::new_blog_post(title = "Título")
+```
+
+Si presionamos _Render_ para generar el post, veremos que en la previsualiazción del blog aparecen los cambios!
 
 {{< imagen "img/blog_3.png" >}}
 

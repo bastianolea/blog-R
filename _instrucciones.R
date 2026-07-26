@@ -57,12 +57,10 @@ blogdown::new_post(
 # ideas ----
 # mejorar: "https://bastianolea.rbind.io/blog/validacion_avanzada/"
 # mapas de regiones de chile para que aparezcan en google, por clasificación con {territorial}
-# mapas de chile por macrozonas, todos juntos, con {territorial}
 # generar html con R (usar ejemplos del post de colores)
 # agregar usos de {territorial} a posts
 # hacer que R te pregunte cosas
 # How do I replace NA values with zeros in an R dataframe?
-
 # tip shiny actualizar css
 # {futurize} https://www.jottr.org/2026/01/22/futurize-0.1.0/
 # mapas de chile con comunas pero sin líneas en la costa
