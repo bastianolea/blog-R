@@ -1929,6 +1929,7 @@ Otros materiales para seguir aprendiendo:
 - [Qué es Shiny y para qué sirve](https://atelierdecodigo.com/posts/shiny.html), del blog Atelier de código
 - [Shiny basics](https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/), tutorial oficial de Posit
 - [Mastering Shiny](https://mastering-shiny.org), libro de Hadley Wickham
+- [Mastering Shiny Reactivity: Values, Expressions, and Observers](https://rguides.dev/tutorials/shiny-apps/shiny-reactivity/), guía completa sobre reactividad
 - [Conferencia de SHiny 2025](https://www.shinyconf.com), con videos de expositores y ponencias
 - [Ganadores del concurso 2024 de Shiny](https://posit.co/blog/winners-of-the-2024-shiny-contest)
 - [Shiny Assistant](https://opensource.posit.co/blog/2024-10-09_shiny-assistant/), herramienta de IA para prototipar apps
