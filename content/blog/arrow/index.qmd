@@ -70,7 +70,7 @@ datos <- arrow::read_csv_arrow(archivo,
                                read_options = csv_read_options(encoding = "latin1"))
 ```
 
-
+https://arrow-user2022.netlify.app
 https://r4ds.hadley.nz/arrow.html
 https://arrow.apache.org/docs/r/articles/arrow.html
 https://arrow.apache.org/docs/r/articles/dataset.html
