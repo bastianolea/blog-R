@@ -34,7 +34,8 @@ Durante el taller aprenderás a crear una página web utilizando Quarto, una her
 
 <i class='fas fa-laptop-code' style='font-size: 130%'></i> Antes de la reunión, asegúrate de tener:
 
-* **R** y **RStudio** instalados ([ver instrucciones aquí](https://bastianolea.github.io/aprende_r/#obtener-r))
+* **R** y **RStudio** instalados [(ver instrucciones aquí)](https://bastianolea.github.io/aprende_r/#obtener-r)
+* El software **Git** en tu computador [(descargar aquí)](https://git-scm.com)
 * El paquete de R **Quarto** instalado: `install.packages("quarto")`
 * Una cuenta de **GitHub** creada, ya que la utilizaremos para publicar nuestra página web!
 
