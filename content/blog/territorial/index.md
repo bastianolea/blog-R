@@ -84,7 +84,7 @@ También se plantea el estándar de llamar las columnas territoriales como `nomb
 Probemos `{territorial}` con una tabla con datos de ejemplo:
 
 ``` r
-# creat una tabla con datos de ejemplo
+# crear una tabla con datos de ejemplo
 datos <- dplyr::tibble(
   nombre_comuna = c("PIRQUE", "El Monte", "Maipu", "nunoa",
                     "santiago", "prohibidencia", "CERRILLOS", 
