@@ -1518,6 +1518,47 @@ https://dominicroye.github.io/blog/inserted-map/
 
 -->
 
+----
+
+## Diagnóstico de complejidad geométrica
+
+Cuando trabajamos con mapas que contienen **muchos polígonos o geometrías muy detalladas**, es útil diagnosticar la complejidad antes de visualizarlos. Esto ayuda a anticipar problemas de rendimiento: un mapa con millones de vértices puede tardar mucho en renderizarse, consumir grandes cantidades de memoria, o incluso hacer colapsar la sesión de R.
+
+### Información general del objeto
+
+Para tener una idea rápida del tamaño y características del objeto `sf`, podemos revisar el número de geometrías, el espacio en memoria y el sistema de coordenadas:
+
+```{r}
+#| eval: false
+# número de geometrías (filas)
+nrow(mapa)
+
+# tamaño en memoria
+format(object.size(mapa), units = "MB")
+
+# sistema de coordenadas
+st_crs(mapa)$input
+```
+
+### Conteo de vértices
+
+El número de vértices es el indicador más relevante para el rendimiento: cada vértice es un punto que define la forma de un polígono, y los visualizadores tienen que procesar todos ellos. Para contarlos usamos `st_coordinates()`, que devuelve las coordenadas individuales de cada geometría:
+
+```{r}
+#| eval: false
+# contar vértices por polígono
+vertices <- sapply(st_geometry(mapa), \(g) {
+  tryCatch(nrow(st_coordinates(g)), error = \(e) NA)
+})
+
+# resumen
+cat("Total de vértices:  ", format(sum(vertices, na.rm = TRUE), big.mark = "."), "\n")
+cat("Mediana por polígono:", median(vertices, na.rm = TRUE), "\n")
+cat("Máximo por polígono: ", max(vertices, na.rm = TRUE), "\n")
+```
+
+Un mapa con decenas de millones de vértices en total, o con algún polígono que tenga cientos de miles de vértices, es candidato a simplificación antes de visualizarlo de forma interactiva.
+
 {{< aviso "⚠️ Este tutorial se encuentra en construcción ⚠️" >}}
 
 {{< etiqueta "mapas" >}}
