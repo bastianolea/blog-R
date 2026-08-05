@@ -6,6 +6,12 @@
     "skill": {
       "hugo-blog": "allow",
       "estilo-escritura": "allow"
+    },
+    "webfetch": {
+      "https://walker-data.com/*": "allow"
+    },
+    "edit": {
+      "*.md": "allow"
     }
   }
 }

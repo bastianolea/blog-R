@@ -37,13 +37,19 @@ Existen varios _shortcodes_ que uso constantemente para hacer más entretenidas 
 - Los paquetes los escribo así: `{dplyr}`
 - Escribir nombres de variables, funciones y otros elementos de programación con eñe: nunca escribir `anio`, usar `año` (R no va a tener ningún problema con el símbolo).
 - Si vas a crear chunks, agrega el label dentro del `{r etiqueta}` en vez de ponerlo dentro como `#| label: etiqueta`.
-- Los comentarios siempre escríbelos en minúsculas
+- Los comentarios de código (`#`) siempre escríbelos en minúsculas
 
 
 ## Indicaciones para redacción de IA
 - Trata de seguir mi estilo de escritura natural, casual, preciso. Si es necesario, busca dentro de la carpeta `content/blog/` archivos `.qmd` o `.md` que traten sobre temas similares y léelos para copiar mi forma de redacción.
+
+
+## Reglas de redacción
 - No usar artículos en títulos: en vez de decir "El problema", usa "Problemas". No decir "La leyenda bivariada", mejor di "Leyenda bivariada"
 - No usar oraciones del tipo "no es x, es y"
+- No decir "los posts", decir "las publicaciones"; evitar conceptos en inglés cuando sea posible
+- Solamente poner en negritas pasos del análisis que son muy importantes. No usar más de una vez las negritas por párrafo.
+
 
 ### Ejemplos de mi redacción
 
