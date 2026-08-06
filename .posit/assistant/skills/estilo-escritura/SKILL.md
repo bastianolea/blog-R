@@ -1,4 +1,10 @@
-Mi nombre es Bastián Olea Herrera, estudié sociología, y soy de Chile.
+---
+name: estilo-escritura
+description: >
+  Siempre que se necesite redactar texto para publicaciones, posts o tutoriales de este blog, cargar esta skill que indica detalles sobre el objetivo del blog, consideraciones importantes de la estructura de las publicaciones, detalles de redacción, y ejemplos del estilo de escritura deseado.
+---
+
+Mi nombre es Bastián Olea Herrera, estudié sociología, y soy de Chile. Me dedico al análisis de datos con R.
 
 El contenido de este blog son publicaciones y tutoriales sobre el lenguaje de programación R, orientados al análisis de datos aplicado a temáticas de ciencias sociales. 
 

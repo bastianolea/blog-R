@@ -285,6 +285,7 @@ Shortcodes más usados:
 - `{{</* indice */>}}` — tabla de contenidos auto-generada
 - `{{</* relacionada "blog/estudio_brechas_comunales/" */>}}` — caja con publicación relacionada, con imagen y resumen
 - `{{</* etiqueta "apps" */>}}` — caja que contiene varias publicaciones recientes de un tag
+- `{{</* paso "1" "Instrucciones del paso uno" */>}}` — paso numerado para tutoriales, círculo con número a la izquierda del texto
 
 
 ## Páginas personalizadas con iframe

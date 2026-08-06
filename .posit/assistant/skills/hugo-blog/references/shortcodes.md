@@ -116,6 +116,15 @@ Texto de subtítulo, centrado, pequeño (80%) y tenue (60% opacity).
 {{</* bajada "Texto introductorio" */>}}
 ```
 
+### `paso`
+Paso numerado para tutoriales: círculo púrpura con el número, texto a la derecha centrado verticalmente con el círculo.
+```
+{{</* paso "1" "Instrucciones del paso uno" */>}}
+```
+- Param 0: número del paso (requerido)
+- Param 1: texto/instrucciones del paso (requerido, soporta markdown)
+- Círculo: fondo #6E3A98, número en #EAD2FA con tipografía Garamond
+
 ---
 
 ## Botones y enlaces
