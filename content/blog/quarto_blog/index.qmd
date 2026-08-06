@@ -1,0 +1,550 @@
+---
+title: 'Tutorial: crea y publica tu propio blog con Quarto, RStudio y GitHub Pages'
+author: Bastián Olea Herrera
+format: hugo-md
+date: '2026-08-06'
+draft: true
+slug: []
+categories:
+  - Tutoriales
+tags:
+  - quarto
+  - git
+  - github
+excerpt: "Aprende paso a paso a crear tu propio blog con Quarto y RStudio, personalizarlo con temas y tipografías, y publicarlo gratis en internet con GitHub Pages. Este tutorial reúne todo lo necesario para tener tu blog funcionando de principio a fin: desde configurar Git y GitHub, hasta escribir publicaciones con código de R y actualizar tu sitio cada vez que quieras."
+---
+
+<!--- @bastián: revisa estos puntos antes de publicar:
+- fecha de publicación (dejé la de hoy, ajústala si quieres publicarlo más adelante)
+- tags: usé "github" en minúscula según la norma de la guía de estilo, pero en el sitio existen publicaciones con la etiqueta "GitHub" en mayúscula. Como Hugo generalmente unifica esto en la url de la etiqueta, no debería haber problema, pero quizás quieras normalizar esto en algún momento
+- excerpt: lo redacté de forma genérica, siéntete libre de ajustarlo
+- estaría bueno agregar una imagen destacada (afiche o similar) como la que tiene tutorial_anterior.md (afiche-featured.jpg), no tengo una para este post
+--->
+
+{{< indice >}}
+
+Crear tu propio blog es tener un espacio en internet que es completamente tuyo. En una época en que buena parte de nuestra vida digital ocurre dentro de redes sociales y plataformas que no controlamos (y que pueden cerrar, bloquearte, o simplemente desaparecer), contar con un sitio web propio te permite reunir tus proyectos, aprendizajes y estudios en un lugar que no depende de nadie más que de ti.
+
+Además, un blog te sirve para **aprender haciendo**, para armar un **portafolio** de tu trabajo, y para conectar con la **comunidad** de personas que usan R: seguramente todo lo que sabes de programación lo aprendiste gracias a que alguien más compartió su conocimiento de forma abierta y gratuita, así que compartir lo que tú aprendes es una forma de devolver la mano.
+
+Lo mejor es que armar un blog con Quarto, RStudio y GitHub Pages no cuesta nada! 
+
+En este tutorial armaremos un blog de principio a fin, lo personalizaremos, y lo publicaremos en internet, usando exclusivamente herramientas gratuitas y de código abierto.
+
+{{< indice >}}
+
+{{< info "Si necesitas crear un sitio web más simple (quizás sólo una presentación tuya o una lista de enlaces), o solo publicar un documento o reporte con Quarto en internet, [revisa este tutorial](/blog/tutorial_quarto_github_pages/), donde se explica la sintaxis de Quarto en más detalle." >}}
+
+{{< detalles "También existen otras alternativas para tener presencia en internet usando R" >}}
+
+Un blog con Quarto no es la única forma de tener presencia en internet usando R. Ya escribí sobre otras alternativas, como [crear documentos y sitios web con Quarto](/blog/tutorial_quarto_github_pages/), o [crear aplicaciones interactivas con Shiny](/blog/shiny/). Un blog Quarto tiene la ventaja de que es sencillo de mantener, no requiere de un servidor corriendo (como sí lo necesita Shiny), y te permite ir agregando publicaciones ordenadas por fecha y por categorías con muy poco esfuerzo.
+
+{{< /detalles >}}
+
+## Herramientas que usaremos
+
+Para construir el blog necesitamos combinar cuatro herramientas, todas gratuitas:
+
+- **[Quarto](https://quarto.org)**: sistema de publicación que transformará nuestros documentos en páginas web. Quarto combina texto en formato [Markdown](https://es.wikipedia.org/wiki/Markdown) con bloques de código de R (u otros lenguajes), y también puede generar como resultado documentos PDF, documentos Word, sitios web, blogs, libros y diapositivas.
+- **[RStudio](https://posit.co/products/open-source/rstudio/)**: el entorno de desarrollo (IDE) donde vamos a escribir el contenido del blog.
+- **[Git](https://git-scm.com)**: un sistema de control de versiones que registra los cambios que hacemos a nuestros archivos a través del tiempo.
+- **[GitHub](https://github.com)** y **[GitHub Pages](https://pages.github.com)**: una plataforma online donde subiremos nuestro proyecto, y que además nos permite publicarlo como una página web gratis.
+
+{{< info "Quarto es el _sucesor_ de R Markdown: si ya conoces R Markdown, la sintaxis de Quarto te va a resultar prácticamente idéntica." >}}
+
+## Ejemplos de blogs Quarto
+
+Algunos sitios web hechos con Quarto:
+
+{{< columnas >}}
+
+- [santiagorusers.github.io](https://santiagorusers.github.io/), el sitio del Grupo de Usuari@s de R donde se dictó [este taller!](https://santiagorusers.github.io/posts/taller_julio_2026/)
+- [quarto.org](https://quarto.org), el sitio de documentación de Quarto
+- [nrennie.rbind.io](https://nrennie.rbind.io)
+- [emilhvitfeldt.com](https://emilhvitfeldt.com)
+- [brodrigues.co](https://brodrigues.co)
+
+{{< columna >}}
+
+- [noahweidig.com](https://www.noahweidig.com)
+- [karaman.is](https://karaman.is)
+- [andrewheiss.com](https://www.andrewheiss.com/blog/)
+- [ellakaye.co.uk](https://ellakaye.co.uk)
+- [rainbowr.org](https://rainbowr.org)
+- [alejandroromerog.github.io](https://alejandroromerog.github.io)
+
+{{< fin_columnas >}}
+
+## Configurar Git y GitHub
+
+Como vamos a publicar nuestro blog a través de GitHub, el primer paso es preparar nuestra cuenta y conectarla con RStudio. 
+
+{{< info "Si ya usas Git y GitHub con R, puedes saltarte esta sección." >}}
+
+### Qué son Git y GitHub
+
+[**Git**](https://git-scm.com) es un software de código abierto que instalas en tu computador para llevar un registro de las versiones de tu código: cada vez que guardas un avance (un *commit*), Git recuerda ese estado de tus archivos, de modo que siempre puedes volver atrás o ver qué cambió.
+
+{{< paso "1" "Instala Git en tu computador, [descargándolo desde aquí.](https://git-scm.com)" >}}
+
+[**GitHub**](https://github.com) es una plataforma online donde se pueden subir esos repositorios de Git, de forma que otras personas puedan ver tu código, descargarlo, y colaborar contigo. **GitHub Pages**, que usaremos más adelante, es una funcionalidad de GitHub que además te permite publicar un sitio web a partir de los archivos de tu repositorio.
+
+{{< paso "2" "[Crea una cuenta de GitHub](https://github.com/join), si es que no la tienes aún." >}}
+
+Si quieres profundizar en Git y GitHub más allá de lo necesario para este tutorial, revisa mi [tutorial de Git y GitHub para R](/blog/r_introduccion/tutorial_github/), o el libro [*Happy Git and GitHub for the useR*](https://happygitwithr.com).
+
+{{< relacionada "blog/r_introduccion/tutorial_github/" >}}
+
+### Configurar cuenta GitHub
+
+Todo el proceso se simplifica muchísimo gracias al paquete [`{usethis}`](https://usethis.r-lib.org), que automatiza varias tareas repetitivas de configuración:
+
+```r
+install.packages("usethis")
+```
+
+{{< paso "3" "Registra tu cuenta de GitHub en RStudio." >}}
+
+Ahora registramos cuál es nuestra cuenta de GitHub (nombre de usuario y correo):
+
+```r
+usethis::use_git_config(user.name = "tu_usuario", user.email = "tu_correo@ejemplo.com")
+```
+
+Así tu computadora sabrá cuál es tu cuenta de GitHub!
+
+### Autenticar cuenta GitHub
+
+Para que RStudio pueda interactuar con tu cuenta de GitHub (subir archivos, crear repositorios, etc.), necesitas un **token** de acceso personal, que es como una contraseña, pero más segura porque no necesitas aprenderla, y puedes revocar el acceso cuando quieras desde tu cuenta de GitHub.
+
+{{< paso "4" "Crear token de GitHub e ingresarlo a RStudio" >}}
+
+Con el siguiente comando, se abrirá una ventana en tu navegador para generar el *token*, y tienes que **copiarlo**.
+
+```r
+usethis::create_github_token()
+```
+
+Luego, ejecuta lo siguiente y pega el *token* cuando la consola te lo pida:
+
+```r
+gitcreds::gitcreds_set()
+```
+
+De esta forma habrás registrado tu cuenta GitHub con tu RStudio de manera segura!
+
+
+Para revisar que la configuración quedó bien, puedes correr un diagnóstico:
+
+```r
+usethis::git_sitrep()
+```
+
+El mensaje debería decirte tu cuenta de GitHub y que encontró el _token_ de acceso. Si tienes dudas o problemas, revisa [esta publicación](blog/r_introduccion/tutorial_github/).
+
+
+
+## Crear el blog Quarto
+
+Con Git y GitHub configurados, ya podemos crear el proyecto de nuestro blog! Es probable que tengas que instalar Quarto primero:
+
+```r
+install.packages("quarto")
+```
+
+{{< paso "5" "Crear el blog desde RStudio." >}}
+
+En RStudio, vamos a **File → New Project → New Directory → Quarto Blog**:
+
+{{< imagen "img/blog_1.png" >}}
+
+
+
+Elige un nombre para tu proyecto (será también el nombre de la carpeta y, más adelante, parte de la dirección web de tu blog, así que piensa bien!) y crea el proyecto. RStudio abrirá una nueva sesión con varios archivos ya generados.
+
+### Estructura de archivos del blog
+
+Un blog Quarto recién creado viene con esta estructura:
+
+```
+mi-blog/
+├── _quarto.yml        # configuración general del sitio
+├── index.qmd          # página principal (listado de publicaciones)
+├── about.qmd          # página "sobre ti"
+├── profile.jpg        # tu foto, usada en la página about
+├── styles.css         # hoja de estilos para personalizar el blog
+└── posts/
+    ├── welcome/
+    │   └── index.qmd
+    └── post-with-code/
+        └── index.qmd
+```
+
+- **`_quarto.yml`**: archivo de configuración `yaml` del sitio completo: título, descripción, menú de navegación, tema, etc.
+- **`index.qmd`**: la página principal. En un blog, por defecto es el listado de publicaciones, aunque puedes cambiarla por cualquier otro contenido.
+- **`about.qmd`**: tu página de presentación personal.
+- **`posts/`**: la carpeta donde viven tus publicaciones. El proyecto viene con dos publicaciones de ejemplo.
+- **`profile.jpg`**: la imagen de perfil que aparece en tu página *about* (puedes reemplazarla por tu propia foto).
+- **`styles.css`**: hoja de estilos donde más adelante agregaremos personalización visual.
+
+Cada archivo `.qmd` corresponde a una página de tu sitio.
+
+## Previsualizar y construir el sitio
+
+Hay dos operaciones distintas que vamos a usar todo el tiempo en el blog: previsualizar y renderizar.
+
+- **Previsualizar** con `quarto preview` o `quarto::quarto_preview()`: levanta un servidor local que va actualizando la vista previa automáticamente cada vez que guardas cambios. Es lo que usamos mientras estamos escribiendo y probando.
+- **Renderizar** con `quarto render` o `quarto::quarto_render()`: reconstruye el sitio completo, generando todos los archivos `html` finales. Es el que debes ejecutar antes de publicar, para asegurarte de que todo el sitio (no solo la página en la que estabas trabajando) quede actualizado.
+
+Puedes ejecutar ambos desde la pestaña *Terminal* de RStudio, o su equivalente en R:
+
+```bash
+quarto preview
+quarto render
+```
+
+```r
+quarto::quarto_preview()
+quarto::quarto_render()
+```
+
+También puedes simplemente presionar el botón **Render** en la barra superior del editor para previsualizar la página en la que estás trabajando.
+
+Deberías ver una página más o menos así:
+
+{{< imagen "img/blog_2.png" >}}
+
+<!--- @bastián: la imagen anterior (blog_2.png) muestra el blog de ejemplo genérico en inglés que trae el proyecto por defecto (con nombres de autores ficticios). Si prefieres una captura de tu propio blog ya personalizado, dime y la reemplazo --->
+
+## Escribe tu primera publicación
+
+### Crear una nueva publicación
+
+Cada publicación de tu blog es una carpeta dentro de `posts/`, que contiene un archivo `index.qmd`. El nombre de la carpeta determina la dirección web (*url*) de la publicación, así que te recomiendo usar nombres **sin espacios, sin mayúsculas, y separados por guiones**, por ejemplo:
+
+```
+posts/mi-primer-post/index.qmd
+```
+
+Puedes crear esta carpeta y el archivo manualmente, o usar la función que provee el paquete `{quarto}`:
+
+```r
+quarto::new_blog_post(title = "Mi primer post")
+```
+
+Siguiendo este ejemplo, Quarto crearía la carpeta `posts/mi-primer-post/`, y dentro un archivo `index.qmd` con el título provisto.
+
+
+### Encabezado de la publicación
+
+Al comienzo de cada publicación va un bloque de metadatos en formato `yaml`, delimitado por tres guiones al inicio y al final:
+
+```yaml
+---
+title: "Mi primer análisis en R"
+subtitle: "Serie de análisis de datos"
+author: "Tu nombre"
+date: "2026-08-06"
+categories: [R, análisis, datos]
+image: "imagen.jpg"
+---
+```
+
+- `title` y `subtitle`: título y subtítulo de la publicación.
+- `date`: fecha de publicación, en formato `AAAA-MM-DD`. Con esta fecha, Quarto ordena tus publicaciones en el listado del blog.
+- `categories`: etiquetas que agrupan tus publicaciones, y que aparecerán como filtros en el listado del blog.
+- `image`: una imagen destacada para la publicación (debe estar en la misma carpeta que el `index.qmd`).
+
+{{< aviso "Un error muy común es olvidar los tres guiones que **cierran** el encabezado. Si Quarto te muestra un error relacionado al *front matter* del documento, revisa que el bloque `yaml` esté bien cerrado." >}}
+
+Una vez que le das **Render** a tu publicación, puedes previsualizarla en el panel *Viewer* de RStudio:
+
+{{< imagen "img/blog_3.png" >}}
+
+## Sintaxis Markdown básica
+
+El contenido de tus publicaciones se escribe en [Markdown](https://quarto.org/docs/authoring/markdown-basics.html), un lenguaje de marcado simple que usa símbolos de texto plano para dar formato a tu contenido:
+
+```markdown
+## Subtítulo
+### Subsubtítulo
+
+**negrita**
+_itálica_
+
+<u>subrayado</u>
+~~tachado~~
+
+[Enlace](https://enlace.cl)
+![Descripción de la imagen](imagen.jpg)
+
+Una nota al pie[^1].
+[^1]: Contenido de la nota.
+```
+
+La lógica de Markdown separa el **contenido** del **estilo**: acá te preocupas de escribir y estructurar tu texto, mientras que la apariencia (tamaños de letra, colores, tipografías) se define aparte, con `css`, como veremos más adelante en la personalización del sitio.
+
+<!--- @bastián: en el taller a alguien le surgió la duda de cómo cambiar el tamaño de letra directamente en el texto de una publicación. Dejé la aclaración de que eso se resuelve con css/scss más adelante en el tutorial en vez de con markdown; avísame si prefieres una nota más explícita acá mismo --->
+
+{{< aviso "Si necesitas aprender lo básico de Quarto y Markdown, revisa el [tutorial de reportes con Quarto.](/blog/quarto_reportes/)" >}}
+
+## Código de R en las publicaciones
+
+Lo que distingue a Quarto de escribir Markdown a secas es que puedes incluir código de R directamente en tus publicaciones, y que se ejecute al momento de generar el sitio.
+
+### Bloques de código
+
+Para agregar un bloque de código (*chunk*), se delimita con tres comillas invertidas seguidas del lenguaje entre llaves:
+
+```{{r}}
+1 + 1
+```
+
+Al comienzo del bloque puedes agregar opciones, que empiezan con `#|`:
+
+- `#| echo: false`: oculta el código, mostrando solo el resultado.
+- `#| eval: false`: muestra el código, pero no lo ejecuta.
+- `#| warning: false` y `#| message: false`: oculta advertencias y mensajes (útil, por ejemplo, cuando cargas un paquete como `{dplyr}`, que suele imprimir mensajes que no quieres que aparezcan en tu blog).
+- `#| fig-height: 7`: define el alto de los gráficos generados en el bloque.
+
+```{{r}}
+#| message: false
+#| warning: false
+library(dplyr)
+```
+
+Todos los bloques de código de una misma publicación **comparten el mismo entorno**: si creas un objeto en un bloque, puedes usarlo en cualquier bloque posterior. Por eso da lo mismo si cargas todos tus paquetes al principio del documento, o a medida que los vas necesitando; es decisión de estilo personal.
+
+### Código en línea
+
+Además de los bloques, puedes insertar resultados de R directamente dentro de un párrafo, escribiendo el código en línea, con la sintaxis `` `{{r}} codigo` ``:
+
+```{r}
+#| echo: false
+correlacion <- cor(mtcars$hp, mtcars$mpg) |> round(2)
+```
+
+Por ejemplo, si calculamos la correlación entre potencia y rendimiento de combustible en los datos `mtcars` y la guardamos en un objeto llamado `correlacion`, podemos escribir un párrafo como el siguiente:
+
+> La correlación entre potencia y rendimiento de combustible es de `r correlacion`.
+
+Y ese número se generó en el momento de renderizar la publicación, a partir del código, en vez de haber sido escrito a mano.
+
+Esto es particularmente útil para escribir análisis reproducibles: si tus datos cambian, el texto se actualiza solo, sin que tengas que ir editando números a mano cada vez.
+
+<!--- @bastián: usé mtcars como ejemplo rápido porque viene con R base y no requiere cargar datos externos. Si prefieres otro ejemplo (o el mismo que usaste en el taller) dime cuál y lo cambio --->
+
+## Personalizar el sitio
+
+### Cambiar el tema
+
+El aspecto general de tu sitio se controla desde `_quarto.yml`. Puedes elegir entre distintos temas predefinidos, basados en [Bootswatch](https://bootswatch.com):
+
+```yaml
+format:
+  html:
+    theme: lux
+    css: styles.css
+    toc: true
+```
+
+Puedes ver la lista completa de temas disponibles [en esta guía de Quarto](https://quarto.org/docs/output-formats/html-themes.html#overview).
+
+### Menú de navegación e íconos
+
+También en `_quarto.yml`, la sección `website` controla el título, la descripción, y el menú de navegación (*navbar*) de tu sitio:
+
+```yaml
+website:
+  title: "Mi blog"
+  description: "Un blog sobre R y análisis de datos"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+    right:
+      - icon: github
+        href: https://github.com/tu_usuario
+      - icon: linkedin
+        href: https://www.linkedin.com/in/tu_usuario
+```
+
+Quarto usa [Font Awesome](https://fontawesome.com) para los íconos del menú, así que basta con escribir el nombre del ícono (`github`, `linkedin`, `instagram`, etc.). Si necesitas un ícono de una red social que no está en Font Awesome (como Slack o Meetup), puedes reemplazarlo por una imagen propia.
+
+{{< aviso "Te recomiendo dejar configurado el tema y el menú de tu sitio **antes** de empezar a escribir publicaciones, para que todas las publicaciones que crees después hereden automáticamente esa apariencia." >}}
+
+## Personalización avanzada con SCSS
+
+Si quieres ir más allá de los temas predefinidos, puedes crear un archivo `.scss` propio con variables de estilo. Primero, lo agregamos junto al tema base en `_quarto.yml`:
+
+```yaml
+format:
+  html:
+    theme:
+      - minty
+      - tema.scss
+```
+
+### Variables de color
+
+Dentro de `tema.scss`, puedes sobrescribir variables de color, tipografía y más:
+
+```scss
+/*-- scss:defaults --*/
+$primary: #b0c4b1;
+$secondary: #4a5759;
+
+/* colores principales */
+$body-bg: #dedbd2; // fondo
+$body-color: #4a5759; // texto
+$link-color: #b0c4b1; // enlaces
+$border-color: #c7c3b7; // líneas
+
+/* barra de navegación */
+$navbar-bg: #4a5759; // fondo
+$navbar-fg: #dedbd2; // texto
+```
+
+Puedes buscar paletas de colores y sus códigos hexadecimales en sitios como [coolors.co](https://coolors.co).
+
+<!--- @bastián: en el taller recomendaste un sitio para buscar paletas de colores pero no logré identificar el nombre exacto en la transcripción; puse coolors.co como ejemplo típico, corrígelo si usaste otro --->
+
+Otras variables frecuentes que puedes modificar: `$font-size-root`, `$h1-font-size`, `$line-height-base`, `$toc-color`, `$footer-bg`. Puedes ver la [lista de variables SASS más comunes](https://quarto.org/docs/output-formats/html-themes.html#sass-variables) o [todas las variables disponibles](https://rstudio.github.io/bslib/articles/bs5-variables/index.html).
+
+### Tipografías con Google Fonts
+
+Para cambiar la tipografía de tu blog:
+
+1. Busca una fuente en [Google Fonts](https://fonts.google.com).
+2. Selecciona la tipografía y presiona **Get font**, luego **Get embed code**.
+3. Copia la línea `@import`.
+4. Pégala al inicio de tu `tema.scss`, y aplícala con las variables correspondientes:
+
+```scss
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+$font-family-sans-serif: "Raleway", sans-serif;
+
+h1, h2, h3, h4, h5 {
+  font-family: "Raleway", sans-serif;
+}
+```
+
+### Inspeccionar y editar estilos
+
+Una forma útil de probar cambios de estilo antes de escribirlos en el `.scss` es usar el **inspector** de tu navegador: clic derecho sobre cualquier elemento de tu sitio, y elige *Inspeccionar elemento* (o *Inspect*). Ahí puedes ver qué clase `css` tiene ese elemento, y probar cambios de estilo en vivo antes de aplicarlos definitivamente.
+
+<!--- @bastián: esta sección de personalización avanzada no tiene capturas propias todavía (ni las reutilicé del tutorial anterior porque ese usaba un flujo distinto, de sitio web en vez de blog). Sería bueno agregar una captura del scss aplicado, y otra del panel Git de RStudio si quieres mencionarlo como alternativa a la terminal más adelante --->
+
+## Preparar el sitio para GitHub Pages
+
+Antes de subir tu blog a GitHub, necesitamos dos ajustes para que GitHub Pages sepa qué archivos publicar.
+
+Primero, en `_quarto.yml`, agregamos `output-dir: docs` bajo `project`, para que el sitio se construya en una carpeta llamada `docs`:
+
+```yaml
+project:
+  type: website
+  output-dir: docs
+```
+
+Segundo, creamos un archivo vacío llamado `.nojekyll` en la raíz del proyecto. Esto le indica a GitHub Pages que no debe procesar tu sitio con Jekyll (su generador de sitios por defecto), porque tú ya lo generaste con Quarto:
+
+{{< imagen "img/nojekyll.png" >}}
+
+Finalmente, ejecutamos `quarto render` para reconstruir el sitio completo con esta nueva configuración.
+
+## Subir el proyecto a GitHub
+
+Con el sitio preparado, ahora creamos el repositorio local y lo subimos a GitHub:
+
+```r
+usethis::use_git()
+```
+
+Este comando inicializa el repositorio de Git en tu proyecto, y te preguntará si quieres hacer *commit* de tus archivos (guardar la primera versión).
+
+```r
+usethis::use_github()
+```
+
+Este segundo comando crea un repositorio remoto en tu cuenta de GitHub, con el mismo nombre que tu proyecto, y sube tus archivos. Al finalizar, se abrirá una ventana del navegador mostrando tu repositorio ya en GitHub.
+
+## Publicar el blog en GitHub Pages
+
+Ya con el repositorio en GitHub, vamos a la pestaña **Settings** del repositorio:
+
+{{< imagen "img/quarto_5.png" >}}
+
+En el menú de la izquierda, entramos a **Pages**. Ahí, en *Build and deployment*, seleccionamos la rama (*branch*) `main`, y la carpeta `/docs`, y presionamos **Save**:
+
+{{< imagen "img/quarto_6.png" >}}
+
+Después de esperar uno o dos minutos, GitHub te mostrará la dirección donde tu sitio ya está publicado:
+
+{{< imagen "img/quarto_7.png" >}}
+
+¡Y eso es todo! Tu blog ya está disponible en internet, en una dirección como `https://tu_usuario.github.io/nombre-del-repositorio`.
+
+{{< info "Si renombras tu repositorio a `tu_usuario.github.io`, tu sitio quedará disponible directamente en `https://tu_usuario.github.io`, sin el nombre del repositorio al final." >}}
+
+## Actualizar tu blog en el futuro
+
+Una vez publicado, actualizar tu blog (agregar publicaciones, corregir textos, cambiar el diseño) sigue siempre el mismo flujo:
+
+1. Haces los cambios que quieras (nueva publicación, edición, etc.).
+2. Ejecutas `quarto render` para reconstruir el sitio completo.
+3. Subes los cambios a GitHub desde la pestaña *Terminal*:
+
+```bash
+git add .
+git commit -m "agrego nueva publicación"
+git push
+```
+
+Con `git add .` marcamos todos los archivos modificados para guardar, con `git commit` creamos una nueva versión con un mensaje descriptivo, y con `git push` subimos los cambios a GitHub. En un par de minutos, tu sitio se actualizará solo con los cambios.
+
+Si prefieres no usar la terminal, RStudio también tiene un panel *Git* (junto a *Environment* e *History*) desde el cual puedes hacer exactamente lo mismo con clics en vez de comandos.
+
+## Preguntas frecuentes
+
+**¿Esto realmente no tiene ningún costo?**
+No. Quarto, RStudio, Git y GitHub Pages son gratuitos, y seguirán siéndolo mientras tu repositorio sea público. No vas a pagar nada por tener tu blog funcionando.
+
+**¿Alguien puede copiarse o "robarse" mi blog si el código es público?**
+El código de tu sitio queda público, igual que cualquier otro sitio en internet: cualquiera puede ver el código fuente de cualquier página web con solo inspeccionarla. Por eso, evita subir información que no quieras que sea pública (contraseñas, datos sensibles, etc.). Si necesitas que tu repositorio sea privado, GitHub Pages gratuito no funciona sobre repositorios privados; existen alternativas, pero suelen ser de pago o más complejas de configurar.
+
+**¿Puedo hacer un menú lateral, como el de un libro?**
+Sí. Quarto permite agregar una barra lateral (*sidebar*) de navegación a tu sitio, configurándola en `_quarto.yml`:
+
+```yaml
+website:
+  sidebar:
+    style: docked
+    contents:
+      - index.qmd
+      - about.qmd
+```
+
+<!--- @bastián: verifica esta sintaxis de sidebar contra la documentación oficial (https://quarto.org/docs/websites/website-navigation.html#side-navigation) antes de publicar, ya que no la vi usada explícitamente en el taller ni en las diapositivas, solo mencionada de pasada como respuesta a una pregunta --->
+
+Si lo que necesitas es estructurar contenido mucho más largo, como un libro completo con capítulos, es mejor usar [Quarto Books](https://quarto.org/docs/books/) en vez de un blog.
+
+**¿Cómo cambio el tamaño de la letra de mis publicaciones?**
+Markdown no controla el tamaño de letra directamente (poner un título no es lo mismo que agrandar el texto). Esos ajustes de apariencia se hacen aparte, con `css` o `scss`, como se explica en la sección de [personalización avanzada](#personalización-avanzada-con-scss) de este tutorial.
+
+## Recursos
+
+- [Tutorial: crea un repositorio Git y comparte tu código en GitHub](/blog/r_introduccion/tutorial_github/)
+- [Tutorial de reportes y documentos con Quarto](/blog/quarto_reportes/)
+- [Tutorial anterior: crea páginas web y blogs con R + Quarto](/blog/tutorial_quarto_github_pages/)
+- [Documentación oficial: Quarto websites](https://quarto.org/docs/websites/)
+- [Documentación oficial: blogs con Quarto](https://quarto.org/docs/websites/website-blog.html)
+- [Documentación oficial: publicar en GitHub Pages](https://quarto.org/docs/publishing/github-pages.html)
+- [Happy Git and GitHub for the useR](https://happygitwithr.com)
+- [Temas de Quarto (Bootswatch)](https://quarto.org/docs/output-formats/html-themes.html#overview)
+
+<!--- @bastián: este tutorial nació del taller que dictaste el 29 de julio para el grupo de usuarios de R de Santiago de Chile. Si quieres, puedo agregar al final un párrafo de agradecimiento/crédito al grupo (como hiciste en el tutorial anterior con el grupo de Madrid), pero necesito el enlace correcto al grupo/evento y confirmar si quieres enlazar la grabación del taller, si es que quedó disponible --->
+
+{{< cafecito >}}
