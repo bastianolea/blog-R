@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.164.0">
 <title>Crear y conectarse a una base de datos en R | Bastián Olea</title>
 
 
@@ -44,26 +44,26 @@
     
     
   
-  <meta itemprop="name" content="Crear y conectarse a una base de datos en R">
-  <meta itemprop="description" content="Índice Qué es una base de datos Cuándo usar una base de datos Crear una base de datos en Supabase Conectarse a la base de datos Credenciales de acceso Variables de entorno Conexión a la base de datos Crear una tabla en la base de datos Leer una tabla desde la base de datos Procesar desde la base de datos con {dplyr} Avanzado Conexión por IPv4 Recursos Qué es una base de datos Cuando se habla de datos, mucha gente (me incluyo) usa coloquialmente el término base de datos para referirse a datos que están en Excel o csv 😣 Pero la realidad es que una base de datos es algo distinto: un sistema de almacenamiento y procesamiento de datos que puede contener múltiples tablas, que está hosteado en un computador, servidor o en la nube, y que entrega datos de acuerdo a las solicitudes que se le hagan. En este sentido una base de datos es distinto a leer un archivo, porque la base de datos siempre tiene cargados los datos, y está esperando que se los pidan para entregarlos de manera optimizada.">
-  <meta itemprop="datePublished" content="2025-11-06T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2025-11-06T00:00:00+00:00">
-  <meta itemprop="wordCount" content="2222">
-  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/db_supabase/featured.png">
-  <meta itemprop="keywords" content="Datos,Optimización,Dplyr">
+	<meta itemprop="name" content="Crear y conectarse a una base de datos en R">
+	<meta itemprop="description" content="Índice Qué es una base de datos Cuándo usar una base de datos Crear una base de datos en Supabase Conectarse a la base de datos Credenciales de acceso Variables de entorno Conexión a la base de datos Crear una tabla en la base de datos Leer una tabla desde la base de datos Procesar desde la base de datos con {dplyr} Avanzado Conexión por IPv4 Recursos Qué es una base de datos Cuando se habla de datos, mucha gente (me incluyo) usa coloquialmente el término base de datos para referirse a datos que están en Excel o csv 😣 Pero la realidad es que una base de datos es algo distinto: un sistema de almacenamiento y procesamiento de datos que puede contener múltiples tablas, que está hosteado en un computador, servidor o en la nube, y que entrega datos de acuerdo a las solicitudes que se le hagan. En este sentido una base de datos es distinto a leer un archivo, porque la base de datos siempre tiene cargados los datos, y está esperando que se los pidan para entregarlos de manera optimizada.">
+	<meta itemprop="datePublished" content="2025-11-06T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2025-11-06T00:00:00+00:00">
+	<meta itemprop="wordCount" content="2222">
+	<meta itemprop="image" content="https://bastianolea.rbind.io/blog/db_supabase/featured.png">
+	<meta itemprop="keywords" content="Datos,Optimización,Dplyr">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.0ef7ee7b0dad458df5b6f993cac9c1b9618320151adbdeef203c9e1dae1c0564.css" integrity="sha256-Dvfuew2tRY31tvmTysnBuWGDIBUa297vIDyeHa4cBWQ=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.4d259699ed6e45788295c8efac266a71ad7a3b6cd7cd8ac8c1bb0027ccbbc35d.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
@@ -104,11 +104,6 @@
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
-      
-        
-        
-        
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
       
         
         
@@ -908,21 +903,6 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
@@ -938,7 +918,37 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -983,7 +993,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
   </span>
  
   
@@ -998,7 +1008,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -1073,7 +1083,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -1088,7 +1098,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -1133,21 +1143,6 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
   </span>
  
@@ -1163,7 +1158,7 @@ FROM (
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/optimizaci%C3%B3n/">Optimización</a></span>
+      href="https://bastianolea.rbind.io/tags/ciencias-sociales/">Ciencias sociales</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

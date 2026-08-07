@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.164.0">
 <title>Unir o cruzar datos con left_join() | Bastián Olea</title>
 
 
@@ -44,27 +44,27 @@
     
     
   
-  <meta itemprop="name" content="Unir o cruzar datos con left_join()">
-  <meta itemprop="description" content="El left join es una de las operaciones básicas del trabajo con datos, en el sentido de que realiza una operación sencilla que a la vez es muy útil. Sirve tanto para limpiar datos como para procesarlos y obtener nuevas relaciones entre ellos.
+	<meta itemprop="name" content="Unir o cruzar datos con left_join()">
+	<meta itemprop="description" content="El left join es una de las operaciones básicas del trabajo con datos, en el sentido de que realiza una operación sencilla que a la vez es muy útil. Sirve tanto para limpiar datos como para procesarlos y obtener nuevas relaciones entre ellos.
 Un left join realiza una unión o combinación entre dos tablas de datos a partir de una variable en común o clave (key). En otras palabras, un left join toma dos tablas que tienen datos distintos, pero que comparten una variable o columna en común, y usa esta variable en común para unir las observaciones de ambas tablas.">
-  <meta itemprop="datePublished" content="2025-08-16T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2025-08-16T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1535">
-  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/left_join/featured.png">
-  <meta itemprop="keywords" content="Procesamiento de datos,Limpieza de datos,Básico">
+	<meta itemprop="datePublished" content="2025-08-16T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2025-08-16T00:00:00+00:00">
+	<meta itemprop="wordCount" content="1535">
+	<meta itemprop="image" content="https://bastianolea.rbind.io/blog/left_join/featured.png">
+	<meta itemprop="keywords" content="Procesamiento de datos,Limpieza de datos,Básico">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.0ef7ee7b0dad458df5b6f993cac9c1b9618320151adbdeef203c9e1dae1c0564.css" integrity="sha256-Dvfuew2tRY31tvmTysnBuWGDIBUa297vIDyeHa4cBWQ=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.4d259699ed6e45788295c8efac266a71ad7a3b6cd7cd8ac8c1bb0027ccbbc35d.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
@@ -105,11 +105,6 @@ Un left join realiza una unión o combinación entre dos tablas de datos a parti
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
-      
-        
-        
-        
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
       
         
         
@@ -349,82 +344,82 @@ Un left join realiza una unión o combinación entre dos tablas de datos a parti
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">frutas_x</span> <span class="o">&lt;-</span> <span class="nf">tibble</span><span class="p">(</span><span class="n">fruta</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;pera&#34;</span><span class="p">,</span> <span class="s">&#34;manzana&#34;</span><span class="p">,</span> <span class="s">&#34;uva&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">                   <span class="n">color</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;verde&#34;</span><span class="p">,</span> <span class="s">&#34;roja&#34;</span><span class="p">,</span> <span class="s">&#34;morada&#34;</span><span class="p">))</span>
 </span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th style="text-align: center">fruta</th>
-          <th style="text-align: center">color</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center">pera</td>
-          <td style="text-align: center">verde</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">manzana</td>
-          <td style="text-align: center">roja</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">uva</td>
-          <td style="text-align: center">morada</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: center">fruta</th>
+					<th style="text-align: center">color</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: center">pera</td>
+					<td style="text-align: center">verde</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">manzana</td>
+					<td style="text-align: center">roja</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">uva</td>
+					<td style="text-align: center">morada</td>
+			</tr>
+	</tbody>
 </table>
 <p>En esa tabla tenemos tres observaciones que corresponden a animales, descritos en la primera columna, y una segunda columna con características de los mismos.</p>
 <p>Ahora creemos una segunda tabla, que además de tener la misma columna que describe las frutas, agrega una nueva variable sobre las frutitas 🍐🍎🍇</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">frutas_y</span> <span class="o">&lt;-</span> <span class="nf">tibble</span><span class="p">(</span><span class="n">fruta</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;pera&#34;</span><span class="p">,</span> <span class="s">&#34;manzana&#34;</span><span class="p">,</span> <span class="s">&#34;uva&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">                   <span class="n">sabor</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;deliciosa&#34;</span><span class="p">,</span> <span class="s">&#34;buena&#34;</span><span class="p">,</span> <span class="s">&#34;ricolina&#34;</span><span class="p">))</span>
 </span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th style="text-align: center">fruta</th>
-          <th style="text-align: center">sabor</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center">pera</td>
-          <td style="text-align: center">deliciosa</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">manzana</td>
-          <td style="text-align: center">buena</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">uva</td>
-          <td style="text-align: center">ricolina</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: center">fruta</th>
+					<th style="text-align: center">sabor</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: center">pera</td>
+					<td style="text-align: center">deliciosa</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">manzana</td>
+					<td style="text-align: center">buena</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">uva</td>
+					<td style="text-align: center">ricolina</td>
+			</tr>
+	</tbody>
 </table>
 <p>Dado que ambas tablas comparten la variable <code>fruta</code>, si hacemos un <em>left join</em> ambas tablas se cruzarán en base a esta variable, resultando en una tabla nueva:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">frutas_2</span> <span class="o">&lt;-</span> <span class="nf">left_join</span><span class="p">(</span><span class="n">frutas_x</span><span class="p">,</span> <span class="n">frutas_y</span><span class="p">)</span>
 </span></span></code></pre></div><pre><code>Joining with `by = join_by(fruta)`
 </code></pre>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: center">fruta</th>
-          <th style="text-align: center">color</th>
-          <th style="text-align: center">sabor</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center">pera</td>
-          <td style="text-align: center">verde</td>
-          <td style="text-align: center">deliciosa</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">manzana</td>
-          <td style="text-align: center">roja</td>
-          <td style="text-align: center">buena</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">uva</td>
-          <td style="text-align: center">morada</td>
-          <td style="text-align: center">ricolina</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: center">fruta</th>
+					<th style="text-align: center">color</th>
+					<th style="text-align: center">sabor</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: center">pera</td>
+					<td style="text-align: center">verde</td>
+					<td style="text-align: center">deliciosa</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">manzana</td>
+					<td style="text-align: center">roja</td>
+					<td style="text-align: center">buena</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">uva</td>
+					<td style="text-align: center">morada</td>
+					<td style="text-align: center">ricolina</td>
+			</tr>
+	</tbody>
 </table>
 <p>El resultado de la unión es una nueva tabla que tiene las tres variables únicas obtenidas del cruce de las dos tablas distintas. En este caso, el <em>left join</em> nos permite agregar información sobre una misma unidad de observación proveniente de distintas fuentes.</p>
 
@@ -442,65 +437,65 @@ Un left join realiza una unión o combinación entre dos tablas de datos a parti
 </span></span><span class="line"><span class="cl">                     <span class="n">color</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;gris&#34;</span><span class="p">,</span> <span class="s">&#34;negro&#34;</span><span class="p">,</span> <span class="s">&#34;blanco&#34;</span><span class="p">,</span> <span class="s">&#34;azul&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">                     <span class="n">tamaño</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">34</span><span class="p">,</span> <span class="m">16</span><span class="p">,</span> <span class="m">50</span><span class="p">,</span> <span class="m">3</span><span class="p">))</span>
 </span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th style="text-align: center">animal</th>
-          <th style="text-align: center">color</th>
-          <th style="text-align: center">tamaño</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center">gato</td>
-          <td style="text-align: center">gris</td>
-          <td style="text-align: center">34</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">ratón</td>
-          <td style="text-align: center">negro</td>
-          <td style="text-align: center">16</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">perro</td>
-          <td style="text-align: center">blanco</td>
-          <td style="text-align: center">50</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">pez</td>
-          <td style="text-align: center">azul</td>
-          <td style="text-align: center">3</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: center">animal</th>
+					<th style="text-align: center">color</th>
+					<th style="text-align: center">tamaño</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: center">gato</td>
+					<td style="text-align: center">gris</td>
+					<td style="text-align: center">34</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">ratón</td>
+					<td style="text-align: center">negro</td>
+					<td style="text-align: center">16</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">perro</td>
+					<td style="text-align: center">blanco</td>
+					<td style="text-align: center">50</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">pez</td>
+					<td style="text-align: center">azul</td>
+					<td style="text-align: center">3</td>
+			</tr>
+	</tbody>
 </table>
 <p>La primera tabla contiene los nombres de animales (identificador único), sus colores y sus medidas. La segunda tabla también contiene nombres, pero agrega su cantidad de patas<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> y sus edades.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">animales_y</span> <span class="o">&lt;-</span> <span class="nf">tibble</span><span class="p">(</span><span class="n">animal</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;perro&#34;</span><span class="p">,</span> <span class="s">&#34;gato&#34;</span><span class="p">,</span> <span class="s">&#34;pez&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">                     <span class="n">patas</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">                     <span class="n">edad</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">8</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
 </span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th style="text-align: center">animal</th>
-          <th style="text-align: center">patas</th>
-          <th style="text-align: center">edad</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center">perro</td>
-          <td style="text-align: center">4</td>
-          <td style="text-align: center">8</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">gato</td>
-          <td style="text-align: center">3</td>
-          <td style="text-align: center">3</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">pez</td>
-          <td style="text-align: center">0</td>
-          <td style="text-align: center">1</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: center">animal</th>
+					<th style="text-align: center">patas</th>
+					<th style="text-align: center">edad</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: center">perro</td>
+					<td style="text-align: center">4</td>
+					<td style="text-align: center">8</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">gato</td>
+					<td style="text-align: center">3</td>
+					<td style="text-align: center">3</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">pez</td>
+					<td style="text-align: center">0</td>
+					<td style="text-align: center">1</td>
+			</tr>
+	</tbody>
 </table>
 <p>Las dos tablas tienen distinta cantidad de observaciones, y además las observaciones clave (columna <code>animal</code>) que se usarán como llave de unión están desordenadas.</p>
 <p>Cuando los data frames tienen distinta cantidad de filas, el <em>orden</em> en que hacemos la unión es importante: en un <em><strong>left</strong> join</em> la primera tabla (o izquierda) es la tabla principal, a la cual se le agregan las columnas de una segunda tabla, en base a las coincidencias de la columna clave. Por lo tanto, si unimos o cruzamos las tablas poniendo primero la tabla más grande y después la más pequeña, obtendremos casos perdidos por las filas de la primera tabla que no obtuvieron coincidencias en la segunda.</p>
@@ -508,45 +503,45 @@ Un left join realiza una unión o combinación entre dos tablas de datos a parti
 </span></span></code></pre></div><pre><code>Joining with `by = join_by(animal)`
 </code></pre>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: center">animal</th>
-          <th style="text-align: center">color</th>
-          <th style="text-align: center">tamaño</th>
-          <th style="text-align: center">patas</th>
-          <th style="text-align: center">edad</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center">gato</td>
-          <td style="text-align: center">gris</td>
-          <td style="text-align: center">34</td>
-          <td style="text-align: center">3</td>
-          <td style="text-align: center">3</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">ratón</td>
-          <td style="text-align: center">negro</td>
-          <td style="text-align: center">16</td>
-          <td style="text-align: center">NA</td>
-          <td style="text-align: center">NA</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">perro</td>
-          <td style="text-align: center">blanco</td>
-          <td style="text-align: center">50</td>
-          <td style="text-align: center">4</td>
-          <td style="text-align: center">8</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">pez</td>
-          <td style="text-align: center">azul</td>
-          <td style="text-align: center">3</td>
-          <td style="text-align: center">0</td>
-          <td style="text-align: center">1</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: center">animal</th>
+					<th style="text-align: center">color</th>
+					<th style="text-align: center">tamaño</th>
+					<th style="text-align: center">patas</th>
+					<th style="text-align: center">edad</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: center">gato</td>
+					<td style="text-align: center">gris</td>
+					<td style="text-align: center">34</td>
+					<td style="text-align: center">3</td>
+					<td style="text-align: center">3</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">ratón</td>
+					<td style="text-align: center">negro</td>
+					<td style="text-align: center">16</td>
+					<td style="text-align: center">NA</td>
+					<td style="text-align: center">NA</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">perro</td>
+					<td style="text-align: center">blanco</td>
+					<td style="text-align: center">50</td>
+					<td style="text-align: center">4</td>
+					<td style="text-align: center">8</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">pez</td>
+					<td style="text-align: center">azul</td>
+					<td style="text-align: center">3</td>
+					<td style="text-align: center">0</td>
+					<td style="text-align: center">1</td>
+			</tr>
+	</tbody>
 </table>
 <p>Como podemos ver, obtenemos celdas con <code>NA</code> en la observación <em>ratón</em>, debido a que en la segunda tabla (<code>animales_y</code>) no habían datos sobre este animalito. Una pena 😔</p>
 <p>También sería una opción hacer el cruce al revés, poniendo primero la tabla <code>animales_y</code> (3 filas) y después <code>animales_x</code> (4 filas), con el objetivo de que las observaciones de la tabla <code>animales_x</code> complementen las observaciones de <code>animales_y</code> donde hayan coincidencias, y descartando los casos que no tienen en común:</p>
@@ -554,38 +549,38 @@ Un left join realiza una unión o combinación entre dos tablas de datos a parti
 </span></span></code></pre></div><pre><code>Joining with `by = join_by(animal)`
 </code></pre>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: center">animal</th>
-          <th style="text-align: center">patas</th>
-          <th style="text-align: center">edad</th>
-          <th style="text-align: center">color</th>
-          <th style="text-align: center">tamaño</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center">perro</td>
-          <td style="text-align: center">4</td>
-          <td style="text-align: center">8</td>
-          <td style="text-align: center">blanco</td>
-          <td style="text-align: center">50</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">gato</td>
-          <td style="text-align: center">3</td>
-          <td style="text-align: center">3</td>
-          <td style="text-align: center">gris</td>
-          <td style="text-align: center">34</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">pez</td>
-          <td style="text-align: center">0</td>
-          <td style="text-align: center">1</td>
-          <td style="text-align: center">azul</td>
-          <td style="text-align: center">3</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: center">animal</th>
+					<th style="text-align: center">patas</th>
+					<th style="text-align: center">edad</th>
+					<th style="text-align: center">color</th>
+					<th style="text-align: center">tamaño</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: center">perro</td>
+					<td style="text-align: center">4</td>
+					<td style="text-align: center">8</td>
+					<td style="text-align: center">blanco</td>
+					<td style="text-align: center">50</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">gato</td>
+					<td style="text-align: center">3</td>
+					<td style="text-align: center">3</td>
+					<td style="text-align: center">gris</td>
+					<td style="text-align: center">34</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">pez</td>
+					<td style="text-align: center">0</td>
+					<td style="text-align: center">1</td>
+					<td style="text-align: center">azul</td>
+					<td style="text-align: center">3</td>
+			</tr>
+	</tbody>
 </table>
 <p>Ahora no tenemos datos perdidos, porque si bien <code>animales_x</code> tenía más observaciones que <code>animales_y</code>, <code>animales_y</code> contenía todas las observaciones de <code>animales_x</code> identificadas por la variable <code>animal</code>, lo que podemos confirmar 
 <a href="../../../blog/diferencias">comparando las diferencias entre ambas columnas con la función <code>waldo::compare()</code></a>:</p>
@@ -620,30 +615,30 @@ Un left join realiza una unión o combinación entre dos tablas de datos a parti
 </span></span><span class="line"><span class="cl">                       <span class="n">nombre</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;maría&#34;</span><span class="p">,</span> <span class="s">&#34;pepito&#34;</span><span class="p">,</span> <span class="s">&#34;juanito&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">                       <span class="n">ministerio</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;defensa&#34;</span><span class="p">,</span> <span class="s">&#34;economía&#34;</span><span class="p">,</span> <span class="s">&#34;hacienda&#34;</span><span class="p">))</span>
 </span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th style="text-align: center">run</th>
-          <th style="text-align: center">nombre</th>
-          <th style="text-align: center">ministerio</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center">10000001</td>
-          <td style="text-align: center">maría</td>
-          <td style="text-align: center">defensa</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">10000002</td>
-          <td style="text-align: center">pepito</td>
-          <td style="text-align: center">economía</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">10000003</td>
-          <td style="text-align: center">juanito</td>
-          <td style="text-align: center">hacienda</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: center">run</th>
+					<th style="text-align: center">nombre</th>
+					<th style="text-align: center">ministerio</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: center">10000001</td>
+					<td style="text-align: center">maría</td>
+					<td style="text-align: center">defensa</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">10000002</td>
+					<td style="text-align: center">pepito</td>
+					<td style="text-align: center">economía</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">10000003</td>
+					<td style="text-align: center">juanito</td>
+					<td style="text-align: center">hacienda</td>
+			</tr>
+	</tbody>
 </table>
 <p>Tenemos identificados tres funcionarios públicos de distintos servicios.</p>
 <p>Luego tenemos una base de datos con licencias médicas de trabajadores que pueden o no ser funcionarios públicos. Con la base de los RUN de funcionarios públicos podemos identificar si las licencias corresponden a funcionarios públicos y no a trabajadores del sector privado.</p>
@@ -652,40 +647,40 @@ Un left join realiza una unión o combinación entre dos tablas de datos a parti
 </span></span><span class="line"><span class="cl">                    <span class="n">licencia_inicio</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span> <span class="s">&#34;2024-04-10&#34;</span><span class="p">,</span> <span class="s">&#34;2024-02-04&#34;</span><span class="p">,</span> <span class="s">&#34;2010-09-18&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">                    <span class="n">licencia_fin</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span> <span class="s">&#34;2024-04-13&#34;</span><span class="p">,</span> <span class="s">&#34;2024-02-18&#34;</span><span class="p">,</span> <span class="s">&#34;2030-12-31&#34;</span><span class="p">))</span>
 </span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th style="text-align: center">run</th>
-          <th style="text-align: center">licencia</th>
-          <th style="text-align: center">licencia_inicio</th>
-          <th style="text-align: center">licencia_fin</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center">10000001</td>
-          <td style="text-align: center">FALSE</td>
-          <td style="text-align: center">NA</td>
-          <td style="text-align: center">NA</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">10000002</td>
-          <td style="text-align: center">FALSE</td>
-          <td style="text-align: center">2024-04-10</td>
-          <td style="text-align: center">2024-04-13</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">10000003</td>
-          <td style="text-align: center">TRUE</td>
-          <td style="text-align: center">2024-02-04</td>
-          <td style="text-align: center">2024-02-18</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">10000004</td>
-          <td style="text-align: center">TRUE</td>
-          <td style="text-align: center">2010-09-18</td>
-          <td style="text-align: center">2030-12-31</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: center">run</th>
+					<th style="text-align: center">licencia</th>
+					<th style="text-align: center">licencia_inicio</th>
+					<th style="text-align: center">licencia_fin</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: center">10000001</td>
+					<td style="text-align: center">FALSE</td>
+					<td style="text-align: center">NA</td>
+					<td style="text-align: center">NA</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">10000002</td>
+					<td style="text-align: center">FALSE</td>
+					<td style="text-align: center">2024-04-10</td>
+					<td style="text-align: center">2024-04-13</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">10000003</td>
+					<td style="text-align: center">TRUE</td>
+					<td style="text-align: center">2024-02-04</td>
+					<td style="text-align: center">2024-02-18</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">10000004</td>
+					<td style="text-align: center">TRUE</td>
+					<td style="text-align: center">2010-09-18</td>
+					<td style="text-align: center">2030-12-31</td>
+			</tr>
+	</tbody>
 </table>
 <p>Lo importante de esta tabla es que tenemos una fecha de inicio y una fecha de fin de la licencia médica.</p>
 <p>Finalmente tenemos la información de salidas del país de distintas personas, que pueden o no ser funcionarios públicos, y que pueden o no haber estado con licencia médica 🤔</p>
@@ -694,40 +689,40 @@ Un left join realiza una unión o combinación entre dos tablas de datos a parti
 </span></span><span class="line"><span class="cl">                 <span class="n">viaje_fecha</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;2021-01-06&#34;</span><span class="p">,</span> <span class="s">&#34;2021-02-15&#34;</span><span class="p">,</span> <span class="s">&#34;2023-06-23&#34;</span><span class="p">,</span> <span class="s">&#34;2024-02-09&#34;</span><span class="p">,</span> <span class="s">&#34;2025-08-17&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th style="text-align: center">run</th>
-          <th style="text-align: center">viaje_destino</th>
-          <th style="text-align: center">viaje_fecha</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center">10000005</td>
-          <td style="text-align: center">Bolivia</td>
-          <td style="text-align: center">2021-01-06</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">10000001</td>
-          <td style="text-align: center">Perú</td>
-          <td style="text-align: center">2021-02-15</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">10000002</td>
-          <td style="text-align: center">Argentina</td>
-          <td style="text-align: center">2023-06-23</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">10000003</td>
-          <td style="text-align: center">Italia</td>
-          <td style="text-align: center">2024-02-09</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">10000008</td>
-          <td style="text-align: center">España</td>
-          <td style="text-align: center">2025-08-17</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: center">run</th>
+					<th style="text-align: center">viaje_destino</th>
+					<th style="text-align: center">viaje_fecha</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: center">10000005</td>
+					<td style="text-align: center">Bolivia</td>
+					<td style="text-align: center">2021-01-06</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">10000001</td>
+					<td style="text-align: center">Perú</td>
+					<td style="text-align: center">2021-02-15</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">10000002</td>
+					<td style="text-align: center">Argentina</td>
+					<td style="text-align: center">2023-06-23</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">10000003</td>
+					<td style="text-align: center">Italia</td>
+					<td style="text-align: center">2024-02-09</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">10000008</td>
+					<td style="text-align: center">España</td>
+					<td style="text-align: center">2025-08-17</td>
+			</tr>
+	</tbody>
 </table>
 <p>Ahora que tenemos datos simulados, usaremos <code>{dplyr}</code> para trabajar con los datos y encontrar respuestas.</p>
 
@@ -767,42 +762,42 @@ Un left join realiza una unión o combinación entre dos tablas de datos a parti
 </span></span><span class="line"><span class="cl">  <span class="p">)</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="n">viaje_destino</span><span class="p">)</span>
 </span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th style="text-align: center">run</th>
-          <th style="text-align: center">licencia</th>
-          <th style="text-align: center">licencia_inicio</th>
-          <th style="text-align: center">licencia_fin</th>
-          <th style="text-align: center">viaje_fecha</th>
-          <th style="text-align: center">irregular</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center">10000001</td>
-          <td style="text-align: center">FALSE</td>
-          <td style="text-align: center">NA</td>
-          <td style="text-align: center">NA</td>
-          <td style="text-align: center">2021-02-15</td>
-          <td style="text-align: center">FALSE</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">10000002</td>
-          <td style="text-align: center">FALSE</td>
-          <td style="text-align: center">2024-04-10</td>
-          <td style="text-align: center">2024-04-13</td>
-          <td style="text-align: center">2023-06-23</td>
-          <td style="text-align: center">FALSE</td>
-      </tr>
-      <tr>
-          <td style="text-align: center">10000003</td>
-          <td style="text-align: center">TRUE</td>
-          <td style="text-align: center">2024-02-04</td>
-          <td style="text-align: center">2024-02-18</td>
-          <td style="text-align: center">2024-02-09</td>
-          <td style="text-align: center">TRUE</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: center">run</th>
+					<th style="text-align: center">licencia</th>
+					<th style="text-align: center">licencia_inicio</th>
+					<th style="text-align: center">licencia_fin</th>
+					<th style="text-align: center">viaje_fecha</th>
+					<th style="text-align: center">irregular</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: center">10000001</td>
+					<td style="text-align: center">FALSE</td>
+					<td style="text-align: center">NA</td>
+					<td style="text-align: center">NA</td>
+					<td style="text-align: center">2021-02-15</td>
+					<td style="text-align: center">FALSE</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">10000002</td>
+					<td style="text-align: center">FALSE</td>
+					<td style="text-align: center">2024-04-10</td>
+					<td style="text-align: center">2024-04-13</td>
+					<td style="text-align: center">2023-06-23</td>
+					<td style="text-align: center">FALSE</td>
+			</tr>
+			<tr>
+					<td style="text-align: center">10000003</td>
+					<td style="text-align: center">TRUE</td>
+					<td style="text-align: center">2024-02-04</td>
+					<td style="text-align: center">2024-02-18</td>
+					<td style="text-align: center">2024-02-09</td>
+					<td style="text-align: center">TRUE</td>
+			</tr>
+	</tbody>
 </table>
 <p>⚠️ Detectamos un caso de funcionario público que viajó fuera del país durante su licencia médica! La última columna marca <code>TRUE</code> si se trata de un caso irregular.</p>
 
@@ -975,7 +970,7 @@ Un left join realiza una unión o combinación entre dos tablas de datos a parti
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -990,7 +985,7 @@ Un left join realiza una unión o combinación entre dos tablas de datos a parti
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -1020,21 +1015,6 @@ Un left join realiza una unión o combinación entre dos tablas de datos a parti
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
@@ -1050,7 +1030,37 @@ Un left join realiza una unión o combinación entre dos tablas de datos a parti
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/apps/">Aplicaciones</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -1140,37 +1150,7 @@ Un left join realiza una unión o combinación entre dos tablas de datos a parti
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -1215,6 +1195,21 @@ Un left join realiza una unión o combinación entre dos tablas de datos a parti
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
   </span>
  
@@ -1230,7 +1225,7 @@ Un left join realiza una unión o combinación entre dos tablas de datos a parti
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/optimizaci%C3%B3n/">Optimización</a></span>
+      href="https://bastianolea.rbind.io/tags/loops/">Loops</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

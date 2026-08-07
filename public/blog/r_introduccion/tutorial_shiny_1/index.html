@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.164.0">
 <title>Tutorial: introducción al desarrollo de apps con Shiny | Bastián Olea</title>
 
 
@@ -44,25 +44,25 @@
     
     
   
-  <meta itemprop="name" content="Tutorial: introducción al desarrollo de apps con Shiny">
-  <meta itemprop="description" content="Existe una versión mucho más completa de este tutorial! Revísala aquí. Shiny es un paquete de R que permite crear aplicaciones web interactivas usando sólo código de R. Es muy fácil de aprender, puedes crear cosas interesantes en muy poco tiempo, y tiene la capacidad de crear complejas y atractivas aplicaciones.">
-  <meta itemprop="datePublished" content="2024-11-08T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2024-11-08T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1966">
-  <meta itemprop="keywords" content="Shiny">
+	<meta itemprop="name" content="Tutorial: introducción al desarrollo de apps con Shiny">
+	<meta itemprop="description" content="Existe una versión mucho más completa de este tutorial! Revísala aquí. Shiny es un paquete de R que permite crear aplicaciones web interactivas usando sólo código de R. Es muy fácil de aprender, puedes crear cosas interesantes en muy poco tiempo, y tiene la capacidad de crear complejas y atractivas aplicaciones.">
+	<meta itemprop="datePublished" content="2024-11-08T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2024-11-08T00:00:00+00:00">
+	<meta itemprop="wordCount" content="1967">
+	<meta itemprop="keywords" content="Shiny">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.0ef7ee7b0dad458df5b6f993cac9c1b9618320151adbdeef203c9e1dae1c0564.css" integrity="sha256-Dvfuew2tRY31tvmTysnBuWGDIBUa297vIDyeHa4cBWQ=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.4d259699ed6e45788295c8efac266a71ad7a3b6cd7cd8ac8c1bb0027ccbbc35d.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
@@ -103,11 +103,6 @@
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
-      
-        
-        
-        
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
       
         
         
@@ -794,7 +789,7 @@ library(bslib)
                 overflow: hidden;
                 background-color: #9069C00d;">
 
-      <a href="/blog/shinychat/"
+      <a href="/blog/2026-07-29/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -803,6 +798,37 @@ library(bslib)
                   padding: 8px 14px;
                   gap: 12px;
                   
+                  ">
+
+          
+          <img src="/blog/2026-07-29/mapgl-shiny-featured.jpg"
+               alt="Probando visores de mapas interactivos en R con `{mapgl}`"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Probando visores de mapas interactivos en R con <code>{mapgl}</code>
+          </span>
+
+        </a>
+      <a href="/blog/shinychat/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
                   ">
 
           
@@ -912,37 +938,6 @@ library(bslib)
                        font-weight: 600;
                        line-height: 1.35;">
             Medir el ancho de una aplicación Shiny como una variable reactiva y usarla para adaptar los contenidos de la app
-          </span>
-
-        </a>
-      <a href="/blog/indice_brechas_genero/"
-           style="display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  text-decoration: none;
-                  color: inherit;
-                  padding: 8px 14px;
-                  gap: 12px;
-                  border-top: 1px solid #9069C030;
-                  ">
-
-          
-          <img src="/blog/indice_brechas_genero/featured.jpg"
-               alt="Plataforma de análisis: Índice de Brechas de Género"
-               style="flex-shrink: 0;
-                      width: 52px;
-                      height: 38px;
-                      object-fit: cover;
-                      object-position: center top;
-                      border-radius: 4px;
-                      margin: 0;">
-          
-
-          <span style="font-size: 88%;
-                       color: #9069C0;
-                       font-weight: 600;
-                       line-height: 1.35;">
-            Plataforma de análisis: Índice de Brechas de Género
           </span>
 
         </a>

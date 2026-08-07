@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.164.0">
 <title>Crea encuestas online gratis en R con {surveydown} | Bastián Olea</title>
 
 
@@ -44,27 +44,27 @@
     
     
   
-  <meta itemprop="name" content="Crea encuestas online gratis en R con {surveydown}">
-  <meta itemprop="description" content="Con el paquete {surveydown} podemos crear encuestas desde R gratis, cuyas respuestas se almacenan en una base de datos también gratuita.
+	<meta itemprop="name" content="Crea encuestas online gratis en R con {surveydown}">
+	<meta itemprop="description" content="Con el paquete {surveydown} podemos crear encuestas desde R gratis, cuyas respuestas se almacenan en una base de datos también gratuita.
 La gracia de crear tu propia encuesta es que puedes personalizarla según tus necesidades, pero también es que no necesitas depender de un servicio para generar la encuesta, ni tampoco tener que pagar para poder crearla o publicarla. Por el contrario, podemos utilizar tecnologías gratuitas y de código abierto para crear nuestras encuestas, almacenar sus resultados y analizarlos.">
-  <meta itemprop="datePublished" content="2025-11-26T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2025-11-26T00:00:00+00:00">
-  <meta itemprop="wordCount" content="2245">
-  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/surveydown_encuestas/featured.png">
-  <meta itemprop="keywords" content="Quarto,Shiny,Ciencias sociales,Datos">
+	<meta itemprop="datePublished" content="2025-11-26T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2025-11-26T00:00:00+00:00">
+	<meta itemprop="wordCount" content="2245">
+	<meta itemprop="image" content="https://bastianolea.rbind.io/blog/surveydown_encuestas/featured.png">
+	<meta itemprop="keywords" content="Quarto,Shiny,Ciencias sociales,Datos">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.0ef7ee7b0dad458df5b6f993cac9c1b9618320151adbdeef203c9e1dae1c0564.css" integrity="sha256-Dvfuew2tRY31tvmTysnBuWGDIBUa297vIDyeHa4cBWQ=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.4d259699ed6e45788295c8efac266a71ad7a3b6cd7cd8ac8c1bb0027ccbbc35d.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
@@ -105,11 +105,6 @@ La gracia de crear tu propia encuesta es que puedes personalizarla según tus ne
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
-      
-        
-        
-        
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
       
         
         
@@ -502,18 +497,18 @@ Texto de _introducción_
     </svg></a>
 </h3>
 <p>Dentro de los cercos que delimitan cada página, cada pregunta de la encuesta va en el documento como un bloque de código R, que en su interior contiene la función <code>sd_question()</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">```{r}
-</span></span><span class="line"><span class="cl">sd_question(
-</span></span><span class="line"><span class="cl">  type  = &#39;mc&#39;,
-</span></span><span class="line"><span class="cl">  id    = &#39;pinguinos&#39;,
-</span></span><span class="line"><span class="cl">  label = &#34;¿Qué tipo de pingüino te gusta más?&#34;,
-</span></span><span class="line"><span class="cl">  option = c(
-</span></span><span class="line"><span class="cl">    &#39;Adélie&#39;    = &#39;adelie&#39;,
-</span></span><span class="line"><span class="cl">    &#39;Chinstrap&#39; = &#39;chinstrap&#39;,
-</span></span><span class="line"><span class="cl">    &#39;Gentoo&#39;    = &#39;gentoo&#39;
-</span></span><span class="line"><span class="cl">  )
-</span></span><span class="line"><span class="cl">)
-</span></span><span class="line"><span class="cl">```
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">``<span class="sb">`{r}
+</span></span></span><span class="line"><span class="cl"><span class="sb">sd_question(
+</span></span></span><span class="line"><span class="cl"><span class="sb">  type  = &#39;mc&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="sb">  id    = &#39;pinguinos&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="sb">  label = &#34;¿Qué tipo de pingüino te gusta más?&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sb">  option = c(
+</span></span></span><span class="line"><span class="cl"><span class="sb">    &#39;Adélie&#39;    = &#39;adelie&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="sb">    &#39;Chinstrap&#39; = &#39;chinstrap&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="sb">    &#39;Gentoo&#39;    = &#39;gentoo&#39;
+</span></span></span><span class="line"><span class="cl"><span class="sb">  )
+</span></span></span><span class="line"><span class="cl"><span class="sb">)
+</span></span></span><span class="line"><span class="cl"><span class="sb">`</span>``
 </span></span></code></pre></div><p>Con esta función se crean las preguntas de nuestra encuesta, y en sus argumentos tenemos todas las opciones para personalizarlas.</p>
 <p>En el sitio de <code>{surveydown}</code> puedes conocer 
 <a href="https://surveydown.org/docs/question-types" target="_blank" rel="noopener">todos los <strong>tipos de preguntas</strong></a>, para que veas cómo se ven y cómo se crean.</p>
@@ -529,8 +524,8 @@ Texto de _introducción_
 
 
 
-<h4 id="_preguntas-de-selección-múltiple_"><em>Preguntas de selección múltiple</em>
-  <a href="#_preguntas-de-selecci%c3%b3n-m%c3%baltiple_"></a>
+<h4 id="preguntas-de-selección-múltiple"><em>Preguntas de selección múltiple</em>
+  <a href="#preguntas-de-selecci%c3%b3n-m%c3%baltiple"></a>
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sd_question</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">  <span class="n">type</span>  <span class="o">=</span> <span class="s">&#39;mc_buttons&#39;</span><span class="p">,</span>
@@ -546,8 +541,8 @@ Texto de _introducción_
 
 
 
-<h4 id="_pregunta-de-ingreso-de-números_"><em>Pregunta de ingreso de números</em>
-  <a href="#_pregunta-de-ingreso-de-n%c3%bameros_"></a>
+<h4 id="pregunta-de-ingreso-de-números"><em>Pregunta de ingreso de números</em>
+  <a href="#pregunta-de-ingreso-de-n%c3%bameros"></a>
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sd_question</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">  <span class="n">type</span>  <span class="o">=</span> <span class="s">&#39;numeric&#39;</span><span class="p">,</span>
@@ -558,8 +553,8 @@ Texto de _introducción_
 
 
 
-<h4 id="_pregunta-de-ingreso-de-texto_"><em>Pregunta de ingreso de texto</em>
-  <a href="#_pregunta-de-ingreso-de-texto_"></a>
+<h4 id="pregunta-de-ingreso-de-texto"><em>Pregunta de ingreso de texto</em>
+  <a href="#pregunta-de-ingreso-de-texto"></a>
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sd_question</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">  <span class="n">type</span>  <span class="o">=</span> <span class="s">&#34;text&#34;</span><span class="p">,</span>
@@ -571,8 +566,8 @@ Texto de _introducción_
 
 
 
-<h4 id="_pregunta-de-selección-múltiple-con-selección-de-más-de-una-respuesta_"><em>Pregunta de selección múltiple con selección de más de una respuesta</em>
-  <a href="#_pregunta-de-selecci%c3%b3n-m%c3%baltiple-con-selecci%c3%b3n-de-m%c3%a1s-de-una-respuesta_"></a>
+<h4 id="pregunta-de-selección-múltiple-con-selección-de-más-de-una-respuesta"><em>Pregunta de selección múltiple con selección de más de una respuesta</em>
+  <a href="#pregunta-de-selecci%c3%b3n-m%c3%baltiple-con-selecci%c3%b3n-de-m%c3%a1s-de-una-respuesta"></a>
 </h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sd_question</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">  <span class="n">type</span>  <span class="o">=</span> <span class="s">&#39;mc_multiple_buttons&#39;</span><span class="p">,</span>
@@ -777,7 +772,7 @@ Texto de _introducción_
 <p>Siguiendo esta instrucciones, en unos minutos podrás tener una encuesta sencilla, personalizable, y totalmente gratis, que puedes publicar online y enviarla para empezar a recolectar datos. En el proceso, también habrás aprendido a crear y conectarte a una base de datos SQL, una herramienta crucial y que abre muchas posibilidades en el mundo del análisis de datos y el desarrollo de aplicaciones Shiny.</p>
 <p>Personalmente, creé una encuesta de evaluación anónima para las alumnas y alumnos de mis 
 <a href="/clases/">cursos de R</a>, y otra encuesta de bienvenida a nuevos alumnxs de mis cursos, donde rellenaron sus datos de caracterización, respondieron sobre sus conocimientos previos de R y sus expectativas del curso, y al final de la encuesta <strong>los resultados se visualizaban en tiempo real</strong>, actualizándose cada cinco segundos, y así todas y todos podíamos ver gráficos que describían a los participantes del curso a medida que respondían! 😍</p>
-<p><img alt="Página final de la encuesta" src="/blog/surveydown_encuestas/surveydown_4.jpg">
+<p><img src="/blog/surveydown_encuestas/surveydown_4.jpg" alt="Página final de la encuesta">
 <em>Gráficos al final de la encuesta, actualizados en tiempo real</em></p>
 <p>
 <a href="https://github.com/bastianolea/encuesta_animales" target="_blank" rel="noopener">En este repositorio</a> te dejo el código de una encuesta que también muestra gráficos en tiempo real con las respuestas al finalizar, y 
@@ -852,11 +847,11 @@ Texto de _introducción_
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
+    <dd class="fw5 ml0"><a href="/clases/taller_santiagorusers_sitios/">Taller: Crea tu propia página web con Quarto y R</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/taller_santiagorusers_sitios/">Taller: Crea tu propia página web con Quarto y R</a></dd>
+    
     <dd class="fw5 ml0"><a href="/blog/shinychat/">Crea un chatbot de inteligencia artificial con R</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/funcion_consultar_datos/">Creando una función para consultar datos en R</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/shiny/">Tutorial: Crea aplicaciones web interactivas en R con Shiny</a></dd>
     
   </dl>
 </details>
@@ -928,7 +923,7 @@ Texto de _introducción_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -943,7 +938,7 @@ Texto de _introducción_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -973,7 +968,7 @@ Texto de _introducción_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -988,7 +983,7 @@ Texto de _introducción_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -1033,6 +1028,21 @@ Texto de _introducción_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
   </span>
  
@@ -1063,21 +1073,6 @@ Texto de _introducción_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
@@ -1093,7 +1088,7 @@ Texto de _introducción_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
   </span>
  
   
@@ -1183,7 +1178,7 @@ Texto de _introducción_
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/ciencias-sociales/">Ciencias sociales</a></span>
+      href="https://bastianolea.rbind.io/tags/loops/">Loops</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

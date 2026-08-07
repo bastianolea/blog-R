@@ -15,7 +15,6 @@ categories:
 tags:
   - dplyr
   - básico
-lang: es
 excerpt: >-
   La función `mutate()` es una de las principales en R, ya que te permite crear
   variables nuevas o transformar variables existentes en un _data frame_. Este

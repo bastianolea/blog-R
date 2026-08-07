@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.164.0">
 <title>Tutorial: presenta los resultados de tus análisis de datos con R creando reportes y documentos Quarto | Bastián Olea</title>
 
 
@@ -44,26 +44,26 @@
     
     
   
-  <meta itemprop="name" content="Tutorial: presenta los resultados de tus análisis de datos con R creando reportes y documentos Quarto">
-  <meta itemprop="description" content="Índice Crear un reporte Quarto Markdown Otras posibilidades Configuración básica Títulos Índices o tablas de contenido Títulos con numeración Temas Documento autocontenido Disposición Columnas Pestañas Contenido al margen Código Código entre el texto Quarto es una herramienta de publicación de documentos que te permite generar reportes de manera muy sencilla, utilizando bloques de código de R. En estos reportes puedes incluir tablas, gráficos, y mucho más para poder compartir tus análisis y resultados con otras personas.">
-  <meta itemprop="datePublished" content="2025-04-14T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2025-04-14T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1732">
-  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/quarto_reportes/quarto_theme_cosmo-featured.png">
-  <meta itemprop="keywords" content="Quarto">
+	<meta itemprop="name" content="Tutorial: presenta los resultados de tus análisis de datos con R creando reportes y documentos Quarto">
+	<meta itemprop="description" content="Índice Crear un reporte Quarto Markdown Otras posibilidades Configuración básica Títulos Índices o tablas de contenido Títulos con numeración Temas Documento autocontenido Disposición Columnas Pestañas Contenido al margen Código Código entre el texto Quarto es una herramienta de publicación de documentos que te permite generar reportes de manera muy sencilla, utilizando bloques de código de R. En estos reportes puedes incluir tablas, gráficos, y mucho más para poder compartir tus análisis y resultados con otras personas.">
+	<meta itemprop="datePublished" content="2025-04-14T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2025-04-14T00:00:00+00:00">
+	<meta itemprop="wordCount" content="1732">
+	<meta itemprop="image" content="https://bastianolea.rbind.io/blog/quarto_reportes/quarto_theme_cosmo-featured.png">
+	<meta itemprop="keywords" content="Quarto">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.0ef7ee7b0dad458df5b6f993cac9c1b9618320151adbdeef203c9e1dae1c0564.css" integrity="sha256-Dvfuew2tRY31tvmTysnBuWGDIBUa297vIDyeHa4cBWQ=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.4d259699ed6e45788295c8efac266a71ad7a3b6cd7cd8ac8c1bb0027ccbbc35d.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
@@ -104,11 +104,6 @@
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
-      
-        
-        
-        
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
       
         
         
@@ -400,7 +395,7 @@
 <p>Algunos de los estilos básicos que puedes darle al texto son los siguientes:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">**negrita**
 </span></span><span class="line"><span class="cl"><span class="ge">*itálica*</span> o <span class="ge">_itálica_</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">u</span><span class="p">&gt;</span>subrayado<span class="p">&lt;/</span><span class="nt">u</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">&lt;u&gt;subrayado&lt;/u&gt;
 </span></span><span class="line"><span class="cl"><span class="gd">~~tachado~~</span>
 </span></span><span class="line"><span class="cl"><span class="sb">`código`</span>
 </span></span></code></pre></div><p>El uso de estos símboos de marcado resultarían en los siguientes textos:</p>
@@ -495,15 +490,15 @@
 </h3>
 <p>Puedes cambiar el título del documento en la etiqueta <code>title</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Probando&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Probando&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
 </span></span></span></code></pre></div><p>También puedes agregar autoría y fecha, simplemente agregando las configuraciones debajo de las existentes:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Probando&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Bastián Olea Herrera&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="ld">2025-04-01</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">lang</span><span class="p">:</span><span class="w"> </span><span class="l">es</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Probando&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Bastián Olea Herrera&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="ld">2025-04-01</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">lang</span><span class="p">:</span><span class="w"> </span><span class="l">es</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
 </span></span></span></code></pre></div><a href="quarto_title.png" target="_blank">
 
   <img src="quarto_title.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
@@ -511,15 +506,15 @@
 </a>
 <p>Puedes cambiar el texto que aparece arriba de alguna de las etiquetas. Sugiero buscar en internet este tipo de cosas, ya que Quarto tiene muy buena documentación.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">lang</span><span class="p">:</span><span class="w"> </span><span class="l">es</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">language</span><span class="p">:</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="nt">lang</span><span class="p">:</span><span class="w"> </span><span class="l">es</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">language</span><span class="p">:</span><span class="w"> 
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">title-block-author-single</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Creado por&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
 </span></span></span></code></pre></div><p>Puedes personalizar el titular del documento con estas etiquetas, para cambiar el color de fondo del título y el color del texto:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title-block-banner</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;#f0f3f5&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title-block-banner-color</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;black&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">title-block-banner</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;#f0f3f5&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">title-block-banner-color</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;black&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
 </span></span></span></code></pre></div><a href="quarto_title_2.png" target="_blank">
 
   <img src="quarto_title_2.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
@@ -601,8 +596,8 @@
 <p>Tan solo agregando <code>theme</code> y el nombre del tema (de la 
 <a href="https://quarto.org/docs/output-formats/html-themes.html" target="_blank" rel="noopener">lista de temas</a>) cambiarás la apariencia completa de tu reporte.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l">lux</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l">lux</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
 </span></span></span></code></pre></div><div style="display: flex; margin:auto;">
   <div style="flex: 1; margin: auto; padding: 6px;">
   <img src="quarto_theme_cosmo-featured.png" style="border-radius: 7px; max-height: 360px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
@@ -619,9 +614,9 @@
 </div>
 <p>Personaliza la <strong>tipografía</strong> y el tamaño global de las letras:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">mainfont</span><span class="p">:</span><span class="w"> </span><span class="l">Courier</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">fontsize</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;20px&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">mainfont</span><span class="p">:</span><span class="w"> </span><span class="l">Courier</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">fontsize</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;20px&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
 </span></span></span></code></pre></div><a href="quarto_font.png" target="_blank">
 
   <img src="quarto_font.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
@@ -713,13 +708,13 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">::: {.panel-tabset}
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="gu">## Pestaña 1
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span>Contenido de la pestaña 1
+</span></span></span><span class="line"><span class="cl">Contenido de la pestaña 1
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="gu">## Pestaña 3
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span>Contenido de la pestaña 2
+</span></span></span><span class="line"><span class="cl">Contenido de la pestaña 2
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="gu">## Pestaña 3
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span>Contenido de la pestaña 3
+</span></span></span><span class="line"><span class="cl">Contenido de la pestaña 3
 </span></span><span class="line"><span class="cl">:::
 </span></span></code></pre></div><p>Si usas como estilo <code>{.panel-tabset .nav-pills}</code>, los botones de las pestañas aparecerán rellenados.</p>
 <a href="quarto_tabs.png" target="_blank">
@@ -781,24 +776,24 @@
 6          5.4         3.9          1.7         0.4  setosa
 </code></pre>
 <p>Algunas funciones u operaciones en R entregan mensajes además del resultado esperado. Por ejemplo, cuando ocurren <em>warnings</em>. Para omitir que los bloques impriman mensajes y/o alertas, agregamos <code>#| message: false</code> y <code>#| warning: false</code> respectivamente.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">```{r}
-</span></span><span class="line"><span class="cl"><span class="gh">#| message: false
-</span></span></span><span class="line"><span class="cl"><span class="gh">#| warning: false
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span>library(dplyr)
-</span></span><span class="line"><span class="cl">```
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">``<span class="sb">`{r}
+</span></span></span><span class="line"><span class="cl"><span class="sb">#| message: false
+</span></span></span><span class="line"><span class="cl"><span class="sb">#| warning: false
+</span></span></span><span class="line"><span class="cl"><span class="sb">library(dplyr)
+</span></span></span><span class="line"><span class="cl"><span class="sb">`</span>``
 </span></span></code></pre></div><p>Para configurar el tamaño de los gráficos, agregamos al bloque las opciones <code>#| fig-width: 4</code> y/o <code>#| fig-height: 6</code> para modificar el ancho o alto, respectivamente. Por defecto, los gráficos son de 7 x 5.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">```{r}
-</span></span><span class="line"><span class="cl"><span class="gh">#| message: false
-</span></span></span><span class="line"><span class="cl"><span class="gh">#| warning: false
-</span></span></span><span class="line"><span class="cl"><span class="gh">#| fig-width: 4
-</span></span></span><span class="line"><span class="cl"><span class="gh">#| fig-height: 8
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
-</span></span><span class="line"><span class="cl">iris |&gt; 
-</span></span><span class="line"><span class="cl">  ggplot() +
-</span></span><span class="line"><span class="cl">  aes(x = Sepal.Length, y = Sepal.Width) +
-</span></span><span class="line"><span class="cl">  geom_point(color = &#34;orange&#34;, alpha = 0.4, size = 4) +
-</span></span><span class="line"><span class="cl">  theme_minimal()
-</span></span><span class="line"><span class="cl">```
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">``<span class="sb">`{r}
+</span></span></span><span class="line"><span class="cl"><span class="sb">#| message: false
+</span></span></span><span class="line"><span class="cl"><span class="sb">#| warning: false
+</span></span></span><span class="line"><span class="cl"><span class="sb">#| fig-width: 4
+</span></span></span><span class="line"><span class="cl"><span class="sb">#| fig-height: 8
+</span></span></span><span class="line"><span class="cl"><span class="sb">
+</span></span></span><span class="line"><span class="cl"><span class="sb">iris |&gt; 
+</span></span></span><span class="line"><span class="cl"><span class="sb">  ggplot() +
+</span></span></span><span class="line"><span class="cl"><span class="sb">  aes(x = Sepal.Length, y = Sepal.Width) +
+</span></span></span><span class="line"><span class="cl"><span class="sb">  geom_point(color = &#34;orange&#34;, alpha = 0.4, size = 4) +
+</span></span></span><span class="line"><span class="cl"><span class="sb">  theme_minimal()
+</span></span></span><span class="line"><span class="cl"><span class="sb">`</span>``
 </span></span></code></pre></div><img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="384" />
 
 
@@ -913,11 +908,11 @@
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
+    <dd class="fw5 ml0"><a href="/clases/taller_santiagorusers_sitios/">Taller: Crea tu propia página web con Quarto y R</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/taller_santiagorusers_sitios/">Taller: Crea tu propia página web con Quarto y R</a></dd>
+    
     <dd class="fw5 ml0"><a href="/blog/2026-03-26/">Galería de libros de _Goodreads_ para tu blog o sitio web con R y Quarto</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/surveydown_encuestas/">Crea encuestas online gratis en R con {surveydown}</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/taller_datos_unam/">Taller: Compartir y colaborar desde el cruce entre las ciencias de datos y las ciencias sociales</a></dd>
     
   </dl>
 </details>
@@ -989,21 +984,6 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
@@ -1019,7 +999,37 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -1064,7 +1074,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
   </span>
  
   
@@ -1079,7 +1089,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -1154,7 +1164,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -1199,21 +1209,6 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
@@ -1244,7 +1239,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/ciencias-sociales/">Ciencias sociales</a></span>
+      href="https://bastianolea.rbind.io/tags/loops/">Loops</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

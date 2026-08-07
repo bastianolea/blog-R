@@ -13,7 +13,6 @@ tags:
   - GitHub
   - consejos
   - básico
-lang: es
 excerpt: En este tutorial se entregan los pasos para empezar a usar Git con tus proyectos de R. Git te permite llevar un registro de las versiones y un control de cambios en tu código, mientras que GitHub te permite subir tus repositorios a un servicio online, en el cual puedes compartir tu código con otras personas, descargar el código de otros, y colaborar en un mismo proyecto.
 ---
 

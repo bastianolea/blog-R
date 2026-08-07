@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.164.0">
 <title>Explorar datos del Censo de Población y Vivienda 2024 con R | Bastián Olea</title>
 
 
@@ -44,27 +44,27 @@
     
     
   
-  <meta itemprop="name" content="Explorar datos del Censo de Población y Vivienda 2024 con R">
-  <meta itemprop="description" content="Una de las dificultades más frecuentes en el análisis de datos es poder acceder a datos censales. Los censos suelen ser bases de datos de varios millones de observaciones, lo que suele ser demasiado para la mayoría de los computadores, o bien algo imposible con programas como Excel.
+	<meta itemprop="name" content="Explorar datos del Censo de Población y Vivienda 2024 con R">
+	<meta itemprop="description" content="Una de las dificultades más frecuentes en el análisis de datos es poder acceder a datos censales. Los censos suelen ser bases de datos de varios millones de observaciones, lo que suele ser demasiado para la mayoría de los computadores, o bien algo imposible con programas como Excel.
 En este tutorial veremos cómo cargar los datos del Censo de Población y Vivienda 2024 con R para poder acceder a bases de datos de millones de observaciones sin colapsar nuestros computadores.">
-  <meta itemprop="datePublished" content="2026-04-08T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2026-04-08T00:00:00+00:00">
-  <meta itemprop="wordCount" content="5131">
-  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/censo_2024/censo-featured.jpg">
-  <meta itemprop="keywords" content="Datos,Chile,Procesamiento de datos">
+	<meta itemprop="datePublished" content="2026-04-08T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2026-04-08T00:00:00+00:00">
+	<meta itemprop="wordCount" content="5140">
+	<meta itemprop="image" content="https://bastianolea.rbind.io/blog/censo_2024/censo-featured.jpg">
+	<meta itemprop="keywords" content="Datos,Chile,Procesamiento de datos">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.0ef7ee7b0dad458df5b6f993cac9c1b9618320151adbdeef203c9e1dae1c0564.css" integrity="sha256-Dvfuew2tRY31tvmTysnBuWGDIBUa297vIDyeHa4cBWQ=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.4d259699ed6e45788295c8efac266a71ad7a3b6cd7cd8ac8c1bb0027ccbbc35d.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
@@ -105,11 +105,6 @@ En este tutorial veremos cómo cargar los datos del Censo de Población y Vivien
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
-      
-        
-        
-        
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
       
         
         
@@ -669,22 +664,22 @@ Descargar diccionario de variables</a>
 Población chilena por sexo, Censo 2024
 </p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: right">sexo</th>
-          <th style="text-align: left">población</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: right">Mujer</td>
-          <td style="text-align: left">9.513.399</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Hombre</td>
-          <td style="text-align: left">8.967.033</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: right">sexo</th>
+					<th style="text-align: left">población</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: right">Mujer</td>
+					<td style="text-align: left">9.513.399</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Hombre</td>
+					<td style="text-align: left">8.967.033</td>
+			</tr>
+	</tbody>
 </table>
 <p>La base de datos de Arrow puede realizar <strong>cálculos mucho más eficientes y rápidos</strong>, pero solamente puede realizar cálculos generales. Ésto es porque lo que hace <code>{arrow}</code> es <em>traducir</em> las funciones de <code>{dplyr}</code> en el lenguaje de la base de datos, lo que significa que el número de funciones soportadas es limitado, aunque amplio.</p>
 
@@ -817,78 +812,78 @@ Población chilena por sexo, Censo 2024
 Población chilena por región, Censo 2024
 </p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: right">región</th>
-          <th style="text-align: left">población</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: right">Tarapacá</td>
-          <td style="text-align: left">369.806</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Antofagasta</td>
-          <td style="text-align: left">635.416</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Atacama</td>
-          <td style="text-align: left">299.180</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Coquimbo</td>
-          <td style="text-align: left">832.864</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Valparaíso</td>
-          <td style="text-align: left">1.896.053</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Libertador General Bernardo O&rsquo;Higgins</td>
-          <td style="text-align: left">987.228</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Maule</td>
-          <td style="text-align: left">1.123.008</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Biobío</td>
-          <td style="text-align: left">1.613.059</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">La Araucanía</td>
-          <td style="text-align: left">1.010.423</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Los Lagos</td>
-          <td style="text-align: left">890.284</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Aysén del General Carlos Ibáñez del Campo</td>
-          <td style="text-align: left">100.745</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Magallanes y de la Antártica Chilena</td>
-          <td style="text-align: left">166.537</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Metropolitana de Santiago</td>
-          <td style="text-align: left">7.400.741</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Los Ríos</td>
-          <td style="text-align: left">398.230</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Arica y Parinacota</td>
-          <td style="text-align: left">244.569</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Ñuble</td>
-          <td style="text-align: left">512.289</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: right">región</th>
+					<th style="text-align: left">población</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: right">Tarapacá</td>
+					<td style="text-align: left">369.806</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Antofagasta</td>
+					<td style="text-align: left">635.416</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Atacama</td>
+					<td style="text-align: left">299.180</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Coquimbo</td>
+					<td style="text-align: left">832.864</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Valparaíso</td>
+					<td style="text-align: left">1.896.053</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Libertador General Bernardo O&rsquo;Higgins</td>
+					<td style="text-align: left">987.228</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Maule</td>
+					<td style="text-align: left">1.123.008</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Biobío</td>
+					<td style="text-align: left">1.613.059</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">La Araucanía</td>
+					<td style="text-align: left">1.010.423</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Los Lagos</td>
+					<td style="text-align: left">890.284</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Aysén del General Carlos Ibáñez del Campo</td>
+					<td style="text-align: left">100.745</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Magallanes y de la Antártica Chilena</td>
+					<td style="text-align: left">166.537</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Metropolitana de Santiago</td>
+					<td style="text-align: left">7.400.741</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Los Ríos</td>
+					<td style="text-align: left">398.230</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Arica y Parinacota</td>
+					<td style="text-align: left">244.569</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Ñuble</td>
+					<td style="text-align: left">512.289</td>
+			</tr>
+	</tbody>
 </table>
 <p>Obtuvimos una tabla de las regiones de Chile con su población censal!</p>
 <div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
@@ -948,95 +943,95 @@ Población chilena por región, Censo 2024
 Población chilena por región y área, Censo 2024
 </p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: right">región</th>
-          <th style="text-align: left">Rural</th>
-          <th style="text-align: left">Urbana</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: right">Tarapacá</td>
-          <td style="text-align: left">15.559</td>
-          <td style="text-align: left">354.247</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Antofagasta</td>
-          <td style="text-align: left">15.399</td>
-          <td style="text-align: left">620.017</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Atacama</td>
-          <td style="text-align: left">31.728</td>
-          <td style="text-align: left">267.452</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Coquimbo</td>
-          <td style="text-align: left">165.110</td>
-          <td style="text-align: left">667.754</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Valparaíso</td>
-          <td style="text-align: left">199.962</td>
-          <td style="text-align: left">1.696.091</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Libertador General Bernardo O&rsquo;Higgins</td>
-          <td style="text-align: left">265.174</td>
-          <td style="text-align: left">722.054</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Maule</td>
-          <td style="text-align: left">321.382</td>
-          <td style="text-align: left">801.626</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Biobío</td>
-          <td style="text-align: left">215.358</td>
-          <td style="text-align: left">1.397.701</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">La Araucanía</td>
-          <td style="text-align: left">331.479</td>
-          <td style="text-align: left">678.944</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Los Lagos</td>
-          <td style="text-align: left">258.193</td>
-          <td style="text-align: left">632.091</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Aysén del General Carlos Ibáñez del Campo</td>
-          <td style="text-align: left">23.180</td>
-          <td style="text-align: left">77.565</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Magallanes y de la Antártica Chilena</td>
-          <td style="text-align: left">11.779</td>
-          <td style="text-align: left">154.758</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Metropolitana de Santiago</td>
-          <td style="text-align: left">280.498</td>
-          <td style="text-align: left">7.120.243</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Los Ríos</td>
-          <td style="text-align: left">129.620</td>
-          <td style="text-align: left">268.610</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Arica y Parinacota</td>
-          <td style="text-align: left">23.397</td>
-          <td style="text-align: left">221.172</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Ñuble</td>
-          <td style="text-align: left">174.140</td>
-          <td style="text-align: left">338.149</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: right">región</th>
+					<th style="text-align: left">Rural</th>
+					<th style="text-align: left">Urbana</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: right">Tarapacá</td>
+					<td style="text-align: left">15.559</td>
+					<td style="text-align: left">354.247</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Antofagasta</td>
+					<td style="text-align: left">15.399</td>
+					<td style="text-align: left">620.017</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Atacama</td>
+					<td style="text-align: left">31.728</td>
+					<td style="text-align: left">267.452</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Coquimbo</td>
+					<td style="text-align: left">165.110</td>
+					<td style="text-align: left">667.754</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Valparaíso</td>
+					<td style="text-align: left">199.962</td>
+					<td style="text-align: left">1.696.091</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Libertador General Bernardo O&rsquo;Higgins</td>
+					<td style="text-align: left">265.174</td>
+					<td style="text-align: left">722.054</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Maule</td>
+					<td style="text-align: left">321.382</td>
+					<td style="text-align: left">801.626</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Biobío</td>
+					<td style="text-align: left">215.358</td>
+					<td style="text-align: left">1.397.701</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">La Araucanía</td>
+					<td style="text-align: left">331.479</td>
+					<td style="text-align: left">678.944</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Los Lagos</td>
+					<td style="text-align: left">258.193</td>
+					<td style="text-align: left">632.091</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Aysén del General Carlos Ibáñez del Campo</td>
+					<td style="text-align: left">23.180</td>
+					<td style="text-align: left">77.565</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Magallanes y de la Antártica Chilena</td>
+					<td style="text-align: left">11.779</td>
+					<td style="text-align: left">154.758</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Metropolitana de Santiago</td>
+					<td style="text-align: left">280.498</td>
+					<td style="text-align: left">7.120.243</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Los Ríos</td>
+					<td style="text-align: left">129.620</td>
+					<td style="text-align: left">268.610</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Arica y Parinacota</td>
+					<td style="text-align: left">23.397</td>
+					<td style="text-align: left">221.172</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Ñuble</td>
+					<td style="text-align: left">174.140</td>
+					<td style="text-align: left">338.149</td>
+			</tr>
+	</tbody>
 </table>
 <p>Ahora tenemos las regiones con su población en dos columnas según el área donde las personas habitan.</p>
 <div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
@@ -1072,129 +1067,129 @@ Población chilena por región y área, Censo 2024
 Población chilena por región y área, Censo 2024
 </p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: right">región</th>
-          <th style="text-align: right">Rural (población)</th>
-          <th style="text-align: right">Urbana (población)</th>
-          <th style="text-align: right">Rural (porcentaje)</th>
-          <th style="text-align: right">Urbana (porcentaje)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: right">Tarapacá</td>
-          <td style="text-align: right">15.559</td>
-          <td style="text-align: right">354.247</td>
-          <td style="text-align: right">4,2%</td>
-          <td style="text-align: right">95,8%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Antofagasta</td>
-          <td style="text-align: right">15.399</td>
-          <td style="text-align: right">620.017</td>
-          <td style="text-align: right">2,4%</td>
-          <td style="text-align: right">97,6%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Atacama</td>
-          <td style="text-align: right">31.728</td>
-          <td style="text-align: right">267.452</td>
-          <td style="text-align: right">10,6%</td>
-          <td style="text-align: right">89,4%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Coquimbo</td>
-          <td style="text-align: right">165.110</td>
-          <td style="text-align: right">667.754</td>
-          <td style="text-align: right">19,8%</td>
-          <td style="text-align: right">80,2%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Valparaíso</td>
-          <td style="text-align: right">199.962</td>
-          <td style="text-align: right">1.696.091</td>
-          <td style="text-align: right">10,5%</td>
-          <td style="text-align: right">89,5%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Libertador General Bernardo O&rsquo;Higgins</td>
-          <td style="text-align: right">265.174</td>
-          <td style="text-align: right">722.054</td>
-          <td style="text-align: right">26,9%</td>
-          <td style="text-align: right">73,1%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Maule</td>
-          <td style="text-align: right">321.382</td>
-          <td style="text-align: right">801.626</td>
-          <td style="text-align: right">28,6%</td>
-          <td style="text-align: right">71,4%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Biobío</td>
-          <td style="text-align: right">215.358</td>
-          <td style="text-align: right">1.397.701</td>
-          <td style="text-align: right">13,4%</td>
-          <td style="text-align: right">86,6%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">La Araucanía</td>
-          <td style="text-align: right">331.479</td>
-          <td style="text-align: right">678.944</td>
-          <td style="text-align: right">32,8%</td>
-          <td style="text-align: right">67,2%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Los Lagos</td>
-          <td style="text-align: right">258.193</td>
-          <td style="text-align: right">632.091</td>
-          <td style="text-align: right">29,0%</td>
-          <td style="text-align: right">71,0%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Aysén del General Carlos Ibáñez del Campo</td>
-          <td style="text-align: right">23.180</td>
-          <td style="text-align: right">77.565</td>
-          <td style="text-align: right">23,0%</td>
-          <td style="text-align: right">77,0%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Magallanes y de la Antártica Chilena</td>
-          <td style="text-align: right">11.779</td>
-          <td style="text-align: right">154.758</td>
-          <td style="text-align: right">7,1%</td>
-          <td style="text-align: right">92,9%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Metropolitana de Santiago</td>
-          <td style="text-align: right">280.498</td>
-          <td style="text-align: right">7.120.243</td>
-          <td style="text-align: right">3,8%</td>
-          <td style="text-align: right">96,2%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Los Ríos</td>
-          <td style="text-align: right">129.620</td>
-          <td style="text-align: right">268.610</td>
-          <td style="text-align: right">32,5%</td>
-          <td style="text-align: right">67,5%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Arica y Parinacota</td>
-          <td style="text-align: right">23.397</td>
-          <td style="text-align: right">221.172</td>
-          <td style="text-align: right">9,6%</td>
-          <td style="text-align: right">90,4%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Ñuble</td>
-          <td style="text-align: right">174.140</td>
-          <td style="text-align: right">338.149</td>
-          <td style="text-align: right">34,0%</td>
-          <td style="text-align: right">66,0%</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: right">región</th>
+					<th style="text-align: right">Rural (población)</th>
+					<th style="text-align: right">Urbana (población)</th>
+					<th style="text-align: right">Rural (porcentaje)</th>
+					<th style="text-align: right">Urbana (porcentaje)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: right">Tarapacá</td>
+					<td style="text-align: right">15.559</td>
+					<td style="text-align: right">354.247</td>
+					<td style="text-align: right">4,2%</td>
+					<td style="text-align: right">95,8%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Antofagasta</td>
+					<td style="text-align: right">15.399</td>
+					<td style="text-align: right">620.017</td>
+					<td style="text-align: right">2,4%</td>
+					<td style="text-align: right">97,6%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Atacama</td>
+					<td style="text-align: right">31.728</td>
+					<td style="text-align: right">267.452</td>
+					<td style="text-align: right">10,6%</td>
+					<td style="text-align: right">89,4%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Coquimbo</td>
+					<td style="text-align: right">165.110</td>
+					<td style="text-align: right">667.754</td>
+					<td style="text-align: right">19,8%</td>
+					<td style="text-align: right">80,2%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Valparaíso</td>
+					<td style="text-align: right">199.962</td>
+					<td style="text-align: right">1.696.091</td>
+					<td style="text-align: right">10,5%</td>
+					<td style="text-align: right">89,5%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Libertador General Bernardo O&rsquo;Higgins</td>
+					<td style="text-align: right">265.174</td>
+					<td style="text-align: right">722.054</td>
+					<td style="text-align: right">26,9%</td>
+					<td style="text-align: right">73,1%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Maule</td>
+					<td style="text-align: right">321.382</td>
+					<td style="text-align: right">801.626</td>
+					<td style="text-align: right">28,6%</td>
+					<td style="text-align: right">71,4%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Biobío</td>
+					<td style="text-align: right">215.358</td>
+					<td style="text-align: right">1.397.701</td>
+					<td style="text-align: right">13,4%</td>
+					<td style="text-align: right">86,6%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">La Araucanía</td>
+					<td style="text-align: right">331.479</td>
+					<td style="text-align: right">678.944</td>
+					<td style="text-align: right">32,8%</td>
+					<td style="text-align: right">67,2%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Los Lagos</td>
+					<td style="text-align: right">258.193</td>
+					<td style="text-align: right">632.091</td>
+					<td style="text-align: right">29,0%</td>
+					<td style="text-align: right">71,0%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Aysén del General Carlos Ibáñez del Campo</td>
+					<td style="text-align: right">23.180</td>
+					<td style="text-align: right">77.565</td>
+					<td style="text-align: right">23,0%</td>
+					<td style="text-align: right">77,0%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Magallanes y de la Antártica Chilena</td>
+					<td style="text-align: right">11.779</td>
+					<td style="text-align: right">154.758</td>
+					<td style="text-align: right">7,1%</td>
+					<td style="text-align: right">92,9%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Metropolitana de Santiago</td>
+					<td style="text-align: right">280.498</td>
+					<td style="text-align: right">7.120.243</td>
+					<td style="text-align: right">3,8%</td>
+					<td style="text-align: right">96,2%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Los Ríos</td>
+					<td style="text-align: right">129.620</td>
+					<td style="text-align: right">268.610</td>
+					<td style="text-align: right">32,5%</td>
+					<td style="text-align: right">67,5%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Arica y Parinacota</td>
+					<td style="text-align: right">23.397</td>
+					<td style="text-align: right">221.172</td>
+					<td style="text-align: right">9,6%</td>
+					<td style="text-align: right">90,4%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Ñuble</td>
+					<td style="text-align: right">174.140</td>
+					<td style="text-align: right">338.149</td>
+					<td style="text-align: right">34,0%</td>
+					<td style="text-align: right">66,0%</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -1537,40 +1532,40 @@ Población chilena por región y área, Censo 2024
 Cantidad y porcentaje de personas adultas mayores según propiedad del hogar
 </p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">adulto mayor</th>
-          <th style="text-align: left">propiedad</th>
-          <th style="text-align: right">cantidad</th>
-          <th style="text-align: right">porcentaje</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Adulto mayor</td>
-          <td style="text-align: left">Propia</td>
-          <td style="text-align: right">2.481.901</td>
-          <td style="text-align: right">78,4%</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Adulto mayor</td>
-          <td style="text-align: left">No propia</td>
-          <td style="text-align: right">682.085</td>
-          <td style="text-align: right">21,6%</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">No adulto mayor</td>
-          <td style="text-align: left">Propia</td>
-          <td style="text-align: right">9.071.829</td>
-          <td style="text-align: right">59,2%</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">No adulto mayor</td>
-          <td style="text-align: left">No propia</td>
-          <td style="text-align: right">6.244.617</td>
-          <td style="text-align: right">40,8%</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">adulto mayor</th>
+					<th style="text-align: left">propiedad</th>
+					<th style="text-align: right">cantidad</th>
+					<th style="text-align: right">porcentaje</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Adulto mayor</td>
+					<td style="text-align: left">Propia</td>
+					<td style="text-align: right">2.481.901</td>
+					<td style="text-align: right">78,4%</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Adulto mayor</td>
+					<td style="text-align: left">No propia</td>
+					<td style="text-align: right">682.085</td>
+					<td style="text-align: right">21,6%</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">No adulto mayor</td>
+					<td style="text-align: left">Propia</td>
+					<td style="text-align: right">9.071.829</td>
+					<td style="text-align: right">59,2%</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">No adulto mayor</td>
+					<td style="text-align: left">No propia</td>
+					<td style="text-align: right">6.244.617</td>
+					<td style="text-align: right">40,8%</td>
+			</tr>
+	</tbody>
 </table>
 <p>Transformemos la tabla para hacer más legible y clara la información al distribuir las variables en columnas por medio de <code>pivot_wider()</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tabla_propiedad_ancha</span> <span class="o">&lt;-</span> <span class="n">conteo_propiedad</span> <span class="o">|&gt;</span> 
@@ -1592,31 +1587,31 @@ Cantidad y porcentaje de personas adultas mayores según propiedad del hogar
 Cantidad y porcentaje de personas adultas mayores según propiedad del hogar
 </p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">adulto mayor</th>
-          <th style="text-align: left">Propia (cantidad)</th>
-          <th style="text-align: left">No propia (cantidad)</th>
-          <th style="text-align: left">Propia (porcentaje)</th>
-          <th style="text-align: left">No propia (porcentaje)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Adulto mayor</td>
-          <td style="text-align: left">2.481.901</td>
-          <td style="text-align: left">682.085</td>
-          <td style="text-align: left">78%</td>
-          <td style="text-align: left">22%</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">No adulto mayor</td>
-          <td style="text-align: left">9.071.829</td>
-          <td style="text-align: left">6.244.617</td>
-          <td style="text-align: left">59%</td>
-          <td style="text-align: left">41%</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">adulto mayor</th>
+					<th style="text-align: left">Propia (cantidad)</th>
+					<th style="text-align: left">No propia (cantidad)</th>
+					<th style="text-align: left">Propia (porcentaje)</th>
+					<th style="text-align: left">No propia (porcentaje)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Adulto mayor</td>
+					<td style="text-align: left">2.481.901</td>
+					<td style="text-align: left">682.085</td>
+					<td style="text-align: left">78%</td>
+					<td style="text-align: left">22%</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">No adulto mayor</td>
+					<td style="text-align: left">9.071.829</td>
+					<td style="text-align: left">6.244.617</td>
+					<td style="text-align: left">59%</td>
+					<td style="text-align: left">41%</td>
+			</tr>
+	</tbody>
 </table>
 <p>Obtenemos un resultado interesante: dentro de la <strong>población adulta mayor</strong>, un <strong>78% reside</strong> en hogares de tipo de <strong>tenencia propia</strong>, mientras dentro de la población que no es adulta mayor, el porcentaje de personas que residen en hogares de tenencia propia es solo un <strong>59%</strong>.</p>
 <p>Revisemos la misma información, pero a <strong>nivel regional</strong>:</p>
@@ -1640,112 +1635,112 @@ Cantidad y porcentaje de personas adultas mayores según propiedad del hogar
 Porcentaje de la población que vive en viviendas propias (pagadas o pagándose) según grupos de edad
 </p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: right">región</th>
-          <th style="text-align: center">propiedad</th>
-          <th style="text-align: center">Adulto mayor</th>
-          <th style="text-align: center">No adulto mayor</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: right">La Araucanía</td>
-          <td style="text-align: center">Propia</td>
-          <td style="text-align: center">83%</td>
-          <td style="text-align: center">67%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Los Lagos</td>
-          <td style="text-align: center">Propia</td>
-          <td style="text-align: center">83%</td>
-          <td style="text-align: center">64%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Maule</td>
-          <td style="text-align: center">Propia</td>
-          <td style="text-align: center">83%</td>
-          <td style="text-align: center">69%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Ñuble</td>
-          <td style="text-align: center">Propia</td>
-          <td style="text-align: center">83%</td>
-          <td style="text-align: center">67%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Biobío</td>
-          <td style="text-align: center">Propia</td>
-          <td style="text-align: center">82%</td>
-          <td style="text-align: center">66%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Aysén del General Carlos Ibáñez del Campo</td>
-          <td style="text-align: center">Propia</td>
-          <td style="text-align: center">82%</td>
-          <td style="text-align: center">59%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Magallanes y de la Antártica Chilena</td>
-          <td style="text-align: center">Propia</td>
-          <td style="text-align: center">82%</td>
-          <td style="text-align: center">59%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Coquimbo</td>
-          <td style="text-align: center">Propia</td>
-          <td style="text-align: center">81%</td>
-          <td style="text-align: center">64%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Los Ríos</td>
-          <td style="text-align: center">Propia</td>
-          <td style="text-align: center">81%</td>
-          <td style="text-align: center">62%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Libertador General Bernardo O&rsquo;Higgins</td>
-          <td style="text-align: center">Propia</td>
-          <td style="text-align: center">80%</td>
-          <td style="text-align: center">64%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Atacama</td>
-          <td style="text-align: center">Propia</td>
-          <td style="text-align: center">80%</td>
-          <td style="text-align: center">63%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Metropolitana de Santiago</td>
-          <td style="text-align: center">Propia</td>
-          <td style="text-align: center">76%</td>
-          <td style="text-align: center">55%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Valparaíso</td>
-          <td style="text-align: center">Propia</td>
-          <td style="text-align: center">76%</td>
-          <td style="text-align: center">58%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Arica y Parinacota</td>
-          <td style="text-align: center">Propia</td>
-          <td style="text-align: center">74%</td>
-          <td style="text-align: center">50%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Antofagasta</td>
-          <td style="text-align: center">Propia</td>
-          <td style="text-align: center">73%</td>
-          <td style="text-align: center">47%</td>
-      </tr>
-      <tr>
-          <td style="text-align: right">Tarapacá</td>
-          <td style="text-align: center">Propia</td>
-          <td style="text-align: center">72%</td>
-          <td style="text-align: center">47%</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: right">región</th>
+					<th style="text-align: center">propiedad</th>
+					<th style="text-align: center">Adulto mayor</th>
+					<th style="text-align: center">No adulto mayor</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: right">La Araucanía</td>
+					<td style="text-align: center">Propia</td>
+					<td style="text-align: center">83%</td>
+					<td style="text-align: center">67%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Los Lagos</td>
+					<td style="text-align: center">Propia</td>
+					<td style="text-align: center">83%</td>
+					<td style="text-align: center">64%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Maule</td>
+					<td style="text-align: center">Propia</td>
+					<td style="text-align: center">83%</td>
+					<td style="text-align: center">69%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Ñuble</td>
+					<td style="text-align: center">Propia</td>
+					<td style="text-align: center">83%</td>
+					<td style="text-align: center">67%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Biobío</td>
+					<td style="text-align: center">Propia</td>
+					<td style="text-align: center">82%</td>
+					<td style="text-align: center">66%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Aysén del General Carlos Ibáñez del Campo</td>
+					<td style="text-align: center">Propia</td>
+					<td style="text-align: center">82%</td>
+					<td style="text-align: center">59%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Magallanes y de la Antártica Chilena</td>
+					<td style="text-align: center">Propia</td>
+					<td style="text-align: center">82%</td>
+					<td style="text-align: center">59%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Coquimbo</td>
+					<td style="text-align: center">Propia</td>
+					<td style="text-align: center">81%</td>
+					<td style="text-align: center">64%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Los Ríos</td>
+					<td style="text-align: center">Propia</td>
+					<td style="text-align: center">81%</td>
+					<td style="text-align: center">62%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Libertador General Bernardo O&rsquo;Higgins</td>
+					<td style="text-align: center">Propia</td>
+					<td style="text-align: center">80%</td>
+					<td style="text-align: center">64%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Atacama</td>
+					<td style="text-align: center">Propia</td>
+					<td style="text-align: center">80%</td>
+					<td style="text-align: center">63%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Metropolitana de Santiago</td>
+					<td style="text-align: center">Propia</td>
+					<td style="text-align: center">76%</td>
+					<td style="text-align: center">55%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Valparaíso</td>
+					<td style="text-align: center">Propia</td>
+					<td style="text-align: center">76%</td>
+					<td style="text-align: center">58%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Arica y Parinacota</td>
+					<td style="text-align: center">Propia</td>
+					<td style="text-align: center">74%</td>
+					<td style="text-align: center">50%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Antofagasta</td>
+					<td style="text-align: center">Propia</td>
+					<td style="text-align: center">73%</td>
+					<td style="text-align: center">47%</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">Tarapacá</td>
+					<td style="text-align: center">Propia</td>
+					<td style="text-align: center">72%</td>
+					<td style="text-align: center">47%</td>
+			</tr>
+	</tbody>
 </table>
 <p>En todas las regiones del país, el porcentaje de personas adultas mayores que residen en hogares de tenencia propia es mayor que el mismo dato en personas no adultas mayores. En otras palabras, se podría plantear que la población adulta mayor es más propensa a vivir en hogares <em>propios pagados</em> o <em>propios pagándose</em> que la población no adulta mayor. Para asegurar ésto habría que aplicar pruebas estadísticas que están fuera del foco de este tutorial.</p>
 <!---
@@ -1824,7 +1819,7 @@ caption = "Fuente: Censo 2024, INE")
                 overflow: hidden;
                 background-color: #9069C00d;">
 
-      <a href="/blog/territorial/"
+      <a href="/blog/2026-07-24/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -1833,6 +1828,99 @@ caption = "Fuente: Censo 2024, INE")
                   padding: 8px 14px;
                   gap: 12px;
                   
+                  ">
+
+          
+          <img src="/blog/2026-07-24/featured.png"
+               alt="Mapas bivariados de adultos mayores en relación a viviendas propias en las comunas de Chile"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Mapas bivariados de adultos mayores en relación a viviendas propias en las comunas de Chile
+          </span>
+
+        </a>
+      <a href="/blog/mapas_bivariados/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/mapas_bivariados/mapas-bivariados-featured.jpg"
+               alt="Crea mapas bivariados en R para visualizar la relación entre dos variables"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Crea mapas bivariados en R para visualizar la relación entre dos variables
+          </span>
+
+        </a>
+      <a href="/blog/mapa_chile_macrozonas/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/mapa_chile_macrozonas/featured.jpg"
+               alt="Mapas de las regiones de Chile según macrozonas"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Mapas de las regiones de Chile según macrozonas
+          </span>
+
+        </a>
+      <a href="/blog/territorial/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
                   ">
 
           
@@ -1883,96 +1971,6 @@ caption = "Fuente: Censo 2024, INE")
                        font-weight: 600;
                        line-height: 1.35;">
             <code>{rutera}</code>: un paquete de R para limpiar y procesar RUTs chilenos
-          </span>
-
-        </a>
-      <a href="/blog/validacion_rut/"
-           style="display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  text-decoration: none;
-                  color: inherit;
-                  padding: 8px 14px;
-                  gap: 12px;
-                  border-top: 1px solid #9069C030;
-                  ">
-
-          
-          <div style="flex-shrink: 0;
-                      width: 52px;
-                      height: 38px;
-                      border-radius: 4px;
-                      background-color: #9069C020;">
-          </div>
-          
-
-          <span style="font-size: 88%;
-                       color: #9069C0;
-                       font-weight: 600;
-                       line-height: 1.35;">
-            Limpieza y validación de RUT en R
-          </span>
-
-        </a>
-      <a href="/blog/funcion_consultar_datos/"
-           style="display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  text-decoration: none;
-                  color: inherit;
-                  padding: 8px 14px;
-                  gap: 12px;
-                  border-top: 1px solid #9069C030;
-                  ">
-
-          
-          <img src="/blog/funcion_consultar_datos/funcion_consultar_datos_featured.png"
-               alt="Creando una función para consultar datos en R"
-               style="flex-shrink: 0;
-                      width: 52px;
-                      height: 38px;
-                      object-fit: cover;
-                      object-position: center top;
-                      border-radius: 4px;
-                      margin: 0;">
-          
-
-          <span style="font-size: 88%;
-                       color: #9069C0;
-                       font-weight: 600;
-                       line-height: 1.35;">
-            Creando una función para consultar datos en R
-          </span>
-
-        </a>
-      <a href="/blog/app_densidad_comunas/"
-           style="display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  text-decoration: none;
-                  color: inherit;
-                  padding: 8px 14px;
-                  gap: 12px;
-                  border-top: 1px solid #9069C030;
-                  ">
-
-          
-          <img src="/blog/app_densidad_comunas/featured.png"
-               alt="Aplicación: Visualizador de densidad de población urbana en comunas de Chile"
-               style="flex-shrink: 0;
-                      width: 52px;
-                      height: 38px;
-                      object-fit: cover;
-                      object-position: center top;
-                      border-radius: 4px;
-                      margin: 0;">
-          
-
-          <span style="font-size: 88%;
-                       color: #9069C0;
-                       font-weight: 600;
-                       line-height: 1.35;">
-            Aplicación: Visualizador de densidad de población urbana en comunas de Chile
           </span>
 
         </a>
@@ -2204,7 +2202,7 @@ caption = "Fuente: Censo 2024, INE")
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">25 minute read, 5131 words</dd>
+    <dd class="fw5 ml0">25 minute read, 5140 words</dd>
   </dl>
   
   <dl class="f6 lh-copy">
@@ -2298,7 +2296,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -2313,7 +2311,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -2343,7 +2341,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -2358,7 +2356,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -2389,6 +2387,21 @@ caption = "Fuente: Censo 2024, INE")
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -2463,21 +2476,6 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
@@ -2508,7 +2506,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -2523,7 +2521,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -2553,7 +2551,7 @@ caption = "Fuente: Censo 2024, INE")
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/ciencias-sociales/">Ciencias sociales</a></span>
+      href="https://bastianolea.rbind.io/tags/loops/">Loops</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

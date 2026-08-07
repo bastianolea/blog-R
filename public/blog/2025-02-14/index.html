@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.164.0">
 <title>Rellenar datos perdidos usando datos de otra tabla | Bastián Olea</title>
 
 
@@ -44,27 +44,27 @@
     
     
   
-  <meta itemprop="name" content="Rellenar datos perdidos usando datos de otra tabla">
-  <meta itemprop="description" content="¿Te ha pasado que tienes una tabla con datos perdidos, y otra tabla con una columna que coincide con la primera tabla, que además cuenta con datos que quieres usar para rellenar las observaciones perdidas? Antes pensaba que esto se resolvía con left_join() y algún ajuste para reemplazar los perdidos con los datos anexados. Pero ayer conocí una función que resuelve este problema de inmediato: rows_update()!
+	<meta itemprop="name" content="Rellenar datos perdidos usando datos de otra tabla">
+	<meta itemprop="description" content="¿Te ha pasado que tienes una tabla con datos perdidos, y otra tabla con una columna que coincide con la primera tabla, que además cuenta con datos que quieres usar para rellenar las observaciones perdidas? Antes pensaba que esto se resolvía con left_join() y algún ajuste para reemplazar los perdidos con los datos anexados. Pero ayer conocí una función que resuelve este problema de inmediato: rows_update()!
 library(dplyr) |&gt; suppressPackageStartupMessages() tabla_1 &lt;- tibble(ciudad = c(&#34;Santiago&#34;, &#34;Concepción&#34;, &#34;Valparaíso&#34;, &#34;Arica&#34;), poblacion = c(7123891, 1036142, 1054253, 221364), temperatura = c(NA, 17.6, NA, 19.2)) tabla_1 # A tibble: 4 × 3 ciudad poblacion temperatura &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; 1 Santiago 7123891 NA 2 Concepción 1036142 17.6 3 Valparaíso 1054253 NA 4 Arica 221364 19.2 tabla_2 &lt;- tibble(ciudad = c(&#34;Santiago&#34;, &#34;Rancagua&#34;, &#34;Concepción&#34;, &#34;Arica&#34;, &#34;Valparaíso&#34;), temperatura = c(22.8, 14.0, 17.6, 19.2, 17.5)) tabla_2 # A tibble: 5 × 2 ciudad temperatura &lt;chr&gt; &lt;dbl&gt; 1 Santiago 22.8 2 Rancagua 14 3 Concepción 17.6 4 Arica 19.2 5 Valparaíso 17.5 En este ejemplo, tenemos dos tablas: la primera tiene una columna con datos perdidos o faltantes, y la segunda tabla, de datos similares, contiene las observaciones que en la primera tabla están faltando.">
-  <meta itemprop="datePublished" content="2025-02-14T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2025-02-14T00:00:00+00:00">
-  <meta itemprop="wordCount" content="661">
-  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/2025-02-14/featured.png">
-  <meta itemprop="keywords" content="Dplyr,Limpieza de datos,Datos perdidos">
+	<meta itemprop="datePublished" content="2025-02-14T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2025-02-14T00:00:00+00:00">
+	<meta itemprop="wordCount" content="661">
+	<meta itemprop="image" content="https://bastianolea.rbind.io/blog/2025-02-14/featured.png">
+	<meta itemprop="keywords" content="Dplyr,Limpieza de datos,Datos perdidos">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.0ef7ee7b0dad458df5b6f993cac9c1b9618320151adbdeef203c9e1dae1c0564.css" integrity="sha256-Dvfuew2tRY31tvmTysnBuWGDIBUa297vIDyeHa4cBWQ=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.4d259699ed6e45788295c8efac266a71ad7a3b6cd7cd8ac8c1bb0027ccbbc35d.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
@@ -105,11 +105,6 @@ library(dplyr) |&gt; suppressPackageStartupMessages() tabla_1 &lt;- tibble(ciuda
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
-      
-        
-        
-        
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
       
         
         
@@ -536,7 +531,7 @@ library(dplyr) |&gt; suppressPackageStartupMessages() tabla_1 &lt;- tibble(ciuda
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -551,7 +546,7 @@ library(dplyr) |&gt; suppressPackageStartupMessages() tabla_1 &lt;- tibble(ciuda
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -581,7 +576,7 @@ library(dplyr) |&gt; suppressPackageStartupMessages() tabla_1 &lt;- tibble(ciuda
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -596,7 +591,7 @@ library(dplyr) |&gt; suppressPackageStartupMessages() tabla_1 &lt;- tibble(ciuda
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -627,6 +622,21 @@ library(dplyr) |&gt; suppressPackageStartupMessages() tabla_1 &lt;- tibble(ciuda
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -701,7 +711,7 @@ library(dplyr) |&gt; suppressPackageStartupMessages() tabla_1 &lt;- tibble(ciuda
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -716,7 +726,7 @@ library(dplyr) |&gt; suppressPackageStartupMessages() tabla_1 &lt;- tibble(ciuda
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -747,21 +757,6 @@ library(dplyr) |&gt; suppressPackageStartupMessages() tabla_1 &lt;- tibble(ciuda
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/texto/">Procesamiento de texto</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
   

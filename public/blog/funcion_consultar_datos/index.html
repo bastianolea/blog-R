@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.164.0">
 <title>Creando una función para consultar datos en R | Bastián Olea</title>
 
 
@@ -44,27 +44,27 @@
     
     
   
-  <meta itemprop="name" content="Creando una función para consultar datos en R">
-  <meta itemprop="description" content="En este tutorial veremos cómo crear una función en R diseñada para consultar datos. Este puede ser el primer paso para crear una API, una herramienta para entregarle a una inteligencia artificial, o simplemente algo conveniente de hacer para consultar datos.
+	<meta itemprop="name" content="Creando una función para consultar datos en R">
+	<meta itemprop="description" content="En este tutorial veremos cómo crear una función en R diseñada para consultar datos. Este puede ser el primer paso para crear una API, una herramienta para entregarle a una inteligencia artificial, o simplemente algo conveniente de hacer para consultar datos.
 Pasaremos de tener una tabla de datos que necesitamos manipular, a una función conveniente que nos entregue las cifras que necesitamos">
-  <meta itemprop="datePublished" content="2026-05-23T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2026-05-23T00:00:00+00:00">
-  <meta itemprop="wordCount" content="4151">
-  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/funcion_consultar_datos/funcion_consultar_datos_featured.png">
-  <meta itemprop="keywords" content="Datos,Chile,Funciones,Inteligencia artificial">
+	<meta itemprop="datePublished" content="2026-05-23T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2026-05-23T00:00:00+00:00">
+	<meta itemprop="wordCount" content="4151">
+	<meta itemprop="image" content="https://bastianolea.rbind.io/blog/funcion_consultar_datos/funcion_consultar_datos_featured.png">
+	<meta itemprop="keywords" content="Datos,Chile,Funciones,Inteligencia artificial">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.0ef7ee7b0dad458df5b6f993cac9c1b9618320151adbdeef203c9e1dae1c0564.css" integrity="sha256-Dvfuew2tRY31tvmTysnBuWGDIBUa297vIDyeHa4cBWQ=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.4d259699ed6e45788295c8efac266a71ad7a3b6cd7cd8ac8c1bb0027ccbbc35d.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
@@ -105,11 +105,6 @@ Pasaremos de tener una tabla de datos que necesitamos manipular, a una función 
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
-      
-        
-        
-        
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
       
         
         
@@ -638,73 +633,73 @@ Descargar datos</a>
 </span></span><span class="line"><span class="cl"><span class="n">censo</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl"><span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="nf">contains</span><span class="p">(</span><span class="s">&#34;codigo&#34;</span><span class="p">))</span>
 </span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th style="text-align: left">nivel</th>
-          <th style="text-align: left">comuna</th>
-          <th style="text-align: left">provincia</th>
-          <th style="text-align: left">region</th>
-          <th style="text-align: left">sexo</th>
-          <th style="text-align: left">edad</th>
-          <th style="text-align: right">poblacion</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Comuna</td>
-          <td style="text-align: left">Iquique</td>
-          <td style="text-align: left">Iquique</td>
-          <td style="text-align: left">Tarapacá</td>
-          <td style="text-align: left">Hombres</td>
-          <td style="text-align: left">0-4</td>
-          <td style="text-align: right">5052</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Comuna</td>
-          <td style="text-align: left">Iquique</td>
-          <td style="text-align: left">Iquique</td>
-          <td style="text-align: left">Tarapacá</td>
-          <td style="text-align: left">Hombres</td>
-          <td style="text-align: left">5-9</td>
-          <td style="text-align: right">6565</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Comuna</td>
-          <td style="text-align: left">Iquique</td>
-          <td style="text-align: left">Iquique</td>
-          <td style="text-align: left">Tarapacá</td>
-          <td style="text-align: left">Hombres</td>
-          <td style="text-align: left">10-14</td>
-          <td style="text-align: right">7482</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Comuna</td>
-          <td style="text-align: left">Iquique</td>
-          <td style="text-align: left">Iquique</td>
-          <td style="text-align: left">Tarapacá</td>
-          <td style="text-align: left">Hombres</td>
-          <td style="text-align: left">15-19</td>
-          <td style="text-align: right">6664</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Comuna</td>
-          <td style="text-align: left">Iquique</td>
-          <td style="text-align: left">Iquique</td>
-          <td style="text-align: left">Tarapacá</td>
-          <td style="text-align: left">Hombres</td>
-          <td style="text-align: left">20-24</td>
-          <td style="text-align: right">6804</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Comuna</td>
-          <td style="text-align: left">Iquique</td>
-          <td style="text-align: left">Iquique</td>
-          <td style="text-align: left">Tarapacá</td>
-          <td style="text-align: left">Hombres</td>
-          <td style="text-align: left">25-29</td>
-          <td style="text-align: right">8211</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">nivel</th>
+					<th style="text-align: left">comuna</th>
+					<th style="text-align: left">provincia</th>
+					<th style="text-align: left">region</th>
+					<th style="text-align: left">sexo</th>
+					<th style="text-align: left">edad</th>
+					<th style="text-align: right">poblacion</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Comuna</td>
+					<td style="text-align: left">Iquique</td>
+					<td style="text-align: left">Iquique</td>
+					<td style="text-align: left">Tarapacá</td>
+					<td style="text-align: left">Hombres</td>
+					<td style="text-align: left">0-4</td>
+					<td style="text-align: right">5052</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Comuna</td>
+					<td style="text-align: left">Iquique</td>
+					<td style="text-align: left">Iquique</td>
+					<td style="text-align: left">Tarapacá</td>
+					<td style="text-align: left">Hombres</td>
+					<td style="text-align: left">5-9</td>
+					<td style="text-align: right">6565</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Comuna</td>
+					<td style="text-align: left">Iquique</td>
+					<td style="text-align: left">Iquique</td>
+					<td style="text-align: left">Tarapacá</td>
+					<td style="text-align: left">Hombres</td>
+					<td style="text-align: left">10-14</td>
+					<td style="text-align: right">7482</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Comuna</td>
+					<td style="text-align: left">Iquique</td>
+					<td style="text-align: left">Iquique</td>
+					<td style="text-align: left">Tarapacá</td>
+					<td style="text-align: left">Hombres</td>
+					<td style="text-align: left">15-19</td>
+					<td style="text-align: right">6664</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Comuna</td>
+					<td style="text-align: left">Iquique</td>
+					<td style="text-align: left">Iquique</td>
+					<td style="text-align: left">Tarapacá</td>
+					<td style="text-align: left">Hombres</td>
+					<td style="text-align: left">20-24</td>
+					<td style="text-align: right">6804</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Comuna</td>
+					<td style="text-align: left">Iquique</td>
+					<td style="text-align: left">Iquique</td>
+					<td style="text-align: left">Tarapacá</td>
+					<td style="text-align: left">Hombres</td>
+					<td style="text-align: left">25-29</td>
+					<td style="text-align: right">8211</td>
+			</tr>
+	</tbody>
 </table>
 <p>Tenemos columnas que describen la unidad geográfica (<code>comuna</code>, <code>provincia</code>, <code>region</code>), dos variables sociodemográficas (<code>sexo</code> y <code>edad</code>) y finalmente la cantidad de <code>poblacion</code> que cumple los criterios anteriores.</p>
 <p>Es decir, cada fila del <em>dataframe</em> describe un grupo de personas con carcterísticas específicas.</p>
@@ -713,73 +708,73 @@ Descargar datos</a>
 </span></span><span class="line"><span class="cl"><span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="nf">contains</span><span class="p">(</span><span class="s">&#34;codigo&#34;</span><span class="p">))</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl"><span class="nf">filter</span><span class="p">(</span><span class="n">nivel</span> <span class="o">==</span> <span class="s">&#34;Provincia&#34;</span><span class="p">)</span>
 </span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th style="text-align: left">nivel</th>
-          <th style="text-align: left">comuna</th>
-          <th style="text-align: left">provincia</th>
-          <th style="text-align: left">region</th>
-          <th style="text-align: left">sexo</th>
-          <th style="text-align: left">edad</th>
-          <th style="text-align: right">poblacion</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Provincia</td>
-          <td style="text-align: left">NA</td>
-          <td style="text-align: left">Iquique</td>
-          <td style="text-align: left">Tarapacá</td>
-          <td style="text-align: left">Hombres</td>
-          <td style="text-align: left">0-4</td>
-          <td style="text-align: right">10346</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Provincia</td>
-          <td style="text-align: left">NA</td>
-          <td style="text-align: left">Iquique</td>
-          <td style="text-align: left">Tarapacá</td>
-          <td style="text-align: left">Hombres</td>
-          <td style="text-align: left">5-9</td>
-          <td style="text-align: right">13002</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Provincia</td>
-          <td style="text-align: left">NA</td>
-          <td style="text-align: left">Iquique</td>
-          <td style="text-align: left">Tarapacá</td>
-          <td style="text-align: left">Hombres</td>
-          <td style="text-align: left">10-14</td>
-          <td style="text-align: right">14154</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Provincia</td>
-          <td style="text-align: left">NA</td>
-          <td style="text-align: left">Iquique</td>
-          <td style="text-align: left">Tarapacá</td>
-          <td style="text-align: left">Hombres</td>
-          <td style="text-align: left">15-19</td>
-          <td style="text-align: right">12961</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Provincia</td>
-          <td style="text-align: left">NA</td>
-          <td style="text-align: left">Iquique</td>
-          <td style="text-align: left">Tarapacá</td>
-          <td style="text-align: left">Hombres</td>
-          <td style="text-align: left">20-24</td>
-          <td style="text-align: right">13145</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Provincia</td>
-          <td style="text-align: left">NA</td>
-          <td style="text-align: left">Iquique</td>
-          <td style="text-align: left">Tarapacá</td>
-          <td style="text-align: left">Hombres</td>
-          <td style="text-align: left">25-29</td>
-          <td style="text-align: right">14644</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">nivel</th>
+					<th style="text-align: left">comuna</th>
+					<th style="text-align: left">provincia</th>
+					<th style="text-align: left">region</th>
+					<th style="text-align: left">sexo</th>
+					<th style="text-align: left">edad</th>
+					<th style="text-align: right">poblacion</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Provincia</td>
+					<td style="text-align: left">NA</td>
+					<td style="text-align: left">Iquique</td>
+					<td style="text-align: left">Tarapacá</td>
+					<td style="text-align: left">Hombres</td>
+					<td style="text-align: left">0-4</td>
+					<td style="text-align: right">10346</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Provincia</td>
+					<td style="text-align: left">NA</td>
+					<td style="text-align: left">Iquique</td>
+					<td style="text-align: left">Tarapacá</td>
+					<td style="text-align: left">Hombres</td>
+					<td style="text-align: left">5-9</td>
+					<td style="text-align: right">13002</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Provincia</td>
+					<td style="text-align: left">NA</td>
+					<td style="text-align: left">Iquique</td>
+					<td style="text-align: left">Tarapacá</td>
+					<td style="text-align: left">Hombres</td>
+					<td style="text-align: left">10-14</td>
+					<td style="text-align: right">14154</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Provincia</td>
+					<td style="text-align: left">NA</td>
+					<td style="text-align: left">Iquique</td>
+					<td style="text-align: left">Tarapacá</td>
+					<td style="text-align: left">Hombres</td>
+					<td style="text-align: left">15-19</td>
+					<td style="text-align: right">12961</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Provincia</td>
+					<td style="text-align: left">NA</td>
+					<td style="text-align: left">Iquique</td>
+					<td style="text-align: left">Tarapacá</td>
+					<td style="text-align: left">Hombres</td>
+					<td style="text-align: left">20-24</td>
+					<td style="text-align: right">13145</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Provincia</td>
+					<td style="text-align: left">NA</td>
+					<td style="text-align: left">Iquique</td>
+					<td style="text-align: left">Tarapacá</td>
+					<td style="text-align: left">Hombres</td>
+					<td style="text-align: left">25-29</td>
+					<td style="text-align: right">14644</td>
+			</tr>
+	</tbody>
 </table>
 <p>O sea que tenemos los datos de la población visto desde cuatro perspectivas, dependiendo del nivel territorial que nos interese.</p>
 <div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
@@ -2085,11 +2080,11 @@ Error in `consultar_censo()`:
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
-    <dd class="fw5 ml0"><a href="/blog/territorial/">`{territorial}`: un paquete de R para trabajar con datos de comunas y regiones de Chile</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/2026-07-24/">Mapas bivariados de adultos mayores en relación a viviendas propias en las comunas de Chile</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/rutera/">`{rutera}`: un paquete de R para limpiar y procesar RUTs chilenos</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/mapas_bivariados/">Crea mapas bivariados en R para visualizar la relación entre dos variables</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/posit_assistant/">Posit Assistant, una IA para análisis de datos integrada en RStudio</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/mapa_chile_macrozonas/">Mapas de las regiones de Chile según macrozonas</a></dd>
     
   </dl>
 </details>
@@ -2161,21 +2156,6 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
@@ -2191,7 +2171,37 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -2236,7 +2246,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
   </span>
  
   
@@ -2251,7 +2261,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -2312,21 +2322,6 @@ Error in `consultar_censo()`:
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -2416,7 +2411,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/automatizaci%C3%B3n/">Automatización</a></span>
+      href="https://bastianolea.rbind.io/tags/loops/">Loops</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

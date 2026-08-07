@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.164.0">
 <title>Etiquetas de texto que se repelen entre sí con {ggrepel} | Bastián Olea</title>
 
 
@@ -44,28 +44,28 @@
     
     
   
-  <meta itemprop="name" content="Etiquetas de texto que se repelen entre sí con {ggrepel}">
-  <meta itemprop="description" content="En este post veremos a agregar textos que se distancian entre sí automáticamente a tus gráficos. Esto sirve, por ejemplo, para mejorar visualizaciones de datos a las que queremos agregarle texto que identifique las observaciones, aún cuando las observaciones son demasiadas como para etiquetarlas a todas.
+	<meta itemprop="name" content="Etiquetas de texto que se repelen entre sí con {ggrepel}">
+	<meta itemprop="description" content="En este post veremos a agregar textos que se distancian entre sí automáticamente a tus gráficos. Esto sirve, por ejemplo, para mejorar visualizaciones de datos a las que queremos agregarle texto que identifique las observaciones, aún cuando las observaciones son demasiadas como para etiquetarlas a todas.
 Usaremos el paquete de R {ggrepel} para etiquetar puntos en un gráfico con textos que se repelen entre sí de forma automática.
 Este post requiere conocimientos de {ggplot2}. Si quieres aprender a hacer gráficos en R, revisa este tutorial sobre visualización de datos primero. Datos A modo de ejemplo, usaremos datos del plebiscito de entrada de 2020 en Chile, obtenidos desde el repositorio de datos sobre los plebiscitos constitucionales. Éste repositorio, parte de mi mini sitio de datos sociales chilenos, ofrece versiones limpias y listas para usar de los resultados electorales de estos procesos.">
-  <meta itemprop="datePublished" content="2025-07-11T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2025-07-11T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1750">
-  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/ggrepel/featured.png">
-  <meta itemprop="keywords" content="Visualización de datos,ggplot2,Gráficos,Procesamiento de texto">
+	<meta itemprop="datePublished" content="2025-07-11T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2025-07-11T00:00:00+00:00">
+	<meta itemprop="wordCount" content="1750">
+	<meta itemprop="image" content="https://bastianolea.rbind.io/blog/ggrepel/featured.png">
+	<meta itemprop="keywords" content="Visualización de datos,ggplot2,Gráficos,Procesamiento de texto">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.0ef7ee7b0dad458df5b6f993cac9c1b9618320151adbdeef203c9e1dae1c0564.css" integrity="sha256-Dvfuew2tRY31tvmTysnBuWGDIBUa297vIDyeHa4cBWQ=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.4d259699ed6e45788295c8efac266a71ad7a3b6cd7cd8ac8c1bb0027ccbbc35d.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
@@ -106,11 +106,6 @@ Este post requiere conocimientos de {ggplot2}. Si quieres aprender a hacer gráf
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
-      
-        
-        
-        
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
       
         
         
@@ -648,11 +643,11 @@ Este post requiere conocimientos de {ggplot2}. Si quieres aprender a hacer gráf
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
+    <dd class="fw5 ml0"><a href="/blog/2026-07-24/">Mapas bivariados de adultos mayores en relación a viviendas propias en las comunas de Chile</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/mapas_bivariados/">Crea mapas bivariados en R para visualizar la relación entre dos variables</a></dd>
+    
     <dd class="fw5 ml0"><a href="/blog/colores/">Colores y paletas de colores en R</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/stringr_limpieza_ordinal/">Recodificando variables ordinales cuando vienen sucias y/o desde respuestas abiertas</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/validacion_rut/">Limpieza y validación de RUT en R</a></dd>
     
   </dl>
 </details>
@@ -724,21 +719,6 @@ Este post requiere conocimientos de {ggplot2}. Si quieres aprender a hacer gráf
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
@@ -754,7 +734,37 @@ Este post requiere conocimientos de {ggplot2}. Si quieres aprender a hacer gráf
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -799,7 +809,7 @@ Este post requiere conocimientos de {ggplot2}. Si quieres aprender a hacer gráf
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
   </span>
  
   
@@ -814,7 +824,7 @@ Este post requiere conocimientos de {ggplot2}. Si quieres aprender a hacer gráf
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -889,7 +899,22 @@ Este post requiere conocimientos de {ggplot2}. Si quieres aprender a hacer gráf
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -934,36 +959,6 @@ Este post requiere conocimientos de {ggplot2}. Si quieres aprender a hacer gráf
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
   </span>
  
@@ -979,7 +974,7 @@ Este post requiere conocimientos de {ggplot2}. Si quieres aprender a hacer gráf
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/loops/">Loops</a></span>
+      href="https://bastianolea.rbind.io/tags/automatizaci%C3%B3n/">Automatización</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

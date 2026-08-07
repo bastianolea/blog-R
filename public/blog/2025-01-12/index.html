@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.164.0">
 <title>Configura RStudio para que cambie al modo oscuro o claro automáticamente según la hora del día | Bastián Olea</title>
 
 
@@ -44,27 +44,27 @@
     
     
   
-  <meta itemprop="name" content="Configura RStudio para que cambie al modo oscuro o claro automáticamente según la hora del día">
-  <meta itemprop="description" content="En la eterna batalla entre usuarios de tema oscuro y tema claro, yo lamentablemente soy del bando correcto: tema oscuro durante la noche, y tema claro durante el día.
+	<meta itemprop="name" content="Configura RStudio para que cambie al modo oscuro o claro automáticamente según la hora del día">
+	<meta itemprop="description" content="En la eterna batalla entre usuarios de tema oscuro y tema claro, yo lamentablemente soy del bando correcto: tema oscuro durante la noche, y tema claro durante el día.
 La idea de usar un tema oscuro en una pantalla no es que se vea más bonito y profesional todo de negro, sino ayudarte a reducir el contraste de la pantalla con respecto al espacio en el que estás trabajando. En este sentido, si estás en un espacio bien iluminado, deberías usar un tema claro, para no forzar a vista a tener que adaptarse entre un entorno brillante y una pantalla oscura. Si estás en un espacio oscuro, o de iluminación baja, deberías usar un tema oscuro para adecuarte a la iluminación a tu alrededor, junto con ajustar el brillo de tu pantalla.">
-  <meta itemprop="datePublished" content="2025-01-12T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2025-01-12T00:00:00+00:00">
-  <meta itemprop="wordCount" content="578">
-  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/2025-01-12/featured.jpg">
-  <meta itemprop="keywords" content="Consejos,Curiosidades">
+	<meta itemprop="datePublished" content="2025-01-12T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2025-01-12T00:00:00+00:00">
+	<meta itemprop="wordCount" content="578">
+	<meta itemprop="image" content="https://bastianolea.rbind.io/blog/2025-01-12/featured.jpg">
+	<meta itemprop="keywords" content="Consejos,Curiosidades">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.0ef7ee7b0dad458df5b6f993cac9c1b9618320151adbdeef203c9e1dae1c0564.css" integrity="sha256-Dvfuew2tRY31tvmTysnBuWGDIBUa297vIDyeHa4cBWQ=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.4d259699ed6e45788295c8efac266a71ad7a3b6cd7cd8ac8c1bb0027ccbbc35d.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
@@ -105,11 +105,6 @@ La idea de usar un tema oscuro en una pantalla no es que se vea más bonito y pr
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
-      
-        
-        
-        
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
       
         
         
@@ -393,11 +388,11 @@ La idea de usar un tema oscuro en una pantalla no es que se vea más bonito y pr
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
+    <dd class="fw5 ml0"><a href="/blog/2026-06-26/">Truco de RStudio: escribe en múltiples líneas al mismo tiempo</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/2026-07-21/">Sobre números pequeños y con muchos decimales</a></dd>
+    
     <dd class="fw5 ml0"><a href="/blog/2026-06-16/">Tipografías lindas para programar en R: Fira Code</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/posit_assistant/">Posit Assistant, una IA para análisis de datos integrada en RStudio</a></dd>
-    
-    <dd class="fw5 ml0"><a href="/blog/tema_morado/">Temas morados oscuro y claro para RStudio</a></dd>
     
   </dl>
 </details>
@@ -469,21 +464,6 @@ La idea de usar un tema oscuro en una pantalla no es que se vea más bonito y pr
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
@@ -499,7 +479,37 @@ La idea de usar un tema oscuro en una pantalla no es que se vea más bonito y pr
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -544,7 +554,7 @@ La idea de usar un tema oscuro en una pantalla no es que se vea más bonito y pr
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
   </span>
  
   
@@ -559,7 +569,7 @@ La idea de usar un tema oscuro en una pantalla no es que se vea más bonito y pr
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -604,21 +614,6 @@ La idea de usar un tema oscuro en una pantalla no es que se vea más bonito y pr
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
   </span>
  
@@ -634,7 +629,7 @@ La idea de usar un tema oscuro en una pantalla no es que se vea más bonito y pr
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -650,6 +645,21 @@ La idea de usar un tema oscuro en una pantalla no es que se vea más bonito y pr
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -694,21 +704,6 @@ La idea de usar un tema oscuro en una pantalla no es que se vea más bonito y pr
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
   </span>
  
@@ -724,7 +719,7 @@ La idea de usar un tema oscuro en una pantalla no es que se vea más bonito y pr
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/optimizaci%C3%B3n/">Optimización</a></span>
+      href="https://bastianolea.rbind.io/tags/ciencias-sociales/">Ciencias sociales</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

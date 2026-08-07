@@ -17,7 +17,6 @@ tags:
   - mapas
   - datos
   - Chile
-lang: es
 excerpt: En una nueva fecha electoral en Chile, apliqué el código que he usado en elecciones pasadas para obtener los datos del Servicio Electoral en tiempo real para así ir generando gráficos, tablas y mapas con los resultados preliminares.
 links:
 - icon: github

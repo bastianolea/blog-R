@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.164.0">
 <title>Palíndromos de Chile | Bastián Olea</title>
 
 
@@ -44,28 +44,28 @@
     
     
   
-  <meta itemprop="name" content="Palíndromos de Chile">
-  <meta itemprop="description" content="Un palíndromo es una palabra que se puede leer o escribir al revés y al derecho. Por ejemplo, “seres” o “radar” al revés son iguales.
+	<meta itemprop="name" content="Palíndromos de Chile">
+	<meta itemprop="description" content="Un palíndromo es una palabra que se puede leer o escribir al revés y al derecho. Por ejemplo, “seres” o “radar” al revés son iguales.
 Palíndromos en R Hagamos una función en R para poder evaluar si una palabra es palindrómica:
 palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(texto) texto_limpio &lt;- chartr(&#34;áéíóú&#34;, &#34;aeiou&#34;, texto_minusc) texto_invertido &lt;- stri_reverse(texto_limpio) return(texto_limpio == texto_invertido) } Esta función simplemente invierte un texto con stri_reverse() (cosa que hola se vuelve aloh), pero antes transforma la palabra a minúsculas con tolower(), y le saca los tildes con chartr(), para obtener la palabra en su versión limpia. Luego la función compara la palabra invertida con la palabra original, y retorna TRUE si es palíndromo o FALSE si no lo es.">
-  <meta itemprop="datePublished" content="2026-05-29T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2026-05-29T00:00:00+00:00">
-  <meta itemprop="wordCount" content="334">
-  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/2026-05-29/palindromos_chile-featured.jpg">
-  <meta itemprop="keywords" content="Visualización de datos,Mapas,Procesamiento de texto">
+	<meta itemprop="datePublished" content="2026-05-29T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2026-05-29T00:00:00+00:00">
+	<meta itemprop="wordCount" content="338">
+	<meta itemprop="image" content="https://bastianolea.rbind.io/blog/2026-05-29/palindromos_chile-featured.jpg">
+	<meta itemprop="keywords" content="Visualización de datos,Mapas,Procesamiento de texto">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.0ef7ee7b0dad458df5b6f993cac9c1b9618320151adbdeef203c9e1dae1c0564.css" integrity="sha256-Dvfuew2tRY31tvmTysnBuWGDIBUa297vIDyeHa4cBWQ=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.4d259699ed6e45788295c8efac266a71ad7a3b6cd7cd8ac8c1bb0027ccbbc35d.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
@@ -106,11 +106,6 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
-      
-        
-        
-        
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
       
         
         
@@ -491,7 +486,7 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
                 overflow: hidden;
                 background-color: #9069C00d;">
 
-      <a href="/blog/mapas_hexagonales/"
+      <a href="/blog/2026-08-03/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -503,8 +498,8 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
                   ">
 
           
-          <img src="/blog/mapas_hexagonales/featured.png"
-               alt="Mapas hexagonales o cuadriculados con R"
+          <img src="/blog/2026-08-03/pmtiles-featured.jpg"
+               alt="Optimizando la visualización de datos geográficos complejos con `{pmtiles}`"
                style="flex-shrink: 0;
                       width: 52px;
                       height: 38px;
@@ -518,11 +513,11 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
                        color: #9069C0;
                        font-weight: 600;
                        line-height: 1.35;">
-            Mapas hexagonales o cuadriculados con R
+            Optimizando la visualización de datos geográficos complejos con <code>{pmtiles}</code>
           </span>
 
         </a>
-      <a href="/blog/mapas_sf/"
+      <a href="/blog/2026-07-29/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -534,8 +529,8 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
                   ">
 
           
-          <img src="/blog/mapas_sf/mapa_rm_featured.png"
-               alt="Mapas y visualización de datos geoespaciales en R con {sf}"
+          <img src="/blog/2026-07-29/mapgl-shiny-featured.jpg"
+               alt="Probando visores de mapas interactivos en R con `{mapgl}`"
                style="flex-shrink: 0;
                       width: 52px;
                       height: 38px;
@@ -549,11 +544,11 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
                        color: #9069C0;
                        font-weight: 600;
                        line-height: 1.35;">
-            Mapas y visualización de datos geoespaciales en R con {sf}
+            Probando visores de mapas interactivos en R con <code>{mapgl}</code>
           </span>
 
         </a>
-      <a href="/blog/app_censo_mapas/"
+      <a href="/blog/2026-07-24/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -565,8 +560,8 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
                   ">
 
           
-          <img src="/blog/app_censo_mapas/featured.jpg"
-               alt="App: visualizador de mapas comunales del Censo 2024 por manzanas"
+          <img src="/blog/2026-07-24/featured.png"
+               alt="Mapas bivariados de adultos mayores en relación a viviendas propias en las comunas de Chile"
                style="flex-shrink: 0;
                       width: 52px;
                       height: 38px;
@@ -580,11 +575,11 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
                        color: #9069C0;
                        font-weight: 600;
                        line-height: 1.35;">
-            App: visualizador de mapas comunales del Censo 2024 por manzanas
+            Mapas bivariados de adultos mayores en relación a viviendas propias en las comunas de Chile
           </span>
 
         </a>
-      <a href="/blog/mapas_censo_2024/"
+      <a href="/blog/mapas_bivariados/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -596,8 +591,8 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
                   ">
 
           
-          <img src="/blog/mapas_censo_2024/featured.jpg"
-               alt="Visualiza datos del Censo 2024 en mapas a nivel de manzana con R"
+          <img src="/blog/mapas_bivariados/mapas-bivariados-featured.jpg"
+               alt="Crea mapas bivariados en R para visualizar la relación entre dos variables"
                style="flex-shrink: 0;
                       width: 52px;
                       height: 38px;
@@ -611,11 +606,11 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
                        color: #9069C0;
                        font-weight: 600;
                        line-height: 1.35;">
-            Visualiza datos del Censo 2024 en mapas a nivel de manzana con R
+            Crea mapas bivariados en R para visualizar la relación entre dos variables
           </span>
 
         </a>
-      <a href="/blog/elecciones_presidenciales_2025/"
+      <a href="/blog/mapa_chile_macrozonas/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -627,8 +622,8 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
                   ">
 
           
-          <img src="/blog/elecciones_presidenciales_2025/featured.jpg"
-               alt="Visualización y scraping de resultados de las elecciones presidenciales 2025"
+          <img src="/blog/mapa_chile_macrozonas/featured.jpg"
+               alt="Mapas de las regiones de Chile según macrozonas"
                style="flex-shrink: 0;
                       width: 52px;
                       height: 38px;
@@ -642,7 +637,7 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
                        color: #9069C0;
                        font-weight: 600;
                        line-height: 1.35;">
-            Visualización y scraping de resultados de las elecciones presidenciales 2025
+            Mapas de las regiones de Chile según macrozonas
           </span>
 
         </a>
@@ -691,7 +686,7 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">2 minute read, 334 words</dd>
+    <dd class="fw5 ml0">2 minute read, 338 words</dd>
   </dl>
   
   
@@ -704,11 +699,11 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
-    <dd class="fw5 ml0"><a href="/blog/colores/">Colores y paletas de colores en R</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/2026-08-03/">Optimizando la visualización de datos geográficos complejos con `{pmtiles}`</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/stringr_limpieza_ordinal/">Recodificando variables ordinales cuando vienen sucias y/o desde respuestas abiertas</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/2026-07-29/">Probando visores de mapas interactivos en R con `{mapgl}`</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/validacion_rut/">Limpieza y validación de RUT en R</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/2026-07-24/">Mapas bivariados de adultos mayores en relación a viviendas propias en las comunas de Chile</a></dd>
     
   </dl>
 </details>
@@ -780,7 +775,7 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -795,7 +790,7 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -825,21 +820,6 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
@@ -855,7 +835,37 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/apps/">Aplicaciones</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -945,37 +955,7 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -1020,6 +1000,21 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
   </span>
  
@@ -1035,7 +1030,7 @@ palindromo &lt;- function(texto) { require(stringi) texto_minusc &lt;- tolower(t
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/automatizaci%C3%B3n/">Automatización</a></span>
+      href="https://bastianolea.rbind.io/tags/loops/">Loops</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

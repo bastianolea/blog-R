@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.164.0">
 <title>Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R | Bastián Olea</title>
 
 
@@ -44,27 +44,27 @@
     
     
   
-  <meta itemprop="name" content="Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R">
-  <meta itemprop="description" content="La generación aumentada por recuperación o RAG, por sus siglas en inglés (retrieval-augmented generation) es un proceso por medio del cual puedes aumentar o complementar el conocimiento de una inteligencia artificial para que pueda responder preguntas basándose en tus propios documentos sin necesidad de entrenar un modelo nuevo ni de requerir un modelo de lenguaje gigante y caro.
+	<meta itemprop="name" content="Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R">
+	<meta itemprop="description" content="La generación aumentada por recuperación o RAG, por sus siglas en inglés (retrieval-augmented generation) es un proceso por medio del cual puedes aumentar o complementar el conocimiento de una inteligencia artificial para que pueda responder preguntas basándose en tus propios documentos sin necesidad de entrenar un modelo nuevo ni de requerir un modelo de lenguaje gigante y caro.
 ¿Para qué sirve el RAG? Para que cualquier modelo de IA pueda informarse en uno o varios documentos que tú especifiques, y así tenga conocimiento específico de temáticas especializadas. De esta forma, los modelos dejan de depender en los conocimientos de su entrenamiento (que son generales y difusos) y se basan en el conocimiento que tú les proveas para responder.">
-  <meta itemprop="datePublished" content="2026-05-28T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2026-05-28T00:00:00+00:00">
-  <meta itemprop="wordCount" content="2146">
-  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/rag_ragnar/diagrama_pensamiento_llm_rag-featured.png">
-  <meta itemprop="keywords" content="Inteligencia artificial,Procesamiento de texto">
+	<meta itemprop="datePublished" content="2026-05-28T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2026-05-28T00:00:00+00:00">
+	<meta itemprop="wordCount" content="2146">
+	<meta itemprop="image" content="https://bastianolea.rbind.io/blog/rag_ragnar/diagrama_pensamiento_llm_rag-featured.png">
+	<meta itemprop="keywords" content="Inteligencia artificial,Procesamiento de texto">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.0ef7ee7b0dad458df5b6f993cac9c1b9618320151adbdeef203c9e1dae1c0564.css" integrity="sha256-Dvfuew2tRY31tvmTysnBuWGDIBUa297vIDyeHa4cBWQ=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.4d259699ed6e45788295c8efac266a71ad7a3b6cd7cd8ac8c1bb0027ccbbc35d.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
@@ -105,11 +105,6 @@
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
-      
-        
-        
-        
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
       
         
         
@@ -519,15 +514,15 @@ elaboración.</p>
 <p>Ya que tenemos el <em>almacén</em>, necesitamos llenarlo con documentos para obtener una base de conocimientos. Los documentos se introducen al almacenamiento con <code>read_as_markdown()</code>, y pueden estar en cualquier formato (PDF, Word, etc.) ya que serán convertidos a formato Markdown.</p>
 <p>Esto significa que los documentos ideales para incluir serán documentos Markdown que hayamos <strong>revisado y limpiado</strong> previamente. El punto más importante aquí es que los documentos tengan una buena <strong>estructura de títulos y subtítulos</strong>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="gh"># Título del documento
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="gu">## Capítulo 1
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="gu">### Concepto 1
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Bla bla bla
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="gu">### Concepto 2
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Ble ble ble
 </span></span></code></pre></div><p>Recordemos que la calidad de las respuestas siempre va a depender de la calidad de los datos!</p>
 <p>Cargamos un documento:</p>
@@ -984,21 +979,6 @@ permitiendo a los gobiernos:</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
@@ -1014,7 +994,37 @@ permitiendo a los gobiernos:</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -1059,7 +1069,7 @@ permitiendo a los gobiernos:</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
   </span>
  
   
@@ -1074,7 +1084,7 @@ permitiendo a los gobiernos:</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -1135,21 +1145,6 @@ permitiendo a los gobiernos:</p>
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -1239,7 +1234,7 @@ permitiendo a los gobiernos:</p>
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/optimizaci%C3%B3n/">Optimización</a></span>
+      href="https://bastianolea.rbind.io/tags/loops/">Loops</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

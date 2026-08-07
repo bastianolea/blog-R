@@ -8,7 +8,6 @@ series: "Introducción a R"
 slug: []
 categories: ["Tutoriales"]
 tags: []
-lang: es
 excerpt: Instrucciones paso a paso para aprender los aspectos más básicos del lenguaje R. Dirigida a personas sin ningún conocimiento del lenguaje. Si quieres aprender R desde cero, esta publicación es para ti.
 execute: 
   error: true

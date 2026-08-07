@@ -1,6 +1,5 @@
 ---
 title: Probando
-lang: es
 ---
 
 

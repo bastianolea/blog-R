@@ -8,7 +8,6 @@ tags:
   - datos
   - Chile
   - ciencias sociales
-lang: es
 excerpt: Repositorio de código para obtener todos los datos de SIMEL de manera automática mediante web scraping, usando `{RSelenium}`.
 links:
 - icon: github

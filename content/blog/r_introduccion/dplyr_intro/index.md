@@ -16,7 +16,6 @@ tags:
   - dplyr
   - datos
   - básico
-lang: es
 excerpt: >-
   Luego de haber aprendido las funcionalidades básicas del lenguaje y R, y
   habernos familiarizado con herramientas un poco más avanzadas de la

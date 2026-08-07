@@ -5,7 +5,6 @@ date: 2024-09-03
 categories: ['Tutoriales']
 tags: ['mapas', 'Chile']
 format: hugo-md
-lang: es
 freeze: true
 links:
 - icon: github

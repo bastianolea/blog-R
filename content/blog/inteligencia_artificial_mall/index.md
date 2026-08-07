@@ -11,7 +11,6 @@ categories:
 tags:
   - análisis de texto
   - inteligencia artificial
-lang: es
 cache: false
 freeze: true
 excerpt: >-

@@ -5,7 +5,6 @@ date: 2023-09-27
 categories: ['Tutoriales']
 tags: ['web scraping', 'chile', 'fuentes de datos']
 format: hugo-md
-lang: es
 editor_options: 
   chunk_output_type: console
 links:

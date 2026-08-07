@@ -1,8 +1,6 @@
 baseURL = "https://bastianolea.rbind.io/"
 # baseURL = "https://bastianoleah.netlify.app/"
 theme = "hugo-apero"
-languageCode = "es"
-locale = "es-ES"
 defaultContentLanguage = "es"
 title = "Bastián Olea"
 author = "Bastián Olea Herrera"
@@ -22,8 +20,8 @@ titleCaseStyle = "firstupper"
     
 [languages]
   [languages.es]
-  languageName = "Spanish"
-  languageCode = 'es-ES'
+  label = "Spanish"
+  locale = 'es-ES'
   weight = 1
 
 [markup]

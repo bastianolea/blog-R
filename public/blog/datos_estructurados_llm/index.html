@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.164.0">
 <title>Extracción de datos estructurados desde texto usando IA | Bastián Olea</title>
 
 
@@ -44,25 +44,25 @@
     
     
   
-  <meta itemprop="name" content="Extracción de datos estructurados desde texto usando IA">
-  <meta itemprop="description" content="Este tutorial lo hice con los aprendizajes que obtuve del excelente workshop LLMs in R for Data Analysis impartido por Nic Crane en la fabulosa conferencia de RainbowR 2026 Los modelos de lenguaje (LLMs, también llamados coloquialmente inteligencia artificial) nos pueden ayudar a transformar textos de cualquier tipo en datos estructurados. Esto significa que puedes convertir entrevistas, reseñas, opiniones, correos, noticias y más en bases de datos con la información que necesitas debidamente ordenada en filas y columnas.">
-  <meta itemprop="datePublished" content="2026-03-07T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2026-03-07T00:00:00+00:00">
-  <meta itemprop="wordCount" content="2115">
-  <meta itemprop="keywords" content="Inteligencia artificial,Procesamiento de texto,Análisis de texto,Datos">
+	<meta itemprop="name" content="Extracción de datos estructurados desde texto usando IA">
+	<meta itemprop="description" content="Este tutorial lo hice con los aprendizajes que obtuve del excelente workshop LLMs in R for Data Analysis impartido por Nic Crane en la fabulosa conferencia de RainbowR 2026 Los modelos de lenguaje (LLMs, también llamados coloquialmente inteligencia artificial) nos pueden ayudar a transformar textos de cualquier tipo en datos estructurados. Esto significa que puedes convertir entrevistas, reseñas, opiniones, correos, noticias y más en bases de datos con la información que necesitas debidamente ordenada en filas y columnas.">
+	<meta itemprop="datePublished" content="2026-03-07T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2026-03-07T00:00:00+00:00">
+	<meta itemprop="wordCount" content="2115">
+	<meta itemprop="keywords" content="Inteligencia artificial,Procesamiento de texto,Análisis de texto,Datos">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.0ef7ee7b0dad458df5b6f993cac9c1b9618320151adbdeef203c9e1dae1c0564.css" integrity="sha256-Dvfuew2tRY31tvmTysnBuWGDIBUa297vIDyeHa4cBWQ=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.4d259699ed6e45788295c8efac266a71ad7a3b6cd7cd8ac8c1bb0027ccbbc35d.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
@@ -103,11 +103,6 @@
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
-      
-        
-        
-        
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
       
         
         
@@ -568,35 +563,35 @@ de Santiago&quot;.
 <p>Ahora veremos una una <strong>forma más consistente de extraer datos a partir de textos con IA</strong>, para que los modelos de lenguaje respondan específicamente lo que necesitamos.</p>
 <p>Para ello, vamos a <strong>especificar las respuestas que queremos recibir</strong> del modelo, usando las funciones <code>type_{x}</code> de <code>{ellmer}</code>:</p>
 <table>
-  <thead>
-      <tr>
-          <th>Función</th>
-          <th>Tipo de respuesta</th>
-          <th>Descripción</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>type_string()</code></td>
-          <td>Texto abierto</td>
-          <td>Para respuestas en texto libre, como nombres, conceptos, explicaciones, etc.</td>
-      </tr>
-      <tr>
-          <td><code>type_enum()</code></td>
-          <td>Variable categórica</td>
-          <td>Para respuestas que asuman un valor de un conjunto de valores predefinidos.</td>
-      </tr>
-      <tr>
-          <td><code>type_number()</code></td>
-          <td>Numérica</td>
-          <td>Para respuestas que son cifras (números enteros, decimales, etc.)</td>
-      </tr>
-      <tr>
-          <td><code>type_boolean()</code></td>
-          <td>Variable lógica</td>
-          <td>Para respuestas de verdadero/falso (<code>TRUE</code> / <code>FALSE</code>)</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Función</th>
+					<th>Tipo de respuesta</th>
+					<th>Descripción</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>type_string()</code></td>
+					<td>Texto abierto</td>
+					<td>Para respuestas en texto libre, como nombres, conceptos, explicaciones, etc.</td>
+			</tr>
+			<tr>
+					<td><code>type_enum()</code></td>
+					<td>Variable categórica</td>
+					<td>Para respuestas que asuman un valor de un conjunto de valores predefinidos.</td>
+			</tr>
+			<tr>
+					<td><code>type_number()</code></td>
+					<td>Numérica</td>
+					<td>Para respuestas que son cifras (números enteros, decimales, etc.)</td>
+			</tr>
+			<tr>
+					<td><code>type_boolean()</code></td>
+					<td>Variable lógica</td>
+					<td>Para respuestas de verdadero/falso (<code>TRUE</code> / <code>FALSE</code>)</td>
+			</tr>
+	</tbody>
 </table>
 <p>Siguiendo con el ejemplo, si queremos extraer la <strong>ubicación principal</strong> mencionada en la noticia, usamos <code>type_string()</code> para pedirle una respuesta de texto al modelo, junto a una breve descripción de lo que queremos:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tipo_lugar</span> <span class="o">&lt;-</span> <span class="nf">type_string</span><span class="p">(</span><span class="s">&#34;Ubicación principal de la noticia&#34;</span><span class="p">)</span>
@@ -699,132 +694,132 @@ de Santiago&quot;.
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span></code></pre></div><p>Al solicitar varias variables al modelo, retorna una tabla o <em>tibble</em> con los datos estructurados de cada noticia, con una fila por cada noticia, en el orden que se entregaron las noticias.</p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">lugar</th>
-          <th style="text-align: left">actor</th>
-          <th style="text-align: left">actor_grupo</th>
-          <th style="text-align: left">sentimiento</th>
-          <th style="text-align: left">clasificacion</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Santiago</td>
-          <td style="text-align: left">Gendarmería de Chile</td>
-          <td style="text-align: left">institución pública</td>
-          <td style="text-align: left">negativo</td>
-          <td style="text-align: left">judicial</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">Andes Iron</td>
-          <td style="text-align: left">empresa</td>
-          <td style="text-align: left">negativo</td>
-          <td style="text-align: left">judicial</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Maipú, Región Metropolitana</td>
-          <td style="text-align: left">Cathy Barriga, exalcaldesa de Maipú</td>
-          <td style="text-align: left">político</td>
-          <td style="text-align: left">negativo</td>
-          <td style="text-align: left">judicial</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">Gabriel Boric</td>
-          <td style="text-align: left">político</td>
-          <td style="text-align: left">positivo</td>
-          <td style="text-align: left">político</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Mall Plaza Norte, Chile</td>
-          <td style="text-align: left">Propietario de tienda Chenza / Tres mujeres involucradas en el robo</td>
-          <td style="text-align: left">ciudadano</td>
-          <td style="text-align: left">negativo</td>
-          <td style="text-align: left">delincuencia</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Chile (La Moneda, Santiago)</td>
-          <td style="text-align: left">Presidente Gabriel Boric</td>
-          <td style="text-align: left">político</td>
-          <td style="text-align: left">negativo</td>
-          <td style="text-align: left">político</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">lugar</th>
+					<th style="text-align: left">actor</th>
+					<th style="text-align: left">actor_grupo</th>
+					<th style="text-align: left">sentimiento</th>
+					<th style="text-align: left">clasificacion</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Santiago</td>
+					<td style="text-align: left">Gendarmería de Chile</td>
+					<td style="text-align: left">institución pública</td>
+					<td style="text-align: left">negativo</td>
+					<td style="text-align: left">judicial</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">Andes Iron</td>
+					<td style="text-align: left">empresa</td>
+					<td style="text-align: left">negativo</td>
+					<td style="text-align: left">judicial</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Maipú, Región Metropolitana</td>
+					<td style="text-align: left">Cathy Barriga, exalcaldesa de Maipú</td>
+					<td style="text-align: left">político</td>
+					<td style="text-align: left">negativo</td>
+					<td style="text-align: left">judicial</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">Gabriel Boric</td>
+					<td style="text-align: left">político</td>
+					<td style="text-align: left">positivo</td>
+					<td style="text-align: left">político</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Mall Plaza Norte, Chile</td>
+					<td style="text-align: left">Propietario de tienda Chenza / Tres mujeres involucradas en el robo</td>
+					<td style="text-align: left">ciudadano</td>
+					<td style="text-align: left">negativo</td>
+					<td style="text-align: left">delincuencia</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Chile (La Moneda, Santiago)</td>
+					<td style="text-align: left">Presidente Gabriel Boric</td>
+					<td style="text-align: left">político</td>
+					<td style="text-align: left">negativo</td>
+					<td style="text-align: left">político</td>
+			</tr>
+	</tbody>
 </table>
 <p>Como vienen en el mismo orden que las noticias, podemos unir las columnas obtenidas a los datos originales:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tabla</span> <span class="o">&lt;-</span> <span class="n">muestra</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">fecha</span><span class="p">)</span> <span class="o">|&gt;</span> 
 </span></span><span class="line"><span class="cl">  <span class="nf">bind_cols</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
 </span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th style="text-align: left">titulo</th>
-          <th style="text-align: left">fecha</th>
-          <th style="text-align: left">lugar</th>
-          <th style="text-align: left">actor</th>
-          <th style="text-align: left">actor_grupo</th>
-          <th style="text-align: left">sentimiento</th>
-          <th style="text-align: left">clasificacion</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Nuevo error en Gendarmería: imputado queda en libertad pese a que debía cumplir prisión preventiva</td>
-          <td style="text-align: left">2025-12-30</td>
-          <td style="text-align: left">Santiago</td>
-          <td style="text-align: left">Gendarmería de Chile</td>
-          <td style="text-align: left">institución pública</td>
-          <td style="text-align: left">negativo</td>
-          <td style="text-align: left">judicial</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Andes Iron acusa ofensiva política contra Dominga tras conocerse que enfrenta indagatoria penal</td>
-          <td style="text-align: left">2025-12-30</td>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">Andes Iron</td>
-          <td style="text-align: left">empresa</td>
-          <td style="text-align: left">negativo</td>
-          <td style="text-align: left">judicial</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Fiscalía acusó a Cathy Barriga por cuatro delitos y pide más de 23 años de cárcel</td>
-          <td style="text-align: left">2025-12-30</td>
-          <td style="text-align: left">Maipú, Región Metropolitana</td>
-          <td style="text-align: left">Cathy Barriga, exalcaldesa de Maipú</td>
-          <td style="text-align: left">político</td>
-          <td style="text-align: left">negativo</td>
-          <td style="text-align: left">judicial</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">No fue Patricia Muñoz: Boric nombra a Macarena Cortés como la primera directora de la Defensoría de Víctimas</td>
-          <td style="text-align: left">2025-12-30</td>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">Gabriel Boric</td>
-          <td style="text-align: left">político</td>
-          <td style="text-align: left">positivo</td>
-          <td style="text-align: left">político</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">&ldquo;Ya tomaron las huellas&rdquo;: dueño de tienda asaltada durante incendio en Mall Plaza Norte afirma que responsables fueron identificadas</td>
-          <td style="text-align: left">2025-12-30</td>
-          <td style="text-align: left">Mall Plaza Norte, Chile</td>
-          <td style="text-align: left">Propietario de tienda Chenza / Tres mujeres involucradas en el robo</td>
-          <td style="text-align: left">ciudadano</td>
-          <td style="text-align: left">negativo</td>
-          <td style="text-align: left">delincuencia</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Presidente Boric recibe cartas credenciales de cinco embajadores y cierra polémica con EEUU e Israel</td>
-          <td style="text-align: left">2025-12-30</td>
-          <td style="text-align: left">Chile (La Moneda, Santiago)</td>
-          <td style="text-align: left">Presidente Gabriel Boric</td>
-          <td style="text-align: left">político</td>
-          <td style="text-align: left">negativo</td>
-          <td style="text-align: left">político</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">titulo</th>
+					<th style="text-align: left">fecha</th>
+					<th style="text-align: left">lugar</th>
+					<th style="text-align: left">actor</th>
+					<th style="text-align: left">actor_grupo</th>
+					<th style="text-align: left">sentimiento</th>
+					<th style="text-align: left">clasificacion</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Nuevo error en Gendarmería: imputado queda en libertad pese a que debía cumplir prisión preventiva</td>
+					<td style="text-align: left">2025-12-30</td>
+					<td style="text-align: left">Santiago</td>
+					<td style="text-align: left">Gendarmería de Chile</td>
+					<td style="text-align: left">institución pública</td>
+					<td style="text-align: left">negativo</td>
+					<td style="text-align: left">judicial</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Andes Iron acusa ofensiva política contra Dominga tras conocerse que enfrenta indagatoria penal</td>
+					<td style="text-align: left">2025-12-30</td>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">Andes Iron</td>
+					<td style="text-align: left">empresa</td>
+					<td style="text-align: left">negativo</td>
+					<td style="text-align: left">judicial</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Fiscalía acusó a Cathy Barriga por cuatro delitos y pide más de 23 años de cárcel</td>
+					<td style="text-align: left">2025-12-30</td>
+					<td style="text-align: left">Maipú, Región Metropolitana</td>
+					<td style="text-align: left">Cathy Barriga, exalcaldesa de Maipú</td>
+					<td style="text-align: left">político</td>
+					<td style="text-align: left">negativo</td>
+					<td style="text-align: left">judicial</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">No fue Patricia Muñoz: Boric nombra a Macarena Cortés como la primera directora de la Defensoría de Víctimas</td>
+					<td style="text-align: left">2025-12-30</td>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">Gabriel Boric</td>
+					<td style="text-align: left">político</td>
+					<td style="text-align: left">positivo</td>
+					<td style="text-align: left">político</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">&ldquo;Ya tomaron las huellas&rdquo;: dueño de tienda asaltada durante incendio en Mall Plaza Norte afirma que responsables fueron identificadas</td>
+					<td style="text-align: left">2025-12-30</td>
+					<td style="text-align: left">Mall Plaza Norte, Chile</td>
+					<td style="text-align: left">Propietario de tienda Chenza / Tres mujeres involucradas en el robo</td>
+					<td style="text-align: left">ciudadano</td>
+					<td style="text-align: left">negativo</td>
+					<td style="text-align: left">delincuencia</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Presidente Boric recibe cartas credenciales de cinco embajadores y cierra polémica con EEUU e Israel</td>
+					<td style="text-align: left">2025-12-30</td>
+					<td style="text-align: left">Chile (La Moneda, Santiago)</td>
+					<td style="text-align: left">Presidente Gabriel Boric</td>
+					<td style="text-align: left">político</td>
+					<td style="text-align: left">negativo</td>
+					<td style="text-align: left">político</td>
+			</tr>
+	</tbody>
 </table>
 <p>Si te interesa profundizar en este tema, 
 <a href="https://www.aifordatapeople.com/courses/llms-in-r" target="_blank" rel="noopener">Nic Crane ofrece un curso específico sobre el uso de LLMs con R</a></p>
@@ -999,21 +994,6 @@ de Santiago&quot;.
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
@@ -1029,7 +1009,37 @@ de Santiago&quot;.
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -1074,7 +1084,7 @@ de Santiago&quot;.
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
   </span>
  
   
@@ -1089,7 +1099,7 @@ de Santiago&quot;.
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -1164,7 +1174,22 @@ de Santiago&quot;.
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -1195,36 +1220,6 @@ de Santiago&quot;.
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/texto/">Procesamiento de texto</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
   

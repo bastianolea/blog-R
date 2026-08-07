@@ -11,7 +11,6 @@ draft: false
 series: "Introducción a R"
 categories: ["Tutoriales"]
 tags: []
-lang: es
 excerpt: "Los conectores o _pipes_ son símbolos que nos permiten encadenar varias operaciones. En inglés, _pipe_ significa literalmente 'tubería', porque la idea es que los datos fluyan a través de una serie de pasos. En esta guía comprenderemos cómo se usan los conectores, y cómo pueden ayudarnos a escribir mejores análisis."
 execute: 
   error: true

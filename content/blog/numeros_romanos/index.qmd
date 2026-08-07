@@ -7,7 +7,6 @@ categories:
   - Procesamiento de datos
 tags:
   - curiosidades
-lang: es
 excerpt: ¿Sabías que R tiene un tipo de datos para números romanos? Yo tampoco
 ---
 

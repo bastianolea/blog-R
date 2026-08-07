@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.164.0">
 <title>Blog: análisis de datos en R | Bastián Olea</title>
 
 
@@ -44,11 +44,11 @@
     
     
   
-  <meta itemprop="name" content="Blog: análisis de datos en R">
-  <meta itemprop="description" content="** No content below YAML for the blog _index. This file provides front matter for the listing page layout and sidebar content. It is also a branch bundle, and all settings under cascade provide front matter for all pages inside blog/. You may still override any of these by changing them in a page’s front matter.**">
-  <meta itemprop="datePublished" content="2026-07-07T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2026-07-07T00:00:00+00:00">
-  <meta itemprop="wordCount" content="56">
+	<meta itemprop="name" content="Blog: análisis de datos en R">
+	<meta itemprop="description" content="** No content below YAML for the blog _index. This file provides front matter for the listing page layout and sidebar content. It is also a branch bundle, and all settings under cascade provide front matter for all pages inside blog/. You may still override any of these by changing them in a page’s front matter.**">
+	<meta itemprop="datePublished" content="2026-08-03T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2026-08-03T00:00:00+00:00">
+	<meta itemprop="wordCount" content="56">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
@@ -57,13 +57,13 @@
     <link rel="alternate" type="application/rss+xml" href="https://bastianolea.rbind.io/blog/index.xml" title="Bastián Olea" />
   
   
-  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.0ef7ee7b0dad458df5b6f993cac9c1b9618320151adbdeef203c9e1dae1c0564.css" integrity="sha256-Dvfuew2tRY31tvmTysnBuWGDIBUa297vIDyeHa4cBWQ=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.4d259699ed6e45788295c8efac266a71ad7a3b6cd7cd8ac8c1bb0027ccbbc35d.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
@@ -104,11 +104,6 @@
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
-      
-        
-        
-        
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
       
         
         
@@ -255,6 +250,789 @@
   <section class="blog-content mw7 center">
     
      
+      
+        
+                                   
+     
+     
+<article class="mv4 mv5-l bb">
+
+  
+  
+  
+  
+  
+  
+  <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
+    <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
+      <a href="/blog/funcion_consultar_datos/" class="db">
+        <img src="https://bastianolea.rbind.io/blog/funcion_consultar_datos/funcion_consultar_datos_featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+      </a>
+    </figure>
+    <div class="flex flex-column w-100 w-60-ns pl3-ns">
+      <header class="w-100">
+        <h1 class="f3 mv2 lh-title underline"><a href="/blog/funcion_consultar_datos/" class="db">Creando una función para consultar datos en R</a></h1>
+        
+        
+        
+      </header>
+      
+      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;">En R es muy fácil filtrar y seleccionar cualquier base de datos para obtener las cifras que quieras. Pero a veces necesitamos consultar muchas cifras, y repetir el código se vuelve engorroso. En este tutorial veremos cómo crear una función diseñada para consultar datos. Este puede es conveniente para consultar datos, o puede ser el primer paso para crear una API, o crear una herramienta para una inteligencia artificial.</p>
+      
+      
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/datos"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            datos</a>  <a href="https://bastianolea.rbind.io/tags/chile"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            Chile</a>  <a href="https://bastianolea.rbind.io/tags/funciones"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            funciones</a>  <a href="https://bastianolea.rbind.io/tags/inteligencia-artificial"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            inteligencia artificial</a> </dd></em>
+        </dl>
+        
+        
+      
+      <footer class="w-100">
+        
+      
+      
+      
+      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">23/5/2026</div>
+      
+        <span>
+          
+        </span>
+      </div>
+      
+      
+        <p class="db pt1">
+        
+
+<div style="margin-top:-24px;">
+
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+      
+    
+  <a class="btn-links mr2 ba dib" 
+  style = "background-color: #9069C0; border-radius: 4px; 
+  color: #EAD2FA; font-size: 10pt;
+  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
+  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
+  href="https://github.com/bastianolea/censo_poblacion_consultar" target="_blank" rel="noopener"><i class="fas fa-file-code fa-lg fa-fw mr2"></i>Código</a>
+
+</div>
+
+        </p>
+      
+    </footer>
+    </div>
+  </div>
+  
+
+  
+  
+</article>
+      
+        
+                                   
+     
+     
+<article class="mv4 mv5-l bb">
+
+  
+  
+  
+  
+  
+  
+  <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
+    <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
+      <a href="/blog/shiny/" class="db">
+        <img src="https://bastianolea.rbind.io/blog/shiny/shiny-apps-featured.jpg" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+      </a>
+    </figure>
+    <div class="flex flex-column w-100 w-60-ns pl3-ns">
+      <header class="w-100">
+        <h1 class="f3 mv2 lh-title underline"><a href="/blog/shiny/" class="db">Tutorial: Crea aplicaciones web interactivas en R con Shiny</a></h1>
+        
+        
+        
+      </header>
+      
+      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;">Shiny es un paquete para desarrollar aplicaciones web interactivas con R, generalmente centradas en el análisis y visualización de datos. Shiny le da vida a todo lo que hayas desarrollado con R sin cambiarte a otro lenguaje ni tener que aprender uno distinto, acortando la distancia entre los análisis que hagas en R y crear un producto presentable e interactivo. ¡Da el salto desde tu script y aprende a programar apps con este tutorial!</p>
+      
+      
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/shiny"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            shiny</a>  <a href="https://bastianolea.rbind.io/tags/apps"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            apps</a> </dd></em>
+        </dl>
+        
+        
+      
+      <footer class="w-100">
+        
+      
+      
+      
+      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">14/5/2026</div>
+      
+        <span>
+          
+        </span>
+      </div>
+      
+      
+    </footer>
+    </div>
+  </div>
+  
+
+  
+  
+</article>
+      
+        
+                                   
+     
+     
+<article class="mv4 mv5-l bb">
+
+  
+  
+  
+  
+  
+  
+  <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
+    <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
+      <a href="/blog/shiny_tipografias/" class="db">
+        <img src="https://bastianolea.rbind.io/blog/shiny_tipografias/shiny_tipografia_featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+      </a>
+    </figure>
+    <div class="flex flex-column w-100 w-60-ns pl3-ns">
+      <header class="w-100">
+        <h1 class="f3 mv2 lh-title underline"><a href="/blog/shiny_tipografias/" class="db">Usando tipografías personalizadas en aplicaciones Shiny</a></h1>
+        
+        
+        
+      </header>
+      
+      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;">En este post aprenderás a personalizar las tipografías de tus aplicaciones Shiny. Veremos cómo cargar tipografías de Google Fonts y cómo descargarlas localmente para que funcionen sin conexión.</p>
+      
+      
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/shiny"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            shiny</a> </dd></em>
+        </dl>
+        
+        
+      
+      <footer class="w-100">
+        
+      
+      
+      
+      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">11/5/2026</div>
+      
+        <span>
+          
+        </span>
+      </div>
+      
+      
+    </footer>
+    </div>
+  </div>
+  
+
+  
+  
+</article>
+      
+        
+                                   
+     
+     
+<article class="mv4 mv5-l bb">
+
+  
+  
+  
+  
+  
+  
+  <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
+    <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
+      <a href="/blog/mapas_hexagonales/" class="db">
+        <img src="https://bastianolea.rbind.io/blog/mapas_hexagonales/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+      </a>
+    </figure>
+    <div class="flex flex-column w-100 w-60-ns pl3-ns">
+      <header class="w-100">
+        <h1 class="f3 mv2 lh-title underline"><a href="/blog/mapas_hexagonales/" class="db">Mapas hexagonales o cuadriculados con R</a></h1>
+        
+        
+        
+      </header>
+      
+      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;">Al visualizar datos espaciales detallados, como los de la cartografía censal a nivel de manzanas, los polígonos presentan diversos tamaños y niveles de detalle. Esto puede ser demasiado detallado para la visualización que necesitemos, puede desconcentrar mucho, o bien, podemos necesitar homogeneizar la distribución de los datos en el territorio. En este tutorial veremos cómo crear mapas de hexágonos y de cuadrículas a partir de todo tipo de <em>shapes</em>.</p>
+      
+      
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/mapas"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            mapas</a>  <a href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            visualización de datos</a> </dd></em>
+        </dl>
+        
+        
+      
+      <footer class="w-100">
+        
+      
+      
+      
+      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">30/4/2026</div>
+      
+        <span>
+          
+        </span>
+      </div>
+      
+      
+    </footer>
+    </div>
+  </div>
+  
+
+  
+  
+</article>
+      
+        
+                                   
+     
+     
+<article class="mv4 mv5-l bb">
+
+  
+  
+  
+  
+  
+  
+  <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
+    <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
+      <a href="/blog/mapas_sf/" class="db">
+        <img src="https://bastianolea.rbind.io/blog/mapas_sf/mapa_rm_featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+      </a>
+    </figure>
+    <div class="flex flex-column w-100 w-60-ns pl3-ns">
+      <header class="w-100">
+        <h1 class="f3 mv2 lh-title underline"><a href="/blog/mapas_sf/" class="db">Mapas y visualización de datos geoespaciales en R con <code>{sf}</code></a></h1>
+        
+        
+        
+      </header>
+      
+      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;">R cuenta con un muy amplio ecosistema para trabajar con datos geoespaciales. Uno de los paquetes más importantes es <code>{sf}</code>, que permite manipular datos espaciales a partir del estándar <em>simple features</em> (características simples). En esta guía iré recopilando los comandos básicos para manipular y visualizar datos geoespaciales en R. En la medida que voy aprendiendo más sobre hacer mapas, iré actualizando y complementando.</p>
+      
+      
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/mapas"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            mapas</a>  <a href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            visualización de datos</a> </dd></em>
+        </dl>
+        
+        
+      
+      <footer class="w-100">
+        
+      
+      
+      
+      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">29/4/2026</div>
+      
+        <span>
+          
+        </span>
+      </div>
+      
+      
+        <p class="db pt1">
+        
+
+<div style="margin-top:-24px;">
+
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+      
+    
+  <a class="btn-links mr2 ba dib" 
+  style = "background-color: #9069C0; border-radius: 4px; 
+  color: #EAD2FA; font-size: 10pt;
+  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
+  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
+  href="https://r-spatial.github.io/sf/" target="_blank" rel="noopener"><i class="fas fa-registered fa-lg fa-fw mr2"></i>SF</a>
+
+</div>
+
+        </p>
+      
+    </footer>
+    </div>
+  </div>
+  
+
+  
+  
+</article>
+      
+        
+                                   
+     
+     
+<article class="mv4 mv5-l bb">
+
+  
+  
+  
+  
+  
+  
+  <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
+    <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
+      <a href="/blog/herramientas_llm/" class="db">
+        <img src="https://bastianolea.rbind.io/blog/herramientas_llm/herramientas-llm-featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+      </a>
+    </figure>
+    <div class="flex flex-column w-100 w-60-ns pl3-ns">
+      <header class="w-100">
+        <h1 class="f3 mv2 lh-title underline"><a href="/blog/herramientas_llm/" class="db">Potencia las capacidades de la IA entregándole herramientas (<em>tool calling</em>) basadas en R</a></h1>
+        
+        
+        
+      </header>
+      
+      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;"><em>La inteligencia artificial no lo sabe todo.</em> Y lo que no sabe, lo inventa. Conociendo las limitaciones de la IA podemos hacer un mejor uso de ella. Por ejemplo, la IA no tiene acceso a datos, ni es buena para responder preguntas sobre cifras exactas. En esta publicación veremos cómo enseñar a la IA a usar herramientas de R para complementar sus respuestas, y así entregar información exacta en vez de alucinar respuestas.</p>
+      
+      
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/inteligencia-artificial"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            inteligencia artificial</a>  <a href="https://bastianolea.rbind.io/tags/datos"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            datos</a>  <a href="https://bastianolea.rbind.io/tags/funciones"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            funciones</a> </dd></em>
+        </dl>
+        
+        
+      
+      <footer class="w-100">
+        
+      
+      
+      
+      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">26/4/2026</div>
+      
+        <span>
+          
+        </span>
+      </div>
+      
+      
+        <p class="db pt1">
+        
+
+<div style="margin-top:-24px;">
+
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+      
+    
+  <a class="btn-links mr2 ba dib" 
+  style = "background-color: #9069C0; border-radius: 4px; 
+  color: #EAD2FA; font-size: 10pt;
+  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
+  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
+  href="/blog/funcion_consultar_datos/" ><i class="fas fa-newspaper fa-lg fa-fw mr2"></i>Crear herramientas</a>
+
+</div>
+
+        </p>
+      
+    </footer>
+    </div>
+  </div>
+  
+
+  
+  
+</article>
+      
+        
+                                   
+     
+     
+<article class="mv4 mv5-l bb">
+
+  
+  
+  
+  
+  
+  
+  <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
+    <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
+      <a href="/blog/ggplot_dumbbell/" class="db">
+        <img src="https://bastianolea.rbind.io/blog/ggplot_dumbbell/estadisticas_delitos_chile_featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+      </a>
+    </figure>
+    <div class="flex flex-column w-100 w-60-ns pl3-ns">
+      <header class="w-100">
+        <h1 class="f3 mv2 lh-title underline"><a href="/blog/ggplot_dumbbell/" class="db">Gráficos de puntos comparativos o <em>dumbbell</em> en <code>{ggplot2}</code></a></h1>
+        
+        
+        
+      </header>
+      
+      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;">Los gráficos de puntos comparativos o <em>dumbbell</em> <code>{ggplot2}</code> permiten comparar un valor en dos momentos en el tiempo de forma clara y llamativa. En este tutorial usaremos datos reales de delincuencia en Chile para comparar tasas de delitos entre 2018 y 2024 mediante este tipo de gráficos.</p>
+      
+      
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            visualización de datos</a>  <a href="https://bastianolea.rbind.io/tags/ggplot2"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            ggplot2</a>  <a href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            gráficos</a> </dd></em>
+        </dl>
+        
+        
+      
+      <footer class="w-100">
+        
+      
+      
+      
+      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">24/4/2026</div>
+      
+        <span>
+          
+        </span>
+      </div>
+      
+      
+    </footer>
+    </div>
+  </div>
+  
+
+  
+  
+</article>
+      
+        
+                                   
+     
+     
+<article class="mv4 mv5-l bb">
+
+  
+  
+  
+  
+  
+  
+  <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
+    <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
+      <a href="/blog/tema_morado/" class="db">
+        <img src="https://bastianolea.rbind.io/blog/tema_morado/tema-featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
+      </a>
+    </figure>
+    <div class="flex flex-column w-100 w-60-ns pl3-ns">
+      <header class="w-100">
+        <h1 class="f3 mv2 lh-title underline"><a href="/blog/tema_morado/" class="db">Temas morados oscuro y claro para RStudio</a></h1>
+        
+        
+        
+      </header>
+      
+      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;">¡Agrégale moradito a tu análisis de datos! Tema para RStudio enfocado en una paleta de colores morada y rosada, basado en el tema <em>base16 Default Dark</em> de 
+<a href="https://github.com/gadenbuie/rsthemes?tab=readme-ov-file" target="_blank" rel="noopener"><code>{rsthemes}</code></a>. Ahora actualizado para la última versión de RStudio.</p>
+      
+      
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/curiosidades"
+          style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 9pt;
+                 white-space: nowrap;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+            curiosidades</a> </dd></em>
+        </dl>
+        
+        
+      
+      <footer class="w-100">
+        
+      
+      
+      
+      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">23/4/2026</div>
+      
+        <span>
+          
+        </span>
+      </div>
+      
+      
+        <p class="db pt1">
+        
+
+<div style="margin-top:-24px;">
+
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+      
+    
+  <a class="btn-links mr2 ba dib" 
+  style = "background-color: #9069C0; border-radius: 4px; 
+  color: #EAD2FA; font-size: 10pt;
+  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
+  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
+  href="https://github.com/bastianolea/rstudio_purple_dark_theme" target="_blank" rel="noopener"><i class="fas fa-brush fa-lg fa-fw mr2"></i>temas</a>
+
+</div>
+
+        </p>
+      
+    </footer>
+    </div>
+  </div>
+  
+
+  
+  
+</article>
       
         
                                    
@@ -1627,857 +2405,6 @@ Este estudio mide brechas en infraestructura y servicios a través de 59 indicad
   
 </article>
       
-        
-                                   
-     
-     
-<article class="mv4 mv5-l bb">
-
-  
-  
-  
-  
-  
-  
-  <div class="flex flex-column mb4 mb5-l pl3-ns">
-    <div class="flex flex-column w-100">
-      <header class="w-100">
-        <h1 class="f3 mv2 lh-title underline"><a href="/blog/2026-02-25/" class="db">Renombrar archivos desde R</a></h1>
-        
-        
-        
-      </header>
-      
-      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;">Una tarea común en al trabajar con datos (y también en la computación en general) es necesitar renombrar muchos archivos. Podemos usar R para automatizar este tipo de tareas repetitivas; un ejemplo de que R no es sólo un lenguaje para análisis de datos.</p>
-      
-        
-        
-        <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/automatizaci%C3%B3n"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            automatización</a>  <a href="https://bastianolea.rbind.io/tags/texto"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            texto</a>  <a href="https://bastianolea.rbind.io/tags/limpieza-de-datos"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            limpieza de datos</a> </dd></em>
-        </dl>
-        
-        
-      <footer class="w-100">
-        
-      
-      
-      
-      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">25/2/2026</div>
-      
-        
-      </div>
-      
-      
-    </footer>
-    </div>
-  </div>
-  
-
-  
-  
-</article>
-      
-        
-                                   
-     
-     
-<article class="mv4 mv5-l bb">
-
-  
-  
-  
-  
-  
-  
-  <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
-    <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
-      <a href="/blog/app_suicidios_genero/" class="db">
-        <img src="https://bastianolea.rbind.io/blog/app_suicidios_genero/suicidios_genero_1_featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
-      </a>
-    </figure>
-    <div class="flex flex-column w-100 w-60-ns pl3-ns">
-      <header class="w-100">
-        <h1 class="f3 mv2 lh-title underline"><a href="/blog/app_suicidios_genero/" class="db">App: Suicidios en Chile (2017-2024) desde una perspectiva de género</a></h1>
-        
-        
-        
-      </header>
-      
-      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;">Conjunto de visualizaciones que exploran los datos de egresos médicos del Ministerio de Salud de Chile, distinguiendo entre intentos de suicidio y suicidios consumados. Los gráficos buscan describir las diferencias de género en el fenómeno del suicidio, mostrando desigualdades en la cantidad de intentos y en las víctimas fatales, pero también en los métodos utilizados por hombres y mujeres.</p>
-      
-      
-        
-        
-        <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/apps"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            apps</a>  <a href="https://bastianolea.rbind.io/tags/chile"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            Chile</a>  <a href="https://bastianolea.rbind.io/tags/datos"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            datos</a>  <a href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            gráficos</a> </dd></em>
-        </dl>
-        
-        
-      
-      <footer class="w-100">
-        
-      
-      
-      
-      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">21/2/2026</div>
-      
-        <span>
-          
-        </span>
-      </div>
-      
-      
-        <p class="db pt1">
-        
-
-<div style="margin-top:-24px;">
-
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-      
-    
-  <a class="btn-links mr2 ba dib" 
-  style = "background-color: #9069C0; border-radius: 4px; 
-  color: #EAD2FA; font-size: 10pt;
-  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
-  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
-  href="https://bastianolea.github.io/minsal_suicidios_genero/" target="_blank" rel="noopener"><i class="fas fa-link fa-lg fa-fw mr2"></i>Aplicación</a>
-
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-      
-    
-  <a class="btn-links mr2 ba dib" 
-  style = "background-color: #9069C0; border-radius: 4px; 
-  color: #EAD2FA; font-size: 10pt;
-  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
-  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
-  href="https://github.com/bastianolea/minsal_suicidios_genero" target="_blank" rel="noopener"><i class="fas fa-file-code fa-lg fa-fw mr2"></i>Código</a>
-
-</div>
-
-        </p>
-      
-    </footer>
-    </div>
-  </div>
-  
-
-  
-  
-</article>
-      
-        
-                                   
-     
-     
-<article class="mv4 mv5-l bb">
-
-  
-  
-  
-  
-  
-  
-  <div class="flex flex-column mb4 mb5-l pl3-ns">
-    <div class="flex flex-column w-100">
-      <header class="w-100">
-        <h1 class="f3 mv2 lh-title underline"><a href="/blog/redactar_texto_llm/" class="db">Redactar textos basados en datos usando IA desde R</a></h1>
-        
-        
-        
-      </header>
-      
-      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;">En un post anterior vimos cómo usar R para 
-<a href="/blog/redactar_texto/">producir textos basados en datos</a>. En este post veremos cómo usar un modelo de lenguaje (LLM) o <em>IA</em> para interpretar datos directamente desde R, pero también usaremos la IA para generar código de R y reutilizarlo. Moraleja: es mejor pedirle código a la IA que pedirle respuestas y arriesgarte a errores o alucinaciones!</p>
-      
-        
-        
-        <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/texto"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            texto</a>  <a href="https://bastianolea.rbind.io/tags/inteligencia-artificial"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            inteligencia artificial</a> </dd></em>
-        </dl>
-        
-        
-      <footer class="w-100">
-        
-      
-      
-      
-      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">19/2/2026</div>
-      
-        
-      </div>
-      
-      
-    </footer>
-    </div>
-  </div>
-  
-
-  
-  
-</article>
-      
-        
-                                   
-     
-     
-<article class="mv4 mv5-l bb">
-
-  
-  
-  
-  
-  
-  
-  <div class="flex flex-column mb4 mb5-l pl3-ns">
-    <div class="flex flex-column w-100">
-      <header class="w-100">
-        <h1 class="f3 mv2 lh-title underline"><a href="/blog/2026-02-18/" class="db">Crea árboles de las carpetas de tus proyectos con <code>{printtree}</code> en R</a></h1>
-        
-        
-        
-      </header>
-      
-      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;">Este paquete crea árboles de las carpetas de tus proyectos, que sirven para tener una visión general de la estructura de tus proyectos. Esto puede ser útil de incluir en informes, reportes o documentación de proyectos en los que trabajes, para dejar por escrito la estructura del proyecto.</p>
-      
-        
-        
-        <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/consejos"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            consejos</a> </dd></em>
-        </dl>
-        
-        
-      <footer class="w-100">
-        
-      
-      
-      
-      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">18/2/2026</div>
-      
-        
-      </div>
-      
-      
-    </footer>
-    </div>
-  </div>
-  
-
-  
-  
-</article>
-      
-        
-                                   
-     
-     
-<article class="mv4 mv5-l bb">
-
-  
-  
-  
-  
-  
-  
-  <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
-    <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
-      <a href="/blog/repetirse/" class="db">
-        <img src="https://bastianolea.rbind.io/blog/repetirse/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
-      </a>
-    </figure>
-    <div class="flex flex-column w-100 w-60-ns pl3-ns">
-      <header class="w-100">
-        <h1 class="f3 mv2 lh-title underline"><a href="/blog/repetirse/" class="db">Cómo dejar de repetirte y escribir código más eficiente en R</a></h1>
-        
-        
-        
-      </header>
-      
-      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;">Cuando trabajas con código, lo mejor es que lo organices para que sea más fácil de entender y más fácil de mantener. Esto, a su vez, reducirá tu carga mental, te volverá más eficiente, y tu <em>yo</em> del futuro te lo agradecerá. En este tutorial te doy algunos consejos para lograrlo usando scripts separados, creando funciones, y haciendo <em>loops</em> para evitar la repetición y mejorar la legibilidad de tu código.</p>
-      
-      
-        
-        
-        <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/loops"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            loops</a>  <a href="https://bastianolea.rbind.io/tags/optimizaci%C3%B3n"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            optimización</a>  <a href="https://bastianolea.rbind.io/tags/consejos"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            consejos</a> </dd></em>
-        </dl>
-        
-        
-      
-      <footer class="w-100">
-        
-      
-      
-      
-      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">18/2/2026</div>
-      
-        <span>
-          
-        </span>
-      </div>
-      
-      
-        <p class="db pt1">
-        
-
-<div style="margin-top:-24px;">
-
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-      
-    
-  <a class="btn-links mr2 ba dib" 
-  style = "background-color: #9069C0; border-radius: 4px; 
-  color: #EAD2FA; font-size: 10pt;
-  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
-  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
-  href="https://gist.github.com/bastianolea/a80092f4552e9d4e648eca7fd287baeb" target="_blank" rel="noopener"><i class="fas fa-file-code fa-lg fa-fw mr2"></i>Código</a>
-
-</div>
-
-        </p>
-      
-    </footer>
-    </div>
-  </div>
-  
-
-  
-  
-</article>
-      
-        
-                                   
-     
-     
-<article class="mv4 mv5-l bb">
-
-  
-  
-  
-  
-  
-  
-  <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
-    <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
-      <a href="/blog/redactar_texto/" class="db">
-        <img src="https://bastianolea.rbind.io/blog/redactar_texto/featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
-      </a>
-    </figure>
-    <div class="flex flex-column w-100 w-60-ns pl3-ns">
-      <header class="w-100">
-        <h1 class="f3 mv2 lh-title underline"><a href="/blog/redactar_texto/" class="db">Redactar textos basados en datos automáticamente con R: describiendo resultados del censo de población</a></h1>
-        
-        
-        
-      </header>
-      
-      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;">Luego de explorar o procesar un conjunto de datos, toca presentar los resultados. Si bien esto nos hace pensar en gráficos, tablas o reportes, el texto también es una forma de comunicar resultados que puede ser optimizada mediante la programación. En este tutorial veremos cómo redactar textos a partir de datos, incluso redactar párrafos complejos que describan la información de múltiples observaciones, usando los resultados oficiales de las preguntas de género del Censo 2024.</p>
-      
-      
-        
-        
-        <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/texto"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            texto</a>  <a href="https://bastianolea.rbind.io/tags/automatizaci%C3%B3n"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            automatización</a>  <a href="https://bastianolea.rbind.io/tags/loops"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            loops</a>  <a href="https://bastianolea.rbind.io/tags/funciones"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            funciones</a>  <a href="https://bastianolea.rbind.io/tags/g%C3%A9nero"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            género</a>  <a href="https://bastianolea.rbind.io/tags/chile"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            Chile</a> </dd></em>
-        </dl>
-        
-        
-      
-      <footer class="w-100">
-        
-      
-      
-      
-      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">12/2/2026</div>
-      
-        <span>
-          
-        </span>
-      </div>
-      
-      
-    </footer>
-    </div>
-  </div>
-  
-
-  
-  
-</article>
-      
-        
-                                   
-     
-     
-<article class="mv4 mv5-l bb">
-
-  
-  
-  
-  
-  
-  
-  <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
-    <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
-      <a href="/blog/curso_gratis_r_intro_1/" class="db">
-        <img src="https://bastianolea.rbind.io/blog/curso_gratis_r_intro_1/curso_r_featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
-      </a>
-    </figure>
-    <div class="flex flex-column w-100 w-60-ns pl3-ns">
-      <header class="w-100">
-        <h1 class="f3 mv2 lh-title underline"><a href="/blog/curso_gratis_r_intro_1/" class="db">Curso gratuito: introducción al análisis de datos con R</a></h1>
-        
-        
-        
-      </header>
-      
-      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;">Existen muchas herramientas para analizar datos, pero hay algo que casi todas tienen en común: la programación. En este curso enseño lo básico de programación en R desde cero, orientado a las ciencias sociales y humanidades. Las diapositivas, el código y las grabaciones están disponibles!</p>
-      
-      
-        
-        
-        <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/blog"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            blog</a>  <a href="https://bastianolea.rbind.io/tags/b%C3%A1sico"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            básico</a>  <a href="https://bastianolea.rbind.io/tags/videos"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            videos</a> </dd></em>
-        </dl>
-        
-        
-      
-      <footer class="w-100">
-        
-      
-      
-      
-      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">9/2/2026</div>
-      
-        <span>
-          
-        </span>
-      </div>
-      
-      
-        <p class="db pt1">
-        
-
-<div style="margin-top:-24px;">
-
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-      
-    
-  <a class="btn-links mr2 ba dib" 
-  style = "background-color: #9069C0; border-radius: 4px; 
-  color: #EAD2FA; font-size: 10pt;
-  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
-  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
-  href="https://www.youtube.com/@bastianolea/streams" target="_blank" rel="noopener"><i class="fas fa-video fa-lg fa-fw mr2"></i>grabaciones</a>
-
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-      
-    
-  <a class="btn-links mr2 ba dib" 
-  style = "background-color: #9069C0; border-radius: 4px; 
-  color: #EAD2FA; font-size: 10pt;
-  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
-  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
-  href="https://bastianolea.github.io/curso_intro_R_gratis" target="_blank" rel="noopener"><i class="fas fa-chalkboard-user fa-lg fa-fw mr2"></i>diapositivas</a>
-
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-      
-    
-  <a class="btn-links mr2 ba dib" 
-  style = "background-color: #9069C0; border-radius: 4px; 
-  color: #EAD2FA; font-size: 10pt;
-  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
-  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
-  href="https://github.com/bastianolea/curso_intro_R_gratis" target="_blank" rel="noopener"><i class="fas fa-file-code fa-lg fa-fw mr2"></i>código</a>
-
-</div>
-
-        </p>
-      
-    </footer>
-    </div>
-  </div>
-  
-
-  
-  
-</article>
-      
-        
-                                   
-     
-     
-<article class="mv4 mv5-l bb">
-
-  
-  
-  
-  
-  
-  
-  <div class="flex flex-column mb4 mb5-l  flex-row-reverse-ns">
-    <figure class="ml4-ns ma0 mb2 mb0-l w-100 w-40-ns">
-      <a href="/blog/ggplot_puente/" class="db">
-        <img src="https://bastianolea.rbind.io/blog/ggplot_puente/puente-featured.png" class="db ma0 dim" alt="" style = "border-radius: 4px; margin-top: 18px;">
-      </a>
-    </figure>
-    <div class="flex flex-column w-100 w-60-ns pl3-ns">
-      <header class="w-100">
-        <h1 class="f3 mv2 lh-title underline"><a href="/blog/ggplot_puente/" class="db">Gráficos de puente en <code>{ggplot2}</code></a></h1>
-        
-        
-        
-      </header>
-      
-      <p class="f6 lh-copy mv2 flex-auto" style ="margin-bottom: -2px;">Me pidieron reproducir con R un gráfico de puente que habían hecho en Excel, para poder crear decenas de versiones del mismo gráfico a partir de datos distintos y/o actualizados. En este post veremos cómo hacer gráficos de puente con R, que son gráficos donde las barras representan el cambio de un valor original en el tiempo, o bien, la contribución de varias cifras a un valor final, en la forma de barras escalonadas.</p>
-      
-      
-        
-        
-        <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            visualización de datos</a>  <a href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos"
-          style="margin-right: 2px; 
-                 color: #EAD2FA; 
-                 font-style: normal;
-                 text-decoration: none;
-                 font-size: 9pt;
-                 white-space: nowrap;
-                 background-color: #9069C0; 
-                 border-radius: 3px; 
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-            gráficos</a> </dd></em>
-        </dl>
-        
-        
-      
-      <footer class="w-100">
-        
-      
-      
-      
-      <div><div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">5/2/2026</div>
-      
-        <span>
-          
-        </span>
-      </div>
-      
-      
-    </footer>
-    </div>
-  </div>
-  
-
-  
-  
-</article>
-      
     
 
 
@@ -2490,7 +2417,7 @@ Este estudio mide brechas en infraestructura y servicios a través de 59 indicad
     
     </li>
     <li class="dtc w-50 v-mid">
-      <span class="page_number fw6 f7 ttu tracked">2 of 10</span>
+      <span class="page_number fw6 f7 ttu tracked">2 of 11</span>
     </li>
     <li class="dtc w-25 tr v-mid">
     
@@ -2553,7 +2480,7 @@ Este estudio mide brechas en infraestructura y servicios a través de 59 indicad
     <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
-    opacity: 40%;">50 posts</span>
+    opacity: 40%;">53 posts</span>
   </div>
  
   
@@ -2580,10 +2507,10 @@ Este estudio mide brechas en infraestructura y servicios a través de 59 indicad
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
-    opacity: 40%;">32 posts</span>
+    opacity: 40%;">33 posts</span>
   </div>
  
   
@@ -2595,10 +2522,10 @@ Este estudio mide brechas en infraestructura y servicios a través de 59 indicad
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
-    opacity: 40%;">31 posts</span>
+    opacity: 40%;">33 posts</span>
   </div>
  
   
@@ -2613,7 +2540,22 @@ Este estudio mide brechas en infraestructura y servicios a través de 59 indicad
     <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
-    opacity: 40%;">30 posts</span>
+    opacity: 40%;">32 posts</span>
+  </div>
+ 
+  
+  <div style="margin-bottom: 8px;">
+    <span style = "margin-right: 2px; 
+                 font-style: normal;
+                 font-size: 9pt;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+    <span style = "font-weight: normal; 
+    font-size: 9pt;
+    opacity: 40%;">27 posts</span>
   </div>
  
   
@@ -2655,10 +2597,10 @@ Este estudio mide brechas en infraestructura y servicios a través de 59 indicad
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
-    opacity: 40%;">26 posts</span>
+    opacity: 40%;">22 posts</span>
   </div>
  
   
@@ -2670,7 +2612,7 @@ Este estudio mide brechas en infraestructura y servicios a través de 59 indicad
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
     opacity: 40%;">22 posts</span>
@@ -2715,21 +2657,6 @@ Este estudio mide brechas en infraestructura y servicios a través de 59 indicad
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
-    <span style = "font-weight: normal; 
-    font-size: 9pt;
-    opacity: 40%;">18 posts</span>
-  </div>
- 
-  
-  <div style="margin-bottom: 8px;">
-    <span style = "margin-right: 2px; 
-                 font-style: normal;
-                 font-size: 9pt;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
@@ -2745,10 +2672,10 @@ Este estudio mide brechas en infraestructura y servicios a través de 59 indicad
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
-    opacity: 40%;">17 posts</span>
+    opacity: 40%;">18 posts</span>
   </div>
  
   
@@ -2761,6 +2688,21 @@ Este estudio mide brechas en infraestructura y servicios a través de 59 indicad
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
+    <span style = "font-weight: normal; 
+    font-size: 9pt;
+    opacity: 40%;">16 posts</span>
+  </div>
+ 
+  
+  <div style="margin-bottom: 8px;">
+    <span style = "margin-right: 2px; 
+                 font-style: normal;
+                 font-size: 9pt;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
     opacity: 40%;">15 posts</span>
@@ -2805,21 +2747,6 @@ Este estudio mide brechas en infraestructura y servicios a través de 59 indicad
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
-    <span style = "font-weight: normal; 
-    font-size: 9pt;
-    opacity: 40%;">13 posts</span>
-  </div>
- 
-  
-  <div style="margin-bottom: 8px;">
-    <span style = "margin-right: 2px; 
-                 font-style: normal;
-                 font-size: 9pt;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
@@ -2835,7 +2762,7 @@ Este estudio mide brechas en infraestructura y servicios a través de 59 indicad
                  border-radius: 3px;
                  padding: 2px 6px;
                  padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/optimizaci%C3%B3n/">Optimización</a></span>
+    <a style="color: #EAD1FA !important; text-decoration: none;" href="https://bastianolea.rbind.io/tags/ciencias-sociales/">Ciencias sociales</a></span>
     <span style = "font-weight: normal; 
     font-size: 9pt;
     opacity: 40%;">10 posts</span>

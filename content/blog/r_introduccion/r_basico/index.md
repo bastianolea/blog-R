@@ -14,7 +14,6 @@ categories:
 tags:
   - funciones
   - básico
-lang: es
 excerpt: >-
   Instrucciones paso a paso para aprender los aspectos más básicos del lenguaje
   R. Dirigida a personas sin ningún conocimiento del lenguaje. Si quieres

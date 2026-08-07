@@ -15,7 +15,6 @@ categories:
 tags:
   - dplyr
   - básico
-lang: es
 excerpt: >-
   En este tutorial veremos cómo calcular resúmenes de datos con la función
   `summarize()`, que nos permite tomar las filas de una tabla de datos, y

@@ -7,7 +7,6 @@ tags:
   - optimización
   - loops
   - purrr
-lang: es
 excerpt:  Realiza cálculos a través de múltiples procesadores en R, aprovechando la totalidad de la capacidad de cómputo de tu computador para optimizar el rendimiento de tus procesos. Si tienes que trabajar con bases de datos muy grandes, puedes acelerar el cálculo con tan sólo un par de líneas, usando el paquete `{furrr}`. 
 ---
 

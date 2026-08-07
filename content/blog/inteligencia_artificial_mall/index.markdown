@@ -9,7 +9,6 @@ categories:
 tags:
   - análisis de texto
   - inteligencia artificial
-lang: es
 cache: false
 freeze: true
 excerpt: Procesa datos con IA directamente en R! El paquete `{mall}` permite aplicar un modelo de lenguaje (LLM) a tus datos para realizar tareas como resumir textos, realizar análisis de sentimiento, clasificación de textos, y más.

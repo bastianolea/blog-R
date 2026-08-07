@@ -7,7 +7,6 @@ tags:
   - consejos
   - procesamiento de datos
   - optimización
-lang: es
 excerpt: >-
   Para comparar el rendimiento de distintas expresiones en R, realizamos un
   _benchmark,_ al cual le entregamos las expresiones que queremos comparar, y

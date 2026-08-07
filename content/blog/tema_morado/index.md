@@ -6,7 +6,6 @@ format: hugo-md
 date: 2026-04-23
 tags:
   - curiosidades
-lang: es
 excerpt: "¡Agrégale moradito a tu análisis de datos! Tema para RStudio enfocado en una paleta de colores morada y rosada, basado en el tema _base16 Default Dark_ de [`{rsthemes}`](https://github.com/gadenbuie/rsthemes?tab=readme-ov-file). Ahora actualizado para la última versión de RStudio."
 links:
 - icon: brush

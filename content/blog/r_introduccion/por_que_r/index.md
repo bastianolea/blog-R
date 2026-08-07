@@ -11,7 +11,6 @@ series: Introducción a R
 categories: []
 tags: 
   - blog
-lang: es
 excerpt: Analizar datos mediante lenguajes de programación (como R u otros) puede sonar complicado, pero trae muchos beneficios para tu análisis. Aquí te dejo algunas de las razones principales.
 ---
 

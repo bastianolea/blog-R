@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.164.0">
 <title>Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub | Bastián Olea</title>
 
 
@@ -44,26 +44,26 @@
     
     
   
-  <meta itemprop="name" content="Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub">
-  <meta itemprop="description" content="En este tutorial aprenderás a empezar a usar Git con tus proyectos de R, mediante la creación de repositorios. Git te permite llevar un registro de las versiones y un control de cambios en tu código, mientras que GitHub te permite subir tus repositorios a un servicio online, en el cual puedes compartir tu código con otras personas, descargar el código de otros, y colaborar en un mismo proyecto.">
-  <meta itemprop="datePublished" content="2025-02-07T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2025-02-07T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1730">
-  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_github/titulo_github-featured.png">
-  <meta itemprop="keywords" content="Git,GitHub,Consejos,Básico">
+	<meta itemprop="name" content="Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub">
+	<meta itemprop="description" content="En este tutorial aprenderás a empezar a usar Git con tus proyectos de R, mediante la creación de repositorios. Git te permite llevar un registro de las versiones y un control de cambios en tu código, mientras que GitHub te permite subir tus repositorios a un servicio online, en el cual puedes compartir tu código con otras personas, descargar el código de otros, y colaborar en un mismo proyecto.">
+	<meta itemprop="datePublished" content="2025-02-07T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2025-02-07T00:00:00+00:00">
+	<meta itemprop="wordCount" content="1730">
+	<meta itemprop="image" content="https://bastianolea.rbind.io/blog/r_introduccion/tutorial_github/titulo_github-featured.png">
+	<meta itemprop="keywords" content="Git,GitHub,Consejos,Básico">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.0ef7ee7b0dad458df5b6f993cac9c1b9618320151adbdeef203c9e1dae1c0564.css" integrity="sha256-Dvfuew2tRY31tvmTysnBuWGDIBUa297vIDyeHa4cBWQ=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.4d259699ed6e45788295c8efac266a71ad7a3b6cd7cd8ac8c1bb0027ccbbc35d.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
@@ -104,11 +104,6 @@
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
-      
-        
-        
-        
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
       
         
         
@@ -450,8 +445,8 @@
 
 
 
-<h3 id="hacer-_commits_">Hacer <em>commits</em>
-  <a href="#hacer-_commits_"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+<h3 id="hacer-commits">Hacer <em>commits</em>
+  <a href="#hacer-commits"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 0h24v24H0z" fill="currentColor"></path>
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
@@ -949,7 +944,7 @@
         <li><a href="#instalar-git">Instalar Git</a></li>
         <li><a href="#instalar-usethis">Instalar {usethis}</a></li>
         <li><a href="#crear-repositorio">Crear repositorio</a></li>
-        <li><a href="#hacer-_commits_">Hacer <em>commits</em></a></li>
+        <li><a href="#hacer-commits">Hacer <em>commits</em></a></li>
       </ul>
     </li>
     <li><a href="#configurar-github-en-r">Configurar GitHub en R</a>

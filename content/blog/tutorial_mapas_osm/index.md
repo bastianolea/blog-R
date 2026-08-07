@@ -8,7 +8,6 @@ tags:
   - mapas
   - Chile
 format: hugo-md
-lang: es
 freeze: true
 links:
   - icon: github

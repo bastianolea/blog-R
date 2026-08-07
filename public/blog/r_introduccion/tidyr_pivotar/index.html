@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.164.0">
 <title>Transformación de datos entre formato _ancho_ y _largo_ con {tidyr} | Bastián Olea</title>
 
 
@@ -44,28 +44,28 @@
     
     
   
-  <meta itemprop="name" content="Transformación de datos entre formato _ancho_ y _largo_ con {tidyr}">
-  <meta itemprop="description" content="Los datos pueden existir en distintos formatos o estructuras, y el poder transformar los datos entre distintas estructuras es una habilidad clave.
+	<meta itemprop="name" content="Transformación de datos entre formato _ancho_ y _largo_ con {tidyr}">
+	<meta itemprop="description" content="Los datos pueden existir en distintos formatos o estructuras, y el poder transformar los datos entre distintas estructuras es una habilidad clave.
 En este tutorial aprenderemos a usar las funciones pivot_longer() y pivot_wider() del paquete {tidyr} para cambiar entre formatos de datos ancho (wide) y largo (long).
 Índice Formatos de datos Datos en formato ancho Datos en formato largo Transformación de formatos Desde ancho hacia largo Desde largo hacia ancho ¿Cuándo usar cada formato? Formatos de datos No existe una forma estandarizada de estructurar los datos. La estructura o formato que tengan los datos va a depender de muchas cosas: de dónde provienen los datos, para que se van a usar los datos, etc. Dependiendo de estas distintas necesidades los datos se pueden estructurar distintos.">
-  <meta itemprop="datePublished" content="2025-11-29T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2025-11-29T00:00:00+00:00">
-  <meta itemprop="wordCount" content="2408">
-  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/r_introduccion/tidyr_pivotar/featured.png">
-  <meta itemprop="keywords" content="Dplyr,Tidyr,Procesamiento de datos,Datos,Básico">
+	<meta itemprop="datePublished" content="2025-11-29T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2025-11-29T00:00:00+00:00">
+	<meta itemprop="wordCount" content="2408">
+	<meta itemprop="image" content="https://bastianolea.rbind.io/blog/r_introduccion/tidyr_pivotar/featured.png">
+	<meta itemprop="keywords" content="Dplyr,Tidyr,Procesamiento de datos,Datos,Básico">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.0ef7ee7b0dad458df5b6f993cac9c1b9618320151adbdeef203c9e1dae1c0564.css" integrity="sha256-Dvfuew2tRY31tvmTysnBuWGDIBUa297vIDyeHa4cBWQ=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.4d259699ed6e45788295c8efac266a71ad7a3b6cd7cd8ac8c1bb0027ccbbc35d.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
@@ -106,11 +106,6 @@ En este tutorial aprenderemos a usar las funciones pivot_longer() y pivot_wider(
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
-      
-        
-        
-        
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
       
         
         
@@ -377,52 +372,52 @@ En este tutorial aprenderemos a usar las funciones pivot_longer() y pivot_wider(
 <p>El <strong>formato ancho</strong> (<em>wide</em>) es cuando cada variable que describe las observaciones tiene su propia columna. Esto resulta en varias columnas, cada una describiendo un aspecto distinto de cada observación.</p>
 <p><em>Por ejemplo:</em></p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">pais</th>
-          <th style="text-align: right">pobreza</th>
-          <th style="text-align: right">esperanza</th>
-          <th style="text-align: right">escolaridad</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: right">5</td>
-          <td style="text-align: right">81.17</td>
-          <td style="text-align: right">11.29</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Uruguay</td>
-          <td style="text-align: right">6</td>
-          <td style="text-align: right">78.14</td>
-          <td style="text-align: right">10.54</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: right">11</td>
-          <td style="text-align: right">77.69</td>
-          <td style="text-align: right">11.18</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Costa Rica</td>
-          <td style="text-align: right">13</td>
-          <td style="text-align: right">80.80</td>
-          <td style="text-align: right">8.84</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Panamá</td>
-          <td style="text-align: right">13</td>
-          <td style="text-align: right">79.59</td>
-          <td style="text-align: right">10.83</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Bolivia</td>
-          <td style="text-align: right">15</td>
-          <td style="text-align: right">68.58</td>
-          <td style="text-align: right">10.02</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">pais</th>
+					<th style="text-align: right">pobreza</th>
+					<th style="text-align: right">esperanza</th>
+					<th style="text-align: right">escolaridad</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: right">5</td>
+					<td style="text-align: right">81.17</td>
+					<td style="text-align: right">11.29</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Uruguay</td>
+					<td style="text-align: right">6</td>
+					<td style="text-align: right">78.14</td>
+					<td style="text-align: right">10.54</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: right">11</td>
+					<td style="text-align: right">77.69</td>
+					<td style="text-align: right">11.18</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Costa Rica</td>
+					<td style="text-align: right">13</td>
+					<td style="text-align: right">80.80</td>
+					<td style="text-align: right">8.84</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Panamá</td>
+					<td style="text-align: right">13</td>
+					<td style="text-align: right">79.59</td>
+					<td style="text-align: right">10.83</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Bolivia</td>
+					<td style="text-align: right">15</td>
+					<td style="text-align: right">68.58</td>
+					<td style="text-align: right">10.02</td>
+			</tr>
+	</tbody>
 </table>
 <figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
   Tabla con datos en formato ancho, con las variables distribuidas en columnas
@@ -441,60 +436,60 @@ En este tutorial aprenderemos a usar las funciones pivot_longer() y pivot_wider(
 <p>El <strong>formato largo</strong> (<em>long</em>) es cuando las variables se encuentran en una sola columna, y los valores de las variables en otra columna, lo que significa que cada observación puede ocupar más de una fila.</p>
 <p><em>Por ejemplo:</em></p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">pais</th>
-          <th style="text-align: left">variable</th>
-          <th style="text-align: right">valor</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">pobreza</td>
-          <td style="text-align: right">5.00</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">esperanza</td>
-          <td style="text-align: right">81.17</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">escolaridad</td>
-          <td style="text-align: right">11.29</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Uruguay</td>
-          <td style="text-align: left">pobreza</td>
-          <td style="text-align: right">6.00</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Uruguay</td>
-          <td style="text-align: left">esperanza</td>
-          <td style="text-align: right">78.14</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Uruguay</td>
-          <td style="text-align: left">escolaridad</td>
-          <td style="text-align: right">10.54</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: left">pobreza</td>
-          <td style="text-align: right">11.00</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: left">esperanza</td>
-          <td style="text-align: right">77.69</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: left">escolaridad</td>
-          <td style="text-align: right">11.18</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">pais</th>
+					<th style="text-align: left">variable</th>
+					<th style="text-align: right">valor</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">pobreza</td>
+					<td style="text-align: right">5.00</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">esperanza</td>
+					<td style="text-align: right">81.17</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">escolaridad</td>
+					<td style="text-align: right">11.29</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Uruguay</td>
+					<td style="text-align: left">pobreza</td>
+					<td style="text-align: right">6.00</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Uruguay</td>
+					<td style="text-align: left">esperanza</td>
+					<td style="text-align: right">78.14</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Uruguay</td>
+					<td style="text-align: left">escolaridad</td>
+					<td style="text-align: right">10.54</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: left">pobreza</td>
+					<td style="text-align: right">11.00</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: left">esperanza</td>
+					<td style="text-align: right">77.69</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: left">escolaridad</td>
+					<td style="text-align: right">11.18</td>
+			</tr>
+	</tbody>
 </table>
 <figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
   Tabla con datos en formato largo, con las variables distribuidas en filas
@@ -552,87 +547,87 @@ En este tutorial aprenderemos a usar las funciones pivot_longer() y pivot_wider(
 <p>Esta tabla contiene datos del 
 <a href="https://es.wikipedia.org/wiki/Anexo:Pa%c3%adses_de_Am%c3%a9rica_Latina_por_%c3%adndice_de_desarrollo_humano" target="_blank" rel="noopener">índice de desarrollo humano</a> para 10 países de la Latinoamérica:</p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">pais</th>
-          <th style="text-align: right">2023</th>
-          <th style="text-align: right">2022</th>
-          <th style="text-align: right">2021</th>
-          <th style="text-align: right">2019</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: right">0.878</td>
-          <td style="text-align: right">0.869</td>
-          <td style="text-align: right">0.865</td>
-          <td style="text-align: right">0.867</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: right">0.865</td>
-          <td style="text-align: right">0.858</td>
-          <td style="text-align: right">0.847</td>
-          <td style="text-align: right">0.861</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Uruguay</td>
-          <td style="text-align: right">0.862</td>
-          <td style="text-align: right">0.852</td>
-          <td style="text-align: right">0.837</td>
-          <td style="text-align: right">0.830</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Panamá</td>
-          <td style="text-align: right">0.839</td>
-          <td style="text-align: right">0.835</td>
-          <td style="text-align: right">0.819</td>
-          <td style="text-align: right">0.824</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Costa Rica</td>
-          <td style="text-align: right">0.833</td>
-          <td style="text-align: right">0.823</td>
-          <td style="text-align: right">0.817</td>
-          <td style="text-align: right">0.821</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Perú</td>
-          <td style="text-align: right">0.794</td>
-          <td style="text-align: right">0.790</td>
-          <td style="text-align: right">0.764</td>
-          <td style="text-align: right">0.784</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">México</td>
-          <td style="text-align: right">0.789</td>
-          <td style="text-align: right">0.783</td>
-          <td style="text-align: right">0.761</td>
-          <td style="text-align: right">0.788</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Colombia</td>
-          <td style="text-align: right">0.788</td>
-          <td style="text-align: right">0.782</td>
-          <td style="text-align: right">0.762</td>
-          <td style="text-align: right">0.777</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Brasil</td>
-          <td style="text-align: right">0.786</td>
-          <td style="text-align: right">0.780</td>
-          <td style="text-align: right">0.768</td>
-          <td style="text-align: right">0.776</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Ecuador</td>
-          <td style="text-align: right">0.777</td>
-          <td style="text-align: right">0.773</td>
-          <td style="text-align: right">0.753</td>
-          <td style="text-align: right">0.765</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">pais</th>
+					<th style="text-align: right">2023</th>
+					<th style="text-align: right">2022</th>
+					<th style="text-align: right">2021</th>
+					<th style="text-align: right">2019</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: right">0.878</td>
+					<td style="text-align: right">0.869</td>
+					<td style="text-align: right">0.865</td>
+					<td style="text-align: right">0.867</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: right">0.865</td>
+					<td style="text-align: right">0.858</td>
+					<td style="text-align: right">0.847</td>
+					<td style="text-align: right">0.861</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Uruguay</td>
+					<td style="text-align: right">0.862</td>
+					<td style="text-align: right">0.852</td>
+					<td style="text-align: right">0.837</td>
+					<td style="text-align: right">0.830</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Panamá</td>
+					<td style="text-align: right">0.839</td>
+					<td style="text-align: right">0.835</td>
+					<td style="text-align: right">0.819</td>
+					<td style="text-align: right">0.824</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Costa Rica</td>
+					<td style="text-align: right">0.833</td>
+					<td style="text-align: right">0.823</td>
+					<td style="text-align: right">0.817</td>
+					<td style="text-align: right">0.821</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Perú</td>
+					<td style="text-align: right">0.794</td>
+					<td style="text-align: right">0.790</td>
+					<td style="text-align: right">0.764</td>
+					<td style="text-align: right">0.784</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">México</td>
+					<td style="text-align: right">0.789</td>
+					<td style="text-align: right">0.783</td>
+					<td style="text-align: right">0.761</td>
+					<td style="text-align: right">0.788</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Colombia</td>
+					<td style="text-align: right">0.788</td>
+					<td style="text-align: right">0.782</td>
+					<td style="text-align: right">0.762</td>
+					<td style="text-align: right">0.777</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Brasil</td>
+					<td style="text-align: right">0.786</td>
+					<td style="text-align: right">0.780</td>
+					<td style="text-align: right">0.768</td>
+					<td style="text-align: right">0.776</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Ecuador</td>
+					<td style="text-align: right">0.777</td>
+					<td style="text-align: right">0.773</td>
+					<td style="text-align: right">0.753</td>
+					<td style="text-align: right">0.765</td>
+			</tr>
+	</tbody>
 </table>
 <figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
   Tabla de datos en formato ancho
@@ -647,55 +642,55 @@ En este tutorial aprenderemos a usar las funciones pivot_longer() y pivot_wider(
   Pivotar una tabla al formato largo
 </figcaption>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">pais</th>
-          <th style="text-align: left">año</th>
-          <th style="text-align: right">índice</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">2023</td>
-          <td style="text-align: right">0.878</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">2022</td>
-          <td style="text-align: right">0.869</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">2021</td>
-          <td style="text-align: right">0.865</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">2019</td>
-          <td style="text-align: right">0.867</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: left">2023</td>
-          <td style="text-align: right">0.865</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: left">2022</td>
-          <td style="text-align: right">0.858</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: left">2021</td>
-          <td style="text-align: right">0.847</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: left">2019</td>
-          <td style="text-align: right">0.861</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">pais</th>
+					<th style="text-align: left">año</th>
+					<th style="text-align: right">índice</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">2023</td>
+					<td style="text-align: right">0.878</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">2022</td>
+					<td style="text-align: right">0.869</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">2021</td>
+					<td style="text-align: right">0.865</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">2019</td>
+					<td style="text-align: right">0.867</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: left">2023</td>
+					<td style="text-align: right">0.865</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: left">2022</td>
+					<td style="text-align: right">0.858</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: left">2021</td>
+					<td style="text-align: right">0.847</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: left">2019</td>
+					<td style="text-align: right">0.861</td>
+			</tr>
+	</tbody>
 </table>
 <figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
   Datos en formato largo
@@ -796,76 +791,76 @@ En este tutorial aprenderemos a usar las funciones pivot_longer() y pivot_wider(
   Ejecuta este código para cargar los datos en tu sesión de R
 </figcaption>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">pais</th>
-          <th style="text-align: right">pobreza</th>
-          <th style="text-align: right">esperanza</th>
-          <th style="text-align: right">escolaridad</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: right">5</td>
-          <td style="text-align: right">81.17</td>
-          <td style="text-align: right">11.29</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Uruguay</td>
-          <td style="text-align: right">6</td>
-          <td style="text-align: right">78.14</td>
-          <td style="text-align: right">10.54</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: right">11</td>
-          <td style="text-align: right">77.69</td>
-          <td style="text-align: right">11.18</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Costa Rica</td>
-          <td style="text-align: right">13</td>
-          <td style="text-align: right">80.80</td>
-          <td style="text-align: right">8.84</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Panamá</td>
-          <td style="text-align: right">13</td>
-          <td style="text-align: right">79.59</td>
-          <td style="text-align: right">10.83</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Bolivia</td>
-          <td style="text-align: right">15</td>
-          <td style="text-align: right">68.58</td>
-          <td style="text-align: right">10.02</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Paraguay</td>
-          <td style="text-align: right">20</td>
-          <td style="text-align: right">73.84</td>
-          <td style="text-align: right">8.93</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">México</td>
-          <td style="text-align: right">22</td>
-          <td style="text-align: right">75.07</td>
-          <td style="text-align: right">9.35</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Brasil</td>
-          <td style="text-align: right">24</td>
-          <td style="text-align: right">75.85</td>
-          <td style="text-align: right">8.43</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">El Salvador</td>
-          <td style="text-align: right">28</td>
-          <td style="text-align: right">72.10</td>
-          <td style="text-align: right">7.30</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">pais</th>
+					<th style="text-align: right">pobreza</th>
+					<th style="text-align: right">esperanza</th>
+					<th style="text-align: right">escolaridad</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: right">5</td>
+					<td style="text-align: right">81.17</td>
+					<td style="text-align: right">11.29</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Uruguay</td>
+					<td style="text-align: right">6</td>
+					<td style="text-align: right">78.14</td>
+					<td style="text-align: right">10.54</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: right">11</td>
+					<td style="text-align: right">77.69</td>
+					<td style="text-align: right">11.18</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Costa Rica</td>
+					<td style="text-align: right">13</td>
+					<td style="text-align: right">80.80</td>
+					<td style="text-align: right">8.84</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Panamá</td>
+					<td style="text-align: right">13</td>
+					<td style="text-align: right">79.59</td>
+					<td style="text-align: right">10.83</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Bolivia</td>
+					<td style="text-align: right">15</td>
+					<td style="text-align: right">68.58</td>
+					<td style="text-align: right">10.02</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Paraguay</td>
+					<td style="text-align: right">20</td>
+					<td style="text-align: right">73.84</td>
+					<td style="text-align: right">8.93</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">México</td>
+					<td style="text-align: right">22</td>
+					<td style="text-align: right">75.07</td>
+					<td style="text-align: right">9.35</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Brasil</td>
+					<td style="text-align: right">24</td>
+					<td style="text-align: right">75.85</td>
+					<td style="text-align: right">8.43</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">El Salvador</td>
+					<td style="text-align: right">28</td>
+					<td style="text-align: right">72.10</td>
+					<td style="text-align: right">7.30</td>
+			</tr>
+	</tbody>
 </table>
 <p>En las <strong>filas</strong> tenemos las observaciones (países), y en las <strong>columnas</strong> tenemos tres variables distintas: pobreza (medida por el Banco Mundial como porcentaje de la población que recibe menos de US$6,85 al día), esperanza de vida, y escolaridad promedio.</p>
 <p>Si convertimos esta tabla hacia el formato largo, vamos a tener la información estructurada de forma que cada variable ocupe una fila distinta:</p>
@@ -877,60 +872,60 @@ En este tutorial aprenderemos a usar las funciones pivot_longer() y pivot_wider(
   Pivotar una tabla al formato largo
 </figcaption>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">pais</th>
-          <th style="text-align: left">variable</th>
-          <th style="text-align: right">valor</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">pobreza</td>
-          <td style="text-align: right">5.00</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">esperanza</td>
-          <td style="text-align: right">81.17</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">escolaridad</td>
-          <td style="text-align: right">11.29</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Uruguay</td>
-          <td style="text-align: left">pobreza</td>
-          <td style="text-align: right">6.00</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Uruguay</td>
-          <td style="text-align: left">esperanza</td>
-          <td style="text-align: right">78.14</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Uruguay</td>
-          <td style="text-align: left">escolaridad</td>
-          <td style="text-align: right">10.54</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: left">pobreza</td>
-          <td style="text-align: right">11.00</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: left">esperanza</td>
-          <td style="text-align: right">77.69</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: left">escolaridad</td>
-          <td style="text-align: right">11.18</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">pais</th>
+					<th style="text-align: left">variable</th>
+					<th style="text-align: right">valor</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">pobreza</td>
+					<td style="text-align: right">5.00</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">esperanza</td>
+					<td style="text-align: right">81.17</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">escolaridad</td>
+					<td style="text-align: right">11.29</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Uruguay</td>
+					<td style="text-align: left">pobreza</td>
+					<td style="text-align: right">6.00</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Uruguay</td>
+					<td style="text-align: left">esperanza</td>
+					<td style="text-align: right">78.14</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Uruguay</td>
+					<td style="text-align: left">escolaridad</td>
+					<td style="text-align: right">10.54</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: left">pobreza</td>
+					<td style="text-align: right">11.00</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: left">esperanza</td>
+					<td style="text-align: right">77.69</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: left">escolaridad</td>
+					<td style="text-align: right">11.18</td>
+			</tr>
+	</tbody>
 </table>
 <p>Ahora cada país ocupa tres filas, una por cada variable. Esto nos permite filtrar y analizar los datos de forma más flexible.</p>
 
@@ -1066,60 +1061,60 @@ En este tutorial aprenderemos a usar las funciones pivot_longer() y pivot_wider(
 </a>
 <p>Partamos desde la tabla <code>pobreza_largo</code> que creamos anteriormente:</p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">pais</th>
-          <th style="text-align: left">variable</th>
-          <th style="text-align: right">valor</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">pobreza</td>
-          <td style="text-align: right">5.00</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">esperanza</td>
-          <td style="text-align: right">81.17</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">escolaridad</td>
-          <td style="text-align: right">11.29</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Uruguay</td>
-          <td style="text-align: left">pobreza</td>
-          <td style="text-align: right">6.00</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Uruguay</td>
-          <td style="text-align: left">esperanza</td>
-          <td style="text-align: right">78.14</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Uruguay</td>
-          <td style="text-align: left">escolaridad</td>
-          <td style="text-align: right">10.54</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: left">pobreza</td>
-          <td style="text-align: right">11.00</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: left">esperanza</td>
-          <td style="text-align: right">77.69</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: left">escolaridad</td>
-          <td style="text-align: right">11.18</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">pais</th>
+					<th style="text-align: left">variable</th>
+					<th style="text-align: right">valor</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">pobreza</td>
+					<td style="text-align: right">5.00</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">esperanza</td>
+					<td style="text-align: right">81.17</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">escolaridad</td>
+					<td style="text-align: right">11.29</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Uruguay</td>
+					<td style="text-align: left">pobreza</td>
+					<td style="text-align: right">6.00</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Uruguay</td>
+					<td style="text-align: left">esperanza</td>
+					<td style="text-align: right">78.14</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Uruguay</td>
+					<td style="text-align: left">escolaridad</td>
+					<td style="text-align: right">10.54</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: left">pobreza</td>
+					<td style="text-align: right">11.00</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: left">esperanza</td>
+					<td style="text-align: right">77.69</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: left">escolaridad</td>
+					<td style="text-align: right">11.18</td>
+			</tr>
+	</tbody>
 </table>
 <figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
   Tabla con datos en formato largo
@@ -1132,76 +1127,76 @@ En este tutorial aprenderemos a usar las funciones pivot_longer() y pivot_wider(
   Pivotar una tabla al formato ancho
 </figcaption>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">pais</th>
-          <th style="text-align: right">pobreza</th>
-          <th style="text-align: right">esperanza</th>
-          <th style="text-align: right">escolaridad</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: right">5</td>
-          <td style="text-align: right">81.17</td>
-          <td style="text-align: right">11.29</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Uruguay</td>
-          <td style="text-align: right">6</td>
-          <td style="text-align: right">78.14</td>
-          <td style="text-align: right">10.54</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: right">11</td>
-          <td style="text-align: right">77.69</td>
-          <td style="text-align: right">11.18</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Costa Rica</td>
-          <td style="text-align: right">13</td>
-          <td style="text-align: right">80.80</td>
-          <td style="text-align: right">8.84</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Panamá</td>
-          <td style="text-align: right">13</td>
-          <td style="text-align: right">79.59</td>
-          <td style="text-align: right">10.83</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Bolivia</td>
-          <td style="text-align: right">15</td>
-          <td style="text-align: right">68.58</td>
-          <td style="text-align: right">10.02</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Paraguay</td>
-          <td style="text-align: right">20</td>
-          <td style="text-align: right">73.84</td>
-          <td style="text-align: right">8.93</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">México</td>
-          <td style="text-align: right">22</td>
-          <td style="text-align: right">75.07</td>
-          <td style="text-align: right">9.35</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Brasil</td>
-          <td style="text-align: right">24</td>
-          <td style="text-align: right">75.85</td>
-          <td style="text-align: right">8.43</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">El Salvador</td>
-          <td style="text-align: right">28</td>
-          <td style="text-align: right">72.10</td>
-          <td style="text-align: right">7.30</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">pais</th>
+					<th style="text-align: right">pobreza</th>
+					<th style="text-align: right">esperanza</th>
+					<th style="text-align: right">escolaridad</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: right">5</td>
+					<td style="text-align: right">81.17</td>
+					<td style="text-align: right">11.29</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Uruguay</td>
+					<td style="text-align: right">6</td>
+					<td style="text-align: right">78.14</td>
+					<td style="text-align: right">10.54</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: right">11</td>
+					<td style="text-align: right">77.69</td>
+					<td style="text-align: right">11.18</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Costa Rica</td>
+					<td style="text-align: right">13</td>
+					<td style="text-align: right">80.80</td>
+					<td style="text-align: right">8.84</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Panamá</td>
+					<td style="text-align: right">13</td>
+					<td style="text-align: right">79.59</td>
+					<td style="text-align: right">10.83</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Bolivia</td>
+					<td style="text-align: right">15</td>
+					<td style="text-align: right">68.58</td>
+					<td style="text-align: right">10.02</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Paraguay</td>
+					<td style="text-align: right">20</td>
+					<td style="text-align: right">73.84</td>
+					<td style="text-align: right">8.93</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">México</td>
+					<td style="text-align: right">22</td>
+					<td style="text-align: right">75.07</td>
+					<td style="text-align: right">9.35</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Brasil</td>
+					<td style="text-align: right">24</td>
+					<td style="text-align: right">75.85</td>
+					<td style="text-align: right">8.43</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">El Salvador</td>
+					<td style="text-align: right">28</td>
+					<td style="text-align: right">72.10</td>
+					<td style="text-align: right">7.30</td>
+			</tr>
+	</tbody>
 </table>
 <figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
   Datos pivotados al formato ancho
@@ -1213,55 +1208,55 @@ En este tutorial aprenderemos a usar las funciones pivot_longer() y pivot_wider(
 <hr>
 <p>Veamos otro ejemplo usando la tabla <code>desarrollo_largo</code>:</p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">pais</th>
-          <th style="text-align: left">año</th>
-          <th style="text-align: right">índice</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">2023</td>
-          <td style="text-align: right">0.878</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">2022</td>
-          <td style="text-align: right">0.869</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">2021</td>
-          <td style="text-align: right">0.865</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: left">2019</td>
-          <td style="text-align: right">0.867</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: left">2023</td>
-          <td style="text-align: right">0.865</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: left">2022</td>
-          <td style="text-align: right">0.858</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: left">2021</td>
-          <td style="text-align: right">0.847</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: left">2019</td>
-          <td style="text-align: right">0.861</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">pais</th>
+					<th style="text-align: left">año</th>
+					<th style="text-align: right">índice</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">2023</td>
+					<td style="text-align: right">0.878</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">2022</td>
+					<td style="text-align: right">0.869</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">2021</td>
+					<td style="text-align: right">0.865</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: left">2019</td>
+					<td style="text-align: right">0.867</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: left">2023</td>
+					<td style="text-align: right">0.865</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: left">2022</td>
+					<td style="text-align: right">0.858</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: left">2021</td>
+					<td style="text-align: right">0.847</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: left">2019</td>
+					<td style="text-align: right">0.861</td>
+			</tr>
+	</tbody>
 </table>
 <figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
   Tabla con datos en formato largo
@@ -1274,87 +1269,87 @@ En este tutorial aprenderemos a usar las funciones pivot_longer() y pivot_wider(
   Pivotar a formato ancho
 </figcaption>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">pais</th>
-          <th style="text-align: right">2023</th>
-          <th style="text-align: right">2022</th>
-          <th style="text-align: right">2021</th>
-          <th style="text-align: right">2019</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Chile</td>
-          <td style="text-align: right">0.878</td>
-          <td style="text-align: right">0.869</td>
-          <td style="text-align: right">0.865</td>
-          <td style="text-align: right">0.867</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Argentina</td>
-          <td style="text-align: right">0.865</td>
-          <td style="text-align: right">0.858</td>
-          <td style="text-align: right">0.847</td>
-          <td style="text-align: right">0.861</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Uruguay</td>
-          <td style="text-align: right">0.862</td>
-          <td style="text-align: right">0.852</td>
-          <td style="text-align: right">0.837</td>
-          <td style="text-align: right">0.830</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Panamá</td>
-          <td style="text-align: right">0.839</td>
-          <td style="text-align: right">0.835</td>
-          <td style="text-align: right">0.819</td>
-          <td style="text-align: right">0.824</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Costa Rica</td>
-          <td style="text-align: right">0.833</td>
-          <td style="text-align: right">0.823</td>
-          <td style="text-align: right">0.817</td>
-          <td style="text-align: right">0.821</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Perú</td>
-          <td style="text-align: right">0.794</td>
-          <td style="text-align: right">0.790</td>
-          <td style="text-align: right">0.764</td>
-          <td style="text-align: right">0.784</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">México</td>
-          <td style="text-align: right">0.789</td>
-          <td style="text-align: right">0.783</td>
-          <td style="text-align: right">0.761</td>
-          <td style="text-align: right">0.788</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Colombia</td>
-          <td style="text-align: right">0.788</td>
-          <td style="text-align: right">0.782</td>
-          <td style="text-align: right">0.762</td>
-          <td style="text-align: right">0.777</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Brasil</td>
-          <td style="text-align: right">0.786</td>
-          <td style="text-align: right">0.780</td>
-          <td style="text-align: right">0.768</td>
-          <td style="text-align: right">0.776</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Ecuador</td>
-          <td style="text-align: right">0.777</td>
-          <td style="text-align: right">0.773</td>
-          <td style="text-align: right">0.753</td>
-          <td style="text-align: right">0.765</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">pais</th>
+					<th style="text-align: right">2023</th>
+					<th style="text-align: right">2022</th>
+					<th style="text-align: right">2021</th>
+					<th style="text-align: right">2019</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Chile</td>
+					<td style="text-align: right">0.878</td>
+					<td style="text-align: right">0.869</td>
+					<td style="text-align: right">0.865</td>
+					<td style="text-align: right">0.867</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Argentina</td>
+					<td style="text-align: right">0.865</td>
+					<td style="text-align: right">0.858</td>
+					<td style="text-align: right">0.847</td>
+					<td style="text-align: right">0.861</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Uruguay</td>
+					<td style="text-align: right">0.862</td>
+					<td style="text-align: right">0.852</td>
+					<td style="text-align: right">0.837</td>
+					<td style="text-align: right">0.830</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Panamá</td>
+					<td style="text-align: right">0.839</td>
+					<td style="text-align: right">0.835</td>
+					<td style="text-align: right">0.819</td>
+					<td style="text-align: right">0.824</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Costa Rica</td>
+					<td style="text-align: right">0.833</td>
+					<td style="text-align: right">0.823</td>
+					<td style="text-align: right">0.817</td>
+					<td style="text-align: right">0.821</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Perú</td>
+					<td style="text-align: right">0.794</td>
+					<td style="text-align: right">0.790</td>
+					<td style="text-align: right">0.764</td>
+					<td style="text-align: right">0.784</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">México</td>
+					<td style="text-align: right">0.789</td>
+					<td style="text-align: right">0.783</td>
+					<td style="text-align: right">0.761</td>
+					<td style="text-align: right">0.788</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Colombia</td>
+					<td style="text-align: right">0.788</td>
+					<td style="text-align: right">0.782</td>
+					<td style="text-align: right">0.762</td>
+					<td style="text-align: right">0.777</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Brasil</td>
+					<td style="text-align: right">0.786</td>
+					<td style="text-align: right">0.780</td>
+					<td style="text-align: right">0.768</td>
+					<td style="text-align: right">0.776</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Ecuador</td>
+					<td style="text-align: right">0.777</td>
+					<td style="text-align: right">0.773</td>
+					<td style="text-align: right">0.753</td>
+					<td style="text-align: right">0.765</td>
+			</tr>
+	</tbody>
 </table>
 <figcaption style="max-width: 380px; margin:auto; text-align: center; font-size:80%; opacity:60%; margin-top:-8px; margin-bottom: 24px;">
   Datos pivotados a formato ancho

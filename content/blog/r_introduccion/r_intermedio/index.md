@@ -15,7 +15,6 @@ tags:
   - funciones
   - control de flujo
   - loops
-lang: es
 excerpt: >-
   En guía aprenderemos herramientas de programación poderosas que flexibilizarán
   mucho nuestras capacidades de análisis de datos, abriendo infinitas

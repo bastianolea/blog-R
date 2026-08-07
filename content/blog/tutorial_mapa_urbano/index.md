@@ -9,7 +9,6 @@ tags:
   - Chile
 format: hugo-md
 freeze: true
-lang: es
 editor_options:
   chunk_output_type: console
 knitr:

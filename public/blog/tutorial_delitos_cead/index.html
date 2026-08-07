@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.164.0">
 <title>Tutorial: Scraping de estadísticas delictuales del Centro de Estudios y Análisis del Delito con R | Bastián Olea</title>
 
 
@@ -44,26 +44,26 @@
     
     
   
-  <meta itemprop="name" content="Tutorial: Scraping de estadísticas delictuales del Centro de Estudios y Análisis del Delito con R">
-  <meta itemprop="description" content="En este script detallaré cómo descargar datos de estadísticas delictuales del Centro de Estudios y Análisis del Delito (CEAD) de Chile utilizando técnicas de web scraping en R. Las estadísticas disponibles en el sitio web de CEAD corresponden a los siguientes datos oficiales: Estadísticas Oficiales de Delitos de Mayor Connotación Social (DMCS), Violencia Intrafamiliar (VIF), Incivilidades y otros hechos informados por Carabineros y la Policía de Investigaciones de Chile al Ministerio del Interior y Seguridad Pública.">
-  <meta itemprop="datePublished" content="2023-09-27T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2023-09-27T00:00:00+00:00">
-  <meta itemprop="wordCount" content="2241">
-  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/tutorial_delitos_cead/instrucciones_curl-featured.png">
-  <meta itemprop="keywords" content="Web scraping,Chile,Datos,Ciencias sociales">
+	<meta itemprop="name" content="Tutorial: Scraping de estadísticas delictuales del Centro de Estudios y Análisis del Delito con R">
+	<meta itemprop="description" content="En este script detallaré cómo descargar datos de estadísticas delictuales del Centro de Estudios y Análisis del Delito (CEAD) de Chile utilizando técnicas de web scraping en R. Las estadísticas disponibles en el sitio web de CEAD corresponden a los siguientes datos oficiales: Estadísticas Oficiales de Delitos de Mayor Connotación Social (DMCS), Violencia Intrafamiliar (VIF), Incivilidades y otros hechos informados por Carabineros y la Policía de Investigaciones de Chile al Ministerio del Interior y Seguridad Pública.">
+	<meta itemprop="datePublished" content="2023-09-27T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2023-09-27T00:00:00+00:00">
+	<meta itemprop="wordCount" content="2241">
+	<meta itemprop="image" content="https://bastianolea.rbind.io/blog/tutorial_delitos_cead/instrucciones_curl-featured.png">
+	<meta itemprop="keywords" content="Web scraping,Chile,Datos,Ciencias sociales">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.0ef7ee7b0dad458df5b6f993cac9c1b9618320151adbdeef203c9e1dae1c0564.css" integrity="sha256-Dvfuew2tRY31tvmTysnBuWGDIBUa297vIDyeHa4cBWQ=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.4d259699ed6e45788295c8efac266a71ad7a3b6cd7cd8ac8c1bb0027ccbbc35d.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
@@ -104,11 +104,6 @@
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
-      
-        
-        
-        
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
       
         
         
@@ -363,9 +358,9 @@
 </h2>
 <p>El sitio web del CEAD ofrece una interfaz web donde se pueden obtener tablas con datos delictuales por comuna o región, para los delitos o grupos de delitos especificados, y para los años que se le indique. Luego de hacer selecciones para obtener los datos en el sitio de CEAD, podemos ingresar al inspector web de nuestro navegador, y en el apartado de <em>red</em> podemos identificar en el documento <code>get_estadisticas_delictuales.php</code> que las selecciones que hicimos se traducen en una solicitud XML que se envía al servidor de CEAD y retorna los datos correspondientes.</p>
 <p>A modo de ejemplo, realicemos una selección sencilla en la web de CEAD:</p>
-<p><img src="/blog/tutorial_delitos_cead/ejemplo_interfaz.png"></p>
+<p><img src="/blog/tutorial_delitos_cead/ejemplo_interfaz.png" alt=""></p>
 <p>En el inspector web del navegador (en este caso Safari), vamos a <em>red</em>, identificamos <code>get_estadisticas_delictuales.php</code>, y en el menú contextual elegimos <code>copiar como cURL</code> para ver la solicitud que se envió al servidor de CEAD para obtener los datos:</p>
-<p><img src="/blog/tutorial_delitos_cead/instrucciones_curl-featured.png"></p>
+<p><img src="/blog/tutorial_delitos_cead/instrucciones_curl-featured.png" alt=""></p>
 <p>Adjunto un ejemplo de cURL:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">curl &#39;https://cead.spd.gov.cl/wp-content/themes/gobcl-wp-master/data/get_estadisticas_delictuales.php&#39;-X &#39;POST&#39;-H &#39;Content-Type: application/x-www-form-urlencoded; charset=UTF-8&#39;-H &#39;Accept: /&#39;-H &#39;Sec-Fetch-Site: same-origin&#39;-H &#39;Accept-Language: es-419,es;q=0.9&#39;-H &#39;Accept-Encoding: gzip, deflate, br&#39;-H &#39;Sec-Fetch-Mode: cors&#39;-H &#39;Host: cead.spd.gov.cl&#39;-H &#39;Origin: https://cead.spd.gov.cl&#39;-H &#39;Content-Length: 674&#39;-H &#39;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Safari/605.1.15&#39;-H &#39;Referer: https://cead.spd.gov.cl/estadisticas-delictuales/&#39;-H &#39;Connection: keep-alive&#39;-H &#39;Sec-Fetch-Dest: empty&#39;-H &#39;Cookie: _ga=GA1.3.359881599.1695818071; _gid=GA1.3.1925657744.1695818071; PHPSESSID=p580t8bid8coo6gk46bg7i1162&#39;-H &#39;X-Requested-With: XMLHttpRequest&#39;–data &#39;medida=1<span class="err">&amp;</span>tipoVal=2<span class="err">&amp;</span>anio%5B%5D=2022<span class="err">&amp;</span>delitos_agrupados%5B%5D=2<span class="err">&amp;</span>delitos_agrupados%5B%5D=4<span class="err">&amp;</span>delitos_agrupados%5B%5D=3<span class="err">&amp;</span>delitos_agrupados_nombres%5B%5D=Abusos+sexuales+y+otros+delitos+sexuales<span class="err">&amp;</span>delitos_agrupados_nombres%5B%5D=Incivilidades<span class="err">&amp;</span>delitos_agrupados_nombres%5B%5D=Delitos+de+mayor+connotaci%C3%B3n+social<span class="err">&amp;</span>delitos%5B%5D=17<span class="err">&amp;</span>delitos%5B%5D=3<span class="err">&amp;</span>delitos%5B%5D=4<span class="err">&amp;</span>delitos%5B%5D=5<span class="err">&amp;</span>delitos%5B%5D=20<span class="err">&amp;</span>delitos_nombres%5B%5D=Consumo+alcohol+v%C3%ADa+p%C3%BAblica<span class="err">&amp;</span>delitos_nombres%5B%5D=Homicidios<span class="err">&amp;</span>delitos_nombres%5B%5D=Hurtos<span class="err">&amp;</span>delitos_nombres%5B%5D=Lesiones+leves<span class="err">&amp;</span>delitos_nombres%5B%5D=Ebriedad<span class="err">&amp;</span>region%5B%5D=15<span class="err">&amp;</span>region_nombres%5B%5D=Regi%C3%B3n+de+Arica+y+Parinacota<span class="err">&amp;</span>seleccion=2<span class="err">&amp;</span>descarga=false&#39;
 </span></span></code></pre></div><p>Nuestro objetivo, entonces, es replicar esta solicitud en R para obtener los datos sin tener que usar la interfaz web de CEAD.</p>
@@ -642,11 +637,11 @@
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
-    <dd class="fw5 ml0"><a href="/blog/territorial/">`{territorial}`: un paquete de R para trabajar con datos de comunas y regiones de Chile</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/2026-07-24/">Mapas bivariados de adultos mayores en relación a viviendas propias en las comunas de Chile</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/rutera/">`{rutera}`: un paquete de R para limpiar y procesar RUTs chilenos</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/mapas_bivariados/">Crea mapas bivariados en R para visualizar la relación entre dos variables</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/validacion_rut/">Limpieza y validación de RUT en R</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/mapa_chile_macrozonas/">Mapas de las regiones de Chile según macrozonas</a></dd>
     
   </dl>
 </details>
@@ -718,21 +713,6 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
@@ -748,7 +728,37 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -793,7 +803,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -853,21 +863,6 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
   </span>
  
@@ -883,7 +878,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -899,21 +894,6 @@
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -958,6 +938,21 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
   </span>
  
@@ -973,7 +968,7 @@
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/automatizaci%C3%B3n/">Automatización</a></span>
+      href="https://bastianolea.rbind.io/tags/loops/">Loops</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

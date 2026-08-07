@@ -19,7 +19,6 @@ tags:
   - procesamiento de datos
   - datos
   - básico
-lang: es
 execute:
   error: true
   eval: true

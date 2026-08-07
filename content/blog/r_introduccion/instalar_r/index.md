@@ -11,7 +11,6 @@ tags:
   - básico
 categories:
   - Tutoriales
-lang: es
 excerpt: Instrucciones básicas para que descargues e instales R y RStudio, dirigidas a personas sin conocimientos previos o principiantes. ¡Es tu primer paso al mundo de la programación!
 ---
 

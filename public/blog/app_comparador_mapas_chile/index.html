@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.136.5">
+<meta name="generator" content="Hugo 0.164.0">
 <title>App: Comparador de mapas comunales de Chile | Bastián Olea</title>
 
 
@@ -44,29 +44,29 @@
     
     
   
-  <meta itemprop="name" content="App: Comparador de mapas comunales de Chile">
-  <meta itemprop="description" content="Aplicación web interactiva desarrollada en R. Accede a ella por este enlace
+	<meta itemprop="name" content="App: Comparador de mapas comunales de Chile">
+	<meta itemprop="description" content="Aplicación web interactiva desarrollada en R. Accede a ella por este enlace
 Esta aplicación web permite visualizar interactivamente las diferencias y desigualdades territoriales de Chile a través de mapas.
 Reúne más de 170 variables urbanísticas, sociales y económicas a nivel comunal, para todas las comunas del país, permitiendo al usuario elegir dos variables simultáneamente para compararlas visualmente por medio de dos mapas regionales.
 El visualizador entrega la posibilidad de poner a prueba relaciones entre variables tan distintas como áreas verdes y puntajes de pruebas de selección universitaria, nivel de ingresos y tasa de delitos, participación electoral y situación de las viviendas, etc., dejando al usuario la tarea de explicar los fenómenos que pueden surgir.">
-  <meta itemprop="datePublished" content="2024-06-15T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2024-06-15T00:00:00+00:00">
-  <meta itemprop="wordCount" content="5029">
-  <meta itemprop="image" content="https://bastianolea.rbind.io/blog/app_comparador_mapas_chile/featured.jpg">
-  <meta itemprop="keywords" content="Aplicaciones,Chile,Datos">
+	<meta itemprop="datePublished" content="2024-06-15T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2024-06-15T00:00:00+00:00">
+	<meta itemprop="wordCount" content="5029">
+	<meta itemprop="image" content="https://bastianolea.rbind.io/blog/app_comparador_mapas_chile/featured.jpg">
+	<meta itemprop="keywords" content="Aplicaciones,Chile,Datos">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.e913ccf919f8c3ee9cc1655f34b1480ede9d8b45edd18067861fa2224a46fab7.css" integrity="sha256-6RPM&#43;Rn4w&#43;6cwWVfNLFIDt6di0Xt0YBnhh&#43;iIkpG&#43;rc=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.0ef7ee7b0dad458df5b6f993cac9c1b9618320151adbdeef203c9e1dae1c0564.css" integrity="sha256-Dvfuew2tRY31tvmTysnBuWGDIBUa297vIDyeHa4cBWQ=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.26a7606c1bee1310cdae7196cfade9ba0a2a95bff0c4f9cc2156609ec0d0326a.js" type="text/javascript"></script>
+  <script src="/main.min.4d259699ed6e45788295c8efac266a71ad7a3b6cd7cd8ac8c1bb0027ccbbc35d.js" type="text/javascript"></script>
   
   
   <link rel="stylesheet" href="/css/syntax.css">
@@ -107,11 +107,6 @@ El visualizador entrega la posibilidad de poner a prueba relaciones entre variab
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
-      
-        
-        
-        
-      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/paquetes/" title="Paquetes de R">Paquetes</a>
       
         
         
@@ -363,7 +358,7 @@ El visualizador entrega la posibilidad de poner a prueba relaciones entre variab
 <p>Seleccione una región del país, y luego elija dos variables para compararlas a nivel comunal. Por defecto, la aplicación le mostrará categorías y variables al azar, esperando que surja una relación interesante.&quot;),</p>
 <p>Se puede elegir entre más de 170 datos sociales, organizados en 10 categorías, que incluyen datos de salud, educación, ingresos, seguridad, delincuencia, urbanismo, y otros.</p>
 <p>
-<a href="https://bastianoleah.shinyapps.io/comparador_mapas_chile/" target="_blank" rel="noopener"><img alt="Pantallazo del comparador de mapas comunales" src="/blog/app_comparador_mapas_chile/pantallazos/pantallazo_comparador_mapas_chile_2.jpg"></a></p>
+<a href="https://bastianoleah.shinyapps.io/comparador_mapas_chile/" target="_blank" rel="noopener"><img src="/blog/app_comparador_mapas_chile/pantallazos/pantallazo_comparador_mapas_chile_2.jpg" alt="Pantallazo del comparador de mapas comunales"></a></p>
 
 
 
@@ -414,7 +409,7 @@ El visualizador entrega la posibilidad de poner a prueba relaciones entre variab
 <p>Desarrollé la aplicación para aplicar el mapa urbano de la Región Metropolitana que detallé en un tutorial previo, y para aprender el uso de módulos en Shiny.</p>
 <p>El aspecto de los datos de la aplicación son controlados por una 
 <a href="https://github.com/bastianolea/comparador_mapas_chile/blob/main/app/fuentes.csv" target="_blank" rel="noopener">planilla llamada <code>fuentes.csv</code></a>, donde cada fila es una variable posible de visualizar en la app, y que detalla los metadatos de cada variable, como su categoría, su nombre, el nombre del objeto a cargar por la app, la escala de la variable (si es porcentaje, numero decimal o numero grande, para adecuar los gráficos), y la fuente del dato. Desde esta planilla se generan automáticamente las categorías y se rellenan los selectores de la app, facilitando el proceso de agregar o modificar variables nuevas para visualizarlas.</p>
-<p><img alt="Esquema de la aplicación" src="/blog/app_comparador_mapas_chile/descripcion.png"></p>
+<p><img src="/blog/app_comparador_mapas_chile/descripcion.png" alt="Esquema de la aplicación"></p>
 
 
 
@@ -469,950 +464,950 @@ El visualizador entrega la posibilidad de poner a prueba relaciones entre variab
     </svg></a>
 </h2>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">variable</th>
-          <th style="text-align: left">categoria</th>
-          <th style="text-align: left">fuente</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Parques urbanos (metros²)</td>
-          <td style="text-align: left">Áreas verdes</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Plazas existentes (metros²)</td>
-          <td style="text-align: left">Áreas verdes</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Cantidad de plazas</td>
-          <td style="text-align: left">Áreas verdes</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Cantidad de parques urbanos</td>
-          <td style="text-align: left">Áreas verdes</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Superficie de áreas verdes con mantenimiento (metros²)</td>
-          <td style="text-align: left">Áreas verdes</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Distancia a parques públicos</td>
-          <td style="text-align: left">Áreas verdes</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Distancia a plazas públicas</td>
-          <td style="text-align: left">Áreas verdes</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de la superficie cubierta por vegetación total</td>
-          <td style="text-align: left">Áreas verdes</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2020)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de la superficie cubierta por vegetación densa</td>
-          <td style="text-align: left">Áreas verdes</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2020)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de población atendida por el sistema de parques públicos</td>
-          <td style="text-align: left">Áreas verdes</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de población atendida por el sistema de plazas públicas</td>
-          <td style="text-align: left">Áreas verdes</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Superficie de parques públicos por habitante que cumple estándar de distancia (3.000 metros)</td>
-          <td style="text-align: left">Áreas verdes</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Superficie de plazas públicas por habitante que cumple estándar de distancia (400 metros)</td>
-          <td style="text-align: left">Áreas verdes</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Superficie de áreas verdes públicas por habitante</td>
-          <td style="text-align: left">Áreas verdes</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Hogares en situación de hacinamiento (4 personas o más)</td>
-          <td style="text-align: left">Viviendas</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Viviendas propias</td>
-          <td style="text-align: left">Viviendas</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Viviendas arrendadas</td>
-          <td style="text-align: left">Viviendas</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Metros cuadrados aproximados de la vivienda</td>
-          <td style="text-align: left">Viviendas</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Viviendas pequeñas (30m cuadrados o menos)</td>
-          <td style="text-align: left">Viviendas</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Viviendas medianas (entre 30 y 100m cuadrados)</td>
-          <td style="text-align: left">Viviendas</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Viviendas grandes (más de 100m cuadrados)</td>
-          <td style="text-align: left">Viviendas</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Hogares en zonas rurales</td>
-          <td style="text-align: left">Viviendas</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Viviendas en mal estado</td>
-          <td style="text-align: left">Viviendas</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Viviendas carentes de servicios básicos</td>
-          <td style="text-align: left">Viviendas</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Numero de personas por hogar</td>
-          <td style="text-align: left">Viviendas</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de viviendas con situación de allegamiento externo</td>
-          <td style="text-align: left">Viviendas</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de viviendas en situación de hacinamiento</td>
-          <td style="text-align: left">Viviendas</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de viviendas particulares que requieren mejoras de materialidad y/o servicios básicos</td>
-          <td style="text-align: left">Viviendas</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Requerimiento de viviendas nuevas urbanas</td>
-          <td style="text-align: left">Viviendas</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Hogares en sectores en mal estado</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Hogares en sectores con mucho daño deliberado a la propiedad</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Cantidad de luminarias cada 50 metros lineales de red vial</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Densidad de oferta planificada de transporte público mayor en periodo punta mañana, por persona</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Densidad de oferta planificada de transporte público menor en periodo punta mañana, por persona</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Distancia a paraderos de transporte público mayor</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Monto total per cápita, en pesos, de fondos entregados por el municipio a la comunidad vía proyectos concursables para el mejoramiento urbano</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Número de víctimas lesionadas en siniestros de tránsito por cada 100.000 habitantes</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2021)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Número de víctimas mortales en siniestros de tránsito por cada 100.000 habitantes</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2021)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Partición modal del transporte público (número de viajes en transporte público respecto al número total de viajes)</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Partición modal del transporte sustentable (suma de viajes en transporte público, caminata y bicicleta respecto al número total de viajes)</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de cobertura de la red de ciclovía sobre la red vial</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2021)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de manzanas con veredas con buena calidad de pavimento</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de población atendida por la red de ciclovías</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de viajes originados inferiores a 5 kilómetros</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2021)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Promedio de intersecciones relevantes cada 1,44 km²</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Proporción de viajes con una duración mayor o igual a 45 minutos</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Proporción de viajes de estudio y trabajo con una duración mayor o igual a 45 minutos</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Proporción de viajes totales en transporte privado con una duración mayor o igual a 45 minutos</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Proporción de viajes totales en transporte público con una duración mayor o igual a 45 minutos</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Relación entre el tiempo de viaje en hora punta respecto del tiempo de viaje fuera de hora punta</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Tiempo de viaje en hora punta mañana</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Tiempo de viaje en transporte público en hora punta mañana</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Densidad de oferta real de transporte público mayor en periodo punta mañana, por persona</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de personas potencialmente expuestas a niveles de ruido diurno inaceptables (Ld &gt; 65 dBA OCDE)</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de personas potencialmente expuestas a niveles de ruido nocturno inaceptables (Ln &gt; 55 dBA OCDE)</td>
-          <td style="text-align: left">Urbanismo</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Trabajadores independientes</td>
-          <td style="text-align: left">Trabajo</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Personas en situación laboral inactiva</td>
-          <td style="text-align: left">Trabajo</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Personas en situación laboral desocupada</td>
-          <td style="text-align: left">Trabajo</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Trabaja como familiar no remunerado</td>
-          <td style="text-align: left">Trabajo</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Trabaja en servicio doméstico puertas adentro o afuera</td>
-          <td style="text-align: left">Trabajo</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Trabaja como empleador</td>
-          <td style="text-align: left">Trabajo</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Trabajadores del hogar o servicio doméstico</td>
-          <td style="text-align: left">Trabajo</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Personas en situación de pobreza</td>
-          <td style="text-align: left">Social</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Personas en situación de pobreza multidimensional</td>
-          <td style="text-align: left">Social</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Densidad de hogares en campamentos</td>
-          <td style="text-align: left">Social</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2022)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Número de microbasurales por cada 10.000 habitantes</td>
-          <td style="text-align: left">Social</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de la población en situación de pobreza multidimensional</td>
-          <td style="text-align: left">Social</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de la población en situación de pobreza por ingresos</td>
-          <td style="text-align: left">Social</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de la superficie de campamentos respecto del área urbana</td>
-          <td style="text-align: left">Social</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2022)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de unidades vecinales de la comuna que tienen entre 20% y 60% de hogares vulnerables</td>
-          <td style="text-align: left">Social</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Índice de segregación de la población vulnerable</td>
-          <td style="text-align: left">Social</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Cantidad de cámaras de vigilancia</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Cantidad de guardias, inspectores o vigilantes municipales</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Cantidad de automóviles de seguridad municipal o patrullaje</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Cantidad de motos de seguridad municipal o patrullaje</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Cantidad de delitos denunciados (total anual)</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Delitos de mayor connotación social denunciados (total anual)</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Aumento de delitos anuales reportados respecto a 2 años atrás</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Aumento de delitos anuales reportados respecto a 3 años atrás</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Aumento de delitos anuales reportados respecto a 5 años atrás</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Aumento de delitos de mayor connotación social anuales reportados respecto a 2 años atrás</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Aumento de delitos de mayor connotación social anuales reportados respecto a 3 años atrás</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Aumento de delitos de mayor connotación social anuales reportados respecto a 5 años atrás</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje del total de delitos anuales denunciados que son de mayor connotación social</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Tasa de delitos denunciados anualmente por cada 1.000 habitantes</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Tasa de delitos de mayor connotación social denunciados anualmente por cada 1.000 habitantes</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Cuarteles totales de Carabineros de Chile (comisarías, retenes, subcomisarías, tenencias, etc.)</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Plataforma de Datos Abiertos de Itrend (Instituto para la Resiliencia ante Desastres)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Retenes de Carabineros de Chile</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Plataforma de Datos Abiertos de Itrend (Instituto para la Resiliencia ante Desastres)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Comisarías de Carabineros de Chile</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Plataforma de Datos Abiertos de Itrend (Instituto para la Resiliencia ante Desastres)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Distancia a una unidad o destacamento destinado al servicio operativo de Carabineros</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Tasa de víctimas de delitos contra la propiedad por casos policiales cada 10.000 habitantes</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2022)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Tasa de víctimas de delitos violencia intrafamiliar por casos policiales cada 10.000 habitantes</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2022)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Tasa de víctimas de delitos violentos por casos policiales cada 10.000 habitantes</td>
-          <td style="text-align: left">Seguridad</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2022)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Cantidad de Ambulancias</td>
-          <td style="text-align: left">Salud</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Cantidad de CESFAM en la comuna</td>
-          <td style="text-align: left">Salud</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Cantidad de COSAM en la comuna</td>
-          <td style="text-align: left">Salud</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Cantidad de Consultorios (urbanos y rurales)</td>
-          <td style="text-align: left">Salud</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Cantidad de SAPU en la comuna</td>
-          <td style="text-align: left">Salud</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Afiliados a previsión de salud Fonasa</td>
-          <td style="text-align: left">Salud</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Afiliados a previsión de salud Isapre</td>
-          <td style="text-align: left">Salud</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Cantidad de jornadas diarias completas de trabajo de médicos, en salud primaria, por cada 10.000 habitantes</td>
-          <td style="text-align: left">Salud</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Distancia a centros de salud primaria</td>
-          <td style="text-align: left">Salud</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2020)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Población total al año 2017</td>
-          <td style="text-align: left">Población</td>
-          <td style="text-align: left">Instituto Nacional de Estadísticas (INE)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Población total al año 2024</td>
-          <td style="text-align: left">Población</td>
-          <td style="text-align: left">Instituto Nacional de Estadísticas (INE)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Población proyectada al año 2030</td>
-          <td style="text-align: left">Población</td>
-          <td style="text-align: left">Instituto Nacional de Estadísticas (INE)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Aumento de población en 2024 respecto a 5 años atrás</td>
-          <td style="text-align: left">Población</td>
-          <td style="text-align: left">Instituto Nacional de Estadísticas (INE)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Aumento de población en 2024 respecto a 10 años atrás</td>
-          <td style="text-align: left">Población</td>
-          <td style="text-align: left">Instituto Nacional de Estadísticas (INE)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Aumento de población en 2024 respecto a 20 años atrás</td>
-          <td style="text-align: left">Población</td>
-          <td style="text-align: left">Instituto Nacional de Estadísticas (INE)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Hogares con personas menores de 18 años</td>
-          <td style="text-align: left">Población</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Hogares con personas mayores de 60 años</td>
-          <td style="text-align: left">Población</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Edad promedio</td>
-          <td style="text-align: left">Población</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Personas pertenecientes a pueblos originarios</td>
-          <td style="text-align: left">Población</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Consumo de energía eléctrica per cápita no residencial</td>
-          <td style="text-align: left">Otras</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2021)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Consumo de energía eléctrica per cápita residencial</td>
-          <td style="text-align: left">Otras</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2021)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Indisponibilidad de suministro eléctrico - indicador SAIDI anual</td>
-          <td style="text-align: left">Otras</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2022)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de inversión pública destinada a proyectos que tienen procesos de intervención de restauración de inmuebles patrimoniales sobre el total de inversión destinada a proyectos con RF</td>
-          <td style="text-align: left">Otras</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de residuos municipales valorizados</td>
-          <td style="text-align: left">Otras</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Tasa de conexiones residenciales fijas de internet por cada 1.000 viviendas particulares</td>
-          <td style="text-align: left">Otras</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2021)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Tasa de conexiones residenciales fijas de internet por cada 100 habitantes</td>
-          <td style="text-align: left">Otras</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2021)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Cantidad de residuos eliminados con disposición final per cápita</td>
-          <td style="text-align: left">Otras</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019, 2022)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de zonas típicas con lineamientos de intervención aprobados</td>
-          <td style="text-align: left">Otras</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018-2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de zonas típicas con lineamientos de intervención en desarrollo</td>
-          <td style="text-align: left">Otras</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018-2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de aporte de energía eléctrica proveniente de paneles solares domiciliarios</td>
-          <td style="text-align: left">Otras</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018-2019)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Personas de origen extranjero</td>
-          <td style="text-align: left">Inmigración</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Población estimada de migrantes internacionales por comuna</td>
-          <td style="text-align: left">Inmigración</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2020)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de votantes de nacionalidad extranjera en las elecciones municipales</td>
-          <td style="text-align: left">Inmigración</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2022)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Estimación de extranjeros totales residiendo en Chile</td>
-          <td style="text-align: left">Inmigración</td>
-          <td style="text-align: left">Servicio Nacional de Migraciones (2022)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Estimación de extranjeros de origen venezolano residiendo en Chile</td>
-          <td style="text-align: left">Inmigración</td>
-          <td style="text-align: left">Servicio Nacional de Migraciones (2022)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Estimación de extranjeros de origen colombiano residiendo en Chile</td>
-          <td style="text-align: left">Inmigración</td>
-          <td style="text-align: left">Servicio Nacional de Migraciones (2022)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Estimación de extranjeros de origen peruano residiendo en Chile</td>
-          <td style="text-align: left">Inmigración</td>
-          <td style="text-align: left">Servicio Nacional de Migraciones (2022)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Permisos de residencia definitiva para extranjeros acogidos</td>
-          <td style="text-align: left">Inmigración</td>
-          <td style="text-align: left">Servicio Nacional de Migraciones (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Permisos de residencia definitiva para extranjeros otorgados</td>
-          <td style="text-align: left">Inmigración</td>
-          <td style="text-align: left">Servicio Nacional de Migraciones (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Permisos de residencia temporal para extranjeros acogidos</td>
-          <td style="text-align: left">Inmigración</td>
-          <td style="text-align: left">Servicio Nacional de Migraciones (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Permisos de residencia temporal para extranjeros otorgados</td>
-          <td style="text-align: left">Inmigración</td>
-          <td style="text-align: left">Servicio Nacional de Migraciones (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Permisos de residencia definitiva acogidos para extranjeros de origen venezolano</td>
-          <td style="text-align: left">Inmigración</td>
-          <td style="text-align: left">Servicio Nacional de Migraciones (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Permisos de residencia definitiva otorgados para extranjeros de origen venezolano</td>
-          <td style="text-align: left">Inmigración</td>
-          <td style="text-align: left">Servicio Nacional de Migraciones (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Permisos de residencia temporal acogidos para extranjeros de origen venezolano</td>
-          <td style="text-align: left">Inmigración</td>
-          <td style="text-align: left">Servicio Nacional de Migraciones (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Permisos de residencia temporal otorgados para extranjeros de origen venezolano</td>
-          <td style="text-align: left">Inmigración</td>
-          <td style="text-align: left">Servicio Nacional de Migraciones (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de hogares con menos del 40% de ingresos respecto del total regional (RSH)</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023), Registro Social de Hogares</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Hogares con ingresos percapita menores a la mediana ($450.000)</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Hogares con ingresos totales menores a la mediana ($1.110.000)</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Hogares con ingresos producto del trabajo menores a la mediana ($700.000)</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Ingresos promedio</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Ingreso ocupación principal</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Ingreso del trabajo</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Jubilación o pensión de vejez</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Decil autónomo regional</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Quintil autónomo regional</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Ingresos personales por ocupación principal menores a la mediana ($500.000)</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Ingresos personales por ocupación principal menores a $1.000.000</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Ingresos personales producto del trabajo menores a la mediana ($500.000)</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Ingresos personales producto del trabajo menores a $1.000.000</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Ingresos promedio de los hogares</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Ingreso del trabajo del hogar</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Ingreso autónomo per cápita</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Ingreso total per cápita del hogar</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Jubilación o pensión menor o igual a la mediana ($230.000)</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Jubilación o pensión menor o igual al salario mínimo ($500.000)</td>
-          <td style="text-align: left">Ingresos</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Plebiscito 2022: apruebo</td>
-          <td style="text-align: left">Elecciones</td>
-          <td style="text-align: left">Servel, Resultados electorales históricos (2022)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Plebiscito 2022: rechazo</td>
-          <td style="text-align: left">Elecciones</td>
-          <td style="text-align: left">Servel, Resultados electorales históricos (2022)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Plebiscito 2023: en contra</td>
-          <td style="text-align: left">Elecciones</td>
-          <td style="text-align: left">Servel, Resultados electorales históricos (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Plebiscito 2023: a favor</td>
-          <td style="text-align: left">Elecciones</td>
-          <td style="text-align: left">Servel, Resultados electorales históricos (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de participación en las elecciones municipales por comuna</td>
-          <td style="text-align: left">Elecciones</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2022)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Promedio de notas de educación media</td>
-          <td style="text-align: left">Educación</td>
-          <td style="text-align: left">Ministerio de Educación, Centro de Estudios Mineduc (2024)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Puntaje PAES 2024 en la prueba de Competencia Lectora</td>
-          <td style="text-align: left">Educación</td>
-          <td style="text-align: left">Ministerio de Educación, Centro de Estudios Mineduc (2024)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Puntaje PAES 2024 en la prueba de Competencia Matemática 1</td>
-          <td style="text-align: left">Educación</td>
-          <td style="text-align: left">Ministerio de Educación, Centro de Estudios Mineduc (2024)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Puntaje PAES 2024 en la prueba de Competencia Matemática 2</td>
-          <td style="text-align: left">Educación</td>
-          <td style="text-align: left">Ministerio de Educación, Centro de Estudios Mineduc (2024)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Puntaje PAES 2024 en la prueba de Historia y Ciencias Sociales</td>
-          <td style="text-align: left">Educación</td>
-          <td style="text-align: left">Ministerio de Educación, Centro de Estudios Mineduc (2024)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Puntaje PAES 2024 en la prueba de Ciencias</td>
-          <td style="text-align: left">Educación</td>
-          <td style="text-align: left">Ministerio de Educación, Centro de Estudios Mineduc (2024)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Docentes de aula contratados</td>
-          <td style="text-align: left">Educación</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023), Ministerio de Educación</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Alumnos por docente de aula</td>
-          <td style="text-align: left">Educación</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023), Ministerio de Educación</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Cantidad de personal docente</td>
-          <td style="text-align: left">Educación</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023), Ministerio de Educación</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Establecimientos de Educación Municipal</td>
-          <td style="text-align: left">Educación</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023), Ministerio de Educación</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Años de escolaridad promedio</td>
-          <td style="text-align: left">Educación</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Personas con estudios superiores (técnico o profesional)</td>
-          <td style="text-align: left">Educación</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Nivel educacional máximo: básica o menor</td>
-          <td style="text-align: left">Educación</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Nivel educacional máximo: media incompleta o menor</td>
-          <td style="text-align: left">Educación</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Nivel educacional máximo: estudios superiores incompletos</td>
-          <td style="text-align: left">Educación</td>
-          <td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Distancia a establecimientos de educación básica</td>
-          <td style="text-align: left">Educación</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2020)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Distancia a establecimientos de educación inicial</td>
-          <td style="text-align: left">Educación</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2020)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Razón entre disponibilidad efectiva de matrículas y demanda potencial por educación básica</td>
-          <td style="text-align: left">Educación</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2020)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Monto percibido por Fondo Común Municipal</td>
-          <td style="text-align: left">Economía</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Participación de Ingresos Propios Permanentes en el Ingreso Total del municipio</td>
-          <td style="text-align: left">Economía</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Dependencia del Fondo Común Municipal sobre los Ingresos Propios del municipio</td>
-          <td style="text-align: left">Economía</td>
-          <td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Diferencia entre el valor de suelo más alto y el más bajo entre las áreas homogéneas urbanas definidas por el Servicio de Impuestos Internos</td>
-          <td style="text-align: left">Economía</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Participación del Fondo Común Municipal (FCM) en el ingreso municipal total (descontadas las transferencias)</td>
-          <td style="text-align: left">Economía</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2022)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Porcentaje de la inversión nacional a escala comunal en la que participa el municipio como institución contratante</td>
-          <td style="text-align: left">Economía</td>
-          <td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">variable</th>
+					<th style="text-align: left">categoria</th>
+					<th style="text-align: left">fuente</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Parques urbanos (metros²)</td>
+					<td style="text-align: left">Áreas verdes</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Plazas existentes (metros²)</td>
+					<td style="text-align: left">Áreas verdes</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Cantidad de plazas</td>
+					<td style="text-align: left">Áreas verdes</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Cantidad de parques urbanos</td>
+					<td style="text-align: left">Áreas verdes</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Superficie de áreas verdes con mantenimiento (metros²)</td>
+					<td style="text-align: left">Áreas verdes</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Distancia a parques públicos</td>
+					<td style="text-align: left">Áreas verdes</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Distancia a plazas públicas</td>
+					<td style="text-align: left">Áreas verdes</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de la superficie cubierta por vegetación total</td>
+					<td style="text-align: left">Áreas verdes</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2020)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de la superficie cubierta por vegetación densa</td>
+					<td style="text-align: left">Áreas verdes</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2020)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de población atendida por el sistema de parques públicos</td>
+					<td style="text-align: left">Áreas verdes</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de población atendida por el sistema de plazas públicas</td>
+					<td style="text-align: left">Áreas verdes</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Superficie de parques públicos por habitante que cumple estándar de distancia (3.000 metros)</td>
+					<td style="text-align: left">Áreas verdes</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Superficie de plazas públicas por habitante que cumple estándar de distancia (400 metros)</td>
+					<td style="text-align: left">Áreas verdes</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Superficie de áreas verdes públicas por habitante</td>
+					<td style="text-align: left">Áreas verdes</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Hogares en situación de hacinamiento (4 personas o más)</td>
+					<td style="text-align: left">Viviendas</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Viviendas propias</td>
+					<td style="text-align: left">Viviendas</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Viviendas arrendadas</td>
+					<td style="text-align: left">Viviendas</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Metros cuadrados aproximados de la vivienda</td>
+					<td style="text-align: left">Viviendas</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Viviendas pequeñas (30m cuadrados o menos)</td>
+					<td style="text-align: left">Viviendas</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Viviendas medianas (entre 30 y 100m cuadrados)</td>
+					<td style="text-align: left">Viviendas</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Viviendas grandes (más de 100m cuadrados)</td>
+					<td style="text-align: left">Viviendas</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Hogares en zonas rurales</td>
+					<td style="text-align: left">Viviendas</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Viviendas en mal estado</td>
+					<td style="text-align: left">Viviendas</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Viviendas carentes de servicios básicos</td>
+					<td style="text-align: left">Viviendas</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Numero de personas por hogar</td>
+					<td style="text-align: left">Viviendas</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de viviendas con situación de allegamiento externo</td>
+					<td style="text-align: left">Viviendas</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de viviendas en situación de hacinamiento</td>
+					<td style="text-align: left">Viviendas</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de viviendas particulares que requieren mejoras de materialidad y/o servicios básicos</td>
+					<td style="text-align: left">Viviendas</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Requerimiento de viviendas nuevas urbanas</td>
+					<td style="text-align: left">Viviendas</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Hogares en sectores en mal estado</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Hogares en sectores con mucho daño deliberado a la propiedad</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Cantidad de luminarias cada 50 metros lineales de red vial</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Densidad de oferta planificada de transporte público mayor en periodo punta mañana, por persona</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Densidad de oferta planificada de transporte público menor en periodo punta mañana, por persona</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Distancia a paraderos de transporte público mayor</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Monto total per cápita, en pesos, de fondos entregados por el municipio a la comunidad vía proyectos concursables para el mejoramiento urbano</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Número de víctimas lesionadas en siniestros de tránsito por cada 100.000 habitantes</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2021)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Número de víctimas mortales en siniestros de tránsito por cada 100.000 habitantes</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2021)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Partición modal del transporte público (número de viajes en transporte público respecto al número total de viajes)</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Partición modal del transporte sustentable (suma de viajes en transporte público, caminata y bicicleta respecto al número total de viajes)</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de cobertura de la red de ciclovía sobre la red vial</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2021)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de manzanas con veredas con buena calidad de pavimento</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de población atendida por la red de ciclovías</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de viajes originados inferiores a 5 kilómetros</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2021)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Promedio de intersecciones relevantes cada 1,44 km²</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Proporción de viajes con una duración mayor o igual a 45 minutos</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Proporción de viajes de estudio y trabajo con una duración mayor o igual a 45 minutos</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Proporción de viajes totales en transporte privado con una duración mayor o igual a 45 minutos</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Proporción de viajes totales en transporte público con una duración mayor o igual a 45 minutos</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Relación entre el tiempo de viaje en hora punta respecto del tiempo de viaje fuera de hora punta</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Tiempo de viaje en hora punta mañana</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Tiempo de viaje en transporte público en hora punta mañana</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Densidad de oferta real de transporte público mayor en periodo punta mañana, por persona</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de personas potencialmente expuestas a niveles de ruido diurno inaceptables (Ld &gt; 65 dBA OCDE)</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de personas potencialmente expuestas a niveles de ruido nocturno inaceptables (Ln &gt; 55 dBA OCDE)</td>
+					<td style="text-align: left">Urbanismo</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Trabajadores independientes</td>
+					<td style="text-align: left">Trabajo</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Personas en situación laboral inactiva</td>
+					<td style="text-align: left">Trabajo</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Personas en situación laboral desocupada</td>
+					<td style="text-align: left">Trabajo</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Trabaja como familiar no remunerado</td>
+					<td style="text-align: left">Trabajo</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Trabaja en servicio doméstico puertas adentro o afuera</td>
+					<td style="text-align: left">Trabajo</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Trabaja como empleador</td>
+					<td style="text-align: left">Trabajo</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Trabajadores del hogar o servicio doméstico</td>
+					<td style="text-align: left">Trabajo</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Personas en situación de pobreza</td>
+					<td style="text-align: left">Social</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Personas en situación de pobreza multidimensional</td>
+					<td style="text-align: left">Social</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Densidad de hogares en campamentos</td>
+					<td style="text-align: left">Social</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2022)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Número de microbasurales por cada 10.000 habitantes</td>
+					<td style="text-align: left">Social</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de la población en situación de pobreza multidimensional</td>
+					<td style="text-align: left">Social</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de la población en situación de pobreza por ingresos</td>
+					<td style="text-align: left">Social</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de la superficie de campamentos respecto del área urbana</td>
+					<td style="text-align: left">Social</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2022)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de unidades vecinales de la comuna que tienen entre 20% y 60% de hogares vulnerables</td>
+					<td style="text-align: left">Social</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Índice de segregación de la población vulnerable</td>
+					<td style="text-align: left">Social</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Cantidad de cámaras de vigilancia</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Cantidad de guardias, inspectores o vigilantes municipales</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Cantidad de automóviles de seguridad municipal o patrullaje</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Cantidad de motos de seguridad municipal o patrullaje</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Cantidad de delitos denunciados (total anual)</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Delitos de mayor connotación social denunciados (total anual)</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Aumento de delitos anuales reportados respecto a 2 años atrás</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Aumento de delitos anuales reportados respecto a 3 años atrás</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Aumento de delitos anuales reportados respecto a 5 años atrás</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Aumento de delitos de mayor connotación social anuales reportados respecto a 2 años atrás</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Aumento de delitos de mayor connotación social anuales reportados respecto a 3 años atrás</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Aumento de delitos de mayor connotación social anuales reportados respecto a 5 años atrás</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje del total de delitos anuales denunciados que son de mayor connotación social</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Tasa de delitos denunciados anualmente por cada 1.000 habitantes</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Tasa de delitos de mayor connotación social denunciados anualmente por cada 1.000 habitantes</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Centro de Estudios y Análisis del Delito (CEAD) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Cuarteles totales de Carabineros de Chile (comisarías, retenes, subcomisarías, tenencias, etc.)</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Plataforma de Datos Abiertos de Itrend (Instituto para la Resiliencia ante Desastres)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Retenes de Carabineros de Chile</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Plataforma de Datos Abiertos de Itrend (Instituto para la Resiliencia ante Desastres)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Comisarías de Carabineros de Chile</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Plataforma de Datos Abiertos de Itrend (Instituto para la Resiliencia ante Desastres)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Distancia a una unidad o destacamento destinado al servicio operativo de Carabineros</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Tasa de víctimas de delitos contra la propiedad por casos policiales cada 10.000 habitantes</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2022)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Tasa de víctimas de delitos violencia intrafamiliar por casos policiales cada 10.000 habitantes</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2022)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Tasa de víctimas de delitos violentos por casos policiales cada 10.000 habitantes</td>
+					<td style="text-align: left">Seguridad</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2022)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Cantidad de Ambulancias</td>
+					<td style="text-align: left">Salud</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Cantidad de CESFAM en la comuna</td>
+					<td style="text-align: left">Salud</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Cantidad de COSAM en la comuna</td>
+					<td style="text-align: left">Salud</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Cantidad de Consultorios (urbanos y rurales)</td>
+					<td style="text-align: left">Salud</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Cantidad de SAPU en la comuna</td>
+					<td style="text-align: left">Salud</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Afiliados a previsión de salud Fonasa</td>
+					<td style="text-align: left">Salud</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Afiliados a previsión de salud Isapre</td>
+					<td style="text-align: left">Salud</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Cantidad de jornadas diarias completas de trabajo de médicos, en salud primaria, por cada 10.000 habitantes</td>
+					<td style="text-align: left">Salud</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Distancia a centros de salud primaria</td>
+					<td style="text-align: left">Salud</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2020)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Población total al año 2017</td>
+					<td style="text-align: left">Población</td>
+					<td style="text-align: left">Instituto Nacional de Estadísticas (INE)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Población total al año 2024</td>
+					<td style="text-align: left">Población</td>
+					<td style="text-align: left">Instituto Nacional de Estadísticas (INE)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Población proyectada al año 2030</td>
+					<td style="text-align: left">Población</td>
+					<td style="text-align: left">Instituto Nacional de Estadísticas (INE)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Aumento de población en 2024 respecto a 5 años atrás</td>
+					<td style="text-align: left">Población</td>
+					<td style="text-align: left">Instituto Nacional de Estadísticas (INE)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Aumento de población en 2024 respecto a 10 años atrás</td>
+					<td style="text-align: left">Población</td>
+					<td style="text-align: left">Instituto Nacional de Estadísticas (INE)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Aumento de población en 2024 respecto a 20 años atrás</td>
+					<td style="text-align: left">Población</td>
+					<td style="text-align: left">Instituto Nacional de Estadísticas (INE)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Hogares con personas menores de 18 años</td>
+					<td style="text-align: left">Población</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Hogares con personas mayores de 60 años</td>
+					<td style="text-align: left">Población</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Edad promedio</td>
+					<td style="text-align: left">Población</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Personas pertenecientes a pueblos originarios</td>
+					<td style="text-align: left">Población</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Consumo de energía eléctrica per cápita no residencial</td>
+					<td style="text-align: left">Otras</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2021)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Consumo de energía eléctrica per cápita residencial</td>
+					<td style="text-align: left">Otras</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2021)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Indisponibilidad de suministro eléctrico - indicador SAIDI anual</td>
+					<td style="text-align: left">Otras</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2022)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de inversión pública destinada a proyectos que tienen procesos de intervención de restauración de inmuebles patrimoniales sobre el total de inversión destinada a proyectos con RF</td>
+					<td style="text-align: left">Otras</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de residuos municipales valorizados</td>
+					<td style="text-align: left">Otras</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Tasa de conexiones residenciales fijas de internet por cada 1.000 viviendas particulares</td>
+					<td style="text-align: left">Otras</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2021)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Tasa de conexiones residenciales fijas de internet por cada 100 habitantes</td>
+					<td style="text-align: left">Otras</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2021)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Cantidad de residuos eliminados con disposición final per cápita</td>
+					<td style="text-align: left">Otras</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019, 2022)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de zonas típicas con lineamientos de intervención aprobados</td>
+					<td style="text-align: left">Otras</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018-2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de zonas típicas con lineamientos de intervención en desarrollo</td>
+					<td style="text-align: left">Otras</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018-2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de aporte de energía eléctrica proveniente de paneles solares domiciliarios</td>
+					<td style="text-align: left">Otras</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018-2019)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Personas de origen extranjero</td>
+					<td style="text-align: left">Inmigración</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Población estimada de migrantes internacionales por comuna</td>
+					<td style="text-align: left">Inmigración</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2020)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de votantes de nacionalidad extranjera en las elecciones municipales</td>
+					<td style="text-align: left">Inmigración</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2022)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Estimación de extranjeros totales residiendo en Chile</td>
+					<td style="text-align: left">Inmigración</td>
+					<td style="text-align: left">Servicio Nacional de Migraciones (2022)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Estimación de extranjeros de origen venezolano residiendo en Chile</td>
+					<td style="text-align: left">Inmigración</td>
+					<td style="text-align: left">Servicio Nacional de Migraciones (2022)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Estimación de extranjeros de origen colombiano residiendo en Chile</td>
+					<td style="text-align: left">Inmigración</td>
+					<td style="text-align: left">Servicio Nacional de Migraciones (2022)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Estimación de extranjeros de origen peruano residiendo en Chile</td>
+					<td style="text-align: left">Inmigración</td>
+					<td style="text-align: left">Servicio Nacional de Migraciones (2022)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Permisos de residencia definitiva para extranjeros acogidos</td>
+					<td style="text-align: left">Inmigración</td>
+					<td style="text-align: left">Servicio Nacional de Migraciones (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Permisos de residencia definitiva para extranjeros otorgados</td>
+					<td style="text-align: left">Inmigración</td>
+					<td style="text-align: left">Servicio Nacional de Migraciones (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Permisos de residencia temporal para extranjeros acogidos</td>
+					<td style="text-align: left">Inmigración</td>
+					<td style="text-align: left">Servicio Nacional de Migraciones (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Permisos de residencia temporal para extranjeros otorgados</td>
+					<td style="text-align: left">Inmigración</td>
+					<td style="text-align: left">Servicio Nacional de Migraciones (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Permisos de residencia definitiva acogidos para extranjeros de origen venezolano</td>
+					<td style="text-align: left">Inmigración</td>
+					<td style="text-align: left">Servicio Nacional de Migraciones (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Permisos de residencia definitiva otorgados para extranjeros de origen venezolano</td>
+					<td style="text-align: left">Inmigración</td>
+					<td style="text-align: left">Servicio Nacional de Migraciones (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Permisos de residencia temporal acogidos para extranjeros de origen venezolano</td>
+					<td style="text-align: left">Inmigración</td>
+					<td style="text-align: left">Servicio Nacional de Migraciones (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Permisos de residencia temporal otorgados para extranjeros de origen venezolano</td>
+					<td style="text-align: left">Inmigración</td>
+					<td style="text-align: left">Servicio Nacional de Migraciones (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de hogares con menos del 40% de ingresos respecto del total regional (RSH)</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023), Registro Social de Hogares</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Hogares con ingresos percapita menores a la mediana ($450.000)</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Hogares con ingresos totales menores a la mediana ($1.110.000)</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Hogares con ingresos producto del trabajo menores a la mediana ($700.000)</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Ingresos promedio</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Ingreso ocupación principal</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Ingreso del trabajo</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Jubilación o pensión de vejez</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Decil autónomo regional</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Quintil autónomo regional</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Ingresos personales por ocupación principal menores a la mediana ($500.000)</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Ingresos personales por ocupación principal menores a $1.000.000</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Ingresos personales producto del trabajo menores a la mediana ($500.000)</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Ingresos personales producto del trabajo menores a $1.000.000</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Ingresos promedio de los hogares</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Ingreso del trabajo del hogar</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Ingreso autónomo per cápita</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Ingreso total per cápita del hogar</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Jubilación o pensión menor o igual a la mediana ($230.000)</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Jubilación o pensión menor o igual al salario mínimo ($500.000)</td>
+					<td style="text-align: left">Ingresos</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Plebiscito 2022: apruebo</td>
+					<td style="text-align: left">Elecciones</td>
+					<td style="text-align: left">Servel, Resultados electorales históricos (2022)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Plebiscito 2022: rechazo</td>
+					<td style="text-align: left">Elecciones</td>
+					<td style="text-align: left">Servel, Resultados electorales históricos (2022)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Plebiscito 2023: en contra</td>
+					<td style="text-align: left">Elecciones</td>
+					<td style="text-align: left">Servel, Resultados electorales históricos (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Plebiscito 2023: a favor</td>
+					<td style="text-align: left">Elecciones</td>
+					<td style="text-align: left">Servel, Resultados electorales históricos (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de participación en las elecciones municipales por comuna</td>
+					<td style="text-align: left">Elecciones</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2022)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Promedio de notas de educación media</td>
+					<td style="text-align: left">Educación</td>
+					<td style="text-align: left">Ministerio de Educación, Centro de Estudios Mineduc (2024)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Puntaje PAES 2024 en la prueba de Competencia Lectora</td>
+					<td style="text-align: left">Educación</td>
+					<td style="text-align: left">Ministerio de Educación, Centro de Estudios Mineduc (2024)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Puntaje PAES 2024 en la prueba de Competencia Matemática 1</td>
+					<td style="text-align: left">Educación</td>
+					<td style="text-align: left">Ministerio de Educación, Centro de Estudios Mineduc (2024)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Puntaje PAES 2024 en la prueba de Competencia Matemática 2</td>
+					<td style="text-align: left">Educación</td>
+					<td style="text-align: left">Ministerio de Educación, Centro de Estudios Mineduc (2024)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Puntaje PAES 2024 en la prueba de Historia y Ciencias Sociales</td>
+					<td style="text-align: left">Educación</td>
+					<td style="text-align: left">Ministerio de Educación, Centro de Estudios Mineduc (2024)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Puntaje PAES 2024 en la prueba de Ciencias</td>
+					<td style="text-align: left">Educación</td>
+					<td style="text-align: left">Ministerio de Educación, Centro de Estudios Mineduc (2024)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Docentes de aula contratados</td>
+					<td style="text-align: left">Educación</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023), Ministerio de Educación</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Alumnos por docente de aula</td>
+					<td style="text-align: left">Educación</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023), Ministerio de Educación</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Cantidad de personal docente</td>
+					<td style="text-align: left">Educación</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023), Ministerio de Educación</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Establecimientos de Educación Municipal</td>
+					<td style="text-align: left">Educación</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023), Ministerio de Educación</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Años de escolaridad promedio</td>
+					<td style="text-align: left">Educación</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Personas con estudios superiores (técnico o profesional)</td>
+					<td style="text-align: left">Educación</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Nivel educacional máximo: básica o menor</td>
+					<td style="text-align: left">Educación</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Nivel educacional máximo: media incompleta o menor</td>
+					<td style="text-align: left">Educación</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Nivel educacional máximo: estudios superiores incompletos</td>
+					<td style="text-align: left">Educación</td>
+					<td style="text-align: left">Casen (2022), Ministerio de Desarrollo Social</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Distancia a establecimientos de educación básica</td>
+					<td style="text-align: left">Educación</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2020)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Distancia a establecimientos de educación inicial</td>
+					<td style="text-align: left">Educación</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2020)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Razón entre disponibilidad efectiva de matrículas y demanda potencial por educación básica</td>
+					<td style="text-align: left">Educación</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2020)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Monto percibido por Fondo Común Municipal</td>
+					<td style="text-align: left">Economía</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Participación de Ingresos Propios Permanentes en el Ingreso Total del municipio</td>
+					<td style="text-align: left">Economía</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Dependencia del Fondo Común Municipal sobre los Ingresos Propios del municipio</td>
+					<td style="text-align: left">Economía</td>
+					<td style="text-align: left">Subsecretaría de Desarrollo Regional y Administrativo, Sistema Nacional de Información Municipal (Sinim) (2023)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Diferencia entre el valor de suelo más alto y el más bajo entre las áreas homogéneas urbanas definidas por el Servicio de Impuestos Internos</td>
+					<td style="text-align: left">Economía</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2018)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Participación del Fondo Común Municipal (FCM) en el ingreso municipal total (descontadas las transferencias)</td>
+					<td style="text-align: left">Economía</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2022)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Porcentaje de la inversión nacional a escala comunal en la que participa el municipio como institución contratante</td>
+					<td style="text-align: left">Economía</td>
+					<td style="text-align: left">Sistema de Indicadores y Estándares de Desarrollo Urbano. Consejo Nacional de Desarrollo Urbano (CNDU) y el Instituto Nacional de Estadísticas (INE) (2019)</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -1459,11 +1454,11 @@ El visualizador entrega la posibilidad de poner a prueba relaciones entre variab
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
-    <dd class="fw5 ml0"><a href="/blog/territorial/">`{territorial}`: un paquete de R para trabajar con datos de comunas y regiones de Chile</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/2026-07-24/">Mapas bivariados de adultos mayores en relación a viviendas propias en las comunas de Chile</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/rutera/">`{rutera}`: un paquete de R para limpiar y procesar RUTs chilenos</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/mapas_bivariados/">Crea mapas bivariados en R para visualizar la relación entre dos variables</a></dd>
     
-    <dd class="fw5 ml0"><a href="/blog/validacion_rut/">Limpieza y validación de RUT en R</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/mapa_chile_macrozonas/">Mapas de las regiones de Chile según macrozonas</a></dd>
     
   </dl>
 </details>

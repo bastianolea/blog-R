@@ -12,7 +12,6 @@ tags:
   - datos
   - ciencias sociales
 format: hugo-md
-lang: es
 editor_options:
   chunk_output_type: console
 links:

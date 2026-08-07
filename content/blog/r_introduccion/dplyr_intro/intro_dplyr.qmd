@@ -15,7 +15,6 @@ tags:
   - dplyr
   - datos
   - básico
-lang: es
 excerpt: "Luego de haber aprendido las funcionalidades básicas del lenguaje y R, y habernos familiarizado con herramientas un poco más avanzadas de la programación en este lenguaje, ahora podemos aplicar estos aprendizajes a los datos. Aprenderemos a explorar, comprender, y navegar tablas de datos, tanto en la forma nativa de trabajar con R, como con la ayuda del paquete {dplyr}."
 execute: 
   error: true
