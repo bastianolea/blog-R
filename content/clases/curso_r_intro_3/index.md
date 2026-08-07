@@ -166,6 +166,10 @@ Todos los horarios son en hora de Chile continental (GMT-4).
 ### Diapositivas
 En las diapositivas del curso se resumen los temas, se muestran ejemplos de código, y se entregan enlaces para descargar los datos necesarios. También cada temática va acompañada de un tutorial para profundizar.
 
+<iframe width="100%" height="480" 
+src="https://bastianolea.github.io/curso_intro_R_3/" 
+title="Diapositivas" frameborder="0"></iframe>
+
 <!---
 <iframe width="100%" height="480" 
 src="https://bastianolea.github.io/curso_intro_R_gratis_v2" 

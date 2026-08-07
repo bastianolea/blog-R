@@ -1,0 +1,547 @@
+---
+title: "Crea tu propia página web con [Quarto]{.rosa} y [R]{.rosa}"
+subtitle: "Grupo de usuari@s de R, Santiago de Chile"
+title-slide-attributes:
+  data-background-image: img/arcoiris.png
+  data-background-size: "100% 17%"
+  data-background-position: top
+  data-background-repeat: no-repeat
+format:
+  revealjs:
+    theme: [default, tema.scss]
+    transition: slide
+    highlight-style: "github-dark"
+    footer: "Grupo de usuari@s de R, Santiago de Chile"
+    link-external-newwindow: true
+execute:
+  echo: true
+  warning: false
+---
+
+## ¿Qué haremos hoy?
+
+- [Crear un sitio web](https://quarto.org/docs/websites/) desde cero con **Quarto** desde **RStudio**
+- Personalizar la apariencia del sitio
+- Escribir tu primera publicación!
+- Agregar código de R a tus publicaciones
+- Subir el blog a un repositorio **Github**
+- Publicarlo en la web con **GitHub Pages**
+- Conversar sobre R al final!
+
+---
+
+## ¿Por qué crear un blog?
+
+Tu blog es tu espacio en la internet.
+
+Te servirá para:
+
+- Unificar tu **presencia digital**
+- **Aprender** haciendo
+- **Compartir** proyectos, análisis y aprendizajes
+- Construir tu **portafolio** profesional
+- Conectar con la **comunidad**
+
+Si subes cosas a tu blog es más fácil que podamos compartirlas para que lleguen a mayor público 😉
+
+---
+
+## Ejemplos de sitios Quarto
+
+Algunos sitios web hechos con Quarto:
+
+:::: {.columns}
+::: {.column}
+- [santiagorusers.github.io](https://santiagorusers.github.io/)
+- [quarto.org](https://quarto.org)
+- [nrennie.rbind.io](https://nrennie.rbind.io)
+- [emilhvitfeldt.com](https://emilhvitfeldt.com)
+- [brodrigues.co](https://brodrigues.co)
+:::
+::: {.column}
+- [noahweidig.com](https://www.noahweidig.com)
+- [karaman.is](https://karaman.is)
+- [andrewheiss.com](https://www.andrewheiss.com/blog/)
+- [ellakaye.co.uk](https://ellakaye.co.uk)
+- [rainbowr.org](https://rainbowr.org)
+- [alejandroromerog.github.io](https://alejandroromerog.github.io)
+:::
+::::
+
+
+---
+
+## Herramientas que usaremos
+
+:::: {.columns}
+
+::: {.column width="33%"}
+![](img/logo-quarto.png){height="200px"}
+
+### Quarto
+Sistema de publicación para crear el blog
+:::
+
+::: {.column width="33%"}
+![](img/logo-rstudio.png){height="200px"}
+
+### RStudio
+IDE para escribir código y contenido
+:::
+
+::: {.column width="33%"}
+![](img/logo-github.png){height="200px"}
+
+### GitHub
+Repositorio y plataforma de publicación
+:::
+
+::::
+
+----
+
+## ¿Qué es Quarto?
+
+:::: {.columns}
+
+::: {.column}
+[Quarto](https://quarto.org) es un **sistema de publicación** de código abierto. Para crear contenido, combina:
+
+- Texto en [Markdown](https://es.wikipedia.org/wiki/Markdown)
+- Bloques de código en R
+- Gráficos, tablas, resultados interactivos
+- HTML y CSS, como todo en la web
+:::
+
+::: {.column}
+Un documento Quarto `.qmd` puede pasar a ser un PDF, Word, HTML, parte de un sitio web, publicación en un blog, un capítulo de un libro, diapositivas (como ésta!)
+
+**Quarto → cualquier formato!**
+:::
+
+::::
+
+
+---
+
+## Tutoriales de sitios Quarto
+
+- [Creating a Website](https://quarto.org/docs/websites/), tutorial oficial de Quarto
+- [Create an Online Presence with Quarto Websites](https://andrewheiss.github.io/quarto-websites_2025-10/), tutorial por [Andrew Heiss](https://www.andrewheiss.com)
+- [Manual de Quarto](https://estadisticaun.github.io/ManualQuarto/blog.html), sitio de la Universidad Nacional de Colombia
+- [Crea páginas web y blogs con R+Quarto, y publícalos online con GitHub Pages](https://bastianolea.rbind.io/blog/tutorial_quarto_github_pages/), tutorial por Bastián Olea
+
+---
+
+## Crear el blog
+
+En **RStudio:**
+
+**File → New Project → New Directory → Quarto Blog**
+
+### Estructura del blog
+
+```
+mi-blog/
+├── _quarto.yml        # configuración
+├── index.qmd          # página principal
+├── about.qmd          # sobre ti
+└── posts/
+    ├── primer-post/
+    │   └── index.qmd  # contenido
+    └── segundo-post/
+        └── index.qmd  # contenido
+```
+
+Cada documento `.qmd` es una página del sitio. 
+
+---
+
+### Elementos del blog
+
+- `_quarto.yml`: archivo de configuración general
+- `about.qmd`: página de "sobre ti"
+- `index.qmd`: página principal del sitio[^1]
+- `posts/`: carpeta con las publicaciones del blog
+- `profile.jpg`: tu foto!
+- `{x}.qmd`: otras páginas para nuestro sitio web
+- `styles.css`: hoja de estilos para personalizar el blog
+
+[^1]: en un blog, la página principal es usualmente la lista de publicaciones, pero puede ser una distinta
+
+
+---
+
+### Publicaciones
+
+Para **crear una nueva publicación**, crea un documento `index.qmd` en una carpeta dentro de `posts`:
+
+```
+posts/mi_primer_post/index.qmd
+```
+
+También puedes hacerlo con `quarto::new_blog_post("Título")`
+
+Luego rellena el encabezado (`yaml`) de la publicación:
+
+```yaml
+---
+title: "Mi primer análisis en R"
+subtitle: "Serie de análisis de datos"
+author: "Tu nombre"
+date: "2026-07-29"
+categories: [R, análisis, datos]
+image: "imagen.jpeg"
+---
+```
+
+---
+
+El contenido del blog se escribe con **Markdown**, con **HTML**, y con bloques de **código R**.
+
+#### Markdown
+
+**Markdown** es una sintaxis de marcado simple para dar estilo a textos a partir de texto plano. Se agregan símbolos en el texto, y al renderizarlo, se convertirá en texto HTML enriquecido.
+
+```markdown
+## Subtítulos
+### Subsubtítulos
+**negrita**
+*itálica* o _itálica_
+<u>subrayado</u>
+~~tachado~~
+`código`
+[Enlaces](http://www.enlace.cl)
+Agregar una nota al pie[^1].
+[^1]: Esta es una nota al pie
+```
+
+---
+
+#### Bloques de código
+
+Para agregar elementos hechos con código a tu blog, como gráficos, tablas y más, crea un **bloque**:
+
+```{{r}}
+1 + 1
+```
+
+En la primera línea puedes ponerles opciones:
+
+- `#| echo: false` para que no muestre el código
+- `#| eval: false` para mostrar código pero no ejecutarlo
+- `#| warning: false` para ocultar mensajes de alerta
+- `#| error: true` para mostrar ejemplos de errores
+- `#| fig-height: 7` alto de los gráficos
+
+También puedes escribir **código en el texto* así: ``{r} 2 + 2`` y aparecerá sólo el resultado!
+
+---
+
+## Construir el sitio
+
+Renderizar todos los archivos para generar el sitio en la carpeta `_site` (por defecto, después la cambiaremos a `docs`)
+
+:::: {.columns}
+
+::: {.column}
+#### Terminal 
+`quarto render` 
+:::
+
+::: {.column}
+#### R
+`quarto::quarto_render()`
+:::
+::::
+
+
+### Previsualizar
+Para previsualizar el sitio, le damos _Render_, o ejecutamos:
+
+:::: {.columns}
+
+::: {.column}
+#### Terminal 
+`quarto preview` 
+:::
+
+::: {.column}
+#### R
+`quarto::quarto_preview()`
+:::
+::::
+
+
+---
+
+## Personalización del sitio
+
+`_quarto.yml` tiene las configuraciones generales:
+
+:::: {.columns}
+::: {.column}
+#### [Tema](https://quarto.org/docs/output-formats/html-themes.html)
+```yaml
+format:
+  html:
+    theme:
+      - minty # tema base
+      - tema.scss # personalización
+```
+Ver lista de [temas](https://bootswatch.com)
+::: 
+::: {.column}
+#### [Menús](https://quarto.org/docs/websites/website-navigation.html#overview)
+```yaml
+website:
+  ...
+  navbar:
+    left: 
+      - blog.qmd
+    right:
+```
+:::
+::: {.column}
+#### [Descripción](https://quarto.org/docs/websites/#config-file)
+```yaml
+website:
+  title: "Blogcito"
+  description: "Muy lindo"
+```
+:::
+::::
+
+---
+
+### Personalización avanzada
+
+Si ponemos un archivo `.scss` como tema en `_quarto.yml` podemos personalizar el sitio usando variables:
+
+```scss
+/*-- scss:defaults --*/
+$primary: #b0c4b1;
+$secondary: #4a5759;
+
+/* principales */
+$body-bg: #dedbd2; // fondo
+$body-color: #4a5759; // texto
+$link-color: #b0c4b1; // enlaces
+$border-color: #C7C3B7; // líneas
+$code-block-bg: #C7C3B7; // fondo de código
+
+/* barra de navegación */
+$navbar-bg: #4a5759;// fondo
+$navbar-fg: #dedbd2;// texto
+```
+
+---
+
+#### Más personalización
+
+- Tamaños de texto: `$font-size-root`, `$h1-font-size`, `$h2-font-size`, `$line-height-base`,
+- Detalles como `$input-bg`, `$toc-color`, `$popover-bg`, `$footer-bg`...
+
+- [Variables SASS más frecuentes](https://quarto.org/docs/output-formats/html-themes.html#sass-variables)
+- [Todas las variables SASS](https://rstudio.github.io/bslib/articles/bs5-variables/index.html)
+
+Obviamente podemos cambiar cualquier elemento del sitio con **CSS** con la ayuda del inspector de nuestro navegador web
+
+----
+
+
+### Tipografías
+
+Buscar tipografías en [Google Fonts](https://fonts.google.com)
+
+**Get font → Get embed font → @import**
+
+Luego, en el CSS:
+
+#### Importar
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+```
+
+#### Aplicar
+
+```css
+$font-family-sans-serif: "Raleway", sans-serif;
+
+h1, h2, h3, h4, h5 {
+  font-family: "Raleway", sans-serif;
+}
+```
+
+---
+
+
+
+
+#### Otros tutoriales
+
+Para más información sobre crear y personalizar tus sitios web, revisa estos tutoriales:
+
+- [Andrew Heiss](https://andrewheiss.github.io/quarto-websites_2025-10/materials/brand/)
+- [Damien Dupré](https://damien-dupre.github.io/BAA1028/lectures/lecture_7#/title-slide)
+
+---
+
+
+## Publicar el sitio
+
+Pasos siguientes:
+
+1. **Configurar** el sitio web
+2. Configurar **Git**
+3. Crear un repositorio **local**
+4. Crea un repositorio en **GitHub**
+5. **Subir** el proyecto a GitHub
+3. Configurar **GitHub Pages**
+
+---
+
+### Configurar el sitio web
+
+Para que funcione bien con GitHub Pages, hay que cambiar lo siquiente:
+
+:::: {.columns}
+::: {.column}
+Para construir el sitio en una **carpeta** compatible con GitHub Pages, cambiar en `_quarto.yml`:
+
+```yaml
+project:
+type: website
+output-dir: docs # cambiar carpeta donde se construye el sitio
+```
+Luego puedes borrar la carpeta `_site`
+:::
+
+::: {.column}
+Agregar un **archivo vacío** llamado `.nojekyll` al proyecto, para que GitHub Pages no intente cambiarle cosas por su propia cuenta.
+:::
+::::
+
+---
+
+### ¿Qué es Git?
+
+<br>
+
+:::: {.columns}
+::: {.column width="15%"}
+![](img/logo_git.png){width="100%"}
+:::
+::: {.column width="85%"}
+[Git](https://git-scm.com) te permite llevar un registro de versiones y un control de cambios en tu código.
+:::
+::::
+
+:::: {.columns}
+::: {.column width="15%"}
+![](img/logo-github.png){width="100%"}
+:::
+::: {.column width="85%"}
+[GitHub](https://github.com) sirve para subir repositorios a un servicio online, en el cual puedes compartir tu código con otras personas, descargar el código de otros, y colaborar.
+:::
+::::
+
+---
+
+### Configurar Git
+
+Instalar [un paquete de R](https://usethis.r-lib.org) que nos ayudará:
+```r
+install.packages("usethis")
+```
+
+Configura tu cuenta y crea un _token_ para autenticarla (en lugar de usar contraseñas)
+```r
+usethis::use_git_config(user.name = "bastianolea", user.email = "bastianolea@gmail.com")
+usethis::create_github_token()
+```
+Copia el _token_ que te entrega, e ingrésalo:
+```r 
+gitcreds::gitcreds_set()
+```
+
+Confirmar la situación de Git en tu equipo:
+```r
+usethis::git_sitrep()
+```
+
+---
+
+### Crear un repositorio local
+
+Crear repositorio local para poder **registrar los cambios** a tu código (`git add`) y **guardar versiones** (`git commit`):
+```r
+usethis::use_git()
+```
+
+### Crear un repositorio remoto
+
+Crear repositorio remoto donde podrás **subir tus cambios** (`git push`) a GitHub y así hacerlos públicos y tenerlos respaldados.
+
+```r
+usethis::use_github()
+```
+
+---
+
+### Resumen de Git
+
+Registrar cambios (`add`), _commit_ cambios (`commit`), subir cambios (`push`)
+
+```git
+git add .
+git commit -m "cambios en el blog"
+git push
+```
+
+**Trabajar → Registrar cambios → Guardar versión → Subir a GitHub**
+
+<br>
+<br>
+<br>
+
+
+- [Tutorial completo sobre usar Git en R](https://happygitwithr.com)
+- [Tutorial breve sobre uso de R con GitHub](https://bastianolea.rbind.io/blog/tutorial_github/)
+
+---
+
+
+## Subir a GitHub Pages
+
+Hacer que el repositorio remoto se publique como un página `github.io`
+
+### Configurar GitHub Pages
+
+1. En el [repositorio de GitHub](https://github.com/SantiagoRusers/santiagoRusers.github.io) con tu sitio: **Settings → Pages**
+2. Selecciona la rama y carpeta `docs`
+3. Esperar a que se suba!
+4. Edita la barra lateral del repo para poner el enlace
+
+Cada vez que hagas _push_ a un _commit_, el sitio se actualizará solito en unos minutos!
+
+[Tutorial de GitHub Pages](https://quarto.org/docs/publishing/github-pages.html)
+
+---
+
+## Listo! {.destacado}
+
+Tu sitio estará disponible en `https://{usuarix}.github.io/{nombredelrepo}` en unos minutos!
+
+Si quieres que tu sitio esté directamente en `https://{usuarix}.github.io` tienes que cambiar el nombre del repositorio a `{usuarix}.github.io`!
+
+<br>
+
+::: {.centrar}
+**Si te resultó, comparte tu sitio en el chat!**
+:::
+
+::: {.centrar}
+[santiagorusers.github.io](https://santiagorusers.github.io/)
+:::

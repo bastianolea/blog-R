@@ -8,5 +8,6 @@
 /.quarto/
 content/blog/mapas_sf/shapes/*
 **/*.quarto_ipynb
-!.positai
-.positai
+!.posit/assistant/skills/*
+!.posit/assistant/plans/*
+.posit/assistant

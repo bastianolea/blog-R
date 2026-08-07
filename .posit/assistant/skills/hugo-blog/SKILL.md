@@ -285,6 +285,7 @@ Shortcodes más usados:
 - `{{</* indice */>}}` — tabla de contenidos auto-generada
 - `{{</* relacionada "blog/estudio_brechas_comunales/" */>}}` — caja con publicación relacionada, con imagen y resumen
 - `{{</* etiqueta "apps" */>}}` — caja que contiene varias publicaciones recientes de un tag
+- `{{</* paso "1" "Instrucciones del paso uno" */>}}` — paso numerado para tutoriales, círculo con número a la izquierda del texto
 
 
 ## Páginas personalizadas con iframe
@@ -308,6 +309,26 @@ La página `/buscar/` embebe la app Shiny del buscador (`https://bastianoleah.sh
 
 Ver [references/layouts.md](references/layouts.md) para el mapa completo de layouts.
 
+
+## Limpieza de markdown en títulos (SEO y metadatos)
+
+**Problema:** si el título del post contiene markdown (como backticks `` `{paquete}` ``), los buscadores web (DuckDuckGo, Google) y redes sociales muestran los símbolos markdown en los resultados, o pueden omitir el texto dentro de los backticks.
+
+**Solución:** usar el filtro `plainify` de Hugo en los metadatos de OpenGraph y en la etiqueta `<title>`. 
+
+En `themes/hugo-apero/layouts/partials/meta.html`, actualizar:
+
+```html
+<!-- Línea 10: etiqueta <title> del navegador -->
+<title>{{ if .IsHome }}{{ .Title | plainify }}{{ else }}{{ .Page.Title | plainify }} | {{ site.Title }}{{ end }}</title>
+
+<!-- Línea 36: metadatos OpenGraph (buscadores y redes sociales) -->
+<meta property="og:title" content="{{ if .IsHome }}{{ .Title | plainify }}{{ else }}{{ .Page.Title | plainify }} | {{ site.Title }}{{ end }}">
+```
+
+`plainify` elimina todo markdown, backticks, HTML y caracteres especiales, dejando solo texto limpio.
+
+**Recomendación adicional:** en títulos con caracteres especiales como `{territorial}`, considerar usar nombres más SEO-friendly en el front matter del post, ej: `title: "territorial: un paquete de R para..."`.
 
 ## Tema y colores
 
