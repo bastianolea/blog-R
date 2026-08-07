@@ -117,13 +117,14 @@ Texto de subtítulo, centrado, pequeño (80%) y tenue (60% opacity).
 ```
 
 ### `paso`
-Paso numerado para tutoriales: círculo púrpura con el número, texto a la derecha centrado verticalmente con el círculo.
+Paso numerado para tutoriales: círculo púrpura con el número, incrustado en una cápsula de fondo suave que envuelve el texto ("Paso N: ..."), centrado verticalmente con el círculo.
 ```
 {{</* paso "1" "Instrucciones del paso uno" */>}}
 ```
-- Param 0: número del paso (requerido)
+- Param 0: número del paso (requerido; también se antepone como "Paso N:" en negrita antes del texto)
 - Param 1: texto/instrucciones del paso (requerido, soporta markdown)
-- Círculo: fondo #6E3A98, número en #EAD2FA con tipografía Garamond
+- Círculo: 30px, fondo #9069C0, número en #EAD2FA con tipografía Garamond
+- Cápsula envolvente: fondo #DEC4F2, `border-radius` = radio del círculo + 4px (para que se vea incrustado), ancho ajustado al contenido (`width: fit-content`)
 
 ---
 
