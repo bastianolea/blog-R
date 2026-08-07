@@ -1,8 +1,9 @@
 ---
-title: 'Tutorial: crea y publica tu propio blog con Quarto, RStudio y GitHub Pages'
+title: 'Crea y publica tu propio blog con Quarto y RStudio'
+subtitle: "Tutorial para que crees tu propio espacio en internet, publicado gratis con GitHub Pages"
 author: Bastián Olea Herrera
 format: hugo-md
-date: '2026-08-06'
+date: '2026-08-07'
 draft: false
 slug: []
 categories:
@@ -11,35 +12,33 @@ tags:
   - quarto
   - git
   - github
-excerpt: "Aprende paso a paso a crear tu propio blog con Quarto y RStudio, personalizarlo con temas y tipografías, y publicarlo gratis en internet con GitHub Pages. Este tutorial reúne todo lo necesario para tener tu blog funcionando de principio a fin: desde configurar Git y GitHub, hasta escribir publicaciones con código de R y actualizar tu sitio cada vez que quieras."
+links:
+  - icon: video
+    icon_pack: fas
+    name: Taller grabado
+    url: /clases/taller_santiagorusers_sitios/
+excerpt: "Aprende paso a paso a crear tu propio blog con Quarto y RStudio, a personalizarlo con temas y tipografías, y publicarlo gratis en internet con GitHub Pages. Este tutorial reúne todo lo necesario para tener tu blog funcionando de principio a fin: desde configurar Git y GitHub, hasta escribir publicaciones con código de R y actualizar tu sitio cada vez que quieras."
 ---
 
-<!--- @bastián: revisa estos puntos antes de publicar:
-- fecha de publicación (dejé la de hoy, ajústala si quieres publicarlo más adelante)
-- tags: usé "github" en minúscula según la norma de la guía de estilo, pero en el sitio existen publicaciones con la etiqueta "GitHub" en mayúscula. Como Hugo generalmente unifica esto en la url de la etiqueta, no debería haber problema, pero quizás quieras normalizar esto en algún momento
-- excerpt: lo redacté de forma genérica, siéntete libre de ajustarlo
-- estaría bueno agregar una imagen destacada (afiche o similar) como la que tiene tutorial_anterior.md (afiche-featured.jpg), no tengo una para este post
---->
+> _Este tutorial es la versión en texto[^1] del [taller](/clases/taller_santiagorusers_sitios/) que dictamos en vivo para el [Grupo de Usuari@s de R de Santiago](https://santiagorusers.github.io) el 29 de julio de 2026, ante más de 50 personas de toda Latinoamérica. Muchas gracias a quienes participaron!_
 
-Crear tu propio blog es tener un espacio en internet que es completamente tuyo. En una época en que buena parte de nuestra vida digital ocurre dentro de redes sociales y plataformas que no controlamos (y que pueden cerrar, bloquearte, o simplemente desaparecer), contar con un sitio web propio te permite reunir tus proyectos, aprendizajes y estudios en un lugar que no depende de nadie más que de ti.
+En una época en que casi toda nuestra vida digital ocurre dentro de redes sociales y plataformas que no controlamos (y que pueden cerrar, bloquearte, o simplemente desaparecer), contar con un **sitio web personal** te permite reunir tus proyectos, aprendizajes y estudios en un lugar que no depende de nadie más que de ti.
 
-Además, un blog te sirve para **aprender haciendo**, para armar un **portafolio** de tu trabajo, y para conectar con la **comunidad** de personas que usan R: seguramente todo lo que sabes de programación lo aprendiste gracias a que alguien más compartió su conocimiento de forma abierta y gratuita, así que compartir lo que tú aprendes es una forma de devolver la mano.
+Además, un blog te sirve para **aprender haciendo**, para armar un **portafolio** de tu trabajo, y para conectar con la **comunidad** de personas que usan R: seguramente todo lo que sabes de R lo aprendiste gracias a que alguien más compartió su conocimiento de forma abierta y gratuita, así que compartir lo que tú aprendes es una forma de devolver la mano!
 
-Lo mejor es que armar un blog con Quarto, RStudio y GitHub Pages no cuesta nada! 
+Lo mejor es que armar un blog con Quarto, RStudio y GitHub Pages no cuesta nada!
 
-En este tutorial armaremos un blog de principio a fin, lo personalizaremos, y lo publicaremos en internet, usando exclusivamente herramientas gratuitas y de código abierto.
+{{< detalles "_También existen otras alternativas para tener presencia en internet usando R_" >}}
 
-{{< indice >}}
-
-{{< info "Si necesitas crear un sitio web más simple (quizás sólo una presentación tuya o una lista de enlaces), o solo publicar un documento o reporte con Quarto en internet, [revisa este tutorial](/blog/tutorial_quarto_github_pages/), donde se explica la sintaxis de Quarto en más detalle." >}}
-
-{{< detalles "También existen otras alternativas para tener presencia en internet usando R" >}}
-
-Un blog con Quarto no es la única forma de tener presencia en internet usando R. Ya escribí sobre otras alternativas, como [crear documentos y sitios web con Quarto](/blog/tutorial_quarto_github_pages/), o [crear aplicaciones interactivas con Shiny](/blog/shiny/). Un blog Quarto tiene la ventaja de que es sencillo de mantener, no requiere de un servidor corriendo (como sí lo necesita Shiny), y te permite ir agregando publicaciones ordenadas por fecha y por categorías con muy poco esfuerzo.
+También puedes [crear documentos y publicar sitios web con Quarto](/blog/tutorial_quarto_github_pages/), o [crear aplicaciones interactivas con Shiny](/blog/shiny/). Un blog Quarto tiene la ventaja de que es sencillo de mantener, no requiere de un servidor corriendo (como sí lo necesita Shiny), y te permite ir agregando publicaciones ordenadas por fecha y por categorías con muy poco esfuerzo.
 
 {{< /detalles >}}
 
-## Herramientas que usaremos
+En este tutorial armaremos un blog de principio a fin, lo personalizaremos, y lo publicaremos en internet, usando sólo **herramientas gratuitas y de código abierto**.
+
+{{< indice >}}
+
+## Herramientas
 
 Para construir el blog necesitamos combinar cuatro herramientas, todas gratuitas:
 
@@ -75,11 +74,9 @@ Algunos sitios web hechos con Quarto:
 
 ## Configurar Git y GitHub
 
-Como vamos a publicar nuestro blog a través de GitHub, el primer paso es preparar nuestra cuenta y conectarla con RStudio. 
+Como vamos a publicar nuestro blog a través de GitHub, el primer paso es tener Git andando, y preparar nuestra cuenta y conectarla con RStudio. 
 
 {{< info "Si ya usas Git y GitHub con R, puedes saltarte esta sección. Si no sabes nada de esto, puedes verlo en detalle [en esta publicación.](/blog/r_introduccion/tutorial_github/)" >}}
-
-### Qué son Git y GitHub
 
 [**Git**](https://git-scm.com) es un software de código abierto que instalas en tu computador para llevar un registro de las versiones de tu código: cada vez que guardas un avance (un *commit*), Git recuerda ese estado de tus archivos, de modo que siempre puedes volver atrás o ver qué cambió.
 
@@ -142,7 +139,7 @@ El mensaje debería decirte tu cuenta de GitHub y que encontró el _token_ de ac
 
 
 
-## Crear el blog Quarto
+## Crear el blog
 
 Con Git y GitHub configurados, ya podemos crear el proyecto de nuestro blog! Es probable que tengas que instalar Quarto primero:
 
@@ -157,6 +154,7 @@ En RStudio, vamos a **File → New Project → New Directory → Quarto Blog**:
 {{< imagen "img/blog_1.png" >}}
 
 Elige un nombre para tu proyecto (será también el nombre de la carpeta y, más adelante, parte de la dirección web de tu blog, así que piensa bien!) y crea el proyecto. RStudio abrirá una nueva sesión con varios archivos ya generados.
+
 
 ### Estructura de archivos
 
@@ -186,6 +184,7 @@ mi-blog/
 
 Cada archivo `.qmd` corresponde a una página de tu sitio.
 
+
 ## Previsualizar y construir el sitio
 
 Hay dos operaciones distintas que vamos a usar todo el tiempo en el blog: previsualizar y renderizar.
@@ -210,6 +209,7 @@ También puedes simplemente presionar el botón **Render** en la barra superior 
 Deberías ver una página más o menos así:
 
 {{< imagen "img/blog_2.png" >}}
+
 
 ## Escribe tu primera publicación
 
@@ -261,7 +261,7 @@ Una vez que le das **Render** a tu publicación, puedes previsualizarla en el pa
 {{< info "Puedes configurar dónde ver la previsualización del blog en el ícono de engranaje al lado de _Render_" >}}
 
 
-## Sintaxis Markdown básica
+### Sintaxis Markdown básica
 
 El contenido de tus publicaciones se escribe en [Markdown](https://quarto.org/docs/authoring/markdown-basics.html), un lenguaje de marcado simple que usa símbolos de texto plano para dar formato a tu contenido:
 
@@ -288,7 +288,7 @@ La lógica de Markdown es **separae el contenido del estilo**: tu solamente te p
 
 {{< relacionada "/blog/quarto_reportes/" >}}
 
-## Código de R en las publicaciones
+### Código de R en las publicaciones
 
 Una de las gracias de Quarto es que puedes incluir código de R directamente en tus publicaciones, y que se ejecute al momento de generar el sitio. De esta forma puedes agregar cualquier cosa que hagas en R a tu blog: [gráficos](/blog/r_introduccion/tutorial_visualizacion_ggplot/), [tablas personalizadas](/blog/tablas_gt), [mapas interactivos](/blog/mapas_mapgl/), y más.
 
@@ -379,12 +379,12 @@ format:
 
 Luego, ejecuta `quarto::quarto_render()` para actualizar tu sitio completo al tema nuevo.
 
-{{< imagen "temas_quarto.jpg" >}}
+{{< imagen "img/temas_quarto.jpg" >}}
 
 Puedes ver la lista completa de temas disponibles [en esta guía de Quarto](https://quarto.org/docs/output-formats/html-themes.html#overview).
 
 
-### Menú de navegación e íconos
+### Menú de navegación
 
 También en `_quarto.yml`, la sección `website` controla el título, la descripción, y el menú de navegación (*navbar*) de tu sitio. 
 
@@ -521,7 +521,8 @@ Le agregamos `!important` para que esta regla nueva aplique por sobre otras regl
 
 {{< info "Estos conocimientos esotéricos sobre CSS son muy útiles para el [web scraping](/tags/web-scraping/)!" >}}
 
-## Preparar el sitio para GitHub Pages
+
+## Preparar el sitio para subirlo
 
 Antes de subir tu blog a GitHub, necesitamos dos ajustes para que GitHub Pages sepa qué archivos publicar.
 
@@ -546,7 +547,7 @@ Segundo, creamos un archivo vacío llamado `.nojekyll` en la raíz del proyecto.
 {{< imagen "img/nojekyll.png" >}}
 
 
-## Subir el proyecto a GitHub
+### Crear el repositorio local
 
 {{< paso "13" "Crear el repositorio local de Git" >}}
 
@@ -558,6 +559,8 @@ usethis::use_git()
 
 Este comando **inicializa el repositorio** de Git en tu proyecto, y te preguntará si quieres hacer *commit* de tus archivos (guardar la primera versión), así que respóndele que **sí**.
 
+### Subir el repositorio remoto
+
 {{< paso "14" "Crear el repositorio remoto en GitHub" >}}
 
 ```r
@@ -567,6 +570,8 @@ usethis::use_github()
 Este segundo comando crea un **repositorio remoto** en tu cuenta de GitHub, con el mismo nombre que tu proyecto, y sube tus archivos. Al finalizar, se abrirá una ventana del navegador mostrando tu repositorio ya en GitHub!
 
 Si puedes ver el repositorio en GitHub, y el repo tiene la carpeta `docs`, está todo listo para el último paso!
+
+
 
 ## Publicar el blog en GitHub Pages
 
@@ -592,9 +597,9 @@ Una vez que tu sitio está arriba, la configuración está lista, y cada vez que
 
 {{< info "Si renombras tu repositorio a `tu_usuario.github.io`, tu sitio quedará disponible directamente en `https://tu_usuario.github.io`, sin el nombre del repositorio al final." >}}
 
-## Actualizar tu blog
+## Actualizar el blog
 
-Una vez publicado, actualizar tu blog (agregar publicaciones, corregir textos, cambiar el diseño) sigue siempre el mismo flujo:
+Una vez publicado, actualizar tu blog (para agregar nuevas publicaciones, corregir textos, cambiar el diseño) sigue siempre el mismo flujo:
 
 1. Haces los cambios que quieras en RStudio (nueva publicación, modificación de configuraciones, temas, etc.).
 2. Ejecutas `quarto::quarto_render()` para reconstruir el sitio completo.
@@ -638,10 +643,11 @@ El código de tu sitio queda público, y también el código que usas para const
 - [publicar en GitHub Pages](https://quarto.org/docs/publishing/github-pages.html)
 - [Happy Git and GitHub for the useR](https://happygitwithr.com)
 
-----
 
-Este taller se dictó en vivo[^1] para el [Grupo de Usuari@s de R de Santiago](https://santiagorusers.github.io) el 29 de julio de 2026 para más de 60 personas de toda Latinoamérica. Muchas gracias a quienes participaron!
 
-[^1]: _Disclaimer:_ este tutorial se escribió con apoyo de [Posit Assistant](/blog/posit_assistant/) bajo el modelo Claude Sonnet 5, por medio de un [prompt extenso](https://raw.githubusercontent.com/bastianolea/blog-R/refs/heads/master/content/blog/quarto_blog/prompt.md) que instruyó al LLM a usar mi skill de [estilo de escritura](https://github.com/bastianolea/blog-R/blob/master/.posit/assistant/skills/estilo-escritura/SKILL.md), mi skill de comprensión del [funcionamiento de mi blog Hugo](https://github.com/bastianolea/blog-R/blob/master/.posit/assistant/skills/hugo-blog/SKILL.md), la [transcripción](https://github.com/bastianolea/blog-R/blob/master/content/blog/quarto_blog/transcripcion_taller.vtt) del taller en vivo (que derivó en un [resumen de la transcripción](https://github.com/bastianolea/blog-R/blob/master/content/blog/quarto_blog/resumen_transcripcion_taller.md)), las [diapositivas Quarto RevealJS](https://github.com/SantiagoRusers/taller_quarto_blog) del taller, y el código de un [tutorial anterior](https://github.com/bastianolea/blog-R/blob/master/content/blog/tutorial_quarto_github_pages/index.md), para crear una [planificación](https://github.com/bastianolea/blog-R/blob/master/.posit/assistant/plans/2026-08-06-1716-plan.md) de redacción, la cual modifiqué manualmente para que Sonnet 5 la implementara con el modo `/yolo` de Posit Assistant, con una instrucción de que dejara comentarios en partes donde falten contenidos o existan dudas (para que yo las resolviera). Finalmente, revisé el texto resultante completo, y modifiqué todas las secciones agregando comentarios, mejorando la escritura, y agregando ejemplos.
+[^1]: _Disclaimer:_ este tutorial se escribió con apoyo del asistente de IA [Posit Assistant](/blog/posit_assistant/) en modo planificación bajo el modelo Claude Sonnet 5, por medio de un [prompt extenso](https://github.com/bastianolea/blog-R/blob/master/content/blog/quarto_blog/prompt.md) que instruyó al LLM a usar mi _skill_ de [estilo personal de escritura](https://github.com/bastianolea/blog-R/blob/master/.posit/assistant/skills/estilo-escritura/SKILL.md), mi _skill_ de comprensión del [funcionamiento de mi blog Hugo](https://github.com/bastianolea/blog-R/blob/master/.posit/assistant/skills/hugo-blog/SKILL.md), la [transcripción](https://github.com/bastianolea/blog-R/blob/master/content/blog/quarto_blog/transcripcion_taller.vtt) del taller en vivo generada por Zoom (que derivó en un [resumen de la transcripción](https://github.com/bastianolea/blog-R/blob/master/content/blog/quarto_blog/resumen_transcripcion_taller.md)), las [diapositivas Quarto RevealJS](https://github.com/SantiagoRusers/taller_quarto_blog) del taller, y el código de un [tutorial anterior](https://github.com/bastianolea/blog-R/blob/master/content/blog/tutorial_quarto_github_pages/index.md) sobre Quarto (pero de una temática más amplia). De todo esto resultó una [planificación](https://github.com/bastianolea/blog-R/blob/master/.posit/assistant/plans/2026-08-06-1716-plan.md) de redacción, la cual modifiqué manualmente para que Sonnet 5 la implementara con el modo `/yolo` de Posit Assistant, con una instrucción para que dejara comentarios en partes donde falten contenidos o existan dudas (para que yo las resolviera). Finalmente, revisé el texto resultante completo, y modifiqué todas las secciones agregando comentarios, mejorando la escritura, y agregando ejemplos. Básicamente era un caso de uso perfecto de IA porque tenía un marco muy específico de documentos, instrucciones y contexto para obtener el resultado deseado.
+
+{{< etiqueta "quarto" >}}
 
 {{< cafecito >}}
+

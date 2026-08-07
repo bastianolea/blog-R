@@ -4,10 +4,6 @@ subtitle: "Organizado por el Grupo de Usuari@s de R de Santiago, Chile"
 date: '2026-07-29'
 excerpt: "En esta reunión mensual del grupo de usuari@s de R de Santiago se realizó el taller online: 'Crea tu página web con Quarto y R', para que aprendas a compartir tu trabajo en internet creando y publicando tu propio sitio web desde RStudio. Además habrá espacio para conversar sobre R y compartir lo que estás haciendo con este lenguaje."
 author: "Bastián Olea, Carolina Morales"
-tags:
-  - quarto
-  - videos
-  - blog
 categories: 
   - Tutoriales
 links:
