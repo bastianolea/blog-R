@@ -10,3 +10,4 @@ content/blog/mapas_sf/shapes/*
 **/*.quarto_ipynb
 !.posit/assistant/skills/*
 !.posit/assistant/plans/*
+.posit/assistant

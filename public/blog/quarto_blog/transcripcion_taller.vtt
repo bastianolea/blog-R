@@ -1,0 +1,3938 @@
+WEBVTT
+
+1
+00:10:18.960 --> 00:10:19.870
+Carolina Morales: Hola.
+
+2
+00:10:20.110 --> 00:10:21.500
+Bastián: ¿cómo está ahí.
+
+3
+00:10:22.120 --> 00:10:23.230
+Carolina Morales: Bien, y tú.
+
+4
+00:10:23.790 --> 00:10:30.290
+Bastián: Bien, Bien, Hola. Toalla, claro.
+
+5
+00:10:43.600 --> 00:10:47.279
+Bastián: Mhm: Veremos un ratito mientras entra la gente.
+
+6
+00:11:25.430 --> 00:11:27.500
+Bastián: Hola, Alejandro tanto tiempo.
+
+7
+00:11:27.500 --> 00:11:29.019
+Alejandro Arévalo: Hola, ¿qué tal? ¿cómo estás.
+
+8
+00:11:29.470 --> 00:11:30.419
+Bastián: Bien, y tú.
+
+9
+00:11:30.930 --> 00:11:31.670
+Alejandro Arévalo: Cómo va.
+
+10
+00:11:32.380 --> 00:11:34.030
+Bastián: Todo bien, todo bien.
+
+11
+00:11:34.030 --> 00:11:35.430
+Alejandro Arévalo: Qué? Bueno, me alegro.
+
+12
+00:11:36.310 --> 00:11:37.549
+Bastián: La carne norte.
+
+13
+00:11:40.620 --> 00:11:45.940
+Bastián: Oye, esperamos unos minutitos. Vamos partiendo nomás, qué opinas caro.
+
+14
+00:11:46.690 --> 00:11:47.670
+Alejandro Arévalo: Lo que usted diga.
+
+15
+00:11:47.670 --> 00:12:01.559
+Carolina Morales: Estaba revisando los permisos Sorry. Yo creo que podríamos esperar 2 min más, aunque sea como las 11 35 podríamos todos como, Bueno, obviamente dar el aviso que iniciamos como irrestudio y las cosas que vamos necesitando.
+
+16
+00:12:01.750 --> 00:12:02.650
+Carolina Morales: quizás.
+
+17
+00:12:04.690 --> 00:12:07.220
+Bastián: Sí vale.
+
+18
+00:12:08.130 --> 00:12:12.419
+Bastián: ¿qué vamos a necesitar para que no se nos olvide
+
+19
+00:12:12.580 --> 00:12:20.410
+Bastián: tener el R studio instalado, obviamente, y espero que se hayan creado una cuenta en en Github también
+
+20
+00:12:21.310 --> 00:12:23.259
+Bastián: para tenerla. Pero
+
+21
+00:12:23.570 --> 00:12:29.879
+Bastián: si encuentro que es buena idea en el durante el taller, puedo hacer mía también una cuenta de Github para que estemos así como en igualdad de condiciones
+
+22
+00:12:30.260 --> 00:12:31.969
+Bastián: de como empezando desde 0.
+
+23
+00:12:35.410 --> 00:12:38.970
+Bastián: ¿qué rápido hacerlo a través de una de pruebas así, con puros números. Y no sabemos nadar.
+
+24
+00:12:42.000 --> 00:12:42.880
+Bastián: Mhm.
+
+25
+00:13:40.240 --> 00:13:50.130
+Carolina Morales: Bueno, entonces podemos partir nuestra reunión de red. Esta es nuestra cuarta, creo reunión. No sé si Justin podría ayudar con eso. No sé si es la tercera o la cuarta.
+
+26
+00:13:50.860 --> 00:13:56.330
+Carolina Morales: Tú estás motivado a ti ahora, sí,
+
+27
+00:13:59.910 --> 00:14:01.210
+Carolina Morales: bueno, pero
+
+28
+00:14:01.430 --> 00:14:10.240
+Carolina Morales: bueno, bienvenidos todos, y todas. Muchas gracias por participar de esta reunión de usuarios de R Santiago, Chile. Esta vez quisimos hacer algo.
+
+29
+00:14:10.240 --> 00:14:11.849
+Eduardo Bustos: Instituto Sino Mejor.
+
+30
+00:14:11.850 --> 00:14:14.789
+Carolina Morales: Esta reunión, que está pensada.
+
+31
+00:14:14.790 --> 00:14:15.290
+Eduardo Bustos: En el.
+
+32
+00:14:16.220 --> 00:14:39.350
+Carolina Morales: Aprender a programar una página web usando R. I. Quarto, es nuestra primera versión de un Workshop que queremos hacer para que en realidad darle mayor dinamismo a nuestras reuniones. Así que también vamos a estar recibiendo sugerencias de ideas, de qué es lo que podemos hacer en nuestras siguientes reuniones, en las versiones anteriores. Principalmente, nos juntamos a ser comunidad
+
+33
+00:14:39.430 --> 00:14:45.150
+Carolina Morales: y mostrar en el fondo en que trabajamos cada 1.
+
+34
+00:14:45.150 --> 00:15:06.189
+Carolina Morales: Pedimos Pedimos feedback en el fondo de las chiing up que se estaban programando, que fue principalmente lo que se hizo. Así que nada, si tienen alguna idea o sugerencia, Por favor, déjenla en el chat, Yo la voy a estar leyendo mientras Dusty está dictando el workshop y cualquier cosa. Por favor, pregúntenos en el chat. Yo voy a estar superatenta, Así que eso basta. Y te doy la palabra ahora.
+
+35
+00:15:06.480 --> 00:15:12.830
+Bastián: Sí, porque, como decía Carolina, claro, en nuestra cuarta reunión disculpa que estaba con silencio. Me habías dado cuenta
+
+36
+00:15:12.830 --> 00:15:30.840
+Bastián: del grupo de usuarias y usuarios de R de Santiago de Chile. Si bien somos un grupo como local, que buscamos unir a personas como territorialmente. En Santiago, también, obviamente, tenemos apertura personas de cualquier otra Co, como una región de Chile, pero también a otros países. No es cierto, porque por lo que vimos, había
+
+37
+00:15:30.840 --> 00:15:35.130
+Bastián: a varias personas interesadas en participar desde otros lugares, lo cual está súper bien.
+
+38
+00:15:35.130 --> 00:15:43.549
+Bastián: Pero nuestro objetivo siempre es como buscar a estas personas que sabemos que están en Santiago, y queremos conocerlas y todo eso, pero son todas y todos bienvenidos y bienvenidas a
+
+39
+00:15:43.580 --> 00:15:46.220
+Bastián: a participar, aunque sean de otros países, no hay ningún problema
+
+40
+00:15:46.380 --> 00:15:50.299
+Bastián: por ahí. Están diciendo que son de México, si quieren pueden decir por el chat de donde son
+
+41
+00:15:50.550 --> 00:16:01.489
+Bastián: y nada, pues este grupo de usuarias y usuarios de R, así como otros que existen en otros países. Como decía la Carolina, lo que buscamos es hacer comunidad, conocernos, compartir y también apoyarnos en el aprendizaje.
+
+42
+00:16:01.790 --> 00:16:17.379
+Bastián: Y una de esas cosas que tienen que ver con el aprendizaje. Con quizá crear una una carrera en el análisis de datos y la ciencia de datos es posicionarse. No es cierto tener un espacio en Internet. Así que por eso quisimos hacer este taller.
+
+43
+00:16:17.650 --> 00:16:22.430
+Bastián: Así que mira la gente está diciendo de dónde sol que va acá en el chat.
+
+44
+00:16:22.570 --> 00:16:42.529
+Bastián: Así que nada, pues, va. Vamos a empezar a compartir la pantalla en un ratito. Pueden ir haciendo las preguntas. Ojalá sean como bien puntuales, no ¿cierto? Y respetando los tiempos, porque somos hartas personas, va a quedar grabado la clase. Espero hacerlo bien para que no aparezcan los vídeos y cosas así. Creo que creo que va a estar bien
+
+45
+00:16:42.720 --> 00:16:47.959
+Bastián: en el obviamente después lo vamos a subir. Pero
+
+46
+00:16:48.470 --> 00:16:57.299
+Bastián: vamos a recortar estas partes. Estamos conversando puras cositas y de hecho, se está grabando más menos mal. Ya se está grabando. Vamos a recortar todas estas chácharas.
+
+47
+00:16:57.740 --> 00:17:11.579
+Bastián: Así que nada, pues está todo bien alguna consulta antes de que empecemos de Damo ya.
+
+48
+00:17:12.200 --> 00:17:13.130
+Bastián: Demos.
+
+49
+00:17:13.520 --> 00:17:16.599
+Bastián: Mhm: Vamos a compartir la pantalla.
+
+50
+00:17:19.550 --> 00:17:25.440
+Bastián: Ya ahí estoy compartiendo. Espero que se vea mi computador
+
+51
+00:17:26.560 --> 00:17:28.880
+Bastián: y vamos a ver las diapositivas.
+
+52
+00:17:29.070 --> 00:17:37.429
+Bastián: Bueno, si quieres saber más del grupo, voy a dejar en el chat nuestra página, donde hay reuniones pasadas donde están las fechas de las siguientes reuniones
+
+53
+00:17:37.480 --> 00:17:50.050
+Bastián: acá en la sección de participa que está en la página que están viendo acá arriba están las próximas fechas que vamos a tener ya están calendarizadas para que le anoten sus calendarios, para que se vayan uniendo y a medida que la fecha se acerca.
+
+54
+00:17:50.050 --> 00:18:02.990
+Bastián: vamos a poner el link para que se puedan conectar, así como lo hicimos ahora. Así que ahí van a para que estén atentas y atentos. Y si conocen a alguien de Santiago de Chile, de cualquier lugar de Chile que ustedes reinvítenlo a que participen, si es que les gusta? Sí, pues si no le gusta, no lo invitan
+
+55
+00:18:03.080 --> 00:18:10.210
+Bastián: y y las diapositivas están en la misma página en el post del taller
+
+56
+00:18:10.410 --> 00:18:19.969
+Bastián: está bueno, la ficha del taller y las diapositivas ahí. Voy a ponerles el link de todas maneras en el chat para que no se vayan a buscar las diapositivas.
+
+57
+00:18:22.070 --> 00:18:35.279
+Carolina Morales: Voy a tener que interrumpirte un segundo, porque se me olvidó decir de eso. De hecho, lo más importante que estas reuniones son mensuales. Las teníamos todas planificadas para ser siempre el último miércoles de cada mes y, como bien dijo
+
+58
+00:18:35.370 --> 00:18:52.710
+Carolina Morales: Basti, las tenemos ya programadas para que las tengan en consideración. Una de esas reuniones va a ser presencial. Estamos como con tal. La intención del mundo que sea presencial para empezar a hacer comunidad. Y otro pequeño detalle que también les teníamos que comentar es que, como estábamos intentando
+
+59
+00:18:52.710 --> 00:19:10.190
+Carolina Morales: básicamente institu institucionalizarnos. En algún momento vamos a ir tomando screen chops a lo largo de esta reunión, para mostrar de que en el fondo hacemos la reunión y tener evidencia de esto y poder conformarnos como tal, Así que solamente les quería dar el describe. Muchas gracias.
+
+60
+00:19:10.460 --> 00:19:11.489
+Carolina Morales: Ahora sí, Basti.
+
+61
+00:19:11.720 --> 00:19:15.930
+Bastián: Súper súper vagam. Gracias. Carol.
+
+62
+00:19:16.290 --> 00:19:19.120
+Bastián: Entonces todavía tengo un poco de resfrío. Ya.
+
+63
+00:19:20.000 --> 00:19:25.219
+Bastián: Bueno, esta es la presentación. Crea tu propia página web con Quarto y con R
+
+64
+00:19:25.360 --> 00:19:34.459
+Bastián: habíamos dicho en en el flyer de la actividad que esto requiere unos mínimos conocimientos sobre herreros, cierto muy mínimos.
+
+65
+00:19:34.600 --> 00:19:45.519
+Bastián: Así que espero que los cumplan para que no se pierdan tanto De todas maneras, asumo que si no los cumplen, quizá puedan entender de todas maneras o o lo puedan aplicar más adelante. No hay problema con eso. No es excluyentes.
+
+66
+00:19:46.290 --> 00:19:47.440
+Bastián: así que
+
+67
+00:19:47.610 --> 00:20:06.750
+Bastián: vamos a comenzar. En resumen, ¿qué es lo que haremos hoy? Y si gustan en el pueden ver el link de las diapositivas y seguirlas a la par, como ustedes prefieran hoy. Ya vamos a crear un sitio Web desde 0 usando Quarto, que es una herramienta de publicación. Y desde el software R Studio, que es un entorno de programación.
+
+68
+00:20:07.340 --> 00:20:08.150
+Bastián: Ya
+
+69
+00:20:08.830 --> 00:20:27.869
+Bastián: vamos a hacer este sitio. Vamos a personalizar la apariencia del sitio. ¿vamos a escribir nuestro primer post para subirlo a nuestro blog? ¿no es cierto? Vamos a aprender como en nuestro blog. Podemos incluir código D, R, para que nuestras publicaciones tengan, no sépos, gráficos, tablas, cifras y otros elementos que provengan desde los datos.
+
+70
+00:20:28.270 --> 00:20:36.039
+Bastián: Vamos a aprender a subir nuestro blog a Github, que es un repositorio donde la gente comparte el código.
+
+71
+00:20:36.370 --> 00:20:42.820
+Bastián: Esto es más o menos complejo, pero lo vamos a ver de una forma bien breve y simple. Espero.
+
+72
+00:20:43.000 --> 00:20:55.730
+Bastián: y luego en 3 de Github vamos a la funcionalidad de este servicio que es para publicarlo en GitHub Pages, que es para que lo que nosotros subamos a Github aparezca por una página web y podamos usar este link para que
+
+73
+00:20:55.730 --> 00:21:09.549
+Bastián: suponerlo. No sé po en nuestra, en en nuestros perfiles de redes sociales, poder mandárselo a otras personas y tener nuestro propio link, que es donde la gente pueda encontrar nuestra información. No sé por nuestro currículum, nuestra historia, nuestras publicaciones, nuestras investigaciones, nuestros intereses, lo que queramos
+
+74
+00:21:09.550 --> 00:21:15.220
+Bastián: ya y al final, si nos quedan unos minutitos, podemos conversar un poquito sobre nuestras experiencias en R.
+
+75
+00:21:15.770 --> 00:21:18.689
+Bastián: Así que ese es el resumen.
+
+76
+00:21:19.570 --> 00:21:20.360
+Bastián: Mhm.
+
+77
+00:21:22.610 --> 00:21:39.970
+Bastián: Y primero, simplemente comentar por qué querríamos hacer un blog. Yo soy muy de la idea de que en esta época donde la Internet está mediada por grandes corporaciones, grandes empresas, casi nada es nuestro, no nada. Nos pertenece. El día de mañana. Cualquier red social nos va
+
+78
+00:21:39.980 --> 00:21:54.040
+Bastián: a bloquear nuestra cuenta de lo que sea o va a eliminar cierta publicación y o o a cerrar cierta cierta plataforma y nos vamos a quedar sin nuestros contenidos o sin nuestra vida digital, porque es gran parte de donde vivimos nuestras vidas hoy en día.
+
+79
+00:21:54.080 --> 00:21:59.179
+Bastián: Así que es bueno tener un espacio propio donde pueden hacer lo que quieran y compartirlo como ustedes gusten
+
+80
+00:21:59.300 --> 00:22:09.219
+Bastián: ya para qué nos va a servir tener un sitio web para tener nuestra presencia digital, para poder aprender. También que yo creo que es súper importante tener un espacio donde podamos jugar y proponernos como
+
+81
+00:22:09.220 --> 00:22:19.589
+Bastián: como un objetivo de poder. No sé po hacer algo, proponernos hacer algo con datos y compartirlo al mundo como que nos pueda incentivar un poco más, como aprender y a y a desarrollar nuestras habilidades, ¿cierto?
+
+82
+00:22:19.720 --> 00:22:39.349
+Bastián: También podemos usarlo para compartir proyectos que ya hayamos hecho análisis que nos hayan salido. No es cierto y aprendizajes que tengamos para compartirlos con la comunidad, porque seamos sinceras y sinceros. Aprendimos todo por Internet. Fuimos buscando googleando. Entonces a mí me parece justo al menos que que retribuyamos un poco también a los demás. No es cierto
+
+83
+00:22:39.940 --> 00:23:01.230
+Bastián: y nada, pues también crear blogs nos puede servir para conectar con la comunidad, porque podemos ver lo que dicen otras personas, lo que están haciendo. Podemos conec contactar con ellas o con ellos, conocerles, enlazar a sus blogs, compartir su contenido y todo eso, pues así que si hacen algo bonito al final de este taller, lo pueden ir compartiendo en el en en el link, ahí o en el slack que tenemos en nuestro sitio, que es un chat
+
+84
+00:23:01.290 --> 00:23:06.509
+Bastián: para que nosotras y nosotros podamos compartir nuestro propio contenido también porque nos podemos ayudar entre pares.
+
+85
+00:23:07.630 --> 00:23:21.539
+Bastián: Así que en esta diapositiva les dejo algunos ejemplos de distintos sitios hechos con Quarto. El primero y el más bonito de ellos es el Grup. El Si el grupo de usuarios de R Santiago. Claramente que también lo hicimos con Quarto
+
+86
+00:23:21.630 --> 00:23:38.750
+Bastián: está hecho con la disposición de blog. No es cierto. Un sitio bastante sencillo, bastante básico que tiene un par de páginas arriba extra como le habíamos mostrado, tiene un acerca de bien cortito con nuestros links, y tiene varios links a redes sociales arriba también. No es cierto. Y las publicaciones, como ya vieron.
+
+87
+00:23:38.940 --> 00:23:52.229
+Bastián: parecen así. ¿no es cierto? Ese es nuestro blog del del grupo de usuarios de Erre. Y lo hicimos con Quarto. Otro buen sitio hecho con Quartos. Es el sitio de Quarto, que es donde pueden encontrar toda la información acerca de este software
+
+88
+00:23:52.470 --> 00:24:09.170
+Bastián: que también está hecho con Quarto. ¿no es cierto? Entonces ahí podemos ver las capacidades que tiene este este este sistema de publicación que en el fondo nos permite hacer cualquier tipo de sitio web, pero partiendo desde 1 muy básico, no es cierto. Y podemos ir extendiéndonos en la medida que vamos necesitando cosas nuevas, ¿cierto?
+
+89
+00:24:09.880 --> 00:24:28.650
+Bastián: Y acá también les dejo varios otros blogs de personas de de la comunidad de usuarios y usuarios de R. Por ejemplo, Nicola Renie, que publica hartas cosas sobre visualización de datos bien bonitas, en realidad, y tienen su propio blog también. En Quarto con un montón de publicaciones para que las vayan conociendo también
+
+90
+00:24:28.840 --> 00:24:35.669
+Bastián: un montón de otros usuarios que le dejé por ahí. ¿cuál era interesante para mostrarles.
+
+91
+00:24:36.920 --> 00:24:53.469
+Bastián: Acá Hay otro post de otra usuaria que, por ejemplo, el el sitio. Otro post, otro sitio de otra usuaria que su inicio empieza con varios Links. No es cierto varias cosas que ha hecho, por ejemplo, y así puede ir como desagregando su información acerca de su vida y su y su carrera. Su trabajo no es cierto.
+
+92
+00:24:53.880 --> 00:24:59.669
+Bastián: Y otro bien bonito que encontré por ahí. No sé si era este o este
+
+93
+00:25:00.590 --> 00:25:10.779
+Bastián: no no era este Este, por ejemplo, que ya le puso harto color al sitio web hecho con Quarto, le puso unas cositas de animaciones. No es cierto y le puso un texto que se va moviendo.
+
+94
+00:25:10.790 --> 00:25:24.709
+Bastián: Las cuestiones van apareciendo animadas. Y entonces ya esto es algo bastante más complejo, pero con con paciencia y con la ayuda de do de documentación tutoriales y un poquito de inteligencia artificial, se van a hacer sitios bastante profesionales
+
+95
+00:25:24.720 --> 00:25:27.650
+Bastián: con Quartos. No es cierto. No hay límites.
+
+96
+00:25:27.960 --> 00:25:35.600
+Bastián: Así que eso para que tengan ahí para entusias un poquito. Muchas personas también com comparten el código de estos webs.
+
+97
+00:25:35.700 --> 00:25:46.389
+Bastián: cómo las construyeron y cómo las hicieron para que puedan también ver cómo hicieron ciertas cosas. Por ejemplo. Yo me encontré con hartas personas que hacían diapositivas con Quartos que le ponían como un relojito. Yo dije, ah, mira, podríamos agregarlo, pero no lo es
+
+98
+00:25:48.740 --> 00:26:00.660
+Bastián: ya. ¿qué herramientas usaremos el día de hoy? Entonces vamos a usar. Quarto que, como ya dijimos, es un sistema de publicación que usaremos para crear el blog o sitio web. Lo estamos usando de manera indiferente. No es cierto? R Studio, que es nuestra I D E
+
+99
+00:26:00.730 --> 00:26:17.840
+Bastián: también existe positron que podrían estar usando. Y entiendo que el proceso es bastante similar, pero no les podría aconsejar al respecto. Quizá alguna persona que use positron podría de repente comentar alguna diferencia. Y Github: ¿No es cierto que es este servicio para subir código y compartir
+
+100
+00:26:18.680 --> 00:26:27.249
+Bastián: compartir repositorios de código con sus respectivas versiones hacia el pasado, No, ¿cierto? Ahí vamos a hablar un poco más en detalle acerca de eso.
+
+101
+00:26:27.820 --> 00:26:28.720
+Bastián: Mhm.
+
+102
+00:26:30.200 --> 00:26:46.609
+Bastián: Entonces hemos hablado harto de Quarto. ¿y qué es Quarto? Es un sistema de publicación. Es un software que se instala en el computador que viene instalado sin tiene R, estudio, que es. También es de código abierto. Y la gracia de Quarto es que toma archivos de texto, plano.
+
+103
+00:26:46.640 --> 00:26:52.940
+Bastián: texto así escrito, sencillo y permite transformar sexto plano que viene escrito en Marklown.
+
+104
+00:26:53.000 --> 00:26:59.629
+Bastián: que es una forma de escribir textos que vamos a aprender hoy para ponerle títulos y tal y casi estilos negritas, por ejemplo.
+
+105
+00:26:59.780 --> 00:27:15.740
+Bastián: Y entonces Quarto, agarras tus documentos y nos permite hacer un montón de cosas con ellos, puede permitirnos hacer entonces archivos en P, D, F, archivos, word páginas web, no ciertos archivos. H, T. M. L. Libros, incluso diapositivas. Esta diapositiva está hecha esta diapositiva que estamos viendo está hecha con Quartos
+
+106
+00:27:15.740 --> 00:27:31.159
+Bastián: partió haciendo una un archivo de texto y un apretado render y se genera una diapositiva, por ejemplo, entonces Quarto es un sistema de publicación que nos permite a partir de estos textos generar más contenido textual. No es cierto. En este caso lo usaremos para crear un blog.
+
+107
+00:27:31.590 --> 00:27:49.709
+Bastián: Y la gracia de eso es que nos permite claramente integrar bloques de código con r para poder gráficos, tablas, y todo eso. Y lo bueno es que está basado en tecnologías súper hegemónicas de la Internet, que son? H, T, M, L, y C, S: S no es nada del otro mundo. Entonces es lo que se usa como estándar en en toda la web
+
+108
+00:27:49.710 --> 00:27:57.939
+Bastián: para poder trabajar con con sitios web. Así que no vamos a tener problema de integrar ideas que veamos en otros lados y buscar ayuda cuando lo necesitemos.
+
+109
+00:27:58.630 --> 00:28:04.290
+Bastián: Así que súper? Bueno, Quarto, quizá algunas personas conocen, Han escuchado. R. Mcdown
+
+110
+00:28:04.460 --> 00:28:18.400
+Bastián: También es muy similar. Es muy parecido. Quarto, buscas ser como una sucesión a R. Marcfon porque es más más completo. No es cierto. Tiene más formas de generar contenido a partir de los scripts. ¿no es cierto.
+
+111
+00:28:19.680 --> 00:28:21.910
+Bastián: Así que ahí para que lo conozcan.
+
+112
+00:28:22.110 --> 00:28:30.399
+Bastián: Si ustedes trabajan con R o o han trabajado con R. Markdown, el cambio a Quartos. Es súper sencillo. Es casi lo mismo, prácticamente lo mismo.
+
+113
+00:28:32.970 --> 00:28:52.129
+Bastián: Y bueno, las diapositivas les voy a dejar ahí varios tutoriales completos de lo mismo que vamos a ver hoy. Pero para que ustedes después puedan apoyarse en esos contenidos, por si se equivocaron en alguna parte, o les tuvieron dudas en alguna de algún elemento, pueden meterse a cualquiera de estos tutoriales para profundizar un poco en el la el desarrollo de nuestro sitio web.
+
+114
+00:28:54.750 --> 00:28:58.759
+Bastián: Hay alguna duda hasta ahí porque ahora vamos a empezar con las manos a la obra.
+
+115
+00:29:00.280 --> 00:29:01.110
+Bastián: ¿no?
+
+116
+00:29:03.070 --> 00:29:09.580
+Bastián: Ya entonces vamos, no más Ahí dicen unos deditos para arriba. Así que todavía no
+
+117
+00:29:12.710 --> 00:29:16.000
+Bastián: ya vamos a crear entonces nuestro blog.
+
+118
+00:29:16.810 --> 00:29:27.460
+Bastián: ¿cómo vamos a crear el blog, vamos a ir a estudio y vamos a meternos a file o archivo. Vamos a crear un proyecto de estudio y vamos a elegir la opción? Quarto, blog.
+
+119
+00:29:27.980 --> 00:29:32.180
+Bastián: ya así que yo voy a ir a mi erre Studio.
+
+120
+00:29:32.400 --> 00:29:34.610
+Bastián: que no lo tengo abierto, así que lo voy a abrir.
+
+121
+00:29:36.870 --> 00:29:48.560
+Bastián: Ahora es el momento en el cual ustedes abren también sus estudios y tratan de hacer lo mismo que vamos a ir haciendo. Entonces yo voy a abrir mi estudio. Voy a cerrar el proyecto para que no
+
+122
+00:29:48.850 --> 00:29:50.030
+Bastián: no haya nada.
+
+123
+00:29:50.370 --> 00:29:55.200
+Bastián: Estoy con mi estudio vacío. No es cierto. Lo voy a agrandar un poquito para que no se vea tan chiquitito.
+
+124
+00:29:55.910 --> 00:30:15.559
+Bastián: y voy a crear un nuevo proyecto de Restudio. No es cierto. Voy a ir a file y voy a poner nuevo proyecto, o también puedo apretar aquí el segundo botón de la barra de menús, que es este cubo celeste para crear un nuevo proyecto. Las 2 formas son las normales. Le ponemos nuevo proyecto. Entonces, y yo le voy a pedir en un directorio nuevo
+
+125
+00:30:16.190 --> 00:30:21.340
+Bastián: nuevo directorio, ya punto
+
+126
+00:30:22.010 --> 00:30:37.319
+Bastián: en un nuevo directorio. Entonces aquí me salen varias opciones de proyecto para crear. Cierto. En general, siempre le ponemos nuevo proyecto o aplicación chain y en general, yo. En general son las opciones que uso yo. Pero acá te aparece Proyecto de Quarto sitio Web de Quarto y blog de Quarto.
+
+127
+00:30:37.740 --> 00:30:48.269
+Bastián: Entonces vamos elegir. Quarto blog, que es la quinta opción. Entonces le pusimos nuevo proyecto y después, cuando nos permite elegir el tipo de proyecto, elegimos Quarto blog
+
+128
+00:30:49.330 --> 00:30:54.529
+Bastián: ya. Y se abrió esta ventanita para crear el proyecto como como normalmente se pide.
+
+129
+00:30:54.790 --> 00:31:01.510
+Bastián: y vamos a poner el nombre de el proyecto que vamos a crear. Yo le voy a poner en
+
+130
+00:31:02.300 --> 00:31:07.950
+Bastián: blog en prueba.
+
+131
+00:31:08.830 --> 00:31:12.800
+Bastián: No blog nuevo, le voy a poner
+
+132
+00:31:13.420 --> 00:31:19.049
+Bastián: así. Le voy a poner yo a mi a mi a mi blog, no mentira. Le voy a poner blog taller
+
+133
+00:31:20.300 --> 00:31:40.130
+Bastián: importante, elegir un buen nombre después nos arrepientes igual. Después le pueden cambiar el nombre del proyecto. Así que alguien ha tenido algún problema. Hasta ahora van a ponerle a su proyecto. Le vamos a elegir donde lo guardamos. Yo voy a elegir guardarlo en la carpeta del grupo de usuarios de R, que tengo en mi computadora. Ustedes pueden elegir donde ustedes quieran guardar su proyecto, pero un lugar que se acuerden y no lo vayan a borrar después.
+
+134
+00:31:40.460 --> 00:31:48.639
+Bastián: Y no vamos elegir ninguna de estas opciones que aparecen, acá abajito. Vamos a dejarlas todas deseleccionadas y le vamos a poner
+
+135
+00:31:48.990 --> 00:31:55.840
+Bastián: crear proyectos y se crea un proyecto. Y el estudio se va a reiniciar, lo pudieran hacer.
+
+136
+00:31:57.100 --> 00:32:00.979
+Bastián: Podemos ir dando unos segunditos para quienes lo van lo están haciendo.
+
+137
+00:32:05.120 --> 00:32:08.500
+Bastián: Sirve caleta que lo pongan en el chat para que sepamos si vamos bien o no.
+
+138
+00:32:08.670 --> 00:32:13.550
+Bastián: porque si nadie dice nada. Yo me imagino que no. No pudieron Bagdad. Hay varios, sí
+
+139
+00:32:14.320 --> 00:32:21.050
+Bastián: cargando, dicen por ahí. También. A veces se demora, como en reiniciar el estudio, que es como menos a veces tiene un bus.
+
+140
+00:32:21.960 --> 00:32:22.800
+Bastián: ya.
+
+141
+00:32:23.680 --> 00:32:26.020
+Bastián: Oki, dijeron: Mhm.
+
+142
+00:32:26.150 --> 00:32:27.939
+Bastián: Entonces vamos a las diapositivas
+
+143
+00:32:28.530 --> 00:32:35.320
+Bastián: aquí en la diapositiva que estamos. Vamos a ver más o menos la estructura del blog que acabamos de crear.
+
+144
+00:32:35.540 --> 00:32:41.529
+Bastián: Vamos a tener estos archivos como mínimo. Si preguntan por ahí es un proyecto tipo. Quarto blog.
+
+145
+00:32:41.800 --> 00:32:48.329
+Bastián: Alex pregunta: tenemos extraestructura del blog y yo también la podemos ver en el r Studio.
+
+146
+00:32:48.900 --> 00:32:50.879
+Bastián: porque hay alguna duda por ahí.
+
+147
+00:32:52.060 --> 00:32:58.399
+Bastián: Dale tenemos Acá nuestra carpetita con los archivos que se crearon en nuestro proyecto.
+
+148
+00:32:58.650 --> 00:33:09.100
+Bastián: Ya son todos estos. Vamos a ver en las diapositivas. Tenemos ahí una explicación de qué es lo que hace cada una de ellas para que lo vean más adelante, pero yo les voy a ir explicando directamente
+
+149
+00:33:09.430 --> 00:33:18.519
+Bastián: el primer archivo que aparece se llama bajo Quarto punto y ml que este archivo es un archivo de configuración que se les llama Jamel.
+
+150
+00:33:18.810 --> 00:33:21.610
+Bastián: Es simplemente un conjunto de opciones
+
+151
+00:33:21.830 --> 00:33:33.530
+Bastián: para poder configurar Nuestro blog es como el archivo de configuración general donde vamos a poder. Por ejemplo, si se fijan, acá hay una descripción que viene puesta acá hay un link que viene puesto acá está el título de nuestro blog.
+
+152
+00:33:33.980 --> 00:33:51.190
+Bastián: que serían como las configuraciones más mínimas que podemos hacer con nuestro, con el blog que estamos creando. Por ejemplo, acá. En el título le podemos a poner mi primer blog, ustedes pueden poner su nombre. Por ejemplo, usualmente el título del blog va a ser el nombre y su apellido, por ejemplo, o quizás pueden que querer ponerle un nombre más
+
+153
+00:33:51.370 --> 00:33:58.309
+Bastián: más genérico, más de fantasía, como ustedes gusten. También es válido que lo hagan como como prueba la primera vez también es válido.
+
+154
+00:33:58.450 --> 00:34:00.549
+Bastián: así que podemos poner lo que queramos.
+
+155
+00:34:00.870 --> 00:34:03.400
+Bastián: pero sería entretenido que hicieran 1 de ustedes.
+
+156
+00:34:03.400 --> 00:34:24.049
+Bastián: Ya entonces acá. Podemos ver que son varias opciones hacia abajo y vienen todas indentadas, es decir, todas. Cuando, por ejemplo, acá está website y website, tiene varias opciones description site title Nabvar. Y esas vienen indentadas tienen que tener esa ese espacio en blanco al principio, para que funcionen bien. Y si no lo tienen bien hecho. El Quarto les va a reclamar
+
+157
+00:34:24.100 --> 00:34:34.059
+Bastián: ya, Pero eso no es tan difícil. Simplemente tratamos de imitar cómo está puesto el cómo está puesto el texto y y si es una opción que corresponde a otra opción, hay que separarla con 2 espacios.
+
+158
+00:34:34.489 --> 00:34:40.439
+Bastián: pero en general. Los cambios que vamos a hacer acá van a ser como copiar y pegar de otros lugares o copiar y pegar lo mismo que ya tenemos escrito.
+
+159
+00:34:41.010 --> 00:34:44.960
+Bastián: Entonces aquí le cambié el título y le puse mi primer blog y acá le voy a poner
+
+160
+00:34:45.190 --> 00:34:50.760
+Bastián: un blog para aprender en el taller de Quart de Posei.
+
+161
+00:34:51.010 --> 00:34:56.650
+Bastián: la u R. L. Todavía no la voy a cambiar porque mi sitio todavía no tiene una u R. L. Todavía no tiene una dirección. Ya.
+
+162
+00:34:57.120 --> 00:35:05.479
+Bastián: ¿qué otros archivos hay en nuestro en nuestro proyecto. Tenemos una página que se dice: About, Punto. Qmd.
+
+163
+00:35:05.600 --> 00:35:15.169
+Bastián: ¿y qué significa punto Q. M. D, Estos son los archivos? Quarto, son archivos Marcdown ya y parecidos al R. M. D del R Mardom. Es donde vamos a poder escribir nuestro contenido.
+
+164
+00:35:15.670 --> 00:35:20.379
+Bastián: Ya alguien pregunta por blues. Kay son es una red social.
+
+165
+00:35:20.900 --> 00:35:30.980
+Bastián: Acá por ejemplo, en el ejemplo que aparece en el Quarto es como Acá ustedes podrían poner sus redes sociales. Acá ponen Github acá. Ponen Blue Sky. Uno podría copiarlo y poner, No sé, pues Linkedin.
+
+166
+00:35:30.980 --> 00:35:42.050
+Bastián: Twitter, o o lo que ustedes gusten para poner un icono con sus redes sociales. Ahí lo vamos a ver un poquito más adelante Cuando cuando le ap apliquemos con esta parte del blog
+
+167
+00:35:43.170 --> 00:35:56.789
+Bastián: en el archivo About. Punto Com D. Es una página que viene hecha por defecto. Si no le gusta, la pueden borrar o hacer otra parecida. Pero en el fondo es una página que es como donde ustedes podrían poner sobre mí o quién soy o yo. Por ejemplo.
+
+168
+00:35:57.050 --> 00:36:02.629
+Bastián: Entonces, en esta página ustedes van a poder poner una información mínima sobre ustedes. Después la vamos a ir editando ya
+
+169
+00:36:02.640 --> 00:36:19.019
+Bastián: acá. El tercer archivo que tengo es el el proyecto de R. ¿no es cierto? No lo pescamos. Y tenemos acá un index punto. Q. M. D, que es el Index. Q. M. D: Quizá la palabra le suena el index. Es la primera página de cualquier página web, es decir cuando tú te metes a ww punto. No sé Po.
+
+170
+00:36:19.140 --> 00:36:20.160
+Bastián: en el
+
+171
+00:36:20.260 --> 00:36:34.160
+Bastián: Google cl o punto. Com el Index punto Html va a ser la página que les aparezca cuando se metan Ahí es la página de inicio. Entonces, en esta página de inicio ustedes van a poner lo primero que quieren que sus usuarios y usuarios vean cuando entren a su página.
+
+172
+00:36:34.700 --> 00:36:35.500
+Bastián: Ya
+
+173
+00:36:35.680 --> 00:36:53.860
+Bastián: entonces acá también hay un título para cambiar. Y después vamos a ver un poco más en detalle qué es lo que hace esta página en particular, porque aquí, como hicimos un blog. El Lindex va a ser el blog, es decir, los posts para abajo, no nada más que eso. Te va a mostrar los los distintas publicaciones que tú tienes. Y tenemos una carpeta que se llama post.
+
+174
+00:36:54.020 --> 00:37:00.329
+Bastián: Acá Tenemos una imagen que se llama profile, que ustedes la pueden reemplazar con una imagen de ustedes para después usarla en alguna página.
+
+175
+00:37:00.610 --> 00:37:05.190
+Bastián: Y el último archivo que tenemos es Styles Css, que viene vacío.
+
+176
+00:37:05.780 --> 00:37:13.360
+Bastián: Y acá 1 puede poner los estilos que 1 puede usar para personalizar el blog Más adelante. Ahí vamos a ver en detalle cómo se hace eso.
+
+177
+00:37:13.560 --> 00:37:23.690
+Bastián: Y la carpeta posts que me la salté es donde vamos a ir escribiendo todas las publicaciones para nuestro blog, por ejemplo. Este blog viene con 2 publicaciones de ejemplo que vamos a ver más adelante.
+
+178
+00:37:23.880 --> 00:37:29.220
+Bastián: Ya entonces esos son los archivos mínimos que tenemos, y ahí dejé las explicaciones
+
+179
+00:37:29.430 --> 00:37:47.469
+Bastián: para que las vean más adelante. En el fondo, para crear nuevas páginas en nuestro blog. Nosotros vamos a crear nuevos archivos? Q. M. D. Esa va a ser como la lógica. Cada página de su blog va a ser un archivo de texto como este, donde vamos a poder poner distintas cosas que queramos incluir en nuestras páginas. Ya
+
+180
+00:37:50.210 --> 00:37:56.090
+Bastián: Ya entonces publicaciones Mhm
+
+181
+00:37:56.730 --> 00:38:13.449
+Bastián: para crear una nueva publicación en nuestro blog. Como les decía yo, vamos a crear un documento que sea index Q, M D en una carpeta dentro de la Carpe en dentro de la carpeta post. Entonces, por ejemplo, va a quedar la carpeta post Slatch, mi primer post o no sé, por bienvenida o o la fecha de hoy.
+
+182
+00:38:13.730 --> 00:38:19.880
+Bastián: Slash, el archivo index Q. M. D, que vaya a contener el contenido de esta publicación.
+
+183
+00:38:20.190 --> 00:38:38.529
+Bastián: Y este nombre de la carpeta es importante porque ese va a ser como la dirección, pues va a ser así como no sé, pues voy a usar el ejemplo. Cualquier persona, Pues Franco Github: punto. Io Slash post Slatch es mi primer post y ese link se lo va a poder mandar a alguien y va a poder ver esa publicación. Entonces este nombre igual es importante.
+
+184
+00:38:38.910 --> 00:38:42.460
+Bastián: el nombre de la carpeta. Después lo pueden cambiar. Y todo eso también. No hay problema.
+
+185
+00:38:43.090 --> 00:38:54.159
+Bastián: Ya entonces una forma de crear una publicación es manualmente creando esta estructura, así como está creada aquí Post. Y 1 abre una publicación. Y está el Index punto Q. M D adentro.
+
+186
+00:38:55.290 --> 00:39:02.679
+Bastián: O también está la opción de usar una función que es del paquete Quarto, new block post.
+
+187
+00:39:02.820 --> 00:39:08.950
+Bastián: Y ahí podemos crear una publicación. Entonces yo voy a ir al R y voy a abrir la consola
+
+188
+00:39:09.920 --> 00:39:17.590
+Bastián: que está aquí arriba A la derecha no lo había visto. Y le voy a poner library Library. Quarto.
+
+189
+00:39:18.010 --> 00:39:18.780
+Bastián: ya
+
+190
+00:39:19.040 --> 00:39:29.650
+Bastián: si no pueden hacer la era y Quarto, tienen que instalar install punto pagages. Quarto, porque espero que lo hayan hecho con anterior anterioridad, pero si no lo han hecho, les voy a poner el link
+
+191
+00:39:30.380 --> 00:39:34.250
+Bastián: para que instalen el paquete que es necesario para trabajar con Quarto.
+
+192
+00:39:34.740 --> 00:39:36.949
+Bastián: Y está el punto apaga. Y es Quarto.
+
+193
+00:39:37.890 --> 00:39:38.740
+Bastián: Mhm.
+
+194
+00:39:39.570 --> 00:39:45.779
+Bastián: Entonces yo voy a crear un post con la función New Blockpost.
+
+195
+00:39:46.350 --> 00:39:53.479
+Bastián: ¿y qué me pide esa función? Título? Lo primero que sea el título, y le voy a poner bienvenida.
+
+196
+00:39:56.830 --> 00:40:04.430
+Bastián: Me pide que instale un paquete extra para poder para poder hacer la creación del del archivo. Así que le voy a decir, bueno instalarlo
+
+197
+00:40:07.040 --> 00:40:11.510
+Bastián: requería un un paquete extra para poder crear el para la creación del pozo.
+
+198
+00:40:14.730 --> 00:40:31.359
+Bastián: Ya. Y ahí me dijo: ya instalamos el creamos el el post, entonces yo ahora yo veo la carpeta post. Ahí hay una carpeta que dice bienvenida, y creo este archivo index punto. Q. M. D, que si yo lo abro, en realidad en eso me ayudó. Es una ayuda súper chiquitita, pero de repente es más fácil crear un post. Así
+
+199
+00:40:31.790 --> 00:40:32.670
+Bastián: ya
+
+200
+00:40:33.050 --> 00:40:46.379
+Bastián: como como Tip, Yo usualmente, cuando estaba aprendiendo, creaba como un archivo en el en el inicio del blog que me pongo como como los torpedos, pues me creo un archivo y le pongo así como instrucciones.
+
+201
+00:40:47.730 --> 00:40:50.320
+Bastián: Y ahí voy escribiendo lo que tengo que ir haciendo
+
+202
+00:40:50.850 --> 00:40:55.770
+Bastián: la tele y Quarto, y después, New Blog Post, y le pongo el nombre.
+
+203
+00:40:57.480 --> 00:41:02.580
+Bastián: y ahora le pongo el comentario para crear un nuevo post.
+
+204
+00:41:03.520 --> 00:41:07.380
+Bastián: Ya. Esa es la lógica, como vamos a ir creando las publicaciones de nuestro blog, ya
+
+205
+00:41:08.310 --> 00:41:14.319
+Bastián: así que les invito a crear un primer post que después lo vamos a poder visualizar. Ya
+
+206
+00:41:14.400 --> 00:41:30.139
+Bastián: va para ver cómo nos quedó. Puede ser un post vacío, Así como yo le hice, le creo, le puso, le puse new block Post. Y entre comillas el nombre del del del link que va a tener en este caso, bienvenida y ojalá sea una palabra sin
+
+207
+00:41:30.430 --> 00:41:36.750
+Bastián: sin guion Bach, o sea, sin espacios sin mayúsculas. Ya vamos a crear la publicación.
+
+208
+00:41:37.780 --> 00:41:44.720
+Bastián: Ahí dicen que alguien se perdió. Si puede poner en el chat, ¿por qué se perdió o ¿dónde quedó
+
+209
+00:41:44.940 --> 00:41:45.780
+Bastián: ya
+
+210
+00:41:46.830 --> 00:41:53.370
+Bastián: entonces? Yo, por ejemplo, le pongo acá. Ejecuto esto que dice New Block post, yo me va a aparecer un nuevo post que se llama prueba
+
+211
+00:41:53.500 --> 00:41:56.349
+Bastián: y apareció ahí también en la carpeta de los posts.
+
+212
+00:41:57.050 --> 00:42:00.550
+Bastián: Vamos a ver el tiro como para visualizar el sitio. Ya
+
+213
+00:42:01.090 --> 00:42:08.950
+Bastián: sí, buena idea. Deberíamos haberlo previsualizado el tiro. Voy a saltar las diapositivas a
+
+214
+00:42:09.380 --> 00:42:12.210
+Bastián: la parte de la previsualización del sitio.
+
+215
+00:42:12.210 --> 00:42:12.820
+Álex Navarro: Mhm.
+
+216
+00:42:17.630 --> 00:42:21.690
+Bastián: Mhm: Sí, Ahí están diciendo en el chat. Qué es lo que estamos haciendo?
+
+217
+00:42:22.070 --> 00:42:33.489
+Bastián: ¿vamos a previsualizar el sitio? Entonces hay 2 cosas que que se necesitan hacer para o 2 conceptos que tenemos que entender para el sitio. Una cosa es como crear el sitio
+
+218
+00:42:33.710 --> 00:42:42.910
+Bastián: que es es con el Comando Render o la función. Quarto, Render. Y otra cosa es como previsualizar el sitio para poder verlo y que se vaya actualizando con los cambios que es Quarto preview
+
+219
+00:42:43.140 --> 00:42:46.080
+Bastián: Ya por ahora, lo que necesitamos es el Quarto Pre View.
+
+220
+00:42:46.540 --> 00:42:58.639
+Bastián: y cuando queramos subirlo a Internet, le vamos a poner render para que estemos seguras y seguros de que nuestro sitio está como actualizadito, está bien actualizado. Con todos los cambios que le hayamos hecho, es como para reconstruirlo a medida que cuando lo veamos
+
+221
+00:42:59.720 --> 00:43:10.150
+Bastián: cuando ahí, cuando lo veamos. Vamos a ver cuál es la diferencia entre render y preview. Pero por ahora vamos a ponerle Quarto Quarto, preview en la consola. Y vamos a ver lo que pasa.
+
+222
+00:43:11.680 --> 00:43:17.129
+Bastián: El acá en la consola, me dice, preparando para previsualizar, y está como construyendo los sitios
+
+223
+00:43:17.280 --> 00:43:19.380
+Bastián: y se fijan, que construyó.
+
+224
+00:43:19.380 --> 00:43:20.950
+Luis Neira: Este carro lo trates.
+
+225
+00:43:20.950 --> 00:43:27.019
+Bastián: Dimensión y tienen un micrófono abierto.
+
+226
+00:43:29.230 --> 00:43:34.359
+Bastián: Ya en el R Studio me apareció acá en el panel de Viewer, mi primer blog
+
+227
+00:43:34.550 --> 00:43:49.859
+Bastián: y se fijan. Acá Tengo un blog chiquitito, pero yo lo puedo extender con el boton, el tercer botón, que es para verlo en una segunda ventana. Si yo apreto esto, me va a parecer más grande. Y este es el blog por defecto que te crea Quarto así sin nada.
+
+228
+00:43:49.880 --> 00:43:56.540
+Bastián: Y si se fijan, acá están los 2 posts que creamos como prueba el que se llama prueba el que se llama bienvenida. Y venía con 2 posts
+
+229
+00:43:56.670 --> 00:44:02.290
+Bastián: que están de, ejemplo, por ejemplo, si 1 se mete acá acá está el primer post.
+
+230
+00:44:02.540 --> 00:44:07.259
+Bastián: Y si 1 se devuelve, volvemos al inicio con la con los posts.
+
+231
+00:44:07.520 --> 00:44:10.340
+Bastián: acá está el título que le pusimos arriba a la izquierda.
+
+232
+00:44:11.110 --> 00:44:18.209
+Bastián: Y acá arriba a la derecha aparecen el el about, que es la página que habíamos visto. Y algunos links para las redes sociales.
+
+233
+00:44:18.400 --> 00:44:20.399
+Bastián: Puede ser que
+
+234
+00:44:20.750 --> 00:44:26.050
+Bastián: que parezca todo complejo, Pero en un monumentito todo va a tener sentido porque hay, como que
+
+235
+00:44:27.310 --> 00:44:38.729
+Bastián: hay como que entender un poquito varios conceptos antes de que haga sentido. Entonces, con Quarto preview, el el blog va a quedar construido y se va a empezar a mostrar los cambios que vayamos haciendo en él
+
+236
+00:44:39.120 --> 00:44:42.630
+Bastián: ya de poquito. Vamos a ir viendo
+
+237
+00:44:43.310 --> 00:44:49.249
+Bastián: si no pueden construir el crear un post. Con esa función, New block post la pueden hacer a mano.
+
+238
+00:44:49.540 --> 00:44:55.290
+Bastián: ¿cómo hacemos un blog, un post a mano. Simplemente creamos una carpeta en la carpeta post
+
+239
+00:44:55.590 --> 00:44:59.920
+Bastián: que se va a llamar postmanual.
+
+240
+00:45:00.480 --> 00:45:05.980
+Bastián: Estoy explicándole ahí a A Andrés que está preguntando en el Chat 1 quería una carpeta que se llama postmanuel.
+
+241
+00:45:06.270 --> 00:45:10.650
+Bastián: Y acá dentro de esta carpeta le voy a poner nuevo documento. Quarto, le voy a poner Index.
+
+242
+00:45:11.310 --> 00:45:18.100
+Bastián: Punto. Com. D: También todos se llaman Index. Y acá está título index formato. H, T, M: L, Y si yo voy al al visor
+
+243
+00:45:21.270 --> 00:45:34.199
+Bastián: El post nuevo no ha aparecido. No ha aparecido. Pero si yo aprieto acá el botón de render que este botón celeste, el post va a a a generarse y va a en teoría, debe desaparecer acá en el visor
+
+244
+00:45:34.520 --> 00:45:37.409
+Bastián: acá dice index, y no tiene nada porque el pozo está vacío.
+
+245
+00:45:38.000 --> 00:45:44.619
+Bastián: nosotros. Pero si yo voy al blog acá apareció el que dice index y que era el postmanual. Le voy a poner acá postmanual
+
+246
+00:45:45.250 --> 00:45:48.119
+Bastián: para ver el cambio, y lo ejecuto.
+
+247
+00:45:48.740 --> 00:45:55.279
+Bastián: Y ahí dice postmanual como la publicación y la publicación acá con el título postmanual. No es cierto. Están apareciendo los cambios.
+
+248
+00:45:56.760 --> 00:46:04.640
+Bastián: Y si yo lo veo en el navegador más grande se entiende un poco mejor. Ahí está el post nuevo que creamos recién a mano Es simplemente crear una carpeta y crear un archivo Quarto.
+
+249
+00:46:05.090 --> 00:46:09.920
+Bastián: Ya yo siempre lo hago a mano. En realidad, de hecho, no sabía que existía esa función. New block Post.
+
+250
+00:46:10.480 --> 00:46:21.159
+Bastián: Ya. Pero antes de que sigamos complicándonos. Vamos a ver, sigamos viendo las diapositivas. Entonces, con estas 2 funciones. Con Quarto preview podemos ir viendo cómo está quedando nuestro sitio.
+
+251
+00:46:22.670 --> 00:46:28.359
+Bastián: Ya íbamos en esta diapositiva. En publicaciones ya
+
+252
+00:46:29.400 --> 00:46:36.649
+Bastián: creamos un post nuevo, ¿cierto? Todos, y todos pudieron, me imagino que están en el en el chat diciendo.
+
+253
+00:46:37.790 --> 00:46:40.669
+Bastián: Bacam, hay gente que está como ayudando en el blog. Muy bueno.
+
+254
+00:46:42.110 --> 00:46:48.859
+Bastián: Vimos que se crearon los posts nuevos, no es cierto. Y arriba de cada 1 de los posts tienen un pequeño como apartado
+
+255
+00:46:49.090 --> 00:46:57.120
+Bastián: separado por estos guiones. Aquí. Yo tengo abierto ya 2 Posts, 1 que se llama prueba que tiene como título prueba y el otro que tiene como título postmanual
+
+256
+00:46:57.310 --> 00:47:02.119
+Bastián: cualquiera. Esto, cualquiera de los posts que han creado puede servir para para hacer estas pruebas.
+
+257
+00:47:02.230 --> 00:47:14.900
+Bastián: Esto que aparece aquí arriba es como el bloque de configuración ya para cada una de las publicaciones y en esta y en esta configuración de las publicaciones ustedes van a poner el título la descripción, la fecha imágenes
+
+258
+00:47:14.900 --> 00:47:25.660
+Bastián: pueden poner autor, si es que quieren poner un autor que sea ustedes o que sea otra persona, si es que hacen un sitio para múltiples personas o una organización. Pueden poner categorías, por ejemplo.
+
+259
+00:47:26.080 --> 00:47:35.709
+Bastián: Y es interesante ver lo de las categorías. Son súper útiles. Porque, ¿qué significa que los posts tengan una categoría? Significa que, como estábamos viendo acá
+
+260
+00:47:36.190 --> 00:47:54.199
+Bastián: aparezcan aquí al lado derecho las distintas categorías. Entonces, si ustedes ponen, no sé pues acá hay una que dice: análisis, código y noticias. Por si alguien quiere ver solamente las noticias. Aprieta noticias y ve solamente los posts sobre noticias. Ustedes pueden hacer 1 que se llame. No sé po visualización. No sé por otro que se llame
+
+261
+00:47:54.200 --> 00:48:03.530
+Bastián: al alguna de sus disciplinas en específico, otro que se llame, así como personal, por ejemplo, y etcétera, pueden ir poniendo categorías útiles para que se agrupen sus publicaciones.
+
+262
+00:48:04.160 --> 00:48:07.130
+Bastián: Por ejemplo, habíamos visto
+
+263
+00:48:07.920 --> 00:48:20.509
+Bastián: en el Post de Nicolas que que todas sus publicaciones acá tienen unas categorías. Entonces, por ejemplo, si yo quiero saber sobre Quarto, voy a la categoría Quarto y veo todos los posts sobre Quarto que escribió Nicolás
+
+264
+00:48:20.740 --> 00:48:26.189
+Bastián: no es cierto. Para eso sirven las categorías para poder clasificar su información en su blog.
+
+265
+00:48:26.990 --> 00:48:33.229
+Bastián: Obviamente, siempre después pueden ir agregando. Volviendo a agregar categorías a publicaciones antiguas y cosas así. Siempre pueden ir editándolas ya.
+
+266
+00:48:35.550 --> 00:48:40.109
+Bastián: Y también, si ustedes suben una imagen a la carpeta van a poder ponerle una imagen al post
+
+267
+00:48:40.220 --> 00:48:53.830
+Bastián: poniendo Imax y el y la ruta a la imagen que en este caso, si vamos al blog que que tenemos creado y vamos a las publicaciones, hay en una en las 2 publicaciones que venían de prueba.
+
+268
+00:48:54.330 --> 00:49:02.860
+Bastián: Por ejemplo, esta que dice Welcome, vienen con una imagen, por ejemplo. Acá Se llama Thumbnail Punto. Jpg: Y si abrimos el post que viene de prueba.
+
+269
+00:49:03.230 --> 00:49:07.990
+Bastián: la pone la pone aquí en el inicio. Y al ponerla en el inicio, aparece como en el post.
+
+270
+00:49:08.020 --> 00:49:23.410
+Bastián: pero también ustedes pueden poner una imagen que no aparezca en el cuerpo del post. Entonces ahí lo hacen con Imax. Y pueden especificar cual de todas las imágenes que usan en una publicación aparezca como como el símbolo de de su publicación, por ejemplo, acá en el caso de este blog que estábamos viendo de prueba de Nicolas.
+
+271
+00:49:23.410 --> 00:49:32.030
+Bastián: e ella, probablemente estas imágenes que saca de carátula en las publicaciones. No aparecen estas imágenes en la en el texto del del post, pero ella las puso
+
+272
+00:49:32.030 --> 00:49:41.050
+Bastián: para que aparezcan en la lista, vieron que no aparece la imagen en el cuerpo del post. Pero si aparece acá en la lista de publicaciones, entonces para eso se vería el la
+
+273
+00:49:41.640 --> 00:49:43.160
+Bastián: el I M a X.
+
+274
+00:49:43.520 --> 00:49:57.930
+Bastián: Ya entonces, todas esas cositas son opcionales, pero podemos ir cambiándolas. Por ejemplo, yo podría ir ahora y a la publicación prueba a las Doc a la publicación, prueba. Yo le voy a poner categorys
+
+275
+00:49:58.130 --> 00:50:14.700
+Bastián: 2 puntos y categoris, 2 puntos. Puedo poner un guión y le voy a poner pruebas. Voy a decir que estos posts que estamos haciendo de pruebas tengan la categoría de pruebas. Entonces le pongo acá la categoría, pruebas a este archivo y el otro archivo que se llama postmanual. También le voy a poner lo mismo. Me le puedo copiar
+
+276
+00:50:14.990 --> 00:50:20.360
+Bastián: y ponérselo al otro archivo de postmanual, Así que tienen toda la categoría a pruebas.
+
+277
+00:50:20.490 --> 00:50:27.719
+Bastián: Y a este otro, que también creé que se llamaba bienvenida. También le voy a poner la categoría de pruebas, porque son todos pruebas.
+
+278
+00:50:28.010 --> 00:50:30.710
+Bastián: y ahora puedo ir a ver el sitio.
+
+279
+00:50:31.620 --> 00:50:34.620
+Bastián: puedo hacerle render a 1 de los posts.
+
+280
+00:50:34.750 --> 00:50:40.600
+Bastián: Y si agrando la publi el aviso, la previsualización.
+
+281
+00:50:41.930 --> 00:50:50.290
+Bastián: Ahí aparecen todas las publicaciones con la etiqueta. Pruebas, pruebas, pruebas. Pruebas. Entonces, si yo quisiera ver las pruebas, puedo ver todas las pruebas. No sé para eso. Sirven las categorías
+
+282
+00:50:51.110 --> 00:50:53.290
+Bastián: en nuestras en nuestras publicaciones
+
+283
+00:50:53.560 --> 00:51:09.430
+Bastián: y vieron que facilito entonces yo simplemente edito lo le lee este texto de arriba y le puedo agregar una categoría y después le pongo render a 1 de los archivos, Y el Quarto se da cuenta solito de que no cambió solamente un archivo, sino que cambiaron varios. Y, como que los actualiza y te muestra el blog actualizado.
+
+284
+00:51:12.810 --> 00:51:31.620
+Bastián: María pregunta algo importante que que que no lo dije porque me pareció lógico, o sea, no lógico como que es como de esperar en para nosotros, pero no es obvio. Y sí, es gratis. Todo todo esto es gratis. Y todo esto va a salir gratis por siempre. No nunca vamos a pagar ni un peso ni un dólar sentado. No sé qué dinero se usa en sus países Para
+
+285
+00:51:31.770 --> 00:51:35.270
+Bastián: tener este sitio. Todo nos va a salir gratis, ya
+
+286
+00:51:35.800 --> 00:51:38.380
+Bastián: y todo va a correr de manera gratuita.
+
+287
+00:51:40.010 --> 00:51:50.739
+Bastián: Entonces seguimos con las diapositivas. Pudieron hacer estas ediciones en sus publicaciones, pudieron, por ejemplo, de ponerle categorías a alguna de sus publicaciones para ver cómo cambia
+
+288
+00:51:52.740 --> 00:51:59.079
+Bastián: en el chat. Están preguntando cómo se ejecuta la página en el navegador. Y claro, cuando le aparece acá en el viewer
+
+289
+00:51:59.240 --> 00:52:00.380
+Bastián: la página.
+
+290
+00:52:00.700 --> 00:52:06.630
+Bastián: ¿qué hago yo para que la página aparezca en la red estudio, Yo puedo ponerle render a alguno de los posts.
+
+291
+00:52:06.890 --> 00:52:11.969
+Bastián: y en teoría, debiese aparecer el tiro en el viewer del r studio al blog.
+
+292
+00:52:12.390 --> 00:52:20.830
+Bastián: Si por alguna razón no aparece, ustedes pueden ejecutar Quartos 2 2 puntos. Quarto preview, como habíamos dicho: Quarto preview.
+
+293
+00:52:20.980 --> 00:52:23.840
+Bastián: y eso va a mostrar de nuevo una previsualización
+
+294
+00:52:25.330 --> 00:52:44.770
+Bastián: Pregunta alonso: Ha regalado algo súper importante, que es que cómo se ponen las categorías. Hay 2 formas de hacerlo, y se bien observador, porque nosotros hicimos categories, 2 puntos: espaciospacio y las categorías, pero creo que en los posts que vienen por defecto. Por ejemplo, se ve una manera distinta.
+
+295
+00:52:44.770 --> 00:52:54.579
+Bastián: Dos puntos y las pone entre corchetes es lo mismo. Es exactamente lo mismo son solamente 2 opciones de hacerlo. Entonces las categorías pueden ir para el lado o pueden ir para abajo.
+
+296
+00:52:55.160 --> 00:52:58.450
+Bastián: quizá para el lado. Es como más seguro, porque es como más fácil describi.
+
+297
+00:53:01.020 --> 00:53:07.470
+Bastián: Así que hay las personas que tenían dudas con la previsualización y
+
+298
+00:53:07.800 --> 00:53:13.330
+Bastián: pueden entender el contenido, el el la línea que pegué ahí en el chat, ya
+
+299
+00:53:13.570 --> 00:53:22.759
+Bastián: ojo que cuando cuando hacen, me me ha pasado a mí un par de veces cuando hacen el el Viewer y lo sacan, le aprietan el tercer botón para verlo en su navegador web para verlo más grande.
+
+300
+00:53:23.000 --> 00:53:27.099
+Bastián: Está todo bien, y todo bien, acá aparece mi blog y yo puedo navegar mi blog.
+
+301
+00:53:27.180 --> 00:53:36.299
+Bastián: Pero si yo voy al R. Y por alguna razón, cierro el Viewer, la página en mi navegador se va a echar a perder ente. Deberías echarse a perder.
+
+302
+00:53:36.310 --> 00:53:48.239
+Bastián: Mira justo. No se echó a perder, pero a veces, como que se muere la página. Y eso es porque hay que pedirle que lo puede salirse de nuevo, ya sea apretando render acá o poniéndole. Quarto preview.
+
+303
+00:53:48.650 --> 00:53:58.220
+Bastián: Ya la lo que pasa es que en términos técnicos, cuando pones Quarto preview como que hace un servidor, y cuando lo pones render hace otro distinto. Entonces, como son distintos, no se paga, 1 se aprende el otro ya.
+
+304
+00:54:00.210 --> 00:54:16.130
+Bastián: Si el render te genera un error, sería bueno que nos dejes el error que te aparece en la consola para ver cómo se arregla, porque puede ser que falte alguna cosita en el en la publicación o esté mal escrita alguna cosa. Por ejemplo, yo sé que, por ejemplo, si borro estas 3 líneas
+
+305
+00:54:16.130 --> 00:54:21.579
+Bastián: del de la configuración que aparecen arriba y le pongo render lo más probable es que me dé un error. Vieron ahí. Me dio un error al tiro
+
+306
+00:54:22.130 --> 00:54:30.009
+Bastián: porque le faltan las 3 líneas que cierran la configuración, la configuración. La configuración empieza con 3 líneas arriba y con 3 líneas con regiones abajo.
+
+307
+00:54:30.190 --> 00:54:43.369
+Bastián: Y ahora me dice: se espera que en el Jammel Front Matter, que es como la parte inicial de cada publicación em termine con 3 líneas. Entonces yo digo, Ah, ya. Bueno, le faltan las 3 líneas y ahora le pongo render y se arregla
+
+308
+00:54:51.830 --> 00:54:56.840
+Bastián: Alonso. Pregunta cómo se va a ver la página en un celular. La página de un celular se va a ver así
+
+309
+00:54:57.010 --> 00:55:06.419
+Bastián: como cuando ustedes vean acá en el R studio Bien, chiquitito va a ser exactamente así. Entonces se adapta a la pantalla del celular
+
+310
+00:55:06.630 --> 00:55:12.449
+Bastián: y debiese adap debiese adaptarse. No es cierto, cambian algunas cosas. Por ejemplo, el menú aparece hacia abajo.
+
+311
+00:55:12.620 --> 00:55:26.090
+Bastián: en vez de hacia el lado que, como se suele hacer en los celulares, tiene ser, tiene adaptación a las a los celulares, sigue la grabando en algún momento ahí se transforma en un sitio web de escritorio, y si los chicos se transforman como en un si sitio web de celular
+
+312
+00:55:26.310 --> 00:55:29.660
+Bastián: ya es responsivo, ya.
+
+313
+00:55:30.510 --> 00:55:35.790
+Bastián: de comer sobre ese aspec.
+
+314
+00:55:37.260 --> 00:55:43.739
+Bastián: Bueno, ahí. Karen muestra y aparentemente tiene 2 líneas al principio y debería tener 3,
+
+315
+00:55:44.540 --> 00:55:46.610
+Bastián: supongo. Ese debe ser el error.
+
+316
+00:55:48.500 --> 00:55:55.079
+Bastián: La le la configuración, tratan de copiarla de un de otro archivo para que siempre les salga igual, ya
+
+317
+00:55:55.980 --> 00:56:04.319
+Bastián: para que vayan verificando, porque a veces son como errores bien pequeñitos, por ejemplo. Creo que también si escribimos las categorías, no le ponemos el espacio, quizá también se enoje.
+
+318
+00:56:04.790 --> 00:56:14.690
+Bastián: no no se enojó, pero pero puede ser que pasen cosas así. Por ejemplo, si me falta el el 2 puntos, también sale un error distinto. Acá me faltó ponerle 2 puntos.
+
+319
+00:56:15.330 --> 00:56:22.319
+Bastián: También hay ciertas cosas que a veces tienen que ir entre comillas. También puede ser que ponerle comillas arregles ciertos problemas ya
+
+320
+00:56:23.050 --> 00:56:32.429
+Bastián: vieron ahí. Se me apagó el el servidor porque le puse preview en otro lado. Ahí le puse, preview, y vamos a ver el en el navegador y vamos a seguir con las diapositivas.
+
+321
+00:56:32.800 --> 00:56:36.140
+Bastián: ya siempre pueden volver a la a las diapositivas para guiarse.
+
+322
+00:56:36.600 --> 00:56:40.569
+Bastián: Entonces habíamos dicho que los posts se escriben con magdan, ¿cierto?
+
+323
+00:56:40.780 --> 00:56:56.960
+Bastián: También podemos escribir con H. T, M. L, directamente en las publicaciones y con bloques de código. D, R ¿Y qué Smartdown Mardown es una forma de escribir texto web? H, T, M L, Pero con símbolos. Ya entonces es más fácil de escribir.
+
+324
+00:56:57.220 --> 00:57:10.410
+Bastián: Vamos a tomar una acá está como la como una guía muy breve de cosas. Y cómo se escriben con magdan en las diapositivas, pero vamos a hacer una prueba muy breve y espero que ustedes también la hagan en el en su propio blog, ya
+
+325
+00:57:10.700 --> 00:57:23.229
+Bastián: aquí debajo de las 3 de los 3 guiones. Yo puedo empezar a escribir lo que yo quiera de mi publicación. Entonces yo voy a ponerle 2 gatos porque va a ser un subtítulo. Le voy a poner este, o sea.
+
+326
+00:57:23.580 --> 00:57:25.089
+Bastián: hola, le voy a poner. Hola.
+
+327
+00:57:25.660 --> 00:57:30.859
+Bastián: ya y ves abajo. Escribir. Este es mi primer postt.
+
+328
+00:57:31.570 --> 00:57:33.220
+Bastián: ya. Y si le pongo render.
+
+329
+00:57:34.250 --> 00:57:36.930
+Bastián: ahí aparece el contenido. Hola, este es mi primer post.
+
+330
+00:57:37.120 --> 00:57:40.509
+Bastián: Se fijan que adquiere un adquiere un estilo automáticamente.
+
+331
+00:57:41.170 --> 00:57:47.509
+Bastián: Entonces aquí yo puedo empezar a agregarle ciertas cosas que tienen que ver con el Markdown.
+
+332
+00:57:47.510 --> 00:58:02.749
+Bastián: Por ejemplo, las letras negritas se hacen poniéndole 2 asteriscos a a las palabras que yo quiero poner en negrita. Entonces, si yo quiero poner mi primer post en negritas, le pongo asterisco, asterisco y al final le pongo asterisco, asterisco. Y ahí cambia de color.
+
+333
+00:58:02.840 --> 00:58:06.790
+Bastián: Y si le pongo render, y ahí va a estar el cambio. Este es mi primer post.
+
+334
+00:58:07.410 --> 00:58:18.290
+Bastián: Los saltos de párrafos se hacen con una lin dejando una línea en blanco. Entonces voy a poner. No sé por aquí vamos a subir todo lo que queramos con respecto a
+
+335
+00:58:19.180 --> 00:58:21.439
+Bastián: a datos por poner cualquier cosa.
+
+336
+00:58:21.880 --> 00:58:30.910
+Bastián: Entonces, si yo le pongo render, se ve el la actualización le está resultando como esta forma de ir escribiendo cosas y poniendo render para ir viendo el cambio.
+
+337
+00:58:31.310 --> 00:58:44.980
+Bastián: Ese es como el flujo, más o menos, no es cierto. También hay una opción que dice Render On Save, que si ustedes la activan cada vez que ustedes guarden, el archivo se va a actualizar solo el blog. Entonces voy a poner, por ejemplo, la palabra todo en entre en itálicas.
+
+338
+00:58:45.230 --> 00:58:52.390
+Bastián: Entonces, para poder itálica. Yo le pongo un guión bajo al principio y al final de la palabra, o sí, un guión bajo.
+
+339
+00:58:52.990 --> 00:59:02.609
+Bastián: y ahí apareció en el todo aparece de itálicas. ¿no es cierto? Y si yo quiero poner un subtítulo, un subtítulo, le voy a poner un 2, 3. Le voy a poner
+
+340
+00:59:02.880 --> 00:59:09.360
+Bastián: contenidos. Por ejemplo, muchas cosas lindas, referencias
+
+341
+00:59:09.840 --> 00:59:14.950
+Bastián: llegan las referencias. Vamos a poner la diapositiva.
+
+342
+00:59:15.920 --> 00:59:22.189
+Bastián: No es cierto. Yo voy a guardar. Y como puse render Save solamente con guardar, ya se actualizó el contenido del blog.
+
+343
+00:59:23.260 --> 00:59:26.509
+Bastián: Y si yo veo el blog grande en la página web.
+
+344
+00:59:29.980 --> 00:59:35.309
+Bastián: No, no, No sé por qué no apareció. Pero ahí vamos a ver porque no apareció. Uno puede hacer que aparezca un
+
+345
+00:59:36.110 --> 00:59:41.950
+Bastián: un menú aquí al lado que te muestra los subtítulos. Después lo vamos a configurar para que aparezca
+
+346
+00:59:42.680 --> 00:59:47.189
+Bastián: franco. Dice para las fórmulas matemáticas. Se puede hacer en formato látex. Es verdad si se puede
+
+347
+00:59:47.440 --> 00:59:51.150
+Bastián: para que 1 pueda hacer escribir fórmulas y cosas así.
+
+348
+00:59:51.340 --> 00:59:56.210
+Bastián: Aquí puse un link súper feo, pero los links en el magdon se escriben así.
+
+349
+00:59:56.770 --> 01:00:01.700
+Bastián: Yo abro un corchete y escribo, por ejemplo, diapositivas.
+
+350
+01:00:02.990 --> 01:00:08.800
+Bastián: Doy positiva del tutorial, Cierro el corchete y después. Entre paréntesis, inmediatamente pongo el link.
+
+351
+01:00:09.790 --> 01:00:18.619
+Bastián: Entonces se pone el texto del link entre corchetes y el link. Entre paréntesis, Entonces, si yo ejecuto eso, ahí aparece el link formateado.
+
+352
+01:00:19.560 --> 01:00:21.670
+Bastián: el tamaño de la letra y todo eso
+
+353
+01:00:21.950 --> 01:00:26.060
+Bastián: eso es interesante. La pregunta que hace Jorge Valenzuela pregunta cómo se cambia el tamaño de la letra.
+
+354
+01:00:26.930 --> 01:00:31.149
+Bastián: En teoría, en el mardown, el tamaño de letra no se no se modifica
+
+355
+01:00:31.800 --> 01:00:43.820
+Bastián: ya, porque con los gatos yo puedo poner títulos, pero poner un título no es lo mismo que modificar la letra. ¿por qué? Porque la lógica del magdon es la misma lógica del látex y que tú, por un lado escribes
+
+356
+01:00:43.950 --> 01:01:02.770
+Bastián: el contenido y por otro lado, das como el estilo a las cosas. Entonces yo, después más adelante voy a decir: todas las letras son más grandes o más chicas, o o los títulos van a ser rojos. Y no sé, pues los subtítulos van a ser morados, y ahí puedo configurar. Entonces el estilo, la apariencia va a ser configurar un lugar distinto. Acá. Solamente nos vamos a enfocar en
+
+357
+01:01:02.770 --> 01:01:04.320
+Bastián: el texto.
+
+358
+01:01:04.320 --> 01:01:14.630
+Bastián: ¿cierto? Pero ahora, dicho eso, acá yo puedo poner en H. T. Ml: Lo que yo quiera, o sea, técnicamente, yo yo sí puedo hacer que hayan letras más grandes o más chicas, pero ahí ya tendríamos que entrar a buscar
+
+359
+01:01:14.630 --> 01:01:22.450
+Bastián: cómo se cómo se modifican las las los textos con H, T, M. L y con Css y ya, pero creo que se hace así:
+
+360
+01:01:26.010 --> 01:01:29.210
+Bastián: size. No sé por 200 por 100
+
+361
+01:01:29.810 --> 01:01:34.510
+Bastián: obvio que no me va a funcionar, Pero el programa no no funcionó.
+
+362
+01:01:34.860 --> 01:01:36.379
+Bastián: porque es con 2 puntos.
+
+363
+01:01:38.910 --> 01:01:54.680
+Bastián: Hay muchas cosas lindas. No es cierto, pero esto ya un poquito más complejo. La lógica es que después lo manejemos en otro lado, pero se lo vamos a ver un poco más adelante, ya igual. Lo voy a dejar ahí en el en el post, porque igual es chistoso. Voy a dejarlo con letra no tan grande. Pero voy a ponerlo ahí
+
+364
+01:01:57.200 --> 01:01:57.950
+Bastián: ya.
+
+365
+01:01:58.280 --> 01:02:09.220
+Bastián: Entonces ya estamos creando nuestra primera publicación en nuestro blog, cierto. Y hay un montón de otros estilos que podemos ir aplicando para que nuestras publicaciones tengan todo lo que nosotros necesitamos
+
+366
+01:02:11.050 --> 01:02:11.920
+Bastián: ya.
+
+367
+01:02:12.410 --> 01:02:17.880
+Bastián: ¿Qué es lo que nos interesa también es que nuestras publicaciones tengan código código de R. No es cierto.
+
+368
+01:02:17.920 --> 01:02:22.369
+Bastián: Y para que tengan código D, R. Hay que poner un bloque o chank
+
+369
+01:02:22.410 --> 01:02:34.419
+Bastián: que acá. Aparece la diapositiva. Son 3 Backtics o comillas invertidas. Y entre corchetes. Una R es como difícil describir. Así que leer estudio. Tiene un botón para crear
+
+370
+01:02:34.420 --> 01:02:43.169
+Bastián: para crear estos bloques de código. Entonces yo acá. Hago un espacio y acá aprieto, el botón que aparece acá con una C,
+
+371
+01:02:43.250 --> 01:02:50.270
+Bastián: que es para agregar un bloque de código, un Chungk en inglés y aprieto. R. Y ahí te inserto al tiro un bloque de código.
+
+372
+01:02:51.410 --> 01:02:58.969
+Bastián: ¿y ¿cuál es la gracia de este bloque de código? Es que yo aquí adentro, yo puedo poner R. Cualquier programa, o sea, cualquier código de R que yo quiera.
+
+373
+01:02:58.970 --> 01:03:11.850
+Bastián: Puedo poner Library Digiplot Library, diployer, cargar un archivo, lo que nosotros queramos. Pero por mientras vamos a hacer simplemente una prueba, le vamos a poner 1 más, 1 o su suma favorita. Mi suma favorita es 2 más 2
+
+374
+01:03:12.380 --> 01:03:13.410
+Bastián: ya.
+
+375
+01:03:13.860 --> 01:03:22.669
+Bastián: Y acá tenemos 2 cosas que pueden hacer. Una cosa es ejecutar este este bloque de código para ir probando y te aparece como la respuesta al tiro, como si ustedes estuvieran trabajando con R,
+
+376
+01:03:22.790 --> 01:03:30.489
+Bastián: y pueden ir programando directamente acá pues pueden hacer un bloque que diga 2 más 2 y acá podemos hacer otro bloque que diga 4 por 2
+
+377
+01:03:30.810 --> 01:03:45.970
+Bastián: y le ponemos acá el play y se ejecuta ya. Esto es igual que el que el que el Jupyter o el Google Colab ya. Pero la gracia es que cuando ejecutemos el post le ponemos render.
+
+378
+01:03:46.560 --> 01:03:59.550
+Bastián: también va a aparecer en el post. Aparece 2 más 2, 4 y 4 por 2, 8. No es cierto. Aparecen los re el código y el resultado, el código. Y el resultado. Entonces ahí podemos nosotros escribir cualquier cosa entre medias a
+
+379
+01:03:59.740 --> 01:04:02.700
+Bastián: acá vamos chuta. Me equivoqué.
+
+380
+01:04:06.720 --> 01:04:08.410
+Bastián: Vamos a hacer una multiplicación.
+
+381
+01:04:09.490 --> 01:04:18.799
+Bastián: No es cierto. Entonces, yo pongo texto entremedio del código. Vamos a hacer una multiplicación. Y acá antes le voy a poner. Primero, vamos a hacer una suma.
+
+382
+01:04:20.130 --> 01:04:31.099
+Bastián: le pongo ahí negritas con las con la asterisco. Y podemos ir probando entonces. Y lo vamos ejecutando, poniéndole render, y vemos que aparece el código y el resultado, el código y el resultado.
+
+383
+01:04:32.020 --> 01:04:35.340
+Bastián: Y si quisiéramos hacer un bloque que solamente muestre el resultado.
+
+384
+01:04:36.860 --> 01:04:40.570
+Bastián: vamos a poner ahora un bloque invisible.
+
+385
+01:04:41.280 --> 01:04:47.690
+Bastián: No es cierto. Ponemos Acá para crear un bloque y ponemos, por ejemplo, paste
+
+386
+01:04:48.160 --> 01:04:50.670
+Bastián: para acabar el contexto. No es cierto invisible
+
+387
+01:04:51.730 --> 01:05:01.239
+Bastián: o print, podría haber sido da lo mismo. Y acá. Antes podemos poner una opción a este bloque. Las opciones aparecen acá en las diapositivas empiezan con un gato y una barra.
+
+388
+01:05:01.470 --> 01:05:09.939
+Bastián: y, por ejemplo, la que necesitamos para que no aparezca el código. Pero si el resultado se llama sin eco eco falso. Entonces yo voy a copiar esta opción
+
+389
+01:05:10.310 --> 01:05:12.409
+Bastián: y le voy a pegar ahí. Entonces Ahora.
+
+390
+01:05:13.490 --> 01:05:22.010
+Bastián: en este post va a aparecer solamente el resultado, pero no va a aparecer el código igual es interesante. A veces queremos mostrar solamente el gráfico, pero no queremos mostrar el gráfico.
+
+391
+01:05:22.360 --> 01:05:26.890
+Bastián: o sea, el código que hizo el gráfico, sino que solamente queremos mostrar el resultado también es una opción
+
+392
+01:05:27.040 --> 01:05:27.910
+Bastián: ya.
+
+393
+01:05:28.750 --> 01:05:33.170
+Bastián: Y también podemos querer lo inverso. Podemos mostrar solamente el código
+
+394
+01:05:34.070 --> 01:05:37.130
+Bastián: y podemos hacer entonces un bloque que diga
+
+395
+01:05:37.620 --> 01:05:47.219
+Bastián: 3 Plus 2 y le ponemos la opción eval de evaluar falso eval falso. Y para que eso significa que este bloque no se va a evaluar.
+
+396
+01:05:47.650 --> 01:05:51.910
+Bastián: Entonces ahí aparece solamente el código, pero no aparece el resultado. Por ejemplo, si quieren hacer un ejemplo.
+
+397
+01:05:52.440 --> 01:05:56.359
+Bastián: ya esas son como las opciones más básicas de los bloques de programación.
+
+398
+01:05:56.940 --> 01:05:58.249
+Bastián: Y hay algo.
+
+399
+01:05:58.250 --> 01:05:59.260
+Carolina Morales: Pregunta.
+
+400
+01:05:59.460 --> 01:06:00.370
+Bastián: Sí oye.
+
+401
+01:06:00.850 --> 01:06:18.660
+Carolina Morales: Y sonrí como por interrumpir. Pero cuando para pa para hacer cualquier tipo, como de Chung, o colocar cualquier tipo de código Suponte, cualquier paquete. Los Library los tenemos que incluir en los Chunk o tienen que estar en alguna parte como del Environment del Quarto.
+
+402
+01:06:19.230 --> 01:06:33.990
+Bastián: Todos los los bloques de código son compartidos. Entonces, si yo creo un objeto, acá voy a poder usar ese objeto abajo. También entonces yo podría poner, por ejemplo, un bloque al principio que cargue todos los paquetes.
+
+403
+01:06:35.230 --> 01:06:45.009
+Bastián: No es cierto y y van a estar disponibles para todos los bloques. Eso ya es gusto tuyo. No es cierto. Hay gente que empieza como cargando los paquetes y otra gente los carga a medida que los usa. Es decisión tuya.
+
+404
+01:06:46.060 --> 01:06:46.760
+Carolina Morales: Okay.
+
+405
+01:06:46.960 --> 01:06:47.790
+Carolina Morales: Gracias.
+
+406
+01:06:48.060 --> 01:06:59.200
+Bastián: Hagan preguntas no más. No hay ningún problema. Y acá vamos a ver una tontera que a mí me carga, que es que cuando 1 carga di player, aparecen estos mensajes, ¿cierto? Siempre aparecen estos mensajes, pero a mí no me gusta que aparezcan en el blog.
+
+407
+01:06:59.350 --> 01:07:06.659
+Bastián: entonces hay una configuración que es para que no aparezcan los mensajes que es Messech false.
+
+408
+01:07:06.760 --> 01:07:09.259
+Bastián: Entonces ahí, si yo lo ejecuto
+
+409
+01:07:10.540 --> 01:07:27.639
+Bastián: se carga el displayer, pero no dice ninguno de los mensajes feos que tira displayer en general, o también le pueden poner warning falls para que no aparezcan los Warning, por ejemplo, para que se vea un poco más limpio el código que están haciendo. Pero claro, Si yo cargo a Cadi Player, yo puedo usar Displayer aquí abajo y todo, pues no es cierto. No hay ningún problema con eso.
+
+410
+01:07:28.040 --> 01:07:33.599
+Bastián: Lo único que tienen que considerar es que cuando le ponen render a un post de su blog.
+
+411
+01:07:34.050 --> 01:07:47.649
+Bastián: significa que se va a ejecutar todo ese código, entonces tiene que ser un como un análisis de autoconten. No No pueden usar una función si no la cargaron igual como que es como su propio entorno de r aislado. Cada publicación es un entorno de r aislado
+
+412
+01:07:50.320 --> 01:08:04.829
+Bastián: alonso. Pregunta eso. Y alonso tiene razón si se pueden poner las configuraciones así, pero es un poquito distinto. Yo ya no me acuerdo cómo hacerlo, Así que no te podría aconsejar al respecto, pero entiendo que sí se puede. Creo que es con igual, y creo que tiene que ser en mayúsculas.
+
+413
+01:08:05.940 --> 01:08:18.109
+Bastián: Bueno, acá en la diapositiva. Me equivoqué. Y me me faltó cerrar un un asterisco. Así que el el en la negrita del magdale no me quedó bien. Si se fijan, acá, le puse asterisco, asterisco y acá, le puse un puro asterisco, y debería haber puesto. Do
+
+414
+01:08:18.109 --> 01:08:30.879
+Bastián: ese tipo de problemas. Vamos a tener de repente y acá sale algo súper interesante que ustedes pueden, por ejemplo, hacer un cálculo en un Post sobre que me ponga me meta el tiro como en el código de R. Pero este es un grupo de usuarios de R
+
+415
+01:08:31.420 --> 01:08:33.589
+Bastián: y, por ejemplo, yo podría ser así como
+
+416
+01:08:33.859 --> 01:08:42.189
+Bastián: un un bloque de código que diga suma y hagamos una suma, y ponemos 9 más. Uno o le puse por 9 más 1.
+
+417
+01:08:43.630 --> 01:08:50.600
+Bastián: Y después yo puedo poner acá a escribir el resultado de esta operación increíble es.
+
+418
+01:08:51.680 --> 01:08:54.790
+Bastián: Y en vez de que yo escriba cada 10 como un plebeyo
+
+419
+01:08:54.890 --> 01:09:01.199
+Bastián: o como o como una persona que escribe manualmente sus análisis, lo cual es muy malo. Yo puedo poner acá
+
+420
+01:09:01.420 --> 01:09:08.729
+Bastián: un Bastic, una comilla invertida que al menos mi teclado se hace con options. Y la la tecla que está al lado el enter. También pueden copiarla. Acá
+
+421
+01:09:09.010 --> 01:09:10.110
+Bastián: y le pongo
+
+422
+01:09:10.290 --> 01:09:29.039
+Bastián: corchete r corchete y acá va a poner suma para que me cargue el objeto que viene de acá. Y ahora, si yo ejecuto esto, me va a decir, el resultado de esta operación Increíble. Es 10, Pero este 10 ahora viene de el resultado de suma. Po Entonces, acá si yo le pongo otro este número y le pongo render.
+
+423
+01:09:29.160 --> 01:09:32.140
+Bastián: va a decir, el resultado de estas operaciones increíbles. Es 12.
+
+424
+01:09:32.830 --> 01:09:49.759
+Bastián: Ya me salté el número chistoso. Entonces le puse erre suma, y ahí 1 lo puede poner, o acá 1 puede poner R, y la operación la operación misma. Entonces 1 puede combinar el código que haga con su texto. Entonces esto es súper interesante porque si usted hace un análisis y, por ejemplo, dice, no sé por
+
+425
+01:09:49.760 --> 01:09:52.939
+Bastián: el promedio del valor es tanto
+
+426
+01:09:53.040 --> 01:10:06.520
+Bastián: cosa que ese promedio venga exactamente esos datos. Y si ustedes cambian los datos, el texto se actualice, pues es súper poderoso. Igual. De hecho, pueden usarlo para que se redacten partes de los párrafos en estos bloques y le pongan, por ejemplo, no sé por
+
+427
+01:10:06.570 --> 01:10:15.180
+Bastián: la correlación es muy alta o muy baja, dependiendo del valor y pone hacen que el párrafo se complete con con el resultado que viene de antes.
+
+428
+01:10:15.670 --> 01:10:19.090
+Bastián: Sí, Ya están burlándose de mí en el chat.
+
+429
+01:10:19.790 --> 01:10:22.280
+Bastián: Está bien, está bien, no hay que ser plebeyos.
+
+430
+01:10:22.700 --> 01:10:27.660
+Bastián: hay que ser programadoras y programadores. Ya esto ya lo habíamos visto que era lo de construir el sitio
+
+431
+01:10:30.340 --> 01:10:46.380
+Bastián: ahora mismo. Ya vimos como lo básico de cómo se hacen los posts en nuestro blog. ¿no es cierto. Ya cachamos que tenemos nuestra estructura básica y podemos ir creando nuevas publicaciones y poniéndole contenido. No es cierto. Acá En el de bienvenida. Apareció la el primer párrafo. No es cierto que hice este mi primer post.
+
+432
+01:10:46.380 --> 01:10:55.939
+Bastián: Los Los blogs aparecen siempre como unas primeras líneas de escritura al principio, que son como que coinciden con las primeras que ustedes escribieron en estos otros blog posts que están vacíos
+
+433
+01:10:55.980 --> 01:10:59.510
+Bastián: no dicen nada, entonces no aparece nada.
+
+434
+01:11:00.080 --> 01:11:06.449
+Bastián: Lo bueno es que si ustedes navegan por el blog por ejemplo, y acá, encuentran este post que se llama postmanual. Y yo lo aprieto.
+
+435
+01:11:07.180 --> 01:11:18.619
+Bastián: acá me aparece el botón edit. Y si yo lo puedo editar el tiro, si lo pongo edit, me abre al tiro, el script y yo lo puedo evitar. Y le voy a poner. Acá Este fue un ejemplo de una publicación creada a mano.
+
+436
+01:11:19.160 --> 01:11:20.789
+Bastián: No es cierto, y puedo escribir eso.
+
+437
+01:11:20.970 --> 01:11:30.379
+Bastián: Y si le pongo eso, y la actualizo. Y ahora, en mi blog va a aparecer con ese texto al principio no es ¿cierto? Entonces yo puedo ir como navegando en mi blog y arreglándolo el tiro, por ejemplo, prueba.
+
+438
+01:11:30.790 --> 01:11:38.419
+Bastián: Le pongo edit y le pongo acá. Este fue el verdadero primer post, pero no tiene nada.
+
+439
+01:11:40.270 --> 01:11:41.480
+Bastián: y le pongo render.
+
+440
+01:11:42.360 --> 01:11:47.660
+Bastián: Y ahí voy a como actualizando, voy mirando mi blog y lo voy editando al mismo tiempo. No es cierto.
+
+441
+01:11:48.010 --> 01:11:50.619
+Bastián: Y ahí están los otros 2 posts que venían por defecto.
+
+442
+01:11:51.460 --> 01:11:55.519
+Bastián: se entiende, ¿cierto? Lo están. Lo están logrando. ¿hay alguien que no lo esté logrando?
+
+443
+01:11:57.670 --> 01:12:01.079
+Bastián: ¿hay alguien que sí lo esté logrando y quiera comentar que lo esté logrando
+
+444
+01:12:04.810 --> 01:12:10.190
+Bastián: Carolina. Lo estás logrando. Me interesa personalmente que lo hagas.
+
+445
+01:12:11.490 --> 01:12:13.890
+Carolina Morales: Soy yo Carolina, o hay otra Carolina.
+
+446
+01:12:13.890 --> 01:12:15.270
+Bastián: Tú eres Carolina. Pues.
+
+447
+01:12:15.270 --> 01:12:21.940
+Carolina Morales: ¡ay, ya sí es que no sabía. Hay muchas personas entonces, y me estaba hablando a mí. El otro Carolina Sí, Sí, lo estoy logrando.
+
+448
+01:12:22.410 --> 01:12:23.320
+Bastián: Bueno.
+
+449
+01:12:23.320 --> 01:12:32.029
+Carolina Morales: Estaba concentrada también en leer como el chat, porque sé que no me han puesto muchas cosas, pero agradezco que también que todos estén respondiendo en el chat. Así que muchas gracias.
+
+450
+01:12:32.790 --> 01:12:35.319
+Bastián: Yo no veo. He ido en el Viewer
+
+451
+01:12:35.600 --> 01:12:38.339
+Bastián: interesante que no veas Edit en el Viewer.
+
+452
+01:12:38.610 --> 01:12:53.100
+Carolina Morales: A mí lo que me pasa, de hecho, a mí es como curioso, porque alguien había preguntado como como se saca hacía como una pre una pestaña del finder. Yo nunca he podido ver en el Viewer la visualización.
+
+453
+01:12:53.210 --> 01:12:58.260
+Carolina Morales: A mí se me tiró inmediatamente como en el finder en una página externa.
+
+454
+01:12:58.260 --> 01:13:00.760
+Bastián: Mhm: Sí, es porque Acá en render.
+
+455
+01:13:01.060 --> 01:13:06.329
+Bastián: dice: hay una opción al lado que dice previsualizar en el panel o en una ventana o en.
+
+456
+01:13:06.330 --> 01:13:07.140
+Carolina Morales: Claro que.
+
+457
+01:13:07.860 --> 01:13:09.399
+Bastián: Creo que es esta la opción.
+
+458
+01:13:09.800 --> 01:13:13.330
+Bastián: Y creo que casi tú le pones una ventana. Siempre te va a aparecer como una ventana.
+
+459
+01:13:13.660 --> 01:13:14.580
+Bastián: Sí.
+
+460
+01:13:14.860 --> 01:13:16.370
+Carolina Morales: Es más bonito ver una pantalla.
+
+461
+01:13:16.730 --> 01:13:18.840
+Bastián: Creo sí. Ahí apareció en una ventana.
+
+462
+01:13:19.030 --> 01:13:20.480
+Bastián: Va a ir.
+
+463
+01:13:21.200 --> 01:13:31.800
+Carolina Morales: Perdón. Nos han preguntado mucho si vamos a subir como la grabación. Yo he estado respondiendo de que se va a subir a nuestras redes sociales, a nuestra página de usuarios de
+
+464
+01:13:31.920 --> 01:13:35.930
+Carolina Morales: R para que estén atentos después.
+
+465
+01:13:36.520 --> 01:13:37.170
+Bastián: Sí.
+
+466
+01:13:37.440 --> 01:13:51.449
+Bastián: Alex Navarro dice: yo no veo Edit en el vieuever, y tiene toda la razón. Eso es porque yo les enseño cosas que recién aprendí y no me di cuenta si ustedes ponen Quarto preview para previsualizar su sitio.
+
+467
+01:13:51.570 --> 01:13:58.760
+Bastián: que es válido y está bien. Van a poder visualizar su sitio, pero no les aparecen esa opción. Esa opción del
+
+468
+01:13:58.980 --> 01:14:08.029
+Bastián: de let y ti cositas ya cierran, la pueden cerrar la V, la visualización con la X Roja que aparece ahí. Pero si usted le ponen render a 1 de los posts
+
+469
+01:14:08.700 --> 01:14:14.150
+Bastián: debiese hab también previsualizarse el sitio cuando le ponen render a cualquiera de los posts.
+
+470
+01:14:14.430 --> 01:14:16.709
+Bastián: y ahí sí les va a aparecer el edito
+
+471
+01:14:17.110 --> 01:14:22.450
+Bastián: ya. Entonces quizás les recomiendo mejor utilizar el botoncito celeste del render para poder ver el post
+
+472
+01:14:22.590 --> 01:14:24.229
+Bastián: o cualquiera de los posts.
+
+473
+01:14:25.370 --> 01:14:39.080
+Bastián: Y si tienen problemas con eso, porque creo que a mí me ha pasado eso. Vayan como al Index del blog al primer post y y pónganle render a ese a mí, a mí cuando he tenido problemas con eso. Si le pongo render a este post.
+
+474
+01:14:39.690 --> 01:14:44.410
+Bastián: se me No se me echa a perder, me echa, se me echa a perder el bloque más. No me aparece nada.
+
+475
+01:14:44.650 --> 01:14:50.129
+Bastián: ¿cómo era que se arreglaba eso, voy a algún post como bienvenida y le ponemos render.
+
+476
+01:14:51.050 --> 01:15:07.369
+Bastián: Y ahí me aparece el el blog completo. Ya sí, eso es lo que les tengo que recomendar. Entonces vayan a una de sus publicaciones y la publicación Le ponen render, y ahí el Quarto se va a dar cuenta, ¿Va a decir? Ah, ya tengo que crear el blog para poder mostrarle el el post. Tengo que crear todo el blog. Así que ahí crea el blog de nuevo. Y lo pueden ver ya
+
+477
+01:15:09.270 --> 01:15:25.620
+Bastián: muy buena observación dice: Tomás exacto. Para poner una imagen en un post, tiene que estar en la misma carpeta del post, porque los las publicaciones van a encontrar lo que tienen al lado. Entonces yo quiero ponerle una publicación, una imagen a este a esta publicación.
+
+478
+01:15:26.030 --> 01:15:34.449
+Bastián: Yo voy tengo que ponerla en la misma carpeta. Por ejemplo, vamos a buscar una foto de un mapache lindo, no mapache B. B.
+
+479
+01:15:35.390 --> 01:15:36.260
+Bastián: Joder.
+
+480
+01:15:38.330 --> 01:15:41.199
+Bastián: Ay ¡Qué bonito! ¿cuál es más lindo?
+
+481
+01:15:45.220 --> 01:15:47.950
+Bastián: Me voy a tomar mi tiempo ya para elegir una foto linda.
+
+482
+01:15:48.510 --> 01:15:52.880
+Bastián: Este me gustó ya aquí abajo, en el link, voy a bajar la foto
+
+483
+01:15:53.290 --> 01:16:10.080
+Bastián: y la voy a poner. Acá ¿No es cierto. Acá Tengo mis posts. Yo voy a. Quiero ponerla en la imagen en el post de bienvenida. Entonces abro la carpeta de bienvenida. Y tengo que meter la imagen adentro de esa carpeta. Les recomiendo apretar acá el icono de engranaje y ponerle mostrar carpeta en nueva ventana.
+
+484
+01:16:10.550 --> 01:16:14.869
+Bastián: Y a mí pucha se me abrió en el en el en la otra pantalla. Déjenme mover la ventana
+
+485
+01:16:18.180 --> 01:16:22.460
+Bastián: y acá se me abrió una carpeta donde miento.
+
+486
+01:16:22.750 --> 01:16:24.170
+Bastián: Ahora, sí lo voy a hacer. Bien.
+
+487
+01:16:24.370 --> 01:16:27.310
+Bastián: Le pongo Acá a abrir carpeta en nueva ventana.
+
+488
+01:16:31.280 --> 01:16:32.750
+Bastián: Ay, no me está saliendo bien esto
+
+489
+01:16:33.300 --> 01:16:39.509
+Bastián: esto de usar 2 pantallas. Y ahí, si me apareció la la carpeta. Y ahora yo puedo meter acá la imagen.
+
+490
+01:16:39.830 --> 01:16:52.380
+Bastián: Le voy a poner una una un nombre mejor. Le voy a poner mapache, punto. J: P: G: Y ahí está la imagen. ¿no es cierto dentro de la carpeta. Si yo voy a el R, estudio, ahí está la imagen. Y para poner la imagen, yo le pongo
+
+491
+01:16:53.560 --> 01:16:55.549
+Bastián: un es una exclamación.
+
+492
+01:16:55.840 --> 01:17:06.290
+Bastián: 2 corchetes y un paréntesis. Así se hace el lema, pero no me pregunten por qué y acá le ponen el nombre, la imagen mapache. Punto. Jpg: Ustedes pueden poner el animal que ustedes quieran, yo
+
+493
+01:17:06.490 --> 01:17:08.170
+Bastián: ojalá pongan 1 divertido.
+
+494
+01:17:09.800 --> 01:17:14.639
+Bastián: Y ahí aparece la imagen en el post. No es cierto. Ahí aparece la imagen del mapache.
+
+495
+01:17:14.890 --> 01:17:18.970
+Bastián: Y creo que si vamos al blog, va a aparecer, también apareció una imagen.
+
+496
+01:17:19.090 --> 01:17:20.869
+Bastián: Ahí aparece
+
+497
+01:17:21.610 --> 01:17:31.079
+Bastián: ya. Y si lo vemos en grande, ahí aparece la imagen en la publicación. Ahí después, ustedes tienen que editarla para que sea más cuadradita para que no sea tan grande y todo eso, pero así lo vamos a dejar por mí.
+
+498
+01:17:32.380 --> 01:17:34.249
+Bastián: Ya sigamos con las diapositivas.
+
+499
+01:17:35.730 --> 01:17:43.260
+Bastián: entonces espero que tengan un una, un blog funcionando, que puedan verlo y que puedan
+
+500
+01:17:43.580 --> 01:18:01.929
+Bastián: y que puedan valentina. Pregunta dice que solamente puede verlo Con Quarto preview claro: Recuerda ponerle render a un post para que aparezca el blog en el Viewer, o si no revisa la opción que aparece acá al lado del render aparece un engranaje y Pónganle preview enviewer Pain Paint. No sé cómo se dice eso. Panel.
+
+501
+01:18:02.070 --> 01:18:05.149
+Bastián: Ya fíjense que está seleccionado eso
+
+502
+01:18:06.660 --> 01:18:16.180
+Bastián: ya cómo vamos a personalizar el sitio. Hay varias formas de personalizar el sitio, y todas se hacen en el Quarto punto y ml, que es la configuración.
+
+503
+01:18:16.540 --> 01:18:26.630
+Bastián: Yo les recomiendo entonces que hagan una configuración del sitio como más o menos bonita y y y listo, o sea, después, cuando hagan publicaciones, van a adquirir esa visualización y hacer todo más fácil desde ahí.
+
+504
+01:18:27.090 --> 01:18:29.399
+Bastián: Lo primero que podemos hacer es poner un tema.
+
+505
+01:18:29.650 --> 01:18:33.249
+Bastián: y acá tenemos en las diapositivas la lista de temas.
+
+506
+01:18:34.810 --> 01:18:36.730
+Bastián: No es cierto que ustedes pueden elegir.
+
+507
+01:18:37.210 --> 01:18:38.630
+Bastián: Les voy a mandar el link
+
+508
+01:18:40.130 --> 01:18:42.310
+Bastián: en la diapositiva en el chat.
+
+509
+01:18:45.540 --> 01:18:50.509
+Bastián: Y ahí acá tienen varios temas que vienen por defecto. En Quarto
+
+510
+01:18:50.750 --> 01:19:04.599
+Bastián: no son nada del otro mundo, sino que lo que hacen. En general, es como ponerle unos colores, un cierto espaciado, ciertas tonalidades y una tipografía No, no hacen mucho más que eso. Por ejemplo, este el lux es bonito, Minti. También es bonito.
+
+511
+01:19:04.930 --> 01:19:16.730
+Bastián: Y en base a este tema nosotros vamos a poder ir personalizando más nuestra nuestro blog. Entonces, como que empecemos en un con 1 que no es tinque, que no parezca bien. Y a partir de eso lo vamos a ir personalizando más.
+
+512
+01:19:16.930 --> 01:19:19.809
+Bastián: Ya Entonces a mí me gustó este que se llama Mintti.
+
+513
+01:19:20.730 --> 01:19:29.269
+Bastián: Ya se llama Mintti. No tengo que hacer nada. No tengo que poner ni preview ni down Load, ni Down Download. Tengo que ir a mi blog.
+
+514
+01:19:29.470 --> 01:19:35.570
+Bastián: ir a mí, los archivos de mi blog, volver al inicio de mi blog y buscar el Quarto punto. Iml.
+
+515
+01:19:36.390 --> 01:19:44.330
+Bastián: Y acá. Fíjense que en esta configuración está lo que habíamos visto al principio y al final dice formato Html, tema de
+
+516
+01:19:44.500 --> 01:19:51.230
+Bastián: y ahora hay varios temas puestos. Si yo cambio acá cosmo. Y en vez de cosmo, le Pongo Mintty
+
+517
+01:19:52.060 --> 01:19:53.290
+Bastián: y lo guardo
+
+518
+01:19:54.180 --> 01:19:59.839
+Bastián: ahí cambió el tiro al blog. Se fijan, que cambió el color cambió. La tipografía cambió el espaciado.
+
+519
+01:20:00.220 --> 01:20:03.219
+Bastián: Ahí se puso verdecito porque le puse el mint
+
+520
+01:20:03.750 --> 01:20:10.200
+Bastián: si ahora yo lo cambio por otro otro otro tema como Lux. Lo guardo Ahí se aplicó el tema nuevo
+
+521
+01:20:10.410 --> 01:20:16.120
+Bastián: que tiene unos títulos en mayúsculas, por ejemplo, un poco más más serio, más moderno. También.
+
+522
+01:20:16.540 --> 01:20:28.420
+Bastián: Entonces pueden buscar en el link que le puse en el chat, un tema que les guste. Acá Hay 1 que se llama pull Pulse, que es moradito. Hay 1 que es blanquito entero, Pero lo importante es que después lo vamos a personalizar.
+
+523
+01:20:28.530 --> 01:20:30.460
+Bastián: Está bonito, eso también que se llama solar.
+
+524
+01:20:31.440 --> 01:20:48.500
+Bastián: No sé, ustedes pueden ir buscando el que les guste más y lo pueden aplicar a su blog y la aplicación en el blog. Simplemente es donde dice tema: le ponen ahí el nombre del del del del tema. Le ponemos mint y graba el mint, ese que se llama Brand. Lo pueden dejar ahí o lo pueden borrar, porque es otra cosa que no lo vamos a ver hoy. Ya.
+
+525
+01:20:50.370 --> 01:20:52.389
+Bastián: Entonces ahí elijan un temita para poner
+
+526
+01:20:53.160 --> 01:21:01.550
+Bastián: qué otra cosa podemos hacer con el blog, que es súper interesante. Cambiar los menús no es cierto. Se fijan, se fijaron que acá. En website hay un menú,
+
+527
+01:21:01.750 --> 01:21:04.070
+Bastián: y está el about. Punto Com D.
+
+528
+01:21:04.400 --> 01:21:06.489
+Bastián: Yo podría, por ejemplo, ir a mi blog
+
+529
+01:21:06.870 --> 01:21:14.080
+Bastián: y crear un un en el inicio de mi blog en la raíz de mi blog, crear un archivo Quarto y ponerle, por ejemplo.
+
+530
+01:21:15.120 --> 01:21:18.190
+Bastián: sí, actividades.
+
+531
+01:21:19.070 --> 01:21:27.809
+Bastián: No sé o o currículum C, B, Por ejemplo, vamos a L, C B como de currículum, vitae. Pongamos que este es un un un blog profesional.
+
+532
+01:21:28.160 --> 01:21:35.160
+Bastián: C, B, Q, M, D, Y acá. Le ponemos no sé pues currículum y acá le vamos a poner universidad
+
+533
+01:21:35.950 --> 01:21:39.010
+Bastián: del mapache. Cachay Está en mi currículum.
+
+534
+01:21:39.250 --> 01:21:40.439
+Bastián: Bueno, se llama Bats.
+
+535
+01:21:40.770 --> 01:21:44.809
+Bastián: De qué año. ¿a qué año del 2 019 al 2 024.
+
+536
+01:21:46.270 --> 01:21:48.130
+Bastián: Entonces ahí voy a hacer este post.
+
+537
+01:21:48.240 --> 01:21:53.200
+Bastián: No es un post, es un es un archivo. Es una publicación que está como suelta en mi blog.
+
+538
+01:21:53.310 --> 01:22:12.140
+Bastián: Y la gracia de que esté suelta en mi blog es que ahora yo la puedo poner en un lugar. Lo puedo poner, por ejemplo, aquí en mi barra de navegación al lado Left Right, izquierda a derecha derecha, y le puedo poner acá Entonces, C, B. Q. Usted puede ponerle cualquier nombre y cualquier contenido. La gracia es que si yo lo pongo aquí y a este le pongo render.
+
+539
+01:22:12.960 --> 01:22:15.060
+Bastián: Fíjense lo que va a pasar en el blog.
+
+540
+01:22:15.450 --> 01:22:26.190
+Bastián: Voy a ir a verlo en el navegador más grande. Y ahí apareció, pues está mi blog y acá dice about y dice currículum. Entonces yo me meto acá currículum. Acá está el contenido que yo creé en ese Quarto.
+
+541
+01:22:26.500 --> 01:22:33.360
+Bastián: Entonces acá yo puedo ir poniendo el contenido que yo quiera. Y lo puse acá en el menú superior de mi página. Entonces acá. Yo puedo ponerle. No sé pues
+
+542
+01:22:33.360 --> 01:22:49.950
+Bastián: mis estudios, mi mis cosas favoritas. No sé Po links externos, por ejemplo, redes sociales. No es cierto. Y puedo ir ahí, y eso se hace agregando, entonces un nuevo archivo Quarto en el inicio de su blog. Y ustedes en Quarto punto, y ml lo referencian
+
+543
+01:22:50.220 --> 01:22:55.190
+Bastián: ya también en el Nappar, en la barra de navegación. Ustedes pueden poner Left, ¿no es cierto. L, E, F, T,
+
+544
+01:22:55.960 --> 01:23:02.080
+Bastián: Y acá ustedes pueden poner una un otra página en la del lado izquierdo. Podríamos ponerle, por ejemplo, presentación.
+
+545
+01:23:03.280 --> 01:23:07.939
+Bastián: presentación, punto com. D, y vamos a crear un archivo que se llama presentación Puntocomd
+
+546
+01:23:08.590 --> 01:23:18.399
+Bastián: le le ponemos nuevo archivo nuevament y le ponemos presentación, y a este blog lo hicimos en el taller de
+
+547
+01:23:18.890 --> 01:23:36.550
+Bastián: grupo de ya. Y ahora ese ese ese ese título va a aparecer arriba. Pero Pero
+
+548
+01:23:38.030 --> 01:23:42.890
+Bastián: a la izquierda debería aparecer. Dije, yo que aparezca.
+
+549
+01:23:44.770 --> 01:23:46.509
+Bastián: mira, no sé por qué no aparece
+
+550
+01:23:47.200 --> 01:23:51.509
+Bastián: Left. Le puse l E. F, presentación. Puntocomd, se llaman iguales.
+
+551
+01:23:51.970 --> 01:23:55.240
+Bastián: Presentación, puntocomd Sí, se llaman iguales
+
+552
+01:23:55.830 --> 01:23:58.840
+Bastián: a ver si lo pongo en el Wright, a ver si se espabila
+
+553
+01:24:00.270 --> 01:24:02.189
+Bastián: cosas que pasaron cosas que pasaron.
+
+554
+01:24:04.100 --> 01:24:05.539
+Bastián: Déjame hacer una prueba.
+
+555
+01:24:05.970 --> 01:24:07.770
+Bastián: Lo puse, ahí está la presentación.
+
+556
+01:24:08.590 --> 01:24:18.660
+Bastián: Yo creo que el L E. D no me aparece. Bueno, olvidémonos que dijimos eso algo. Algo Algo raro dice, creo que se pueden poner, y lo pueden buscar ahí como seas. Yo lo hice en algún momento.
+
+557
+01:24:18.760 --> 01:24:24.450
+Bastián: Bueno, estos que pue estos títulos que aparecen, van a aparecer. Acá Si están en un celular, van a aparecer aquí como chiquititos. Aquí arriba
+
+558
+01:24:24.690 --> 01:24:30.819
+Bastián: ya. Y este aparece con un título feo presentación porque en el post ese es el título. Si le escribo bien.
+
+559
+01:24:31.530 --> 01:24:37.290
+Bastián: va a aparecer bien escrito en el en el en el menú. También ahí apareció con mayúscula y con tilde, cierto
+
+560
+01:24:38.290 --> 01:24:44.289
+Bastián: cosa que aparecen en la televisión. No es cierto, Sí, se puede poner en el Left. Si yo lo hice una vez ya, bueno, filo
+
+561
+01:24:44.400 --> 01:24:53.620
+Bastián: y lo otro que se fijaron acá es que aparecían 2 ejemplos porque dice icono, Github, icono, Blue Sky. No es cierto. Si ustedes copian esta misma forma que lo hacen ellos
+
+562
+01:24:53.790 --> 01:24:59.780
+Bastián: y lo pegamos de nuevo y arreglamos estos espaciados que se me echaron a perder y le ponemos, por ejemplo, Linkedin.
+
+563
+01:25:01.720 --> 01:25:07.669
+Bastián: No sé cómo se escriben las Direcciones de Linkedin. Ya voy a buscar la mía porque no nunca sé yo cómo se escriben.
+
+564
+01:25:08.530 --> 01:25:14.900
+Bastián: cómo se hace eso. El perfil en
+
+565
+01:25:15.840 --> 01:25:18.750
+Bastián: igual. Podría haber elegido cualquier cosa, pero es para darle un ejemplo.
+
+566
+01:25:19.010 --> 01:25:22.850
+Bastián: y lo ponemos ahí. El google link, lo guardo.
+
+567
+01:25:23.740 --> 01:25:32.949
+Bastián: y ahí está el icono de Linkedin. No es cierto. Ahí apareció. ¿por qué apareció el icono de Linkedin, porque yo escribí Linkedin, Si yo Escribo Instagram
+
+568
+01:25:33.310 --> 01:25:35.439
+Bastián: también va a aparecer el icono de Instagram.
+
+569
+01:25:36.180 --> 01:25:43.090
+Bastián: Ya y estos iconos vienen de una página que se llama Font Ozom.
+
+570
+01:25:43.380 --> 01:25:45.139
+Bastián: que es una página muy buena.
+
+571
+01:25:46.720 --> 01:25:54.189
+Bastián: Ya en esta página ustedes pueden buscar cualquier icono, y si escriben su nombre en este tipo de cosas. Por ejemplo, yo busqué data.
+
+572
+01:25:54.450 --> 01:26:00.439
+Bastián: Pueden elegir algunos de estos iconos y que aparezca en el sitio web gratis font osoms se llama
+
+573
+01:26:03.000 --> 01:26:08.809
+Bastián: ya entonces, por ejemplo. A mí me gustó este que se llama Calendar Days. Y yo lo puedo usar, por ejemplo, para
+
+574
+01:26:10.020 --> 01:26:12.990
+Bastián: para acá calendar.
+
+575
+01:26:13.370 --> 01:26:14.369
+Bastián: D. I S.
+
+576
+01:26:15.690 --> 01:26:18.030
+Bastián: No es cierto. Y ahí se aplicó,
+
+577
+01:26:19.660 --> 01:26:22.460
+Bastián: mira, obviamente me tenía que salir mal de nuevo.
+
+578
+01:26:23.180 --> 01:26:24.570
+Bastián: ¿cómo se hacen
+
+579
+01:26:26.490 --> 01:26:31.870
+Bastián: para calentar de fallos. Bien, cuando me pongo a hacer cosas más creativas, se echa a perder
+
+580
+01:26:32.980 --> 01:26:38.979
+Bastián: ya tarea para la casa Googlear. ¿cómo se ponen los Iconos de Photo Ozomp en este. Yo sé por qué es
+
+581
+01:26:39.210 --> 01:26:55.940
+Bastián: porque ya después se los voy a explicar cuando es que cuando subamos esto al post al blog. Pero para no perder más tiempo, sepan que al menos pueden poner los iconos de las redes sociales acá. Y después se me pueden iconos personalizados, por ejemplo, en la página del del blog del del grupo de usuarios de R Santiago.
+
+582
+01:26:56.840 --> 01:26:57.730
+Bastián: Claro.
+
+583
+01:26:57.950 --> 01:27:06.069
+Bastián: pusimos este, el de Meet Up, que no estaba como puesto. Entonces lo pusimos como una imagen y pusimos también el de Slack, por ejemplo. Ahí más personalizado
+
+584
+01:27:06.400 --> 01:27:11.980
+Bastián: se puede se puede hacer. Y, por ejemplo, pusimos otro icono en dentro de las publicaciones.
+
+585
+01:27:12.340 --> 01:27:16.450
+Bastián: Ahí pueden ver el código de como hicimos el sitio para poder copiar como está hecho.
+
+586
+01:27:16.790 --> 01:27:20.010
+Bastián: Ya sigamos la descripción, ya la cambiamos
+
+587
+01:27:20.240 --> 01:27:28.090
+Bastián: y esa es como la configuración básica para que ustedes puedan poner las páginas que ustedes quieran en su blog. Y ahora la personalización avanzada del sitio. Ya
+
+588
+01:27:29.050 --> 01:27:31.369
+Bastián: vamos a ver la personalización avanzada.
+
+589
+01:27:31.450 --> 01:27:42.100
+Bastián: cómo se personaliza cualquier sitio web del mundo con un no es un lenguaje, pero es un una especificación que se llama C. S. S. Ya.
+
+590
+01:27:42.180 --> 01:27:55.589
+Bastián: De hecho, ustedes vieron acá que apareció un archivo que se llama estilos punto Css: Con esto nosotras podríamos personalizar la apariencia de cualquier elemento de nuestra página, por ejemplo, los títulos, los fondos, los los colores de las letras, etcétera.
+
+591
+01:27:55.970 --> 01:28:01.630
+Bastián: Y se podría ver perfectamente, Pero hay una forma que es levemente mejor que se llama
+
+592
+01:28:01.860 --> 01:28:12.899
+Bastián: Sss. Así que le vamos a hacer una hoja de una hoja de configuración Sss: Así que pongamos atención, porque vamos a ir al Quarto punto y ml de nuestro blog.
+
+593
+01:28:13.040 --> 01:28:22.230
+Bastián: y donde dice tema, vamos a agregar un tema que se va a llamar, por ejemplo, tema Sss: Ya
+
+594
+01:28:22.670 --> 01:28:24.720
+Bastián: y vamos a crear un archivo
+
+595
+01:28:25.640 --> 01:28:30.200
+Bastián: de texto vacío que se va a llamar igual, pues tema punto Sss.
+
+596
+01:28:30.680 --> 01:28:36.960
+Bastián: Ya y creamos el archivo y ahí aparece tiene ese icono moradito ya
+
+597
+01:28:37.900 --> 01:28:47.800
+Bastián: para ahorrarles la dificultad en las diapositivas. Pusimos una una lista de atajos para poder cambiar el blog.
+
+598
+01:28:48.500 --> 01:28:56.769
+Bastián: y yo les Recomiendo que coloque copien todo este bloque de código apretando el botón de copiar o seleccionándole copiándolo, y lo peguen en el archivo que creamos
+
+599
+01:28:57.070 --> 01:29:01.740
+Bastián: ya todo todo lo que todo lo que tiene ahí.
+
+600
+01:29:01.840 --> 01:29:06.610
+Bastián: Y si se fijan acá en el R, estudio aparece con colores, no es cierto. Acá. Lo que estamos haciendo
+
+601
+01:29:07.560 --> 01:29:23.999
+Bastián: es definir ciertos colores y usarlos para modificar ciertas partes de nuestro blog, ya. Y acá. Les dejé las principales que son que son como las más visibles del del blog. Y que si ustedes cambian esta esta, estas configuraciones, su blog va a cambiar de colores. Ya
+
+602
+01:29:24.500 --> 01:29:31.199
+Bastián: entonces guardé el tema punto. S. S. S. Y le pegué todo el código. No, le no le que no le falte nada.
+
+603
+01:29:31.600 --> 01:29:50.090
+Bastián: Creé el archivo Css en apretando en el panel de archivos, el botón de crear archivo y le puse archivo de texto y ahí ustedes le pueden poner la el final que ustedes quieran. Sss: Le puse el tema punto Sss: para que estemos todos con el mismo tipo de archivo y no nos confundamos.
+
+604
+01:29:50.730 --> 01:29:53.210
+Bastián: y ahí lo cree ya.
+
+605
+01:29:54.030 --> 01:29:56.030
+Bastián: Y en este archivo, yo voy a pegar
+
+606
+01:29:56.560 --> 01:30:06.540
+Bastián: el código que estaba en la diapositiva, que también lo puse en el chat. ¿qué va a pasar cuando yo copie ese Código lo ponga en el tema y lo ponga en el Quarto punto. Y. M. L
+
+607
+01:30:10.470 --> 01:30:12.410
+Bastián: Ya me salió una cosa, rara.
+
+608
+01:30:13.670 --> 01:30:20.329
+Bastián: Mhm: Vamos a probar que es lo que pasó con amalia render.
+
+609
+01:30:20.560 --> 01:30:27.469
+Bastián: Y ahí le puse, le puse render a 1 de los a 1 de los scripts de mi blog para que se actualice el blog.
+
+610
+01:30:27.580 --> 01:30:32.279
+Bastián: para que agarre como los cambios nuevos. Y fíjense que mi blog cambió completamente de apariencia.
+
+611
+01:30:32.390 --> 01:30:34.849
+Bastián: Cambió todos los colores de el blog.
+
+612
+01:30:34.920 --> 01:30:40.069
+Bastián: Entonces, ¿qué fue lo que cambiamos con el Quarto punto. C. S. S. S: va
+
+613
+01:30:40.140 --> 01:30:56.550
+Bastián: tema Punto. Ss: Disculpen los colores de la barra de menú de arriba. El color de fondo que si se fijan ahora es como un café clarito. Espero que se note la diferencia. Las letras ahora son como un un entre un verde y un café. No es cierto más clarito.
+
+614
+01:30:56.580 --> 01:31:06.150
+Bastián: Los links también cambiaron de color y y todo se aplica también a los iconos y y todos los elementos del post, yo me meto un post, también aparece con los textos nuevos, por ejemplo.
+
+615
+01:31:07.070 --> 01:31:09.689
+Bastián: Entonces, ¿cuál es la grasa? ¿cuál es la parte divertida
+
+616
+01:31:09.860 --> 01:31:25.769
+Bastián: es que ustedes vayan a su tema punto. Sss: Y cambien estos colores, le voy a dar unos minutitos para que lo hagan, porque es, Yo creo que es la parte más buena de de hacerse un blog es elegir los colores. Entonces yo voy al post, le pongo render para que se vea acá en el Viewer.
+
+617
+01:31:26.600 --> 01:31:29.879
+Bastián: Y acá está nuestro post de bienvenida, que tenía varios ejemplos.
+
+618
+01:31:30.200 --> 01:31:35.070
+Bastián: y fíjense que está con todos los colores. Mira aquí, ya me di cuenta de un problema que el color del link que yo puse
+
+619
+01:31:35.410 --> 01:31:48.339
+Bastián: es muy claro. No se ve muy contrastado con el fondo. Entonces yo podría debería cambiar el color del link. Y si se fijan, acá hay 1 que se llama link color. Y este color es el color que aplican los enlaces.
+
+620
+01:31:48.490 --> 01:31:51.440
+Bastián: Yo, por ejemplo, lo puedo cambiar a un red que es bien feo.
+
+621
+01:31:51.920 --> 01:31:53.170
+Bastián: Y si lo guardo.
+
+622
+01:31:53.680 --> 01:31:58.330
+Bastián: el link se pone de color rojo horrible, no es cierto, y es un rojo muy feo.
+
+623
+01:31:58.510 --> 01:32:02.139
+Bastián: Así que yo les recomiendo ir a una página que se llama
+
+624
+01:32:02.460 --> 01:32:10.140
+Bastián: color. Hay miles de páginas para ver colores, pero yo me sé, esta de memoria y siempre la recomiendo. Quizá no es la mejor, pero es la que yo conozco
+
+625
+01:32:11.400 --> 01:32:14.800
+Bastián: color. Co: Se lo puse en el chat.
+
+626
+01:32:15.010 --> 01:32:18.879
+Bastián: Y ustedes aprietan ahí en el inicio, dice explorar paletas.
+
+627
+01:32:20.040 --> 01:32:21.829
+Bastián: ya que hay muchas paletas de colores
+
+628
+01:32:22.020 --> 01:32:26.339
+Bastián: para que ustedes se guíen en unos colores que les puedan gustar para su blog.
+
+629
+01:32:26.470 --> 01:32:32.129
+Bastián: Obviamente, intentemos que el fondo sea clarito o oscuro, y tenga suficiente contraste
+
+630
+01:32:32.420 --> 01:32:38.590
+Bastián: en en los fondos, entonces intentemos cambiar el el blog a unos colores nuevos.
+
+631
+01:32:39.390 --> 01:32:42.780
+Bastián: Ustedes pueden elegir los que ustedes quieran.
+
+632
+01:32:43.430 --> 01:32:52.890
+Bastián: Me gustan estos como de tierra para darle como otra otra apariencia. Así que voy a elegir el más clarito como el color del fondo. Y voy a apretar acá y se copia el código.
+
+633
+01:32:53.040 --> 01:32:54.939
+Bastián: Y ahora voy a ir al R,
+
+634
+01:32:55.410 --> 01:32:58.790
+Bastián: y lo voy a cambiar acá en el color de fondo.
+
+635
+01:32:59.660 --> 01:33:04.730
+Bastián: Body B, G. Va a ser este oscuro.
+
+636
+01:33:05.970 --> 01:33:07.340
+Bastián: Mhm Ya.
+
+637
+01:33:07.460 --> 01:33:18.459
+Bastián: Y también voy a cambiarlo en el F, G. Espero que ustedes estén eligiendo su propia paleta de colores y puedan ir cambiando también los colores. Entonces voy a ir a esta misma paleta Y voy a hacer que este
+
+638
+01:33:18.860 --> 01:33:25.629
+Bastián: es una Elegí una paleta súper parecida a la a la anterior, pero pero esta es más mucho más gris.
+
+639
+01:33:26.020 --> 01:33:42.120
+Bastián: Y voy a elegir, en vez de todos los que son que terminan con 59 para poder. Este otro color tienen que empezar con un signo gato, los colores. Ahí está este este. Y este, y voy a elegir este rojizo para los links, ojalá que se vea bien. Y lo voy a poner acá en primemary
+
+640
+01:33:42.870 --> 01:33:49.180
+Bastián: Ya ahora guardo el tema punto s. Ese ese ese y ahí cambió mi blog
+
+641
+01:33:49.650 --> 01:33:54.500
+Bastián: no es cierto, cambió y tiene el fondo. Quizá queda muy parecido.
+
+642
+01:33:55.180 --> 01:33:58.949
+Bastián: Así que lo voy a cambiar el fondo. Vamos a probar un fondo oscuro.
+
+643
+01:33:59.580 --> 01:34:04.630
+Bastián: voy a copiar este color oscuro. Y lo voy a poner de a Font.
+
+644
+01:34:09.450 --> 01:34:13.580
+Bastián: acá y ustedes juegan con los colores que ustedes quieran. Ya yo estoy jugando nada más
+
+645
+01:34:15.430 --> 01:34:19.500
+Bastián: que va al revés. Todos los colores que eran al revés. Hay una pregunta por ahí.
+
+646
+01:34:20.410 --> 01:34:21.160
+Bastián: Pum.
+
+647
+01:34:24.760 --> 01:34:26.220
+Bastián: dele No más. Hable, no más.
+
+648
+01:34:30.920 --> 01:34:32.030
+franco: Franco por acá.
+
+649
+01:34:32.160 --> 01:34:37.320
+franco: Oye una consulta en el Estoy viendo el Boot Watch y aparece
+
+650
+01:34:37.610 --> 01:34:43.880
+franco: en unas formas de tener cada 1 de los de las de cómo se llamaban de las
+
+651
+01:34:44.010 --> 01:34:46.380
+franco: de las configuraciones, los lakeyout.
+
+652
+01:34:46.530 --> 01:34:53.739
+franco: un dolbload, y eso está en punto Css: Deberíamos reemplazarlo ahí en el archivo Css o o.
+
+653
+01:34:53.740 --> 01:34:59.300
+Bastián: No, no, no, no, no, no, no, no, no, No solamente en el Boots Watch, fíjate en el nombre del tema
+
+654
+01:34:59.540 --> 01:35:00.310
+Bastián: y el.
+
+655
+01:35:00.310 --> 01:35:06.269
+franco: Ay, lo colocó en el en la configuración Css que.
+
+656
+01:35:07.190 --> 01:35:09.290
+Bastián: En el jump. El Quarto punto ya.
+
+657
+01:35:09.290 --> 01:35:10.630
+franco: Jump, que hay.
+
+658
+01:35:10.630 --> 01:35:12.339
+Bastián: Ahí le pones el nombre.
+
+659
+01:35:13.460 --> 01:35:19.040
+franco: Perfecto en yo estaba haciendo con R Mcdown y Blockdown
+
+660
+01:35:19.270 --> 01:35:26.240
+franco: estuvo un tiempo metiéndome en en cómo se llama en este tema y algunas configuraciones.
+
+661
+01:35:26.780 --> 01:35:32.660
+franco: Había mucho más, digamos, Layout, para poder hacer las páginas. Yo andaba buscando 1 en específico, que es
+
+662
+01:35:32.800 --> 01:35:37.859
+franco: una barra lateral y que va desplegando, digamos, distintas
+
+663
+01:35:38.160 --> 01:35:50.600
+franco: distintas submenú, por decirlo así. Donde va haciendo menú, porque yo busco hacer una especie de libro no es cierto de temas de diseño en ingeniería. Entonces no he podido dar con con ese 4.
+
+664
+01:35:51.390 --> 01:36:10.090
+Bastián: Mira. Si quieres hacer un libro, libro, te recomiendo que revises cómo es el el Book Down, que que es distinto al block Down que para hacer un libro, libro, pero en el Quarto, ahora me voy a hacer que me salga un error también. Pero yo sé que tú podís poner un en el acá en el Nabbar. Tú puedes poner 1 que se llama sidebar
+
+665
+01:36:11.300 --> 01:36:17.340
+Bastián: sidebar y a ver si sea así, no me ha, No me acuerdo, porque nunca lo he hecho, pero lo vi hoy día. Me creo.
+
+666
+01:36:17.590 --> 01:36:21.710
+Bastián: y creo que tú puedes poner acá un ap acá tus posts y te van a aparecer en el Cyberg.
+
+667
+01:36:22.930 --> 01:36:29.539
+Bastián: A Legiothley no no era así, pero 1 lo Googlea lo ponemos.
+
+668
+01:36:29.700 --> 01:36:33.369
+Bastián: Quarto Side Side Park
+
+669
+01:36:33.780 --> 01:36:52.570
+Bastián: y yo sé que se puede cyde Night West Side Navigation Side Navigation, claro website sidebard. Y 1 puede configurarlo. Así para que aparezcan los contenidos con sus secciones y sus links también en la página de configuración, va de de documentación del Quarto. Ustedes pueden hacer que los botones tengan menú
+
+670
+01:36:52.570 --> 01:37:04.709
+Bastián: y todo ese tipo de cosas. Pueden ir buscándolos allí, que son más avanzados. Pero se puede poner una barra lateral que aparece así como aparece en el en el en la página que estoy mostrando ahora. Y claro, ahí, tú puedes poner como tus tus.
+
+671
+01:37:05.130 --> 01:37:15.529
+Bastián: Así que revísalo ahí para copiarlo. Y para poder hacerlo, se puede hacer por post o por el sitio completo. Así que hay que ir averiguando ahí cómo funciona esa navegación, más co.
+
+672
+01:37:15.530 --> 01:37:17.929
+franco: Vale, ahí me me diste la solución. Vale, Gracias.
+
+673
+01:37:18.320 --> 01:37:27.609
+Bastián: Bueno, acá. Dice el blog taller que nunca lo he cambiado. Este título que aparece aquí arriba se cambia en el archivo Index.
+
+674
+01:37:27.740 --> 01:37:30.699
+Bastián: Punto. Q. M D Es como el nombre de tu blog.
+
+675
+01:37:30.880 --> 01:37:40.010
+Bastián: Y acá podríamos ponerle blog, no más, porque esta es la sección blog de mi blog, porque el blog también puede tener otras secciones. Entonces, si le pongo render ahí, dice blog
+
+676
+01:37:40.150 --> 01:37:43.820
+Bastián: en vez de blog taller, lo cambié en archivo index. Q. M. D,
+
+677
+01:37:43.920 --> 01:37:54.700
+Bastián: Ya oye, vamos a avanzar un poquito porque falta la parte difícil. No, no es difícil, pero la parte de densa, espero que hayan llegado a alguna configuración de colores agradable.
+
+678
+01:37:55.170 --> 01:37:59.860
+Bastián: Si no lo lamento mucho, si no lo ahorras nomás y eliges. Uno de los temas por defecto.
+
+679
+01:38:01.060 --> 01:38:13.620
+Bastián: Bueno, y ahí les dijo, les dejo algunas otras configuraciones que pueden hacer, por ejemplo, para cambiar el tamaño de las letras. Ustedes pueden cambiar esta esta variable en el archivo S, C, Los no los tamaños de los títulos
+
+680
+01:38:13.620 --> 01:38:23.389
+Bastián: y quizá no va para este blog. Pero todos los elementos del pozo del blog lo pueden configurar con Css directamente. Y como se hace esto rápidamente, Si ustedes van a su navegador.
+
+681
+01:38:23.640 --> 01:38:29.279
+Bastián: le ponen click derecho a cualquier elemento de su blog, por ejemplo, este título y le ponen inspeccionar elementos.
+
+682
+01:38:30.190 --> 01:38:46.069
+Bastián: Ahí te va a aparecer. Cuáles son los elementos C, s. Ese que le dan el estilo. A esa parte del blog, Por ejemplo, acá está la tipografía que le puso a esa página a que está el color que tienen los títulos. Y yo le pongo acá red, por ejemplo. El título aparece en red.
+
+683
+01:38:46.090 --> 01:38:52.809
+Bastián: Entonces acá ustedes pueden ir probando los cambios que le pueden hacer ustedes a su blog más específico, ya
+
+684
+01:38:53.220 --> 01:38:55.310
+Bastián: de cuestiones más detalladas.
+
+685
+01:38:55.460 --> 01:39:04.069
+Bastián: pero eso ya lo pueden buscar en otro lado, ayuda para ese mire. Le le dejé a la nicola su blog, un título rojo, tal vez feo. Obviamente, eso no es un cambio permanente. Pero, bueno.
+
+686
+01:39:05.490 --> 01:39:06.470
+Bastián: ya
+
+687
+01:39:07.090 --> 01:39:16.910
+Bastián: bueno. Y lo otro divertido que se puede hacer son las tipografías. Esto no me lo voy a saltar porque es divertido Cambiar una tipografía para su blog no es tan difícil como parece. Hay una página que es Google Funds.
+
+688
+01:39:17.490 --> 01:39:31.230
+Bastián: Ustedes se meten a Google Fonts y encuentran una tipografía que les guste mucho o poco que puede ser como ustedes quieran. Una bonita como Rubik, me gusta a mí. Nun hito. Es bonito.
+
+689
+01:39:32.130 --> 01:39:36.780
+Bastián: pero quizá no se va a notar el cambio. Pongamos una que sea un poco más. Shora.
+
+690
+01:39:37.280 --> 01:39:38.420
+Bastián: Esta lora
+
+691
+01:39:39.650 --> 01:39:48.169
+Bastián: lo hará ya hasta me gustó ya ustedes en Google Fons, eligen una tipografía y les va a aparecer esta página como para previsualizarla. Y sale un botón que dice getfons.
+
+692
+01:39:48.450 --> 01:39:59.129
+Bastián: Le ponen Getfont, y acá bueno, a mí me salen varias tipografías que estuve explorando. Así que las voy a borrar. Voy a poner solamente el hora y le pongo get embest code.
+
+693
+01:39:59.300 --> 01:40:07.069
+Bastián: le pongo Get en Beetcode y me va a aparecer. Acá Link y import. Yo pongo import.
+
+694
+01:40:07.220 --> 01:40:14.870
+Bastián: Esto está atado en las diapositivas para que no se pierdan, y voy a copiar la la línea que empieza con arroba arroba Import Url Bprb.
+
+695
+01:40:15.160 --> 01:40:16.010
+Bastián: ya
+
+696
+01:40:16.810 --> 01:40:23.469
+Bastián: encontrar una tipografía que les guste. Y en en Google, phones y la nave y les navegaron hasta en Beatcode.
+
+697
+01:40:25.850 --> 01:40:31.499
+Bastián: Voy a repetirlo. Si es que alguien quedó colgada o colgado en Google, phones. Yo me meto
+
+698
+01:40:31.790 --> 01:40:38.070
+Bastián: elijo una tipografía. Habíamos, bueno, cambiamos la elijamos esta Merry weather la aprieto
+
+699
+01:40:38.460 --> 01:40:42.020
+Bastián: acá. Está la tipografía y le pongo jetfonts arriba a la derecha
+
+700
+01:40:42.290 --> 01:40:49.860
+Bastián: getfonts y le pongo Ahora no le pongo descargar. Le pongo Get en Bethcode Get en Betcode.
+
+701
+01:40:50.580 --> 01:40:57.510
+Bastián: Espérense que si usted lo hace con varias tipografías, como que les agarra varias al mismo tiempo, Pero yo quiero una nomás, para no confundirme
+
+702
+01:40:57.620 --> 01:41:04.780
+Bastián: una no más. Y le pongo get en Betcode, y ahora le pongo donde dice link o import. Tengo que elegir import
+
+703
+01:41:05.660 --> 01:41:11.190
+Bastián: ya, y esto yo lo puedo poner en mi es en mi s. S.
+
+704
+01:41:11.550 --> 01:41:18.590
+Bastián: Esta línea que dice import, entonces yo la voy a copiar sin el que dice Style. Solamente lo que va dentro.
+
+705
+01:41:19.080 --> 01:41:24.890
+Bastián: Esto está en las diapositivas. Y yo voy al tema. Punto. Ss: Ese y lo pongo en algún lado acá
+
+706
+01:41:25.570 --> 01:41:29.680
+Bastián: esto lo que va a hacer es que cada vez que nos metamos en el sitio va a bajar una tipografía
+
+707
+01:41:30.180 --> 01:41:33.080
+Bastián: esta tipografía desde Google para poder usarla ya.
+
+708
+01:41:34.590 --> 01:41:35.420
+Bastián: Mhm.
+
+709
+01:41:35.840 --> 01:41:45.740
+Bastián: Hasta ahora no hemos cambiado nada. Solamente elegimos una tipografía bajamos o sea, copiamos el link para poder importarla. Y lo pusimos en el S. S. S.
+
+710
+01:41:46.030 --> 01:41:47.840
+Bastián: Y ahora, como la aplicamos.
+
+711
+01:41:49.170 --> 01:41:56.059
+Bastián: hay una variable de de Quarto, que es la que aparece acá en la diapositiva Font Family Sanz Serif.
+
+712
+01:41:56.250 --> 01:42:01.999
+Bastián: Y si ustedes ponen esa esa esa variable en su archivo
+
+713
+01:42:02.570 --> 01:42:10.209
+Bastián: tema. Punto ese Css. Y al igual como hicieron con los colores, pueden poner su tipografía. Acá Hay obviamente, que poner el nombre de la tipografía que en este caso es
+
+714
+01:42:10.350 --> 01:42:14.010
+Bastián: yo elegí Merry Weather. Pero si ustedes eligieron otra, ponen otra
+
+715
+01:42:15.420 --> 01:42:23.000
+Bastián: carolina. Pregunta sobre los comentarios en en Css: Sí, son lesiados. ¿son así?
+
+716
+01:42:23.670 --> 01:42:30.860
+Bastián: Slatch asterisco y se cierra con asterisco Slatch, o también puede ser 2 slutch pero son solamente en este tipo de archivo.
+
+717
+01:42:31.020 --> 01:42:48.629
+Bastián: Ya hay varias formas de comentar. Son comentarios, no más. Entonces, ahora, si se fijan, yo guardé el el tema, punto ese Css. Y cambiaron las tipografías de el cuerpo de mi bo de mi post de mi blog. Ahora, todos los cuerpos de mi blog tienen esta tipografía con serifa que yo la elegí.
+
+718
+01:42:49.070 --> 01:42:53.809
+Bastián: ¿no es cierto? ¿se ve medio raro? Sí, porque quizás la lección que hice no fue la correcta.
+
+719
+01:42:53.950 --> 01:43:10.409
+Bastián: pero lo bueno es que, en general, en general, los sitios tienen una tipografía para el cuerpo y para los títulos ya y usualmente, si van a utilizar una tipografía con serifa, es decir, así, con estos detalles, que es como son como más formales. Esa tipografía se usa para los títulos en general.
+
+720
+01:43:10.580 --> 01:43:20.470
+Bastián: ya o pueden usarla con serifa en lo en títulos y textos o sin cerifa en título y texto como ustedes gusten. Pero la combinación que hice yo es fea. Entonces la voy a dar vuelta.
+
+721
+01:43:20.760 --> 01:43:29.689
+Bastián: Entonces, la segunda, La segunda fue cosa que pusimos acá en el código para poner las tipografías, voy a poner el link en el chat, por si alguien no lo estaba viendo.
+
+722
+01:43:30.570 --> 01:43:34.470
+Bastián: es la el cambio de la tipografía. Pero para los títulos.
+
+723
+01:43:35.690 --> 01:43:42.569
+Bastián: entonces acá cambio, la tipografía del texto y acá cambia la tipografía de los títulos. Entonces, si yo le pongo acá Me Reyweather
+
+724
+01:43:43.520 --> 01:43:47.780
+Bastián: se debiese actualizar la tipografía de los títulos.
+
+725
+01:43:48.580 --> 01:43:50.790
+Bastián: probemos poniéndole render a un post
+
+726
+01:43:54.970 --> 01:44:06.200
+Bastián: H, 1. H, 2 ya no se aplicaron los títulos, entonces quizá hay que ponerle importants ahí sí.
+
+727
+01:44:06.370 --> 01:44:17.329
+Bastián: A veces en el C, C hay que ponerla important como para que una configuración tome como prevalencia sobre otras ya. Pero ahí googleando, van a poder encontrar esa solución. Entonces, ahora los títulos aparecen con esta tipografía que yo cambié,
+
+728
+01:44:18.230 --> 01:44:24.999
+Bastián: y el texto del blog también. Ya este que dice acá mi primer blog no se cambió. Así que ahí tenemos que buscar después cómo cambiar esa tipografía.
+
+729
+01:44:25.480 --> 01:44:30.120
+Bastián: Ya lo más probable es que sea, si yo lo abro el navegador y le pongo clic derecho acá
+
+730
+01:44:30.260 --> 01:44:40.040
+Bastián: y le pongo inspeccionar elementos para que yo pueda encontrar dónde se cambia esa fotografía. Y acabo de ponerle la tipografía. Cambiap. No es cierto.
+
+731
+01:44:40.400 --> 01:44:45.799
+Bastián: Ahí se podría cambiar Ya ahí pueden elegir entonces una tipografía para su blog.
+
+732
+01:44:45.920 --> 01:44:52.769
+Bastián: para que se vea más único, más más tenga su personalidad. No es cierto. Acá les dejé unos links para los otros tutoriales que podemos ir buscando
+
+733
+01:44:53.010 --> 01:44:59.720
+Bastián: ya. Y ahora vamos a la parte de la publicación del sitio, aunque haya quedado feo, aunque haya quedado incompleto. Vamos a
+
+734
+01:45:00.340 --> 01:45:05.590
+Bastián: aprender a publicar este sitio en gidhub, que esta es la parte importante, ¿cierto?
+
+735
+01:45:06.060 --> 01:45:13.880
+Bastián: Entonces, antes de hacer eso ahora, yo les recomiendo que ustedes ejecuten en su consola. Quarto, Render.
+
+736
+01:45:14.570 --> 01:45:30.929
+Bastián: Quarto, render distinto a Quarto, preview. ¿por qué? Porque si yo ejecuto, Quarto, render lo que hace Quarto es como reconstruir todo el sitio, y así nos aseguramos de que se apliquen todos los cambios que estuvimos jugando a todas las partes del sitio, y así no tenemos ninguna duda de
+
+737
+01:45:31.080 --> 01:45:50.340
+Bastián: como de de que, de que lo que agregamos va a estar todo actualizado, ya independiente que apretar si apretamos o no render en cada post, porque puede ser que ustedes cambien un post y no le pongan render. Y ese cambio no se aplique. No es cierto. Entonces, si ponemos Quarto render en la consola. Nos aseguramos de que todos los cambios están aplicados ya
+
+738
+01:45:52.750 --> 01:46:10.380
+Bastián: ya. Entonces, ¿qué vamos a hacer para publicar el sitio? En resumen, vamos a configurar el sitio web. Vamos a configurar Git para poder controlar las versiones de nuestro de de nuestro código. Vamos a guardar la versión de nuestro código legalmente. Después vamos a subir eso a un repositorio en Github.
+
+739
+01:46:10.600 --> 01:46:15.929
+Bastián: Y vamos a configurar Githuppage. Así que vamos a ir paso por paso, configurándolo ya.
+
+740
+01:46:19.600 --> 01:46:32.870
+Bastián: Primero hay que configurar 2 cositas en el sitio web y ahora espero que tomemos atención. Y apliquemos estos 2 cambios. Uno de ellos es que en el Quarto punto, Iml que está aquí arriba
+
+741
+01:46:33.230 --> 01:46:41.959
+Bastián: dice: proyecto y tipo website. Hay que ponerle este output Dir Dogs. Ya lo voy a poner acá
+
+742
+01:46:42.380 --> 01:46:50.859
+Bastián: cosa que las primeras 3 líneas del Quarto punto, y M. L. Tienen que quedar así. Ya esto es porque Github te pide que lo publiques en esa carpeta.
+
+743
+01:46:51.350 --> 01:47:07.199
+Bastián: esta carpeta, lo que va a hacer, es decirle dónde va a quedar guardado nuestro sitio, ya porque cuando ponemos Quarto, render lo que hace Quarto, es como construir tu sitio y lo construye en esta carpeta. Pero ahora queremos que luego lo guarda en una carpeta que se llame Docs. Entonces hay que ponerle output, Dir Dogs: Ese es el primer paso.
+
+744
+01:47:09.670 --> 01:47:26.370
+Bastián: Y bueno, la carpeta site ya no vamos a seguir usándola. Así que podemos borrarla si queremos, es opcional. Y el la segunda configuración que hay que hacer, hay que agregar un archivo vacío llamado punto No Jekyll. Así que copiemos este texto. Esto medio raro, pero es porque el Github
+
+745
+01:47:26.770 --> 01:47:39.179
+Bastián: trata de aplicar ciertas configuraciones a las páginas web y que nosotros no queremos que haga eso. Entonces le vamos a poner un archivo que le dice al Github: No, no, no, no. Modifiques Mi sitio web porque yo lo hice con mis manitos.
+
+746
+01:47:39.370 --> 01:47:43.350
+Bastián: Así que vamos a crear. Fíjese acá yo estoy en el inicio de mi blog
+
+747
+01:47:43.980 --> 01:47:45.689
+Bastián: y voy a crear un archivo.
+
+748
+01:47:46.240 --> 01:47:54.620
+Bastián: un archivo de texto vacío. Textfile aquí en el en el panel de crear archivos, y el archivo se va a llamar punto. ¿no? Jekyll.
+
+749
+01:47:55.150 --> 01:47:56.790
+Bastián: ya lo copié ahí del chat.
+
+750
+01:47:57.680 --> 01:48:09.730
+Bastián: y le pongo Ok, y listo, no hay que ponerle nada, solamente hay que crearlo. Y como el archivo empieza con punto invisible. Así que no se preocupen si no aparece porque es invisible la Co, la de cosas que funciona como una configuración, ya
+
+751
+01:48:10.520 --> 01:48:27.990
+Bastián: Así que les doy unos segundos para que puedan hacer esos cambios. Voy a dejarlo ahí para que vean, Bueno, está en el chat. En todo caso, en el Quarto punto, y Ml tiene que cargar proyecto. Así Output Deel Dogs. Y tienen que agregar archivos, ¿no? Jekyll a su inicio o raíz del blog
+
+752
+01:48:31.040 --> 01:48:32.050
+Bastián: mhm.
+
+753
+01:48:32.290 --> 01:48:33.070
+Bastián: Ya
+
+754
+01:48:35.570 --> 01:48:40.049
+Bastián: qué Bueno, que no se ha ido gente porque a veces 1 piensa que con las cosas difíciles la gente se va
+
+755
+01:48:40.220 --> 01:48:45.650
+Bastián: como dicen. No puedo hacerlo y se y se pican y se van puede ser también es válido.
+
+756
+01:48:47.250 --> 01:48:49.500
+Bastián: pero no hay que sercumbir ante la frustración.
+
+757
+01:48:50.210 --> 01:48:50.990
+Bastián: Ya
+
+758
+01:48:51.300 --> 01:49:00.359
+Bastián: entonces, ahora lo que yo voy a hacer. Espero que les haya hayan hecho esos 2 pasos. Yo voy a borrar la carpeta guión bajo sites, porque yo sé que me sobra, está de más.
+
+759
+01:49:00.950 --> 01:49:02.189
+Bastián: No lo necesito.
+
+760
+01:49:02.360 --> 01:49:10.630
+Bastián: Y lo que voy a hacer es poner de nuevo Quarto render, porque quiero que se haga, se renderice el sitio a la carpeta Docs, así que voy a poner Quarto render de nuevo
+
+761
+01:49:11.660 --> 01:49:20.049
+Bastián: para que mi sitio se reconstruya. Y ahora fíjense que se va a reconstruir en la carpeta Docs. Entonces se está creando tata total. Y ahora el output quedó en
+
+762
+01:49:20.390 --> 01:49:33.649
+Bastián: Dogs. ¿y qué es dogs? Si ustedes se fijan, si se meten ad dogs adentro, está como su sitio verdadero como el sitio que de verdad se va a subir a Internet, que esto es la gracia que hace Quarto Quarto, agarra todos submardom y construye un sitio web de verdad en H, T, M. L:
+
+763
+01:49:34.060 --> 01:49:42.680
+Bastián: Entonces ahí con Quarto render tenemos nuestra carpeta Docs con el sitio construido o renderizado o compilado, como ustedes quieran decirle
+
+764
+01:49:43.630 --> 01:49:45.170
+Bastián: con la carpeta Docs.
+
+765
+01:49:45.460 --> 01:49:46.280
+Bastián: Ya
+
+766
+01:49:46.940 --> 01:49:53.590
+Bastián: entonces lo que hicimos fue poner de nuevo Quarto render para que nuestro sitio se reconstruya en la carpeta que queremos ya.
+
+767
+01:49:54.530 --> 01:49:55.290
+Bastián: Jo.
+
+768
+01:49:55.630 --> 01:50:08.019
+Bastián: Ahora, entonces vamos a pasar a lo del It Git. Es un sistema de registro y de control de versiones. ¿qué significa esto? Que es? Un es un programita en el cual nosotros le vamos a decir, guarda mi código en este punto del tiempo.
+
+769
+01:50:08.180 --> 01:50:15.429
+Bastián: Y cuando hagamos otros cambios, vamos a decirle: Vuelvo a guardar mi código en este nuevo punto del tiempo, 1 va como guardando todo el código.
+
+770
+01:50:15.600 --> 01:50:29.920
+Bastián: de manera de que ustedes quedan con un registro de cómo era su código ayer, como era su código antes del cambio, como era su código hace una semana, quedan con un registro como un respaldo, por así decirlo. Entonces lo que te permite es ver las distintas versiones de tu código
+
+771
+01:50:30.260 --> 01:50:32.469
+Bastián: sin perderlas
+
+772
+01:50:32.930 --> 01:50:49.019
+Bastián: ya por si hacen un cambio muy grande. Después se arrepienten. Pueden ir a ver la versión antigua de su código. Y es esto estándar. Lo usa toda la gente que programa lo usa porque te permite poder trabajar y experimentar de manera más rápida, porque así no tienes miedo de que pierdes las cosas. No tienes miedo de echar a perder las cosas porque puedes
+
+773
+01:50:49.020 --> 01:50:55.979
+Bastián: siempre de volverte. Pero nosotros no vamos a aprender esa parte. Vamos a aprender simplemente lo que necesitamos para subirla a Github.
+
+774
+01:50:56.080 --> 01:51:10.799
+Bastián: ¿y qué es Github Git Hub es una plataforma donde la gente sube este código y otras personas pueden ver este código también. Ya. Entonces, si nosotros vamos a la página de Github o en realidad, por ejemplo, muchos blogs ponen un link a
+
+775
+01:51:11.330 --> 01:51:25.340
+Bastián: adif Agit javarriba, Por ejemplo, en en nuestro blog aparecía por defecto un icono de Github como para que pongamos el repositorio. Pero si vamos al al grupo de a la página del Grupo de Cen de Santiago de Reducers, también está el icono de Github, si tú lo aprietas
+
+776
+01:51:26.530 --> 01:51:28.440
+Bastián: entras a nuestro repositorio.
+
+777
+01:51:29.420 --> 01:51:33.820
+Bastián: ¿y qué hace nuestro repositorio? Nuestro repositorio hace que
+
+778
+01:51:33.920 --> 01:51:41.170
+Bastián: a cada 1 lo puede encontrar en repositorio. Acá Está todo el código, por ejemplo, acá está el código de las diapositivas que están viendo ustedes, acá está el código de nuestro sitio web.
+
+779
+01:51:41.860 --> 01:51:51.569
+Bastián: Y acá ustedes ven que está todo el código. También está el no llegue. Xl: También está el Quarto jump. También están las páginas about. Hay otra página que se llama participa.
+
+780
+01:51:51.810 --> 01:51:59.450
+Bastián: No es cierto. Y de ahí hasta la carpeta D. O Cs. Este es el código básicamente de el sitio que creamos y está subido a Internet. Eso es lo que queremos lograr ya.
+
+781
+01:52:01.730 --> 01:52:13.670
+Bastián: entonces es muy probable que sus computadores tengan que haber instalado Git y en el en la ficha habíamos puesto que era necesario que lo instalen ya si no lo han instalado. Este es su momento de meterse a la página de Git y ponerle install
+
+782
+01:52:15.390 --> 01:52:19.540
+Bastián: porque es ne es necesario para poder hacerlo yo.
+
+783
+01:52:21.260 --> 01:52:27.210
+Bastián: Entonces alguien tiene que instalarlo como para que esperemos unos segunditos.
+
+784
+01:52:28.920 --> 01:52:30.910
+Bastián: o todos lo tienen ya instalado.
+
+785
+01:52:33.390 --> 01:52:39.230
+Bastián: María, pregunta ¿cómo protejo para que no se roben el blog, o sea.
+
+786
+01:52:39.390 --> 01:52:45.410
+Bastián: nadie se lo va a robar porque todo lo que está en Internet ya es público de por sí, entonces no hay nada.
+
+787
+01:52:45.910 --> 01:52:48.539
+Bastián: su 1. No debías saber nada privado en tu blog
+
+788
+01:52:49.190 --> 01:52:51.190
+Bastián: que no quieras que aparezca en Internet.
+
+789
+01:52:51.520 --> 01:53:01.169
+Bastián: Ya si tienes algo que no quieres que aparezca en Internet, no hay que ponerlo en el blog porque el blog va a estar en Internet o hay que ponerlo en otro lado que no esté
+
+790
+01:53:01.260 --> 01:53:15.549
+Bastián: público. ¿no es cierto. En general, todas estas cosas las subimos de manera pública porque estamos usando software público y gratuito. Y todo esto es gratis, gracias a que otras personas comparte las cosas públicamente, No, ¿cierto?
+
+791
+01:53:15.550 --> 01:53:22.799
+Bastián: Pero sí puedes crear un repositorio privado, Aunque entiendo que si tu repositor es privado, no puedes hacer un sitio web público, porque el repositorio es privado.
+
+792
+01:53:23.130 --> 01:53:34.070
+Bastián: aunque habría que averiguarlo ya. Si ustedes de verdad quieren que su sitio Web sea privado. Hay que ser, hay que usar otros métodos que en general son o pagados o más difíciles, ya habría que averiguar ahí. Por otro lado.
+
+793
+01:53:35.270 --> 01:53:39.970
+Bastián: Mhm: Eso eso en general.
+
+794
+01:53:42.900 --> 01:53:51.339
+Bastián: Entonces vamos a pasar a la parte de It. Esta parte. Necesitamos concentración porque son varias configuraciones. Ya.
+
+795
+01:53:52.410 --> 01:53:56.799
+Bastián: La primera configuración es instalar un paquete que se llama Justice.
+
+796
+01:53:57.040 --> 01:54:01.950
+Bastián: ¿por qué? Porque este paquete nos va a ayudar mucho a hacer esto más fácil.
+
+797
+01:54:02.220 --> 01:54:04.510
+Bastián: porque el primer paso que tenemos que hacer es.
+
+798
+01:54:04.550 --> 01:54:16.590
+Bastián: has dejar funcionando git en nuestro en nuestro proyecto de R y configurar nuestra cuenta de Github con nuestro Erre, de manera que podamos subir desde R a Github y desde Gith Java. R.
+
+799
+01:54:16.590 --> 01:54:25.639
+Bastián: Ya es como es como loguearse en su cuenta de Gilb, D. C, R. Pero la diferencia es que no se hace con una contraseña, porque las contraseñas son como inseguras, inherentemente
+
+800
+01:54:25.640 --> 01:54:32.109
+Bastián: porque se te pueden perder, se te puede olvidar. Te la pueden robar. Y entonces nos vamos a autenticar con una manera que es más segura.
+
+801
+01:54:33.580 --> 01:54:46.540
+Bastián: Ya nos vamos a autenticar con un token con un código. Ya. Entonces lo primero que vamos a hacer es instalar este paquete que se llama use Deez. Quizás es probable que ya lo tengan instalado. Así que voy a poner acá install pagagesties. Yo lo voy a instalar igual
+
+802
+01:54:47.500 --> 01:54:49.209
+Bastián: Ahí se instaló
+
+803
+01:54:52.610 --> 01:54:55.950
+Bastián: Alex, dice cosas ciertas.
+
+804
+01:54:56.280 --> 01:55:03.450
+Bastián: Puede estar en lo correcto, ya ¿Qué es lo primero que vamos a hacer. Vamos a
+
+805
+01:55:06.120 --> 01:55:09.810
+Bastián: crear una cuenta de Github, si es que no la tienen.
+
+806
+01:55:10.110 --> 01:55:27.109
+Bastián: Asumo que tienen una cuenta de Github. Y lo primero que hay que hacer entonces, es configurar esta cuenta de Github en su R. Y para eso vamos a usar esta función que aparece acá Use Git Config. Y ahora le ponen el nombre de usuario y acá le ponen el correo de su cuenta de Github, ya para que se puedan registrar
+
+807
+01:55:27.370 --> 01:55:28.860
+Bastián: en este servicio.
+
+808
+01:55:29.240 --> 01:55:30.120
+Bastián: Ya
+
+809
+01:55:33.130 --> 01:55:37.500
+Bastián: yo tengo dudas de hacerlo si lo hago con una cuenta nueva o no.
+
+810
+01:55:37.730 --> 01:55:47.719
+Bastián: porque la verdad no pensé en esto y debería haber hecho esto en una sesión distinta a mi computador, porque yo estoy. Ya estoy configurado con mi cuenta de Github. Entonces no sé qué va a pasar. Si me configuro con otra cuenta.
+
+811
+01:55:48.030 --> 01:55:52.960
+Bastián: Tengo una gran duda, así que lo lo voy a hacer con mi propia cuenta de nuevo ya, pero para que lo vayan viendo.
+
+812
+01:55:53.110 --> 01:55:58.139
+Bastián: voy a configurar entonces esto.
+
+813
+01:55:58.660 --> 01:56:09.970
+Bastián: Ustedes pueden reemplazar Acá su nombre de usuario, su correo y lo ejecutan en la consola de R. El código entero lo pueden copiar y lo pueden pegar en un en una nota o en otro archivo de texto, y lo y pueden modificarlo
+
+814
+01:56:10.110 --> 01:56:20.050
+Bastián: ya. Y voy al R, y lo ejecutó en la consola. Y esto no va a pasar nada porque solamente es decirle al R. Mira, este es mi nombre usuario. Y este es mi correo, ya.
+
+815
+01:56:20.940 --> 01:56:21.670
+Bastián: Jo.
+
+816
+01:56:22.070 --> 01:56:31.539
+Bastián: el siguiente paso. Ustedes tienen que estar en su logueados en Github. Si no saben. Logian Github Métanse a Github, punto com y métanse a su cuenta.
+
+817
+01:56:31.760 --> 01:56:34.140
+Bastián: tiene que estar con su cuenta abierta.
+
+818
+01:56:34.300 --> 01:56:35.090
+Bastián: Ya
+
+819
+01:56:35.380 --> 01:56:49.329
+Bastián: está este Todo este paso es para hacer la subida del blog para que esté en Internet Ya por eso es un poquito más complejo va a quedar grabado y las instrucciones están en las diapositivas, por si acaso, entonces yo estoy en mi cuenta de Github. Así que estoy todo bien para el siguiente paso.
+
+820
+01:56:49.790 --> 01:56:52.539
+Bastián: Ya ¡ay, me confundí de ventas.
+
+821
+01:56:53.440 --> 01:56:58.499
+Bastián: El siguiente paso, entonces, es Create Github Tokio.
+
+822
+01:56:58.820 --> 01:56:59.670
+Bastián: Ya
+
+823
+01:57:00.500 --> 01:57:12.579
+Bastián: esta parte del del tutorial. No la puedo mostrar por la pantalla porque porque aparece un código que si ustedes ven ese código, me pueden haquear la cuenta. Cómo lo hago?
+
+824
+01:57:13.900 --> 01:57:17.949
+Bastián: Mhm: Pueden todos cerrar los ojos a la cuenta de tren?
+
+825
+01:57:18.210 --> 01:57:26.580
+Bastián: No mira, voy a voy a dejar de compartir pantalla y voy a ustedes que también ejecutan este código. Ythub Token lo ejecutan
+
+826
+01:57:26.810 --> 01:57:34.869
+Bastián: y se les va a abrir una ventana yo cuando se abra la ventana. Yo les voy a volver a compartir la pantalla, ya así que 1 o 2, y voy a dejar de compartir la pantalla
+
+827
+01:57:35.520 --> 01:57:39.730
+Bastián: solo. Pero es verdad. Eso es como cuando se ve como la clave de la tarjeta de crédito.
+
+828
+01:57:40.000 --> 01:57:52.710
+Bastián: Entonces ustedes, eje agarran el el el el comando Use thist create Githup Token y lo ejecutan en la consola D. R. ¿y qué es lo que va a pasar. Se va a abrir una ventana de su navegador.
+
+829
+01:57:53.300 --> 01:57:55.610
+Bastián: probablemente pidiéndoles
+
+830
+01:57:56.900 --> 01:58:05.110
+Bastián: su que se loguen en Github o que confirmen que están metidos en su cuenta de Github acá o quizá alguien puede estar viendo en
+
+831
+01:58:05.590 --> 01:58:10.220
+Bastián: en sus en el reflejo de mi ojo mi contraseña
+
+832
+01:58:12.200 --> 01:58:21.509
+Bastián: mentira. Voy a volver a compartir la pantalla porque todavía no pasa nada. Aparece acá. Esta página de Github que te dice, vamos a agregar un nuevo acceso a tu cuenta
+
+833
+01:58:21.650 --> 01:58:26.049
+Bastián: ya. Y acá. Ustedes pueden escribirle, No sé pues. R Studio.
+
+834
+01:58:26.540 --> 01:58:38.520
+Bastián: R Estudio taller R o R Studio Blog. Es una descripción para que se acuerden o pongan el nombre de su computador, por ejemplo, computador de la casa, porque eso es lo que están como como configurando
+
+835
+01:58:38.700 --> 01:58:42.940
+Bastián: y acá en fecha de vencimiento, les recomiendo que pongan que no venza.
+
+836
+01:58:43.580 --> 01:59:03.400
+Bastián: que es inseguro, pero pero si ustedes quieren, le puede poner una fecha de vencimiento y cuando se vaya a vencer, le va a llegar un correo que dice así como quiere revivir la clave, y pueden ir reviviendo la clave cada cierto tiempo. Esto es por seguridad. Por si usted, en algún momento esa clave llega a otras manos. Esto se elimina, ¿no es cierto o se pierde el acceso de un computador. Por ejemplo, si se lo roban.
+
+837
+01:59:03.400 --> 01:59:18.080
+Bastián: si se lo roban y pasan, no sé pues 30 días se va a perder la el acceso, y ustedes van a poder no actualizar. La clave, por ejemplo, es para eso. Es una medida de seguridad, pero si ustedes no quieren odian la seguridad, le ponen no exploration
+
+838
+01:59:18.630 --> 01:59:26.480
+Bastián: y acá se saltan todas estas opciones porque no nos importan y acá tienen que apretar Generality Token. Ahora yo voy a dejar de compartir y le voy a poner generate token
+
+839
+01:59:26.590 --> 01:59:32.710
+Bastián: para generar la clave, ya. Y ahí me apareció a mí una clave.
+
+840
+01:59:35.140 --> 01:59:44.390
+Bastián: Voy a usar la magia de la Internet para modificar la página ajá.
+
+841
+01:59:44.950 --> 02:00:03.679
+Bastián: Soy un jaquerman, y ahora, Si pueden ver la página, ahí, puse cualquier código para que no aparezca la clave. Pero acá les va a aparecer una clave. No es cierto. Y esa clave, Ustedes la copian la copian en su en su computa, en su en su portapapeles de su computador, acá se ve que están todos mis computadores registrados en mi con mi Github
+
+842
+02:00:04.330 --> 02:00:09.679
+Bastián: y para el siguiente truco para el siguiente paso. Usted tiene que meter la clave.
+
+843
+02:00:10.380 --> 02:00:19.270
+Bastián: Recuerden que tienen la clave copiada, así que copian de nuevo, la van a perder, ya Así que no copien. De nuevo, escriban Gitcreds, 2 punto, 2 puntos.
+
+844
+02:00:19.700 --> 02:00:24.330
+Bastián: o o peguen la clave en otro lado y y copian este comando y lo ejecutan.
+
+845
+02:00:24.490 --> 02:00:31.150
+Bastián: Yo lo voy a Yo lo voy a escribir Git Creps, el paquete y
+
+846
+02:00:31.820 --> 02:00:33.959
+Bastián: ejecuto la función, y me dice.
+
+847
+02:00:34.780 --> 02:00:44.430
+Bastián: Tú también me dice algo distinto, porque ustedes, porque yo ya tenía una apuesta, pero usted a usted no le va a Pa: No le va a aparecer no le va a aparecer esto. Yo voy a reemplazar las credenciales.
+
+848
+02:00:45.010 --> 02:00:46.750
+Bastián: Y acá lo que ustedes tienen que hacer es
+
+849
+02:00:47.010 --> 02:00:57.190
+Bastián: pegar la la contraseña que tenían pegada, pegarla y apretar Enter. No es cierto. Y así se guarda la contraseña de manera segura en su erre y se conecta a su cuenta con su sesión de R.
+
+850
+02:00:57.890 --> 02:01:13.960
+Carolina Morales: Debería aparecer una vez que se ejecuta el jetcript set debería aparecer el signo de pregunta enter pass fort token, Y ahí es donde tienen que colocar el token que copiaron. Y desde la página de Github.
+
+851
+02:01:14.180 --> 02:01:18.120
+Carolina Morales: y luego simplemente aparece que está agregando las nuevas credenciales.
+
+852
+02:01:18.480 --> 02:01:21.870
+Bastián: Y aparece el token en la Consola? No, no, Pues no aparece cierto?
+
+853
+02:01:22.820 --> 02:01:36.970
+Carolina Morales: O sea, te pregunta como empresa el Token 2 puntos, y ahí tú tienes que colocar como cuando respondes yes. Now True Force, tienes que colocar el token Enter y luego lo agregas.
+
+854
+02:01:37.390 --> 02:01:42.659
+Bastián: Bueno, entonces eso es lo que tienen que hacer. Yo le voy a poner que no. Porque en realidad, ¿para qué voy a poner de nuevo la clave.
+
+855
+02:01:43.150 --> 02:01:47.270
+Bastián: pero ese es el proceso que tenemos que hacer para
+
+856
+02:01:47.380 --> 02:01:53.439
+Bastián: para configurarlo. Entonces, ahora que hicimos esto hay otra función que se llama Gitsite, red
+
+857
+02:01:53.540 --> 02:01:57.160
+Bastián: que aparece en el en el en la diapositiva para que lo copien también.
+
+858
+02:01:58.200 --> 02:02:00.549
+Bastián: No sé si les puse la diapositiva o no
+
+859
+02:02:00.920 --> 02:02:13.199
+Bastián: Hay 1 000 guías para hacer esto, si es que no le resulta para configurarlo. Y con esta función. Lo único que hacemos es que, como que nos confirma que está todo funcionando bien. Ahora me aparece así como mi correo, mi nombre de usuario.
+
+860
+02:02:13.610 --> 02:02:15.929
+Bastián: Tenemos un tenemos un
+
+861
+02:02:16.040 --> 02:02:30.630
+Bastián: una página que está funcionando. Tenemos un usuario que está funcionando. Está todo bien activado y me sale todo bien. Se acabó un problema, les diría que hay un problema. Entonces, si pueden revisarte que les haya funcionado bien, si no les sale ninguna cosa rara. Es porque no tienen ningún problema
+
+862
+02:02:31.190 --> 02:02:33.350
+Bastián: porque hicieron bien el proceso ya.
+
+863
+02:02:33.660 --> 02:02:40.360
+Bastián: Y claro, acá me dice personal, access token Discover. Es decir, encontró la clave, y está todo funcionando muy bien.
+
+864
+02:02:41.180 --> 02:02:45.059
+Bastián: Entonces, en resumen, ¿qué es lo que hicimos?
+
+865
+02:02:45.430 --> 02:02:57.429
+Bastián: Lo Q, simplemente lo que hicimos es, le dijimos al R. Este es mi correo. Este es mi nombre de usuario. Después ejecutamos Create Github Token para que se abra la página Github y me de una clave.
+
+866
+02:02:57.610 --> 02:02:59.310
+Bastián: Yo, esa clave, yo, la copio
+
+867
+02:02:59.790 --> 02:03:03.989
+Bastián: o o o la dejo ahí abierta y ejecuto Githcres Set.
+
+868
+02:03:04.090 --> 02:03:11.159
+Bastián: Y con esta función le pego la clave le entrego, la clave, no es cierto. La clave que acabamos de crear. Y eso es lo único que hay que hacer.
+
+869
+02:03:11.510 --> 02:03:19.929
+Bastián: Pedir una clave, ponerle generar y entregarle la clave. No es cierto. Eso son. Eso es todo lo que hay que hacer. Suena difícil, pero en realidad no es difícil.
+
+870
+02:03:20.460 --> 02:03:24.180
+Bastián: Y ahí han configurado su cuenta de github con gits
+
+871
+02:03:26.980 --> 02:03:32.090
+Bastián: lo lograron, Uy dice, mira, se va a acabar. La no. Eso es algo. Eso es un chat de otra cosa.
+
+872
+02:03:34.380 --> 02:03:42.320
+Bastián: Ya Entonces, ahora viene la última cosa que la vamos a hacer súper cortita, Espero que le haya funcionado bien. Y si no me preguntan
+
+873
+02:03:43.190 --> 02:03:49.059
+Bastián: ahora qué vamos a hacer? Dos cosas. Y como lo vamos a hacer solamente para subir el sitio web va a ser súper rápido.
+
+874
+02:03:49.230 --> 02:04:03.639
+Bastián: La primera cosa es Justice Juice, ¿para qué? Para guardar una versión local de nuestro sitio web? Vamos a decir, mi sitio web está impecable. Voy a guardarlo localmente, Entonces lo único que tienen que hacer es ejecutar Ustice jusgid.
+
+875
+02:04:03.980 --> 02:04:20.569
+Bastián: lo ejecutan y les va a preguntar, está Ok, que suban estos archivos y le van a poner sí definitivamente. Aquí, en mi caso, hay que ponerle el 3, y a ustedes probablemente les salga un número distinto, pero hay que decirle: te dice: quieres subir estos cambios. Quiere guardarlos. En realidad quiere guardar estos cambios. Y yo le voy a poner sí,
+
+876
+02:04:22.000 --> 02:04:26.619
+Bastián: y me va a decir, ¿me va a pedir reiniciar. Y yo le voy a decir que no, que no lo reicie, no reinicie. Por ahora.
+
+877
+02:04:27.880 --> 02:04:29.080
+Bastián: eso es lo primero.
+
+878
+02:04:30.620 --> 02:04:36.420
+Bastián: Les resultó hacer eso. Tienen que poner Justice Jusgith para crear el repositorio local.
+
+879
+02:04:37.080 --> 02:04:44.050
+Bastián: Es decir, vamos a guardar nuestro código en Gift para que esté preparado para ser subido a Internet ya
+
+880
+02:04:44.620 --> 02:04:54.310
+Bastián: con Justice Juusgid. Y ahí te va a preguntar: ¿quiere guardar estos archivos y le va a poner sí definitivamente. Hay que poner el número de la selección y apretar, enter.
+
+881
+02:04:54.430 --> 02:05:06.279
+Bastián: se va a hacer la selección. Y después le va a decir, reiniciar. Y luego yo le voy a decir que no, que no reinicie. Si ustedes quieren reiniciar, pueden reiniciar, pero yo le voy a decir que no el reinicio solamente para que aparezca un botoncito de Git en el R. Estudio. Pero no es necesario.
+
+882
+02:05:08.320 --> 02:05:12.559
+Bastián: pónganme algún dedito algo así. Si es que lo lograron, o alguien lo logró?
+
+883
+02:05:15.120 --> 02:05:18.159
+Bastián: Sí, por ahí ya veo que alguien lo logró muy bien. Mcam.
+
+884
+02:05:18.490 --> 02:05:21.930
+Bastián: 2, 3 deditos. ¿y ahora, qué? Bueno, que lo lograron.
+
+885
+02:05:22.200 --> 02:05:26.809
+Bastián: eso no más. Por lo que hicimos con eso fue que ahora nuestro código estaba como empaquetadito.
+
+886
+02:05:27.040 --> 02:05:31.760
+Bastián: Y el segundo paso es Justice Yous Github: ya
+
+887
+02:05:32.260 --> 02:05:37.959
+Bastián: eso es lo que va a hacer, es agarrar su repositorio y subirlo a su cuenta de Github que ustedes ya autenticaron
+
+888
+02:05:38.430 --> 02:05:44.599
+Bastián: a alonso. Le aparece eso porque alonso no ejecutó la primera línea que era Us gide Config
+
+889
+02:05:46.210 --> 02:05:50.140
+Bastián: Uski Config para que el para que Elijab sepa cuál es tu correo. Pues
+
+890
+02:05:51.590 --> 02:05:57.540
+Bastián: eso parece que no lo ejecutaste, porque te parece, ¿Le te parece que te falta el S User Email.
+
+891
+02:05:59.150 --> 02:05:59.900
+Bastián: Mhm.
+
+892
+02:06:00.250 --> 02:06:08.149
+Bastián: Si no lo hici, Si si lo hiciste, quizá lo puedas hacer de nuevo y ver qué es lo que te dice, porque de repente quizá lo hiciste y no te fijaste que te dijo algún reclamo
+
+893
+02:06:08.540 --> 02:06:09.360
+Bastián: ya.
+
+894
+02:06:12.550 --> 02:06:18.470
+Bastián: Ahí nos cuentas Si te sale. Entonces ahora quedamos en que el siguiente paso es justice. You Github
+
+895
+02:06:20.830 --> 02:06:29.589
+Bastián: Alonso. Si tú ejecutas Cit Re, p. Te podría explicar eso. ¿cuál es la situación tuya personal? Puede ser que tengas un toque anterior.
+
+896
+02:06:32.310 --> 02:06:36.620
+Bastián: Y ahora, entonces la consola ejecutamos. Justice Use Githuve
+
+897
+02:06:36.740 --> 02:06:42.699
+Bastián: para que se suba el código. Y esta, si no me equivoco, es como que no hay que leer. No te pregunta nada.
+
+898
+02:06:42.830 --> 02:06:46.240
+Bastián: Usgithub creando repositorio github
+
+899
+02:06:46.680 --> 02:06:55.260
+Bastián: subiendo el repositorio abriendo la u R. L, Y se me abrió. Mi navegador solito y acá está mi Código en Internet.
+
+900
+02:06:55.440 --> 02:06:57.259
+Bastián: Ya está mi código en Internet.
+
+901
+02:06:57.410 --> 02:07:04.830
+Bastián: Acá está toda la página hasta la carpeta Dogs. Acá. Está el Index Qmd está todo subido a Github, pero solo el código. Por ahora.
+
+902
+02:07:05.140 --> 02:07:10.670
+Bastián: solo el código ya le resultó.
+
+903
+02:07:16.100 --> 02:07:22.890
+Bastián: Sí, hay un, un, un, 1, 2, 1, 2 personas lo lograron. Estamos casi estamos casi ahora. Hay una última cosa que hay que cambiar.
+
+904
+02:07:23.110 --> 02:07:29.550
+Bastián: Nos queda muy poquito tiempo porque ya le hemos molestado mucho tiempo, Pero ahora queda una última cosa por hacer
+
+905
+02:07:30.900 --> 02:07:37.539
+Bastián: Ya Entonces, ahora que hicimos el Gif, hicimos el Github y tenemos el código en nuestro en nuestro repositorio.
+
+906
+02:07:37.910 --> 02:07:39.840
+Bastián: Ahora, lo que tenemos que hacer es
+
+907
+02:07:40.670 --> 02:07:44.939
+Bastián: bueno. Ahora les dejé un resumen de como funciona esto, pero no es tan importante hacerlo por ahora
+
+908
+02:07:45.060 --> 02:08:01.549
+Bastián: subirlo a Githuppates ya. Y esto, y esto se hace en la página de Github. En el fondo, lo que le vamos a hacer. Es decir, oye Github subí un repositorio, pero este repositorio es un sitio web. Así que quiero que lo publiques. Entonces yo estoy acá en mi sitio web de Github
+
+909
+02:08:02.050 --> 02:08:08.789
+Bastián: y acá sale el blog taller acá debe aparecer el nombre del blog que ustedes crearon o del proyecto que ustedes crean. Aparece el código y todo.
+
+910
+02:08:09.080 --> 02:08:15.039
+Bastián: Y acá arriba hay un menú, dice isuose pull request bla, bla, bla. Y al final dice: settings.
+
+911
+02:08:15.450 --> 02:08:19.790
+Bastián: Yo apreto settings que son las configuraciones de este repositorio.
+
+912
+02:08:21.090 --> 02:08:24.550
+Bastián: Y ahora voy a páginas. Pages
+
+913
+02:08:24.790 --> 02:08:30.650
+Bastián: acá hay varias opciones. Y es como la última del primer cuadrito grande, páginas page
+
+914
+02:08:30.850 --> 02:08:38.260
+Bastián: y aprieto acá page en la parte de de la izquierda. El último opción, y me llega, me dice Githuppage.
+
+915
+02:08:38.610 --> 02:08:49.950
+Bastián: Hay 2 opciones que hay que cambiar. Acá. Dice source, Ah, no, esta está bien, no hay que cambiarla. Acá. Dice Brunch, y Acá hay que elegir. La única opción que hay main es la única opción que te va a dar
+
+916
+02:08:50.330 --> 02:09:08.120
+Bastián: en Brunch. Dice Main. Y Acá en la carpeta hay que elegir docs, es decir, en estos 2 botones. Hay que elegir la única opción que está disponible Main y Docs, es decir, el va va a crear el sitio desde su rama principal de Git, y va a publicar la carpeta Docs que se acuerdan de que es la carpeta Docs era la carpeta donde hicimos el sitio de
+
+917
+02:09:08.750 --> 02:09:13.270
+Bastián: de este cosito y listo. Ahora hay que ponerle save.
+
+918
+02:09:14.720 --> 02:09:22.380
+Bastián: Si le ponemos Save, dice los recursos, los recursos han sido guardados. Y ahora lo que hacemos es volver
+
+919
+02:09:22.530 --> 02:09:27.679
+Bastián: al al blog, al repositorio aprieto, acá el nombre al repositorio para volver al repositorio.
+
+920
+02:09:28.040 --> 02:09:30.300
+Bastián: Y acá están todos mis archivos. ¿cierto?
+
+921
+02:09:30.670 --> 02:09:44.140
+Bastián: Aquí Acá me aparece arriba mi nombre de usuario y dice initial comic y está con una luz naranjita con un círculo naranjito. ¿por qué? Porque dice que está esperando a construirse
+
+922
+02:09:44.230 --> 02:09:55.419
+Bastián: Esto se demora como 1 o 2 min, ya porque, como es gratis, te ponen como a la cola para que se genere el sitio, pues no es cierto. No es nada mágico si no estamos pagando ni un peso
+
+923
+02:09:55.540 --> 02:10:07.979
+Bastián: y acá en las diapositivas por mientras les muestro que ese es el resumen de las cosas que hicimos. Nos metimos a el repositorio del código, elegimos settings después page y elegimos la rama y la carpeta, doc y le ponemos le pusimos guardar
+
+924
+02:10:08.550 --> 02:10:14.670
+Bastián: ya y ahora debiese estar listo. Pero antes de celebrar, veamos que haya funcionado.
+
+925
+02:10:15.110 --> 02:10:27.200
+Bastián: Me da miedo esta parte porque una vez no me ha funcionado esta parte y me quedé con un trauma. Así que si ustedes le ponen f 5, guardan la página, o sea, recarga en la página. A mí me pareció un ticket verde, dice subccess
+
+926
+02:10:27.590 --> 02:10:30.679
+Bastián: funcionó, pero como yo sé que funcionó.
+
+927
+02:10:31.330 --> 02:10:44.660
+Bastián: Bueno, hay una forma obvia y una forma no tan obvia. La forma más obvia es que si usted agarra un repositorio de peta en esta ruedita al lado de about como al lado derecho. Pueden acá pedirle. Muéstrame tu página de de Github
+
+928
+02:10:45.350 --> 02:10:56.389
+Bastián: para que me muestre el link aquí al ladito, y ahí me puso el link al ladito. La otra opción es que el link obviamente va a ser su nombre de usuario Guija Io Slash, el nombre del repositorio.
+
+929
+02:10:57.080 --> 02:11:02.990
+Bastián: Y ahora, si yo apreto este link redoble de tambores
+
+930
+02:11:10.410 --> 02:11:16.480
+Bastián: está cargando, será que la foto del mapache pesaba caletada porque era demasiado tierna. Ahí está la página. Miren, funciona.
+
+931
+02:11:16.690 --> 02:11:20.789
+Bastián: ahí está el sitio. Así que ahora mi sitio ya está publicado, pues
+
+932
+02:11:21.260 --> 02:11:26.549
+Bastián: quedó publicadísimo, y el de ustedes probablemente también de haber quedado publicado.
+
+933
+02:11:26.820 --> 02:11:31.919
+Bastián: Entonces, ahora lo que tenemos que hacer para
+
+934
+02:11:32.070 --> 02:11:36.309
+Bastián: para confirmarlo es simplemente esperar a que se ponga verdecito
+
+935
+02:11:36.760 --> 02:11:49.710
+Bastián: ponerla acá en el about, el el monito de la ruedita, y pedirle que nos dé el link, o también van a poder encontrar el link en settings pages, y ahí les va a aparecer el link, así como tu sitio está funcionando.
+
+936
+02:11:50.130 --> 02:11:51.549
+Bastián: Te aparece ahí también.
+
+937
+02:11:51.990 --> 02:12:10.059
+Bastián: Mira Y también dieron un un un trucazo para poder ver el link. O lo pueden escribir ustedes manualmente. Entonces, ahora sí puedo poner en la diapositiva de de listo. Y claro, ahí aparece más o menos la estructura del del link va a ser el nombre de usuario, punto Ija punto. Io Slatch, el nombre del repositorio.
+
+938
+02:12:10.150 --> 02:12:12.940
+Bastián: Pero como este era un blog de prueba
+
+939
+02:12:12.940 --> 02:12:16.760
+Bastián: va a aparecer. Así pues, Slatch, no sé por blog Slatch Taller.
+
+940
+02:12:16.760 --> 02:12:37.949
+Bastián: pero ustedes también pueden hacer que lo su sitio Web, sea su nombre usuario. Punto. Ithab Punto io que es más corto ya. Y para esto lo que tienen que hacer es simplemente o empezar todo esto de nuevo con un repositorio que se llame que se llame así su nombre de usuario Guija Punto Io, o le pueden cambiar el nombre al repositorio que ya crearon. Pueden ir acá al repositorio y ponerle
+
+941
+02:12:37.950 --> 02:12:47.120
+Bastián: en settings, le pueden cambiar el nombre y que el nombre sea su nombre de usuario Giffa, punto Io. Y ahí, en su sitio va a ser ese
+
+942
+02:12:47.130 --> 02:12:49.680
+Bastián: su nombre usuario Github: Punto. Io.
+
+943
+02:12:49.700 --> 02:12:50.819
+Bastián: ¿no es cierto.
+
+944
+02:12:51.890 --> 02:12:57.060
+Bastián: Entonces, con eso Concluimos el tutorial. ¿a quién le resultó? ¿a alguien le resultó
+
+945
+02:12:57.560 --> 02:12:59.579
+Bastián: si no le resulto a nadie. Me va a dar mucha pena.
+
+946
+02:13:03.190 --> 02:13:06.380
+Bastián: ¿quién dijo? P: ¿Alguien quiere preguntar algo o decir algo.
+
+947
+02:13:08.230 --> 02:13:23.920
+franco: Yo Bastian Franco de nuevo, oye una consulta para actualizar los blogs. Ya tenemos que hacer todo de nuevo y actualizar en el en la carpeta que te creó 4, ¿Cierto?
+
+948
+02:13:24.240 --> 02:13:29.140
+franco: O no ¿Hay alguna forma de subir solamente una una pura.
+
+949
+02:13:29.390 --> 02:13:34.180
+franco: un puro archivo, o hay que subir todo de nuevo y hacer el mismo procedimiento.
+
+950
+02:13:34.180 --> 02:13:34.740
+Bastián: Claro.
+
+951
+02:13:35.200 --> 02:13:51.659
+Bastián: mira, se sube, solamente lo cambiado, pero eso es automático en el la diapositiva. Les dejé en en esta parte, este es el proceso que hay que hacer y en el fondo, por ejemplo, este voy a hacer el ejemplo. Yo hacía la rápida para que ustedes lo vean nomás, porque ya nos hemos demorado calidad de tiempo.
+
+952
+02:13:51.660 --> 02:13:57.709
+Bastián: pero, por ejemplo, le voy a poner varios signos de inflamación al al al post de bienvenida. Le voy a poner render.
+
+953
+02:13:58.570 --> 02:14:02.970
+Bastián: y por si acaso le voy a poner Quarto render.
+
+954
+02:14:04.630 --> 02:14:05.400
+Bastián: Mhm
+
+955
+02:14:06.380 --> 02:14:13.810
+Bastián: Quarto render. Ahí se está ejecutando todo. Y ahora lo que yo tengo que hacer para subir eso voy a la al terminal, no a la consola ojito
+
+956
+02:14:13.990 --> 02:14:16.270
+Bastián: al terminal. Y le voy a poner
+
+957
+02:14:16.490 --> 02:14:27.309
+Bastián: Gitad para que guarde para que se fije en todos los cambios nuevos. Git Comics. M: Ahí lo dejé en la diapositiva para que lo vean. Y le voy a poner mejoras, por ejemplo.
+
+958
+02:14:27.610 --> 02:14:29.440
+Bastián: y después Git Push.
+
+959
+02:14:30.460 --> 02:14:38.170
+Bastián: Y con esos 3 comandos que aparecen acá en la diapositiva, se sube la actualización al Github: Y si si y si yo voy rápidamente a mi blog.
+
+960
+02:14:38.520 --> 02:14:40.150
+Bastián: o sea, en mi repositorio.
+
+961
+02:14:40.520 --> 02:14:59.549
+Bastián: me va a decir que se está como actualizando, viste que se puso de nuevo naranjito. Y cuando se ponga verde de nuevo, los cambios van a estar reflejados en el sitio. Entonces yo hago mi cambio, voy a la consola y le pongo, o sea, al terminal. Y le pongo Gitad punto Git Comic M y le pongo entre comillas. Qué fue lo que cambié.
+
+962
+02:14:59.590 --> 02:15:05.790
+Bastián: Y después le pongo Gibbutch, y ahí se va a actualizar. Y e eso es el proceso que tengo que hacer. Lo puedo hacer todas las veces que yo quiera.
+
+963
+02:15:06.910 --> 02:15:21.180
+Bastián: Ese es el cambio que se puede hacer en el R Studio También les va a aparecer un botoncito arriba que dice Git y que también es más fácil de usar para hacer esos mismos cambios que yo creo que la que el terminal es más directo. Pero ahí les dejé 2 tutoriales para que se puedan guiar de cómo se hace.
+
+964
+02:15:21.180 --> 02:15:31.000
+Bastián: porque esto ya es un poquito más avanzado. Pero en el fondo, con estos ti, con este estrés comandos, ya tienes lo básico para subir actualizaciones a su blog e ir de a poquito mejorándolo y haciendo cositas más bonitas.
+
+965
+02:15:31.860 --> 02:15:40.459
+Bastián: Si alguien lo logró y puede poner su su link en el en el chat, igual sería chistoso. Pero con eso concluye el
+
+966
+02:15:40.870 --> 02:15:48.720
+Bastián: el tutorial. Así que si hay dudas, pueden ir diciéndolas o si no en honor al tiempo.
+
+967
+02:15:50.100 --> 02:16:05.519
+Bastián: paso. Va a quedar todo esto. Grabadito. Y me pueden hacer. Nos pueden hacer cualquier consulta por redes sociales, y podemos ayudarles, pues si esa es la gracia del grupo de R, por cierto, y llamar, nos vamos a ver el próximo mes nos pueden contar que vinieron y que les costó que pudieron que no pudieron. ¿no es cierto. Nos pueden ir comentando todo ese tipo de cosas.
+
+968
+02:16:06.310 --> 02:16:13.030
+Bastián: Así que eso les invito a que a que nos escriban nomás me diga: nos hagan cualquier pregunta que tengan.
+
+969
+02:16:13.230 --> 02:16:15.899
+Bastián: Y eso, Pues Carolina no sé si quieres decir algo.
+
+970
+02:16:16.950 --> 02:16:33.959
+Carolina Morales: Yo bueno reiterar las gracias por haber participado de el Worldshop. Estamos muy contentos de ver la cantidad de personas que vinieron, y también, por supuesto, de ver caras repetidas, porque el es la idea o la parte fundamental de hacer comunidad. Así que nada si tienen alguna
+
+971
+02:16:33.959 --> 02:16:50.960
+Carolina Morales: idea o comentario, están más que invitados, por supuesto, a dejarnos posible ideas para siguientes reuniones y reiterarles la invitación para que participen en nuestra siguiente junta, que corresponde al último miércoles de cada mes. Ya están programadas, y en nuestra página pueden ver
+
+972
+02:16:50.959 --> 02:16:57.100
+Carolina Morales: los días en los que tenemos agendada la siguien todas las reuniones del 2 026.
+
+973
+02:16:58.070 --> 02:16:58.700
+Bastián: Y es.
+
+974
+02:16:59.480 --> 02:17:05.110
+Carolina Morales: Y, por supuesto, a ti por la paciencia, el tiempo y todo lo necesario para el huerta.
+
+975
+02:17:05.709 --> 02:17:12.569
+Bastián: Muchas gracias a todos y a todos por venir. Me alegro de que estén acá. Y que les haya funcionado. Ojalá. Así que que estén súper bien. Cuídense mucho
+
+976
+02:17:13.089 --> 02:17:15.329
+Bastián: un gusto Verles, Esperemos verlos de nuevo.
+
+977
+02:17:15.990 --> 02:17:17.209
+Alex Mitrani: Gracias, Chao.
+
+978
+02:17:18.020 --> 02:17:19.690
+Bastián: Chavales.
+
+979
+02:17:19.690 --> 02:17:23.609
+Camila Bustamante Á.: Buenas noches, buenas noches.
+
+980
+02:17:23.610 --> 02:17:24.490
+Eduardo Bustos: Por 2 noches.
+
+981
+02:17:26.080 --> 02:17:26.990
+Carolina Morales: Bye, Bye.
+
+982
+02:17:26.990 --> 02:17:29.549
+Alejandro Arévalo: Claro que estés Muy bien. Gracias. Martín.
+
+983
+02:17:31.620 --> 02:17:32.700
+Carlos Espinoza: Gracias.
+
+984
+02:17:35.770 --> 02:17:37.399
+Carolina Morales: Nos dejaron un bonito.
+

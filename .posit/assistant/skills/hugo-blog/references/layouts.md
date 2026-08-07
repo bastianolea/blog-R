@@ -40,6 +40,8 @@ layouts/
 └── index.json                   # Índice JSON para buscador
 ```
 
+**Nota sobre lookup order:** Hugo prioriza `layouts/` (raíz del proyecto) sobre `themes/hugo-apero/layouts/`. Regla: no editar el tema; copiar el template a la misma ruta bajo `layouts/` y modificar la copia (ej: `layouts/blog/single-sidebar.html`, `layouts/partials/meta.html`, `layouts/partials/shared/post-pagination.html` son overrides raíz). El título de la paginación y los metadatos SEO usan `{{ .Title | markdownify | plainify }}` para limpiar markdown/backticks.
+
 ## Mapeo de páginas a layouts
 
 | Página | URL | Layout | Notas |

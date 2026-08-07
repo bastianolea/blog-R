@@ -1,0 +1,2827 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr"><head>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.164.0">
+<title>Crea y publica tu propio blog con Quarto y RStudio | Bastián Olea</title>
+
+
+<meta property="twitter:site" content="@bastimapache">
+<meta property="twitter:creator" content="@bastimapache">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="Tutorial para que crees tu propio espacio en internet, publicado gratis con GitHub Pages">
+
+
+<meta property="og:site_name" content="Bastián Olea">
+<meta property="og:title" content="Crea y publica tu propio blog con Quarto y RStudio | Bastián Olea">
+<meta property="og:description" content="Tutorial para que crees tu propio espacio en internet, publicado gratis con GitHub Pages" />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/quarto_blog/" />
+<meta property="og:locale" content="es-ES">
+
+
+
+
+    
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/quarto_blog/featured.jpg" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/quarto_blog/featured.jpg" >
+    
+    
+  
+	<meta itemprop="name" content="Crea y publica tu propio blog con Quarto y RStudio">
+	<meta itemprop="description" content="Este tutorial es la versión en texto1 del taller que dictamos en vivo para el Grupo de Usuari@s de R de Santiago el 29 de julio de 2026, ante más de 50 personas de toda Latinoamérica. Muchas gracias a quienes participaron!
+En una época en que casi toda nuestra vida digital ocurre dentro de redes sociales y plataformas que no controlamos (y que pueden cerrar, bloquearte, o simplemente desaparecer), contar con un sitio web personal te permite reunir tus proyectos, aprendizajes y estudios en un lugar que no depende de nadie más que de ti.">
+	<meta itemprop="datePublished" content="2026-08-07T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2026-08-07T00:00:00+00:00">
+	<meta itemprop="wordCount" content="4439">
+	<meta itemprop="image" content="https://bastianolea.rbind.io/blog/quarto_blog/featured.jpg">
+	<meta itemprop="keywords" content="Quarto,Git,GitHub">
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="false" type="image/x-icon">
+  <link rel="icon" href="false" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.0ef7ee7b0dad458df5b6f993cac9c1b9618320151adbdeef203c9e1dae1c0564.css" integrity="sha256-Dvfuew2tRY31tvmTysnBuWGDIBUa297vIDyeHa4cBWQ=" media="screen">
+  
+  
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.9fff16086958932cf7cd985d5507ca155ead37fb7359e63400e3b653024ad59e.js" type="text/javascript"></script>
+  
+  
+  <link rel="stylesheet" href="/css/syntax.css">
+  
+  
+  
+  
+  
+  
+  <meta name="google-site-verification" content="yaiYGBAfSJpjE7mfPuFVP1yoNIqLadRJQIzCOula8TI" />
+  
+</head>
+<body>
+      <div class="grid-container single-sidebar">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
+      <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/blog/" title="Bastián Olea: Blog de R">Blog</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/aprende_r/" title="Aprende R">Aprende R</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/shiny_apps/" title="Apps">Apps</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/tutoriales/" title="Tutoriales">Tutoriales</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/tags/" title="Temas">Temas</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/clases/" title="Cursos">Cursos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/about/" title="Bastián Olea: Sobre mi">Yo</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      
+      
+      
+      <div class="dib v-mid", style = "padding: 4px; margin-top: 4px;">
+        <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+      </div>
+      
+    </div>
+  </nav>
+</header>
+
+
+                       
+ 
+
+<main class="page-main pa4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header" style="margin-top:-30px;">
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Crea y publica tu propio blog con Quarto y RStudio</h1>
+        <h4 class="f4 mt0 mb4 lh-title measure">Tutorial para que crees tu propio espacio en internet, publicado gratis con GitHub Pages</h4>
+        
+        
+        <div style = "display: inline-block;">  
+          <p class="f7 db mv0 ttu" style = "display: inline-block;">
+            7/8/2026</p>
+          
+          
+          
+        </div>
+          
+        
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/quarto"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            quarto</a>  <a href="https://bastianolea.rbind.io/tags/git"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            git</a>  <a href="https://bastianolea.rbind.io/tags/github"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            github</a> </dd></em>
+        </dl>
+         
+      
+        
+      
+      <div class="ph0 pt3">
+        
+
+<div style="margin-top:-24px;">
+
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+      
+    
+  <a class="btn-links mr2 ba dib" 
+  style = "background-color: #9069C0; border-radius: 4px; 
+  color: #EAD2FA; font-size: 10pt;
+  padding-top: 9px; padding-bottom: 6px; padding-left: 9px; padding-right: 10px; 
+  margin-right: 1px; margin-top: 6px; margin-bottom: 0px;"
+  href="/clases/taller_santiagorusers_sitios/" ><i class="fas fa-video fa-lg fa-fw mr2"></i>Taller grabado</a>
+
+</div>
+
+      </div>
+      
+      
+    </header>
+      
+      
+    <section class="post-body pt5 pb4">
+        <blockquote>
+<p><em>Este tutorial es la versión en texto<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> del 
+<a href="/clases/taller_santiagorusers_sitios/">taller</a> que dictamos en vivo para el 
+<a href="https://santiagorusers.github.io" target="_blank" rel="noopener">Grupo de Usuari@s de R de Santiago</a> el 29 de julio de 2026, ante más de 50 personas de toda Latinoamérica. Muchas gracias a quienes participaron!</em></p>
+</blockquote>
+<p>En una época en que casi toda nuestra vida digital ocurre dentro de redes sociales y plataformas que no controlamos (y que pueden cerrar, bloquearte, o simplemente desaparecer), contar con un <strong>sitio web personal</strong> te permite reunir tus proyectos, aprendizajes y estudios en un lugar que no depende de nadie más que de ti.</p>
+<p>Además, un blog te sirve para <strong>aprender haciendo</strong>, para armar un <strong>portafolio</strong> de tu trabajo, y para conectar con la <strong>comunidad</strong> de personas que usan R: seguramente todo lo que sabes de R lo aprendiste gracias a que alguien más compartió su conocimiento de forma abierta y gratuita, así que compartir lo que tú aprendes es una forma de devolver la mano!</p>
+<p>Lo mejor es que armar un blog con Quarto, RStudio y GitHub Pages no cuesta nada!</p>
+
+
+<details>
+  <summary>
+    <em>También existen otras alternativas para tener presencia en internet usando R</em>
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    También puedes 
+<a href="/blog/tutorial_quarto_github_pages/">crear documentos y publicar sitios web con Quarto</a>, o 
+<a href="/blog/shiny/">crear aplicaciones interactivas con Shiny</a>. Un blog Quarto tiene la ventaja de que es sencillo de mantener, no requiere de un servidor corriendo (como sí lo necesita Shiny), y te permite ir agregando publicaciones ordenadas por fecha y por categorías con muy poco esfuerzo.
+    </div>
+</details>
+<p>En este tutorial armaremos un blog de principio a fin, lo personalizaremos, y lo publicaremos en internet, usando sólo <strong>herramientas gratuitas y de código abierto</strong>.</p>
+<div style = "margin-left: -16px;">
+  
+  <details closed id="PageTableOfContents">
+    <summary>
+      <h2 class="mv0 f5 fw7 ttu tracked dib" style = "margin-left: 6px; font-size: 120%;">Índice</h2>
+      </summary>
+    <div class="pl2 pr0 mh0" style = "font-size: 90%; margin-top: -8px; margin-left: 16px; margin-bottom: 32px;">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#herramientas">Herramientas</a></li>
+    <li><a href="#ejemplos-de-blogs-quarto">Ejemplos de blogs Quarto</a></li>
+    <li><a href="#configurar-git-y-github">Configurar Git y GitHub</a>
+      <ul>
+        <li><a href="#configurar-cuenta-github">Configurar cuenta GitHub</a></li>
+        <li><a href="#autenticar-cuenta-github">Autenticar cuenta GitHub</a></li>
+      </ul>
+    </li>
+    <li><a href="#crear-el-blog">Crear el blog</a>
+      <ul>
+        <li><a href="#estructura-de-archivos">Estructura de archivos</a></li>
+      </ul>
+    </li>
+    <li><a href="#previsualizar-y-construir-el-sitio">Previsualizar y construir el sitio</a></li>
+    <li><a href="#escribe-tu-primera-publicación">Escribe tu primera publicación</a>
+      <ul>
+        <li><a href="#encabezado-de-la-publicación">Encabezado de la publicación</a></li>
+        <li><a href="#sintaxis-markdown-básica">Sintaxis Markdown básica</a></li>
+        <li><a href="#código-de-r-en-las-publicaciones">Código de R en las publicaciones</a></li>
+        <li><a href="#código-como-parte-del-texto">Código como parte del texto</a></li>
+      </ul>
+    </li>
+    <li><a href="#personalización">Personalización</a>
+      <ul>
+        <li><a href="#cambiar-el-tema">Cambiar el tema</a></li>
+        <li><a href="#menú-de-navegación">Menú de navegación</a></li>
+        <li><a href="#estilos-scss">Estilos SCSS</a></li>
+        <li><a href="#colores-del-blog">Colores del blog</a></li>
+        <li><a href="#tipografías">Tipografías</a></li>
+        <li><a href="#personalización-avanzada">Personalización avanzada</a></li>
+      </ul>
+    </li>
+    <li><a href="#preparar-el-sitio-para-subirlo">Preparar el sitio para subirlo</a>
+      <ul>
+        <li><a href="#crear-el-repositorio-local">Crear el repositorio local</a></li>
+        <li><a href="#subir-el-repositorio-remoto">Subir el repositorio remoto</a></li>
+      </ul>
+    </li>
+    <li><a href="#publicar-el-blog-en-github-pages">Publicar el blog en GitHub Pages</a></li>
+    <li><a href="#actualizar-el-blog">Actualizar el blog</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#recursos">Recursos</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </details>
+  
+</div>
+
+
+
+
+<h2 id="herramientas">Herramientas
+  <a href="#herramientas"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Para construir el blog necesitamos combinar cuatro herramientas, todas gratuitas:</p>
+<ul>
+<li><strong>
+<a href="https://quarto.org" target="_blank" rel="noopener">Quarto</a></strong>: sistema de publicación que transformará nuestros documentos en páginas web. Quarto combina texto en formato 
+<a href="https://es.wikipedia.org/wiki/Markdown" target="_blank" rel="noopener">Markdown</a> con bloques de código de R (u otros lenguajes), y también puede generar como resultado documentos PDF, documentos Word, sitios web, blogs, libros y diapositivas.</li>
+<li><strong>
+<a href="https://posit.co/products/open-source/rstudio/" target="_blank" rel="noopener">RStudio</a></strong>: el entorno de desarrollo (IDE) donde vamos a escribir el contenido del blog.</li>
+<li><strong>
+<a href="https://git-scm.com" target="_blank" rel="noopener">Git</a></strong>: un sistema de control de versiones que registra los cambios que hacemos a nuestros archivos a través del tiempo.</li>
+<li><strong>
+<a href="https://github.com" target="_blank" rel="noopener">GitHub</a></strong> y <strong>
+<a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a></strong>: una plataforma online donde subiremos nuestro proyecto, y que además nos permite publicarlo como una página web gratis.</li>
+</ul>
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            /*background-color: #A985C650;*/
+            background-color: #DEC4F2;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-info-circle" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #9069C0;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%;">
+    Quarto es el <em>sucesor</em> de R Markdown: si ya conoces R Markdown, la sintaxis de Quarto te va a resultar prácticamente idéntica.
+  </aside>
+  
+</div>
+
+
+
+
+<h2 id="ejemplos-de-blogs-quarto">Ejemplos de blogs Quarto
+  <a href="#ejemplos-de-blogs-quarto"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Algunos sitios web hechos con Quarto:</p>
+
+
+<style>
+      div.splitbox {
+        width: 100%; 
+        overflow: auto;}
+
+      div.splitbox div.column-left {
+                    width:48%;
+                    padding: 2px;
+                    float: left;}
+      div.splitbox div.column-right {
+                    width:48%;
+                    padding: 2px;
+                    float: right;}
+
+      @media only screen and (max-width: 600px) {
+      div.splitbox div.column-left {
+                    width: 100%;
+                    float: left;}
+      div.splitbox div.column-right {
+                    width: 100%;
+                    float: left;}
+      }
+  </style><div class="splitbox"><div class="column-left">
+
+<ul>
+<li>
+<a href="https://santiagorusers.github.io/" target="_blank" rel="noopener">santiagorusers.github.io</a>, el sitio del Grupo de Usuari@s de R donde se dictó 
+<a href="https://santiagorusers.github.io/posts/taller_julio_2026/" target="_blank" rel="noopener">este taller!</a></li>
+<li>
+<a href="https://quarto.org" target="_blank" rel="noopener">quarto.org</a>, el sitio de documentación de Quarto</li>
+<li>
+<a href="https://nrennie.rbind.io" target="_blank" rel="noopener">nrennie.rbind.io</a></li>
+<li>
+<a href="https://emilhvitfeldt.com" target="_blank" rel="noopener">emilhvitfeldt.com</a></li>
+<li>
+<a href="https://brodrigues.co" target="_blank" rel="noopener">brodrigues.co</a></li>
+</ul>
+
+
+</div><div class="column-right">
+
+<ul>
+<li>
+<a href="https://www.noahweidig.com" target="_blank" rel="noopener">noahweidig.com</a></li>
+<li>
+<a href="https://karaman.is" target="_blank" rel="noopener">karaman.is</a></li>
+<li>
+<a href="https://www.andrewheiss.com/blog/" target="_blank" rel="noopener">andrewheiss.com</a></li>
+<li>
+<a href="https://ellakaye.co.uk" target="_blank" rel="noopener">ellakaye.co.uk</a></li>
+<li>
+<a href="https://rainbowr.org" target="_blank" rel="noopener">rainbowr.org</a></li>
+<li>
+<a href="https://alejandroromerog.github.io" target="_blank" rel="noopener">alejandroromerog.github.io</a></li>
+</ul>
+
+
+</div><div style="clear:both"></div></div>
+
+
+
+
+
+<h2 id="configurar-git-y-github">Configurar Git y GitHub
+  <a href="#configurar-git-y-github"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Como vamos a publicar nuestro blog a través de GitHub, el primer paso es tener Git andando, y preparar nuestra cuenta y conectarla con RStudio.</p>
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            /*background-color: #A985C650;*/
+            background-color: #DEC4F2;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-info-circle" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #9069C0;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%;">
+    Si ya usas Git y GitHub con R, puedes saltarte esta sección. Si no sabes nada de esto, puedes verlo en detalle 
+<a href="/blog/r_introduccion/tutorial_github/">en esta publicación.</a>
+  </aside>
+  
+</div>
+<p>
+<a href="https://git-scm.com" target="_blank" rel="noopener"><strong>Git</strong></a> es un software de código abierto que instalas en tu computador para llevar un registro de las versiones de tu código: cada vez que guardas un avance (un <em>commit</em>), Git recuerda ese estado de tus archivos, de modo que siempre puedes volver atrás o ver qué cambió.</p>
+
+<div style="display: flex; align-items: center; gap: 10px; width: fit-content; max-width: 100%;
+            background-color: #DEC4F2; border-radius: 28px;
+            padding: 12px 20px 12px 14px;
+            margin: 24px 4px 24px 12px;">
+
+  
+  <div style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+              background-color: #9069C0; display: flex; align-items: center;
+              justify-content: center;
+              outline: solid 2px #EAD2FAAA;">
+    
+    <span style="font-family: 'EB Garamond', Garamond, serif; color: #EAD2FA;
+                font-size: 120%; font-weight: bold; margin-bottom: 1px;">1</span>
+  </div>
+
+  
+  <div style="font-size: 100%;">
+    <b>Paso 1:</b> 
+    Instala Git en tu computador, 
+<a href="https://git-scm.com" target="_blank" rel="noopener">descargándolo desde aquí.</a>. Si tienes Mac o Linux puedes saltarte este paso.
+  </div>
+
+</div>
+
+<p>
+<a href="https://github.com" target="_blank" rel="noopener"><strong>GitHub</strong></a> es una plataforma online donde se pueden subir esos repositorios de Git, de forma que otras personas puedan ver tu código, descargarlo, y colaborar contigo. <strong>GitHub Pages</strong>, que usaremos más adelante, es una funcionalidad de GitHub que además te permite publicar un sitio web a partir de los archivos de tu repositorio.</p>
+
+<div style="display: flex; align-items: center; gap: 10px; width: fit-content; max-width: 100%;
+            background-color: #DEC4F2; border-radius: 28px;
+            padding: 12px 20px 12px 14px;
+            margin: 24px 4px 24px 12px;">
+
+  
+  <div style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+              background-color: #9069C0; display: flex; align-items: center;
+              justify-content: center;
+              outline: solid 2px #EAD2FAAA;">
+    
+    <span style="font-family: 'EB Garamond', Garamond, serif; color: #EAD2FA;
+                font-size: 120%; font-weight: bold; margin-bottom: 1px;">2</span>
+  </div>
+
+  
+  <div style="font-size: 100%;">
+    <b>Paso 2:</b> 
+    <a href="https://github.com/join" target="_blank" rel="noopener">Crea una cuenta de GitHub</a>, si es que no la tienes aún, e inicia sesión en tu navegador web.
+  </div>
+
+</div>
+
+<p>Si quieres profundizar en Git y GitHub más allá de lo necesario para este tutorial, revisa mi 
+<a href="/blog/r_introduccion/tutorial_github/">tutorial de Git y GitHub para R</a>, o el libro 
+<a href="https://happygitwithr.com" target="_blank" rel="noopener"><em>Happy Git and GitHub for the useR</em></a>.</p>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/r_introduccion/tutorial_github/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/r_introduccion/tutorial_github/titulo_github-featured.png"
+           alt="Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        En este tutorial se entregan los pasos para empezar a usar Git con tus proyectos de R. Git te permite llevar un registro de las versiones y un control de cambios en tu código, mientras que GitHub te…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+
+
+
+
+<h3 id="configurar-cuenta-github">Configurar cuenta GitHub
+  <a href="#configurar-cuenta-github"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Todo el proceso se simplifica muchísimo gracias al paquete 
+<a href="https://usethis.r-lib.org" target="_blank" rel="noopener"><code>{usethis}</code></a>, que automatiza varias tareas repetitivas de configuración:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;usethis&#34;</span><span class="p">)</span>
+</span></span></code></pre></div>
+<div style="display: flex; align-items: center; gap: 10px; width: fit-content; max-width: 100%;
+            background-color: #DEC4F2; border-radius: 28px;
+            padding: 12px 20px 12px 14px;
+            margin: 24px 4px 24px 12px;">
+
+  
+  <div style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+              background-color: #9069C0; display: flex; align-items: center;
+              justify-content: center;
+              outline: solid 2px #EAD2FAAA;">
+    
+    <span style="font-family: 'EB Garamond', Garamond, serif; color: #EAD2FA;
+                font-size: 120%; font-weight: bold; margin-bottom: 1px;">3</span>
+  </div>
+
+  
+  <div style="font-size: 100%;">
+    <b>Paso 3:</b> 
+    Registra tu cuenta de GitHub en RStudio.
+  </div>
+
+</div>
+
+<p>Ahora registramos cuál es nuestra cuenta de GitHub (nombre de usuario y correo):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">usethis</span><span class="o">::</span><span class="nf">use_git_config</span><span class="p">(</span><span class="n">user.name</span> <span class="o">=</span> <span class="s">&#34;tu_usuario&#34;</span><span class="p">,</span> <span class="n">user.email</span> <span class="o">=</span> <span class="s">&#34;tu_correo@ejemplo.com&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Así tu computadora sabrá cuál es tu cuenta de GitHub!</p>
+
+
+
+
+<h3 id="autenticar-cuenta-github">Autenticar cuenta GitHub
+  <a href="#autenticar-cuenta-github"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Para que RStudio pueda interactuar con tu cuenta de GitHub (subir archivos, crear repositorios, etc.), necesitas un <strong>token</strong> de acceso personal, que es como una contraseña, pero más segura porque no necesitas aprenderla, y puedes revocar el acceso cuando quieras desde tu cuenta de GitHub.</p>
+
+<div style="display: flex; align-items: center; gap: 10px; width: fit-content; max-width: 100%;
+            background-color: #DEC4F2; border-radius: 28px;
+            padding: 12px 20px 12px 14px;
+            margin: 24px 4px 24px 12px;">
+
+  
+  <div style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+              background-color: #9069C0; display: flex; align-items: center;
+              justify-content: center;
+              outline: solid 2px #EAD2FAAA;">
+    
+    <span style="font-family: 'EB Garamond', Garamond, serif; color: #EAD2FA;
+                font-size: 120%; font-weight: bold; margin-bottom: 1px;">4</span>
+  </div>
+
+  
+  <div style="font-size: 100%;">
+    <b>Paso 4:</b> 
+    Crear token de GitHub e ingresarlo a RStudio
+  </div>
+
+</div>
+
+<p>Con el siguiente comando, se abrirá una ventana en tu navegador para generar el <em>token</em>, y tienes que <strong>copiarlo</strong>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">usethis</span><span class="o">::</span><span class="nf">create_github_token</span><span class="p">()</span>
+</span></span></code></pre></div><p>Luego, ejecuta lo siguiente y pega el <em>token</em> cuando la consola te lo pida:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">gitcreds</span><span class="o">::</span><span class="nf">gitcreds_set</span><span class="p">()</span>
+</span></span></code></pre></div><p>De esta forma habrás registrado tu cuenta GitHub con tu RStudio de manera segura!</p>
+<p>Para revisar que la configuración quedó bien, puedes correr un diagnóstico:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">usethis</span><span class="o">::</span><span class="nf">git_sitrep</span><span class="p">()</span>
+</span></span></code></pre></div><p>El mensaje debería decirte tu cuenta de GitHub y que encontró el <em>token</em> de acceso. Si tienes dudas o problemas, revisa 
+<a href="blog/r_introduccion/tutorial_github/">esta publicación</a>.</p>
+
+
+
+
+<h2 id="crear-el-blog">Crear el blog
+  <a href="#crear-el-blog"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Con Git y GitHub configurados, ya podemos crear el proyecto de nuestro blog! Es probable que tengas que instalar Quarto primero:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;quarto&#34;</span><span class="p">)</span>
+</span></span></code></pre></div>
+<div style="display: flex; align-items: center; gap: 10px; width: fit-content; max-width: 100%;
+            background-color: #DEC4F2; border-radius: 28px;
+            padding: 12px 20px 12px 14px;
+            margin: 24px 4px 24px 12px;">
+
+  
+  <div style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+              background-color: #9069C0; display: flex; align-items: center;
+              justify-content: center;
+              outline: solid 2px #EAD2FAAA;">
+    
+    <span style="font-family: 'EB Garamond', Garamond, serif; color: #EAD2FA;
+                font-size: 120%; font-weight: bold; margin-bottom: 1px;">5</span>
+  </div>
+
+  
+  <div style="font-size: 100%;">
+    <b>Paso 5:</b> 
+    Crear el blog desde RStudio.
+  </div>
+
+</div>
+
+<p>En RStudio, vamos a <strong>File → New Project → New Directory → Quarto Blog</strong>:</p>
+<a href="img/blog_1.png" target="_blank">
+
+  <img src="img/blog_1.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Elige un nombre para tu proyecto (será también el nombre de la carpeta y, más adelante, parte de la dirección web de tu blog, así que piensa bien!) y crea el proyecto. RStudio abrirá una nueva sesión con varios archivos ya generados.</p>
+
+
+
+
+<h3 id="estructura-de-archivos">Estructura de archivos
+  <a href="#estructura-de-archivos"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Un blog Quarto recién creado viene con esta estructura:</p>
+<pre tabindex="0"><code>mi-blog/
+├── _quarto.yml        # configuración general del sitio
+├── index.qmd          # página principal (listado de publicaciones)
+├── about.qmd          # página &#34;sobre ti&#34;
+├── profile.jpg        # tu foto, usada en la página about
+├── styles.css         # hoja de estilos para personalizar el blog
+└── posts/
+    ├── welcome/
+    │   └── index.qmd
+    └── post-with-code/
+        └── index.qmd
+</code></pre><ul>
+<li><strong><code>index.qmd</code></strong>: la <strong>página principal</strong>. En un blog, por defecto es el listado de publicaciones, aunque puedes cambiarla por cualquier otro contenido.</li>
+<li><strong><code>about.qmd</code></strong>: tu página de <strong>presentación personal</strong>, donde puedes poner tu biografía, una foto tuya, tus enlaces, etc.
+<ul>
+<li><strong><code>profile.jpg</code></strong>: la imagen de perfil que aparece en tu página <em>about</em> (puedes reemplazarla por tu propia foto).</li>
+</ul>
+</li>
+<li><strong><code>posts/</code></strong>: la carpeta donde viven tus <strong>publicaciones</strong>. El proyecto viene con dos publicaciones de ejemplo.</li>
+<li><strong><code>_quarto.yml</code></strong>: archivo de <strong>configuración</strong> del sitio completo: título, descripción, menú de navegación, temas, etc.</li>
+<li><strong><code>styles.css</code></strong>: hoja de estilos donde más adelante agregaremos personalización visual.</li>
+</ul>
+<p>Cada archivo <code>.qmd</code> corresponde a una página de tu sitio.</p>
+
+
+
+
+<h2 id="previsualizar-y-construir-el-sitio">Previsualizar y construir el sitio
+  <a href="#previsualizar-y-construir-el-sitio"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Hay dos operaciones distintas que vamos a usar todo el tiempo en el blog: previsualizar y renderizar.</p>
+<ul>
+<li><strong>Previsualizar</strong> con <code>quarto preview</code> o <code>quarto::quarto_preview()</code>: levanta un servidor local que va actualizando la vista previa automáticamente cada vez que guardas cambios. Es lo que usamos mientras estamos escribiendo y probando.</li>
+<li><strong>Renderizar</strong> con <code>quarto render</code> o <code>quarto::quarto_render()</code>: reconstruye el sitio completo, generando todos los archivos <code>html</code> finales. Es el que debes ejecutar antes de publicar, para asegurarte de que todo el sitio (no solo la página en la que estabas trabajando) quede actualizado.</li>
+</ul>
+<p>Puedes ejecutar ambos desde la pestaña <em>Terminal</em> de RStudio, o su equivalente en R:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">quarto preview
+</span></span><span class="line"><span class="cl">quarto render
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">quarto</span><span class="o">::</span><span class="nf">quarto_preview</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">quarto</span><span class="o">::</span><span class="nf">quarto_render</span><span class="p">()</span>
+</span></span></code></pre></div><p>También puedes simplemente presionar el botón <strong>Render</strong> en la barra superior del editor para previsualizar la página en la que estás trabajando.</p>
+<p>Deberías ver una página más o menos así:</p>
+<a href="img/blog_2.png" target="_blank">
+
+  <img src="img/blog_2.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+
+
+
+
+<h2 id="escribe-tu-primera-publicación">Escribe tu primera publicación
+  <a href="#escribe-tu-primera-publicaci%c3%b3n"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Cada publicación de tu blog es una carpeta dentro de <code>posts/</code>, que contiene un archivo <code>index.qmd</code>. El nombre de la carpeta determina la dirección web de la publicación, así que debes usar nombres sin espacios, sin mayúsculas, y separados por guiones, por ejemplo:</p>
+<pre tabindex="0"><code>posts/mi-primer-post/index.qmd
+</code></pre>
+<div style="display: flex; align-items: center; gap: 10px; width: fit-content; max-width: 100%;
+            background-color: #DEC4F2; border-radius: 28px;
+            padding: 12px 20px 12px 14px;
+            margin: 24px 4px 24px 12px;">
+
+  
+  <div style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+              background-color: #9069C0; display: flex; align-items: center;
+              justify-content: center;
+              outline: solid 2px #EAD2FAAA;">
+    
+    <span style="font-family: 'EB Garamond', Garamond, serif; color: #EAD2FA;
+                font-size: 120%; font-weight: bold; margin-bottom: 1px;">6</span>
+  </div>
+
+  
+  <div style="font-size: 100%;">
+    <b>Paso 6:</b> 
+    Crea tu primera publicación!
+  </div>
+
+</div>
+
+<p>Puedes crear esta carpeta y el archivo manualmente, o usar la función que provee el paquete <code>{quarto}</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">quarto</span><span class="o">::</span><span class="nf">new_blog_post</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&#34;Mi primer post&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Siguiendo este ejemplo, Quarto crearía la carpeta <code>posts/mi-primer-post/</code>, y dentro un archivo <code>index.qmd</code> con el título provisto.</p>
+
+
+
+
+<h3 id="encabezado-de-la-publicación">Encabezado de la publicación
+  <a href="#encabezado-de-la-publicaci%c3%b3n"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Al comienzo de cada publicación va un bloque de <strong>metadatos</strong> en formato <code>yaml</code>, delimitado por tres guiones al inicio y al final:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Mi primer análisis en R&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">subtitle</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Analizando datos sociales mediante programación&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Tu nombre&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;2026-08-06&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">categories</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">R, análisis, datos]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;imagen.jpg&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span></code></pre></div><p>En este bloque vamos a configurar cada publicación:</p>
+<ul>
+<li><code>title</code> y <code>subtitle</code>: título y subtítulo de la publicación.</li>
+<li><code>date</code>: fecha de publicación, en formato <code>AAAA-MM-DD</code>. Con esta fecha, Quarto ordena tus publicaciones en el listado del blog.</li>
+<li><code>categories</code>: etiquetas que agrupan tus publicaciones, y que aparecerán como filtros en el listado del blog.</li>
+<li><code>image</code>: una imagen destacada para la publicación (debe estar en la misma carpeta que el <code>index.qmd</code>).</li>
+</ul>
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            /*background-color: #A985C650;*/
+            background-color: #DEC4F2;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-info-circle" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #9069C0;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%;">
+    Si Quarto te muestra un error relacionado al <em>front matter</em> del documento, se refiere a este encabezado, así que revisa que el bloque <code>yaml</code> esté bien cerrado.
+  </aside>
+  
+</div>
+<p>Una vez que le das <strong>Render</strong> a tu publicación, puedes previsualizarla en el panel <em>Viewer</em> de RStudio, o en una ventana aparte:</p>
+<a href="img/blog_3.png" target="_blank">
+
+  <img src="img/blog_3.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            /*background-color: #A985C650;*/
+            background-color: #DEC4F2;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-info-circle" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #9069C0;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%;">
+    Puedes configurar dónde ver la previsualización del blog en el ícono de engranaje al lado de <em>Render</em>
+  </aside>
+  
+</div>
+
+
+
+
+<h3 id="sintaxis-markdown-básica">Sintaxis Markdown básica
+  <a href="#sintaxis-markdown-b%c3%a1sica"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>El contenido de tus publicaciones se escribe en 
+<a href="https://quarto.org/docs/authoring/markdown-basics.html" target="_blank" rel="noopener">Markdown</a>, un lenguaje de marcado simple que usa símbolos de texto plano para dar formato a tu contenido:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gu">## Subtítulo
+</span></span></span><span class="line"><span class="cl"><span class="gu">### Subsubtítulo
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gs">**negrita**</span>
+</span></span><span class="line"><span class="cl"><span class="ge">_itálica_</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;u&gt;subrayado&lt;/u&gt;
+</span></span><span class="line"><span class="cl"><span class="gd">~~tachado~~</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[<span class="nt">Enlace</span>](<span class="na">https://enlace.cl</span>)
+</span></span><span class="line"><span class="cl">![<span class="nt">Descripción de la imagen</span>](<span class="na">imagen.jpg</span>)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Una nota al pie[^1].
+</span></span><span class="line"><span class="cl">[^1]: Contenido de la nota.
+</span></span></code></pre></div><p>La lógica de Markdown es <strong>separae el contenido del estilo</strong>: tu solamente te preocupas de escribir y estructurar tu texto, mientras que la apariencia (tamaños de letra, colores, tipografías) se definirá aparte, 
+<a href="#personalizaci%c3%b3n">como veremos más adelante.</a></p>
+
+
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            background-color: #493365;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-triangle-exclamation" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #EAD2FA;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%; color: #EAD2FA;">
+    Si necesitas aprender lo básico de Quarto y Markdown, revisa el 
+<a href="/blog/quarto_reportes/">tutorial de reportes con Quarto.</a>
+  </aside>
+  
+</div>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/quarto_reportes/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/quarto_reportes/quarto_theme_cosmo-featured.png"
+           alt="Tutorial: presenta los resultados de tus análisis de datos con R creando reportes y documentos Quarto"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Tutorial: presenta los resultados de tus análisis de datos con R creando reportes y documentos Quarto
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        Quarto es una herramienta que te permite generar documentos y reportes de manera muy sencilla utilizando bloques de código de R. En estos reportes puedes incluir tablas, gráficos, y mucho más, de…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+
+
+
+
+<h3 id="código-de-r-en-las-publicaciones">Código de R en las publicaciones
+  <a href="#c%c3%b3digo-de-r-en-las-publicaciones"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Una de las gracias de Quarto es que puedes incluir código de R directamente en tus publicaciones, y que se ejecute al momento de generar el sitio. De esta forma puedes agregar cualquier cosa que hagas en R a tu blog: 
+<a href="/blog/r_introduccion/tutorial_visualizacion_ggplot/">gráficos</a>, 
+<a href="/blog/tablas_gt">tablas personalizadas</a>, 
+<a href="/blog/mapas_mapgl/">mapas interactivos</a>, y más.</p>
+<p>Para agregar un bloque de código (también llamado <em>chunk</em>), se delimita con tres comillas invertidas seguidas del lenguaje entre llaves:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">```{r}
+</span></span></span><span class="line"><span class="cl"><span class="n">1 + 1
+</span></span></span><span class="line"><span class="cl"><span class="n">```</span>
+</span></span></code></pre></div><p>También puedes agregar un bloque con el botón verde al lado derecho de <em>Render</em>.</p>
+<p>Al comienzo del bloque puedes agregar opciones, que empiezan con <code>#|</code>:</p>
+<ul>
+<li><code>#| echo: false</code>: oculta el código, mostrando solo el resultado.</li>
+<li><code>#| eval: false</code>: muestra el código, pero no lo ejecuta.</li>
+<li><code>#| warning: false</code> y <code>#| message: false</code>: oculta advertencias y mensajes (útil, por ejemplo, cuando cargas un paquete como <code>{dplyr}</code>, que suele imprimir mensajes que no quieres que aparezcan en tu blog).</li>
+<li><code>#| fig-height: 7</code>: define el alto de los gráficos generados en el bloque.</li>
+</ul>
+<p>Por ejemplo, en este bloque se omitirán los mensajes y alertas de R:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">```{r}
+</span></span></span><span class="line"><span class="cl"><span class="n">#| message: false
+</span></span></span><span class="line"><span class="cl"><span class="n">#| warning: false
+</span></span></span><span class="line"><span class="cl"><span class="n">library(dplyr)
+</span></span></span><span class="line"><span class="cl"><span class="n">```</span>
+</span></span></code></pre></div><p>En este bloque se omitirá el código, y se mostrará solamente el <em>output</em> del código:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">```{r}
+</span></span></span><span class="line"><span class="cl"><span class="n">#| echo: false
+</span></span></span><span class="line"><span class="cl"><span class="n">1 + 1 
+</span></span></span><span class="line"><span class="cl"><span class="n">```</span>
+</span></span></code></pre></div><p>Todos los bloques de código de una misma publicación <strong>comparten el mismo entorno</strong>: si creas un objeto en un bloque, puedes usarlo en cualquier bloque posterior. Así que puedes cargar todos tus paquetes en un bloque al principio del documento, o procesar datos en un bloque y hacer el output en otro bloque, por ejemplo.</p>
+
+
+
+
+<h3 id="código-como-parte-del-texto">Código como parte del texto
+  <a href="#c%c3%b3digo-como-parte-del-texto"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Además, puedes insertar resultados de R directamente dentro de un párrafo, con la sintaxis <code>`{r} codigo`</code>; es decir, una comilla invertida seguida de <code>r</code> dentro de corchetes, luego el código, y cerrar con otra comilla invertida.</p>
+<p>De esta forma puedes integrar cifras o textos directamente en los párrafos de tu post, e incluso en sus títulos, por ejemplo para que el texto cite una cifra exacta, o que una palabra en tu publicación dependa de un resultado anterior.</p>
+<p>Por ejemplo, calculemos la correlación entre el largo y ancho de los pétalos en los datos <code>iris</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">```{r}
+</span></span></span><span class="line"><span class="cl"><span class="n">#| echo: false
+</span></span></span><span class="line"><span class="cl"><span class="n">correlacion &lt;- cor(iris$Petal.Length, iris$Petal.Width) |&gt; round(2)
+</span></span></span><span class="line"><span class="cl"><span class="n">```</span>
+</span></span></code></pre></div><p>Guardamos el resultado en un objeto llamado <code>correlacion</code>, y luego podemos escribir un párrafo como el siguiente:</p>
+<blockquote>
+<p>La correlación entre el largo y el ancho de los pétalos es de <code>{r} correlacion</code>.</p>
+</blockquote>
+<p>Cuando ejecutes la publicación, el resultado se verá así:</p>
+<blockquote>
+<p>La correlación entre el largo y el ancho de los pétalos es de 0.96.</p>
+</blockquote>
+<p>El número <code>0.96</code> se generó en el momento de renderizar la publicación, a partir del código, en vez de haber sido escrito a mano, entonces, si tus datos cambian o si cambias el código, el texto se actualiza solo, sin que tengas que ir editando números a mano cada vez.</p>
+
+
+
+
+<h2 id="personalización">Personalización
+  <a href="#personalizaci%c3%b3n"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Hasta ahora creamos un blog aburrido por defecto, pero todos los aspectos del blog son personalizables, así que podremos darle algo de nuestra personalidad a nuestros sitios web.</p>
+<p>El aspecto general de tu sitio se controla desde el archivo <code>_quarto.yml</code>, que está 
+<a href="#estructura-de-archivos">en la raíz de tu blog.</a></p>
+
+
+
+
+<h3 id="cambiar-el-tema">Cambiar el tema
+  <a href="#cambiar-el-tema"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Puedes elegir entre distintos temas predefinidos, que puedes ver en la página de 
+<a href="https://bootswatch.com" target="_blank" rel="noopener">Bootswatch</a>.</p>
+
+<div style="display: flex; align-items: center; gap: 10px; width: fit-content; max-width: 100%;
+            background-color: #DEC4F2; border-radius: 28px;
+            padding: 12px 20px 12px 14px;
+            margin: 24px 4px 24px 12px;">
+
+  
+  <div style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+              background-color: #9069C0; display: flex; align-items: center;
+              justify-content: center;
+              outline: solid 2px #EAD2FAAA;">
+    
+    <span style="font-family: 'EB Garamond', Garamond, serif; color: #EAD2FA;
+                font-size: 120%; font-weight: bold; margin-bottom: 1px;">7</span>
+  </div>
+
+  
+  <div style="font-size: 100%;">
+    <b>Paso 7:</b> 
+    Cambia el tema de tu blog para personalizar su apariencia.
+  </div>
+
+</div>
+
+<p>Cuando veas uno que te guste, simplemente anota su nombre en el archivo <code>_quarto.yml</code>, debajo de <code>html</code>, en el argumento <code>theme</code> (si no existe, agrégalo):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">format</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">html</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l">lux</span><span class="w"> </span><span class="c"># nombre del tema que vas a aplicar</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">css</span><span class="p">:</span><span class="w"> </span><span class="l">styles.css</span><span class="w">
+</span></span></span></code></pre></div><p>Luego, ejecuta <code>quarto::quarto_render()</code> para actualizar tu sitio completo al tema nuevo.</p>
+<a href="img/temas_quarto.jpg" target="_blank">
+
+  <img src="img/temas_quarto.jpg" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Puedes ver la lista completa de temas disponibles 
+<a href="https://quarto.org/docs/output-formats/html-themes.html#overview" target="_blank" rel="noopener">en esta guía de Quarto</a>.</p>
+
+
+
+
+<h3 id="menú-de-navegación">Menú de navegación
+  <a href="#men%c3%ba-de-navegaci%c3%b3n"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>También en <code>_quarto.yml</code>, la sección <code>website</code> controla el título, la descripción, y el menú de navegación (<em>navbar</em>) de tu sitio.</p>
+
+<div style="display: flex; align-items: center; gap: 10px; width: fit-content; max-width: 100%;
+            background-color: #DEC4F2; border-radius: 28px;
+            padding: 12px 20px 12px 14px;
+            margin: 24px 4px 24px 12px;">
+
+  
+  <div style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+              background-color: #9069C0; display: flex; align-items: center;
+              justify-content: center;
+              outline: solid 2px #EAD2FAAA;">
+    
+    <span style="font-family: 'EB Garamond', Garamond, serif; color: #EAD2FA;
+                font-size: 120%; font-weight: bold; margin-bottom: 1px;">8</span>
+  </div>
+
+  
+  <div style="font-size: 100%;">
+    <b>Paso 8:</b> 
+    Agrega botones a tus redes sociales principales en el menú de tu blog.
+  </div>
+
+</div>
+
+<p>Date unos minutos para configurar esta sección:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">website</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Mi blog&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Un blog sobre R y análisis de datos&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">navbar</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">left</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">href</span><span class="p">:</span><span class="w"> </span><span class="l">index.qmd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Inicio de mi blog&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">about.qmd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">right</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l">github</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">href</span><span class="p">:</span><span class="w"> </span><span class="l">https://github.com/tu_usuario</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l">linkedin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">href</span><span class="p">:</span><span class="w"> </span><span class="l">https://www.linkedin.com/in/tu_usuario</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l">instagram</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">href</span><span class="p">:</span><span class="w"> </span><span class="l">https://www.instagram.com/tu_usuario</span><span class="w">
+</span></span></span></code></pre></div><p>En el ejemplo anterior, en el lado izquierdo (<code>left</code>) de la barra de navegación estará el link al inicio del blog (<code>index.qmd</code>), y el enlace al <em>about</em> (<code>about.qmd</code>).</p>
+<p>Quarto usa 
+<a href="https://icons.getbootstrap.com" target="_blank" rel="noopener">Bootstrap Icons</a> para los íconos del menú, así que basta con escribir el nombre del ícono (<code>github</code>, <code>linkedin</code>, <code>instagram</code>, etc.). Si necesitas un ícono de una red social que no está en Font Awesome (como Slack o Meetup), puedes reemplazarlo por una imagen propia.</p>
+
+
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            background-color: #493365;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-triangle-exclamation" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #EAD2FA;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%; color: #EAD2FA;">
+    Te recomiendo dejar configurado el tema y el menú de tu sitio <strong>antes</strong> de empezar a escribir publicaciones, para que todas las publicaciones que crees después hereden automáticamente esa apariencia.
+  </aside>
+  
+</div>
+
+
+
+
+<h3 id="estilos-scss">Estilos SCSS
+  <a href="#estilos-scss"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Si quieres ir más allá de los temas predefinidos, puedes crear un archivo <code>.scss</code> propio con variables de estilo. Primero, lo agregamos junto al tema base en <code>_quarto.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">format</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">html</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">theme</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">minty</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">tema.scss</span><span class="w">
+</span></span></span></code></pre></div><p>Luego creamos un archivo llamado <code>tema.scss</code> en la raíz del blog, que como mínimo debe incluir el texto <code>/*-- scss:defaults --*/</code> en la parte superior.</p>
+
+
+<details>
+  <summary>
+    Diferencia entre SCSS y CSS
+  </summary>
+    <div style="padding: 16px; border: solid 2px #A885C6AA; border-radius: 6px; 
+    background-color: #A885C630;
+    margin-top: 8px;">
+    <p><strong>CSS</strong> (<em>Cascading Style Sheets</em>) es el lenguaje estándar para dar estilo a páginas web: defines reglas como &ldquo;los títulos van en azul&rdquo; o &ldquo;el fondo es gris&rdquo;. <strong>SCSS</strong> es una extensión de CSS que agrega funcionalidades útiles, como las <strong>variables</strong> (puedes definir <code>$color-principal: #4a5759</code> una vez y reutilizarla en todo el archivo, en vez de repetir el código del color cada vez). Quarto convierte el SCSS a CSS automáticamente al renderizar. La idea es que con SCSS puedes cambiar colores y tipografías de todo tu blog modificando solo unas pocas variables, en vez de buscar y reemplazar valores repetidos por todo el archivo.</p>
+<p>SCSS hace todo lo que hace CSS, y le agrega funcionalidades extra, así que todo lo que normalmente hacemos en un archivo <code>.css</code> podemos hacerlo en el <code>.scss</code>.</p>
+
+    </div>
+</details>
+
+
+
+
+<h3 id="colores-del-blog">Colores del blog
+  <a href="#colores-del-blog"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Dentro de <code>tema.scss</code>, puedes definir variables de color, tipografía y más.</p>
+
+<div style="display: flex; align-items: center; gap: 10px; width: fit-content; max-width: 100%;
+            background-color: #DEC4F2; border-radius: 28px;
+            padding: 12px 20px 12px 14px;
+            margin: 24px 4px 24px 12px;">
+
+  
+  <div style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+              background-color: #9069C0; display: flex; align-items: center;
+              justify-content: center;
+              outline: solid 2px #EAD2FAAA;">
+    
+    <span style="font-family: 'EB Garamond', Garamond, serif; color: #EAD2FA;
+                font-size: 120%; font-weight: bold; margin-bottom: 1px;">9</span>
+  </div>
+
+  
+  <div style="font-size: 100%;">
+    <b>Paso 9:</b> 
+    Personaliza la paleta de colores de tu blog!
+  </div>
+
+</div>
+
+<p>Definiendo las siguientes variables podrás cambiar la apariencia casi completa del blog en unas pocas líneas:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="cm">/*-- scss:defaults --*/</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$primary</span><span class="o">:</span> <span class="mh">#b0c4b1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$secondary</span><span class="o">:</span> <span class="mh">#4a5759</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/* colores principales */</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$body-bg</span><span class="o">:</span> <span class="mh">#dedbd2</span><span class="p">;</span> <span class="c1">// fondo
+</span></span></span><span class="line"><span class="cl"><span class="nv">$body-color</span><span class="o">:</span> <span class="mh">#4a5759</span><span class="p">;</span> <span class="c1">// texto
+</span></span></span><span class="line"><span class="cl"><span class="nv">$link-color</span><span class="o">:</span> <span class="mh">#b0c4b1</span><span class="p">;</span> <span class="c1">// enlaces
+</span></span></span><span class="line"><span class="cl"><span class="nv">$border-color</span><span class="o">:</span> <span class="mh">#c7c3b7</span><span class="p">;</span> <span class="c1">// líneas
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/* barra de navegación */</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$navbar-bg</span><span class="o">:</span> <span class="mh">#4a5759</span><span class="p">;</span> <span class="c1">// fondo
+</span></span></span><span class="line"><span class="cl"><span class="nv">$navbar-fg</span><span class="o">:</span> <span class="mh">#dedbd2</span><span class="p">;</span> <span class="c1">// texto
+</span></span></span></code></pre></div><div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            /*background-color: #A985C650;*/
+            background-color: #DEC4F2;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-info-circle" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #9069C0;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%;">
+    Puedes buscar paletas de colores y sus códigos hexadecimales en sitios como 
+<a href="https://coolors.co/palettes" target="_blank" rel="noopener">coolors.co</a>.
+  </aside>
+  
+</div>
+<p>Otras variables frecuentes que puedes modificar:</p>
+<ul>
+<li><code>$font-size-root</code> para tamaños del texto</li>
+<li><code>$h1-font-size</code> para tamaño de los títulos</li>
+<li><code>$line-height-base</code> para interlineado del texto</li>
+<li><code>$toc-color</code> para el color de los índices</li>
+</ul>
+<p>Puedes ver la 
+<a href="https://quarto.org/docs/output-formats/html-themes.html#sass-variables" target="_blank" rel="noopener">lista de variables SASS más comunes</a> o 
+<a href="https://rstudio.github.io/bslib/articles/bs5-variables/index.html" target="_blank" rel="noopener">todas las variables disponibles</a>.</p>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/colores/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/colores/featured.jpg"
+           alt="Colores y paletas de colores en R"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Colores y paletas de colores en R
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        El uso del color es clave para comunicar, y el ecosistema de R tiene varios trucos convenientes para ayudarnos a usar el color de mejores formas. En este post veremos consejos y trucos para trabajar…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+
+
+
+
+<h3 id="tipografías">Tipografías
+  <a href="#tipograf%c3%adas"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>La tipografía de tu blog es una forma de presentar su personalidad y expresarle a tus lectores/as ciertos conceptos que quieres asociar con tu contenido.</p>
+
+<div style="display: flex; align-items: center; gap: 10px; width: fit-content; max-width: 100%;
+            background-color: #DEC4F2; border-radius: 28px;
+            padding: 12px 20px 12px 14px;
+            margin: 24px 4px 24px 12px;">
+
+  
+  <div style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+              background-color: #9069C0; display: flex; align-items: center;
+              justify-content: center;
+              outline: solid 2px #EAD2FAAA;">
+    
+    <span style="font-family: 'EB Garamond', Garamond, serif; color: #EAD2FA;
+                font-size: 120%; font-weight: bold; margin-bottom: 1px;">10</span>
+  </div>
+
+  
+  <div style="font-size: 100%;">
+    <b>Paso 10:</b> 
+    Elige una tipografía personalizada para tu blog.
+  </div>
+
+</div>
+
+<p>Para cambiar la tipografía de tu blog:</p>
+<ol>
+<li>Busca una fuente en 
+<a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a>.</li>
+<li>Selecciona la tipografía y presiona <strong>Get font</strong>, luego <strong>Get embed code</strong>.</li>
+<li>Copia la línea <code>@import</code>.</li>
+<li>Pégala en tu <code>tema.scss</code>, y aplícala con las variables correspondientes:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="k">@import</span> <span class="sx">url(&#39;https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&amp;display=swap&#39;)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$font-family-sans-serif</span><span class="o">:</span> <span class="s2">&#34;Raleway&#34;</span><span class="o">,</span> <span class="ni">sans-serif</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">h1</span><span class="o">,</span> <span class="nt">h2</span><span class="o">,</span> <span class="nt">h3</span><span class="o">,</span> <span class="nt">h4</span><span class="o">,</span> <span class="nt">h5</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">font-family</span><span class="o">:</span> <span class="s2">&#34;Raleway&#34;</span><span class="o">,</span> <span class="ni">sans-serif</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Usualmente se recomenda mezclar 
+<a href="https://fontpair.co/all" target="_blank" rel="noopener">pares tipográficos</a> en tu sitio web, tradicionalmente una tipografía <em>serif</em> para los títulos y una <em>sans-serif</em> para el cuerpo del blog (por ejemplo, como hago yo en este blog). Pero también puedes elegir solo una tipografía y aplicarla a todo.</p>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/ggplot_tipografias/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+    <figure style="flex-shrink: 0;
+                   position: relative;
+                   width: 140px;
+                   min-height: 80px;
+                   margin: 10px 0 10px 10px;
+                   overflow: hidden;
+                   border-radius: 5px;">
+      <img src="/blog/ggplot_tipografias/featured.png"
+           alt="Tipografías personalizadas en gráficos {ggplot2}"
+           style="position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                  margin: 0;">
+    </figure>
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Tipografías personalizadas en gráficos {ggplot2}
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        ¿Quieres darle un toque personalizado a tus gráficos? O tal vez alinearlos mejor al mensaje que quieres entregar, o a los lineamientos estéticos de tu organización. En esta breve guía te explico cómo…
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+
+
+
+
+<h3 id="personalización-avanzada">Personalización avanzada
+  <a href="#personalizaci%c3%b3n-avanzada"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Literalmente todo en el blog puede ser pesonalizado, pero para ello necesitas saber cómo se llama cada elemento. Para averiguarlo, abre tu blog en tu navegador (presiona el botón de ventanita en la ventana de <em>Viewer</em> de RStudio para abrirlo en tu navegador), y usa el <strong>inspector</strong> de tu navegador: clic derecho sobre cualquier elemento de tu sitio, y elige <em>Inspeccionar elemento</em>. Ahí puedes ver qué clase <code>css</code> tiene ese elemento, y probar cambios de estilo en vivo antes de aplicarlos definitivamente.</p>
+<p>Por ejemplo, en este blog puse <em>Inspeccionar</em> sobre el título de los posts en la lista de posts, y veo que la <strong>clase</strong> es <code>.listing-title</code>.</p>
+<a href="img/inspector.jpg" target="_blank">
+
+  <img src="img/inspector.jpg" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Entonces, si quiero cambiar el color de ese texto, puedo agregar algo como lo siguiente a <code>tema.scss</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">listing-title</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">color</span><span class="p">:</span> <span class="mh">#583957</span> <span class="cp">!important</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Le agregamos <code>!important</code> para que esta regla nueva aplique por sobre otras reglas que puedan existir.</p>
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            /*background-color: #A985C650;*/
+            background-color: #DEC4F2;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-info-circle" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #9069C0;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%;">
+    Estos conocimientos esotéricos sobre CSS son muy útiles para el 
+<a href="/tags/web-scraping/">web scraping</a>!
+  </aside>
+  
+</div>
+
+
+
+
+<h2 id="preparar-el-sitio-para-subirlo">Preparar el sitio para subirlo
+  <a href="#preparar-el-sitio-para-subirlo"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Antes de subir tu blog a GitHub, necesitamos dos ajustes para que GitHub Pages sepa qué archivos publicar.</p>
+
+<div style="display: flex; align-items: center; gap: 10px; width: fit-content; max-width: 100%;
+            background-color: #DEC4F2; border-radius: 28px;
+            padding: 12px 20px 12px 14px;
+            margin: 24px 4px 24px 12px;">
+
+  
+  <div style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+              background-color: #9069C0; display: flex; align-items: center;
+              justify-content: center;
+              outline: solid 2px #EAD2FAAA;">
+    
+    <span style="font-family: 'EB Garamond', Garamond, serif; color: #EAD2FA;
+                font-size: 120%; font-weight: bold; margin-bottom: 1px;">11</span>
+  </div>
+
+  
+  <div style="font-size: 100%;">
+    <b>Paso 11:</b> 
+    Configurar la carpeta donde se construirá el sitio (<code>docs/</code>)
+  </div>
+
+</div>
+
+<p>Primero, en <code>_quarto.yml</code>, agregamos <code>output-dir: docs</code> bajo <code>project</code>, para que el sitio se construya en una carpeta llamada <code>docs</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">project</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">website</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">output-dir</span><span class="p">:</span><span class="w"> </span><span class="l">docs</span><span class="w">
+</span></span></span></code></pre></div><p>Esto es porque Quarto construye un <strong>sitio web estático</strong> dentro de una carpeta, y esa carpeta es lo que contiene todo lo que será visible del sitio. Por defecto, esta carpeta es <code>_site</code>, pero queremos que sea <code>docs</code>.</p>
+<p>Luego ejecutamos <code>quarto::quarto_render()</code> para actualizar el sitio, y si queremos podemos eliminar la carpeta anterior, <code>_site</code>.</p>
+
+<div style="display: flex; align-items: center; gap: 10px; width: fit-content; max-width: 100%;
+            background-color: #DEC4F2; border-radius: 28px;
+            padding: 12px 20px 12px 14px;
+            margin: 24px 4px 24px 12px;">
+
+  
+  <div style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+              background-color: #9069C0; display: flex; align-items: center;
+              justify-content: center;
+              outline: solid 2px #EAD2FAAA;">
+    
+    <span style="font-family: 'EB Garamond', Garamond, serif; color: #EAD2FA;
+                font-size: 120%; font-weight: bold; margin-bottom: 1px;">12</span>
+  </div>
+
+  
+  <div style="font-size: 100%;">
+    <b>Paso 12:</b> 
+    Agregar el archivo vacío <code>.nojekyll</code>
+  </div>
+
+</div>
+
+<p>Segundo, creamos un archivo vacío llamado <code>.nojekyll</code> en la raíz del proyecto. Esto le indica a GitHub Pages que no debe procesar tu sitio con Jekyll (su generador de sitios por defecto), porque tú ya lo generaste con Quarto:</p>
+<a href="img/nojekyll.png" target="_blank">
+
+  <img src="img/nojekyll.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+
+
+
+
+<h3 id="crear-el-repositorio-local">Crear el repositorio local
+  <a href="#crear-el-repositorio-local"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+
+<div style="display: flex; align-items: center; gap: 10px; width: fit-content; max-width: 100%;
+            background-color: #DEC4F2; border-radius: 28px;
+            padding: 12px 20px 12px 14px;
+            margin: 24px 4px 24px 12px;">
+
+  
+  <div style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+              background-color: #9069C0; display: flex; align-items: center;
+              justify-content: center;
+              outline: solid 2px #EAD2FAAA;">
+    
+    <span style="font-family: 'EB Garamond', Garamond, serif; color: #EAD2FA;
+                font-size: 120%; font-weight: bold; margin-bottom: 1px;">13</span>
+  </div>
+
+  
+  <div style="font-size: 100%;">
+    <b>Paso 13:</b> 
+    Crear el repositorio local de Git
+  </div>
+
+</div>
+
+<p>Con el sitio preparado y 
+<a href="/blog/quarto_blog/#configurar-git-y-github">GitHub configurado</a>, ahora creamos el repositorio local y lo subimos a GitHub:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">usethis</span><span class="o">::</span><span class="nf">use_git</span><span class="p">()</span>
+</span></span></code></pre></div><p>Este comando <strong>inicializa el repositorio</strong> de Git en tu proyecto, y te preguntará si quieres hacer <em>commit</em> de tus archivos (guardar la primera versión), así que respóndele que <strong>sí</strong>.</p>
+
+
+
+
+<h3 id="subir-el-repositorio-remoto">Subir el repositorio remoto
+  <a href="#subir-el-repositorio-remoto"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+
+<div style="display: flex; align-items: center; gap: 10px; width: fit-content; max-width: 100%;
+            background-color: #DEC4F2; border-radius: 28px;
+            padding: 12px 20px 12px 14px;
+            margin: 24px 4px 24px 12px;">
+
+  
+  <div style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+              background-color: #9069C0; display: flex; align-items: center;
+              justify-content: center;
+              outline: solid 2px #EAD2FAAA;">
+    
+    <span style="font-family: 'EB Garamond', Garamond, serif; color: #EAD2FA;
+                font-size: 120%; font-weight: bold; margin-bottom: 1px;">14</span>
+  </div>
+
+  
+  <div style="font-size: 100%;">
+    <b>Paso 14:</b> 
+    Crear el repositorio remoto en GitHub
+  </div>
+
+</div>
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">usethis</span><span class="o">::</span><span class="nf">use_github</span><span class="p">()</span>
+</span></span></code></pre></div><p>Este segundo comando crea un <strong>repositorio remoto</strong> en tu cuenta de GitHub, con el mismo nombre que tu proyecto, y sube tus archivos. Al finalizar, se abrirá una ventana del navegador mostrando tu repositorio ya en GitHub!</p>
+<p>Si puedes ver el repositorio en GitHub, y el repo tiene la carpeta <code>docs</code>, está todo listo para el último paso!</p>
+
+
+
+
+<h2 id="publicar-el-blog-en-github-pages">Publicar el blog en GitHub Pages
+  <a href="#publicar-el-blog-en-github-pages"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Ya con el repositorio en GitHub, podemos configurar GitHub Pages.</p>
+
+<div style="display: flex; align-items: center; gap: 10px; width: fit-content; max-width: 100%;
+            background-color: #DEC4F2; border-radius: 28px;
+            padding: 12px 20px 12px 14px;
+            margin: 24px 4px 24px 12px;">
+
+  
+  <div style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+              background-color: #9069C0; display: flex; align-items: center;
+              justify-content: center;
+              outline: solid 2px #EAD2FAAA;">
+    
+    <span style="font-family: 'EB Garamond', Garamond, serif; color: #EAD2FA;
+                font-size: 120%; font-weight: bold; margin-bottom: 1px;">15</span>
+  </div>
+
+  
+  <div style="font-size: 100%;">
+    <b>Paso 15:</b> 
+    Activar GitHub Pages para tu repositorio
+  </div>
+
+</div>
+
+<p>vamos a la pestaña <strong>Settings</strong> del repositorio:</p>
+<a href="img/quarto_5.png" target="_blank">
+
+  <img src="img/quarto_5.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>En el menú de la izquierda, entramos a <strong>Pages</strong>. Ahí, en <em>Build and deployment</em>, seleccionamos la rama (<em>branch</em>) <code>main</code>, y la carpeta <code>/docs</code>, y presionamos <strong>Save</strong>:</p>
+<a href="img/quarto_6.png" target="_blank">
+
+  <img src="img/quarto_6.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>Después de esperar uno o dos minutos, GitHub te mostrará la dirección donde tu sitio ya está publicado:</p>
+<a href="img/quarto_7.png" target="_blank">
+
+  <img src="img/quarto_7.png" style="border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;">
+  
+</a>
+<p>¡Y eso es todo! Tu blog ya está disponible en internet, en una dirección como <code>https://tu_usuario.github.io/nombre-del-repositorio</code>.</p>
+<p>Una vez que tu sitio está arriba, la configuración está lista, y cada vez que actualices el repositorio remoto tu sitio web se actualizará en unos minutos.</p>
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            /*background-color: #A985C650;*/
+            background-color: #DEC4F2;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-info-circle" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #9069C0;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%;">
+    Si renombras tu repositorio a <code>tu_usuario.github.io</code>, tu sitio quedará disponible directamente en <code>https://tu_usuario.github.io</code>, sin el nombre del repositorio al final.
+  </aside>
+  
+</div>
+
+
+
+
+<h2 id="actualizar-el-blog">Actualizar el blog
+  <a href="#actualizar-el-blog"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Una vez publicado, actualizar tu blog (para agregar nuevas publicaciones, corregir textos, cambiar el diseño) sigue siempre el mismo flujo:</p>
+<ol>
+<li>Haces los cambios que quieras en RStudio (nueva publicación, modificación de configuraciones, temas, etc.).</li>
+<li>Ejecutas <code>quarto::quarto_render()</code> para reconstruir el sitio completo.</li>
+<li>Subes los cambios a GitHub desde la pestaña <em>Terminal</em> (al lado de la pestaña de la Consola:
+<ul>
+<li><strong>Registra los cambios</strong> locales con <code>git add .</code> para que tus archivos modificados sean identificados</li>
+<li><strong>Guarda una versión</strong> de tus modificaciones con <code>git commit -m &quot;mensaje&quot;</code>, con un mensaje descriptivo de los cambios</li>
+<li><strong>Sube los cambios</strong> al repositorio remoto GitHub con <code>git push</code></li>
+</ul>
+</li>
+</ol>
+<p>En resumen, ejecutar estos tres comandos en la pestaña <strong>Terminal</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;agrego nueva publicación&#34;</span>
+</span></span><span class="line"><span class="cl">git push
+</span></span></code></pre></div><p>Con <code>git add .</code> marcamos todos los archivos modificados para guardar, con <code>git commit</code> creamos una nueva versión con un mensaje descriptivo, y con <code>git push</code> subimos los cambios a GitHub. En un par de minutos, tu sitio se actualizará solo con los cambios.</p>
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            /*background-color: #A985C650;*/
+            background-color: #DEC4F2;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-info-circle" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #9069C0;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%;">
+    Si prefieres no usar la terminal, RStudio también tiene un panel <em>Git</em> (junto a <em>Environment</em> e <em>History</em>) desde el cual puedes hacer exactamente lo mismo con clics en vez de comandos.
+  </aside>
+  
+</div>
+<div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones relacionadas
+    </p>
+
+  <a href="/blog/git_comandos/"
+     style="display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            /*border: 1px solid #9069C035;*/
+            border: solid 2px #A885C6AA;
+            border-radius: 8px;
+            overflow: hidden;
+            /*background-color: #9069C00d;*/
+            background-color: #9069C020;
+            ">
+
+    
+
+    <div style="padding: 15px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 6px;">
+
+      <p style="margin: 0;
+                font-size: 95%;
+                color: #9069C0;
+                font-weight: bold;
+                line-height: 1.35;">
+        Comandos comunes de Git
+      </p>
+
+      
+      <p style="margin: 0;
+                font-size: 84%;
+                line-height: 1.5;">
+        Colección de comandos de git para realizar acciones comunes y resolver problemas frecuentes. git es una herramienta para el control de versiones de código, respaldo de código, y colaboración.
+      </p>
+      
+
+    </div>
+  </a>
+  </div>
+
+
+
+
+
+
+
+<h4 id="preguntas-frecuentes">Preguntas frecuentes
+  <a href="#preguntas-frecuentes"></a>
+</h4>
+<p><strong>¿Esto es gratis?</strong>
+Quarto, RStudio, Git y GitHub Pages son gratuitos!</p>
+<p><strong>¿Alguien puede copiar o &ldquo;robar&rdquo; mi código?</strong>
+El código de tu sitio queda público, y también el código que usas para construir tus publicaciones. Esto incluye los datos, si es que llegas a subirlos a las carpetas de tu blog. Evita subir información que no quieras que sea pública (contraseñas, llaves de API, datos sensibles o privados, etc.). GitHub Pages gratuito no funciona sobre repositorios privados, aunque existen alternativas. Si necesitas usar datos privados, o muy pesados, siempre puedes cargarlos desde ubicaciones externas a tu blog para que tus documentos Quarto los reciban, pero no se suban a tu blog.</p>
+
+
+
+
+<h2 id="recursos">Recursos
+  <a href="#recursos"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+
+
+
+
+<h4 id="tutoriales">Tutoriales
+  <a href="#tutoriales"></a>
+</h4>
+<ul>
+<li>
+<a href="/blog/r_introduccion/tutorial_github/">Crea un repositorio Git y comparte tu código en GitHub</a></li>
+<li>
+<a href="/blog/quarto_reportes/">Reportes y documentos con Quarto</a></li>
+<li>
+<a href="/blog/tutorial_quarto_github_pages/">Crea páginas web y blogs con R + Quarto</a></li>
+</ul>
+
+
+
+
+<h4 id="documentación">Documentación
+  <a href="#documentaci%c3%b3n"></a>
+</h4>
+<ul>
+<li>
+<a href="https://quarto.org/docs/websites/" target="_blank" rel="noopener">Quarto websites</a></li>
+<li>
+<a href="https://quarto.org/docs/websites/website-blog.html" target="_blank" rel="noopener">blogs con Quarto</a></li>
+<li>
+<a href="https://quarto.org/docs/publishing/github-pages.html" target="_blank" rel="noopener">publicar en GitHub Pages</a></li>
+<li>
+<a href="https://happygitwithr.com" target="_blank" rel="noopener">Happy Git and GitHub for the useR</a></li>
+</ul>
+
+  <div style="margin: 28px 0;">
+    <p class="titulo-panel">
+      Publicaciones sobre quarto
+    </p>
+
+    <div style="/*border: 1px solid #9069C035;*/
+                border: solid 2px #A885C6AA;
+                border-radius: 8px;
+                overflow: hidden;
+                background-color: #9069C00d;">
+
+      <a href="/blog/taller_santiagorusers_sitios/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  
+                  ">
+
+          
+          <img src="/blog/taller_santiagorusers_sitios/afiche_rusers_stgo_julio-featured.jpg"
+               alt="Taller: Crea tu propia página web con Quarto y R"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Taller: Crea tu propia página web con Quarto y R
+          </span>
+
+        </a>
+      <a href="/blog/2026-03-26/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/2026-03-26/featured.jpg"
+               alt="Galería de libros de _Goodreads_ para tu blog o sitio web con R y Quarto"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Galería de libros de <em>Goodreads</em> para tu blog o sitio web con R y Quarto
+          </span>
+
+        </a>
+      <a href="/blog/estudio_brechas_comunales/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/estudio_brechas_comunales/featured.jpeg"
+               alt="Plataforma de visualización de resultados del Estudio de Brechas Comunales"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Plataforma de visualización de resultados del Estudio de Brechas Comunales
+          </span>
+
+        </a>
+      <a href="/blog/surveydown_encuestas/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/surveydown_encuestas/featured.png"
+               alt="Crea encuestas online gratis en R con {surveydown}"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Crea encuestas online gratis en R con {surveydown}
+          </span>
+
+        </a>
+      <a href="/blog/taller_datos_unam/"
+           style="display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  text-decoration: none;
+                  color: inherit;
+                  padding: 8px 14px;
+                  gap: 12px;
+                  border-top: 1px solid #9069C030;
+                  ">
+
+          
+          <img src="/blog/taller_datos_unam/featured.png"
+               alt="Taller: Compartir y colaborar desde el cruce entre las ciencias de datos y las ciencias sociales"
+               style="flex-shrink: 0;
+                      width: 52px;
+                      height: 38px;
+                      object-fit: cover;
+                      object-position: center top;
+                      border-radius: 4px;
+                      margin: 0;">
+          
+
+          <span style="font-size: 88%;
+                       color: #9069C0;
+                       font-weight: 600;
+                       line-height: 1.35;">
+            Taller: Compartir y colaborar desde el cruce entre las ciencias de datos y las ciencias sociales
+          </span>
+
+        </a>
+      
+
+    </div>
+  </div>
+
+
+
+<div style = "height: 18px;">
+</div>
+<div>
+  <div style="display: flex;
+  justify-content: center;
+  align-items: center;">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="bastimapache" 
+    data-color="#D6B9E8" data-emoji="<i class='fa fa-mug-saucer'></i>"  data-font="Cookie" 
+    data-text="Regálame un cafecito" 
+    data-outline-color="#000000" data-font-color="#543A73" data-coffee-color="#ffffff" ></script>
+  </div>
+</div>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><em>Disclaimer:</em> este tutorial se escribió con apoyo del asistente de IA 
+<a href="/blog/posit_assistant/">Posit Assistant</a> en modo planificación bajo el modelo Claude Sonnet 5, por medio de un 
+<a href="https://github.com/bastianolea/blog-R/blob/master/content/blog/quarto_blog/prompt.md" target="_blank" rel="noopener">prompt extenso</a> que instruyó al LLM a usar mi <em>skill</em> de 
+<a href="https://github.com/bastianolea/blog-R/blob/master/.posit/assistant/skills/estilo-escritura/SKILL.md" target="_blank" rel="noopener">estilo personal de escritura</a>, mi <em>skill</em> de comprensión del 
+<a href="https://github.com/bastianolea/blog-R/blob/master/.posit/assistant/skills/hugo-blog/SKILL.md" target="_blank" rel="noopener">funcionamiento de mi blog Hugo</a>, la 
+<a href="https://github.com/bastianolea/blog-R/blob/master/content/blog/quarto_blog/transcripcion_taller.vtt" target="_blank" rel="noopener">transcripción</a> del taller en vivo generada por Zoom (que derivó en un 
+<a href="https://github.com/bastianolea/blog-R/blob/master/content/blog/quarto_blog/resumen_transcripcion_taller.md" target="_blank" rel="noopener">resumen de la transcripción</a>), las 
+<a href="https://github.com/SantiagoRusers/taller_quarto_blog" target="_blank" rel="noopener">diapositivas Quarto RevealJS</a> del taller, y el código de un 
+<a href="https://github.com/bastianolea/blog-R/blob/master/content/blog/tutorial_quarto_github_pages/index.md" target="_blank" rel="noopener">tutorial anterior</a> sobre Quarto (pero de una temática más amplia). De todo esto resultó una 
+<a href="https://github.com/bastianolea/blog-R/blob/master/.posit/assistant/plans/2026-08-06-1716-plan.md" target="_blank" rel="noopener">planificación</a> de redacción, la cual modifiqué manualmente para que Sonnet 5 la implementara con el modo <code>/yolo</code> de Posit Assistant, con una instrucción para que dejara comentarios en partes donde falten contenidos o existan dudas (para que yo las resolviera). Finalmente, revisé el texto resultante completo, y modifiqué todas las secciones agregando comentarios, mejorando la escritura, y agregando ejemplos. Básicamente era un caso de uso perfecto de IA porque tenía un marco muy específico de documentos, instrucciones y contexto para obtener el resultado deseado.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+ 
+    </section>
+      
+    <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+    <a class="prev dtc pr2 tl v-top fw6"
+    href="https://bastianolea.rbind.io/blog/web_scraping/">&larr; Web scraping con R</a>
+  
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="https://bastianolea.rbind.io/blog/2026-08-03/">Optimizando la visualización de datos geográficos complejos con {pmtiles} &rarr;</a>
+  
+</div>
+
+    </footer>
+    
+  </article>
+    
+    <div class="post-comments pa0 pa4-l mt4">
+  
+</div>
+
+    
+</section>
+  
+
+<section class="post-body pt5 pb4">
+  
+  <details closed class="f6 fw7 input-reset">
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Fecha de publicación:</dt>
+    <dd class="fw5 ml0">August 7, 2026</dd>
+  </dl>
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Extensión:</dt>
+    <dd class="fw5 ml0">21 minute read, 4439 words</dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Categorías:</dt>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/categories/tutoriales">Tutoriales</a> </dd>
+  </dl>
+  
+  
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Tags:</dt>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/quarto">quarto</a>  <a href="https://bastianolea.rbind.io/tags/git">git</a>  <a href="https://bastianolea.rbind.io/tags/github">github</a> </dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Ver también:</dt>
+    
+    <dd class="fw5 ml0"><a href="/blog/taller_santiagorusers_sitios/">Taller: Crea tu propia página web con Quarto y R</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/2026-03-26/">Galería de libros de _Goodreads_ para tu blog o sitio web con R y Quarto</a></dd>
+    
+    <dd class="fw5 ml0"><a href="/blog/surveydown_encuestas/">Crea encuestas online gratis en R con {surveydown}</a></dd>
+    
+  </dl>
+</details>
+
+</section>
+</main>
+
+
+<aside class="page-sidebar" role="complementary">
+   
+   
+
+  <div class="blog-info ph4 pt4 pb4 pb0-l">
+    
+
+  <h1 class="f3">Blog</h1>
+  <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
+<a href="/tags/">temas</a>.</p>
+  
+
+   
+<h3 style="margin-bottom: 12px;">Temas:</h3>
+
+<div style="font-size:90%;">
+
+<div style="font-size: 90%;">
+  
+   
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/apps/">Aplicaciones</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/texto/">Procesamiento de texto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/loops/">Loops</a></span>
+  </span>
+
+<a href="/tags/" style="margin-left: 3px;">y más!</a>
+</div>
+</div>
+  
+  
+   
+   
+
+</div>
+
+  
+  <div id="PageTableOfContents" style="margin-top: 24px; position: sticky; top: 108px;">
+        <div class="blog-info ph4 pb4 pb0-l">
+        <h3 style="margin-bottom: 12px;">Índice:</h3>
+          <div class="pl2 pr0 mh0" style = "font-size: 90%; margin-top: -8px; margin-left: -22px; margin-bottom: 32px;">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#herramientas">Herramientas</a></li>
+    <li><a href="#ejemplos-de-blogs-quarto">Ejemplos de blogs Quarto</a></li>
+    <li><a href="#configurar-git-y-github">Configurar Git y GitHub</a>
+      <ul>
+        <li><a href="#configurar-cuenta-github">Configurar cuenta GitHub</a></li>
+        <li><a href="#autenticar-cuenta-github">Autenticar cuenta GitHub</a></li>
+      </ul>
+    </li>
+    <li><a href="#crear-el-blog">Crear el blog</a>
+      <ul>
+        <li><a href="#estructura-de-archivos">Estructura de archivos</a></li>
+      </ul>
+    </li>
+    <li><a href="#previsualizar-y-construir-el-sitio">Previsualizar y construir el sitio</a></li>
+    <li><a href="#escribe-tu-primera-publicación">Escribe tu primera publicación</a>
+      <ul>
+        <li><a href="#encabezado-de-la-publicación">Encabezado de la publicación</a></li>
+        <li><a href="#sintaxis-markdown-básica">Sintaxis Markdown básica</a></li>
+        <li><a href="#código-de-r-en-las-publicaciones">Código de R en las publicaciones</a></li>
+        <li><a href="#código-como-parte-del-texto">Código como parte del texto</a></li>
+      </ul>
+    </li>
+    <li><a href="#personalización">Personalización</a>
+      <ul>
+        <li><a href="#cambiar-el-tema">Cambiar el tema</a></li>
+        <li><a href="#menú-de-navegación">Menú de navegación</a></li>
+        <li><a href="#estilos-scss">Estilos SCSS</a></li>
+        <li><a href="#colores-del-blog">Colores del blog</a></li>
+        <li><a href="#tipografías">Tipografías</a></li>
+        <li><a href="#personalización-avanzada">Personalización avanzada</a></li>
+      </ul>
+    </li>
+    <li><a href="#preparar-el-sitio-para-subirlo">Preparar el sitio para subirlo</a>
+      <ul>
+        <li><a href="#crear-el-repositorio-local">Crear el repositorio local</a></li>
+        <li><a href="#subir-el-repositorio-remoto">Subir el repositorio remoto</a></li>
+      </ul>
+    </li>
+    <li><a href="#publicar-el-blog-en-github-pages">Publicar el blog en GitHub Pages</a></li>
+    <li><a href="#actualizar-el-blog">Actualizar el blog</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#recursos">Recursos</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+          </div>
+        </div>
+    </div>
+  
+  
+
+</aside>
+
+        
+          <script id="partials/analytics.html" 
+  data-goatcounter="https://bastimapache.goatcounter.com/count"
+  async src="//gc.zgo.at/count.js"></script>
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2026 Bastián Olea Herrera, Chile
+      <span class="middot-divider"></span>
+      Hecho con <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source" style="color:#9069C0;">Hugo Apéro</a> 
+      y <a href="https://pkgs.rstudio.com/blogdown/" style="color:#9069C0;">{blogdown}</a></span>.
+      <br />
+      
+Basado en <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source" style="color:#9069C0;">Blogophonic</a></span>, de <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL" style="color:#9069C0;">Formspree</a>.
+
+Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlify</a></span>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+      <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
+      
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
+      
+      <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
+      
+      <a class="dib pv1 ph2 link" href="/tags/" title="Temas">Temas</a>
+      
+      <a class="dib pv1 ph2 link" href="/clases/" title="Clases">Clases</a>
+      
+      <a class="dib pv1 ph2 link" href="/code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
+      
+      <a class="dib pv1 ph2 link" href="/license/" title="Bastián Olea: Licencia">Licencia</a>
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>

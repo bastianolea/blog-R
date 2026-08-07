@@ -10,22 +10,22 @@
 		
 		
 		
-			<lastBuildDate>Wed, 29 Jul 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Fri, 07 Aug 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="https://bastianolea.rbind.io/tags/quarto/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Crea y publica tu propio blog con Quarto y RStudio</title>
+				<link>https://bastianolea.rbind.io/blog/quarto_blog/</link>
+				<pubDate>Fri, 07 Aug 2026 00:00:00 +0000</pubDate>
+				<guid>https://bastianolea.rbind.io/blog/quarto_blog/</guid>
+				<description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;Este tutorial es la versión en texto&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; del &#xA;&lt;a href=&#34;https://bastianolea.rbind.io/clases/taller_santiagorusers_sitios/&#34;&gt;taller&lt;/a&gt; que dictamos en vivo para el &#xA;&lt;a href=&#34;https://santiagorusers.github.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Grupo de Usuari@s de R de Santiago&lt;/a&gt; el 29 de julio de 2026, ante más de 50 personas de toda Latinoamérica. Muchas gracias a quienes participaron!&lt;/em&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;En una época en que casi toda nuestra vida digital ocurre dentro de redes sociales y plataformas que no controlamos (y que pueden cerrar, bloquearte, o simplemente desaparecer), contar con un &lt;strong&gt;sitio web personal&lt;/strong&gt; te permite reunir tus proyectos, aprendizajes y estudios en un lugar que no depende de nadie más que de ti.&lt;/p&gt;</description>
+			</item>
 			<item>
 				<title>Taller: Crea tu propia página web con Quarto y R</title>
 				<link>https://bastianolea.rbind.io/blog/taller_santiagorusers_sitios/</link>
 				<pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
 				<guid>https://bastianolea.rbind.io/blog/taller_santiagorusers_sitios/</guid>
 				<description>&lt;p&gt;Para su reunión mensual del mes de julio, el &#xA;&lt;a href=&#34;https://santiagorusers.github.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;grupo de usuarias/os de R de Santiago de Chile&lt;/a&gt; realizó el taller &lt;strong&gt;Crea tu página web con Quarto y R&lt;/strong&gt;, dictado por &#xA;&lt;a href=&#34;https://bastianolea.rbind.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Bastián Olea Herrera&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://bastianolea.rbind.io/blog/taller_santiagorusers_sitios/afiche_rusers_stgo_julio-featured.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&#xA;&lt;a href=&#34;#grabaci%c3%b3n-del-taller&#34;&gt;Ya está disponible la &lt;strong&gt;grabación&lt;/strong&gt; del taller!&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Durante el taller aprenderás a crear una página web utilizando Quarto, una herramienta sencilla y potente que te permitirá mostrar tu trabajo, proyectos, publicaciones, portafolio y mucho más, y también veremos cómo subir esta página a tu propio sitio gracias a GitHub Pages, para que cualquier persona pueda verla.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>Taller: Crea tu propia página web con Quarto y R</title>
-				<link>https://bastianolea.rbind.io/clases/taller_santiagorusers_sitios/</link>
-				<pubDate>Wed, 29 Jul 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/clases/taller_santiagorusers_sitios/</guid>
-				<description>&lt;p&gt;Para su reunión mensual del mes de julio, el &#xA;&lt;a href=&#34;https://santiagorusers.github.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;grupo de usuarias/os de R de Santiago de Chile&lt;/a&gt; realizó el taller &lt;strong&gt;Crea tu página web con Quarto y R&lt;/strong&gt;, dictado por &#xA;&lt;a href=&#34;https://bastianolea.rbind.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Bastián Olea Herrera&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://bastianolea.rbind.io/clases/taller_santiagorusers_sitios/afiche_rusers_stgo_julio-featured.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&#xA;&lt;a href=&#34;#grabaci%c3%b3n-del-taller&#34;&gt;Ya está disponible la &lt;strong&gt;grabación&lt;/strong&gt; del taller!&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Durante el taller aprenderás a crear una página web utilizando Quarto, una herramienta sencilla y potente que te permitirá mostrar tu trabajo, proyectos, publicaciones, portafolio y mucho más, y también veremos cómo subir esta página a tu propio sitio gracias a GitHub Pages, para que cualquier persona pueda verla.&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>Galería de libros de _Goodreads_ para tu blog o sitio web con R y Quarto</title>

@@ -262,6 +262,8 @@ Archivo `static/_redirects` para migraciones de URL y dominios. Redirecciones de
 | Sidebar del blog | `layouts/partials/shared/sidebar/sidebar-header.html` |
 | Summaries (blog list) | `layouts/partials/shared/summary.html` |
 | Summaries (tags) | `layouts/partials/shared/summary-thumbnail.html` |
+| Meta/SEO tags (override raíz) | `layouts/partials/meta.html` |
+| Paginación prev/next (override raíz) | `layouts/partials/shared/post-pagination.html` |
 | Buscador JSON | `layouts/index.json` |
 | Página buscador (iframe Shiny) | `content/buscar/_index.md` |
 | Layout buscador con iframe | `layouts/buscar/list.html` |
@@ -309,24 +311,48 @@ La página `/buscar/` embebe la app Shiny del buscador (`https://bastianoleah.sh
 
 Ver [references/layouts.md](references/layouts.md) para el mapa completo de layouts.
 
+**Nunca editar archivos dentro de `themes/hugo-apero/`.** Para modificar cualquier template (layout, partial o shortcode), copiar el archivo a la misma ruta bajo `layouts/` y modificar la copia: Hugo prioriza la carpeta `layouts/` raíz del proyecto sobre la del tema. Así las actualizaciones del tema no pisan los cambios locales. El tema está vendido en el repo (sin submódulo), pero igual conviene dejarlo intacto.
 
-## Limpieza de markdown en títulos (SEO y metadatos)
+Pasos:
+1. Copiar `themes/hugo-apero/layouts/<ruta>` → `layouts/<ruta>` (misma ruta relativa).
+2. Modificar la copia.
+3. Verificar en el build que el output cambió. Si el sitio no cambia, revisar que la ruta sea correcta y que no exista otro override que esté ganando.
 
-**Problema:** si el título del post contiene markdown (como backticks `` `{paquete}` ``), los buscadores web (DuckDuckGo, Google) y redes sociales muestran los símbolos markdown en los resultados, o pueden omitir el texto dentro de los backticks.
+Overrides raíz existentes: `layouts/blog/single-sidebar.html`, `layouts/blog/list-sidebar.html`, `layouts/blog/single-series.html`, `layouts/partials/shared/summary.html`, `layouts/partials/shared/summary-thumbnail.html`, `layouts/partials/meta.html`, `layouts/partials/shared/post-pagination.html`, entre otros.
 
-**Solución:** usar el filtro `plainify` de Hugo en los metadatos de OpenGraph y en la etiqueta `<title>`. 
 
-En `themes/hugo-apero/layouts/partials/meta.html`, actualizar:
+## Limpieza de markdown en títulos (SEO, metadatos y paginación)
+
+**Problema:** si el título del post contiene markdown (como backticks `` `{paquete}` ``), los símbolos aparecen crudos en los lugares donde Hugo imprime `.Title` directamente (paginación prev/next, breadcrumbs, listados, metadatos), y los buscadores pueden mostrarlos u omitir el texto dentro de los backticks.
+
+**Regla clave (comprobada con Hugo 0.164, 2026-08-07):** `plainify` **NO** elimina markdown ni backticks — solo quita etiquetas HTML. El patrón correcto para dejar un título como texto plano es **`markdownify | plainify`**: primero se renderiza el markdown a HTML (`` `{paquete}` `` → `<code>{paquete}</code>`) y después se eliminan las etiquetas (→ `{paquete}`).
+
+### Paginación prev/next (post-pagination)
+
+El override raíz `layouts/partials/shared/post-pagination.html` (copia del partial del tema) usa el patrón correcto en ambos enlaces:
 
 ```html
-<!-- Línea 10: etiqueta <title> del navegador -->
-<title>{{ if .IsHome }}{{ .Title | plainify }}{{ else }}{{ .Page.Title | plainify }} | {{ site.Title }}{{ end }}</title>
-
-<!-- Línea 36: metadatos OpenGraph (buscadores y redes sociales) -->
-<meta property="og:title" content="{{ if .IsHome }}{{ .Title | plainify }}{{ else }}{{ .Page.Title | plainify }} | {{ site.Title }}{{ end }}">
+<a class="prev dtc pr2 tl v-top fw6" href="{{.Permalink}}">&larr; {{.Title | markdownify | plainify}}</a>
+<a class="next dtc pl2 tr v-top fw6" href="{{.Permalink}}">{{.Title | markdownify | plainify}} &rarr;</a>
 ```
 
-`plainify` elimina todo markdown, backticks, HTML y caracteres especiales, dejando solo texto limpio.
+> **Sobre la práctica:** para modificar cualquier template no se edita el tema — se copia el archivo a `layouts/` raíz y se modifica la copia (ver sección **Regla de oro: no editar el tema**).
+
+### SEO y metadatos (meta.html)
+
+El override raíz `layouts/partials/meta.html` (aplicado 2026-08-07) usa `markdownify | plainify` en `<title>` y `og:title` (el tema usa solo `plainify`, que **no** limpia backticks):
+
+```html
+<title>{{ if .IsHome }}{{ .Title | markdownify | plainify }}{{ else }}{{ .Page.Title | markdownify | plainify }} | {{ site.Title }}{{ end }}</title>
+<meta property="og:title" content="{{ if .IsHome }}{{ .Title | markdownify | plainify }}{{ else }}{{ .Page.Title | markdownify | plainify }} | {{ site.Title }}{{ end }}">
+```
+
+Nota: `meta name="description"` y `og:description` usan `$desc` crudo (excerpt/subtitle/description del front matter). Si un excerpt contiene markdown con backticks, podría mostrarlo en buscadores; pendiente de revisar si conviene aplicar `markdownify | plainify` también ahí.
+
+### Otros lugares con títulos crudos (no arreglados)
+
+- `layouts/partials/shared/post-details.html` (sidebar "Ver también"): imprime `{{ .Title }}` crudo → muestra backticks.
+- Tarjetas de listados (`summary.html`, `summary-thumbnail.html`): usan `{{ .Title | markdownify }}` → renderizan bien los backticks como `<code>`.
 
 **Recomendación adicional:** en títulos con caracteres especiales como `{territorial}`, considerar usar nombres más SEO-friendly en el front matter del post, ej: `title: "territorial: un paquete de R para..."`.
 

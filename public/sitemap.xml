@@ -57,18 +57,36 @@
     <lastmod>2024-11-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://bastianolea.rbind.io/</loc>
-    <lastmod>2026-08-03T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://bastianolea.rbind.io/blog/</loc>
-    <lastmod>2026-08-03T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianolea.rbind.io/categories/</loc>
+    <lastmod>2026-08-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianolea.rbind.io/blog/quarto_blog/</loc>
+    <lastmod>2026-08-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianolea.rbind.io/tags/git/</loc>
+    <lastmod>2026-08-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianolea.rbind.io/tags/github/</loc>
+    <lastmod>2026-08-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianolea.rbind.io/tags/</loc>
+    <lastmod>2026-08-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianolea.rbind.io/tags/quarto/</loc>
+    <lastmod>2026-08-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bastianolea.rbind.io/categories/tutoriales/</loc>
+    <lastmod>2026-08-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://bastianolea.rbind.io/tags/mapas/</loc>
     <lastmod>2026-08-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://bastianolea.rbind.io/blog/2026-08-03/</loc>
-    <lastmod>2026-08-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://bastianolea.rbind.io/tags/</loc>
     <lastmod>2026-08-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://bastianolea.rbind.io/tags/videos/</loc>
@@ -83,22 +101,13 @@
     <loc>https://bastianolea.rbind.io/tags/blog/</loc>
     <lastmod>2026-07-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://bastianolea.rbind.io/categories/</loc>
-    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://bastianolea.rbind.io/clases/</loc>
-    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://bastianolea.rbind.io/tags/quarto/</loc>
     <lastmod>2026-07-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://bastianolea.rbind.io/blog/taller_santiagorusers_sitios/</loc>
     <lastmod>2026-07-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://bastianolea.rbind.io/clases/taller_santiagorusers_sitios/</loc>
-    <lastmod>2026-07-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://bastianolea.rbind.io/categories/tutoriales/</loc>
     <lastmod>2026-07-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://bastianolea.rbind.io/tags/chile/</loc>
@@ -450,12 +459,6 @@
     <lastmod>2025-10-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://bastianolea.rbind.io/blog/git_comandos/</loc>
-    <lastmod>2025-10-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://bastianolea.rbind.io/tags/git/</loc>
-    <lastmod>2025-10-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://bastianolea.rbind.io/tags/github/</loc>
     <lastmod>2025-10-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://bastianolea.rbind.io/blog/taller_datos_unam/</loc>

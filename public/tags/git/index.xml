@@ -10,7 +10,7 @@
 		
 		
 		
-			<lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Fri, 07 Aug 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="https://bastianolea.rbind.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
 			<item>
@@ -19,6 +19,13 @@
 				<pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
 				<guid>https://bastianolea.rbind.io/blog/r_introduccion/tutorial_github/</guid>
 				<description>&lt;a href=&#34;titulo_github-featured.png&#34; target=&#34;_blank&#34;&gt;&#xA;&#xA;  &lt;img src=&#34;titulo_github-featured.png&#34; style=&#34;border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;&#34;&gt;&#xA;  &#xA;&lt;/a&gt;&#xA;&lt;br&gt;&#xA;&lt;br&gt;&#xA;&lt;p&gt;En este tutorial aprenderás a empezar a usar Git con tus proyectos de R, mediante la creación de repositorios. Git te permite llevar un registro de las versiones y un control de cambios en tu código, mientras que GitHub te permite subir tus repositorios a un servicio online, en el cual puedes compartir tu código con otras personas, descargar el código de otros, y colaborar en un mismo proyecto.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Crea y publica tu propio blog con Quarto y RStudio</title>
+				<link>https://bastianolea.rbind.io/blog/quarto_blog/</link>
+				<pubDate>Fri, 07 Aug 2026 00:00:00 +0000</pubDate>
+				<guid>https://bastianolea.rbind.io/blog/quarto_blog/</guid>
+				<description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;Este tutorial es la versión en texto&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; del &#xA;&lt;a href=&#34;https://bastianolea.rbind.io/clases/taller_santiagorusers_sitios/&#34;&gt;taller&lt;/a&gt; que dictamos en vivo para el &#xA;&lt;a href=&#34;https://santiagorusers.github.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Grupo de Usuari@s de R de Santiago&lt;/a&gt; el 29 de julio de 2026, ante más de 50 personas de toda Latinoamérica. Muchas gracias a quienes participaron!&lt;/em&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;En una época en que casi toda nuestra vida digital ocurre dentro de redes sociales y plataformas que no controlamos (y que pueden cerrar, bloquearte, o simplemente desaparecer), contar con un &lt;strong&gt;sitio web personal&lt;/strong&gt; te permite reunir tus proyectos, aprendizajes y estudios en un lugar que no depende de nadie más que de ti.&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>Comandos comunes de Git</title>
