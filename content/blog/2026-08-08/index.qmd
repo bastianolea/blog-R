@@ -6,6 +6,7 @@ slug: []
 categories: []
 tags:
   - inteligencia artificial
+  - blog
 format:
   hugo-md:
     mermaid:
