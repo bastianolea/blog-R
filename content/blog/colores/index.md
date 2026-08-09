@@ -11,7 +11,9 @@ format:
     output-ext: md
     fig-height: 4
 slug: []
-categories: []
+categories:
+  - Tutoriales
+freeze: true
 tags:
   - visualización de datos
   - ggplot2

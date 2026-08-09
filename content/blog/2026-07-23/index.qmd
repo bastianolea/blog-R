@@ -2,6 +2,8 @@
 title: "index"
 format: html
 draft: true
+execute: 
+  eval: false
 ---
 
 ```{r}

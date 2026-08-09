@@ -4,6 +4,7 @@ author: Bastián Olea Herrera
 date: '2026-06-06'
 slug: []
 draft: false
+freeze: true
 categories:
   - ''
 tags:
@@ -37,7 +38,7 @@ links:
 ---
 
 
-{{< info "Hice este post porque actualicé el [buscador de mi blog](/blog/buscador/) que puedes [usar aquí](/buscar/) para que ahora entregue mejores resultados, y lo mejor: ordenados por relevancia. Puedes ver su código [en este repositorio.](https://github.com/bastianolea/blog_buscador)" >}}
+{{< info "Hice este post porque actualicé el [buscador de mi blog](/blog/buscador/) que puedes [usar aquí](https://bastianoleah.shinyapps.io/buscador/) para que ahora entregue mejores resultados, y lo mejor: ordenados por relevancia. Puedes ver su código [en este repositorio.](https://github.com/bastianolea/blog_buscador)" >}}
 
 Cuando tenemos datos que contienen mucho texto, usualmente necesitamos filtrar las observaciones dependiendo de si contienen o no uno o más términos.
 
@@ -305,32 +306,7 @@ Los resultados casi no cambian, pero cuando realicemos búsquedas entre miles de
 
 ------------------------------------------------------------------------
 
-## Resumen
-
-
-```r
-library(dplyr)
-
-# buscar por coincidencia exacta
-datos |> 
-  filter(
-    stringr::str_detect(textos, "agua|potable|rural")
-  ) |> 
-  head(4)
-
-# buscar con algoritmo de relevancia
-datos |> 
-  mutate(
-    puntaje = rbm25::bm25_score(
-      textos, "agua potable rural")
-  ) |>
-  arrange(-puntaje) |> 
-  head(4)
-```
-
-## Bonus
-
-### Benchmarks
+#### Bonus: benchmarks
 
 Tenemos muchísimas funciones en R para trabajar textos, y yo pensaba que las de R base iban a ser más rápidas/eficientes, pero hice un benchmark y me llevé una sorpresa:
 
@@ -392,8 +368,6 @@ bench::mark(
 
 Vemos que `{stringr}` es mucho más rápido que R base, y que efectivamente buscar con BM25 es lento, pero tampoco *tan* lento.
 
-En fin, hice todo esto porque actualicé el [buscador de mi blog](../../../blog/buscador/), que en sí mismo es una [aplicación Shiny](/buscar/), para que ahora busque con BM25 y así entregue mejores resultados, y lo mejor: ordenados por relevancia. Puedes ver su código [en este repositorio.](https://github.com/bastianolea/blog_buscador)
+En fin, hice todo esto porque actualicé el [buscador de mi blog](../../../blog/buscador/), que en sí mismo es una [aplicación Shiny](https://bastianoleah.shinyapps.io/buscador/), para que ahora busque con BM25 y así entregue mejores resultados, y lo mejor: ordenados por relevancia. Puedes ver su código [en este repositorio.](https://github.com/bastianolea/blog_buscador)
 
 {{< etiqueta "texto" >}}
-
-

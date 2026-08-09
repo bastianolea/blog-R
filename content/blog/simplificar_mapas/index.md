@@ -7,8 +7,7 @@ format:
     output-file: index
     output-ext: md
 slug: []
-categories:
-  - ''
+freeze: true
 tags:
   - mapas
   - visualización de datos
@@ -178,7 +177,6 @@ normal + medio + bajo
 
 <img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-1.png" width="768" />
 
-
 {{< relacionada "/blog/mapa_chile_triple/" >}}
 
 Con respecto a la velocidad de generación de los mapas, realizamos una prueba de rendimiento que compare la velocidad de guardado de dos mapas, uno normal y uno simplificado:
@@ -193,8 +191,8 @@ bench::mark(iterations = 20, check = FALSE,
     # A tibble: 2 × 6
       expression      min   median `itr/sec` mem_alloc `gc/sec`
       <bch:expr> <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
-    1 normal      143.7ms  150.1ms      6.47   29.31MB     10.4
-    2 simple       75.2ms   78.8ms     12.6     2.46MB     11.4
+    1 normal      157.3ms    166ms      5.77    27.8MB     11.5
+    2 simple       99.1ms    101ms      9.77    2.52MB     13.7
 
 Según la prueba, el mapa simplificado se genera aproximadamente el doble de rápido.
 
@@ -219,5 +217,4 @@ El mapa simplificado consume un 10% de memoria con respecto al mapa original.
 Si te interesa el tema de los mapas, en otros tutoriales hemos visto cómo [hacer mapas de Chile con R, tanto comunales como regionales](../../../blog/tutorial_mapa_chile/), así como también de la [zona urbana de la Región Metropolitana](../../../blog/tutorial_mapa_urbano/). Además aprendimos cómo agregar [características espaciales como calles y autopistas](../../../blog/tutorial_mapas_osm/) obtenidas desde Open Street Map.
 
 {{< etiqueta "mapas" >}}
-
-{{< cafecito  >}}
+{{< cafecito >}}

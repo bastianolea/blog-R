@@ -17,12 +17,14 @@ execute:
 ---
 
 
+Tutoriales donde uso arrow:
+- /blog/2025-02-12/
+- /blog/mapas_censo_2024/
+- /blog/censo_2024/
+
 ``` r
 # read_parquet(): read a file in Parquet format
-# read_feather(): read a file in Arrow/Feather format
-# read_delim_arrow(): read a delimited text file
 # read_csv_arrow(): read a comma-separated values (CSV) file
-# read_tsv_arrow(): read a tab-separated values (TSV) file
 # read_json_arrow(): read a JSON data file
 ```
 
@@ -66,6 +68,8 @@ datos <- arrow::read_csv_arrow(archivo,
                                read_options = csv_read_options(encoding = "latin1"))
 ```
 
+https://arrow-user2022.netlify.app
+https://r4ds.hadley.nz/arrow.html
 https://arrow.apache.org/docs/r/articles/arrow.html
 https://arrow.apache.org/docs/r/articles/dataset.html
 https://arrow.apache.org/cookbook/r/index.html

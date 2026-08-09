@@ -2,11 +2,11 @@
 title: Comparar el rendimiento expresiones en R
 author: Bastián Olea Herrera
 format: hugo-md
-date: 2024-11-05T00:00:00.000Z
+date: 2024-11-10T00:00:00.000Z
+freeze: true
 tags:
   - consejos
   - procesamiento de datos
-  - optimización
 excerpt: >-
   Para comparar el rendimiento de distintas expresiones en R, realizamos un
   _benchmark,_ al cual le entregamos las expresiones que queremos comparar, y
@@ -34,16 +34,16 @@ datos
     # A tibble: 100,000,000 × 2
          var1  var2
         <dbl> <dbl>
-     1 0.0725 0.628
-     2 0.664  0.358
-     3 0.169  0.119
-     4 0.0369 0.879
-     5 0.708  0.546
-     6 0.607  0.835
-     7 0.955  0.839
-     8 0.198  0.197
-     9 0.564  0.456
-    10 0.788  0.960
+     1 0.772  0.564
+     2 0.397  0.950
+     3 0.0101 0.137
+     4 0.188  0.259
+     5 0.700  0.316
+     6 0.727  0.284
+     7 0.459  0.174
+     8 0.387  0.687
+     9 0.340  0.193
+    10 0.311  0.112
     # ℹ 99,999,990 more rows
 
 Pongámonos en el caso de que queremos filtrar este dataframe, y en consideración de su gran tamaño, queremos ver la forma más veloz de filtrarlo. Para ello, comparamos la evaluación de un filtro con `{dplyr}`, y otro con `{base}` (las funciones por defecto de R, que usualmente son más rápidas).
@@ -61,8 +61,8 @@ bench::mark(check = FALSE, iterations = 5,
     # A tibble: 2 × 6
       expression      min   median `itr/sec` mem_alloc `gc/sec`
       <bch:expr> <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
-    1 dplyr         453ms    467ms      2.13    2.42GB     2.98
-    2 base          331ms    339ms      2.92     1.3GB     1.17
+    1 dplyr         336ms    667ms      1.46    2.42GB     1.75
+    2 base          391ms    548ms      1.91     1.3GB     1.91
 
 En la comparación vemos que `dplyr::filter()` es aproximadamente 100 milisegundos más lento que un filtro realizado con `{base}`, pero además usa casi 1GB más de memoria. También entrega datos como las iteraciones por segundo, es decir, las veces que se ejecutaría cada operación por segundo. Todas estas métricas nos podrían ayudar a decidir una opción por sobre otra.
 

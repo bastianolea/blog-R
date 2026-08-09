@@ -1,0 +1,104 @@
+---
+title: Operaciones asíncronas en R con `{mirai}`
+draft: true
+execute:
+  eval: false
+categories:
+  - optimización
+excerpt: Procesamiento asíncrono
+---
+
+
+``` r
+library(mirai)
+Sys. time()
+## [1] "2026-07-28 20:16:48 CEST"
+mirai({
+# Send API call
+Sys sleep(4) # Wait for 4s on "response" runif(1) # Return response
+})
+Sys. time()
+## [1] "2026-07-28 20:16:48 CEST"
+```
+
+``` r
+Sys.time()
+## [1] "2026-07-28 20:16:49 CEST"
+m <- mirai（{
+
+# Send API call
+Sys.sleep(4) # Wait for 4s on "response"
+runif(1) # Return response
+})
+Sys.time()
+
+
+## [1] "2026-07-28 20:16:49 CEST"
+m []
+## [1] 0.4809969
+
+Sys. time()
+## [1] "2026-07-28 20:16:54 CEST"
+```
+
+``` r
+Sys. time()
+## [1] "2026-07-28 20:16:54 CEST"
+m <- mirai({
+# Send API call
+Sys.sleep(4) # Wait for 4s on "response" runif(1) # Return response
+})
+Sys. time()
+## [1] "2026-07-28 20:16:54 CEST"
+Sys.sleep(3) # <--- Extra 3s of waiting
+m[ ]
+## [1] 0. 6426304
+Sys. time ()
+## [1] "2026-07-28 20:16:59 CEST"
+```
+
+``` r
+m <- mirai_map(
+1:3, # things to iterate over
+\(x) { # Function to apply in itertation
+Sys. sleep (3) sprintf(
+"I'm task %s and I finished at %s", x, Sys.time()
+## Error in mirai_map() :
+## ! No daemons set.
+## Use e.g. 'mirai::daemons(6)' to set 6 Local daemons.
+```
+
+``` r
+daemons (4) # 4 calculations in parallel m ‹ - mirai_map(
+1:3, # things to iterate over
+\(x) { # Function to apply in itertation
+Sys. sleep (3) sprintf(
+"I'm task %s and I finished at %s", X, Sys.time()
+)
+}
+)
+```
+
+``` r
+m[ ]
+## [[1]]
+##
+## [[2]]
+##
+## [[3]]
+## [1] "I'm task 1 and I finished at 2026-07-28 20:17:04.153386"
+## [1] "I'm task 2 and I finished at 2026-07-28 20:17:04.153241"
+## [1] "I'm task 3 and I finished at 2026-07-28 20:17:04. 153211"
+```
+
+``` r
+m[ •flat]
+## [1] "I'm task 1 and I finished at 2026-07-28 20:17:04. 153386"
+## [2]
+"I'm task 2 and I finished at 2026-07-28 20:17:04. 153241"
+## [3] "I'm task 3 and I finished at 2026-07-28 20:17:04.153211"
+```
+
+``` r
+daemons(0)
+```

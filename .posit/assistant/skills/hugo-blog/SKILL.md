@@ -359,3 +359,39 @@ Nota: `meta name="description"` y `og:description` usan `$desc` crudo (excerpt/s
 ## Tema y colores
 
 Ver [references/theme.md](references/theme.md) para paleta de colores, tipografía y SCSS.
+
+
+## Diagramas Mermaid
+
+Los saltos de línea son con `<br>`, no con `\n`
+
+Usar el tema de Mermaid `base`. Agregar al yaml:
+
+```yaml
+format:
+  hugo-md:
+    mermaid:
+      theme: base
+```
+
+Por ejemplo, este es un diagrama Mermaid bien hecho:
+
+```{mermaid}
+flowchart TD
+  subgraph A1[Contexto]
+    A(transcripción) --> D(skills de escritura y blog)
+    B(diapositivas) --> D
+    C(tutorial previo) --> D
+  end
+
+  subgraph B1[" "]
+    E(prompt inicial)
+    E --> F["planificación (IA)"]
+    F --> G(modificación manual de planificación)
+  end
+
+  D --> E
+  G --> H(prompt para redacción)
+  H --> I["generación de texto (IA)"]
+  I --> J(revisión y mejora manual del texto final)
+```

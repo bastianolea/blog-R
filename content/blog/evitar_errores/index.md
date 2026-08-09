@@ -8,7 +8,6 @@ categories:
 tags:
   - procesamiento de datos
   - loops
-  - consejos
 excerpt: >-
   ¿Tienes que hacer un loop, pero se detiene porque hay un error en uno de los
   pasos? Usa `try()` para que la ejecución no se detenga, o `tryCatch()` para

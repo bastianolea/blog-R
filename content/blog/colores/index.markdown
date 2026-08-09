@@ -10,7 +10,9 @@ format:
     output-ext: "md"
     fig-height: 4
 slug: []
-categories: []
+categories:
+  - Tutoriales
+freeze: true
 tags:
   - visualización de datos
   - ggplot2
@@ -39,8 +41,6 @@ La forma más básica de elegir un color en R es por su *nombre*.
 Por defecto, en R **existen 657 colores** con nombre.
 
 Aquí puedes ver una lista de los **principales colores de R** y copiar sus nombres para usarlos:
-
-    ## Warning: package 'dplyr' was built under R version 4.4.3
 
     ## 
     ## Attaching package: 'dplyr'
@@ -1512,8 +1512,6 @@ color <- hsv(h = 0, s = 1, v = 1)
 </div>
 
 Para guiarse, la siguiente gráfica muestra la tonalidad de colores entre `0` y `1`,
-
-    ## Warning: package 'purrr' was built under R version 4.4.3
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-124-1.png" alt="" width="672" />
 

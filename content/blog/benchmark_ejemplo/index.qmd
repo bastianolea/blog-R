@@ -3,6 +3,7 @@ title: "Comparar el rendimiento expresiones en R"
 author: Bastián Olea Herrera
 format: hugo-md
 date: 2024-11-10
+freeze: true
 tags:
   - consejos
   - procesamiento de datos

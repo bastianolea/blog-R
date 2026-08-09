@@ -7,8 +7,7 @@ format:
     output-file: "index"
     output-ext: "md"
 slug: []
-categories:
-  - ''
+freeze: true
 tags:
   - mapas
   - visualización de datos

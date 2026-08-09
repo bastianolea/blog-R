@@ -99,7 +99,7 @@ Se trata de un formato de datos más conveniente para procesar información, o p
 
 ## Transformación de formatos
 
-Ahora veremos cómo podemos pasar desde una estructura o formato de datos hacia la otra. Usaremos datos sobre países de América Latina, que fueron obtenidos desde tablas de Wikipedia usando [web scraping](../../../../blog/web_scraping/). Revisa el [script del scraping aquí](https://gist.github.com/bastianolea/00d7da36e85b76de1abf9ca37014cfe4).
+Ahora veremos cómo podemos pasar desde una estructura o formato de datos hacia la otra. Usaremos datos sobre países de América Latina, que fueron obtenidos desde tablas de Wikipedia usando [web scraping](../../../../blog/r_introduccion/web_scraping/). Revisa el [script del scraping aquí](https://gist.github.com/bastianolea/00d7da36e85b76de1abf9ca37014cfe4).
 
 ### Desde ancho hacia largo
 
@@ -565,7 +565,7 @@ desarrollo_ancho |>
      9 Argentina   0.861  0.865          0.00400
     10 México      0.788  0.789          0.00100
 
-Pero en general el formato ancho se usa para posteriormente guardar los datos en una tabla Excel y presentárselos a otras personas, o bien, [**generar tablas** usando R](../../../../blog/tablas_gt/) destinadas a su lectura en informes o reportes.
+Pero en general el formato ancho se usa para posteriormente guardar los datos en una tabla Excel y presentárselos a otras personas, o bien, [**generar tablas** usando R](../../../../blog/tutorial_gt/) destinadas a su lectura en informes o reportes.
 
 {{< /detalles >}}
 
@@ -577,17 +577,17 @@ En general, te vas a dar cuenta intuitivamente que el formato de tus datos te es
 
 **Formato largo:**
 
--   Cuando vayas a [hacer gráficos con `{ggplot2}`](../../../../blog/r_introduccion/tutorial_visualizacion_ggplot/)
--   Cuando necesites agrupar y resumir datos con `group_by()` y `summarise()`
--   Cuando quieras aplicar filtros sobre los valores de las variables
+- Cuando vayas a [hacer gráficos con `{ggplot2}`](../../../../blog/r_introduccion/tutorial_visualizacion_ggplot/)
+- Cuando necesites agrupar y resumir datos con `group_by()` y `summarise()`
+- Cuando quieras aplicar filtros sobre los valores de las variables
 
 **Formato ancho:**
 
--   Cuando quieras [presentar tablas](https://bastianolea.rbind.io/blog/tablas_gt/) para [reportes](https://bastianolea.rbind.io/blog/quarto_reportes/)
--   Cuando necesites comparar valores lado a lado entre variables
--   Cuando vayas a exportar datos a Excel para su lectura o consulta
--   Cuando quieras calcular diferencias o razones entre columnas específicas
--   Cuando necesites hacer operaciones matemáticas simples entre variables
+- Cuando quieras [presentar tablas](https://bastianolea.rbind.io/blog/tutorial_gt/) para [reportes](https://bastianolea.rbind.io/blog/quarto_reportes/)
+- Cuando necesites comparar valores lado a lado entre variables
+- Cuando vayas a exportar datos a Excel para su lectura o consulta
+- Cuando quieras calcular diferencias o razones entre columnas específicas
+- Cuando necesites hacer operaciones matemáticas simples entre variables
 
 ------------------------------------------------------------------------
 

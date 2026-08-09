@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4522&amp;path=livereload" data-no-instant defer></script>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.164.0">
+<title>Notas sobre generación de texto usando IA | Bastián Olea</title>
+
+
+<meta property="twitter:site" content="@bastimapache">
+<meta property="twitter:creator" content="@bastimapache">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="Hace poco [hice un taller online sobre cómo crear un blog con Quarto](https://santiagorusers.github.io/posts/taller_julio_2026/), y mi idea era posteriormente escribir un [tutorial detallado](/blog/quarto_blog/) sobre lo visto en el taller. Pero resultó que me faltaba el tiempo y la energía para hacerlo bien, mientras que, en cambio, tenía harto material para redactar el tutorial: un tutorial anterior más amplio sobre un tema similar, la transcripción de voz del taller, y las diapositivas Quarto que usé durante el taller, que a su vez tenían código, enlaces y ejemplos. Así que éste fue un escenario ideal para practicar la escritura asistida por IA.">
+
+
+<meta property="og:site_name" content="Bastián Olea">
+<meta property="og:title" content="Notas sobre generación de texto usando IA | Bastián Olea">
+<meta property="og:description" content="Hace poco [hice un taller online sobre cómo crear un blog con Quarto](https://santiagorusers.github.io/posts/taller_julio_2026/), y mi idea era posteriormente escribir un [tutorial detallado](/blog/quarto_blog/) sobre lo visto en el taller. Pero resultó que me faltaba el tiempo y la energía para hacerlo bien, mientras que, en cambio, tenía harto material para redactar el tutorial: un tutorial anterior más amplio sobre un tema similar, la transcripción de voz del taller, y las diapositivas Quarto que usé durante el taller, que a su vez tenían código, enlaces y ejemplos. Así que éste fue un escenario ideal para practicar la escritura asistida por IA." />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="http://localhost:4522/blog/2026-08-08/" />
+<meta property="og:locale" content="es-ES">
+
+
+
+
+    
+        <meta property="og:image" content="http://localhost:4522/blog/sidebar-listing.jpg" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="http://localhost:4522/blog/sidebar-listing.jpg" >
+    
+    
+  
+	<meta itemprop="name" content="Notas sobre generación de texto usando IA">
+	<meta itemprop="description" content="Hace poco hice un taller online sobre cómo crear un blog con Quarto, y mi idea era posteriormente escribir un tutorial detallado sobre lo visto en el taller. Pero resultó que me faltaba el tiempo y la energía para hacerlo bien, mientras que, en cambio, tenía harto material para redactar el tutorial: un tutorial anterior más amplio sobre un tema similar, la transcripción de voz del taller, y las diapositivas Quarto que usé durante el taller, que a su vez tenían código, enlaces y ejemplos. Así que éste era básicamente el escenario perfecto para practicar la escritura asistida por IA, ya que tenía un marco muy específico de documentos, instrucciones y amplio contexto para obtener el resultado deseado.">
+	<meta itemprop="datePublished" content="2026-08-08T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2026-08-08T00:00:00+00:00">
+	<meta itemprop="wordCount" content="857">
+	<meta itemprop="keywords" content="Inteligencia artificial">
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="false" type="image/x-icon">
+  <link rel="icon" href="false" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="../../style.main.min.5ba189f46e012226602e8076ea8a512e79b38a03a77005c1510f88e4c702feaf.css" integrity="sha256-W6GJ9G4BIiZgLoB26opRLnmzigOncAXBUQ&#43;I5McC/q8=" media="screen">
+  
+  
+  <script src="../../panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="../../main.min.4d259699ed6e45788295c8efac266a71ad7a3b6cd7cd8ac8c1bb0027ccbbc35d.js" type="text/javascript"></script>
+  
+  
+  <link rel="stylesheet" href="../../css/syntax.css">
+  
+  
+  
+  
+  
+  
+  <meta name="google-site-verification" content="yaiYGBAfSJpjE7mfPuFVP1yoNIqLadRJQIzCOula8TI" />
+  
+</head>
+<body>
+      <div class="grid-container single-sidebar">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="http://localhost:4522/" title="Home">
+      <img src="../../img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="../../blog/" title="Bastián Olea: Blog de R">Blog</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/aprende_r/" title="Aprende R">Aprende R</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/shiny_apps/" title="Apps">Apps</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://bastianolea.github.io/datos_sociales/" title="Datos">Datos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../categories/tutoriales/" title="Tutoriales">Tutoriales</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../buscar/" title="Buscador">Buscar</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../tags/" title="Temas">Temas</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../clases/" title="Cursos">Cursos</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../about/" title="Bastián Olea: Sobre mi">Yo</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="../../blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      
+      
+      
+      <div class="dib v-mid", style = "padding: 4px; margin-top: 4px;">
+        <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="../../buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="../../contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+      </div>
+      
+    </div>
+  </nav>
+</header>
+
+
+                       
+ 
+
+<main class="page-main pa4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header" style="margin-top:-30px;">
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Notas sobre generación de texto usando IA</h1>
+        
+        
+        
+        <div style = "display: inline-block;">  
+          <p class="f7 db mv0 ttu" style = "display: inline-block;">
+            8/8/2026</p>
+          
+          
+          
+        </div>
+          
+        
+        
+        
+        <dl class="f6 lh-copy">
+          <em><dd class="fw5 ml0"> <a href="http://localhost:4522/tags/inteligencia-artificial"
+          style="margin-right: 2px; 
+                       color: #EAD2FA; 
+                       font-style: normal;
+                       text-decoration: none;
+                       font-size: 10pt;
+                       background-color: #9069C0; 
+                       border-radius: 3px; 
+                       padding: 2px 6px; ">
+            inteligencia artificial</a> </dd></em>
+        </dl>
+         
+      
+        
+      
+      
+    </header>
+      
+      
+    <section class="post-body pt5 pb4">
+        <meta name="mermaid-theme" content="base"/>
+<script  src="index_files/libs/quarto-diagram/mermaid.min.js"></script>
+<script  src="index_files/libs/quarto-diagram/mermaid-init.js"></script>
+<link  href="index_files/libs/quarto-diagram/mermaid.css" rel="stylesheet" />
+<p>Hace poco 
+<a href="https://santiagorusers.github.io/posts/taller_julio_2026/" target="_blank" rel="noopener">hice un taller online sobre cómo crear un blog con Quarto</a>, y mi idea era posteriormente escribir un 
+<a href="../../../blog/quarto_blog/">tutorial detallado</a> sobre lo visto en el taller. Pero resultó que me faltaba el tiempo y la energía para hacerlo bien, mientras que, en cambio, tenía harto material para redactar el tutorial: un tutorial anterior más amplio sobre un tema similar, la transcripción de voz del taller, y las diapositivas Quarto que usé durante el taller, que a su vez tenían código, enlaces y ejemplos. Así que éste era básicamente el escenario perfecto para practicar la <strong>escritura asistida por IA</strong>, ya que tenía un marco muy específico de documentos, instrucciones y amplio contexto para obtener el resultado deseado.</p>
+<p>Así que escribí 
+<a href="../../../blog/quarto_blog/">este tutorial de creación de blogs con Quarto</a> con el apoyo del 
+<a href="../../../blog/posit_assistant/">asistente de IA Posit Assistant</a> en modo <strong>planificación</strong> usando el modelo Claude Sonnet 5.</p>
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            /*background-color: #A985C650;*/
+            background-color: #DEC4F2;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-info-circle" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #9069C0;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%;">
+    En el <strong>modo planificación</strong> el LLM genera un plan detallado de lo que va a hacer, lo que le permite llenar su contexto con ideas, y por lo tanto generará contenido más aterrizado. A su vez, te da un paso intermedio donde puedes intervenir en lo que se generará, y más importante aún, te permite <em>comprender</em> lo que va a hacer la IA.
+  </aside>
+  
+</div>
+<p>Para empezar el proceso, escribí un 
+<a href="https://github.com/bastianolea/blog-R/blob/master/content/blog/quarto_blog/prompt.md" target="_blank" rel="noopener">prompt extenso</a> que instruyó al LLM a usar mi <em>skill</em> de 
+<a href="https://github.com/bastianolea/blog-R/blob/master/.posit/assistant/skills/estilo-escritura/SKILL.md" target="_blank" rel="noopener">estilo personal de escritura</a>, mi <em>skill</em> para entender 
+<a href="https://github.com/bastianolea/blog-R/blob/master/.posit/assistant/skills/hugo-blog/SKILL.md" target="_blank" rel="noopener">cómo funciona mi blog</a>, la 
+<a href="https://github.com/bastianolea/blog-R/blob/master/content/blog/quarto_blog/transcripcion_taller.vtt" target="_blank" rel="noopener">transcripción completa</a> del taller en vivo generada por Zoom (que derivó en un 
+<a href="https://github.com/bastianolea/blog-R/blob/master/content/blog/quarto_blog/resumen_transcripcion_taller.md" target="_blank" rel="noopener">resumen de la transcripción</a>), las 
+<a href="https://github.com/SantiagoRusers/taller_quarto_blog" target="_blank" rel="noopener">diapositivas Quarto RevealJS</a> que presenté durante el taller, y el código de un 
+<a href="https://github.com/bastianolea/blog-R/blob/master/content/blog/tutorial_quarto_github_pages/index.md" target="_blank" rel="noopener">tutorial anterior</a> sobre Quarto (que era de una temática más amplia, pero relacionada).</p>
+<div style="display: flex; align-items: center; gap: 15px; padding: 14px; 
+            /*background-color: #A985C650;*/
+            background-color: #DEC4F2;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;">
+  
+  <div style="flex-shrink: 0;">
+    <i class="fas fa-info-circle" style="font-size: 130%; margin-left: 2px; opacity: 1; color: #9069C0;"></i>
+  </div>
+  
+  <aside style = "font-size: 90%;">
+    Las <em>skills</em> son simplemente documentos de texto con instrucciones, consejos y contenido detallado sobre una temática específica, que el LLM puede <em>leer</em> cuando considere relevante. Sirven como repositorio de conocimiento extra, controlado por ti, para la IA.
+  </aside>
+  
+</div>
+<p>Con todo este <strong>contexto</strong><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, 
+<a href="../../../blog/posit_assistant/">Posit Assistant</a> creó una 
+<a href="https://github.com/bastianolea/blog-R/blob/master/.posit/assistant/plans/2026-08-06-1716-plan.md" target="_blank" rel="noopener">planificación de redacción</a>, la cual me encargué de revisar y modificar manualmente, para mejorar el orden de los contenidos, borrar algunos temas irrelevantes, y agregar otros temas faltantes. El plan era que después el LLM llevara a cabo esta planificación usando el modo <code>/yolo</code> de Posit Assistant (que hace que el agente edite textos sin pedir permisos).</p>
+<p>Todo esto fue en <strong>preparación</strong> para la escritura real, porque el contexto lo es todo en este tipo de tareas. Para la escritura propiamente tal, le entregué al LLM un 
+<a href="https://github.com/bastianolea/blog-R/blob/master/content/blog/quarto_blog/prompt.md" target="_blank" rel="noopener">segundo prompt</a> con una instrucción explícita de dejarme comentarios estilo HTML en las secciones del post donde faltara contenido, cuando algo pudiera aclararse más, o si quedaban dudas o preguntas pendientes (tanto de los/as asistentes al taller como del propio LLM), con el objetivo de que yo las resolviera después. Recién ahí, el LLM escribió el borrador del tutorial.</p>
+<p>Finalmente, <strong>revisé exhaustivamente</strong> el texto completo, y edité todas las secciones agregando comentarios, mejorando la escritura general, y añadiendo más ejemplos.</p>
+<p>El proceso fue algo así:</p>
+<figure class=''>
+<pre class="mermaid mermaid-js">flowchart TD
+  subgraph A1[Contexto]
+    A(transcripción) --&gt; D(skills de escritura y blog)
+    B(diapositivas) --&gt; D
+    C(tutorial previo) --&gt; D
+  end
+
+  subgraph B1[&quot; &quot;]
+    E(prompt inicial)
+    E --&gt; F[&quot;planificación (IA)&quot;]
+    F --&gt; G(modificación manual de planificación)
+  end
+
+  D --&gt; E
+  G --&gt; H(prompt para redacción)
+  H --&gt; I[&quot;generación de texto (IA)&quot;]
+  I --&gt; J(revisión y mejora manual del texto final)
+</pre>
+</figure>
+<p>El texto generado por el LLM fue muy acertado respecto a mis expectativas, y me ayudó harto a llevar el trabajo a un estado casi terminado, basándose en el contenido y las instrucciones que yo le entregué. Fue muy conveniente que todo el contenido era en texto plano (diapositivas, tutoriales, transcripciones), lo que hizo que todo fluyera mejor.</p>
+<p>En mi opinión fue una experiencia de escritura con IA bastante balanceada, y de alguna forma me cambió la perspectiva sobre la asistencia de IA para generar texto. Me quedó claro que mientras más contexto le das (o sea, prompts largos y detallados, harta documentación para revisar, incluso links a más información), mejores resultados obtienes, y en mi caso, los resultados fueron muy buenos.</p>
+<p>Esto no significa que el contenido de este blog vaya a pasar a ser contenido hecho con IA: al contrario. Desprecio a la gente que hace todo con IA, y personalmente disfruto (y aprendo) mucho escribiendo para este blog y creando tutoriales y otras cositas. Solamente es bueno saber que existen herramientas para apoyarnos, siempre y cuando las usemos bien y con responsabilidad: es muy distinto pedirle a una IA &ldquo;escríbeme un tutorial&rdquo; de la nada, en comparación a diseñar un plan complejo de redacción basado en múltiples fuentes de información hechas a conciencia.</p>
+<p><strong>En resumen:</strong> quizás esta experiencia te sirva como consejo. Si vas a usar IA, considera que la calidad de los <em>outputs</em> dependerá de la calidad de tus <em>inputs</em>, y que <strong>siempre</strong> debes revisar los resultados tú mismx!</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Se le llama <em>contexto</em> al contenido que analiza un LLM para poder entregar sus respuestas; en este caso, todos los documentos que le entregué, sumado a las <em>skills</em> que invocó para apoyarse, fueron el contexto que le permitió al modelo generar contenido fundamentado en documentos.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+ 
+    </section>
+      
+    <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+    <a class="prev dtc pr2 tl v-top fw6"
+    href="http://localhost:4522/blog/web_scraping/">&larr; Web scraping con R</a>
+  
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="http://localhost:4522/blog/quarto_blog/">Crea y publica tu propio blog con Quarto y RStudio &rarr;</a>
+  
+</div>
+
+    </footer>
+    
+  </article>
+    
+    <div class="post-comments pa0 pa4-l mt4">
+  
+</div>
+
+    
+</section>
+  
+
+<section class="post-body pt5 pb4">
+  
+  <details closed class="f6 fw7 input-reset">
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Fecha de publicación:</dt>
+    <dd class="fw5 ml0">August 8, 2026</dd>
+  </dl>
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Extensión:</dt>
+    <dd class="fw5 ml0">5 minute read, 857 words</dd>
+  </dl>
+  
+  
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Tags:</dt>
+    <dd class="fw5 ml0"> <a href="http://localhost:4522/tags/inteligencia-artificial">inteligencia artificial</a> </dd>
+  </dl>
+  
+  <dl class="f6 lh-copy">
+    <dt class="fw7">Ver también:</dt>
+    
+    <dd class="fw5 ml0"><a href="../../blog/posit_assistant/">Posit Assistant, una IA para análisis de datos integrada en RStudio</a></dd>
+    
+    <dd class="fw5 ml0"><a href="../../blog/shinychat/">Crea un chatbot de inteligencia artificial con R</a></dd>
+    
+    <dd class="fw5 ml0"><a href="../../blog/rag_ragnar/">Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R</a></dd>
+    
+  </dl>
+</details>
+
+</section>
+</main>
+
+
+<aside class="page-sidebar" role="complementary">
+   
+   
+
+  <div class="blog-info ph4 pt4 pb4 pb0-l">
+    
+
+  <h1 class="f3">Blog</h1>
+  <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
+<a href="../../buscar/">buscador</a> para encontrar publicaciones o navega los 
+<a href="../../tags/">temas</a>.</p>
+  
+
+   
+<h3 style="margin-bottom: 12px;">Temas:</h3>
+
+<div style="font-size:90%;">
+
+<div style="font-size: 90%;">
+  
+   
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/chile/">Chile</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/datos/">Datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/consejos/">Consejos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/blog/">Blog</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/shiny/">Shiny</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/gr%C3%A1ficos/">Gráficos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/apps/">Aplicaciones</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/mapas/">Mapas</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/ggplot2/">ggplot2</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/b%C3%A1sico/">Básico</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/web-scraping/">Web scraping</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/curiosidades/">Curiosidades</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/quarto/">Quarto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/texto/">Procesamiento de texto</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/dplyr/">Dplyr</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="http://localhost:4522/tags/loops/">Loops</a></span>
+  </span>
+
+<a href="../../tags/" style="margin-left: 3px;">y más!</a>
+</div>
+</div>
+  
+  
+   
+   
+
+</div>
+
+  
+  
+  
+
+</aside>
+
+        
+          <script id="partials/analytics.html" 
+  data-goatcounter="https://bastimapache.goatcounter.com/count"
+  async src="//gc.zgo.at/count.js"></script>
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2026 Bastián Olea Herrera, Chile
+      <span class="middot-divider"></span>
+      Hecho con <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source" style="color:#9069C0;">Hugo Apéro</a> 
+      y <a href="https://pkgs.rstudio.com/blogdown/" style="color:#9069C0;">{blogdown}</a></span>.
+      <br />
+      
+Basado en <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source" style="color:#9069C0;">Blogophonic</a></span>, de <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL" style="color:#9069C0;">Formspree</a>.
+
+Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlify</a></span>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="../../buscar/" title="search" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-search fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/bastianolea/" title="linkedin" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/bastianolea" title="github" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://x.com/bastimapache" title="twitter" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://bastimapache.cl" title="heart" target="_blank" rel="me noopener"
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-heart fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="../../contacto/" title="envelope" 
+    style="margin-bottom: 6px !important;"> 
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+      <a class="dib pv1 ph2 link" href="../../about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
+      
+      <a class="dib pv1 ph2 link" href="../../buscar/" title="Buscador">Buscar</a>
+      
+      <a class="dib pv1 ph2 link" href="../../contacto/" title="Bastián Olea: Contacto">Contacto</a>
+      
+      <a class="dib pv1 ph2 link" href="../../tags/" title="Temas">Temas</a>
+      
+      <a class="dib pv1 ph2 link" href="../../clases/" title="Clases">Clases</a>
+      
+      <a class="dib pv1 ph2 link" href="../../code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
+      
+      <a class="dib pv1 ph2 link" href="../../license/" title="Bastián Olea: Licencia">Licencia</a>
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>

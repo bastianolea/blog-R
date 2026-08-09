@@ -7,16 +7,16 @@ blogdown::build_site()
 ## posts ----
 
 # editar el más reciente
-abrir_publicacion_reciente("creado", cantidad = 10)
+abrir_publicacion_reciente("creado", cantidad = 6)
 abrir_publicacion_reciente("modificado", cantidad = 10)
 
 
 # crear un post normal
 blogdown::new_post(
-  title = "Truquitos",
+  title = "Notas sobre generación de texto usando IA",
   file = paste0("blog/", lubridate::today(), "/index.qmd"),
   author = "Bastián Olea Herrera",
-  tags = c("limpieza de datos")
+  tags = c("inteligencia artificial")
 )
 
 # crear un post tutorial

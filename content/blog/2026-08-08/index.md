@@ -1,0 +1,82 @@
+---
+title: Notas sobre generación de texto usando IA
+author: Bastián Olea Herrera
+date: '2026-08-08'
+slug: []
+categories: []
+tags:
+  - inteligencia artificial
+format:
+  hugo-md:
+    mermaid:
+      theme: base
+    output-file: index
+    output-ext: md
+excerpt: >-
+  Hace poco [hice un taller online sobre cómo crear un blog con
+  Quarto](https://santiagorusers.github.io/posts/taller_julio_2026/), y mi idea
+  era posteriormente escribir un [tutorial detallado](/blog/quarto_blog/) sobre
+  lo visto en el taller. Pero resultó que me faltaba el tiempo y la energía para
+  hacerlo bien, mientras que, en cambio, tenía harto material para redactar el
+  tutorial: un tutorial anterior más amplio sobre un tema similar, la
+  transcripción de voz del taller, y las diapositivas Quarto que usé durante el
+  taller, que a su vez tenían código, enlaces y ejemplos. Así que éste fue un
+  escenario ideal para practicar la escritura asistida por IA.
+---
+
+
+<meta name="mermaid-theme" content="base"/>
+<script  src="index_files/libs/quarto-diagram/mermaid.min.js"></script>
+<script  src="index_files/libs/quarto-diagram/mermaid-init.js"></script>
+<link  href="index_files/libs/quarto-diagram/mermaid.css" rel="stylesheet" />
+
+Hace poco [hice un taller online sobre cómo crear un blog con Quarto](https://santiagorusers.github.io/posts/taller_julio_2026/), y mi idea era posteriormente escribir un [tutorial detallado](../../../blog/quarto_blog/) sobre lo visto en el taller. Pero resultó que me faltaba el tiempo y la energía para hacerlo bien, mientras que, en cambio, tenía harto material para redactar el tutorial: un tutorial anterior más amplio sobre un tema similar, la transcripción de voz del taller, y las diapositivas Quarto que usé durante el taller, que a su vez tenían código, enlaces y ejemplos. Así que éste era básicamente el escenario perfecto para practicar la **escritura asistida por IA**, ya que tenía un marco muy específico de documentos, instrucciones y amplio contexto para obtener el resultado deseado.
+
+Así que escribí [este tutorial de creación de blogs con Quarto](../../../blog/quarto_blog/) con el apoyo del [asistente de IA Posit Assistant](../../../blog/posit_assistant/) en modo **planificación** usando el modelo Claude Sonnet 5.
+
+{{< info "En el **modo planificación** el LLM genera un plan detallado de lo que va a hacer, lo que le permite llenar su contexto con ideas, y por lo tanto generará contenido más aterrizado. A su vez, te da un paso intermedio donde puedes intervenir en lo que se generará, y más importante aún, te permite _comprender_ lo que va a hacer la IA." >}}
+
+Para empezar el proceso, escribí un [prompt extenso](https://github.com/bastianolea/blog-R/blob/master/content/blog/quarto_blog/prompt.md) que instruyó al LLM a usar mi *skill* de [estilo personal de escritura](https://github.com/bastianolea/blog-R/blob/master/.posit/assistant/skills/estilo-escritura/SKILL.md), mi *skill* para entender [cómo funciona mi blog](https://github.com/bastianolea/blog-R/blob/master/.posit/assistant/skills/hugo-blog/SKILL.md), la [transcripción completa](https://github.com/bastianolea/blog-R/blob/master/content/blog/quarto_blog/transcripcion_taller.vtt) del taller en vivo generada por Zoom (que derivó en un [resumen de la transcripción](https://github.com/bastianolea/blog-R/blob/master/content/blog/quarto_blog/resumen_transcripcion_taller.md)), las [diapositivas Quarto RevealJS](https://github.com/SantiagoRusers/taller_quarto_blog) que presenté durante el taller, y el código de un [tutorial anterior](https://github.com/bastianolea/blog-R/blob/master/content/blog/tutorial_quarto_github_pages/index.md) sobre Quarto (que era de una temática más amplia, pero relacionada).
+
+{{< info "Las _skills_ son simplemente documentos de texto con instrucciones, consejos y contenido detallado sobre una temática específica, que el LLM puede _leer_ cuando considere relevante. Sirven como repositorio de conocimiento extra, controlado por ti, para la IA." >}}
+
+Con todo este **contexto**[^1], [Posit Assistant](../../../blog/posit_assistant/) creó una [planificación de redacción](https://github.com/bastianolea/blog-R/blob/master/.posit/assistant/plans/2026-08-06-1716-plan.md), la cual me encargué de revisar y modificar manualmente, para mejorar el orden de los contenidos, borrar algunos temas irrelevantes, y agregar otros temas faltantes. El plan era que después el LLM llevara a cabo esta planificación usando el modo `/yolo` de Posit Assistant (que hace que el agente edite textos sin pedir permisos).
+
+Todo esto fue en **preparación** para la escritura real, porque el contexto lo es todo en este tipo de tareas. Para la escritura propiamente tal, le entregué al LLM un [segundo prompt](https://github.com/bastianolea/blog-R/blob/master/content/blog/quarto_blog/prompt.md) con una instrucción explícita de dejarme comentarios estilo HTML en las secciones del post donde faltara contenido, cuando algo pudiera aclararse más, o si quedaban dudas o preguntas pendientes (tanto de los/as asistentes al taller como del propio LLM), con el objetivo de que yo las resolviera después. Recién ahí, el LLM escribió el borrador del tutorial.
+
+Finalmente, **revisé exhaustivamente** el texto completo, y edité todas las secciones agregando comentarios, mejorando la escritura general, y añadiendo más ejemplos.
+
+El proceso fue algo así:
+
+<figure class=''>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  subgraph A1[Contexto]
+    A(transcripción) --&gt; D(skills de escritura y blog)
+    B(diapositivas) --&gt; D
+    C(tutorial previo) --&gt; D
+  end
+
+  subgraph B1[&quot; &quot;]
+    E(prompt inicial)
+    E --&gt; F[&quot;planificación (IA)&quot;]
+    F --&gt; G(modificación manual de planificación)
+  end
+
+  D --&gt; E
+  G --&gt; H(prompt para redacción)
+  H --&gt; I[&quot;generación de texto (IA)&quot;]
+  I --&gt; J(revisión y mejora manual del texto final)
+</pre>
+
+</figure>
+
+El texto generado por el LLM fue muy acertado respecto a mis expectativas, y me ayudó harto a llevar el trabajo a un estado casi terminado, basándose en el contenido y las instrucciones que yo le entregué. Fue muy conveniente que todo el contenido era en texto plano (diapositivas, tutoriales, transcripciones), lo que hizo que todo fluyera mejor.
+
+En mi opinión fue una experiencia de escritura con IA bastante balanceada, y de alguna forma me cambió la perspectiva sobre la asistencia de IA para generar texto. Me quedó claro que mientras más contexto le das (o sea, prompts largos y detallados, harta documentación para revisar, incluso links a más información), mejores resultados obtienes, y en mi caso, los resultados fueron muy buenos.
+
+Esto no significa que el contenido de este blog vaya a pasar a ser contenido hecho con IA: al contrario. Desprecio a la gente que hace todo con IA, y personalmente disfruto (y aprendo) mucho escribiendo para este blog y creando tutoriales y otras cositas. Solamente es bueno saber que existen herramientas para apoyarnos, siempre y cuando las usemos bien y con responsabilidad: es muy distinto pedirle a una IA "escríbeme un tutorial" de la nada, en comparación a diseñar un plan complejo de redacción basado en múltiples fuentes de información hechas a conciencia.
+
+**En resumen:** quizás esta experiencia te sirva como consejo. Si vas a usar IA, considera que la calidad de los *outputs* dependerá de la calidad de tus *inputs*, y que **siempre** debes revisar los resultados tú mismx!
+
+[^1]: Se le llama *contexto* al contenido que analiza un LLM para poder entregar sus respuestas; en este caso, todos los documentos que le entregué, sumado a las *skills* que invocó para apoyarse, fueron el contexto que le permitió al modelo generar contenido fundamentado en documentos.

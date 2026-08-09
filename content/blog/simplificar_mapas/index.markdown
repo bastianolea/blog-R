@@ -7,8 +7,7 @@ format:
     output-file: "index"
     output-ext: "md"
 slug: []
-categories:
-  - ''
+freeze: true
 tags:
   - mapas
   - visualización de datos
@@ -19,8 +18,6 @@ execute:
 excerpt: "Un problema común al visualizar datos georeferenciados o mapas coropléticos (con colores en las zonas geográficas que se corresponden con los datos) yace en que usamos mapas que tienen geometrías o características geográficas mucho más detalladas de lo que necesitamos. Este exceso de detalle puede jugarle en contra a la visualización que estamos intentando crear, ya sea porque dificulta la interpretación, o complejiza visualmente el gráfico. En esta guía aprenderemos a simplificar mapas en R para producir visualizaciones con el nivel apropiado de detalle, y hacer más rápida la generación de mapas."
 ---
 
-
-
 Un problema común al visualizar datos georeferenciados o mapas coropléticos (con colores en las zonas geográficas que se corresponden con los datos) yace en que usamos mapas que tienen geometrías o características geográficas mucho más detalladas de lo que necesitamos. Este exceso de detalle puede jugarle en contra a la visualización que estamos intentando crear, ya sea porque dificulta la interpretación, o complejiza visualmente el gráfico.
 
 Otro problema de trabajar con mapas muy detallados es que la velocidad con la que se generan se ve impactada debido al detalle, lo que resulta inconveniente dado que al visualizar datos usualmente nos encontramos iterando decenas de veces una misma visualización hasta que se vea como queremos. 
@@ -28,8 +25,6 @@ Otro problema de trabajar con mapas muy detallados es que la velocidad con la qu
 Esto puede ocurrir cuando mapas desde Shapes u otras fuentes cuyo objetivo es representar fidedignamente los territorios; pero al visualizar datos generalmente necesitamos visualizaciones que no requieren exactitud milimétrica en sus polígonos. 
 
 Generemos un mapa de regiones de Chile, usando las geometrías del paquete {chilemapas}:
-
-
 
 
 ``` r
@@ -58,7 +53,7 @@ library(sf)
 ```
 
 ```
-## Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE
+## Linking to GEOS 3.13.0, GDAL 3.8.5, PROJ 9.5.1; sf_use_s2() is TRUE
 ```
 
 ``` r
@@ -116,13 +111,11 @@ mapa_regiones |>
   geom_sf()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" alt="" width="672" />
 
-
+{{< relacionada "/blog/mapas_sf" >}}
 
 Vemos que en la zona sur del país, el detalle del mapa es tal, que los cientos de islas se vuelven en manchas grises debido a sus bordes demasiado detallados.
-
-
 
 
 ``` r
@@ -134,13 +127,9 @@ mapa_regiones |>
            ylim = c(-42, -56))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" />
-
-
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" alt="" width="672" />
 
 Podemos usar el paquete {rmapshaper} para simplificar las geometrías del mapa, bajando así el nivel de detalle de la visualización resultante:
-
-
 
 
 ``` r
@@ -154,7 +143,7 @@ mapa_regiones_simple |>
   geom_sf()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" alt="" width="672" />
 
 ``` r
 mapa_regiones_simple |> 
@@ -165,12 +154,8 @@ mapa_regiones_simple |>
            ylim = c(-42, -56))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-2.png" width="672" />
-
-
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-2.png" alt="" width="672" />
 En la función `ms_simplify()`, el valor del argumento `keep` define la calidad resultante del mapa. Si el valor es menor, el mapa tendrá menos detalle.
-
-
 
 
 ``` r
@@ -183,15 +168,11 @@ mapa_regiones |>
            ylim = c(-42, -56))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" />
-
-
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" alt="" width="672" />
 
 En la función `ms_simplify()`, el valor del argumento `keep` define la calidad resultante del mapa. Si el valor es menor, el mapa tendrá menos detalle.
 
 En estos tres mapas comparamos las diferencias entre el mapa original, con detalle al `0.1`, y con detalle al `0.05`:
-
-
 
 ``` r
 normal <- mapa_regiones |> 
@@ -223,13 +204,11 @@ library(patchwork)
 normal + medio + bajo
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" alt="" width="672" />
 
-
+{{< relacionada "/blog/mapa_chile_triple/" >}}
 
 Con respecto a la velocidad de generación de los mapas, realizamos una prueba de rendimiento que compare la velocidad de guardado de dos mapas, uno normal y uno simplificado:
-
-
 
 
 ``` r
@@ -293,17 +272,13 @@ bench::mark(iterations = 20, check = FALSE,
 ## # A tibble: 2 × 6
 ##   expression      min   median `itr/sec` mem_alloc `gc/sec`
 ##   <bch:expr> <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
-## 1 normal        142ms  146.5ms      6.48   29.33MB     10.0
-## 2 simple         73ms   77.4ms     12.8     2.48MB     10.3
+## 1 normal      155.2ms  161.9ms      6.01   27.84MB     9.01
+## 2 simple       94.5ms   95.8ms     10.4     2.54MB    10.4
 ```
-
-
 
 Según la prueba, el mapa simplificado se genera aproximadamente el doble de rápido.
 
 También podemos compara el uso de memoria de ambos objetos:
-
-
 
 
 ``` r
@@ -322,8 +297,6 @@ object.size(mapa_regiones_simple) |> print(units = "auto")
 ## 178.2 Kb
 ```
 
-
-
 El mapa simplificado consume un 10% de memoria con respecto al mapa original.
 
 
@@ -331,7 +304,6 @@ El mapa simplificado consume un 10% de memoria con respecto al mapa original.
 
 Si te interesa el tema de los mapas, en otros tutoriales hemos visto cómo [hacer mapas de Chile con R, tanto comunales como regionales](/blog/tutorial_mapa_chile/), así como también de la [zona urbana de la Región Metropolitana](/blog/tutorial_mapa_urbano/). Además aprendimos cómo agregar [características espaciales como calles y autopistas](/blog/tutorial_mapas_osm/) obtenidas desde Open Street Map. 
 
-
+{{< etiqueta "mapas" >}}
 
 {{< cafecito >}}
-

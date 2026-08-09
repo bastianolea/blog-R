@@ -2,6 +2,7 @@
 title: "Herramientas básicas para programar con R"
 author: Bastián Olea Herrera
 date: '2025-02-14'
+freeze: true
 format: 
   hugo-md:
     output-file: "index"

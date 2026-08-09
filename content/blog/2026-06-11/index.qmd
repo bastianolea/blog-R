@@ -17,6 +17,8 @@ links:
     icon_pack: fas
     name: pdftools
     url: https://docs.ropensci.org/pdftools/
+execute: 
+  eval: false
 ---
 
 

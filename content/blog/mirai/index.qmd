@@ -1,8 +1,8 @@
 ---
 title: "Operaciones asíncronas en R con `{mirai}`"
-format: html
 draft: true
-format: hugo-md
+execute: 
+  eval: false
 categories:
   - optimización
 excerpt: "Procesamiento asíncrono"

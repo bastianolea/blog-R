@@ -2,6 +2,7 @@
 title: Herramientas básicas para programar con R
 author: Bastián Olea Herrera
 date: '2025-02-14'
+freeze: true
 format:
   hugo-md:
     output-file: index
@@ -15,6 +16,7 @@ tags:
   - funciones
   - control de flujo
   - loops
+  - programación
 excerpt: >-
   En guía aprenderemos herramientas de programación poderosas que flexibilizarán
   mucho nuestras capacidades de análisis de datos, abriendo infinitas
@@ -64,7 +66,8 @@ multiplicar_mil(4)
 multiplicar_mil("hola")
 ```
 
-    Error in cifra * 1000: non-numeric argument to binary operator
+    Error in `cifra * 1000`:
+    ! non-numeric argument to binary operator
 
 ``` r
 multiplicar_mil(c(32, 65, 87))
@@ -118,11 +121,11 @@ saludar <- function(persona) {
 saludar(personas)
 ```
 
-    [1] "¡Hola BASTI! Tu número de la suerte es 47"     
-    [2] "¡Hola PAULA! Tu número de la suerte es 88"     
-    [3] "¡Hola CATHERINE! Tu número de la suerte es 82" 
-    [4] "¡Hola LUIS! Tu número de la suerte es 31"      
-    [5] "¡Hola MARÍA JOSÉ! Tu número de la suerte es 24"
+    [1] "¡Hola BASTI! Tu número de la suerte es 20"     
+    [2] "¡Hola PAULA! Tu número de la suerte es 90"     
+    [3] "¡Hola CATHERINE! Tu número de la suerte es 46" 
+    [4] "¡Hola LUIS! Tu número de la suerte es 44"      
+    [5] "¡Hola MARÍA JOSÉ! Tu número de la suerte es 32"
 
 En este caso, dentro del cuerpo de la función estamos realizando varias operaciones. Dentro de una función podemos crear nuevos objetos, y usar esos nuevos objetos para realizar otras operaciones sobre ellos. De este modo podemos llevar a cabo acciones más complejas. En el ejemplo, el argumento de la función es transformado a mayúsculas con `toupper()`, luego se inserta dentro del texto con `paste()`. Después, se crea un vector de números al azar que contenga una cantidad de números igual a la cantidad de elementos del vector que viene del argumento de la función, para que haya un número por persona. Finalmente, se usa nuevamente `paste()` junto a `sample()` para agregar el número aleatorio, y se entrega el objeto final, que será lo que la función retorna.
 
@@ -165,7 +168,8 @@ También podemos especificar valores por defecto para los argumentos al momento 
 calcular_tiempo()
 ```
 
-    Error in calcular_tiempo(): argument "distancia" is missing, with no default
+    Error in `calcular_tiempo()`:
+    ! argument "distancia" is missing, with no default
 
 Como no definimos los argumentos, la función retorna un error. Modifiquemos la función para que tenga argumentos por defecto:
 
@@ -186,10 +190,10 @@ Ahora la función no tira un error si no se definen los argumentos, aunque el re
 
 *¿Cómo puede ayudarte la creación de funciones para el análisis de datos?*
 
--   Si realizas una misma tarea frecuentemente, puedes guardarla a una función para así **reutilizar** la operación en varios momentos de tu código.
--   Si realizas una operación matemática o estadística sobre una columna, puedes guardarla como una función para **simplificar** la lectura del código
--   Puedes simplificar los pasos de tu procesamiento de datos guardándolos como funciones, cuya entrada son los datos y la salida son los datos procesados. De este modo puedes ocultar la complejidad, lo que produce scripts **más legibles**.
--   Puedes definir todas tus funciones en otro script, permitiéndote así tener scripts **más ordenados** y **menos extensos**.
+- Si realizas una misma tarea frecuentemente, puedes guardarla a una función para así **reutilizar** la operación en varios momentos de tu código.
+- Si realizas una operación matemática o estadística sobre una columna, puedes guardarla como una función para **simplificar** la lectura del código
+- Puedes simplificar los pasos de tu procesamiento de datos guardándolos como funciones, cuya entrada son los datos y la salida son los datos procesados. De este modo puedes ocultar la complejidad, lo que produce scripts **más legibles**.
+- Puedes definir todas tus funciones en otro script, permitiéndote así tener scripts **más ordenados** y **menos extensos**.
 
 ------------------------------------------------------------------------
 
@@ -376,7 +380,7 @@ for (persona in personas) {
     [1] "¡Hola a todes!"
     [1] "Hola Paula"
     [1] "Excelente pregunta, Catherine"
-    [1] "Gato"
+    [1] "Serpiente"
     [1] "Hola María José"
 
 Por cada paso, el objeto `persona` asume el valor del elemento correspondiente del vector `personas`. El código avanza dentro del loop probando si `persona` coincide con alguna de las condiciones dadas, y si no coincide, prueba si coincide la siguiente con `else if`, y al final, si el valor no coincidió con ninguna de las comparaciones específicas de los `if`, entonces se realiza una operación general para todos los demás casos en `else`.

@@ -4,6 +4,7 @@ author: Bastián Olea Herrera
 date: '2026-06-06'
 slug: []
 draft: false
+freeze: true
 categories:
   - ''
 tags:

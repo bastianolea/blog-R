@@ -64,15 +64,14 @@ library(dplyr)
 ``` r
 library(ggplot2)
 
+# tema de colores
+thematic::thematic_on(fg = "#553A74",
+                      bg = "#EAD2FA",
+                      accent = "#9069C0")
+
 theme_set(
-  # tema de colores
-  theme_grey(paper = "#EAD2FA",
-             ink = "#553A74",
-             accent = "#9069C0") +
-    # tipografía
-    theme(text = element_text(family = "Atkinson Hyperlegible")) +
-    # fondo transparente para mapas
-    theme(plot.background = element_rect(fill = "transparent", color = "transparent")) +
+  # fondo transparente para mapas
+  theme(plot.background = element_rect(fill = "transparent", color = "transparent")) +
     # borrar líneas feas
     theme(axis.ticks = element_blank())
 )
@@ -148,9 +147,9 @@ Para aprender, podemos descargar un *shape* y usarlo para practicar. Si no tiene
 
 {{< boton "Division regional: polígonos de las regiones de Chile" "https://www.bcn.cl/obtienearchivo?id=repositorio/10221/10398/2/Regiones.zip" "fas fa-map">}}
 
-También puedes descargarlo directamente desde R con `download.file()` y luego `unzip()`, [como se indica en este post](./blog/mapa_chile_triple/#descargar-mapas).
+También puedes descargarlo directamente desde R con `download.file()` y luego `unzip()`, [como se indica en este post](../../../blog/mapa_chile_triple/#descargar-mapas).
 
-Una vez descargado, descomprimimos el archivo y obtenemos una **carpeta**. Esta carpeta es nuestro *shapefile*, así que la guardamos dentro de nuestro [proyecto de RStudio](./blog/r_introduccion/proyectos/), idealmente dentro de una carpeta donde guardemos nuestros mapas.
+Una vez descargado, descomprimimos el archivo y obtenemos una **carpeta**. Esta carpeta es nuestro *shapefile*, así que la guardamos dentro de nuestro [proyecto de RStudio](../../../blog/r_introduccion/proyectos/), idealmente dentro de una carpeta donde guardemos nuestros mapas.
 
 ``` r
 # descargar
@@ -205,6 +204,7 @@ mapa
 
 ### Cargar KMZ
 
+
 ::: {.cell}
 
 ```{.r .cell-code}
@@ -213,6 +213,7 @@ unzip("~/Downloads/Mis lugares.kmz", exdir = "~/Downloads/Mis lugares")
 sf::read_sf("~/Downloads/Mis lugares/doc.kml")
 ```
 :::
+
 
 
 -->
@@ -300,15 +301,11 @@ mapa_centroide <- mapa |>
 mapa_centroide |> 
   filter(region == mapa$region[3]) |> 
   ggplot() +
-  # mapa
   geom_sf(fill = "#9069C0", 
           linewidth = NA) +
-  # capa del punto
   geom_sf(
     aes(geometry = centroide),
-    color = "#402E5A",
-    size = 3, alpha = 1) +
-  # texto bajo el punto
+    size = 3, alpha = .6) +
   geom_sf_text(
     aes(geometry = centroide),
     label = "centroide", size = 3,
@@ -484,7 +481,6 @@ ggplot() +
           linewidth = 0.1) +
   # capa con el punto
   geom_sf(data = punto,
-          color = "#402E5A",
           size = 3, alpha = .5)
 ```
 
@@ -519,7 +515,6 @@ ggplot() +
   # capa con puntos
   geom_sf(data = puntos,
           aes(size = n),
-          color = "#402E5A",
           alpha = .5) +
   # capa con textos
   geom_sf_label(data = puntos,
@@ -662,9 +657,9 @@ Teniendo una tabla con un conjunto de coordenadas, podemos unirlas para formar u
 
 ``` r
 coordenadas <- tribble(~nombre, ~lon, ~lat,
-                       "A", -68,  -36,
-                       "B", -64,  -31,
-                       "C", -60,  -36)
+                           "A", -68,  -36,
+                           "B", -64,  -31,
+                           "C", -60,  -36)
 
 # convertir tabla a sf
 puntos <- coordenadas |> 
@@ -708,10 +703,10 @@ coordenadas <- tribble(~tipo,    ~lon, ~lat,
                        "Triángulo", -68,  -30,
                        "Triángulo", -64,  -25,
                        "Triángulo", -60,  -30,
-                       "Cuadrado", -68,  -38,
-                       "Cuadrado", -60,  -38,
-                       "Cuadrado", -60,  -32,
-                       "Cuadrado", -68,  -32)
+                        "Cuadrado", -68,  -38,
+                        "Cuadrado", -60,  -38,
+                        "Cuadrado", -60,  -32,
+                        "Cuadrado", -68,  -32)
 
 # convertir tabla a sf
 puntos <- coordenadas |> 
@@ -739,11 +734,10 @@ ggplot() +
   # capa con polígonos de color
   geom_sf(data = poligono,
           aes(fill = tipo, color = tipo),
-          lwd = 0.6, alpha = .5) +
+          lwd = 0.6, alpha = .7) +
   # capa con puntos
   geom_sf(data = puntos,
-          color = "#25054A",
-          alpha = .5) +
+          alpha = .4) +
   # escala de colores
   labs(fill = "Tipo", color = "Tipo") +
   theme(legend.key.spacing.y = unit(1, "mm"))
@@ -803,155 +797,6 @@ También podemos hacer recortes que pasen por encima de los polígonos, eliminan
 
 <img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-42-1.png" width="768" />
 
-#### Recortar un mapa a partir de otro mapa
-
-También podemos filtrar mapas con `st_crop()` usando la caja que encierra a otro mapa. De este modo, si tenemos un mapa que es un subconjunto de otro mapa mayor (por ejemplo, una región contextualizada en un país), podemos usar la región para recortar el mapa del país y así incluir este último como capa de fondo.
-
-Esto sirve, por ejemplo, cuando tenemos una región geográfica que queramos mostrar, pero queremos darle contexto geográfico incluyendo el territorio al rededor del mapa filtrado.
-
-Empecemos obteniendo el mapa de un país, y luego filtrando alguna de sus regiones para usarlo como mapa de fondo:
-
-``` r
-library(rnaturalearth)
-
-# obtener mapa por regiones
-chile <- ne_states(country = "Chile") |> 
-  select(pais = admin,
-         region = name_es,
-         geometry)
-
-# filtrar algunas regiones
-regiones <- chile |> 
-  filter(region %in% c("O'Higgins", "Maule", "Ñuble", "Biobío", "La Araucanía", "Los Ríos"))
-```
-
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-44-1.png" width="768" />
-
-{{< detalles "Ver código del gráfico" >}}
-
-``` r
-# visualizar regiones
-regiones |> 
-  ggplot() +
-  geom_sf(fill = "#9069C0", 
-          color = "#DFC6EF",
-          linewidth = 0.2, alpha = 0.8)
-```
-
-{{< /detalles >}}
-
-Ahora filtremos la región principal que queremos mapear:
-
-``` r
-# filtrar región principal
-region <- regiones |> 
-  filter(region == "Ñuble")
-```
-
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-47-1.png" width="768" />
-
-{{< detalles "Ver código del gráfico" >}}
-
-``` r
-# visualizar regiones
-regiones |> 
-  ggplot() +
-  geom_sf(fill = "#9069C0", 
-          color = "#DFC6EF",
-          linewidth = 0.2, alpha = 0.8)
-```
-
-{{< /detalles >}}
-
-Podemos usar la caja del mapa principal (calculada con `st_bbox()`) para recortar el mapa de fondo:
-
-``` r
-# recortar ampa de fondo con caja de mapa principal
-fondo_region <- regiones |> 
-  st_crop(st_bbox(region)) # recortar en base a caja
-```
-
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-50-1.png" width="768" />
-
-{{< detalles "Ver código del gráfico" >}}
-
-``` r
-# previsualizar mapa de fondo
-fondo_region |> 
-  ggplot() +
-  geom_sf(fill = "#9069C0", 
-          color = "#DFC6EF",
-          linewidth = 0.2, alpha = 0.8)
-```
-
-{{< /detalles >}}
-
-Obtenemos el mapa del país recortado a la caja del mapa regional. Luego podemos combinar ambos para una visualización de un mapa regional que tenga contexto de sus alrededores:
-
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-52-1.png" width="768" />
-
-{{< detalles "Ver código del gráfico" >}}
-
-``` r
-ggplot() +
-  # capa de fondo
-  geom_sf(data = fondo_region, 
-          fill = "#9069C0", color = "#DFC6EF", 
-          alpha = 0.4) +
-  # capa principal
-  geom_sf(data = region, 
-          fill = "#9069C0", color = "#DFC6EF", 
-          linewidth = 0.2, alpha = 0.6)
-```
-
-{{< /detalles >}}
-
-También podemos ampliar el recorte que hacemos del mapa de fondo **ampliando** la caja al [aplicarle un *buffer*](./blog/mapas_sf/#calcular-buffer) a la región con `st_buffer()`:
-
-``` r
-# con buffer sobre el mapa para ampliar recorte
-fondo_region <- regiones |> 
-  st_crop(region |> 
-            st_buffer(60000) |> # ampliar mapa 
-            st_bbox()) # calcular caja
-```
-
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-55-1.png" width="768" />
-
-{{< detalles "Ver código del gráfico" >}}
-
-``` r
-# previsualizar fondo
-fondo_region |> 
-  ggplot() +
-  geom_sf(fill = "#9069C0", 
-          color = "#DFC6EF",
-          linewidth = 0.2, alpha = 0.8)
-```
-
-{{< /detalles >}}
-
-Ahora combinamos ambas capas, mapa de fondo recortado, y mapa principal:
-
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-57-1.png" width="768" />
-
-{{< detalles "Ver código del gráfico" >}}
-
-``` r
-# combinar fondo con mapa principal
-ggplot() +
-  # capa de fondo
-  geom_sf(data = fondo_region, 
-          fill = "#9069C0", color = "#DFC6EF", 
-          alpha = 0.4) +
-  # capa principal
-  geom_sf(data = region, 
-          fill = "#9069C0", color = "#DFC6EF", 
-          linewidth = 0.2, alpha = 0.8)
-```
-
-{{< /detalles >}}
-
 ------------------------------------------------------------------------
 
 ### Mover puntos de un mapa
@@ -964,12 +809,12 @@ Creemos una tabla con latitudes y longitudes, y convirtámosla a `sf` con `st_as
 
 ``` r
 puntos <- tribble(~nombre, ~lon,     ~lat,
-                  "Hualqui", -8113368, -4434476,
-                  "Coronel", -8136065, -4440419,
-                  "Concepción", -8132714, -4414370,
-                  "Lota", -8139383, -4451456,
+                "Hualqui", -8113368, -4434476,
+                "Coronel", -8136065, -4440419,
+             "Concepción", -8132714, -4414370,
+                   "Lota", -8139383, -4451456,
                   "Penco", -8119934, -4402016,
-                  "Talcahuano", -8139277, -4399701) |> 
+             "Talcahuano", -8139277, -4399701) |> 
   # convertir a tabla sf
   st_as_sf(coords = c("lon", "lat"), 
            crs = 3395)
@@ -977,7 +822,7 @@ puntos <- tribble(~nombre, ~lon,     ~lat,
 
 Así se ven los puntitos por sí solos:
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-60-1.png" width="768" />
+<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-44-1.png" width="768" />
 
 Ahora recortemos el mapa de Chile para enfocarnos en la zona donde están los puntos. [Creamos un *buffer*](#calcular-buffer) alrededor de los puntos para agrandarlos con `st_buffer()`, y luego [calculamos la caja que los contiene](#calcular-caja-de-un-polígono) con `st_bbox()` para usarla como recorte.
 
@@ -997,7 +842,7 @@ chile_recorte <- chile |>
   st_crop(caja_puntos)
 ```
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-63-1.png" width="768" />
+<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-47-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -1026,7 +871,7 @@ puntos_movidos <- puntos |>
   mutate(geometry = case_when(nombre == "Hualqui" ~ geometry + c(7000, 0),
                               nombre ==  "Penco" ~ geometry + c(7000, 0),
                               .default = st_sfc(geometry) |> st_set_crs(NA))
-  ) |> 
+         ) |> 
   st_set_crs(st_crs(puntos))
 ```
 
@@ -1051,7 +896,7 @@ Lo que sumemos o restemos a las coordenadas depende del sistema de coordenadas d
 
 En el gráfico vemos en color más tenue las posiciones originales de los puntos que fueron modificados.
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-67-1.png" width="768" />
+<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-51-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -1063,7 +908,7 @@ ggplot() +
           color = "#402E5A", size = 3, alpha = 0.2) +
   geom_sf(data = puntos_movidos,
           color = "#402E5A", size = 3, alpha = 0.7) +
-  geom_sf_text(data = puntos_movidos, 
+    geom_sf_text(data = puntos_movidos, 
                aes(label = paste("  ", nombre)),
                color = "#402E5A", size = 3, hjust = 0, angle = -35)
 ```
@@ -1074,6 +919,7 @@ ggplot() +
 
 <!--
 Desde el centroide de un polígono
+
 
 ::: {.cell}
 
@@ -1088,9 +934,11 @@ st_as_sf()
 ```
 :::
 
+
 -->
 <!--
 ### Calcular superficie o área
+
 
 ::: {.cell}
 
@@ -1105,7 +953,9 @@ units::set_units("km^2")
 
 
 
+
 ### Recortar polígono a coordenadas
+
 
 ::: {.cell}
 
@@ -1116,7 +966,9 @@ st_crop(xmin = -74, ymin = -36, xmax = -65, ymax = -30) |>
 
 
 
+
 ### Simplificar un polígono
+
 
 ::: {.cell}
 
@@ -1130,7 +982,9 @@ rmapshaper::ms_simplify(geometry, keep = 0.8))
 
 
 
+
 ### Extraer líneas internas de un polígono
+
 
 ::: {.cell}
 
@@ -1141,7 +995,9 @@ ms_innerlines() # deja solo las líneas interiores de un coso
 
 
 
+
 ## Correcciones
+
 
 ::: {.cell}
 
@@ -1150,17 +1006,12 @@ st_as_sf()
 ```
 :::
 
-
-
-
 ::: {.cell}
 
 ```{.r .cell-code}
 st_make_valid()
 ```
 :::
-
-
 
 ::: {.cell}
 
@@ -1171,12 +1022,14 @@ st_drop_geometry()
 
 
 
+
 ----
 
 
 ## Operaciones agrupadas
 
 ### Unir polígonos
+
 
 ::: {.cell}
 
@@ -1188,10 +1041,12 @@ st_union()
 
 
 
+
 ## Operaciones entre geometrías
 
 ### Recortar un polígono con otro
 https://bookdown.org/robinlovelace/geocompr/geometric-operations.html#clipping
+
 
 
 ::: {.cell}
@@ -1202,7 +1057,9 @@ st_intersection()
 :::
 
 
+
 ### Usar un polígono para eliminar partes de otro
+
 
 ::: {.cell}
 
@@ -1213,7 +1070,9 @@ st_difference()
 
 
 
+
 ### unir dos polígonos
+
 
 ::: {.cell}
 
@@ -1223,9 +1082,11 @@ st_union()
 :::
 
 
+
 ### Spatial join
 
 ### Filter
+
 
 ::: {.cell}
 
@@ -1237,9 +1098,11 @@ https://cengel.github.io/R-spatial/spatialops.html#topological-subsetting-select
 
 
 
+
 ## Coordenadas
 
 ### Extraer sistema de coordenadas
+
 
 ::: {.cell}
 
@@ -1249,7 +1112,9 @@ st_crs(comunas_region)
 :::
 
 
+
 ### Cambiar coordenadas
+
 
 ::: {.cell}
 
@@ -1260,9 +1125,11 @@ st_transform(crs = st_crs(comunas_region))
 
 
 
+
 ## Visualización
 
 ### Visualizar por capas
+
 
 ::: {.cell}
 
@@ -1273,7 +1140,9 @@ geom_sf()
 
 
 
+
 ### Texto
+
 
 ::: {.cell}
 
@@ -1284,8 +1153,10 @@ aes(label = nombre)) +
 :::
 
 
+
 ### Texto con repel
 https://github.com/slowkow/ggrepel/issues/111#issuecomment-416853013
+
 
 ::: {.cell}
 
@@ -1302,7 +1173,9 @@ label.padding = 0.15, label.size = 0
 
 
 
+
 ### Hacer zoom
+
 
 ::: {.cell}
 
@@ -1313,7 +1186,9 @@ label.padding = 0.15, label.size = 0
 :::
 
 
+
 ### Dibujar un cuadrado
+
 
 ::: {.cell}
 
@@ -1325,7 +1200,9 @@ label.padding = 0.15, label.size = 0
 :::
 
 
+
 ### Escala de colores para mapa de calor
+
 
 
 ::: {.cell}
@@ -1343,17 +1220,21 @@ limits = c(0, NA)
 
 
 
+
 ### Minimapa
 https://dominicroye.github.io/blog/inserted-map/
+
 
 ::: {.cell}
 
 :::
 
 
+
 -->
 {{< aviso "⚠️ Este tutorial se encuentra en construcción ⚠️" >}}
-{{< etiqueta "mapas" >}}
+
+------------------------------------------------------------------------
 
 ## Recursos para aprender más
 
@@ -1362,14 +1243,9 @@ https://dominicroye.github.io/blog/inserted-map/
 {{< imagen "sf_cheatsheet_1.jpeg" >}}
 {{< imagen "sf_cheatsheet_2.jpeg" >}}
 
-#### OpenStreetMap con R
-
-[Revisa esta hoja de apuntes](https://zenodo.org/records/20842874) por Louis Laurian y Timothée Giraud.
-
 ### Libros
 
 - [Drawing beautiful maps programmatically with R, sf and ggplot2](https://r-spatial.org/r/2018/10/25/ggplot2-sf.html)
 - [Geocomputation with R](https://bookdown.org/robinlovelace/geocompr/)
 - [Spatial Data Science With Applications in R](https://r-spatial.org/book/)
 - [Using Spatial Data with R](https://cengel.github.io/R-spatial/)
-- [Spatial Data Processing with R](https://jguelat.github.io/spatial-r/)

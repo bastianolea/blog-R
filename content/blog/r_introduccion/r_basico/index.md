@@ -143,7 +143,8 @@ Como el tipo de los datos determina las operaciones que podemos realizar, veremo
 "1" + "1"
 ```
 
-    Error in "1" + "1": non-numeric argument to binary operator
+    Error in `"1" + "1"`:
+    ! non-numeric argument to binary operator
 
 Es importante saber con qué tipo de datos estamos trabajando, para poder saber las herramientas que tenemos de nuestra disposición, o bien, para planificar qué hacer para poder hacer lo que necesitamos con los datos que tenemos.
 
@@ -726,7 +727,7 @@ numeros <- 1:10000000
 sample(numeros, size = 1)
 ```
 
-    [1] 4402724
+    [1] 5682161
 
 La función recibe como primer argumento el vector de elementos, y como segundo argumento la cantidad de elementos que queremos obtener al azar.
 
@@ -800,7 +801,7 @@ animales <- c("gato", "mapache", "castor", "pollo", "ratón", "pudú")
 paste("el animal más lindo es el", sample(animales, 1))
 ```
 
-    [1] "el animal más lindo es el pollo"
+    [1] "el animal más lindo es el gato"
 
 ### Redondear datos
 

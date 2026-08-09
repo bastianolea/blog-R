@@ -43,8 +43,6 @@ En este tutorial aprenderemos a crear mapas de Chile en R usando datos geográfi
 
 El objetivo será aprender a visualizar mapas desde *shapefiles* obtenidos de internet, y a procesar datos geográficos más complejos con R, para generar mapas de Chile con polígonos y límites geográficamente correctos.
 
-{{< relacionada "/blog/tutorial_mapa_chile/" >}}
-
 ## Obtener datos geográficos
 
 El primer paso para visualizar mapas es obtener los datos geográficos. Con esto nos referimos a los polígonos (figuras geométricas que usualmente representan territorios), líneas (que pueden representar límites o redes viales) y puntos (que pueden representar ubicaciones como municipios o capitales).
@@ -125,8 +123,6 @@ class(comunas)
 
     [1] "sf"         "tbl_df"     "tbl"        "data.frame"
 
-{{< relacionada "/blog/mapas_sf/" >}}
-
 Si lo imprimimos en la consola, confirmamos que los objetos cargados desde los *shapefiles* son tablas de datos que arriba dicen *Simple feature collection*; es decir, son tablas de datos que además tienen información geográfica.
 
 ``` r
@@ -155,8 +151,6 @@ comunas
     # ℹ 1 more variable: geometry <MULTIPOLYGON [°]>
 
 Estas tablas de datos cuentan con una columna `geometry`, que contiene la información geográfica de los polígonos, puntos y/o líneas de cada observación. A su vez, encima de la tabla de datos vemos información especial, como el tipo de geometría, las dimensiones de la caja (*bounding box*), y el sistema de coordenadas de referencia (*CRS*), que indica el tipo de proyección usada.
-
-{{< relacionada "/blog/simplificar_mapas/" >}}
 
 ## Visualizar mapas
 
@@ -196,7 +190,5 @@ ggplot() +
 A las capas de objetos geográficos le especificamos el sistema de coordenadas con `coord_sf()` para recortar el mapa al territorio continental del país, y [además le pusimos una escala de colores](../../../blog/colores/#usar-paletas-de-colores-en-ggplot2) cálidos desde el paquete `{colorspace}`, que además tiene la cualidad de poder adaptar la intensidad y brillo de sus colores.
 
 Listo! La gracia de `{sf}` es poder entregar herramientas para cargar cualquier tipo de datos geográficos y habilitar que `{ggplot2}` los pueda graficar sin problemas. A menos que ocurran problemas. Lo cual veremos [en otro post](../../../tags/mapas/) 😬
-
-{{< etiqueta "mapas" >}}
 
 [^1]: Al tratarse de mapas oficiales, estos datos geográficos contienen mucho nivel de detalle; usualmente mucho más del necesario para hacer mapas a nivel nacional, donde el nivel de detalle es visualmente imperceptible. Dado que una mayor calidad significa mapas más pesados y por ende procesos más lentos, podemos [simplificar las geometrías](../../../blog/simplificar_mapas/) con la función `ms_simplify()` del paquete `{rmapshaper}`, como detallamos [en este post.](../../../blog/simplificar_mapas/)
