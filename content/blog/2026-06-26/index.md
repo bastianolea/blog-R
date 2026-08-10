@@ -6,12 +6,13 @@ slug: []
 draft: false
 tags:
   - consejos
+  - videos
 excerpt: "Mi truco favorito de RStudio, que ayuda mucho a editar texto o código cuando se tienen que hacer varios cambios al mismo tiempo, o cuando se trabaja con un mismo patrón de texto en varias líneas de código. Siempre que hago esto en clases mis estudiantes me preguntan cómo lo hice!"
 ---
 
 Uno de mis trucos favoritos para programar en RStudio es la funcionalidad de **edición multicursor**, que te permite tener varios cursores de texto para así poder escribir lo mismo en varios lugares o líneas a la vez! Ayuda mucho a editar texto o código cuando se tienen que hacer varios cambios al mismo tiempo, o cuando se trabaja con un mismo patrón de texto en varias líneas de código.
 
-{{< video "rstudio_multicursor_0.mp4" >}}
+{{< video "rstudio_multicursor_0.mp4" "240px">}}
 
 Para hacerlo, **mantén presionada** la siguiente combinación de teclas y **haz clic** en las líneas o posiciones del texto donde quieras poner cursores:
 
@@ -23,7 +24,7 @@ Para hacerlo, **mantén presionada** la siguiente combinación de teclas y **haz
 
 También puedes seleccionar un punto en el texto y mantener esta combinación de teclas mientras presionas las flechas del teclado hacia arriba o hacia abajo para crear cursores hacia cada línea que te desplaces:
 
-{{< video "rstudio_multicursor_5.mp4" >}}
+{{< video "rstudio_multicursor_5.mp4" "300px" >}}
 
 Puedes potenciar mucho más este truco si aprendes las combinaciones de teclas para **navegar texto** con tu teclado:
 
