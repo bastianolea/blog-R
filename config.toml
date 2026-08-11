@@ -296,3 +296,4 @@ titleCaseStyle = "firstupper"
 [outputs]
   home = ["HTML", "RSS", "JSON"]
   page = ["HTML"]
+  

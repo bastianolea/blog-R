@@ -6,6 +6,7 @@ subtitle: Exploración visual de correlación de datos territoriales
 author: Bastián Olea Herrera
 date: '2026-07-24'
 draft: false
+freeze: true
 tags:
   - mapas
   - visualización de datos

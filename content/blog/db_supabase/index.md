@@ -39,13 +39,13 @@ Pero además, una base de datos puede hacer más que simplemente almacenar los d
 
 ## Cuándo usar una base de datos
 
--   Cuando la **cantidad de observaciones es muy grande**, y te encuentras con límites de memoria
--   Cuando necesitas **acceder a los datos desde varios equipos o aplicaciones**
--   Cuando tus datos **ocupan mucho almacenamiento local** y preferirías que estuvieran en la nube
--   Cuando tienes muchos datos, y solo los cargas para obtener subconjuntos o resúmenes de los mismos
--   Cuando quieres **optimizar la velocidad** de acceso a los datos, sobre todo la velocidad de cargar archivos
--   Cuando tienes un conjunto de datos complejos que requieren de **múltiples tablas relacionadas entre sí**
--   Cuando no puedes mantener todos los datos en memoria
+- Cuando la **cantidad de observaciones es muy grande**, y te encuentras con límites de memoria
+- Cuando necesitas **acceder a los datos desde varios equipos o aplicaciones**
+- Cuando tus datos **ocupan mucho almacenamiento local** y preferirías que estuvieran en la nube
+- Cuando tienes muchos datos, y solo los cargas para obtener subconjuntos o resúmenes de los mismos
+- Cuando quieres **optimizar la velocidad** de acceso a los datos, sobre todo la velocidad de cargar archivos
+- Cuando tienes un conjunto de datos complejos que requieren de **múltiples tablas relacionadas entre sí**
+- Cuando no puedes mantener todos los datos en memoria
 
 A continuación veremos cómo **crear** una base de datos gratuita, cómo **conectarnos** a ella desde R, y cómo subir y trabajar con los datos en la base de datos remota.
 
@@ -80,10 +80,6 @@ Se abrirá un panel donde se nos entregarán los **parámetros de acceso** a la 
 {{< imagen "supabase_5.png" >}}
 
 Necesitamos los parámetros `host`, `port`, `database` y `user`. Ahora iremos a R para introducirlos y conectarnos.
-
-{{< aviso "**Importante:** si quieres usar la base de datos desde aplicaciones Shiny conectadas a Shinyapps.io, tienes que elegir en _Method_ la opción _Transaction Pooler_ para que tu base de datos funcione por IPv4." >}}
-
-{{< imagen "supabase_7.png" >}}
 
 ### Credenciales de acceso
 
@@ -354,7 +350,7 @@ Ya sea porque necesitas la **capacidad de almacenamiento**, porque requieres **p
 
 ### Conexión por IPv4
 
-Las bases de Supabase usan IPv6 por defecto, pero algunos servicios requieren de conexiones IPv4 por limitaciones técnicas o de infraestructura. Uno de estos servicios [es ShinyApps.io](../../../blog/shiny/#publicar-la-aplicación-en-internet/), el servicio que uso yo para alojar [mis aplicaciones Shiny](https://bastianolea.github.io/shiny_apps/).
+Las bases de Supabase usan IPv6 por defecto, pero algunos servicios requieren de conexiones IPv4 por limitaciones técnicas o de infraestructura. Uno de estos servicios [es ShinyApps.io](../../../blog/r_introduccion/tutorial_shinyapps/), el servicio que uso yo para alojar [mis aplicaciones Shiny](https://bastianolea.github.io/shiny_apps/).
 
 Para usar IPv4 en conexiones a bases de datos Supabase, en el panel de Conexión (el mismo que usaste para [obtener las credenciales](../../../blog/db_supabase/#conectarse-a-la-base-de-datos)), en la opción *Method* puedes elegir *Session pooler* para obtener credenciales IPv4.
 
@@ -364,8 +360,7 @@ Para usar IPv4 en conexiones a bases de datos Supabase, en el panel de Conexión
 
 ## Recursos
 
--   [A Crash Course on PostgreSQL for R Users](https://pacha.dev/blog/2020/08/09/postgresql-for-r-users/), por [Mauricio Vargas S.](https://pacha.dev)
--   [Querying data from large cloud databases with R and DuckDB](https://frodriguezsanchez.net/post/querying-data-from-large-cloud-databases-with-r-and-duckdb/)
+- [A Crash Course on PostgreSQL for R Users](https://pacha.dev/blog/2020/08/09/postgresql-for-r-users/), por [Mauricio Vargas S.](https://pacha.dev)
 
 {{< cafecito >}}
 {{< cursos >}}

@@ -21,10 +21,10 @@ blogdown::new_post(
 
 # crear un post tutorial
 blogdown::new_post(
-  title = "Mapas de las regiones de Chile por macrozonas",
-  file = "blog/mapa_chile_macrozonas/index.qmd",
+  title = "Párrafos interactivos",
+  file = "blog/shiny_parrafo/index.qmd",
   author = "Bastián Olea Herrera",
-  tags = c("mapas"),
+  tags = c("shiny"),
   categories = c()
 )
 

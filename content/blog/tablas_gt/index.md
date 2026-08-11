@@ -1,5 +1,5 @@
 ---
-title: 'Crea tablas atractivas y personalizables en R con `{gt}`'
+title: Crea tablas atractivas y personalizables en R con `{gt}`
 author: Bastián Olea Herrera
 date: '2024-11-19'
 format: hugo-md
@@ -33,11 +33,7 @@ En este artículo te mostraré tres ejemplos de creación de distintas tablas ba
 2.  Tabla de **resultados electorales**, con colorización de celdas de variables categóricas en base a una segunda variable categórica
 3.  Tabla de **Producto Interno Bruto regional**, con colorización de múltiples columnas numéricas de forma simultánea, y estilo de celdas condicional
 
-{{< externo "Creando tablas efectivas con el paquete `gt`"
-  "https://rich-iannone.github.io/gt-effective-display-tables/"
-  "libro_gt.png"
-  "Una guía completa para la creación de tablas con `gt`, hecho por Richard Iannone, uno de los desarrolladores del paquete!"
-  "Libro recomendado" >}}
+{{< externo "Creando tablas efectivas con el paquete `gt`"   "https://rich-iannone.github.io/gt-effective-display-tables/"   "libro_gt.png"   "Una guía completa para la creación de tablas con `gt`, hecho por Richard Iannone, uno de los desarrolladores del paquete!"   "Libro recomendado" >}}
 
 ## Tabla de estimación de pobreza por comunas
 
@@ -795,18 +791,15 @@ tabla_pib_regional_5c <- tabla_pib_regional_5 |>
 
 De esta forma, usamos un poco de magia de iteraciones con `{purrr}` y sintaxis avanzada de R con `{rlang}` para poder aplicar un formato condicional a múltiples columnas de una tabla.
 
-{{< etiqueta "tablas" >}}
+------------------------------------------------------------------------
 
 ## Otros recursos para tablas `{gt}`
 
 - Documentación oficial: https://gt.rstudio.com
-- Libro [_Creating Effective Display Tables with the `gt` Package_,](https://rich-iannone.github.io/gt-effective-display-tables/) de Richard Iannone
+- Libro [*Creating Effective Display Tables with the `gt` Package*,](https://rich-iannone.github.io/gt-effective-display-tables/) de Richard Iannone
 - https://themockup.blog/static/resources/gt-cookbook.html#table-customization
 - https://gt.albert-rapp.de
 
-
-{{< categoria "Tutoriales" "Más tutoriales de R" >}}
-
-
+{{< etiqueta "tablas" >}}
 {{< cafecito >}}
 {{< cursos >}}

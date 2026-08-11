@@ -107,7 +107,20 @@ tabla_1
 ``` r
 # limpiar datos de la tabla
 library(dplyr)
+```
 
+
+    Attaching package: 'dplyr'
+
+    The following objects are masked from 'package:stats':
+
+        filter, lag
+
+    The following objects are masked from 'package:base':
+
+        intersect, setdiff, setequal, union
+
+``` r
 # renombrar columnas
 tabla_1a <- tabla_1 |> 
   janitor::row_to_names(1) |> 
