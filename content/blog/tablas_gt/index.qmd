@@ -15,7 +15,7 @@ editor_options:
 execute: 
   message: false
   warning: false
-excerpt: El paquete de R `{gt}` genera tablas para presentar tus datos. Produce tablas atractivas con muy pocas líneas de código, y al mismo tiempo ofrece una alta capacidad de personalización de las tablas. En este artículo te mostraré tres ejemplos de creación de distintas tablas basadas en datos reales.
+excerpt: "El paquete de R `{gt}` produce tablas atractivas con muy pocas líneas de código, y al mismo tiempo ofrece una alta capacidad de personalización para presentar tus datos. En este artículo te mostraré tres ejemplos de creación de distintas tablas basadas en datos reales."
 ---
 
 ```{r setup}
@@ -753,10 +753,17 @@ De esta forma, usamos un poco de magia de iteraciones con `{purrr}` y sintaxis a
 ----
 
 ## Otros recursos para tablas `{gt}`
-- Documentación oficial: https://gt.rstudio.com
-- Libro [_Creating Effective Display Tables with the `gt` Package_,](https://rich-iannone.github.io/gt-effective-display-tables/) de Richard Iannone
-- https://themockup.blog/static/resources/gt-cookbook.html#table-customization
-- https://gt.albert-rapp.de
+- [Documentación oficial de `gt`](https://gt.rstudio.com)
+- [Introduction to Creating gt Tables](https://gt.rstudio.com/articles/gt.html)
+- Libro [_Creating Effective Display Tables with the `gt` Package_,](https://rich-iannone.github.io/gt-effective-display-tables/), de [Richard Iannone](https://github.com/rich-iannone)
+- [`gt` cookbook - Table Customization](https://themockup.blog/static/resources/gt-cookbook.html#table-customization)
+- [Creating beautiful tables in R with `{gt}`](https://gt.albert-rapp.de)
+- [`gt` cookbook](https://themockup.blog/static/resources/gt-cookbook)
+- [`gt` cookbook - advanced](https://themockup.blog/static/resources/gt-cookbook-advanced#introduction)
+- [`gt` cookbook: Parse arbitrary HTML](https://themockup.blog/static/resources/gt-cookbook-advanced#parse-arbitrary-html)
+- [Advanced Table Formatting with `gt`](https://rguides.dev/guides/r-gt-advanced/)
+- [Enhance `gt` tables with `gtExtras`](https://r-graph-gallery.com/package/gtextras.html)
+- [Plotting inside `gt` table with `gtExtras`](https://r-graph-gallery.com/368-plotting-in-cells-with-gtextras.html)
 
 {{< etiqueta "tablas" >}}
 

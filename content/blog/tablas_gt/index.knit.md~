@@ -15,7 +15,7 @@ editor_options:
 execute: 
   message: false
   warning: false
-excerpt: El paquete de R `{gt}` genera tablas para presentar tus datos. Produce tablas atractivas con muy pocas líneas de código, y al mismo tiempo ofrece una alta capacidad de personalización de las tablas. En este artículo te mostraré tres ejemplos de creación de distintas tablas basadas en datos reales.
+excerpt: "El paquete de R `{gt}` produce tablas atractivas con muy pocas líneas de código, y al mismo tiempo ofrece una alta capacidad de personalización para presentar tus datos. En este artículo te mostraré tres ejemplos de creación de distintas tablas basadas en datos reales."
 ---
 
 
