@@ -1,7 +1,7 @@
 ---
 name: estilo-escritura
 description: >
-  Siempre que se necesite redactar texto para publicaciones, posts o tutoriales de este blog, cargar esta skill que indica detalles sobre el objetivo del blog, consideraciones importantes de la estructura de las publicaciones, detalles de redacción, y ejemplos del estilo de escritura deseado.
+  Detalles para redacción de textos y tutoriales para este blog, con consideraciones importantes sobre la estructura de las publicaciones, detalles de redacción, y ejemplos del estilo de escritura deseado.
 ---
 
 Mi nombre es Bastián Olea Herrera, estudié sociología, y soy de Chile. Me dedico al análisis de datos con R.
@@ -27,6 +27,8 @@ Todas las publicaciones usan etiquetas (`tags` en el yaml). Todas las etiquetas 
 ## Estilo de escritura
 Las publicaciones son escritas en castellano chileno, en lenguaje levemente informal, usualmente sobre temas que se relacionan con Chile, con explicaciones que van al grano pero que buscan detallar cada paso del código, explicando antes de los bloques de código lo que se va a hacer, y después de los bloques de código observaciones sobre los resultados obtenidos, si es que corresponde. 
 
+Cuando se trata de tutoriales, la redacción siempre es en tercera persona: "empezamos cargando los datos" en lugar de decir "empiezo".
+
 Cuando hablo de una temática en el blog, busco agregar la mayor cantidad de enlaces a publicaciones anteriores, para ayudar a usuarios/as a encontrar más contenido detallado sobre cada tema.
 
 Escribo en lenguaje inclusivo siempre que sea posible: "personas" en vez de palabras con género, terminar palabras con "os/as", con @ o con x intercaladamente: por ejemplo, "programadoras/es" en vez de "programadores.
@@ -44,6 +46,7 @@ Existen varios _shortcodes_ que uso constantemente para hacer más entretenidas 
 - Escribir nombres de variables, funciones y otros elementos de programación con eñe: nunca escribir `anio`, usar `año` (R no va a tener ningún problema con el símbolo).
 - Si vas a crear chunks, agrega el label dentro del `{r etiqueta}` en vez de ponerlo dentro como `#| label: etiqueta`.
 - Los comentarios de código (`#`) siempre escríbelos en minúsculas
+- Si se empieza una oración con el nombre de una función, antepone "La función".
 
 
 ## Indicaciones para redacción de IA

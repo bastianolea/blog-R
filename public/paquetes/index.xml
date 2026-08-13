@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Paquetes de R on Bastián Olea</title>
-		<link>https://bastianolea.rbind.io/paquetes/</link>
+		<link>http://localhost:5604/paquetes/</link>
 		<description>Recent content in Paquetes de R on Bastián Olea</description>
 		<generator>Hugo</generator>
 		<language>es-ES</language>
@@ -10,6 +10,6 @@
 		
 		
 		
-			<atom:link href="https://bastianolea.rbind.io/paquetes/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="http://localhost:5604/paquetes/index.xml" rel="self" type="application/rss+xml" />
 	</channel>
 </rss>

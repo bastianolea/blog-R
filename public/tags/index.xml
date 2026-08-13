@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Publicaciones por temática on Bastián Olea</title>
-		<link>https://bastianolea.rbind.io/tags/</link>
+		<link>http://localhost:5604/tags/</link>
 		<description>Recent content in Publicaciones por temática on Bastián Olea</description>
 		<generator>Hugo</generator>
 		<language>es-ES</language>
@@ -12,306 +12,306 @@
 		
 			<lastBuildDate>Sat, 08 Aug 2026 00:00:00 +0000</lastBuildDate>
 		
-			<atom:link href="https://bastianolea.rbind.io/tags/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="http://localhost:5604/tags/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>Blog</title>
-				<link>https://bastianolea.rbind.io/tags/blog/</link>
+				<link>http://localhost:5604/tags/blog/</link>
 				<pubDate>Sat, 08 Aug 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/blog/</guid>
+				<guid>http://localhost:5604/tags/blog/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Inteligencia artificial</title>
-				<link>https://bastianolea.rbind.io/tags/inteligencia-artificial/</link>
+				<link>http://localhost:5604/tags/inteligencia-artificial/</link>
 				<pubDate>Sat, 08 Aug 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/inteligencia-artificial/</guid>
+				<guid>http://localhost:5604/tags/inteligencia-artificial/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Git</title>
-				<link>https://bastianolea.rbind.io/tags/git/</link>
+				<link>http://localhost:5604/tags/git/</link>
 				<pubDate>Fri, 07 Aug 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/git/</guid>
+				<guid>http://localhost:5604/tags/git/</guid>
 				<description></description>
 			</item>
 			<item>
-				<title>Github</title>
-				<link>https://bastianolea.rbind.io/tags/github/</link>
+				<title>GitHub</title>
+				<link>http://localhost:5604/tags/github/</link>
 				<pubDate>Fri, 07 Aug 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/github/</guid>
+				<guid>http://localhost:5604/tags/github/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Quarto</title>
-				<link>https://bastianolea.rbind.io/tags/quarto/</link>
+				<link>http://localhost:5604/tags/quarto/</link>
 				<pubDate>Fri, 07 Aug 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/quarto/</guid>
+				<guid>http://localhost:5604/tags/quarto/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Mapas</title>
-				<link>https://bastianolea.rbind.io/tags/mapas/</link>
+				<link>http://localhost:5604/tags/mapas/</link>
 				<pubDate>Mon, 03 Aug 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/mapas/</guid>
+				<guid>http://localhost:5604/tags/mapas/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Videos</title>
-				<link>https://bastianolea.rbind.io/tags/videos/</link>
+				<link>http://localhost:5604/tags/videos/</link>
 				<pubDate>Mon, 03 Aug 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/videos/</guid>
+				<guid>http://localhost:5604/tags/videos/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Shiny</title>
-				<link>https://bastianolea.rbind.io/tags/shiny/</link>
+				<link>http://localhost:5604/tags/shiny/</link>
 				<pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/shiny/</guid>
+				<guid>http://localhost:5604/tags/shiny/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Chile</title>
-				<link>https://bastianolea.rbind.io/tags/chile/</link>
+				<link>http://localhost:5604/tags/chile/</link>
 				<pubDate>Fri, 24 Jul 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/chile/</guid>
+				<guid>http://localhost:5604/tags/chile/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Visualización de datos</title>
-				<link>https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/</link>
+				<link>http://localhost:5604/tags/visualizaci%C3%B3n-de-datos/</link>
 				<pubDate>Fri, 24 Jul 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/</guid>
+				<guid>http://localhost:5604/tags/visualizaci%C3%B3n-de-datos/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Consejos</title>
-				<link>https://bastianolea.rbind.io/tags/consejos/</link>
+				<link>http://localhost:5604/tags/consejos/</link>
 				<pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/consejos/</guid>
+				<guid>http://localhost:5604/tags/consejos/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Curiosidades</title>
-				<link>https://bastianolea.rbind.io/tags/curiosidades/</link>
+				<link>http://localhost:5604/tags/curiosidades/</link>
 				<pubDate>Tue, 21 Jul 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/curiosidades/</guid>
+				<guid>http://localhost:5604/tags/curiosidades/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>ggplot2</title>
-				<link>https://bastianolea.rbind.io/tags/ggplot2/</link>
+				<link>http://localhost:5604/tags/ggplot2/</link>
 				<pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/ggplot2/</guid>
+				<guid>http://localhost:5604/tags/ggplot2/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Limpieza de datos</title>
-				<link>https://bastianolea.rbind.io/tags/limpieza-de-datos/</link>
+				<link>http://localhost:5604/tags/limpieza-de-datos/</link>
 				<pubDate>Sat, 27 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/limpieza-de-datos/</guid>
+				<guid>http://localhost:5604/tags/limpieza-de-datos/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Paquetes de R</title>
-				<link>https://bastianolea.rbind.io/tags/paquetes/</link>
+				<link>http://localhost:5604/tags/paquetes/</link>
 				<pubDate>Sat, 27 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/paquetes/</guid>
+				<guid>http://localhost:5604/tags/paquetes/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Básico</title>
-				<link>https://bastianolea.rbind.io/tags/b%C3%A1sico/</link>
+				<link>http://localhost:5604/tags/b%C3%A1sico/</link>
 				<pubDate>Mon, 22 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/b%C3%A1sico/</guid>
+				<guid>http://localhost:5604/tags/b%C3%A1sico/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Procesamiento de texto</title>
-				<link>https://bastianolea.rbind.io/tags/texto/</link>
+				<link>http://localhost:5604/tags/texto/</link>
 				<pubDate>Thu, 18 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/texto/</guid>
+				<guid>http://localhost:5604/tags/texto/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Funciones</title>
-				<link>https://bastianolea.rbind.io/tags/funciones/</link>
+				<link>http://localhost:5604/tags/funciones/</link>
 				<pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/funciones/</guid>
+				<guid>http://localhost:5604/tags/funciones/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Procesamiento de datos</title>
-				<link>https://bastianolea.rbind.io/tags/procesamiento-de-datos/</link>
+				<link>http://localhost:5604/tags/procesamiento-de-datos/</link>
 				<pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/procesamiento-de-datos/</guid>
+				<guid>http://localhost:5604/tags/procesamiento-de-datos/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Análisis de texto</title>
-				<link>https://bastianolea.rbind.io/tags/an%C3%A1lisis-de-texto/</link>
+				<link>http://localhost:5604/tags/an%C3%A1lisis-de-texto/</link>
 				<pubDate>Sat, 06 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/an%C3%A1lisis-de-texto/</guid>
+				<guid>http://localhost:5604/tags/an%C3%A1lisis-de-texto/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Datos</title>
-				<link>https://bastianolea.rbind.io/tags/datos/</link>
+				<link>http://localhost:5604/tags/datos/</link>
 				<pubDate>Sat, 23 May 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/datos/</guid>
+				<guid>http://localhost:5604/tags/datos/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Aplicaciones</title>
-				<link>https://bastianolea.rbind.io/tags/apps/</link>
+				<link>http://localhost:5604/tags/apps/</link>
 				<pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/apps/</guid>
+				<guid>http://localhost:5604/tags/apps/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Gráficos</title>
-				<link>https://bastianolea.rbind.io/tags/gr%C3%A1ficos/</link>
+				<link>http://localhost:5604/tags/gr%C3%A1ficos/</link>
 				<pubDate>Fri, 24 Apr 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/gr%C3%A1ficos/</guid>
+				<guid>http://localhost:5604/tags/gr%C3%A1ficos/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Web scraping</title>
-				<link>https://bastianolea.rbind.io/tags/web-scraping/</link>
+				<link>http://localhost:5604/tags/web-scraping/</link>
 				<pubDate>Thu, 26 Mar 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/web-scraping/</guid>
+				<guid>http://localhost:5604/tags/web-scraping/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Automatización</title>
-				<link>https://bastianolea.rbind.io/tags/automatizaci%C3%B3n/</link>
+				<link>http://localhost:5604/tags/automatizaci%C3%B3n/</link>
 				<pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/automatizaci%C3%B3n/</guid>
+				<guid>http://localhost:5604/tags/automatizaci%C3%B3n/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Loops</title>
-				<link>https://bastianolea.rbind.io/tags/loops/</link>
+				<link>http://localhost:5604/tags/loops/</link>
 				<pubDate>Wed, 18 Feb 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/loops/</guid>
+				<guid>http://localhost:5604/tags/loops/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Optimización</title>
-				<link>https://bastianolea.rbind.io/tags/optimizaci%C3%B3n/</link>
+				<link>http://localhost:5604/tags/optimizaci%C3%B3n/</link>
 				<pubDate>Wed, 18 Feb 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/optimizaci%C3%B3n/</guid>
+				<guid>http://localhost:5604/tags/optimizaci%C3%B3n/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Género</title>
-				<link>https://bastianolea.rbind.io/tags/g%C3%A9nero/</link>
+				<link>http://localhost:5604/tags/g%C3%A9nero/</link>
 				<pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/g%C3%A9nero/</guid>
+				<guid>http://localhost:5604/tags/g%C3%A9nero/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Estadísticas</title>
-				<link>https://bastianolea.rbind.io/tags/estad%C3%ADsticas/</link>
+				<link>http://localhost:5604/tags/estad%C3%ADsticas/</link>
 				<pubDate>Tue, 27 Jan 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/estad%C3%ADsticas/</guid>
+				<guid>http://localhost:5604/tags/estad%C3%ADsticas/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Tablas</title>
-				<link>https://bastianolea.rbind.io/tags/tablas/</link>
+				<link>http://localhost:5604/tags/tablas/</link>
 				<pubDate>Tue, 20 Jan 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/tablas/</guid>
+				<guid>http://localhost:5604/tags/tablas/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Dplyr</title>
-				<link>https://bastianolea.rbind.io/tags/dplyr/</link>
+				<link>http://localhost:5604/tags/dplyr/</link>
 				<pubDate>Sun, 14 Dec 2025 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/dplyr/</guid>
+				<guid>http://localhost:5604/tags/dplyr/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Excel</title>
-				<link>https://bastianolea.rbind.io/tags/excel/</link>
+				<link>http://localhost:5604/tags/excel/</link>
 				<pubDate>Tue, 09 Dec 2025 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/excel/</guid>
+				<guid>http://localhost:5604/tags/excel/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Tidyr</title>
-				<link>https://bastianolea.rbind.io/tags/tidyr/</link>
+				<link>http://localhost:5604/tags/tidyr/</link>
 				<pubDate>Sat, 29 Nov 2025 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/tidyr/</guid>
+				<guid>http://localhost:5604/tags/tidyr/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Ciencias sociales</title>
-				<link>https://bastianolea.rbind.io/tags/ciencias-sociales/</link>
+				<link>http://localhost:5604/tags/ciencias-sociales/</link>
 				<pubDate>Wed, 26 Nov 2025 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/ciencias-sociales/</guid>
+				<guid>http://localhost:5604/tags/ciencias-sociales/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Datos perdidos</title>
-				<link>https://bastianolea.rbind.io/tags/datos-perdidos/</link>
+				<link>http://localhost:5604/tags/datos-perdidos/</link>
 				<pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/datos-perdidos/</guid>
+				<guid>http://localhost:5604/tags/datos-perdidos/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Animaciones</title>
-				<link>https://bastianolea.rbind.io/tags/animaciones/</link>
+				<link>http://localhost:5604/tags/animaciones/</link>
 				<pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/animaciones/</guid>
+				<guid>http://localhost:5604/tags/animaciones/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Arte generativo</title>
-				<link>https://bastianolea.rbind.io/tags/arte-generativo/</link>
+				<link>http://localhost:5604/tags/arte-generativo/</link>
 				<pubDate>Wed, 27 Aug 2025 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/arte-generativo/</guid>
+				<guid>http://localhost:5604/tags/arte-generativo/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Fechas</title>
-				<link>https://bastianolea.rbind.io/tags/fechas/</link>
+				<link>http://localhost:5604/tags/fechas/</link>
 				<pubDate>Fri, 22 Aug 2025 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/fechas/</guid>
+				<guid>http://localhost:5604/tags/fechas/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Control de flujo</title>
-				<link>https://bastianolea.rbind.io/tags/control-de-flujo/</link>
+				<link>http://localhost:5604/tags/control-de-flujo/</link>
 				<pubDate>Thu, 07 Aug 2025 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/control-de-flujo/</guid>
+				<guid>http://localhost:5604/tags/control-de-flujo/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Purrr</title>
-				<link>https://bastianolea.rbind.io/tags/purrr/</link>
+				<link>http://localhost:5604/tags/purrr/</link>
 				<pubDate>Sun, 27 Jul 2025 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/purrr/</guid>
+				<guid>http://localhost:5604/tags/purrr/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Estadística</title>
-				<link>https://bastianolea.rbind.io/tags/estad%C3%ADstica/</link>
+				<link>http://localhost:5604/tags/estad%C3%ADstica/</link>
 				<pubDate>Wed, 09 Jul 2025 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/estad%C3%ADstica/</guid>
+				<guid>http://localhost:5604/tags/estad%C3%ADstica/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Programación</title>
-				<link>https://bastianolea.rbind.io/tags/programaci%C3%B3n/</link>
+				<link>http://localhost:5604/tags/programaci%C3%B3n/</link>
 				<pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/programaci%C3%B3n/</guid>
+				<guid>http://localhost:5604/tags/programaci%C3%B3n/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Fuentes de datos</title>
-				<link>https://bastianolea.rbind.io/tags/fuentes-de-datos/</link>
+				<link>http://localhost:5604/tags/fuentes-de-datos/</link>
 				<pubDate>Wed, 27 Sep 2023 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/fuentes-de-datos/</guid>
+				<guid>http://localhost:5604/tags/fuentes-de-datos/</guid>
 				<description></description>
 			</item>
 	</channel>

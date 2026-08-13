@@ -102,3 +102,7 @@ m[ •flat]
 ``` r
 daemons(0)
 ```
+
+``` r
+# https://3mw.albert-rapp.de/p/avoiding-the-pitfalls-of-async-mirai?utm_source=3mw.albert-rapp.de&utm_medium=newsletter&utm_campaign=avoiding-the-pitfalls-of-async-mirai&_bhlid=32a7baa2206bd444d188644a9c3e7503662c9bfb&jwt_token=
+```
