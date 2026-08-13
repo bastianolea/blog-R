@@ -135,7 +135,7 @@ Para revisar que la configuración quedó bien, puedes correr un diagnóstico:
 usethis::git_sitrep()
 ```
 
-El mensaje debería decirte tu cuenta de GitHub y que encontró el _token_ de acceso. Si tienes dudas o problemas, revisa [esta publicación](blog/r_introduccion/tutorial_github/).
+El mensaje debería decirte tu cuenta de GitHub y que encontró el _token_ de acceso. Si tienes dudas o problemas, revisa [esta publicación](/blog/r_introduccion/tutorial_github/).
 
 
 
@@ -579,7 +579,7 @@ Ya con el repositorio en GitHub, podemos configurar GitHub Pages.
 
 {{< paso "15" "Activar GitHub Pages para tu repositorio" >}}
 
-vamos a la pestaña **Settings** del repositorio:
+Vamos a la pestaña **Settings** del repositorio:
 
 {{< imagen "img/quarto_5.png" >}}
 
