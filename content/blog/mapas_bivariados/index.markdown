@@ -534,6 +534,7 @@ Dos mapas por el precio de uno! Pero en este segundo mapa pusimos la leyenda un 
 - [Make a bivariate choropleth map](https://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/), por Joshua Stevens.
 - [Creating professional bivariate maps in R](https://www.datawim.com/post/creating-professional-bivariate-maps-in-r/).
 - [Documentación del paquete `{biscale}`](https://chris-prener.github.io/biscale/).
+- [Generador de paletas de colores bivariadas](https://www.staridasgeography.gr/blog/bivariate-color-palette/builder/)
 
 {{< cafecito >}}
 
