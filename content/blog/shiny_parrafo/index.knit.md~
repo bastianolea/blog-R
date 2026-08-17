@@ -1,0 +1,238 @@
+---
+title: Párrafos de texto con cifras interactivos en aplicaciones Shiny
+subtitle: Combinando exploración de datos con comunicación de resultados 
+author: Bastián Olea Herrera
+date: '2026-08-13'
+slug: []
+draft: true
+categories:
+  - Aplicaciones
+tags:
+  - shiny
+  - texto
+  - automatización
+format: hugo-md
+links:
+  - icon: file-code
+    icon_pack: fas
+    name: Código
+    url: https://github.com/bastianolea/shiny_parrafo_interactivo
+---
+
+A veces, para explorar datos no se necesitan gráficos sofisticados, mapas o *dashboards* complejos. Se me ocurrió probar un formato distinto: un "párrafo interactivo", donde las variables de la oración se pueden cambiar con *inputs*, y las cifras del texto se actualizan automáticamente según lo que la persona elija.
+
+La idea es combinar la exploración de datos con la comunicación de resultados: en vez de mostrar un gráfico y dejar que cada persona interprete lo que ve, el párrafo entrega directamente una lectura en palabras, pero deja que la persona explore distintos escenarios cambiando los controles.
+
+El ejemplo que hice usa datos de pobreza comunal 2024 del Ministerio de Desarrollo Social y Familia. Se elige un territorio (Chile completo o una región), si se quiere ver porcentaje o cantidad de personas, y un umbral de pobreza, y el párrafo indica cuántas comunas superan ese umbral y a cuántas personas en situación de pobreza corresponde esa cifra.
+
+<div style="width: 100%; text-align: center;">
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7492986395066535936?compact=1" height="399" width="100%" frameborder="0" allowfullscreen="" title="Publicación integrada"></iframe>
+</div>
+
+Algo que me pareció importante fue que las palabras se adaptaran gramaticalmente a lo que la persona va eligiendo: por ejemplo, si elige "la cantidad" en vez de "el porcentaje", el artículo que sigue más adelante en la oración también cambia ("el" umbral versus "las" personas). Y si elige ver una región en particular, la preposición correspondiente se ajusta a esa región (región "del" Maule, región "de" Los Lagos, etc.) gracias a la función `preposicion_region()` del paquete de R [`{territorial}`](/blog/territorial/), que armé justamente para facilitar este tipo de detalles al trabajar con nombres de comunas y regiones de Chile.
+
+## Párrafos de texto con cifras
+
+Antes de hacer cualquier aplicación Shiny, **recomiendo probar la lógica** en un script normal de R. Así que intentemos hacer un párrafo de prueba.
+
+Primero cargamos los datos de pobreza, [procesados en este repositorio](https://github.com/bastianolea/pobreza_2024), y que puedes [descargar en CSV en este enlace.]("/blog/shiny_parrafo/datos/pobreza_ingresos_2024.csv)
+
+
+``` r
+library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+``` r
+library(readr)
+
+pobreza <- read_csv("datos/pobreza_ingresos_2024.csv")
+```
+
+```
+## Rows: 345 Columns: 13
+```
+
+```
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: ","
+## chr (5): nombre_region, nombre_provincia, nombre_comuna, presencia_de_la_com...
+## dbl (8): codigo_region, codigo_provincia, codigo_comuna, poblacion, pobreza_...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+```
+
+``` r
+glimpse(pobreza)
+```
+
+```
+## Rows: 345
+## Columns: 13
+## $ codigo_region                              <dbl> 1, 1, 1, 1, 1, 1, 1, 2, 2, …
+## $ nombre_region                              <chr> "Tarapacá", "Tarapacá", "Ta…
+## $ codigo_provincia                           <dbl> 11, 11, 14, 14, 14, 14, 14,…
+## $ nombre_provincia                           <chr> "Iquique", "Iquique", "Tama…
+## $ codigo_comuna                              <dbl> 1101, 1107, 1401, 1402, 140…
+## $ nombre_comuna                              <chr> "Iquique", "Alto Hospicio",…
+## $ poblacion                                  <dbl> 232455, 144554, 18811, 1376…
+## $ pobreza_personas                           <dbl> 37598.53680, 38759.77379, 3…
+## $ pobreza_porcentaje                         <dbl> 0.16174544, 0.26813353, 0.2…
+## $ pobreza_porcentaje_inf                     <dbl> 0.14786508, 0.24479813, 0.1…
+## $ pobreza_porcentaje_sup                     <dbl> 0.1756258, 0.2914689, 0.260…
+## $ presencia_de_la_comuna_en_la_muestra_casen <chr> "Sí", "Sí", "Sí", "Sí", "Sí…
+## $ tipo_de_estimacion_sae                     <chr> "Directa y Sintética (Fay-H…
+```
+
+Ahora hacemos un filtro de cualquier comuna de Chile:
+
+
+``` r
+pobreza_comuna <- pobreza |> 
+  filter(nombre_comuna == "Puente Alto")
+
+pobreza_comuna
+```
+
+```
+## # A tibble: 1 × 13
+##   codigo_region nombre_region    codigo_provincia nombre_provincia codigo_comuna
+##           <dbl> <chr>                       <dbl> <chr>                    <dbl>
+## 1            13 Metropolitana d…              132 Cordillera               13201
+## # ℹ 8 more variables: nombre_comuna <chr>, poblacion <dbl>,
+## #   pobreza_personas <dbl>, pobreza_porcentaje <dbl>,
+## #   pobreza_porcentaje_inf <dbl>, pobreza_porcentaje_sup <dbl>,
+## #   presencia_de_la_comuna_en_la_muestra_casen <chr>,
+## #   tipo_de_estimacion_sae <chr>
+```
+
+Usando el paquete `{glue}`, redactamos una frase de apertura usando los datos:
+
+
+``` r
+library(glue)
+
+glue("En la comuna de {pobreza_comuna$nombre_comuna}...")
+```
+
+```
+## En la comuna de Puente Alto...
+```
+
+Como el filtro retorna una fila, redactar el texto no tiene complicaciones.
+
+Ahora sacamos la cifra del porcentaje de pobreza (`pobreza_porcentaje`) y la formateamos con `{scales}`:
+
+``` r
+library(scales)
+```
+
+```
+## 
+## Attaching package: 'scales'
+```
+
+```
+## The following object is masked from 'package:readr':
+## 
+##     col_factor
+```
+
+``` r
+porcentaje <- label_percent(accuracy = 1)(pobreza_comuna$pobreza_porcentaje)
+
+glue("el porcentaje de pobreza es de {porcentaje}")
+```
+
+```
+## el porcentaje de pobreza es de 14%
+```
+
+Finalmente, hacemos lo mismo con la cantidad de personas:
+
+
+``` r
+cantidad <- label_number(accuracy = 1, big.mark = ".", decimal.mark = ",")(pobreza_comuna$pobreza_personas)
+
+glue("lo que equivale a {cantidad} personas")
+```
+
+```
+## lo que equivale a 92.515 personas
+```
+
+Ahora, armemos el párrafo completo, para redondear el ejemplo:
+
+
+``` r
+glue("En la comuna de {pobreza_comuna$nombre_comuna}, el porcentaje de pobreza es de {porcentaje}, lo que equivale a {cantidad} personas.")
+```
+
+```
+## En la comuna de Puente Alto, el porcentaje de pobreza es de 14%, lo que equivale a 92.515 personas.
+```
+
+Ahora pasemos a un ejemplo más complejo, acercándonos a nuestra idea de aplicación interactiva. Esta vez, se podrá elegir el nivel territorial (comuna o región), y a partir de esta elección, se elegirá un territorio al azar. Para esto, usaremos el paquete de R `{territorial}`, que incluye las funciones `comunas()` y `regiones()` para extraer los valores al azar usando `sample()`:
+
+
+
+
+``` r
+library(territorial)
+
+# nivel <- "región"
+nivel <- "comuna"
+
+# elegir territorio al azar, ya sea comuna o región
+if (nivel == "comuna") {
+  territorio <- sample(comunas(), 1)
+} else if (nivel == "región") {
+  territorio <- sample(regiones(), 1)
+}
+
+territorio
+```
+
+```
+## [1] "Molina"
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
