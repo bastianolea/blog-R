@@ -11,29 +11,37 @@ tags:
   - shiny
   - texto
   - automatización
-format: hugo-md
+format:
+  hugo-md:
+    mermaid:
+      theme: base
 links:
   - icon: file-code
     icon_pack: fas
     name: Código
     url: https://github.com/bastianolea/shiny_parrafo_interactivo
+  - icon: file
+    icon_pack: fas
+    name: datos
+    url: https://github.com/bastianolea/pobreza_2024
 ---
 
 
+<meta name="mermaid-theme" content="base"/>
 <script  src="index_files/libs/quarto-diagram/mermaid.min.js"></script>
 <script  src="index_files/libs/quarto-diagram/mermaid-init.js"></script>
 <link  href="index_files/libs/quarto-diagram/mermaid.css" rel="stylesheet" />
 
-A veces, para explorar datos no se necesitan gráficos sofisticados, mapas o *dashboards* complejos. Se me ocurrió probar un formato distinto: un "párrafo interactivo", donde las variables de la oración se pueden cambiar con *inputs*, y las cifras del texto se actualizan automáticamente según lo que la persona elija.
+A veces, para explorar datos no se necesitan gráficos sofisticados, mapas o *dashboards* complejos. Se me ocurrió probar un formato distinto: un "párrafo interactivo", también conocidos como [*filtros legibles* o *human readable filters*](https://www.appsilon.com/post/human-readable-filters), donde las variables de la oración se pueden cambiar con *inputs*, y las cifras del texto se actualizan automáticamente según lo que la persona elija.
 
-La idea es combinar la exploración de datos con la comunicación de resultados: en vez de mostrar un gráfico y dejar que cada persona interprete lo que ve, el párrafo entrega directamente una lectura en palabras, pero deja que la persona explore distintos escenarios cambiando los controles.
-
-El ejemplo que hice usa datos de pobreza comunal 2024 del Ministerio de Desarrollo Social y Familia. Se elige un territorio (Chile completo o una región), si se quiere ver porcentaje o cantidad de personas, y un umbral de pobreza, y el párrafo indica cuántas comunas superan ese umbral y a cuántas personas en situación de pobreza corresponde esa cifra.
+La idea es combinar la **exploración** de datos con la **comunicación** de resultados: en vez de mostrar un gráfico y dejar que cada persona interprete lo que ve, el párrafo entrega directamente una lectura en palabras, pero deja que la persona explore distintos escenarios cambiando los controles.
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7492986395066535936?compact=1" height="399" width="100%" frameborder="0" allowfullscreen title="Publicación integrada">
 </iframe>
 
-Algo que me pareció importante fue que las palabras se adaptaran gramaticalmente a lo que la persona va eligiendo: por ejemplo, si elige "la cantidad" en vez de "el porcentaje", el artículo que sigue más adelante en la oración también cambia ("el" umbral versus "las" personas). Y si elige ver una región en particular, la preposición correspondiente se ajusta a esa región (región "del" Maule, región "de" Los Lagos, etc.) gracias a la función `preposicion_region()` del paquete de R [`{territorial}`](../../../blog/territorial/), que armé justamente para facilitar este tipo de detalles al trabajar con nombres de comunas y regiones de Chile.
+El ejemplo que voy a mostrar en esta publicación usa [datos de pobreza comunal 2024](https://bidat.gob.cl/details/ficha/dataset/base-de-datos-pobreza-comunal-2024) del Ministerio de Desarrollo Social y Familia, [procesados con R en este repositorio](https://github.com/bastianolea/pobreza_2024).
+
+Primero veremos un ejemplo de [párrafos interactivos con R](../../../blog/redactar_texto/), y luego veremos cómo hacerlo en una [aplicación web interactiva Shiny.](../../../blog/shiny/)
 
 ## Párrafos de texto con cifras
 
@@ -43,36 +51,10 @@ Primero cargamos los datos de pobreza, [procesados en este repositorio](https://
 
 ``` r
 library(dplyr)
-```
-
-
-    Attaching package: 'dplyr'
-
-    The following objects are masked from 'package:stats':
-
-        filter, lag
-
-    The following objects are masked from 'package:base':
-
-        intersect, setdiff, setequal, union
-
-``` r
 library(readr)
 
 pobreza <- read_csv("datos/pobreza_ingresos_2024.csv")
-```
 
-    Rows: 345 Columns: 13
-
-    ── Column specification ────────────────────────────────────────────────────────
-    Delimiter: ","
-    chr (5): nombre_region, nombre_provincia, nombre_comuna, presencia_de_la_com...
-    dbl (8): codigo_region, codigo_provincia, codigo_comuna, poblacion, pobreza_...
-
-    ℹ Use `spec()` to retrieve the full column specification for this data.
-    ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
-``` r
 glimpse(pobreza)
 ```
 
@@ -127,16 +109,7 @@ Ahora sacamos la cifra del porcentaje de pobreza (`pobreza_porcentaje`) y la for
 
 ``` r
 library(scales)
-```
 
-
-    Attaching package: 'scales'
-
-    The following object is masked from 'package:readr':
-
-        col_factor
-
-``` r
 porcentaje <- label_percent(accuracy = 1)(pobreza_comuna$pobreza_porcentaje)
 
 glue("el porcentaje de pobreza es de {porcentaje}")
@@ -303,13 +276,9 @@ glue("En la {nivel} {preposicion} {territorio}, la cantidad de personas en situa
 
 Si lo ejecutamos de nuevo, obtenemos otro párrafo redactado:
 
-``` r
-En la comuna de Navidad, Región del Libertador General Bernardo O'Higgins, la cantidad de personas en situación de pobreza es de aproximadamente. 1.535 habitantes.
-```
+    En la comuna de Navidad, Región del Libertador General Bernardo O'Higgins, la cantidad de personas en situación de pobreza es de aproximadamente. 1.535 habitantes.
 
-``` r
-En la comuna de Hualqui, Región del Biobío, la cantidad de personas en situación de pobreza es de aproximadamente 6.085 habitantes.
-```
+    En la comuna de Hualqui, Región del Biobío, la cantidad de personas en situación de pobreza es de aproximadamente 6.085 habitantes.
 
 Código como el anterior se podría usar para automatizar la redacción de un reporte, los textos de bajada de una tabla o de un gráfico, o para aplicaciones interactivas de exploración de datos!
 
@@ -317,9 +286,13 @@ Código como el anterior se podría usar para automatizar la redacción de un re
 
 ## Interfaz: armando el párrafo
 
+Se elige un territorio (Chile completo o una región), si se quiere ver porcentaje o cantidad de personas, y un umbral de pobreza, y el párrafo indica cuántas comunas superan ese umbral y a cuántas personas en situación de pobreza corresponde esa cifra. Puedes ver el [código completo del ejemplo en este repositorio.](https://github.com/bastianolea/shiny_parrafo_interactivo)
+
+Algo que me pareció importante fue que las palabras se adaptaran gramaticalmente a lo que la persona va eligiendo: por ejemplo, si elige "la cantidad" en vez de "el porcentaje", el artículo que sigue más adelante en la oración también cambia ("el" umbral versus "las" personas). Y si elige ver una región en particular, la preposición correspondiente se ajusta a esa región (región "del" Maule, región "de" Los Lagos, etc.) gracias a la función `preposicion_region()` del paquete de R [`{territorial}`](../../../blog/territorial/), que armé justamente para facilitar este tipo de detalles al trabajar con nombres de comunas y regiones de Chile.
+
 ### Paquetes y datos
 
-Empiezo cargando los paquetes que necesito. Además de `{shiny}` y `{bslib}` para la interfaz, uso `{shinyjs}` para mostrar y ocultar elementos, `{scales}` para formatear números, y `{territorial}` para la concordancia gramatical de las regiones:
+Empezamos cargando los paquetes que necesitamos. Además de `{shiny}` y `{bslib}` para la interfaz, usamos `{shinyjs}` para mostrar y ocultar elementos, `{scales}` para formatear números, y `{territorial}` para la concordancia gramatical de las regiones:
 
 ``` r
 library(shiny)
@@ -336,71 +309,71 @@ pobreza <- readr::read_csv("datos/pobreza_ingresos_2024.csv")
 number_options(big.mark = ".", decimal.mark = ",")
 ```
 
-`number_options()` fija de una vez el formato de los números (punto para miles, coma para decimales) para toda la sesión, así no hay que repetirlo cada vez que formatee una cifra.
+`number_options()` fija de una vez el formato de los números (punto para miles, coma para decimales) para toda la sesión, así no hay que repetirlo cada vez que formateemos una cifra.
 
 ### Título y tema
 
-La interfaz parte con lo básico: `page_fillable()`, un tema simple con `{bslib}`, y un CSS aparte que voy a usar más adelante para que los selectores se vean como parte del texto:
+La interfaz parte con lo básico: `page_fillable()`, un tema simple con `{bslib}`, y un CSS aparte que vamos a usar más adelante para que los selectores se vean como parte del texto:
 
 ``` r
 ui <- page_fillable(
-lang = "es",
-includeCSS("estilos.css"),
-useShinyjs(),
-
-theme = bs_theme(
-fg = "#0C2635",
-bg = "white",
-"line-height-base" = 1.3
-),
-
-h1("Párrafo interactivo",
-style = "margin-bottom: -1rem;"),
-em("Bastián Olea Herrera")
+  lang = "es",
+  includeCSS("estilos.css"),
+  useShinyjs(),
+  
+  theme = bs_theme(
+    fg = "#0C2635",
+    bg = "white",
+    "line-height-base" = 1.3
+  ),
+  
+  h1("Párrafo interactivo",
+     style = "margin-bottom: -1rem;"),
+  em("Bastián Olea Herrera")
 )
 ```
 
-`useShinyjs()` habilita las funciones `show()` y `hide()` que voy a usar para hacer aparecer y desaparecer partes del párrafo dependiendo de las elecciones de la persona.
+`useShinyjs()` habilita las funciones `show()` y `hide()` que vamos a usar para hacer aparecer y desaparecer partes del párrafo dependiendo de las elecciones de la persona.
 
 ### Territorio: Chile o una región
 
-El párrafo mismo es un solo `div()` con clase `parrafo`, que mezcla texto fijo con *inputs* y salidas. Empiezo con el primer selector, que elige entre "Chile" y "Región":
+El párrafo mismo es un solo `div()` con clase `parrafo`, que mezcla texto fijo con *inputs* y salidas. Empezamos con el primer selector, que elige entre "Chile" y "Región":
 
 ``` r
 ui <- page_fillable(
-lang = "es",
-includeCSS("estilos.css"),
-useShinyjs(),
-
-theme = bs_theme(
-fg = "#0C2635",
-bg = "white",
-"line-height-base" = 1.3
-),
-
-h1("Párrafo interactivo",
-style = "margin-bottom: -1rem;"),
-em("Bastián Olea Herrera"),
-
-div(
-class = "parrafo",
-
-"En",
-
-selectInput(
-"parrafo_territorio",
-label = NULL,
-c("Chile", "Región")
-)
-)
+  lang = "es",
+  includeCSS("estilos.css"),
+  useShinyjs(),
+  
+  theme = bs_theme(
+    fg = "#0C2635",
+    bg = "white",
+    "line-height-base" = 1.3
+  ),
+  
+  h1("Párrafo interactivo",
+     style = "margin-bottom: -1rem;"),
+  em("Bastián Olea Herrera"),
+  
+  div(
+    class = "parrafo",
+    
+    "En",
+    
+    selectInput(
+      "parrafo_territorio",
+      label = NULL,
+      c("Chile", "Región")
+    )
+  )
 )
 ```
 
-De aquí en adelante me voy a enfocar solo en el contenido del `div()`, porque el resto de la `ui` no vuelve a cambiar.
+De aquí en adelante nos vamos a enfocar solo en el contenido del `div()`, porque el resto de la `ui` no vuelve a cambiar.
 
 ### Preposición y selector de región
 
-Si la persona elige "Región", necesito dos cosas más: la preposición "la" antes del selector de territorio (para que diga "en la Región"), y un segundo selector con las regiones, además de la preposición correspondiente a la región elegida ("de" Los Lagos, "del" Maule). Ambas partes parten **ocultas** con `hidden()`, porque solo se muestran cuando corresponde:
+Si la persona elige "Región", necesitamos dos cosas más: la preposición "la" antes del selector de territorio (para que diga "en la Región"), y un segundo selector con las regiones, además de la preposición correspondiente a la región elegida ("de" Los Lagos, "del" Maule). Ambas partes parten **ocultas** con `hidden()`, porque solo se muestran cuando corresponde:
 
 \`\`\`r {hl_lines=\["4-6", "14-25"\]}
 div(
@@ -408,8 +381,7 @@ class = "parrafo",
 
 "En",
 
-# preposición "la" solamente aparece si se elige "Región"
-
+\# preposición "la" solamente aparece si se elige "Región"
 span("la", id = "parrafo_preposicion_territorio") \|\> hidden(),
 
 selectInput(
@@ -418,12 +390,10 @@ label = NULL,
 c("Chile", "Región")
 ),
 
-# preposición de la región depende de la región elegida
-
+\# preposición de la región depende de la región elegida
 textOutput("parrafo_preposicion_region", inline = TRUE) \|\> hidden(),
 
-# selector de regiones
-
+\# selector de regiones
 selectInput(
 "parrafo_selector_region",
 label = NULL,
@@ -438,44 +408,45 @@ hidden(),
     `regiones()` es otra función de `{territorial}` que entrega el listado de las 16 regiones de Chile, ya ordenadas y con el nombre correcto para usar como opciones de un `selectInput()`.
 
     {{< detalles "Código completo del div hasta ahora" >}}
+
     ```r
     div(
-    class = "parrafo",
-
-    "En",
-
-    # preposición "la" solamente aparece si se elige "Región"
-    span("la", id = "parrafo_preposicion_territorio") |> hidden(),
-
-    selectInput(
-    "parrafo_territorio",
-    label = NULL,
-    c("Chile", "Región")
-    ),
-
-    # preposición de la región depende de la región elegida
-    textOutput("parrafo_preposicion_region", inline = TRUE) |> hidden(),
-
-    # selector de regiones
-    selectInput(
-    "parrafo_selector_region",
-    label = NULL,
-    choices = regiones()
-    ) |>
-    hidden(),
-
-    "existen"
+      class = "parrafo",
+      
+      "En",
+      
+      # preposición "la" solamente aparece si se elige "Región"
+      span("la", id = "parrafo_preposicion_territorio") |> hidden(),
+      
+      selectInput(
+        "parrafo_territorio",
+        label = NULL,
+        c("Chile", "Región")
+      ),
+      
+      # preposición de la región depende de la región elegida
+      textOutput("parrafo_preposicion_region", inline = TRUE) |> hidden(),
+      
+      # selector de regiones
+      selectInput(
+        "parrafo_selector_region",
+        label = NULL,
+        choices = regiones()
+      ) |>
+        hidden(),
+      
+      "existen"
     )
 
 {{< /detalles >}}
 
-### Cantidad de comunas y variable
+### Cantidad de comunas y umbral
 
-Sigue la cifra principal (cantidad de comunas, envuelta en `strong()` para destacarla) y el selector que elige si se compara por porcentaje o por cantidad de personas:
+Sigue la cifra principal (cantidad de comunas, envuelta en `strong()` para destacarla):
 
-\`\`\`r {hl_lines=\["3-8", "10-19"\]}
+``` r
 div(
-\# ...
+# ...
 "existen",
 
 strong(
@@ -485,94 +456,9 @@ textOutput("parrafo_n_comunas", inline = TRUE),
 
 "donde",
 
-selectInput(
-"parrafo_variable",
-label = NULL,
-c(
-"el porcentaje" = "pobreza_porcentaje",
-"la cantidad" = "pobreza_personas"
-)
-),
-
 "de personas en situación de pobreza supera"
 )
-
-
-    {{< detalles "Código completo del div hasta ahora" >}}
-    ```r
-    div(
-    class = "parrafo",
-
-    "En",
-
-    span("la", id = "parrafo_preposicion_territorio") |> hidden(),
-
-    selectInput(
-    "parrafo_territorio",
-    label = NULL,
-    c("Chile", "Región")
-    ),
-
-    textOutput("parrafo_preposicion_region", inline = TRUE) |> hidden(),
-
-    selectInput(
-    "parrafo_selector_region",
-    label = NULL,
-    choices = regiones()
-    ) |>
-    hidden(),
-
-    "existen",
-
-    strong(
-    textOutput("parrafo_n_comunas", inline = TRUE),
-    "comunas"
-    ),
-
-    "donde",
-
-    selectInput(
-    "parrafo_variable",
-    label = NULL,
-    c(
-    "el porcentaje" = "pobreza_porcentaje",
-    "la cantidad" = "pobreza_personas"
-    )
-    ),
-
-    "de personas en situación de pobreza supera"
-    )
-
-{{< /detalles >}}
-
-### Umbral y cifra final
-
-Termino el párrafo con el umbral elegido (con su artículo correspondiente, "el" o "las") y la cantidad de personas que corresponde a ese filtro:
-
-``` r
-div(
-# ...
-"de personas en situación de pobreza supera",
-
-textOutput("parrafo_articulo_umbral", inline = TRUE),
-
-selectInput(
-"parrafo_umbral",
-label = NULL,
-choices = NULL
-),
-
-", lo que corresponde a aproximadamente",
-
-strong(
-textOutput("parrafo_n_personas", inline = TRUE),
-"personas"
-),
-"en situación de pobreza."
-)
 ```
-
-El `selectInput()` del umbral parte con `choices = NULL` a propósito: sus opciones dependen de si se eligió porcentaje o cantidad, así que se rellenan desde el servidor.
 
 {{< detalles "Código completo del div hasta ahora" >}}
 
@@ -608,23 +494,91 @@ textOutput("parrafo_n_comunas", inline = TRUE),
 
 "donde",
 
-selectInput(
-"parrafo_variable",
-label = NULL,
-c(
-"el porcentaje" = "pobreza_porcentaje",
-"la cantidad" = "pobreza_personas"
+"de personas en situación de pobreza supera"
 )
-),
+```
 
+{{< /detalles >}}
+
+### Umbral y cifra final
+
+Terminamos el párrafo con el umbral elegido, antepuesto por el artículo "las" (porque siempre se trata de personas), y la cantidad de personas que corresponde a ese filtro:
+
+``` r
+div(
+# ...
 "de personas en situación de pobreza supera",
 
-textOutput("parrafo_articulo_umbral", inline = TRUE),
+"las",
 
 selectInput(
 "parrafo_umbral",
 label = NULL,
-choices = NULL
+choices = c(
+"1.000" = 1000, "2.000" = 2000, "5.000" = 5000,
+"10.000" = 10000, "25.000" = 25000, "50.000" = 50000
+),
+selected = 5000
+),
+
+", lo que corresponde a aproximadamente",
+
+strong(
+textOutput("parrafo_n_personas", inline = TRUE),
+"personas"
+),
+"en situación de pobreza."
+)
+```
+
+El `selectInput()` del umbral trae las opciones de cantidad de personas directamente, porque el umbral es siempre un número de personas en situación de pobreza.
+
+{{< detalles "Código completo del div hasta ahora" >}}
+
+``` r
+div(
+class = "parrafo",
+
+"En",
+
+span("la", id = "parrafo_preposicion_territorio") |> hidden(),
+
+selectInput(
+"parrafo_territorio",
+label = NULL,
+c("Chile", "Región")
+),
+
+textOutput("parrafo_preposicion_region", inline = TRUE) |> hidden(),
+
+selectInput(
+"parrafo_selector_region",
+label = NULL,
+choices = regiones()
+) |>
+hidden(),
+
+"existen",
+
+strong(
+textOutput("parrafo_n_comunas", inline = TRUE),
+"comunas"
+),
+
+"donde",
+
+"de personas en situación de pobreza supera",
+
+"las",
+
+selectInput(
+"parrafo_umbral",
+label = NULL,
+choices = c(
+"1.000" = 1000, "2.000" = 2000, "5.000" = 5000,
+"10.000" = 10000, "25.000" = 25000, "50.000" = 50000
+),
+selected = 5000
 ),
 
 ", lo que corresponde a aproximadamente",
@@ -641,7 +595,7 @@ textOutput("parrafo_n_personas", inline = TRUE),
 
 ### Tabla opcional
 
-Por último, afuera del párrafo, agrego un `checkboxInput()` y una `card()` oculta con la tabla de detalle:
+Por último, afuera del párrafo, agregamos un `checkboxInput()` y una `card()` oculta con la tabla de detalle:
 
 ``` r
 ui <- page_fillable(
@@ -709,23 +663,18 @@ textOutput("parrafo_n_comunas", inline = TRUE),
 
 "donde",
 
-selectInput(
-"parrafo_variable",
-label = NULL,
-c(
-"el porcentaje" = "pobreza_porcentaje",
-"la cantidad" = "pobreza_personas"
-)
-),
-
 "de personas en situación de pobreza supera",
 
-textOutput("parrafo_articulo_umbral", inline = TRUE),
+"las",
 
 selectInput(
 "parrafo_umbral",
 label = NULL,
-choices = NULL
+choices = c(
+"1.000" = 1000, "2.000" = 2000, "5.000" = 5000,
+"10.000" = 10000, "25.000" = 25000, "50.000" = 50000
+),
+selected = 5000
 ),
 
 ", lo que corresponde a aproximadamente",
@@ -752,7 +701,7 @@ Con esto, la interfaz completa está lista. Ahora falta la parte más importante
 
 ## Servidor: conectando inputs, renders y outputs
 
-El servidor es donde ocurre toda la reactividad: qué se muestra u oculta, cómo se filtran los datos, y qué texto se calcula para cada salida. Voy a ir agregando una pieza a la vez, mostrando después de cada una un diagrama con las conexiones que se generan.
+El servidor es donde ocurre toda la reactividad: qué se muestra u oculta, cómo se filtran los datos, y qué texto se calcula para cada salida. Vamos a ir agregando una pieza a la vez, mostrando después de cada una un diagrama con las conexiones que se generan.
 
 ### Mostrar y ocultar la tabla
 
@@ -779,17 +728,13 @@ obs[&quot;observeEvent&quot;]:::observer
 tabla_card[&quot;tabla_card&lt;br&gt;(show/hide)&quot;]:::output
 
 mostrar_tabla --&gt; obs --&gt; tabla_card
-
-classDef input fill:#e3f2fd,stroke:#1565c0
-classDef observer fill:#fff3e0,stroke:#ef6c00
-classDef output fill:#fce4ec,stroke:#c62828
 </pre>
 
 </figure>
 
 ### Concordancia del territorio
 
-Cuando la persona elige "Región" en vez de "Chile", tengo que mostrar la preposición "la" y, además, el selector de región junto a su propia preposición. Son dos `observe()` porque son dos partes de la interfaz que reaccionan a la misma elección:
+Cuando la persona elige "Región" en vez de "Chile", tenemos que mostrar la preposición "la" y, además, el selector de región junto a su propia preposición. Son dos `observe()` porque son dos partes de la interfaz que reaccionan a la misma elección:
 
 ``` r
 server <- function(input, output, session) {
@@ -838,17 +783,13 @@ territorio --&gt; obs1 --&gt; prep_territorio
 territorio --&gt; obs2
 obs2 --&gt; selector_region
 obs2 --&gt; prep_region
-
-classDef input fill:#e3f2fd,stroke:#1565c0
-classDef observer fill:#fff3e0,stroke:#ef6c00
-classDef output fill:#fce4ec,stroke:#c62828
 </pre>
 
 </figure>
 
 ### Preposición de la región elegida
 
-Ahora que el selector de región es visible, necesito calcular qué preposición corresponde a la región que se eligió. Acá es donde entra `preposicion_region()` de `{territorial}`:
+Ahora que el selector de región es visible, necesitamos calcular qué preposición corresponde a la región que se eligió. Acá es donde entra `preposicion_region()` de `{territorial}`:
 
 ``` r
 server <- function(input, output, session) {
@@ -864,15 +805,11 @@ preposicion_region(input$parrafo_selector_region)
 <figure class=''>
 
 <pre class="mermaid mermaid-js">graph LR
-region[&quot;input$parrafo_selector_region&quot;]:::input
-render[&quot;renderText:&lt;br&gt;preposicion_region()&quot;]:::observer
-output[&quot;parrafo_preposicion_region&quot;]:::output
+region[&quot;input$parrafo_selector_region&quot;]
+render[&quot;renderText:&lt;br&gt;preposicion_region()&quot;]
+output[&quot;parrafo_preposicion_region&quot;]
 
 region --&gt; render --&gt; output
-
-classDef input fill:#e3f2fd,stroke:#1565c0
-classDef observer fill:#fff3e0,stroke:#ef6c00
-classDef output fill:#fce4ec,stroke:#c62828
 </pre>
 
 </figure>
@@ -919,38 +856,21 @@ preposicion_region(input$parrafo_selector_region)
 
 {{< /detalles >}}
 
-### Umbral según la variable elegida
+### Umbral de personas
 
-El selector de umbral parte vacío, así que cada vez que la persona cambia entre "el porcentaje" y "la cantidad", tengo que reemplazar sus opciones con `updateSelectInput()`: porcentajes si se trata de `pobreza_porcentaje`, o montos de personas si se trata de `pobreza_personas`:
+Como el umbral es siempre una cantidad de personas, sus opciones quedan fijas en la interfaz: no hay que actualizarlas desde el servidor.
 
 ``` r
-server <- function(input, output, session) {
-# ...
-
-observeEvent(input$parrafo_variable, {
-if (input$parrafo_variable == "pobreza_porcentaje") {
-updateSelectInput(
-session,
+# selector del umbral, con sus opciones fijas de personas
+selectInput(
 "parrafo_umbral",
+label = NULL,
 choices = c(
-"5%" = .05, "10%" = .10, "15%" = .15, "20%" = .20,
-"25%" = .25, "30%" = .30, "35%" = .35, "40%" = .40
-),
-selected = .15
-)
-} else {
-updateSelectInput(
-session,
-"parrafo_umbral",
-choices = c(
-"1.000" = 1000, "5.000" = 5000, "10.000" = 10000,
-"25.000" = 25000, "50.000" = 50000, "75.000" = 75000
+"1.000" = 1000, "2.000" = 2000, "5.000" = 5000,
+"10.000" = 10000, "25.000" = 25000, "50.000" = 50000
 ),
 selected = 5000
 )
-}
-})
-}
 ```
 
 {{< detalles "Código completo del servidor hasta ahora" >}}
@@ -985,31 +905,6 @@ hide("parrafo_preposicion_region")
 
 output$parrafo_preposicion_region <- renderText({
 preposicion_region(input$parrafo_selector_region)
-})
-
-# actualizar opciones del umbral según la variable elegida
-observeEvent(input$parrafo_variable, {
-if (input$parrafo_variable == "pobreza_porcentaje") {
-updateSelectInput(
-session,
-"parrafo_umbral",
-choices = c(
-"5%" = .05, "10%" = .10, "15%" = .15, "20%" = .20,
-"25%" = .25, "30%" = .30, "35%" = .35, "40%" = .40
-),
-selected = .15
-)
-} else {
-updateSelectInput(
-session,
-"parrafo_umbral",
-choices = c(
-"1.000" = 1000, "5.000" = 5000, "10.000" = 10000,
-"25.000" = 25000, "50.000" = 50000, "75.000" = 75000
-),
-selected = 5000
-)
-}
 })
 }
 ```
@@ -1018,37 +913,14 @@ selected = 5000
 
 ### Artículo del umbral
 
-De paso, el artículo que antecede al umbral también depende de la variable elegida ("el" 15%, pero "las" 5.000 personas):
+El artículo "las" va escrito directamente en la interfaz, antes del selector del umbral, porque siempre nos referimos a personas.
 
 ``` r
-server <- function(input, output, session) {
-# ...
-
-# artículo del umbral ("el" / "las")
-output$parrafo_articulo_umbral <- renderText({
-if (input$parrafo_variable == "pobreza_porcentaje") "el" else "las"
-})
-}
+# artículo "las" antepuesto al selector del umbral
+"las"
 ```
 
-<figure class=''>
-
-<pre class="mermaid mermaid-js">graph LR
-variable[&quot;input$parrafo_variable&quot;]:::input
-obs[&quot;observeEvent:&lt;br&gt;actualizar choices&lt;br&gt;de umbral&quot;]:::observer
-render[&quot;renderText:&lt;br&gt;artículo&quot;]:::observer
-umbral[&quot;parrafo_umbral&lt;br&gt;(choices)&quot;]:::output
-articulo[&quot;parrafo_articulo_umbral&quot;]:::output
-
-variable --&gt; obs --&gt; umbral
-variable --&gt; render --&gt; articulo
-
-classDef input fill:#e3f2fd,stroke:#1565c0
-classDef observer fill:#fff3e0,stroke:#ef6c00
-classDef output fill:#fce4ec,stroke:#c62828
-</pre>
-
-</figure>
+Como el artículo es un texto fijo, no necesita ningún cálculo en el servidor: basta con escribirlo en la interfaz.
 
 {{< detalles "Código completo del servidor hasta ahora" >}}
 
@@ -1083,35 +955,6 @@ hide("parrafo_preposicion_region")
 output$parrafo_preposicion_region <- renderText({
 preposicion_region(input$parrafo_selector_region)
 })
-
-observeEvent(input$parrafo_variable, {
-if (input$parrafo_variable == "pobreza_porcentaje") {
-updateSelectInput(
-session,
-"parrafo_umbral",
-choices = c(
-"5%" = .05, "10%" = .10, "15%" = .15, "20%" = .20,
-"25%" = .25, "30%" = .30, "35%" = .35, "40%" = .40
-),
-selected = .15
-)
-} else {
-updateSelectInput(
-session,
-"parrafo_umbral",
-choices = c(
-"1.000" = 1000, "5.000" = 5000, "10.000" = 10000,
-"25.000" = 25000, "50.000" = 50000, "75.000" = 75000
-),
-selected = 5000
-)
-}
-})
-
-# artículo del umbral ("el" / "las")
-output$parrafo_articulo_umbral <- renderText({
-if (input$parrafo_variable == "pobreza_porcentaje") "el" else "las"
-})
 }
 ```
 
@@ -1119,7 +962,7 @@ if (input$parrafo_variable == "pobreza_porcentaje") "el" else "las"
 
 ### Filtrar los datos
 
-Llegamos al reactivo central de la app: `comunas_filtradas()` toma los tres *inputs* (territorio, región, variable y umbral) y devuelve las comunas que cumplen la condición elegida. Todo lo demás se calcula a partir de este reactivo:
+Llegamos al reactivo central de la app: `comunas_filtradas()` toma los tres *inputs* (territorio, región y umbral) y devuelve las comunas que cumplen la condición elegida. Todo lo demás se calcula a partir de este reactivo:
 
 ``` r
 server <- function(input, output, session) {
@@ -1134,14 +977,14 @@ datos <- pobreza |>
 filter(nombre_region == input$parrafo_selector_region)
 }
 
-# filtrar umbral en la columna
+# filtrar por umbral de personas
 datos |>
-filter(.data[[input$parrafo_variable]] > as.numeric(input$parrafo_umbral))
+filter(pobreza_personas > as.numeric(input$parrafo_umbral))
 })
 }
 ```
 
-Usar `.data[[input$parrafo_variable]]` es lo que permite filtrar dinámicamente por la columna `pobreza_porcentaje` o `pobreza_personas`, dependiendo de cuál haya elegido la persona, sin tener que escribir dos reactivos separados.
+Usar `pobreza_personas` directamente permite comparar contra el umbral elegido y, como se trata de cantidades, sumar sin problema cuando el territorio elegido sea una región.
 
 {{< detalles "Código completo del servidor hasta ahora" >}}
 
@@ -1177,35 +1020,7 @@ output$parrafo_preposicion_region <- renderText({
 preposicion_region(input$parrafo_selector_region)
 })
 
-observeEvent(input$parrafo_variable, {
-if (input$parrafo_variable == "pobreza_porcentaje") {
-updateSelectInput(
-session,
-"parrafo_umbral",
-choices = c(
-"5%" = .05, "10%" = .10, "15%" = .15, "20%" = .20,
-"25%" = .25, "30%" = .30, "35%" = .35, "40%" = .40
-),
-selected = .15
-)
-} else {
-updateSelectInput(
-session,
-"parrafo_umbral",
-choices = c(
-"1.000" = 1000, "5.000" = 5000, "10.000" = 10000,
-"25.000" = 25000, "50.000" = 50000, "75.000" = 75000
-),
-selected = 5000
-)
-}
-})
-
-output$parrafo_articulo_umbral <- renderText({
-if (input$parrafo_variable == "pobreza_porcentaje") "el" else "las"
-})
-
-# filtrar comunas según territorio, variable y umbral elegidos
+# filtrar comunas según territorio y umbral elegidos
 comunas_filtradas <- reactive({
 if (input$parrafo_territorio == "Chile") {
 datos <- pobreza
@@ -1215,7 +1030,7 @@ filter(nombre_region == input$parrafo_selector_region)
 }
 
 datos |>
-filter(.data[[input$parrafo_variable]] > as.numeric(input$parrafo_umbral))
+filter(pobreza_personas > as.numeric(input$parrafo_umbral))
 })
 }
 ```
@@ -1246,9 +1061,8 @@ label_number()(personas)
 output$parrafo_tabla <- renderTable(
 {
 comunas_filtradas() |>
-select(nombre_region, nombre_comuna, poblacion,
-pobreza_porcentaje, pobreza_personas) |>
-arrange(desc(pobreza_porcentaje)) |>
+select(nombre_region, nombre_comuna, poblacion, pobreza_personas) |>
+arrange(desc(pobreza_personas)) |>
 head(30)
 },
 digits = 0,
@@ -1263,7 +1077,6 @@ spacing = "xs"
 <pre class="mermaid mermaid-js">graph TD
 territorio[&quot;input$parrafo_territorio&quot;]:::input
 region[&quot;input$parrafo_selector_region&quot;]:::input
-variable[&quot;input$parrafo_variable&quot;]:::input
 umbral[&quot;input$parrafo_umbral&quot;]:::input
 
 filtradas[&quot;comunas_filtradas()&lt;br&gt;reactive&quot;]:::reactive
@@ -1274,16 +1087,11 @@ tabla[&quot;parrafo_tabla&quot;]:::output
 
 territorio --&gt; filtradas
 region --&gt; filtradas
-variable --&gt; filtradas
 umbral --&gt; filtradas
 
 filtradas --&gt; n_comunas
 filtradas --&gt; n_personas
 filtradas --&gt; tabla
-
-classDef input fill:#e3f2fd,stroke:#1565c0
-classDef reactive fill:#e8f5e9,stroke:#2e7d32
-classDef output fill:#fce4ec,stroke:#c62828
 </pre>
 
 </figure>
@@ -1348,23 +1156,18 @@ textOutput("parrafo_n_comunas", inline = TRUE),
 
 "donde",
 
-selectInput(
-"parrafo_variable",
-label = NULL,
-c(
-"el porcentaje" = "pobreza_porcentaje",
-"la cantidad" = "pobreza_personas"
-)
-),
-
 "de personas en situación de pobreza supera",
 
-textOutput("parrafo_articulo_umbral", inline = TRUE),
+"las",
 
 selectInput(
 "parrafo_umbral",
 label = NULL,
-choices = NULL
+choices = c(
+"1.000" = 1000, "2.000" = 2000, "5.000" = 5000,
+"10.000" = 10000, "25.000" = 25000, "50.000" = 50000
+),
+selected = 5000
 ),
 
 ", lo que corresponde a aproximadamente",
@@ -1415,34 +1218,6 @@ output$parrafo_preposicion_region <- renderText({
 preposicion_region(input$parrafo_selector_region)
 })
 
-observeEvent(input$parrafo_variable, {
-if (input$parrafo_variable == "pobreza_porcentaje") {
-updateSelectInput(
-session,
-"parrafo_umbral",
-choices = c(
-"5%" = .05, "10%" = .10, "15%" = .15, "20%" = .20,
-"25%" = .25, "30%" = .30, "35%" = .35, "40%" = .40
-),
-selected = .15
-)
-} else {
-updateSelectInput(
-session,
-"parrafo_umbral",
-choices = c(
-"1.000" = 1000, "5.000" = 5000, "10.000" = 10000,
-"25.000" = 25000, "50.000" = 50000, "75.000" = 75000
-),
-selected = 5000
-)
-}
-})
-
-output$parrafo_articulo_umbral <- renderText({
-if (input$parrafo_variable == "pobreza_porcentaje") "el" else "las"
-})
-
 comunas_filtradas <- reactive({
 if (input$parrafo_territorio == "Chile") {
 datos <- pobreza
@@ -1452,7 +1227,7 @@ filter(nombre_region == input$parrafo_selector_region)
 }
 
 datos |>
-filter(.data[[input$parrafo_variable]] > as.numeric(input$parrafo_umbral))
+filter(pobreza_personas > as.numeric(input$parrafo_umbral))
 })
 
 output$parrafo_n_comunas <- renderText({
@@ -1471,9 +1246,8 @@ label_number()(personas)
 output$parrafo_tabla <- renderTable(
 {
 comunas_filtradas() |>
-select(nombre_region, nombre_comuna, poblacion,
-pobreza_porcentaje, pobreza_personas) |>
-arrange(desc(pobreza_porcentaje)) |>
+select(nombre_region, nombre_comuna, poblacion, pobreza_personas) |>
+arrange(desc(pobreza_personas)) |>
 head(30)
 },
 digits = 0,
@@ -1496,14 +1270,11 @@ Uniendo todos los diagramas anteriores, así es como fluyen los *inputs* del pá
 <pre class="mermaid mermaid-js">graph TD
 territorio[&quot;input$parrafo_territorio&quot;]:::input
 region[&quot;input$parrafo_selector_region&quot;]:::input
-variable[&quot;input$parrafo_variable&quot;]:::input
 umbral[&quot;input$parrafo_umbral&quot;]:::input
 
 obs_territorio[&quot;observe: mostrar/ocultar&lt;br&gt;selector de región&lt;br&gt;+ preposición &#39;la&#39;&quot;]:::observer
-obs_variable[&quot;observeEvent: actualizar&lt;br&gt;choices de umbral&quot;]:::observer
 
 prep_region[&quot;parrafo_preposicion_region&quot;]:::output
-art_umbral[&quot;parrafo_articulo_umbral&quot;]:::output
 
 filtradas[&quot;comunas_filtradas()&lt;br&gt;reactive&quot;]:::reactive
 
@@ -1516,11 +1287,6 @@ obs_territorio --&gt; prep_region
 region --&gt; prep_region
 obs_territorio --&gt; filtradas
 
-variable --&gt; obs_variable
-obs_variable --&gt; umbral
-variable --&gt; art_umbral
-variable --&gt; filtradas
-
 territorio --&gt; filtradas
 region --&gt; filtradas
 umbral --&gt; filtradas
@@ -1528,11 +1294,6 @@ umbral --&gt; filtradas
 filtradas --&gt; n_comunas
 filtradas --&gt; n_personas
 filtradas --&gt; tabla
-
-classDef input fill:#e3f2fd,stroke:#1565c0
-classDef observer fill:#fff3e0,stroke:#ef6c00
-classDef reactive fill:#e8f5e9,stroke:#2e7d32
-classDef output fill:#fce4ec,stroke:#c62828
 </pre>
 
 </figure>
@@ -1544,5 +1305,3 @@ El resultado es siempre un párrafo coherente que combina los controles con los 
 {{< relacionada "blog/territorial/" "Más sobre el paquete {territorial}" >}}
 {{< etiqueta "shiny" "Más publicaciones sobre Shiny" >}}
 {{< cafecito >}}
-
-https://www.appsilon.com/post/human-readable-filters
