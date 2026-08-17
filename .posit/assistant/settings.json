@@ -11,7 +11,8 @@
       "https://walker-data.com/*": "allow"
     },
     "edit": {
-      "*.md": "allow"
+      "*.md": "allow",
+      "*.qmd": "allow"
     }
   }
 }
