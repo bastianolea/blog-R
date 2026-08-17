@@ -346,44 +346,35 @@ background-color: #A985C630;
 
 
 /* diagramas mermaid */
-#mermaid-1 .node rect {
-  fill: #553a75!important;
-  stroke: #553a75!important;
+.nodes .label, .nodes rect, .nodes path {
+  fill: #553a75 !important;
+  stroke: #553a75 !important;
 }
 
-#mermaid-1 .node path {
-  /*fill: #dec4f2 !important;
-  stroke: #D4B4ED !important;*/
-  fill: #a376c7!important;
-  stroke: #9160b9!important;
-}
-#mermaid-1 .label text, #mermaid-1 span {
+.nodeLabel p {
   fill: #8656ab !important;
   /*color: #543a73 !important;*/
   color: #ead1fa !important;
 }
 
-#mermaid-1 .marker {
-  fill: #8656ab !important;
-  stroke: #8656ab !important;
+.arrowheadPath, marker path {
+  fill: #A376C7 !important;
+  stroke: #A376C7 !important;
 }
 
-#mermaid-1 .flowchart-link {
-  stroke: #8656ab !important;
+.edgePaths .flowchart-link {
+  stroke: #A376C7 !important;
 }
 
-#mermaid-1 .edge-thickness-normal {
-  stroke-width: 2px;
+.edgePaths .edge-thickness-normal {
+  stroke-width: 2px !important;
 }
 
-#mermaid-1 path {
-  stroke: #8656ab !important;
-}
-
-#mermaid-1 .cluster rect {
+.clusters .cluster rect {
   fill: #DEC4F2 !important;
   stroke: #CBABE3 !important;
 }
-#mermaid-1 .cluster-label span p {
+
+.nodes .cluster-label span p {
   color: #543A73 !important;
 }
