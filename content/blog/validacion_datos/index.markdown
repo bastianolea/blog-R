@@ -1,7 +1,8 @@
 ---
 title: Validación de datos con `{testthat}` y `{pointblank}`
 author: Bastián Olea Herrera
-date: '2025-10-15'
+# date: '2025-10-15'
+date: '2026-08-18'
 freeze: true
 slug: []
 categories: []
@@ -32,12 +33,12 @@ excerpt: La validación de datos sirve para verificar durante el proceso de aná
 
 
 {{< imagen "pointblank-1.png" >}}
-
-En un [post anterior](/blog/validacion_basica) hablé sobre cómo hacer validación básica de datos en R. A grandes razgos, vimos la utilidad de crear funciones que contengan pruebas simples para validar la calidad de tus datos, tales como revisar cantidad de filas, cantidad de datos perdidos, y otros. 
+s
+En un [post anterior](/blog/validacion_basica) hablé sobre cómo hacer validación básica de datos en R. En resumen, creamos funciones con pruebas simples para validar la calidad de tus datos, tales como revisar cantidad de filas, cantidad de datos perdidos, y otros. 
 
 Dado que R es un lenguaje enfocado en el análisis de datos, existen varios paquetes que nos pueden ayudar con la validación de datos!
 
-En este post veremos [`{testthat}`](https://testthat.r-lib.org), un paquete que facilita implementar **pruebas unitarias** a tu código para validar su funcionamiento, y [`{pointblank}`](https://rstudio.github.io/pointblank/), un paquete diseñado para la **validación de datos** con poderosas capacidades de reportabilidad. En unos minutos aprenderás a usar este paquete para garantizar que tus datos cumplen con tus expectativas de calidad. 
+En este post veremos [`{testthat}`](https://testthat.r-lib.org), un paquete que facilita implementar **pruebas unitarias** o _unit tests_ a tu código para validar su funcionamiento, y [`{pointblank}`](https://rstudio.github.io/pointblank/), un paquete diseñado para la **validación de datos** con poderosas capacidades de reportabilidad. En unos minutos aprenderás a usar este paquete para garantizar que tus datos cumplen con tus expectativas de calidad. 
 
 
 ----
@@ -46,9 +47,6 @@ _**¿Para qué sirve la validación de datos?**_ Para que, en cualquier punto de
 
 Al crear una serie de pruebas, podemos **automatizar el proceso de validación de datos.** De esta forma, si modificamos nuestro código, o si cambian los datos, **no necesitamos revisar manualmente** que todo esté en orden, sino que **tenemos una especie de protocolo para certificar que los datos son los esperados.** Cada vez que hagamos cambios en el código, podemos ejecutar las pruebas para confirmar que todo sigue funcionando como se espera.
 
-{{< indice >}}
-
-----
 
 ## Datos de ejemplo
 
@@ -67,23 +65,47 @@ datos <- tribble(~animal,   ~patas, ~lindura,    ~color,
 
 De inmediato podemos ver en esta tabla creada con `tribble()` que hay varios problemas: la columna `patas` viene como caracteres, hay datos perdidos en `lindura`, y hay un color hexadecimal en `color`. Pero nos damos cuenta de ésto porque la tabla contiene pocos datos. **Cuando trabajemos con miles o millones de observaciones, se vuelve más difícil detectar este tipo de problemas**. Ahí es cuando la validación de datos nos puede ayudar!
 
-----
 
 ## Validación con `{testthat}`
 
 A pesar de que `{testthat}` se usa en general para el desarrollo de paquetes, y se enfoca a validar que cálculos y métodos estadísticos funcionen como es esperado, igual se puede usar para validar en proyectos de análisis de datos.
 
-### Estructura del código
-
 Asumiendo que nuestro proyecto posee varios scripts donde se procesan los datos, la idea general será **crear scripts con pruebas**, y periodicamente ejecutar estos scripts de pruebas para confirmar que todo esté en orden. 
 
-Primero necesitamos crear una carpeta para los tests, y scripts con pruebas para cada script o paso en nuestro flujo de trabajo que queramos validar. Podemos hacerlo a mano, o bien crear una carpeta para las pruebas con `fs::dir_create()`, y dentro creamos los scripts que necesitemos con `fs::file_create()`, siguiendo la convención de anteponer `test-` al nombre de cada script de pruebas.
+### Crear tests con `{testthat}`
+Iniciamos el uso de `{testthat}` usando la siguiente función:
 
-Se recomienda **crear un script de pruebas por cada script de nuestro proyecto**: si tenemos un script llamado `datos.R`, creamos un script de pruebas llamado `test-datos.R` dentro de la carpeta `tests/`. Dentro de este script empezamos a diseñar las pruebas unitarias. Las **pruebas unitarias** son pruebas que validan que una unidad específica de código (una función, un cálculo, una transformación de datos) funcione como se espera. 
+```r
+usethis::use_testthat()
+```
 
-### Crear pruebas unitarias
+```
+✔ Creating tests/testthat/.
+✔ Writing tests/testthat.R.
+☐ Call usethis::use_test() to initialize a basic test file and open it for editing.
+```
 
-Usamos la función `test_that()` para definir cada prueba, indicando primero el nombre de la prueba. Dentro, usamos funciones como `expect_true()`, `expect_equal()`, `expect_type()`, para declarar que _esperamos_ que luego de cierta operación ocurra algo. Por ejemplo: espero (`expect`) que mi tabla tenga una columna determinada, o que una columna sea de cierto tipo. Estas son las condiciones que deben cumplirse para que la prueba pase.
+Esto crea la carpeta `tests/testthat`, donde pondremos los tests para nuestros scripts.
+
+Luego, para cada script que queramos, creamos un test. Por ejemplo, si tenemos el script `datos.R`, ejecutamos:
+
+```r
+usethis::use_test("datos")
+```
+
+```
+✔ Writing tests/testthat/test-datos.R.
+☐ Modify tests/testthat/test-datos.R.
+```
+Como vimos, se crea `test-datos.R` dentro de la carpeta de tests, y se abre en RStudio.
+
+Dentro de este script empezamos a diseñar las **pruebas unitarias**, que son pruebas que validan que una unidad específica de código (una función, un cálculo, una transformación de datos) funcione como se espera. 
+
+### Creando pruebas unitarias
+
+Usamos la función `test_that()` para definir cada prueba, indicando primero el nombre de la prueba. Dentro, usamos funciones como `expect_true()`, `expect_no_error()`, `expect_equal()`, `expect_type()`, etc. para declarar que _esperamos_ que, luego de cierta operación, ocurra o no ocurra algo. 
+
+Por ejemplo: espero (`expect`) que mi tabla tenga una columna determinada, o que una columna sea de cierto tipo. Estas son las condiciones que deben cumplirse para que la prueba pase!
 
 Veamos un ejemplo de una prueba:
 
@@ -97,10 +119,12 @@ test_that("números iguales",
 ```
 
 ```
-## Test passed with 1 success 🎉.
+## Test passed with 1 success 😸.
 ```
 
-Esta prueba evalúa si dos números son iguales (`expect_equal()`), y en este ejemplo se cumple: `{testthat}` nos entrega un emoji de celebración 🎉 Veamos la siguiente prueba:
+Esta prueba evalúa si dos números son iguales (`expect_equal()`), y en este ejemplo se cumple: `{testthat}` nos entrega un emoji de celebración 🎉 
+
+Veamos la siguiente prueba:
 
 
 ``` r
@@ -127,25 +151,20 @@ Como la prueba no se cumple, porque `4` es distinto a `5`, y la prueba nos dará
 
 ### Ejemplos de pruebas unitarias para validación de datos
 
-Apliquemos pruebas similares a los datos de ejemplo, dentro de un script que se llame `tests/test-datos.R`, donde cargamos los datos (es importante que el script sea reproducible, ya que no lee los datos desde tu entorno sino que los carga en su propio entorno) y luego hacemos las pruebas:
+Apliquemos pruebas a los [datos de ejemplo](#datos-de-ejemplo) que creamos antes. Es importante que el script sea **reproducible**, por lo que al principio del script de pruebas se deben cargar los datos necesarios.
 
+Primero, probemos el número de columnas de la tabla:
 
 
 ``` r
 # código para que el script de pruebas cargue los datos
-# datos <- readr::read_rds("datos.rds") 
+# library(dplyr)
+# datos <- tribble(~animal,   ~patas, ~lindura,    ~color,
+#                  "mapache",    "4",      100,    "gris",
+#                  "gato",      "80",       90,   "negro",
+#                  "pollo",      "2",       NA,  "plumas",
+#                  "rata",  "cuatro",       90, "#CCCCCC")
 
-# esperamos que exista un objeto llamado "datos"
-test_that("se cargaron los datos",
-          expect_true(exists("datos"))
-)
-```
-
-```
-## Test passed with 1 success 🌈.
-```
-
-``` r
 # esperamos que el número de columnas sea 4
 test_that("suficientes columnas",
           expect_equal(ncol(datos), 4)
@@ -153,11 +172,54 @@ test_that("suficientes columnas",
 ```
 
 ```
-## Test passed with 1 success 😀.
+## Test passed with 1 success 😸.
 ```
 
+También podemos probar si hay más de `x` columnas:
+
+
 ``` r
-# esperamos que la columna `animal` sea tipo caracter
+test_that("más de 2 columnas",
+          expect_gt(ncol(datos), 2)
+)
+```
+
+```
+## Test passed with 1 success 😸.
+```
+
+O bien, confirmar que existen columnas específicas en la tabla:
+
+
+``` r
+test_that("columnas mínimas presentes",
+          expect_all_true(c("animal", "patas") %in% names(datos))
+)
+```
+
+```
+## Test passed with 1 success 🥳.
+```
+
+Confirmamos la cantidad de observaciones es suficiente:
+
+
+``` r
+test_that("más de 2 filas",
+          expect_true(nrow(datos) > 2)
+)
+```
+
+```
+## Test passed with 1 success 🥇.
+```
+
+Podemos aplicar validaciones sobre los valores específicos de las columnas. 
+
+Por ejemplo, esperamos que la columna `animal` sea tipo caracter:
+
+
+``` r
 test_that("columnas tipo texto",
           expect_type(datos$animal, "character")
 )
@@ -167,15 +229,16 @@ test_that("columnas tipo texto",
 ## Test passed with 1 success 🌈.
 ```
 
+Confirmar que la columna `patas` sea tipo numérico:
+
 ``` r
-# esperamos que la columna `patas` sea tipo numérico
-test_that("columnas tipo texto",
+test_that("columnas tipo numérico",
           expect_type(datos$patas, "numeric")
 )
 ```
 
 ```
-## ── Failure: columnas tipo texto ────────────────────────────────────────────────
+## ── Failure: columnas tipo numérico ─────────────────────────────────────────────
 ## Expected `datos$patas` to have type "numeric".
 ## Actual type: "character"
 ```
@@ -185,8 +248,10 @@ test_that("columnas tipo texto",
 ## ! Test failed with 1 failure and 0 successes.
 ```
 
+Confirmar que los colores estén dentro de un conjunto determinado:
+
+
 ``` r
-# esperamos que los colores estén dentro de un conjunto determinado
 test_that("colores factibles",
           expect_in(datos$color, c("negro", "gris", "blanco", "amarillo", "café"))
 )
@@ -205,39 +270,54 @@ test_that("colores factibles",
 ## ! Test failed with 1 failure and 0 successes.
 ```
 
-Una vez que guardamos este script, podemos ejecutar sus pruebas manualmente, o bien podemos usar `test_file("tests/test-script.R")` para **ejecutar todas las pruebas de un script**, o `test_dir("tests.R")` para ejecutar todas las pruebas de la carpeta de pruebas, validando tu proyecto entero de una sola vez. 
-
 A partir de las pruebas que definimos podemos **confirmar que hay problemas** en las columnas `patas` y `color`, ya que no cumplen con las expectativas que definimos en las pruebas.
 
-Podemos ejecutar las funciones que realizan la validación desde donde más nos resulte conveniente: desde algún script principal de nuestro proyecto, desde un script `tests.R` específico para ejecutar las pruebas, al final de cada script del proyecto, al final de un script donde ejecutemos todo el procesamiento de nuestro proyecto, o manualmente. 
+### Ejecutar las pruebas
 
-#### Uso completo
-💡 _Lo que yo haría_ sería algo así como agregar un `test_file()` al final del script de limpieza de datos, que confirme que la limpieza salió bien, en otro script donde procese datos tendría otro `test_file()` con pruebas relacionadas a este paso, etcétera.
+Cuando hacemos un script de pruebas con `usethis::use_test()`, en la parte superior derecha aparece un botón para **ejecutar las pruebas** (_Run Tests_). Así se ejecutan todas y se nos informa un resumen:
 
-Otra opción es guardar los scripts de pruebas en `tests` y ejecutar todos los scripts de pruebas con `test_dir("tests/")`, en cuyo caso `{testthat}` arroja un resumen de los resultados.
+```
+==> Testing R file using 'testthat'
 
-También, al guardar un script con pruebas, RStudio se da cuenta y aparece el botón _Run Tests_ en la parte superior derecha del script.
+[ FAIL 2 | WARN 0 | SKIP 0 | PASS 5 ]
 
-#### Uso simple
-Si queremos hacerlo todo más simple, simplemente usemos las funciones `testthat::expect_x()` entremedio del código, de modo que si la prueba falla, arroja error, pero si no falla, no pasa nada. En este sentido, funciona igual que `stopifnot()`, pero para mi resulta mucho más claro (esa función me confunde mucho 😣). Con `expect_x()` declaramos: _esperamos que_ lo siguiente retorne `TRUE`, y si las cosas se dan así, no pasa nada y la vida sigue.
+── Failure (test-datos.R:26:1): columnas tipo numérico ─────────────────────────
+Expected `datos$patas` to have type "numeric".
+Actual type: "character"
+
+── Failure (test-datos.R:28:1): colores factibles ──────────────────────────────
+Expected `datos$color` to only contain values from `c("negro", "gris", "blanco", "amarillo", "café")`.
+Actual: "gris", "negro", "plumas", "#CCCCCC"
+Expected: "negro", "gris", "blanco", "amarillo", "café"
+Invalid: "plumas", "#CCCCCC"
+[ FAIL 2 | WARN 0 | SKIP 0 | PASS 5 ]
+
+Test complete
+```
+
+Aquí se nos informan los errores que tiene nuestro script, y podemos ir a corregirlos.
+
+Si queremos hacerlo más más simple, simplemente usemos las funciones `testthat::expect_x()` entremedio del código, de modo que si la prueba falla, arroja error, pero si no falla, no pasa nada. Con `expect_x()` declaramos: _esperamos que_ lo siguiente retorne `TRUE`:
 
 
 ``` r
-testthat::expect_equal(n_distinct(iris$Species), 3)
-testthat::expect_equal(n_distinct(iris$Species), 4)
+testthat::expect_equal(n_distinct(datos$animal), 3)
 ```
 
 ```
-## Error: Expected `n_distinct(iris$Species)` to equal 4.
+## Error:
+## ! Expected `n_distinct(datos$animal)` to equal 3.
 ## Differences:
 ## 1/1 mismatches
-## [1] 3 - 4 == -1
+## [1] 4 - 3 == 1
 ```
 
 
-### Conclusión de `{testthat}` para validación de datos
+``` r
+testthat::expect_equal(n_distinct(datos$animal), 4)
+```
 
-Con `{testthat}` podemos crear un flujo de trabajo que incluya la validación de datos a nuestros proyectos, con funciones e interfaz amigable que te dan un golpe de dopamina cuando aparece el mensajito verde con el emoji de felicitación. Si bien es ampliamente usado en la comunidad de R, su uso principal _no es_ la validación de datos, por lo que ahora veremos un segundo paquete especialmente diseñado para ello.
+En este sentido, funciona igual que `stopifnot()`, pero para mi resulta mucho más claro (esa función me confunde mucho 😣). 
 
 
 ----
@@ -284,7 +364,8 @@ datos |>
 ```
 
 ```
-## Error: Exceedance of failed test units where values in `patas` should have been in the set of `2`, `3`, `4` (and 96 more).
+## Error:
+## ! Exceedance of failed test units where values in `patas` should have been in the set of `2`, `3`, `4` (and 96 more).
 ## The `col_vals_in_set()` validation failed beyond the absolute threshold level (1).
 ## * failure level (1) >= failure threshold (1)
 ```
@@ -364,18 +445,18 @@ iris_sucio
 
 ```
 ## # A tibble: 150 × 5
-##    sepal_length sepal_width petal_length petal_width species    
-##    <chr>        <chr>       <chr>        <chr>       <chr>      
-##  1 5.1           <NA>        <NA>        "0.2"       "seto-sa"  
-##  2 4.9          "3 "        "1.4"        "0.2"        <NA>      
-##  3 4.7          "3.2"       "1.3 "        <NA>        <NA>      
-##  4 4.6          "3.1"       "1.5"         <NA>       "setosa"   
-##  5 5             <NA>       "1.4"        "0.2"       "SETOSA"   
-##  6 5.4          "3.9"       "1.7 "       "0.4"       "setos$a " 
-##  7 4.6          "3.4"       "1.4"        "0.3 "      "setosa"   
-##  8 5            "3.4"        <NA>        "0.2"       "(seto_sa "
-##  9 4.4           <NA>       "1.4 "       "0.2"       ".set$osa" 
-## 10 4.9          "3.1"       "1.5"        "0.1"       "set*o-sa" 
+##    sepal_length sepal_width petal_length petal_width species   
+##    <chr>        <chr>       <chr>        <chr>       <chr>     
+##  1 "5.1"        "3.5 "       <NA>        0.2         "set!osa" 
+##  2 "4.9"        "3"         "1.4"        <NA>        "^set)osa"
+##  3 "4.7"        "3.2"       "1.3"        0.2          <NA>     
+##  4 "4.6"        "3.1"       "1.5"        0.2         "set*o+sa"
+##  5  <NA>         <NA>       "1.4 "       <NA>        "set&o-sa"
+##  6 "5.4 "       "3.9 "      "1.7"        0.4         "setosa " 
+##  7 "4.6 "       "3.4 "      "1.4 "       0.3          <NA>     
+##  8 "5"          "3.4"        <NA>        0.2         "seto)s-a"
+##  9 "4.4"        "2.9 "       <NA>        0.2          <NA>     
+## 10 "4.9"        "3.1"       "1.5 "       0.1         "se.tosa" 
 ## # ℹ 140 more rows
 ```
 
@@ -404,26 +485,77 @@ Confirmamos que `{messy}` destruyó a nuestro querido `iris` 😔🕊️
 
 Si no sabes cómo empezar a validar tus datos, `{pointblank}` te ayuda a crear un plan básico de validación de datos con la función `draft_validation()`, la cual genera un script con pruebas básicas para que lo edites y adaptes a tus necesidades:
 
+
 ``` r
 draft_validation(
   tbl = ~datasets::iris,
   filename = "test-iris"
 )
 ```
+
 Este código nos crea un script que contiene 10 pruebas para el dataset en base a sus propios datos y características, y así tenemos material para definir los estándares para el conjunto de datos, y volver a validarlo en el futuro luego de que se apliquen cambios, actualizaciones o correcciones. 
 
-### Conclusiones
+
+### Combinación de `{pointblank}` con `{testthat}` 
+
+Las funciones de validación de `{pointblank}` pueden usarse en los tests de `{testthat}`, agregando más formas de confirmar la calidad de tus datos. Para ello, usamos las versiones `expect_x()` de las funciones de `{pointblank}`. 
+
+Por ejemplo:
+
+
+``` r
+test_that("validar cantidad de filas",
+  expect_row_count_match(datos, 4)
+)
+```
+
+```
+## Test passed with 1 success 🎊.
+```
+
+
+``` r
+test_that("validar que no hayan datos perdidos",
+  expect_col_vals_not_null(datos, animal)
+)
+```
+
+```
+## Test passed with 1 success 🎉.
+```
+
+
+``` r
+test_that("validar que la cantidad de patas sea razonable",
+  expect_col_vals_between(datos, patas, 2, 4)
+)
+```
+
+```
+## ── Failure: validar que la cantidad de patas sea razonable ─────────────────────
+## Exceedance of failed test units where values in `patas` should have been between `2` and `4`.
+## The `expect_col_vals_between()` validation failed beyond the absolute threshold level (1).
+## * failure level (2) >= failure threshold (1)
+```
+
+```
+## Error:
+## ! Test failed with 1 failure and 0 successes.
+```
+
+
+## Conclusiones
 
 Aplicar principios de validación de datos a tus proyectos de análisis de datos te va a ayudar a tener **mayor confianza en tus datos**, dándote certeza de que no hay sorpresas inesperadas entre las miles o millones de observaciones con las que trabajas. También puede **ahorrarte dolores de cabeza**, ya que si los datos cambian y estos cambios se desajustan de tus estándares, te enterarás de inmediato en vez de darte cuenta cuando se eche a perder algún gráfico o tabla más adelante 😅
 
+{{< etiqueta "limpieza de datos" >}}
 
-## Recursos 
-
-### Recursos para aprender `{pointblank}`
+### Recursos 
 
 - [Introducción a `{pointblank}`](https://rstudio.github.io/pointblank/articles/pointblank.html)
 - [Guía oficial de `{pointblank}`](https://rstudio.github.io/pointblank/articles/VALID-I.html)
-- [Workshop de `{pointblank}` por Richard Iannone](https://github.com/rich-iannone/pointblank-workshop) (requiere clonar el proyecto y generar los reportes Markdown)
+- [Workshop de `{pointblank}`](https://github.com/rich-iannone/pointblank-workshop), por Richard Iannone
 - [11 Test Smells That Make Your Tests Lie to You](https://jakubsobolewski.com/blog/test-smells-in-r/), por Jakub Sobolewski
+- [`{validate}`, otro paquete para validación de datos en R](https://data-cleaning.github.io/validate/sect-intro.html#a-quick-example)
 
 {{< cafecito >}}
