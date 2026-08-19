@@ -232,6 +232,34 @@ Con freeze activo, tanto Quarto como blogdown reutilizan las figuras congeladas 
 Alternativa más ligera: desactivar `blogdown.knit.on_save` para que solo mande `quarto render`, pero el patrón con `freeze` es el recomendado.
 
 
+## Resaltar líneas de código en `.qmd` (hl_lines vs code-line-numbers)
+
+**Problema:** en archivos `.md` normales, Hugo (con Chroma) resalta líneas de un bloque de código con `{hl_lines=["4-6"]}`. En archivos `.qmd`, la opción equivalente de Quarto es el chunk option `#| code-line-numbers: "4-6"`, pero **no tiene efecto** al renderizar con `format: hugo-md`.
+
+**Causa:** `code-line-numbers` solo funciona en formatos HTML propios de Quarto (`html`, `revealjs`), donde Quarto inyecta su propio marcado HTML/JS. Con `hugo-md`, Quarto genera markdown plano para que Hugo lo procese con Chroma, y esa opción simplemente se descarta.
+
+Tampoco basta con escribir un bloque de código Markdown plano (no ejecutable) con la sintaxis `{hl_lines=[...]}` de Hugo directamente en el `.qmd`: el escritor final de `hugo-md` es **GFM** (`gfm+yaml_metadata_block+definition_lists+smart`), y GFM descarta los atributos de los bloques de código, dejando solo el identificador de lenguaje (ej. ``` ```r {hl_lines=["4-6"]} ``` se convierte en ``` ```r ```, perdiendo el atributo).
+
+**Solución (comprobada):** envolver el bloque de código en un raw block de Pandoc (` ```{=markdown} `), usando cuatro backticks para la valla exterior (para no chocar con los tres backticks del bloque de código interno). Esto le indica a Quarto/Pandoc que pase el contenido literal sin reinterpretarlo ni reescribirlo:
+
+````
+````{=markdown}
+```r {hl_lines=["4-6"]}
+library(shiny)
+library(bslib)
+
+ui <- page_fillable(
+  h1("Párrafo interactivo")
+)
+```
+````
+````
+
+Nota: usar este patrón solo para bloques de código **no ejecutables** (de documentación), no para chunks `{r}` que efectivamente corren código — para esos, no hay forma de aplicar `hl_lines` vía chunk options; hay que convertirlos primero a bloque estático con el resultado ya calculado si se necesita resaltar líneas.
+
+Verificar siempre el `.md` resultante tras `quarto render` (buscar el atributo `hl_lines` en el archivo) porque el raw block puede alterar el espaciado en líneas en blanco alrededor del bloque (ej. eliminar la línea vacía antes de un shortcode siguiente como `{{< imagen ... >}}`); conviene revisar visualmente el post tras el build de Hugo.
+
+
 ## Menús de navegación
 
 **Header**: Yo, Blog, Buscar (`/buscar/`), Temas (`/tags/`), Tutoriales (`/categories/tutoriales/`), Paquetes (`/categories/paquetes/`), Aprende R (externo), Cursos, Apps (externo), Datos (externo), Enlaces

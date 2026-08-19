@@ -197,7 +197,7 @@ test_that("columnas mínimas presentes",
 ```
 
 ```
-## Test passed with 1 success 🎉.
+## Test passed with 1 success 🌈.
 ```
 
 Confirmamos la cantidad de observaciones es suficiente:
@@ -210,7 +210,7 @@ test_that("más de 2 filas",
 ```
 
 ```
-## Test passed with 1 success 🎊.
+## Test passed with 1 success 😀.
 ```
 
 Podemos aplicar validaciones sobre los valores específicos de las columnas. 
@@ -225,7 +225,7 @@ test_that("columnas tipo texto",
 ```
 
 ```
-## Test passed with 1 success 🥳.
+## Test passed with 1 success 🎊.
 ```
 
 Confirmar que la columna `patas` sea tipo numérico:
@@ -444,18 +444,18 @@ iris_sucio
 
 ```
 ## # A tibble: 150 × 5
-##    sepal_length sepal_width petal_length petal_width species 
-##    <chr>        <chr>       <chr>        <chr>       <chr>   
-##  1 "5.1"        "3.5"       "1.4"        "0.2"       s.etosa 
-##  2 "4.9"        "3 "        "1.4 "       "0.2"       SE%TOSA 
-##  3 "4.7 "       "3.2"       "1.3 "       "0.2"       set^osa 
-##  4 "4.6 "        <NA>        <NA>        "0.2 "      ^setosa 
-##  5 "5"          "3.6"        <NA>        "0.2"       .set^osa
-##  6 "5.4 "       "3.9"       "1.7"        "0.4"       <NA>    
-##  7 "4.6"        "3.4"       "1.4"        "0.3 "      se.t(osa
-##  8 "5"          "3.4"       "1.5"         <NA>       <NA>    
-##  9 "4.4"        "2.9"       "1.4"        "0.2 "      set(osa 
-## 10 "4.9"        "3.1"        <NA>        "0.1"       s#etosa 
+##    sepal_length sepal_width petal_length petal_width species     
+##    <chr>        <chr>       <chr>        <chr>       <chr>       
+##  1 5.1          "3.5"       "1.4"        "0.2"       "setosa "   
+##  2 4.9          "3 "        "1.4"         <NA>       "setos-a"   
+##  3 <NA>         "3.2"       "1.3"        "0.2 "       <NA>       
+##  4 4.6           <NA>       "1.5"        "0.2"       "seto^sa"   
+##  5 5            "3.6"       "1.4"         <NA>       "set!o$s(a "
+##  6 <NA>         "3.9"        <NA>         <NA>        <NA>       
+##  7 4.6          "3.4 "      "1.4 "       "0.3"       "s_eto$s@a "
+##  8 5            "3.4"        <NA>        "0.2"       "setos$a"   
+##  9 <NA>         "2.9"       "1.4"        "0.2 "      "s+etosa"   
+## 10 4.9          "3.1"        <NA>         <NA>        <NA>       
 ## # ℹ 140 more rows
 ```
 
@@ -509,7 +509,7 @@ test_that("validar cantidad de filas",
 ```
 
 ```
-## Test passed with 1 success 😸.
+## Test passed with 1 success 😀.
 ```
 
 

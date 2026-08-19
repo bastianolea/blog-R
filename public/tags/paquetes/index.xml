@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Paquetes de R on Bastián Olea</title>
-		<link>https://bastianolea.rbind.io/tags/paquetes/</link>
+		<link>http://localhost:4514/tags/paquetes/</link>
 		<description>Recent content in Paquetes de R on Bastián Olea</description>
 		<generator>Hugo</generator>
 		<language>es-ES</language>
@@ -12,26 +12,26 @@
 		
 			<lastBuildDate>Sat, 27 Jun 2026 00:00:00 +0000</lastBuildDate>
 		
-			<atom:link href="https://bastianolea.rbind.io/tags/paquetes/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="http://localhost:4514/tags/paquetes/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>`{territorial}`: un paquete de R para trabajar con datos de comunas y regiones de Chile</title>
-				<link>https://bastianolea.rbind.io/blog/territorial/</link>
+				<link>http://localhost:4514/blog/territorial/</link>
 				<pubDate>Sat, 27 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/blog/territorial/</guid>
+				<guid>http://localhost:4514/blog/territorial/</guid>
 				<description>&lt;p&gt;&lt;a href=&#34;https://bastianolea.github.io/territorial/&#34;&gt;&lt;img src=&#34;hex-featured.png&#34; align=&#34;right&#34; height=&#34;180&#34; alt=&#34;territorial website&#34; /&gt;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;El objetivo de este paquete es entregar &#xA;&lt;a href=&#34;https://bastianolea.github.io/territorial/reference/index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;numerosas funciones&lt;/a&gt; para simplificar el análisis de datos territoriales de Chile, facilitando tareas de limpieza y procesamiento de datos que suelen ser necesarias al trabajar con datos de Chile a nivel comunal y regional.&lt;/p&gt;&#xA;&lt;p&gt;Los datos públicos sobre temáticas sociales siempre vienen en dudosa calidad, sobre todo cuando se refieren a comunas: nombres mal escritos, en mayúsculas, sin eñes, sin tildes, etc. Así que creé &lt;code&gt;{territorial}&lt;/code&gt; para facilitar este tipo de tareas!&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>`{rutera}`: un paquete de R para limpiar y procesar RUTs chilenos</title>
-				<link>https://bastianolea.rbind.io/blog/rutera/</link>
+				<link>http://localhost:4514/blog/rutera/</link>
 				<pubDate>Thu, 18 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/blog/rutera/</guid>
+				<guid>http://localhost:4514/blog/rutera/</guid>
 				<description>&lt;p&gt;Paquete de R que entrega herramientas para limpiar, validar y verificar el número de cédula de identidad Chilena en R.&lt;/p&gt;&#xA;&lt;div style=&#34;margin: 28px 0;&#34;&gt;&#xA;&#xA;  &lt;a href=&#34;https://bastianolea.github.io/rutera/&#34;&#xA;     target=&#34;_blank&#34;&#xA;     rel=&#34;noopener noreferrer&#34;&#xA;     class=&#34;externo-card&#34;&gt;&#xA;&#xA;    &#xA;    &lt;figure class=&#34;externo-card-img paquete-card-img&#34;&gt;&#xA;      &lt;img src=&#34;hex-featured.png&#34;&#xA;           alt=&#34;Paquete `{rutera}`&#34;&gt;&#xA;    &lt;/figure&gt;&#xA;    &#xA;&#xA;    &lt;div class=&#34;externo-card-text&#34;&gt;&#xA;&#xA;      &lt;p style=&#34;margin: 0;&#xA;                font-size: 95%;&#xA;                color: #9069C0;&#xA;                font-weight: bold;&#xA;                line-height: 1.35;&#34;&gt;&#xA;        Paquete &lt;code&gt;{rutera}&lt;/code&gt;&#xA;      &lt;/p&gt;&#xA;&#xA;      &#xA;      &lt;p style=&#34;margin: 0;&#xA;                color: #543A73;&#xA;                font-size: 84%;&#xA;                line-height: 1.5;&#34;&gt;&#xA;        Herramientas para limpiar, validar y verificar el número de cédula de identidad Chilena en R. Estas funciones ayudan a realizar operaciones frecuentes para datos de ciudadanos chilenos que incluyen el RUT como identificador único.&#xA;      &lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>Extensiones recomendadas para mejorar tus gráficos de `{ggplot2}`</title>
-				<link>https://bastianolea.rbind.io/blog/ggplot_extensiones/</link>
+				<link>http://localhost:4514/blog/ggplot_extensiones/</link>
 				<pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/blog/ggplot_extensiones/</guid>
+				<guid>http://localhost:4514/blog/ggplot_extensiones/</guid>
 				<description>&lt;div style=&#34;display: flex; align-items: center; gap: 15px; padding: 14px; &#xA;            background-color: #493365;&#xA;            border-radius: 6px;&#xA;            margin: 20px 40px 20px 40px;&#34;&gt;&#xA;  &#xA;  &lt;div style=&#34;flex-shrink: 0;&#34;&gt;&#xA;    &lt;i class=&#34;fas fa-triangle-exclamation&#34; style=&#34;font-size: 130%; margin-left: 2px; opacity: 1; color: #EAD2FA;&#34;&gt;&lt;/i&gt;&#xA;  &lt;/div&gt;&#xA;  &#xA;  &lt;aside style = &#34;font-size: 90%; color: #EAD2FA;&#34;&gt;&#xA;    Publicación en construcción! A medida que encuentre (y recuerde) más extensiones las iré listando aquí.&#xA;  &lt;/aside&gt;&#xA;  &#xA;&lt;/div&gt;&#xA;&lt;!---&#xA;&lt;a href=&#34;ggplot2_extensiones_featured.png&#34; target=&#34;_blank&#34;&gt;&#xA;&#xA;  &lt;img src=&#34;ggplot2_extensiones_featured.png&#34; style=&#39;float: right; border-radius: 5px; max-width: 300px; margin-left: 24px; margin-bottom: 24px;&#39;&gt;&#xA;  &#xA;&lt;/a&gt;&#xA;--&gt;&#xA;&lt;div class=&#39;imagen_lateral&#39;&gt;&#xA;  &lt;img src=&#34;ggplot2_extensiones.png&#34;&gt;&#xA;&lt;/div&gt;&#xA;&lt;p&gt;Una de las ventajas de usar &lt;code&gt;{ggplot2}&lt;/code&gt; para visualización de datos en R es su &lt;strong&gt;flexibilidad&lt;/strong&gt; y capacidad de &lt;strong&gt;personalización&lt;/strong&gt;. Existen &#xA;&lt;a href=&#34;https://exts.ggplot2.tidyverse.org&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;muchas extensiones desarrolladas por la comunidad&lt;/a&gt; para agregar nuevas funcionalidades, formas de visualizar datos, mejoras, paletas de colores y más.&lt;/p&gt;</description>
 			</item>
 	</channel>
