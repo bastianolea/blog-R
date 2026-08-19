@@ -42,7 +42,7 @@ Primero veremos un ejemplo de [párrafos interactivos con R](/blog/redactar_text
 
 ## Párrafos de texto con cifras
 
-Antes de hacer cualquier aplicación Shiny, **recomiendo probar la lógica** en un script normal de R. Así que intentemos hacer un párrafo de prueba.
+Antes de hacer cualquier aplicación Shiny, **recomiendo probar la lógica** en un script normal de R. Así que intentemos hacer un [párrafo de prueba a partir de cifras y pseudofiltros, como ya hemos visto antes](/blog/redactar_texto) en este blog.
 
 Primero cargamos los datos de pobreza, [procesados en este repositorio](https://github.com/bastianolea/pobreza_2024), y que puedes [descargar en CSV en este enlace.]("/blog/shiny_parrafo/datos/pobreza_ingresos_2024.csv)
 
@@ -235,12 +235,20 @@ En la comuna de Hualqui, Región del Biobío, la cantidad de personas en situaci
 
 Código como el anterior se podría usar para automatizar la redacción de un reporte, los textos de bajada de una tabla o de un gráfico, o para aplicaciones interactivas de exploración de datos!
 
-{{< relacionada "blog/redactar_texto" >}}
+{{< relacionada "/blog/redactar_texto" >}}
 
 
 ## Interfaz: armando el párrafo
 
-Se elige un territorio (Chile completo o una región), si se quiere ver porcentaje o cantidad de personas, y un umbral de pobreza, y el párrafo indica cuántas comunas superan ese umbral y a cuántas personas en situación de pobreza corresponde esa cifra. Puedes ver el [código completo del ejemplo en este repositorio.](https://github.com/bastianolea/shiny_parrafo_interactivo)
+Ahora pasaremos del ejemplo anterior a una versión interactiva con Shiny. El objetivo es que se pueda elegir un territorio (Chile completo o una región), luego elegir entre cantidad y porcentaje de pobreza, y el párrafo indicará las cifras correspondientes.
+
+
+> En Chile, la cantidad de personas que vive en situación de pobreza es de 454.545
+> En la región de Maule, la cantidad de personas que vive en situación de pobreza es de 3.343
+> En la región de Arica y Parinacota, el porcentaje de personas que vive en situación de pobreza es de 12%
+
+
+Puedes ver el [código completo del ejemplo en este repositorio.](https://github.com/bastianolea/shiny_parrafo_interactivo)
 
 
 

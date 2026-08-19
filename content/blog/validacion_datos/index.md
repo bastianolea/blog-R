@@ -116,7 +116,7 @@ test_that("números iguales",
 )
 ```
 
-    Test passed with 1 success 🥇.
+    Test passed with 1 success 🥳.
 
 Esta prueba evalúa si dos números son iguales (`expect_equal()`), y en este ejemplo se cumple: `{testthat}` nos entrega un emoji de celebración 🎉
 
@@ -160,7 +160,7 @@ test_that("suficientes columnas",
 )
 ```
 
-    Test passed with 1 success 🌈.
+    Test passed with 1 success 😀.
 
 También podemos probar si hay más de `x` columnas:
 
@@ -170,7 +170,7 @@ test_that("más de 2 columnas",
 )
 ```
 
-    Test passed with 1 success 🥳.
+    Test passed with 1 success 😀.
 
 O bien, confirmar que existen columnas específicas en la tabla:
 
@@ -190,7 +190,7 @@ test_that("más de 2 filas",
 )
 ```
 
-    Test passed with 1 success 🥇.
+    Test passed with 1 success 🎊.
 
 Podemos aplicar validaciones sobre los valores específicos de las columnas.
 
@@ -202,7 +202,7 @@ test_that("columnas tipo texto",
 )
 ```
 
-    Test passed with 1 success 🌈.
+    Test passed with 1 success 😀.
 
 Confirmar que la columna `patas` sea tipo numérico:
 
@@ -393,16 +393,16 @@ iris_sucio
     # A tibble: 150 × 5
        sepal_length sepal_width petal_length petal_width species    
        <chr>        <chr>       <chr>        <chr>       <chr>      
-     1  <NA>        "3.5"        <NA>        "0.2"       "se%tosa"  
-     2 "4.9"        "3"         "1.4"        "0.2"       "s(etosa"  
-     3 "4.7"         <NA>       "1.3"        "0.2"       ")setosa"  
-     4 "4.6"        "3.1"       "1.5 "       "0.2 "      "!setos-a "
-     5 "5"           <NA>       "1.4"        "0.2 "       <NA>      
-     6 "5.4"        "3.9"        <NA>         <NA>       "setosa "  
-     7 "4.6"        "3.4"       "1.4"        "0.3"       "set$o(sa" 
-     8 "5 "         "3.4"        <NA>        "0.2"       "!setosa"  
-     9  <NA>        "2.9 "       <NA>        "0.2"       "SETO*SA"  
-    10  <NA>        "3.1"       "1.5"        "0.1"       "s%etosa " 
+     1 5.1           <NA>       "1.4"         <NA>       "(se_t^osa"
+     2 <NA>         "3 "        "1.4"        "0.2"        <NA>      
+     3 4.7          "3.2 "      "1.3"        "0.2"       "s*e#tosa" 
+     4 4.6          "3.1"       "1.5"        "0.2"        <NA>      
+     5 5            "3.6"       "1.4"        "0.2"       "#s+etosa" 
+     6 5.4          "3.9 "      "1.7"        "0.4 "      "*setosa"  
+     7 4.6          "3.4"        <NA>        "0.3"       "seto%sa " 
+     8 <NA>         "3.4"       "1.5 "       "0.2"       "&setos^a" 
+     9 4.4          "2.9"        <NA>        "0.2"       "set!osa " 
+    10 4.9          "3.1 "       <NA>        "0.1 "      "s#et*osa" 
     # ℹ 140 more rows
 
 Luego creamos un agente para validar estos datos:
@@ -450,7 +450,7 @@ test_that("validar cantidad de filas",
 )
 ```
 
-    Test passed with 1 success 😸.
+    Test passed with 1 success 🌈.
 
 ``` r
 test_that("validar que no hayan datos perdidos",
@@ -458,7 +458,7 @@ test_that("validar que no hayan datos perdidos",
 )
 ```
 
-    Test passed with 1 success 🎊.
+    Test passed with 1 success 🌈.
 
 ``` r
 test_that("validar que la cantidad de patas sea razonable",

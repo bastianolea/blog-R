@@ -31,9 +31,8 @@ links:
 excerpt: La validación de datos sirve para verificar durante el proceso de análisis si los datos cumplen con requerimientos de calidad y con tus expectativas, con el objetivo de evitar problemas futuros relacionados a datos inesperados, incompletos, o erróneos. En este post veremos dos paquetes para validar el funcionamiento de tu código y para validar tus datos. 
 ---
 
-
 {{< imagen "pointblank-1.png" >}}
-s
+
 En un [post anterior](/blog/validacion_basica) hablé sobre cómo hacer validación básica de datos en R. En resumen, creamos funciones con pruebas simples para validar la calidad de tus datos, tales como revisar cantidad de filas, cantidad de datos perdidos, y otros. 
 
 Dado que R es un lenguaje enfocado en el análisis de datos, existen varios paquetes que nos pueden ayudar con la validación de datos!
@@ -119,7 +118,7 @@ test_that("números iguales",
 ```
 
 ```
-## Test passed with 1 success 😸.
+## Test passed with 1 success 🥇.
 ```
 
 Esta prueba evalúa si dos números son iguales (`expect_equal()`), y en este ejemplo se cumple: `{testthat}` nos entrega un emoji de celebración 🎉 
@@ -172,7 +171,7 @@ test_that("suficientes columnas",
 ```
 
 ```
-## Test passed with 1 success 😸.
+## Test passed with 1 success 😀.
 ```
 
 También podemos probar si hay más de `x` columnas:
@@ -198,7 +197,7 @@ test_that("columnas mínimas presentes",
 ```
 
 ```
-## Test passed with 1 success 🥳.
+## Test passed with 1 success 🎉.
 ```
 
 Confirmamos la cantidad de observaciones es suficiente:
@@ -211,7 +210,7 @@ test_that("más de 2 filas",
 ```
 
 ```
-## Test passed with 1 success 🥇.
+## Test passed with 1 success 🎊.
 ```
 
 Podemos aplicar validaciones sobre los valores específicos de las columnas. 
@@ -226,7 +225,7 @@ test_that("columnas tipo texto",
 ```
 
 ```
-## Test passed with 1 success 🌈.
+## Test passed with 1 success 🥳.
 ```
 
 Confirmar que la columna `patas` sea tipo numérico:
@@ -445,18 +444,18 @@ iris_sucio
 
 ```
 ## # A tibble: 150 × 5
-##    sepal_length sepal_width petal_length petal_width species   
-##    <chr>        <chr>       <chr>        <chr>       <chr>     
-##  1 "5.1"        "3.5 "       <NA>        0.2         "set!osa" 
-##  2 "4.9"        "3"         "1.4"        <NA>        "^set)osa"
-##  3 "4.7"        "3.2"       "1.3"        0.2          <NA>     
-##  4 "4.6"        "3.1"       "1.5"        0.2         "set*o+sa"
-##  5  <NA>         <NA>       "1.4 "       <NA>        "set&o-sa"
-##  6 "5.4 "       "3.9 "      "1.7"        0.4         "setosa " 
-##  7 "4.6 "       "3.4 "      "1.4 "       0.3          <NA>     
-##  8 "5"          "3.4"        <NA>        0.2         "seto)s-a"
-##  9 "4.4"        "2.9 "       <NA>        0.2          <NA>     
-## 10 "4.9"        "3.1"       "1.5 "       0.1         "se.tosa" 
+##    sepal_length sepal_width petal_length petal_width species 
+##    <chr>        <chr>       <chr>        <chr>       <chr>   
+##  1 "5.1"        "3.5"       "1.4"        "0.2"       s.etosa 
+##  2 "4.9"        "3 "        "1.4 "       "0.2"       SE%TOSA 
+##  3 "4.7 "       "3.2"       "1.3 "       "0.2"       set^osa 
+##  4 "4.6 "        <NA>        <NA>        "0.2 "      ^setosa 
+##  5 "5"          "3.6"        <NA>        "0.2"       .set^osa
+##  6 "5.4 "       "3.9"       "1.7"        "0.4"       <NA>    
+##  7 "4.6"        "3.4"       "1.4"        "0.3 "      se.t(osa
+##  8 "5"          "3.4"       "1.5"         <NA>       <NA>    
+##  9 "4.4"        "2.9"       "1.4"        "0.2 "      set(osa 
+## 10 "4.9"        "3.1"        <NA>        "0.1"       s#etosa 
 ## # ℹ 140 more rows
 ```
 
@@ -510,7 +509,7 @@ test_that("validar cantidad de filas",
 ```
 
 ```
-## Test passed with 1 success 🎊.
+## Test passed with 1 success 😸.
 ```
 
 
@@ -521,7 +520,7 @@ test_that("validar que no hayan datos perdidos",
 ```
 
 ```
-## Test passed with 1 success 🎉.
+## Test passed with 1 success 🥇.
 ```
 
 
