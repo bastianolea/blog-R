@@ -1,0 +1,23 @@
+---
+title: Valida datos para prevenir problemas!
+author: Bastián Olea Herrera
+date: '2026-08-21'
+slug: []
+categories: []
+tags:
+  - consejos
+  - limpieza de datos
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+---
+
+diccionario |>
+  col_vals_not_null(everything())
+
+validacion_datos
+
+validacion_basica
+
+https://rstudio.github.io/pointblank/articles/VALID-II.html

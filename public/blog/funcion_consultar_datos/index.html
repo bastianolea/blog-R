@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-ES" dir="ltr"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4514&amp;path=livereload" data-no-instant defer></script>
+<html lang="es-ES" dir="ltr"><head>
   
                            
      
@@ -31,16 +31,16 @@
 <meta property="og:title" content="Creando una función para consultar datos en R | Bastián Olea">
 <meta property="og:description" content="Crea tu propia API para obtener cifras desde bases de datos más rápido" />
 <meta property="og:type" content="page" />
-<meta property="og:url" content="http://localhost:4514/blog/funcion_consultar_datos/" />
+<meta property="og:url" content="https://bastianolea.rbind.io/blog/funcion_consultar_datos/" />
 <meta property="og:locale" content="es-ES">
 
 
 
 
     
-        <meta property="og:image" content="http://localhost:4514/blog/funcion_consultar_datos/funcion_consultar_datos_featured.png" >
+        <meta property="og:image" content="https://bastianolea.rbind.io/blog/funcion_consultar_datos/funcion_consultar_datos_featured.png" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="http://localhost:4514/blog/funcion_consultar_datos/funcion_consultar_datos_featured.png" >
+        <meta name="twitter:image" content="https://bastianolea.rbind.io/blog/funcion_consultar_datos/funcion_consultar_datos_featured.png" >
     
     
   
@@ -50,7 +50,7 @@ Pasaremos de tener una tabla de datos que necesitamos manipular, a una función 
 	<meta itemprop="datePublished" content="2026-05-23T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-05-23T00:00:00+00:00">
 	<meta itemprop="wordCount" content="4151">
-	<meta itemprop="image" content="http://localhost:4514/blog/funcion_consultar_datos/funcion_consultar_datos_featured.png">
+	<meta itemprop="image" content="https://bastianolea.rbind.io/blog/funcion_consultar_datos/funcion_consultar_datos_featured.png">
 	<meta itemprop="keywords" content="Datos,Chile,Funciones,Inteligencia artificial">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -58,20 +58,20 @@ Pasaremos de tener una tabla de datos que necesitamos manipular, a una función 
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="../../style.main.min.bd66cfc27a4c0d51b6ce4a5157347dd04fb8bdaca67ac747a0d21a34854da9be.css" integrity="sha256-vWbPwnpMDVG2zkpRVzR90E&#43;4vaymesdHoNIaNIVNqb4=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.bd66cfc27a4c0d51b6ce4a5157347dd04fb8bdaca67ac747a0d21a34854da9be.css" integrity="sha256-vWbPwnpMDVG2zkpRVzR90E&#43;4vaymesdHoNIaNIVNqb4=" media="screen">
   
   
-  <script src="../../panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="../../main.min.9fff16086958932cf7cd985d5507ca155ead37fb7359e63400e3b653024ad59e.js" type="text/javascript"></script>
+  <script src="/main.min.9fff16086958932cf7cd985d5507ca155ead37fb7359e63400e3b653024ad59e.js" type="text/javascript"></script>
   
   
-  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="/css/syntax.css">
   
   
-  
-  
+  <link rel="preconnect" href="https://bastianoleah.shinyapps.io">
+  <link rel="dns-prefetch" href="https://bastianoleah.shinyapps.io">
   
   
   <meta name="google-site-verification" content="yaiYGBAfSJpjE7mfPuFVP1yoNIqLadRJQIzCOula8TI" />
@@ -81,15 +81,15 @@ Pasaremos de tener una tabla de datos que necesitamos manipular, a una función 
       <div class="grid-container single-sidebar">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="http://localhost:4514/" title="Home">
-      <img src="../../img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://bastianolea.rbind.io/" title="Home">
+      <img src="/img/logo.png" class="dib db-l h2 w-auto" alt="Bastián Olea">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 active" href="../../blog/" title="Bastián Olea: Blog de R">Blog</a>
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/blog/" title="Bastián Olea: Blog de R">Blog</a>
       
         
         
@@ -109,32 +109,32 @@ Pasaremos de tener una tabla de datos que necesitamos manipular, a una función 
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="../../categories/tutoriales/" title="Tutoriales">Tutoriales</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/categories/tutoriales/" title="Tutoriales">Tutoriales</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="../../buscar/" title="Buscador">Buscar</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/buscar/" title="Buscador">Buscar</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="../../tags/" title="Temas">Temas</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/tags/" title="Temas">Temas</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="../../clases/" title="Cursos">Cursos</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/clases/" title="Cursos">Cursos</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="../../about/" title="Bastián Olea: Sobre mi">Yo</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/about/" title="Bastián Olea: Sobre mi">Yo</a>
       
         
         
         
-      <a class="link f6 f5-l dib pv1 ph2 " href="../../blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
+      <a class="link f6 f5-l dib pv1 ph2 " href="/blog/r_introduccion/recursos_r/" title="Recursos">Enlaces</a>
       
       
       
@@ -153,7 +153,7 @@ Pasaremos de tener una tabla de datos que necesitamos manipular, a una función 
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="../../buscar/" title="search" 
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -233,7 +233,7 @@ Pasaremos de tener una tabla de datos que necesitamos manipular, a una función 
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="../../contacto/" title="envelope" 
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-envelope fa-lg fa-fw"></i>
     </a>
@@ -270,7 +270,7 @@ Pasaremos de tener una tabla de datos que necesitamos manipular, a una función 
         
         
         <dl class="f6 lh-copy">
-          <em><dd class="fw5 ml0"> <a href="http://localhost:4514/tags/datos"
+          <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/datos"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -279,7 +279,7 @@ Pasaremos de tener una tabla de datos que necesitamos manipular, a una función 
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            datos</a>  <a href="http://localhost:4514/tags/chile"
+            datos</a>  <a href="https://bastianolea.rbind.io/tags/chile"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -288,7 +288,7 @@ Pasaremos de tener una tabla de datos que necesitamos manipular, a una función 
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            Chile</a>  <a href="http://localhost:4514/tags/funciones"
+            Chile</a>  <a href="https://bastianolea.rbind.io/tags/funciones"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -297,7 +297,7 @@ Pasaremos de tener una tabla de datos que necesitamos manipular, a una función 
                        background-color: #9069C0; 
                        border-radius: 3px; 
                        padding: 2px 6px; ">
-            funciones</a>  <a href="http://localhost:4514/tags/inteligencia-artificial"
+            funciones</a>  <a href="https://bastianolea.rbind.io/tags/inteligencia-artificial"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
                        font-style: normal;
@@ -427,7 +427,7 @@ Pasaremos de tener una tabla de datos que necesitamos manipular, a una función 
       Tutorial para trabajar con el Censo
     </p>
 
-  <a href="../../blog/censo_2024/"
+  <a href="/blog/censo_2024/"
      style="display: flex;
             flex-direction: row;
             align-items: stretch;
@@ -449,7 +449,7 @@ Pasaremos de tener una tabla de datos que necesitamos manipular, a una función 
                    margin: 10px 0 10px 10px;
                    overflow: hidden;
                    border-radius: 5px;">
-      <img src="../../blog/censo_2024/censo-featured.jpg"
+      <img src="/blog/censo_2024/censo-featured.jpg"
            alt="Explorar datos del Censo de Población y Vivienda 2024 con R"
            style="position: absolute;
                   inset: 0;
@@ -531,7 +531,7 @@ Hadley Wickham
       Aprende a hacer funciones
     </p>
 
-  <a href="../../blog/r_introduccion/r_intermedio/"
+  <a href="/blog/r_introduccion/r_intermedio/"
      style="display: flex;
             flex-direction: row;
             align-items: stretch;
@@ -1422,7 +1422,7 @@ Error in `consultar_censo()`:
       Publicaciones relacionadas
     </p>
 
-  <a href="../../blog/2025-03-30/"
+  <a href="/blog/2025-03-30/"
      style="display: flex;
             flex-direction: row;
             align-items: stretch;
@@ -1444,7 +1444,7 @@ Error in `consultar_censo()`:
                    margin: 10px 0 10px 10px;
                    overflow: hidden;
                    border-radius: 5px;">
-      <img src="../../blog/2025-03-30/featured.png"
+      <img src="/blog/2025-03-30/featured.png"
            alt="Redactar una lista de palabras separadas por comas en R"
            style="position: absolute;
                   inset: 0;
@@ -1626,7 +1626,7 @@ Error in `consultar_censo()`:
       Publicaciones relacionadas
     </p>
 
-  <a href="../../blog/herramientas_llm/"
+  <a href="/blog/herramientas_llm/"
      style="display: flex;
             flex-direction: row;
             align-items: stretch;
@@ -1648,7 +1648,7 @@ Error in `consultar_censo()`:
                    margin: 10px 0 10px 10px;
                    overflow: hidden;
                    border-radius: 5px;">
-      <img src="../../blog/herramientas_llm/herramientas-llm-featured.png"
+      <img src="/blog/herramientas_llm/herramientas-llm-featured.png"
            alt="Potencia las capacidades de la IA entregándole herramientas (_tool calling_) basadas en R"
            style="position: absolute;
                   inset: 0;
@@ -1783,7 +1783,7 @@ Error in `consultar_censo()`:
       Cómo entregar funciones a una inteligencia artificial
     </p>
 
-  <a href="../../blog/herramientas_llm/"
+  <a href="/blog/herramientas_llm/"
      style="display: flex;
             flex-direction: row;
             align-items: stretch;
@@ -1805,7 +1805,7 @@ Error in `consultar_censo()`:
                    margin: 10px 0 10px 10px;
                    overflow: hidden;
                    border-radius: 5px;">
-      <img src="../../blog/herramientas_llm/herramientas-llm-featured.png"
+      <img src="/blog/herramientas_llm/herramientas-llm-featured.png"
            alt="Potencia las capacidades de la IA entregándole herramientas (_tool calling_) basadas en R"
            style="position: absolute;
                   inset: 0;
@@ -1858,7 +1858,7 @@ Error in `consultar_censo()`:
                 overflow: hidden;
                 background-color: #9069C00d;">
 
-      <a href="../../blog/herramientas_llm/"
+      <a href="/blog/herramientas_llm/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -1870,7 +1870,7 @@ Error in `consultar_censo()`:
                   ">
 
           
-          <img src="../../blog/herramientas_llm/herramientas-llm-featured.png"
+          <img src="/blog/herramientas_llm/herramientas-llm-featured.png"
                alt="Potencia las capacidades de la IA entregándole herramientas (_tool calling_) basadas en R"
                style="flex-shrink: 0;
                       width: 52px;
@@ -1889,7 +1889,7 @@ Error in `consultar_censo()`:
           </span>
 
         </a>
-      <a href="../../blog/censo_2024/"
+      <a href="/blog/censo_2024/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -1901,7 +1901,7 @@ Error in `consultar_censo()`:
                   ">
 
           
-          <img src="../../blog/censo_2024/censo-featured.jpg"
+          <img src="/blog/censo_2024/censo-featured.jpg"
                alt="Explorar datos del Censo de Población y Vivienda 2024 con R"
                style="flex-shrink: 0;
                       width: 52px;
@@ -1920,7 +1920,7 @@ Error in `consultar_censo()`:
           </span>
 
         </a>
-      <a href="../../blog/indice_brechas_genero/"
+      <a href="/blog/indice_brechas_genero/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -1932,7 +1932,7 @@ Error in `consultar_censo()`:
                   ">
 
           
-          <img src="../../blog/indice_brechas_genero/featured.jpg"
+          <img src="/blog/indice_brechas_genero/featured.jpg"
                alt="Plataforma de análisis: Índice de Brechas de Género"
                style="flex-shrink: 0;
                       width: 52px;
@@ -1951,7 +1951,7 @@ Error in `consultar_censo()`:
           </span>
 
         </a>
-      <a href="../../blog/estudio_brechas_comunales/"
+      <a href="/blog/estudio_brechas_comunales/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -1963,7 +1963,7 @@ Error in `consultar_censo()`:
                   ">
 
           
-          <img src="../../blog/estudio_brechas_comunales/featured.jpeg"
+          <img src="/blog/estudio_brechas_comunales/featured.jpeg"
                alt="Plataforma de visualización de resultados del Estudio de Brechas Comunales"
                style="flex-shrink: 0;
                       width: 52px;
@@ -1982,7 +1982,7 @@ Error in `consultar_censo()`:
           </span>
 
         </a>
-      <a href="../../blog/datos_estructurados_llm/"
+      <a href="/blog/datos_estructurados_llm/"
            style="display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -2037,12 +2037,12 @@ Error in `consultar_censo()`:
   
   
     <a class="prev dtc pr2 tl v-top fw6"
-    href="http://localhost:4514/blog/rag_ragnar/">&larr; Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R</a>
+    href="https://bastianolea.rbind.io/blog/rag_ragnar/">&larr; Aumenta el conocimiento de inteligencias artificiales creando un sistema de RAG con R</a>
   
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="http://localhost:4514/blog/shiny/">Tutorial: Crea aplicaciones web interactivas en R con Shiny &rarr;</a>
+    href="https://bastianolea.rbind.io/blog/shiny/">Tutorial: Crea aplicaciones web interactivas en R con Shiny &rarr;</a>
   
 </div>
 
@@ -2074,17 +2074,17 @@ Error in `consultar_censo()`:
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Tags:</dt>
-    <dd class="fw5 ml0"> <a href="http://localhost:4514/tags/datos">datos</a>  <a href="http://localhost:4514/tags/chile">Chile</a>  <a href="http://localhost:4514/tags/funciones">funciones</a>  <a href="http://localhost:4514/tags/inteligencia-artificial">inteligencia artificial</a> </dd>
+    <dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/datos">datos</a>  <a href="https://bastianolea.rbind.io/tags/chile">Chile</a>  <a href="https://bastianolea.rbind.io/tags/funciones">funciones</a>  <a href="https://bastianolea.rbind.io/tags/inteligencia-artificial">inteligencia artificial</a> </dd>
   </dl>
   
   <dl class="f6 lh-copy">
     <dt class="fw7">Ver también:</dt>
     
-    <dd class="fw5 ml0"><a href="../../blog/2026-08-08/">Notas sobre generación de texto usando IA</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/2026-08-08/">Notas sobre generación de texto usando IA</a></dd>
     
-    <dd class="fw5 ml0"><a href="../../blog/2026-07-24/">Mapas bivariados de adultos mayores en relación a viviendas propias en las comunas de Chile</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/2026-07-24/">Mapas bivariados de adultos mayores en relación a viviendas propias en las comunas de Chile</a></dd>
     
-    <dd class="fw5 ml0"><a href="../../blog/mapas_bivariados/">Crea mapas bivariados en R para visualizar la relación entre dos variables</a></dd>
+    <dd class="fw5 ml0"><a href="/blog/mapas_bivariados/">Crea mapas bivariados en R para visualizar la relación entre dos variables</a></dd>
     
   </dl>
 </details>
@@ -2102,8 +2102,8 @@ Error in `consultar_censo()`:
 
   <h1 class="f3">Blog</h1>
   <p class="f6 lh-copy measure">Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el 
-<a href="../../buscar/">buscador</a> para encontrar publicaciones o navega los 
-<a href="../../tags/">temas</a>.</p>
+<a href="/buscar/">buscador</a> para encontrar publicaciones o navega los 
+<a href="/tags/">temas</a>.</p>
   
 
    
@@ -2126,7 +2126,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/chile/">Chile</a></span>
+      href="https://bastianolea.rbind.io/tags/chile/">Chile</a></span>
   </span>
  
   
@@ -2141,7 +2141,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/datos/">Datos</a></span>
+      href="https://bastianolea.rbind.io/tags/datos/">Datos</a></span>
   </span>
  
   
@@ -2156,7 +2156,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/">Visualización de datos</a></span>
   </span>
  
   
@@ -2171,7 +2171,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/blog/">Blog</a></span>
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
   </span>
  
   
@@ -2186,7 +2186,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/consejos/">Consejos</a></span>
+      href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
   </span>
  
   
@@ -2201,7 +2201,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/shiny/">Shiny</a></span>
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -2216,7 +2216,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
   </span>
  
   
@@ -2231,7 +2231,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/apps/">Aplicaciones</a></span>
+      href="https://bastianolea.rbind.io/tags/apps/">Aplicaciones</a></span>
   </span>
  
   
@@ -2246,7 +2246,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/ggplot2/">ggplot2</a></span>
+      href="https://bastianolea.rbind.io/tags/mapas/">Mapas</a></span>
   </span>
  
   
@@ -2261,7 +2261,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/mapas/">Mapas</a></span>
+      href="https://bastianolea.rbind.io/tags/ggplot2/">ggplot2</a></span>
   </span>
  
   
@@ -2276,7 +2276,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/b%C3%A1sico/">Básico</a></span>
+      href="https://bastianolea.rbind.io/tags/b%C3%A1sico/">Básico</a></span>
   </span>
  
   
@@ -2291,7 +2291,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
+      href="https://bastianolea.rbind.io/tags/inteligencia-artificial/">Inteligencia artificial</a></span>
   </span>
  
   
@@ -2306,7 +2306,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/limpieza-de-datos/">Limpieza de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/limpieza-de-datos/">Limpieza de datos</a></span>
   </span>
  
   
@@ -2321,7 +2321,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/web-scraping/">Web scraping</a></span>
+      href="https://bastianolea.rbind.io/tags/web-scraping/">Web scraping</a></span>
   </span>
  
   
@@ -2336,7 +2336,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/curiosidades/">Curiosidades</a></span>
+      href="https://bastianolea.rbind.io/tags/curiosidades/">Curiosidades</a></span>
   </span>
  
   
@@ -2351,7 +2351,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
+      href="https://bastianolea.rbind.io/tags/quarto/">Quarto</a></span>
   </span>
  
   
@@ -2366,7 +2366,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/texto/">Procesamiento de texto</a></span>
+      href="https://bastianolea.rbind.io/tags/procesamiento-de-datos/">Procesamiento de datos</a></span>
   </span>
  
   
@@ -2381,7 +2381,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/quarto/">Quarto</a></span>
+      href="https://bastianolea.rbind.io/tags/texto/">Procesamiento de texto</a></span>
   </span>
  
   
@@ -2396,7 +2396,7 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/dplyr/">Dplyr</a></span>
+      href="https://bastianolea.rbind.io/tags/dplyr/">Dplyr</a></span>
   </span>
  
   
@@ -2411,10 +2411,10 @@ Error in `consultar_censo()`:
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="http://localhost:4514/tags/loops/">Loops</a></span>
+      href="https://bastianolea.rbind.io/tags/loops/">Loops</a></span>
   </span>
 
-<a href="../../tags/" style="margin-left: 3px;">y más!</a>
+<a href="/tags/" style="margin-left: 3px;">y más!</a>
 </div>
 </div>
   
@@ -2486,7 +2486,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="../../buscar/" title="search" 
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/buscar/" title="search" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-search fa-lg fa-fw"></i>
     </a>
@@ -2566,7 +2566,7 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
       
     
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="../../contacto/" title="envelope" 
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="/contacto/" title="envelope" 
     style="margin-bottom: 6px !important;"> 
       <i class="fas fa-envelope fa-lg fa-fw"></i>
     </a>
@@ -2577,19 +2577,19 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
     
     <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
       
-      <a class="dib pv1 ph2 link" href="../../about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
+      <a class="dib pv1 ph2 link" href="/about/" title="Bastián Olea: Sobre mi">Sobre mi</a>
       
-      <a class="dib pv1 ph2 link" href="../../buscar/" title="Buscador">Buscar</a>
+      <a class="dib pv1 ph2 link" href="/buscar/" title="Buscador">Buscar</a>
       
-      <a class="dib pv1 ph2 link" href="../../contacto/" title="Bastián Olea: Contacto">Contacto</a>
+      <a class="dib pv1 ph2 link" href="/contacto/" title="Bastián Olea: Contacto">Contacto</a>
       
-      <a class="dib pv1 ph2 link" href="../../tags/" title="Temas">Temas</a>
+      <a class="dib pv1 ph2 link" href="/tags/" title="Temas">Temas</a>
       
-      <a class="dib pv1 ph2 link" href="../../clases/" title="Clases">Clases</a>
+      <a class="dib pv1 ph2 link" href="/clases/" title="Clases">Clases</a>
       
-      <a class="dib pv1 ph2 link" href="../../code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
+      <a class="dib pv1 ph2 link" href="/code-of-conduct/" title="Bastián Olea: Código de conducta">Código de conducta</a>
       
-      <a class="dib pv1 ph2 link" href="../../license/" title="Bastián Olea: Licencia">Licencia</a>
+      <a class="dib pv1 ph2 link" href="/license/" title="Bastián Olea: Licencia">Licencia</a>
       
     </div>
   </nav>
@@ -2632,5 +2632,6 @@ Sitio alojado en <a href="https://www.netlify.com" style="color:#9069C0;">Netlif
 </footer>
 
       </div>
+      <script src="/js/precargar-buscador.js" defer></script>
     </body>
 </html>

@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Paquetes de R on Bastián Olea</title>
-		<link>http://localhost:4514/categories/paquetes/</link>
+		<link>https://bastianolea.rbind.io/categories/paquetes/</link>
 		<description>Recent content in Paquetes de R on Bastián Olea</description>
 		<generator>Hugo</generator>
 		<language>es-ES</language>
@@ -12,19 +12,19 @@
 		
 			<lastBuildDate>Sat, 27 Jun 2026 00:00:00 +0000</lastBuildDate>
 		
-			<atom:link href="http://localhost:4514/categories/paquetes/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="https://bastianolea.rbind.io/categories/paquetes/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>`{territorial}`: un paquete de R para trabajar con datos de comunas y regiones de Chile</title>
-				<link>http://localhost:4514/blog/territorial/</link>
+				<link>https://bastianolea.rbind.io/blog/territorial/</link>
 				<pubDate>Sat, 27 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>http://localhost:4514/blog/territorial/</guid>
+				<guid>https://bastianolea.rbind.io/blog/territorial/</guid>
 				<description>&lt;p&gt;&lt;a href=&#34;https://bastianolea.github.io/territorial/&#34;&gt;&lt;img src=&#34;hex-featured.png&#34; align=&#34;right&#34; height=&#34;180&#34; alt=&#34;territorial website&#34; /&gt;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;El objetivo de este paquete es entregar &#xA;&lt;a href=&#34;https://bastianolea.github.io/territorial/reference/index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;numerosas funciones&lt;/a&gt; para simplificar el análisis de datos territoriales de Chile, facilitando tareas de limpieza y procesamiento de datos que suelen ser necesarias al trabajar con datos de Chile a nivel comunal y regional.&lt;/p&gt;&#xA;&lt;p&gt;Los datos públicos sobre temáticas sociales siempre vienen en dudosa calidad, sobre todo cuando se refieren a comunas: nombres mal escritos, en mayúsculas, sin eñes, sin tildes, etc. Así que creé &lt;code&gt;{territorial}&lt;/code&gt; para facilitar este tipo de tareas!&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>`{rutera}`: un paquete de R para limpiar y procesar RUTs chilenos</title>
-				<link>http://localhost:4514/blog/rutera/</link>
+				<link>https://bastianolea.rbind.io/blog/rutera/</link>
 				<pubDate>Thu, 18 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>http://localhost:4514/blog/rutera/</guid>
+				<guid>https://bastianolea.rbind.io/blog/rutera/</guid>
 				<description>&lt;p&gt;Paquete de R que entrega herramientas para limpiar, validar y verificar el número de cédula de identidad Chilena en R.&lt;/p&gt;&#xA;&lt;div style=&#34;margin: 28px 0;&#34;&gt;&#xA;&#xA;  &lt;a href=&#34;https://bastianolea.github.io/rutera/&#34;&#xA;     target=&#34;_blank&#34;&#xA;     rel=&#34;noopener noreferrer&#34;&#xA;     class=&#34;externo-card&#34;&gt;&#xA;&#xA;    &#xA;    &lt;figure class=&#34;externo-card-img paquete-card-img&#34;&gt;&#xA;      &lt;img src=&#34;hex-featured.png&#34;&#xA;           alt=&#34;Paquete `{rutera}`&#34;&gt;&#xA;    &lt;/figure&gt;&#xA;    &#xA;&#xA;    &lt;div class=&#34;externo-card-text&#34;&gt;&#xA;&#xA;      &lt;p style=&#34;margin: 0;&#xA;                font-size: 95%;&#xA;                color: #9069C0;&#xA;                font-weight: bold;&#xA;                line-height: 1.35;&#34;&gt;&#xA;        Paquete &lt;code&gt;{rutera}&lt;/code&gt;&#xA;      &lt;/p&gt;&#xA;&#xA;      &#xA;      &lt;p style=&#34;margin: 0;&#xA;                color: #543A73;&#xA;                font-size: 84%;&#xA;                line-height: 1.5;&#34;&gt;&#xA;        Herramientas para limpiar, validar y verificar el número de cédula de identidad Chilena en R. Estas funciones ayudan a realizar operaciones frecuentes para datos de ciudadanos chilenos que incluyen el RUT como identificador único.&#xA;      &lt;/p&gt;</description>
 			</item>
 	</channel>

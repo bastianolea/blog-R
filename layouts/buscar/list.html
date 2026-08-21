@@ -8,28 +8,42 @@
       <em>Cargando...</em>
     </div>
     
-    <!--- aplicación shiny embebida --->
+    <!--- aplicación shiny embebida (opacidad 0 hasta confirmar que renderizó) --->
     <iframe
       id="buscador-iframe"
       src="https://bastianoleah.shinyapps.io/buscador/"
-      style="width: 100%; border: none; border-radius: 4px;"
-      title="Buscador de posts"
-      loading="lazy">
+      style="width: 100%; border: none; border-radius: 4px; background: transparent; opacity: 0; transition: opacity 0.4s ease;"
+      title="Buscador de posts">
     </iframe>
 
   </section>
 </main>
 
-<!--- tamaño vertical del iframe --->
+<!--- tamaño vertical del iframe + revelado sin destello blanco --->
 <script src="/js/iframeResizer.min.js"></script>
 <script>
-  iFrameResize({ checkOrigin: false }, '#buscador-iframe')
-</script>
+  var buscadorListo = false
 
-<!--- ocultar texto al cargar iframe --->
-<script>
-  document.getElementById('buscador-iframe').addEventListener('load', function () {
+  function mostrarBuscador() {
+    if (buscadorListo) return
+    buscadorListo = true
     document.getElementById('cargando').style.display = 'none'
+    document.getElementById('buscador-iframe').style.opacity = '1'
+  }
+
+  // onResized solo se dispara una vez que la app Shiny terminó de
+  // renderizarse y reportó su alto real, así que es una mejor señal de
+  // "listo" que el evento load del iframe (que ocurre antes, con la app
+  // aún en blanco o cargando en el servidor).
+  iFrameResize({
+    checkOrigin: false,
+    onResized: mostrarBuscador
+  }, '#buscador-iframe')
+
+  // resguardo por si onResized nunca llega (ej. cold start muy lento o
+  // bloqueo del script del iframe): revela igual pasado un tiempo prudente.
+  document.getElementById('buscador-iframe').addEventListener('load', function () {
+    setTimeout(mostrarBuscador, 2500)
   })
 </script>
 {{ end }}
