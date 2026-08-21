@@ -13,11 +13,111 @@ format:
     output-ext: md
 ---
 
+¿Alguna vez has tenido dudas sobre los datos que estás explorando?
+
+Por ejemplo, si veamos estos datos:
+
+```{r}
+library(dplyr)
+
+datos <- tibble(
+  nombre = c("a", "b", "c", "d", "e"),
+  valor  = c("13", "24", "12", "nada", "78")
+)
+
+datos
+```
+
+Si necesitas confirmar si existen datos perdidos (`NA`s), harías algo como:
+
+```{r}
+library(dplyr)
+
+perdidos <- datos |> 
+  filter(is.na(valor))
+  
+library(cli)
+cli_inform("Existen {nrow(perdidos)} datos perdidos")
+```
+
+{{< relacionada "/blog/validacion_datos" >}}
+
+Con el paquete `{pointblank}` puedes olvidarte de las inseguridades cuando trabajes con datos!
+
+Con el conjunto de funciones `expect_x()`, definimos lo que _esperamos_ de la tabla de datos:
+
+```{r}
+library(pointblank)
+
+# esperar que no hayan datos perdidos en la columna
+datos |> 
+  expect_col_vals_not_null(valor)
+```
+
+Si la expectativa se cumple, todo bien y tu _pipeline_ sigue corriendo! Pero si hubiera un problema con la expectativa, el cálculo se detiene para que puedas corregirlo.
+
+Hagamos un cambio inocente a los datos: convertir una columna a tipo numérico:
+
+```{r}
+datos <- datos |> 
+  mutate(valor = as.numeric(valor))
+```
+
+Recibimos una alerta que fácilmente podríamos ignorar. Pero si agregamos una nueva validación, ahora obtendremos un error:
+
+```{r}
+datos |> 
+  expect_col_vals_not_null(valor)
+```
+
+Incluso podemos ir agregando varias pruebas de validación seguidas
+
+```{r}
+datos |>
+  expect_col_vals_not_in_set(valor) |> 
+  expect_col_is_numeric(valor) |> 
+  expect_col_vals_between(valor, 10, 40)
+```
+
+
+
+Uno de los usos de `{pointblank}` es ir agregando pasos de **validación de datos** cada vez que sea necesario, por ejemplo:
+
+- Luego de modificar/limpiar los datos
+- Al actualizar los datos
+- Antes de exportarlos o pasarlos al siguiente paso
+
+
+Pero ¿qué pasa si, después de hacer varios cambios a los datos, sigues con la misma duda?
+
+En cierto punto se vuelve 
+imposible revisar en cada paso
+
+
+
+confirmar luego de una limpieza
+
+¿y si cambian o se actualizan los datos?
+
+
+
+ejemplo de dataframe
+
+transformarlo, que aparezcan NA
+
+validar y recibir alerta
+
+
+```{r}
+
+```
+
+
 diccionario |>
   col_vals_not_null(everything())
 
-validacion_datos
 
-validacion_basica
+
+{{< relacionada "/blog/validacion_basica" >}}
 
 https://rstudio.github.io/pointblank/articles/VALID-II.html
