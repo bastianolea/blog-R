@@ -1,0 +1,20 @@
+---
+title: Proyectos de R reproducibles y estables gracias a `{renv}`
+author: Bastián Olea Herrera
+date: '2026-08-26'
+slug: []
+draft: true
+freeze: true
+categories:
+  - Tutoriales
+tags:
+  - consejos
+  - avanzado
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+---
+
+
+https://paocorrales.github.io/intro-renv/

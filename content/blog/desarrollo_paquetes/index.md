@@ -2,13 +2,14 @@
 title: Desarrollo de paquetes con R
 subtitle: Crea tus propias herramientas para trabajar con datos en R y compártelas!
 author: Bastián Olea Herrera
-date: '2026-07-10'
+date: '2026-08-26'
 draft: true
 categories:
   - Tutoriales
 tags:
   - paquetes
   - funciones
+  - avanzado
 links:
   - icon: registered
     icon_pack: fas
@@ -124,6 +125,8 @@ Pero el uso principal que le daremos al repositorio de control de cambios de Git
 usethis::use_github()
 ```
 
+{{< aviso "⚠️ Tutorial en construcción! A medida que voy aprendiendo, lo iré complementando" >}}
+
 ## Instalación local del paquete
 ```r
 pak::local_install()
@@ -171,7 +174,7 @@ usethis::use_test("territorios")
 devtools::test()
 ```
 
-{{< relacionada "blog/validacion_avanzada/" >}}
+{{< relacionada "/blog/validacion_datos/" >}}
 
 ## Incluir datos
 
@@ -226,4 +229,6 @@ pkgdown::build_site()
 ```
 
 
+{{< relacionada "/blog/territorial/" >}}
 
+{{< etiqueta "avanzado" >}}

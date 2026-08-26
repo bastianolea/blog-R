@@ -13,19 +13,19 @@ abrir_publicacion_reciente("modificado", cantidad = 10)
 
 # crear un post normal
 blogdown::new_post(
-  title = "Notas sobre generación de texto usando IA",
+  title = "Categorizar una variable contínua con el método de cortes naturales Jenks",
   file = paste0("blog/", lubridate::today(), "/index.qmd"),
   author = "Bastián Olea Herrera",
-  tags = c("inteligencia artificial")
+  tags = c("procesamiento de datos")
 )
 
 # crear un post tutorial
 blogdown::new_post(
-  title = "Párrafos interactivos",
-  file = "blog/shiny_parrafo/index.qmd",
+  title = "Proyectos de R reproducibles y estables gracias a `{renv}`",
+  file = "blog/renv/index.qmd",
   author = "Bastián Olea Herrera",
-  tags = c("shiny"),
-  categories = c()
+  tags = c("consejos", "avanzado"),
+  categories = c("Tutoriales")
 )
 
 # draft: true
@@ -41,9 +41,10 @@ blogdown::new_post(
 #     url: https://gist.github.com/bastianolea/8ea85fa8169b302d2144e05434668c89
 
 ## borradores ----
+"content/blog/renv/index.qmd"
 "content/blog/mirai/index.qmd"
-"content/blog/2026-07-23/index.qmd" # escala bivariada
 "content/blog/desarrollo_paquetes/index.md"
+"content/blog/2026-07-23/index.qmd" # escala bivariada
 "content/blog/arrow/index.qmd" # ! como base de datos
 "content/blog/ggplot_densidad_puntos/index.qmd"
 "content/blog/unpivotr/index.qmd"
