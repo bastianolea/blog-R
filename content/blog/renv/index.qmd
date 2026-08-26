@@ -1,5 +1,5 @@
 ---
-title: Proyectos de R reproducibles y estables gracias a `{renv}`
+title: Proyectos de R reproducibles y estables con `{renv}`
 author: Bastián Olea Herrera
 date: '2026-08-26'
 slug: []

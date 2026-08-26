@@ -1,5 +1,5 @@
 ---
-title: Categorizar una variable contínua con el método de cortes naturales Jenks
+title: Categorizar una variable continua con el método de cortes naturales Jenks
 author: Bastián Olea Herrera
 date: '2026-08-26'
 freeze: true
