@@ -21,11 +21,11 @@ blogdown::new_post(
 
 # crear un post tutorial
 blogdown::new_post(
-  title = "Proyectos de R reproducibles y estables gracias a `{renv}`",
-  file = "blog/renv/index.qmd",
+  title = "Línea de tiempo del lenguaje de programación R",
+  file = "blog/vistime/index.qmd",
   author = "Bastián Olea Herrera",
-  tags = c("consejos", "avanzado"),
-  categories = c("Tutoriales")
+  tags = c("curiosidades"),
+  categories = c()
 )
 
 # draft: true
