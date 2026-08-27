@@ -1,9 +1,10 @@
 ---
 title: Línea de tiempo del lenguaje de programación R
+subtitle: >-
+  Breve historia de eventos relevantes en el desarrollo de R, su ecosistema y
+  comunidades
 author: Bastián Olea Herrera
-date: '2026-08-26'
-slug: []
-categories: []
+date: '2026-08-27'
 tags:
   - curiosidades
 format:
@@ -15,32 +16,53 @@ links:
     icon_pack: fas
     name: Código
     url: https://github.com/bastianolea/linea_temporal_r
+excerpt: >-
+  Por curiosidad personal, estaba buscando un poco sobre la historia del
+  lenguaje R. Quería tener una mejor noción sobre la temporalidad del desarrollo
+  de R y el crecimiento de su ecosistema y comunidades. Inicié una breve
+  investigación cronológica, y por casualidad encontré el paquete `{vistime}`
+  para hacer líneas de tiempo con `{ggplot2}`, Plotly o Highcharts.
 ---
 
-Por curiosidad personal, estaba buscando un poco sobre la historia del lenguaje R. Quería tener una mejor noción sobre la temporalidad del desarrollo de R y el crecimiento de su ecosistema y comunidades.
 
-Encontré un [recurso hecho por Jumping Rivers](https://www.jumpingrivers.com/blog/r-timeline/) que me dio pie a iniciar una breve investigación cronológica. Luego, por casualidad, encontré el [paquete `{vistime}` para hacer líneas de tiempo](https://shosaco.github.io/vistime/) con `{ggplot2}`, Plotly o Highcharts.
+Por curiosidad, estaba buscando un poco sobre la historia del lenguaje R. Quería tener una mejor noción sobre la temporalidad del desarrollo de R y el crecimiento de su ecosistema y comunidades, para entender más o menos el orden de los hechos principales.
 
+Encontré una [línea de tiempo hecha por Jumping Rivers](https://www.jumpingrivers.com/blog/r-timeline/) que me dio pie a iniciar una breve investigación cronológica. Luego, por casualidad, encontré el [paquete `{vistime}` para hacer líneas de tiempo](https://shosaco.github.io/vistime/) con `{ggplot2}`, Plotly o Highcharts, lo que simplificó mucho la visualización.
 
-``` r
-library(dplyr)
-library(lubridate)
-library(ggplot2)
-library(vistime)
-library(scales)
-library(colorspace)
-library(stringr)
-
-# fecha de hoy
-presente <- today() |> as.character()
-```
-
-En una tablita hecha con `tribble()` me puse a anotar todas las partes del ecosistema de R y las fechas de sus fundaciones.
+Siguiendo la estructura sugerida por [el paquete `{vistime}`](https://shosaco.github.io/vistime/), en una tablita hecha con `tribble()` me puse a anotar todas las partes del ecosistema de R y las fechas de sus fundaciones.
 
 {{< detalles "Ver código de la tabla" >}}
 
+``` r
+library(dplyr)
+```
+
+
+    Attaching package: 'dplyr'
+
+    The following objects are masked from 'package:stats':
+
+        filter, lag
+
+    The following objects are masked from 'package:base':
+
+        intersect, setdiff, setequal, union
 
 ``` r
+library(lubridate)
+```
+
+
+    Attaching package: 'lubridate'
+
+    The following objects are masked from 'package:base':
+
+        date, intersect, setdiff, union
+
+``` r
+# fecha de hoy
+presente <- today() |> as.character()
+
 data <- tribble(
   ~event                  , ~start       , ~end         , ~group       ,
   "R"                     , "1993-08-01" , "2000-01-01" , "Software"   ,
@@ -79,47 +101,50 @@ data <- tribble(
 
 {{< /detalles >}}
 
-El resultado se ve así:
+Los datos se ven así:
 
+| evento                | inicio | final | grupo      |
+|:----------------------|-------:|------:|:-----------|
+| R                     |   1993 |  2000 | Software   |
+| R 1.0                 |   2000 |  2004 | Software   |
+| R 2.0                 |   2004 |  2013 | Software   |
+| ggplot2               |   2007 |  2026 | Software   |
+| Shiny                 |   2012 |  2026 | Software   |
+| R 3.0                 |   2013 |  2020 | Software   |
+| dplyr                 |   2014 |  2026 | Software   |
+| tidyverse             |   2016 |  2026 | Software   |
+| R 4.0                 |   2020 |  2026 | Software   |
+| R Core Team           |   1997 |  2026 | Organismos |
+| R Foundation          |   2003 |  2026 | Organismos |
+| RStudio Inc.          |   2009 |  2022 | Organismos |
+| R Consortium          |   2015 |  2026 | Organismos |
+| Posit PBC             |   2022 |  2026 | Organismos |
+| CRAN                  |   1997 |  2026 | Ecosistema |
+| Bioconductor          |   2001 |  2026 | Ecosistema |
+| RStudio IDE           |   2011 |  2026 | Ecosistema |
+| R Markdown            |   2014 |  2022 | Ecosistema |
+| Posit Package Manager |   2017 |  2026 | Ecosistema |
+| R-universe            |   2021 |  2026 | Ecosistema |
+| Quarto                |   2022 |  2026 | Ecosistema |
+| Positron IDE          |   2025 |  2026 | Ecosistema |
+| Posit Assistant       |   2026 |  2026 | Ecosistema |
+| Conferencia UseR!     |   2004 |  2026 | Comunidad  |
+| rOpenSci              |   2011 |  2026 | Comunidad  |
+| RLadies               |   2012 |  2025 | Comunidad  |
+| Conferencia uRos      |   2013 |  2026 | Comunidad  |
+| rstudio::conf         |   2017 |  2023 | Comunidad  |
+| Latin R               |   2018 |  2026 | Comunidad  |
+| posit::conf           |   2023 |  2026 | Comunidad  |
+| RLadies+              |   2025 |  2026 | Comunidad  |
 
-|evento                | inicio| final|grupo      |
-|:---------------------|------:|-----:|:----------|
-|R                     |   1993|  2000|Software   |
-|R 1.0                 |   2000|  2004|Software   |
-|R 2.0                 |   2004|  2013|Software   |
-|ggplot2               |   2007|  2026|Software   |
-|Shiny                 |   2012|  2026|Software   |
-|R 3.0                 |   2013|  2020|Software   |
-|dplyr                 |   2014|  2026|Software   |
-|tidyverse             |   2016|  2026|Software   |
-|R 4.0                 |   2020|  2026|Software   |
-|R Core Team           |   1997|  2026|Organismos |
-|R Foundation          |   2003|  2026|Organismos |
-|RStudio Inc.          |   2009|  2022|Organismos |
-|R Consortium          |   2015|  2026|Organismos |
-|Posit PBC             |   2022|  2026|Organismos |
-|CRAN                  |   1997|  2026|Ecosistema |
-|Bioconductor          |   2001|  2026|Ecosistema |
-|RStudio IDE           |   2011|  2026|Ecosistema |
-|R Markdown            |   2014|  2022|Ecosistema |
-|Posit Package Manager |   2017|  2026|Ecosistema |
-|R-universe            |   2021|  2026|Ecosistema |
-|Quarto                |   2022|  2026|Ecosistema |
-|Positron IDE          |   2025|  2026|Ecosistema |
-|Posit Assistant       |   2026|  2026|Ecosistema |
-|Conferencia UseR!     |   2004|  2026|Comunidad  |
-|rOpenSci              |   2011|  2026|Comunidad  |
-|RLadies               |   2012|  2025|Comunidad  |
-|Conferencia uRos      |   2013|  2026|Comunidad  |
-|rstudio::conf         |   2017|  2023|Comunidad  |
-|Latin R               |   2018|  2026|Comunidad  |
-|posit::conf           |   2023|  2026|Comunidad  |
-|RLadies+              |   2025|  2026|Comunidad  |
+Luego agregué unas líneas para darle un color a cada grupo, y que los elementos dentro de cada grupo fueran cambiando levemente de color.
 
-Luego agregué unas líneas para darle un color a cada grupo, y que los elementos dentro de cada grupo fueran cambiando levemente de color:
-
+{{< detalles "Ver código para crear colores" >}}
 
 ``` r
+library(scales)
+library(colorspace)
+
 # paleta de colores base
 colores <- colorspace::rainbow_hcl(6, c = 100, start = 190, end = 380)
 
@@ -159,16 +184,28 @@ timeline_data <- data_grupo |>
   )
 ```
 
+{{< /detalles >}}
 {{< relacionada "/blog/colores/" >}}
 
 Finalmente se crea la línea de tiempo con la función `gg_vistime()` del paquete `{vistime}`:
 
-
 ``` r
+library(ggplot2)
+library(vistime)
+
 # línea de tiempo
 timeline <- timeline_data |>
-  gg_vistime(linewidth = 6, title = "Línea de tiempo del lenguaje R")
+  gg_vistime(
+    linewidth = 6, 
+    title = "Línea de tiempo del lenguaje R"
+    )
+```
 
+Como se obtiene un gráfico `ggplot`, me puse a personalizar un poco la visualización para agregar cortes en los años relevantes, y cambiar un poco la apariencia.
+
+{{< detalles >}}
+
+``` r
 # cortes de fechas para el eje horizontal
 años <- seq.Date(as_date("1993-01-01"), as_date("2026-01-01"), by = "years")
 
@@ -178,7 +215,13 @@ cortes <- c(
   today()
 )
 
-# personalizar
+# cambiar la tipografía en los geom_text internos de la función gg_vistime()
+update_geom_defaults(
+  "text",
+  list(family = "Atkinson Hyperlegible", lineheight = 0.8, size = 3)
+)
+
+# personalizar gráfico
 timeline_2 <- timeline +
   scale_x_date(
     expand = expansion(c(0, 0.05)),
@@ -192,8 +235,6 @@ timeline_2 <- timeline +
     text = element_text(family = "Atkinson Hyperlegible"),
     plot.title = element_text(face = "bold"),
     panel.grid.major.x = element_line(color = "#00000010"),
-    # panel.border = element_rect(linetype = "dashed", fill=NA),
-    # plot.background = element_rect(fill = NA),
     axis.text.y = element_text(
       angle = 90,
       hjust = 0.5,
@@ -203,11 +244,15 @@ timeline_2 <- timeline +
   )
 ```
 
+{{< /detalles >}}
+
 Además, agregué anotaciones a varios de los elementos para destacarlos dentro de la visualización.
 
 {{< detalles "Ver código para las anotaciones" >}}
 
 ``` r
+library(stringr)
+
 # anotaciones
 # función para extraer posición de eventos
 evento <- function(evento = "ggplot2") {
@@ -295,6 +340,10 @@ timeline_3 <- timeline_2 +
 
 El resultado es la siguiente visualización en línea de tiempo:
 
-{{< imagen "r_timeline.jpg" "100%" >}}
+{{< imagen_tamaño "r_timeline.jpg" "100%" >}}
+
+Varias cosas me resultaron interesantes, como la varianza en el tiempo que dura cada versión mayor de R, la tardía introducción de RStudio, pero por sobre todo el hecho de que `{dplyr}`, un paquete que me parece fundamental, fue introducido *después* que `{ggplot2}` y `{shiny}`!
 
 Puedes encontrar el [código completo en este repositorio.](https://github.com/bastianolea/linea_temporal_r)
+
+{{< etiqueta "visualización de datos" >}}
