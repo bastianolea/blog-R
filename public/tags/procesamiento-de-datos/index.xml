@@ -25,7 +25,7 @@
 				<link>https://bastianolea.rbind.io/blog/2026-08-26/</link>
 				<pubDate>Wed, 26 Aug 2026 00:00:00 +0000</pubDate>
 				<guid>https://bastianolea.rbind.io/blog/2026-08-26/</guid>
-				<description>&lt;p&gt;El método de cortes naturales de Jenks se usa para categorizar variables contínuas en variables ordinales; es decir, pasar de una variable numérica a la cantidad de categorías discretas que necesitemos.&lt;/p&gt;&#xA;&lt;p&gt;El método Jenks busca maximizar varianza entre clases, y minimizar varianza dentro de las clases. La gracia de Jenks es que resalta los saltos inherentes a los datos, y por lo tanto los cortes que ofrece suelen tener más sentido en datos continuos.&lt;/p&gt;</description>
+				<description>&lt;p&gt;El método de cortes naturales de Jenks se usa para categorizar variables contínuas en variables ordinales; es decir, pasar de una variable numérica a la cantidad de categorías discretas que necesitemos.&lt;/p&gt;&#xA;&lt;p&gt;El método Jenks busca maximizar varianza entre clases, y minimizar varianza dentro de las clases. La gracia de Jenks es que resalta los saltos inherentes a los datos, y por lo tanto los cortes que ofrece suelen tener más sentido que cortes arbitrarios o regulares en datos continuos.&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>Validación de datos con `{testthat}` y `{pointblank}`</title>

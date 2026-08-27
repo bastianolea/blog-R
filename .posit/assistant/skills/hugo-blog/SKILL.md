@@ -346,7 +346,7 @@ Pasos:
 2. Modificar la copia.
 3. Verificar en el build que el output cambió. Si el sitio no cambia, revisar que la ruta sea correcta y que no exista otro override que esté ganando.
 
-Overrides raíz existentes: `layouts/blog/single-sidebar.html`, `layouts/blog/list-sidebar.html`, `layouts/blog/single-series.html`, `layouts/partials/shared/summary.html`, `layouts/partials/shared/summary-thumbnail.html`, `layouts/partials/meta.html`, `layouts/partials/shared/post-pagination.html`, entre otros.
+Overrides raíz existentes: `layouts/blog/single-sidebar.html`, `layouts/blog/list-sidebar.html`, `layouts/blog/single-series.html`, `layouts/partials/shared/summary.html`, `layouts/partials/shared/summary-thumbnail.html`, `layouts/partials/meta.html`, `layouts/partials/shared/post-pagination.html`, `layouts/partials/shared/post-details.html`, `layouts/partials/shared/date-range.html`, `layouts/partials/shared/event-details.html`, entre otros.
 
 
 ## Limpieza de markdown en títulos (SEO, metadatos y paginación)
@@ -383,6 +383,45 @@ Nota: `meta name="description"` y `og:description` usan `$desc` crudo (excerpt/s
 - Tarjetas de listados (`summary.html`, `summary-thumbnail.html`): usan `{{ .Title | markdownify }}` → renderizan bien los backticks como `<code>`.
 
 **Recomendación adicional:** en títulos con caracteres especiales como `{territorial}`, considerar usar nombres más SEO-friendly en el front matter del post, ej: `title: "territorial: un paquete de R para..."`.
+
+## Formato de fecha inconsistente ("June 22, 2026" vs "22/6/2026")
+
+**Problema (detectado 2026-08-27):** el formato de fecha estándar del blog es `2/1/2006` (día/mes/año, ej. `22/6/2026`), definido en la mayoría de partials del tema. Pero varios lugares quedaron con el formato original de Hugo Apéro (`January 2, 2006`, ej. `June 22, 2026`) porque nunca se sobrescribieron en `layouts/`, aunque otros partials del mismo tipo de página sí estaban corregidos. Esto se notó específicamente en la sección `clases/` (`type: talk`), que usa partials distintos a los de `blog/`.
+
+**Partials afectados y ya corregidos (overrides en `layouts/partials/shared/`):**
+- `post-details.html`: bloque colapsable "Fecha de publicación" al final del post (usado por `_default/single.html` y `talk/single.html`). Cambiado de `"January 2, 2006"` a `"2/1/2006"`.
+- `date-range.html`: usado en `event-details.html` (fila "Fecha" del detalle de evento) y en `summary-compact.html` (listados tipo `talk`, ej. `/clases/`). Tenía tres formatos (`single_format`, `range_start_format`, `range_end_format`) todos en inglés con orden mes/día — se reescribieron a orden día/mes/año consistente con `2/1/2006`:
+  ```
+  {{ $single_format := "2/1/2006" }}
+  {{ $range_start_format := "2" }}                  {{/* mismo mes: solo día */}}
+  {{ $range_end_format := "2/1/2006" }}              {{/* mismo mes: día/mes/año completo */}}
+  {{ $range_start_diff_month_format := "2/1" }}      {{/* distinto mes: día/mes */}}
+  ```
+- `event-details.html`: fila "Hora" — ver siguiente sección.
+
+**Lección:** cuando se corrige un formato de fecha, buscar **todos** los partials que llaman a `.PublishDate.Format`, `.Date.Format` o `(time ...).Format` (no solo los que aparecen en la página que se está mirando), porque el tema tiene múltiples layouts para distintos tipos de contenido (`blog`, `talk`, `project`) que no siempre comparten los mismos partials de fecha.
+
+**Comando útil para auditar:** `grep -rn '\.Format "' themes/hugo-apero/layouts layouts` para listar todos los formatos de fecha usados en plantillas y detectar cuáles siguen en formato inglés.
+
+
+## Ocultar la hora cuando el evento no tiene horario definido (posts de `clases/`)
+
+**Problema:** en `content/clases/`, los posts de tipo `talk` muestran una sección "Hora" (vía `event-details.html` → `time-range.html`) debajo de la fecha del evento. Si el front matter solo tiene `date: '2026-07-29'` (sin hora), Hugo interpreta la hora como medianoche (`00:00:00`) y el sitio muestra incorrectamente **"12:00 AM"**, en vez de omitir la fila. Los posts que sí especifican hora (ej. `date: "2025-08-22T18:00:00.000Z"`) se ven bien.
+
+**Solución (override en `layouts/partials/shared/event-details.html`):** antes de renderizar la fila "Hora", se calcula si `.Date` (o `.Params.date_end`, si existe) tiene una hora distinta de medianoche, y solo entonces se muestra la fila:
+
+```
+{{ $has_time := or (ne (time .Date).Hour 0) (ne (time .Date).Minute 0) }}
+{{ with .Params.date_end }}
+  {{ if or (ne (time .).Hour 0) (ne (time .).Minute 0) }}{{ $has_time = true }}{{ end }}
+{{ end }}
+{{ if $has_time }}
+  <!-- fila "Hora" -->
+{{ end }}
+```
+
+**Limitación conocida:** si un evento real comenzara exactamente a medianoche (00:00), esta lógica ocultaría la hora igualmente (falso negativo). Se considera un caso lo bastante raro como para no justificar un parámetro explícito adicional (ej. `show_event_time` en el front matter), pero si llega a pasar, esa sería la alternativa.
+
 
 ## Tema y colores
 

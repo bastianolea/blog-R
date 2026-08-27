@@ -24,12 +24,12 @@
   
     
   
-<meta name="description" content="Blog de Bastián Olea, sociólogx y analista de datos">
+<meta name="description" content="El método de cortes naturales de Jenks se usa para categorizar variables contínuas en variables ordinales; es decir, pasar de una variable numérica a la cantidad de categorías discretas que necesitemos. Este método resalta los saltos inherentes a los datos, y por lo tanto los cortes que ofrece suelen tener más sentido que cortes arbitrarios en datos continuos.">
 
 
 <meta property="og:site_name" content="Bastián Olea">
 <meta property="og:title" content="Categorizar una variable continua con el método de cortes naturales Jenks | Bastián Olea">
-<meta property="og:description" content="Blog de Bastián Olea, sociólogx y analista de datos" />
+<meta property="og:description" content="El método de cortes naturales de Jenks se usa para categorizar variables contínuas en variables ordinales; es decir, pasar de una variable numérica a la cantidad de categorías discretas que necesitemos. Este método resalta los saltos inherentes a los datos, y por lo tanto los cortes que ofrece suelen tener más sentido que cortes arbitrarios en datos continuos." />
 <meta property="og:type" content="page" />
 <meta property="og:url" content="https://bastianolea.rbind.io/blog/2026-08-26/" />
 <meta property="og:locale" content="es-ES">
@@ -46,10 +46,10 @@
   
 	<meta itemprop="name" content="Categorizar una variable continua con el método de cortes naturales Jenks">
 	<meta itemprop="description" content="El método de cortes naturales de Jenks se usa para categorizar variables contínuas en variables ordinales; es decir, pasar de una variable numérica a la cantidad de categorías discretas que necesitemos.
-El método Jenks busca maximizar varianza entre clases, y minimizar varianza dentro de las clases. La gracia de Jenks es que resalta los saltos inherentes a los datos, y por lo tanto los cortes que ofrece suelen tener más sentido en datos continuos.">
+El método Jenks busca maximizar varianza entre clases, y minimizar varianza dentro de las clases. La gracia de Jenks es que resalta los saltos inherentes a los datos, y por lo tanto los cortes que ofrece suelen tener más sentido que cortes arbitrarios o regulares en datos continuos.">
 	<meta itemprop="datePublished" content="2026-08-26T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-08-26T00:00:00+00:00">
-	<meta itemprop="wordCount" content="372">
+	<meta itemprop="wordCount" content="377">
 	<meta itemprop="keywords" content="Procesamiento de datos,Estadística,Limpieza de datos">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -308,7 +308,7 @@ El método Jenks busca maximizar varianza entre clases, y minimizar varianza den
       
     <section class="post-body pt5 pb4">
         <p>El método de cortes naturales de Jenks se usa para categorizar variables contínuas en variables ordinales; es decir, pasar de una variable numérica a la cantidad de categorías discretas que necesitemos.</p>
-<p>El método Jenks busca maximizar varianza entre clases, y minimizar varianza dentro de las clases. La gracia de Jenks es que resalta los saltos inherentes a los datos, y por lo tanto los cortes que ofrece suelen tener más sentido en datos continuos.</p>
+<p>El método Jenks busca maximizar varianza entre clases, y minimizar varianza dentro de las clases. La gracia de Jenks es que resalta los saltos inherentes a los datos, y por lo tanto los cortes que ofrece suelen tener más sentido que cortes arbitrarios o regulares en datos continuos.</p>
 <p>En R base se implementa con la función <code>classIntervals(..., style = &quot;jenks&quot;)</code>, pero 
 <a href="https://github.com/macroevolution/bammtools" target="_blank" rel="noopener">el paquete <code>{BAMMtools}</code> ofrece</a> una implementación en C mucho más eficiente: <code>getJenksBreaks()</code>.</p>
 <p>Primero creemos datos de prueba, una distribucion de densidad <em>beta</em>:</p>
@@ -331,7 +331,7 @@ El método Jenks busca maximizar varianza entre clases, y minimizar varianza den
 </span></span><span class="line"><span class="cl"><span class="n">cortes</span> <span class="o">&lt;-</span> <span class="nf">getJenksBreaks</span><span class="p">(</span><span class="n">datos</span><span class="o">$</span><span class="n">valores</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">cortes</span>
-</span></span></code></pre></div><pre><code>[1] 0.1756957 0.5092826 0.6712164 0.8172866 0.9932851
+</span></span></code></pre></div><pre><code>[1] 0.1726055 0.5182463 0.6863508 0.8269625 0.9948571
 </code></pre>
 <p>Aplicamos los cortes a los datos con la función <code>cut()</code>, que <em>corta</em> variables numéricas continuas en los puntos indicados; en este caso, los cortes obtenidos con el método Jenks:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">datos_categoricos</span> <span class="o">&lt;-</span> <span class="n">datos</span> <span class="o">|&gt;</span> 
@@ -702,7 +702,7 @@ El método Jenks busca maximizar varianza entre clases, y minimizar varianza den
   
   
     <a class="next dtc pl2 tr v-top fw6"
-    href="https://bastianolea.rbind.io/blog/validacion_datos/">Validación de datos con {testthat} y {pointblank} &rarr;</a>
+    href="https://bastianolea.rbind.io/blog/desarrollo_paquetes/">Desarrollo de paquetes con R &rarr;</a>
   
 </div>
 
@@ -723,11 +723,11 @@ El método Jenks busca maximizar varianza entre clases, y minimizar varianza den
   <details closed class="f6 fw7 input-reset">
   <dl class="f6 lh-copy">
     <dt class="fw7">Fecha de publicación:</dt>
-    <dd class="fw5 ml0">August 26, 2026</dd>
+    <dd class="fw5 ml0">26/8/2026</dd>
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Extensión:</dt>
-    <dd class="fw5 ml0">2 minute read, 372 words</dd>
+    <dd class="fw5 ml0">2 minute read, 377 words</dd>
   </dl>
   
   
@@ -831,21 +831,6 @@ El método Jenks busca maximizar varianza entre clases, y minimizar varianza den
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
-  </span>
- 
-  
-  <span style="margin-bottom: 10px; line-height: 1.1;">
-    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
-                 word-break: none;
-                 display: inline-block; 
-                 white-space: nowrap;
-                 font-style: normal;
-                 background-color: #9069C0; 
-                 border-radius: 3px;
-                 padding: 2px 6px;
-                 padding-top: 3px;">
-    <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/consejos/">Consejos</a></span>
   </span>
  
@@ -861,7 +846,7 @@ El método Jenks busca maximizar varianza entre clases, y minimizar varianza den
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
+      href="https://bastianolea.rbind.io/tags/blog/">Blog</a></span>
   </span>
  
   
@@ -877,6 +862,21 @@ El método Jenks busca maximizar varianza entre clases, y minimizar varianza den
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
       href="https://bastianolea.rbind.io/tags/shiny/">Shiny</a></span>
+  </span>
+ 
+  
+  <span style="margin-bottom: 10px; line-height: 1.1;">
+    <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
+                 word-break: none;
+                 display: inline-block; 
+                 white-space: nowrap;
+                 font-style: normal;
+                 background-color: #9069C0; 
+                 border-radius: 3px;
+                 padding: 2px 6px;
+                 padding-top: 3px;">
+    <a style="color: #EAD1FA !important; text-decoration: none;" 
+      href="https://bastianolea.rbind.io/tags/gr%C3%A1ficos/">Gráficos</a></span>
   </span>
  
   
@@ -1071,7 +1071,7 @@ El método Jenks busca maximizar varianza entre clases, y minimizar varianza den
                  padding: 2px 6px;
                  padding-top: 3px;">
     <a style="color: #EAD1FA !important; text-decoration: none;" 
-      href="https://bastianolea.rbind.io/tags/automatizaci%C3%B3n/">Automatización</a></span>
+      href="https://bastianolea.rbind.io/tags/loops/">Loops</a></span>
   </span>
 
 <a href="/tags/" style="margin-left: 3px;">y más!</a>

@@ -14,12 +14,19 @@
   <div class="second-column">
     <p class="row-details">{{ partial "shared/date-range.html" . }}</p>
   </div>
+  {{/* Solo mostrar la hora si la fecha (o la fecha de término) especifica una hora distinta de medianoche */}}
+  {{ $has_time := or (ne (time .Date).Hour 0) (ne (time .Date).Minute 0) }}
+  {{ with .Params.date_end }}
+    {{ if or (ne (time .).Hour 0) (ne (time .).Minute 0) }}{{ $has_time = true }}{{ end }}
+  {{ end }}
+  {{ if $has_time }}
   <div class="first-column">
     <h5 class="row-label">Hora</h5>
   </div>
   <div class="second-column">
     <p class="row-details">{{ partial "shared/time-range.html" . }}</p>
   </div>
+  {{ end }}
   {{ end }}
   {{ if and .Params.location (ne .Params.show_event_location false) }}
   <div class="first-column">
