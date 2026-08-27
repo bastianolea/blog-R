@@ -342,6 +342,10 @@ El resultado es la siguiente visualización en línea de tiempo:
 
 {{< imagen_tamaño "r_timeline.jpg" "100%" >}}
 
+*There's also an english version available:*
+
+{{< imagen_tamaño "r_timeline_en.jpg" "100%" >}}
+
 Varias cosas me resultaron interesantes, como la varianza en el tiempo que dura cada versión mayor de R, la tardía introducción de RStudio, pero por sobre todo el hecho de que `{dplyr}`, un paquete que me parece fundamental, fue introducido *después* que `{ggplot2}` y `{shiny}`!
 
 Puedes encontrar el [código completo en este repositorio.](https://github.com/bastianolea/linea_temporal_r)

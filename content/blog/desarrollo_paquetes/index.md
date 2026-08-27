@@ -2,8 +2,7 @@
 title: Desarrollo de paquetes con R
 subtitle: Crea tus propias herramientas para trabajar con datos en R y compártelas!
 author: Bastián Olea Herrera
-date: '2026-08-26'
-draft: true
+date: '2026-08-25'
 categories:
   - Tutoriales
 tags:
