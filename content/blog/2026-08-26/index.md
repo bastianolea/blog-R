@@ -14,12 +14,18 @@ format:
 execute:
   message: false
   warning: false
+excerpt: >-
+  El método de cortes naturales de Jenks se usa para categorizar variables
+  contínuas en variables ordinales; es decir, pasar de una variable numérica a
+  la cantidad de categorías discretas que necesitemos. Este método resalta los
+  saltos inherentes a los datos, y por lo tanto los cortes que ofrece suelen
+  tener más sentido que cortes arbitrarios en datos continuos.
 ---
 
 
 El método de cortes naturales de Jenks se usa para categorizar variables contínuas en variables ordinales; es decir, pasar de una variable numérica a la cantidad de categorías discretas que necesitemos.
 
-El método Jenks busca maximizar varianza entre clases, y minimizar varianza dentro de las clases. La gracia de Jenks es que resalta los saltos inherentes a los datos, y por lo tanto los cortes que ofrece suelen tener más sentido en datos continuos.
+El método Jenks busca maximizar varianza entre clases, y minimizar varianza dentro de las clases. La gracia de Jenks es que resalta los saltos inherentes a los datos, y por lo tanto los cortes que ofrece suelen tener más sentido que cortes arbitrarios o regulares en datos continuos.
 
 En R base se implementa con la función `classIntervals(..., style = "jenks")`, pero [el paquete `{BAMMtools}` ofrece](https://github.com/macroevolution/bammtools) una implementación en C mucho más eficiente: `getJenksBreaks()`.
 
@@ -56,7 +62,7 @@ cortes <- getJenksBreaks(datos$valores, 5)
 cortes
 ```
 
-    [1] 0.1756957 0.5092826 0.6712164 0.8172866 0.9932851
+    [1] 0.1726055 0.5182463 0.6863508 0.8269625 0.9948571
 
 Aplicamos los cortes a los datos con la función `cut()`, que *corta* variables numéricas continuas en los puntos indicados; en este caso, los cortes obtenidos con el método Jenks:
 
