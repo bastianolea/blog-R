@@ -10,7 +10,7 @@
 		
 		
 		
-			<lastBuildDate>Tue, 18 Aug 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Thu, 27 Aug 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="https://bastianolea.rbind.io/blog/index.xml" rel="self" type="application/rss+xml" />
 			<item>
@@ -19,6 +19,20 @@
 				<pubDate>Thu, 17 Jul 2025 00:00:00 +0000</pubDate>
 				<guid>https://bastianolea.rbind.io/blog/web_scraping/</guid>
 				<description>&lt;a href=&#34;featured.jpg&#34; target=&#34;_blank&#34;&gt;&#xA;&#xA;  &lt;img src=&#34;featured.jpg&#34; style=&#34;border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;&#34;&gt;&#xA;  &#xA;&lt;/a&gt;&#xA;&lt;p&gt;Se denomina &#xA;&lt;a href=&#34;https://bastianolea.rbind.io/tags/web-scraping/&#34;&gt;web scraping&lt;/a&gt; al conjunto de técnicas que permiten &lt;strong&gt;extraer datos e información alojada en páginas web&lt;/strong&gt;, usualmente en formatos que no son fácilmente convertibles a tablas de datos.&lt;/p&gt;&#xA;&lt;p&gt;Al ser R un lenguaje enfocado completamente el análisis de datos, es la plataforma ideal para este tipo de tareas, dado que puedes usar un sólo lenguaje para controlar las herramientas de extracción de datos, programar la lógica para automatizar la extracción, procesar y limpiar los datos, y finalmente analizar y presentar tus resultados.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Línea de tiempo del lenguaje de programación R</title>
+				<link>https://bastianolea.rbind.io/blog/linea_temporal_r/</link>
+				<pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
+				<guid>https://bastianolea.rbind.io/blog/linea_temporal_r/</guid>
+				<description>&lt;p&gt;Por curiosidad, estaba buscando un poco sobre la historia del lenguaje R. Quería tener una mejor noción sobre la temporalidad del desarrollo de R y el crecimiento de su ecosistema y comunidades, para entender más o menos el orden de los hechos principales.&lt;/p&gt;&#xA;&lt;p&gt;Encontré una &#xA;&lt;a href=&#34;https://www.jumpingrivers.com/blog/r-timeline/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;línea de tiempo hecha por Jumping Rivers&lt;/a&gt; que me dio pie a iniciar una breve investigación cronológica. Luego, por casualidad, encontré el &#xA;&lt;a href=&#34;https://shosaco.github.io/vistime/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;paquete &lt;code&gt;{vistime}&lt;/code&gt; para hacer líneas de tiempo&lt;/a&gt; con &lt;code&gt;{ggplot2}&lt;/code&gt;, Plotly o Highcharts, lo que simplificó mucho la visualización.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Categorizar una variable continua con el método de cortes naturales Jenks</title>
+				<link>https://bastianolea.rbind.io/blog/2026-08-26/</link>
+				<pubDate>Wed, 26 Aug 2026 00:00:00 +0000</pubDate>
+				<guid>https://bastianolea.rbind.io/blog/2026-08-26/</guid>
+				<description>&lt;p&gt;El método de cortes naturales de Jenks se usa para categorizar variables contínuas en variables ordinales; es decir, pasar de una variable numérica a la cantidad de categorías discretas que necesitemos.&lt;/p&gt;&#xA;&lt;p&gt;El método Jenks busca maximizar varianza entre clases, y minimizar varianza dentro de las clases. La gracia de Jenks es que resalta los saltos inherentes a los datos, y por lo tanto los cortes que ofrece suelen tener más sentido en datos continuos.&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>Validación de datos con `{testthat}` y `{pointblank}`</title>

@@ -10,9 +10,16 @@
 		
 		
 		
-			<lastBuildDate>Wed, 09 Jul 2025 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Wed, 26 Aug 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="https://bastianolea.rbind.io/tags/estad%C3%ADstica/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Categorizar una variable continua con el método de cortes naturales Jenks</title>
+				<link>https://bastianolea.rbind.io/blog/2026-08-26/</link>
+				<pubDate>Wed, 26 Aug 2026 00:00:00 +0000</pubDate>
+				<guid>https://bastianolea.rbind.io/blog/2026-08-26/</guid>
+				<description>&lt;p&gt;El método de cortes naturales de Jenks se usa para categorizar variables contínuas en variables ordinales; es decir, pasar de una variable numérica a la cantidad de categorías discretas que necesitemos.&lt;/p&gt;&#xA;&lt;p&gt;El método Jenks busca maximizar varianza entre clases, y minimizar varianza dentro de las clases. La gracia de Jenks es que resalta los saltos inherentes a los datos, y por lo tanto los cortes que ofrece suelen tener más sentido en datos continuos.&lt;/p&gt;</description>
+			</item>
 			<item>
 				<title>Análisis y visualización de correlaciones en R</title>
 				<link>https://bastianolea.rbind.io/blog/correlaciones/</link>

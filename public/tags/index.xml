@@ -10,9 +10,37 @@
 		
 		
 		
-			<lastBuildDate>Tue, 18 Aug 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Thu, 27 Aug 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="https://bastianolea.rbind.io/tags/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Curiosidades</title>
+				<link>https://bastianolea.rbind.io/tags/curiosidades/</link>
+				<pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
+				<guid>https://bastianolea.rbind.io/tags/curiosidades/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Estadística</title>
+				<link>https://bastianolea.rbind.io/tags/estad%C3%ADstica/</link>
+				<pubDate>Wed, 26 Aug 2026 00:00:00 +0000</pubDate>
+				<guid>https://bastianolea.rbind.io/tags/estad%C3%ADstica/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Limpieza de datos</title>
+				<link>https://bastianolea.rbind.io/tags/limpieza-de-datos/</link>
+				<pubDate>Wed, 26 Aug 2026 00:00:00 +0000</pubDate>
+				<guid>https://bastianolea.rbind.io/tags/limpieza-de-datos/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Procesamiento de datos</title>
+				<link>https://bastianolea.rbind.io/tags/procesamiento-de-datos/</link>
+				<pubDate>Wed, 26 Aug 2026 00:00:00 +0000</pubDate>
+				<guid>https://bastianolea.rbind.io/tags/procesamiento-de-datos/</guid>
+				<description></description>
+			</item>
 			<item>
 				<title>Automatización</title>
 				<link>https://bastianolea.rbind.io/tags/automatizaci%C3%B3n/</link>
@@ -25,20 +53,6 @@
 				<link>https://bastianolea.rbind.io/tags/consejos/</link>
 				<pubDate>Tue, 18 Aug 2026 00:00:00 +0000</pubDate>
 				<guid>https://bastianolea.rbind.io/tags/consejos/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Limpieza de datos</title>
-				<link>https://bastianolea.rbind.io/tags/limpieza-de-datos/</link>
-				<pubDate>Tue, 18 Aug 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/limpieza-de-datos/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Procesamiento de datos</title>
-				<link>https://bastianolea.rbind.io/tags/procesamiento-de-datos/</link>
-				<pubDate>Tue, 18 Aug 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/procesamiento-de-datos/</guid>
 				<description></description>
 			</item>
 			<item>
@@ -109,13 +123,6 @@
 				<link>https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/</link>
 				<pubDate>Fri, 24 Jul 2026 00:00:00 +0000</pubDate>
 				<guid>https://bastianolea.rbind.io/tags/visualizaci%C3%B3n-de-datos/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Curiosidades</title>
-				<link>https://bastianolea.rbind.io/tags/curiosidades/</link>
-				<pubDate>Tue, 21 Jul 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/curiosidades/</guid>
 				<description></description>
 			</item>
 			<item>
@@ -291,13 +298,6 @@
 				<link>https://bastianolea.rbind.io/tags/purrr/</link>
 				<pubDate>Sun, 27 Jul 2025 00:00:00 +0000</pubDate>
 				<guid>https://bastianolea.rbind.io/tags/purrr/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Estadística</title>
-				<link>https://bastianolea.rbind.io/tags/estad%C3%ADstica/</link>
-				<pubDate>Wed, 09 Jul 2025 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/estad%C3%ADstica/</guid>
 				<description></description>
 			</item>
 			<item>
