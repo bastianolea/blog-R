@@ -60,3 +60,39 @@ abrir_publicacion_reciente <- function(modo = "creado", cantidad = 5) {
   # abrir archivo con RStudio
   invisible(rstudioapi::navigateToFile(archivo))
 }
+
+
+#' Crear una nueva publicación
+#'
+#' Envoltorio de `blogdown::new_post()` que además crea automáticamente un
+#' archivo `_quarto.yml` (vacío) en la carpeta de la publicación cuando esta
+#' es un archivo `.qmd`. Esto es necesario para que el botón Render de
+#' RStudio funcione sin errores con `quarto preview` (ver skill `hugo-blog`,
+#' sección "quarto preview requiere _quarto.yml").
+#'
+#' @param ... Todos los argumentos se pasan directamente a `blogdown::new_post()`
+#' (`title`, `file`, `author`, `tags`, `categories`, etc.)
+#'
+#' @returns La ruta del archivo creado (invisible).
+#' @export
+crear_publicacion <- function(...) {
+  require(stringr)
+  
+  archivo <- blogdown::new_post(...)
+  
+  # si la publicación es un archivo quarto, crear su _quarto.yml
+  if (str_detect(archivo, "\\.qmd$")) {
+    carpeta <- dirname(archivo)
+    ruta_yml <- file.path(carpeta, "_quarto.yml")
+    
+    if (!file.exists(ruta_yml)) {
+      file.create(ruta_yml)
+      message("Se creó ", ruta_yml, " para que el botón Render funcione correctamente.")
+    }
+  }
+  
+  # navegar el panel Files a la carpeta de la nueva publicación
+  rstudioapi::filesPaneNavigate(dirname(archivo))
+  
+  invisible(archivo)
+}

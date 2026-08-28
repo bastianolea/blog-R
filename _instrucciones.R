@@ -3,6 +3,7 @@ blogdown::serve_site()
 blogdown::stop_server()
 blogdown::build_site()
 
+# source("R/funciones.R")
 
 ## posts ----
 
@@ -12,33 +13,20 @@ abrir_publicacion_reciente("modificado", cantidad = 10)
 
 
 # crear un post normal
-blogdown::new_post(
+crear_publicacion(
   title = "Categorizar una variable contínua con el método de cortes naturales Jenks",
   file = paste0("blog/", lubridate::today(), "/index.qmd"),
-  author = "Bastián Olea Herrera",
   tags = c("procesamiento de datos")
 )
 
-# crear un post tutorial
-blogdown::new_post(
+# crear un post con nombre
+crear_publicacion(
   title = "Línea de tiempo del lenguaje de programación R",
-  file = "blog/vistime/index.qmd",
-  author = "Bastián Olea Herrera",
+  file = "blog/pruebita4/index.qmd",
   tags = c("curiosidades"),
   categories = c()
 )
 
-# draft: true
-# format:
-#   hugo-md:
-#     output-file: "index"
-#     output-ext: "md"
-
-# links:
-#   - icon: file-code
-#     icon_pack: fas
-#     name: Código
-#     url: https://gist.github.com/bastianolea/8ea85fa8169b302d2144e05434668c89
 
 ## borradores ----
 "content/blog/renv/index.qmd"

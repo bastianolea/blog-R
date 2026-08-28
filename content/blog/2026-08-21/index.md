@@ -1,6 +1,8 @@
 ---
 title: Validar datos para prevenir problemas y errores futuros
-subtitle: Estrategia simple para ir revisando los datos constantemente en tus pipelines de procesamiento de datos
+subtitle: >-
+  Estrategia simple para ir revisando los datos constantemente en tus pipelines
+  de procesamiento de datos
 author: Bastián Olea Herrera
 date: '2026-08-28'
 tags:
@@ -10,7 +12,12 @@ format:
   hugo-md:
     output-file: index
     output-ext: md
-excerpt: "¿Alguna vez has tenido dudas sobre los datos que estás explorando? En _pipelines_ extensos, puede ser imposible tener certeza de que los datos son como esperamos, o necesitamos confirmar que los datos tienen ciertas características luego de filtrarlos, cruzarlos, o transformarlos. La validación resuelve esto!"
+excerpt: >-
+  ¿Alguna vez has tenido dudas sobre los datos que estás explorando? En
+  _pipelines_ extensos, puede ser imposible tener certeza de que los datos son
+  como esperamos, o necesitamos confirmar que los datos tienen ciertas
+  características luego de filtrarlos, cruzarlos, o transformarlos. La
+  validación resuelve esto!
 execute:
   message: false
   warning: false
@@ -26,16 +33,16 @@ links:
     url: /blog/validacion_datos/
 ---
 
+
 ¿Alguna vez has tenido dudas sobre los datos que estás explorando?
 
-Últimamente he estado trabajando con _pipelines_ o flujos de procesamiento de datos extensos, y en cierto momento es imposible tener certeza de que los datos son como esperamos. También pasa que queremos confirmar que los datos tienen ciertas características luego de filtrarlos, cruzarlos, o transformarlos.
+Últimamente he estado trabajando con *pipelines* o flujos de procesamiento de datos extensos, y en cierto momento es imposible tener certeza de que los datos son como esperamos. También pasa que queremos confirmar que los datos tienen ciertas características luego de filtrarlos, cruzarlos, o transformarlos.
 
 Con el paquete `{pointblank}` puedes olvidarte de las inseguridades cuando trabajes con datos!
 
-
 Por ejemplo, veamos estos datos de prueba:
 
-```{r}
+``` r
 library(dplyr)
 
 datos <- tibble(
@@ -46,11 +53,20 @@ datos <- tibble(
 datos
 ```
 
+    # A tibble: 5 × 2
+      nombre valor
+      <chr>  <chr>
+    1 a      13   
+    2 b      24   
+    3 c      12   
+    4 d      nada 
+    5 e      78   
+
 Tenemos dos variables, ambas de tipo caracter/texto.
 
 Normalmente, si queremos confirmar si existen datos perdidos (`NA`s), haríamos algo como:
 
-```{r}
+``` r
 library(dplyr)
 
 perdidos <- datos |> 
@@ -65,9 +81,9 @@ Si bien esto sirve, hay mejores formas de hacerlo en R!
 
 {{< relacionada "/blog/validacion_basica/" >}}
 
-Con el conjunto de funciones `expect_x()` de `{pointblank}`, definimos lo que _esperamos_ de la tabla de datos:
+Con el conjunto de funciones `expect_x()` de `{pointblank}`, definimos lo que *esperamos* de la tabla de datos:
 
-```{r}
+``` r
 library(pointblank)
 
 # esperar que no hayan datos perdidos en la columna
@@ -75,42 +91,51 @@ datos |>
   expect_col_vals_not_null(valor)
 ```
 
-La función `expect_col_vals_not_null()`, como su nombre indica, espera (_expect_) que los valores de una columna no sean inválidos.
+La función `expect_col_vals_not_null()`, como su nombre indica, espera (*expect*) que los valores de una columna no sean inválidos.
 
-En vez de preguntar cuántos datos perdidos hay, y hacer la revisión al ojímetro, decimos: _esperamos_ que no hayan datos perdidos en la columna. Si la expectativa se cumple, todo bien y tu _pipeline_ sigue corriendo! Pero si hubiera un problema con la expectativa, el cálculo se detiene para que puedas corregirlo.
+En vez de preguntar cuántos datos perdidos hay, y hacer la revisión al ojímetro, decimos: *esperamos* que no hayan datos perdidos en la columna. Si la expectativa se cumple, todo bien y tu *pipeline* sigue corriendo! Pero si hubiera un problema con la expectativa, el cálculo se detiene para que puedas corregirlo.
 
 Entonces: la idea es ir agregando **pruebas** a lo largo de tu pipeline, para ir **confirmando las expectativas** de la calidad de los datos, y avisarte mediante un **error** cuando las expectativas no se cumplan.
 
 {{< imagen "featured_pointblank.png" >}}
 
-Hagamos un cambio _inocente_ a los datos: convertir una columna a tipo numérico:
+Hagamos un cambio *inocente* a los datos: convertir una columna a tipo numérico:
 
-```{r}
-#| warning: true
+``` r
 datos <- datos |> 
   mutate(valor = as.numeric(valor))
 ```
 
-Recibimos una **alerta** (_warning_) que fácilmente podríamos ignorar: como la columna era de tipo texto, al convertirla a numérica introdujimos datos perdidos. El problema es que esta alerta puede quedar ahogada dentro de un _pipeline_ extenso, y podemos no darnos cuenta del problema!
+    Warning: There was 1 warning in `mutate()`.
+    ℹ In argument: `valor = as.numeric(valor)`.
+    Caused by warning:
+    ! NAs introduced by coercion
 
-Si agregamos una **nueva prueba de validación** luego de ese cambio, ahora obtendremos un error que detendrá el _pipeline_ si la **calidad** esperada de nuestros datos no se cumple:
+Recibimos una **alerta** (*warning*) que fácilmente podríamos ignorar: como la columna era de tipo texto, al convertirla a numérica introdujimos datos perdidos. El problema es que esta alerta puede quedar ahogada dentro de un *pipeline* extenso, y podemos no darnos cuenta del problema!
 
-```{r}
+Si agregamos una **nueva prueba de validación** luego de ese cambio, ahora obtendremos un error que detendrá el *pipeline* si la **calidad** esperada de nuestros datos no se cumple:
+
+``` r
 datos |> 
   expect_col_vals_not_null(valor)
 ```
+
+    Error:
+    ! Exceedance of failed test units where values in `valor` should not have been NULL.
+    The `expect_col_vals_not_null()` validation failed beyond the absolute threshold level (1).
+    * failure level (1) >= failure threshold (1)
 
 Uno de los usos de `{pointblank}` es ir agregando pasos de **validación de datos** cada vez que sea necesario, por ejemplo:
 
 - Al cargar datos externos
 - Luego de modificar/limpiar los datos
-- Luego de transformaciones complejas, como [`pivot_wider()`](/blog/r_introduccion/tidyr_pivotar/) o [`left_join()`](/blog/left_join/)
+- Luego de transformaciones complejas, como [`pivot_wider()`](./blog/r_introduccion/tidyr_pivotar/) o [`left_join()`](./blog/left_join/)
 - Al actualizar los datos
 - Antes de exportarlos o pasarlos al siguiente paso
 
 Incluso podemos ir agregando varias pruebas de validación seguidas:
 
-```{r}
+``` r
 datos |>
   # probar la cantidad de filas
   expect_row_count_match(5) |> 
@@ -127,7 +152,7 @@ datos |>
 En el ejemplo anterior le agregamos 5 pruebas:
 
 - Que la cantidad de filas sea la esperada, con `expect_row_count_match()`
-- Que los valores estén dentro de un conjunto, con `expect_col_vals_in_set()` 
+- Que los valores estén dentro de un conjunto, con `expect_col_vals_in_set()`
 - Que no existan ciertos valores, con `expect_col_vals_not_in_set()`
 - Que el tipo de una columna, con `expect_col_is_numeric()`
 - Que los valores estén dentro de un rango, con `expect_col_vals_between()`
@@ -138,7 +163,7 @@ Si te interesa esto, revisa el tutorial completo de validación de datos con `{p
 
 {{< relacionada "/blog/validacion_datos" >}}
 
-
 ## Recursos
+
 - [Página oficial de `{pointblank}`](https://rstudio.github.io/pointblank/index.html)
-- [Introduction to the Pipeline Data Validation Workflow ](https://rstudio.github.io/pointblank/articles/VALID-II.html)
+- [Introduction to the Pipeline Data Validation Workflow](https://rstudio.github.io/pointblank/articles/VALID-II.html)

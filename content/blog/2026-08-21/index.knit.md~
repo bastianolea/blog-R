@@ -35,9 +35,29 @@ Con el paquete `{pointblank}` puedes olvidarte de las inseguridades cuando traba
 
 Por ejemplo, veamos estos datos de prueba:
 
-```{r}
-library(dplyr)
 
+``` r
+library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+``` r
 datos <- tibble(
   nombre = c("a", "b", "c", "d", "e"),
   valor  = c("13", "24", "12", "nada", "78")
@@ -46,17 +66,33 @@ datos <- tibble(
 datos
 ```
 
+```
+## # A tibble: 5 × 2
+##   nombre valor
+##   <chr>  <chr>
+## 1 a      13   
+## 2 b      24   
+## 3 c      12   
+## 4 d      nada 
+## 5 e      78
+```
+
 Tenemos dos variables, ambas de tipo caracter/texto.
 
 Normalmente, si queremos confirmar si existen datos perdidos (`NA`s), haríamos algo como:
 
-```{r}
+
+``` r
 library(dplyr)
 
 perdidos <- datos |> 
   filter(is.na(valor))
   
 cli::cli_inform("Existen {nrow(perdidos)} datos perdidos")
+```
+
+```
+## Existen 0 datos perdidos
 ```
 
 > Existen 0 datos perdidos
@@ -67,7 +103,8 @@ Si bien esto sirve, hay mejores formas de hacerlo en R!
 
 Con el conjunto de funciones `expect_x()` de `{pointblank}`, definimos lo que _esperamos_ de la tabla de datos:
 
-```{r}
+
+``` r
 library(pointblank)
 
 # esperar que no hayan datos perdidos en la columna
@@ -85,60 +122,24 @@ Entonces: la idea es ir agregando **pruebas** a lo largo de tu pipeline, para ir
 
 Hagamos un cambio _inocente_ a los datos: convertir una columna a tipo numérico:
 
-```{r}
-#| warning: true
+
+``` r
 datos <- datos |> 
   mutate(valor = as.numeric(valor))
+```
+
+```
+## Warning: There was 1 warning in `mutate()`.
+## ℹ In argument: `valor = as.numeric(valor)`.
+## Caused by warning:
+## ! NAs introduced by coercion
 ```
 
 Recibimos una **alerta** (_warning_) que fácilmente podríamos ignorar: como la columna era de tipo texto, al convertirla a numérica introdujimos datos perdidos. El problema es que esta alerta puede quedar ahogada dentro de un _pipeline_ extenso, y podemos no darnos cuenta del problema!
 
 Si agregamos una **nueva prueba de validación** luego de ese cambio, ahora obtendremos un error que detendrá el _pipeline_ si la **calidad** esperada de nuestros datos no se cumple:
 
-```{r}
-datos |> 
-  expect_col_vals_not_null(valor)
-```
-
-Uno de los usos de `{pointblank}` es ir agregando pasos de **validación de datos** cada vez que sea necesario, por ejemplo:
-
-- Al cargar datos externos
-- Luego de modificar/limpiar los datos
-- Luego de transformaciones complejas, como [`pivot_wider()`](/blog/r_introduccion/tidyr_pivotar/) o [`left_join()`](/blog/left_join/)
-- Al actualizar los datos
-- Antes de exportarlos o pasarlos al siguiente paso
-
-Incluso podemos ir agregando varias pruebas de validación seguidas:
-
-```{r}
-datos |>
-  # probar la cantidad de filas
-  expect_row_count_match(5) |> 
-  # probar que los valores estén dentro de un conjunto
-  expect_col_vals_in_set(nombre, letters) |> 
-  # probar que no existan ciertos valores
-  expect_col_vals_not_in_set(valor, c(88, 99)) |> 
-  # probar el tipo de una columna
-  expect_col_is_numeric(valor) |>
-  # probar que los valores estén dentro de un rango, incluyendo NA
-  expect_col_vals_between(valor, 10, 80, na_pass = TRUE)
-```
-
-En el ejemplo anterior le agregamos 5 pruebas:
-
-- Que la cantidad de filas sea la esperada, con `expect_row_count_match()`
-- Que los valores estén dentro de un conjunto, con `expect_col_vals_in_set()` 
-- Que no existan ciertos valores, con `expect_col_vals_not_in_set()`
-- Que el tipo de una columna, con `expect_col_is_numeric()`
-- Que los valores estén dentro de un rango, con `expect_col_vals_between()`
-
-De esta manera, las pruebas nos ayudan a mantener la **confianza en el procesamiento de los datos**, ya que validamos constantemente que los cambios en los datos no introducendo problemas que podrían pasar desapercibidos, o que serían tediosos de ir probando manualmente todo el rato. También es muy útil para confirmar que los datos siguen siendo los esperados luego de actualizarlos.
-
-Si te interesa esto, revisa el tutorial completo de validación de datos con `{pointblank}` aquí:
-
-{{< relacionada "/blog/validacion_datos" >}}
 
 
-## Recursos
-- [Página oficial de `{pointblank}`](https://rstudio.github.io/pointblank/index.html)
-- [Introduction to the Pipeline Data Validation Workflow ](https://rstudio.github.io/pointblank/articles/VALID-II.html)
+
+

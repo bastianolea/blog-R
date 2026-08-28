@@ -151,15 +151,15 @@ Otras funciones:
 blogdown::serve_site()
 blogdown::stop_server()
 
-# Crear post normal
-blogdown::new_post(
+# Crear post normal (usar crear_publicacion() para posts .qmd, ver más abajo)
+crear_publicacion(
   title = "Título",
   file = paste0("blog/", lubridate::today(), "/index.qmd"),
   author = "Bastián Olea Herrera",
   tags = c("tag1", "tag2")
 )
 
-# Crear post con slug semántico
+# Crear post con slug semántico (.md no necesita _quarto.yml, blogdown::new_post() basta)
 blogdown::new_post(
   title = "Título",
   file = "blog/nombre-slug/index.md",
@@ -185,6 +185,39 @@ format:
     output-file: "index"
     output-ext: "md"
 ```
+
+
+## Botón Render de RStudio en posts `.qmd` (requiere `_quarto.yml`)
+
+**Problema (detectado 2026-08-28):** al presionar el botón **Render** en un `.qmd` del blog, RStudio ejecuta `quarto preview index.qmd --to hugo-md --no-watch-inputs --no-browse`, y falla con:
+```
+Error in rmarkdown:::abs_path(input) : The file 'index.qmd' does not exist.
+```
+Esto ocurre **incluso ejecutando el comando desde la carpeta correcta del post** — no es un problema de directorio de trabajo. Se confirmó empíricamente que `quarto render index.qmd` (sin `preview`) funciona bien sin `_quarto.yml`, pero `quarto preview` (que es lo que usa el botón Render) en Quarto 1.9.37 **requiere que el documento pertenezca a un proyecto Quarto** para resolver la ruta del archivo; sin un `_quarto.yml` en la carpeta del post, falla con ese error de `abs_path`.
+
+**Solución:** agregar un `_quarto.yml` vacío en la carpeta del post. Esto no tiene relación con los `_quarto.yml` de otros posts (`mapas_sf`, `mapas_hexagonales`, etc., usados para el patrón de `freeze`) — cada carpeta necesita el suyo de forma independiente, Quarto no considera carpetas hermanas.
+
+**Automatizado:** la función `crear_publicacion()` en `R/funciones.R` (envoltorio de `blogdown::new_post()`) crea automáticamente el `_quarto.yml` cuando el post es `.qmd`, y además navega el panel Files a la carpeta nueva. Usarla en vez de `blogdown::new_post()` directamente para posts Quarto.
+
+**Qué muestra el botón Render:** aun con `_quarto.yml`, el Viewer de RStudio tras un Render muestra el **markdown crudo** (`hugo-md`), no el sitio con el tema aplicado — eso es esperado, porque Quarto no conoce Hugo/el tema. Para ver el post integrado en el sitio, se debe usar `blogdown::serve_site()` (con `blogdown.knit.on_save = TRUE`, ya configurado en `.Rprofile`): al guardar el `.qmd`, blogdown lo re-renderiza y el sitio se actualiza solo. El botón Render sirve principalmente para confirmar que el `.qmd` ejecuta sin errores de R.
+
+**Ruido inofensivo en consola:** con `_quarto.yml` presente, al usar Render (o al guardar el archivo) puede aparecer en consola:
+```
+Rendering content/blog/.../index.rmarkdown...
+Error in abs_path(input) : The file 'index.rmarkdown' does not exist.
+```
+Es una condición de carrera benigna, no un fallo real: Quarto crea un archivo temporal `index.rmarkdown` de compatibilidad al renderizar un `.qmd` que pertenece a un proyecto, y el watcher de contenido de `blogdown::serve_site()` — que reconoce archivos vía el patrón `blogdown:::rmd_pattern` (`[.][Rr](md|markdown)$`, el cual calza con `.rmarkdown`) — intenta knitear ese archivo temporal justo cuando Quarto ya lo borró. El knit real del `.qmd` (el que sí actualiza el sitio) ya ocurrió por el canal normal de blogdown antes de esa carrera, así que el sitio se actualiza correctamente pese al error visible.
+
+
+## Archetype de posts nuevos (`archetypes/blog.md`)
+
+El front matter por defecto que se aplica a los posts creados con `blogdown::new_post()` (o `crear_publicacion()`, envoltorio en `R/funciones.R`) vive en **`archetypes/blog.md`** (archivo plano en la raíz del proyecto), no en un archetype de tipo directorio (`archetypes/blog/index.md`).
+
+**Por qué debe ser un archivo plano y no un directorio:** `blogdown::new_post()` siempre construye la ruta de destino completa incluyendo `index.md` (ej. `blog/nombre/index.md`) antes de invocar `hugo new`. Con esa ruta explícita, Hugo trata la creación como un archivo normal, no como un "leaf bundle", así que **nunca llega a buscar/usar un archetype de tipo directorio** (`archetypes/blog/index.md`) — cae directo a `archetypes/default.md`. El archetype de directorio solo se activa si Hugo mismo crea el bundle, es decir, si se invocara `hugo new blog/nombre` (sin `/index.md` en la ruta) — algo que blogdown no hace.
+
+**Autor vacío en el front matter:** `new_post()` sobrescribe explícitamente el campo `author` con `getOption("blogdown.author")`, así que aunque el archetype tenga un `author` seteado, siempre queda pisado. Por eso `.Rprofile` fija `blogdown.author = "Bastián Olea Herrera"` — sin esa opción, el post nuevo queda con `author: ''`.
+
+**Al editar el front matter por defecto de posts nuevos**, modificar `archetypes/blog.md` (no crear ni editar `archetypes/blog/index.md`, que quedaría sin efecto).
 
 
 ## Gráficos con fondo transparente (mapas y ggplot2)

@@ -13,6 +13,15 @@
     "edit": {
       "*.md": "allow",
       "*.qmd": "allow"
+    },
+    "bash": {
+      "cd *": "allow",
+      "quarto *": "allow",
+      "echo *": "allow",
+      "find *": "allow"
+    },
+    "executeCode": {
+      "*": "allow"
     }
   }
 }

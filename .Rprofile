@@ -33,7 +33,10 @@ options(
   # to disable knitting Rmd files on save, set this option to FALSE
   blogdown.knit.on_save = TRUE,
   # build .Rmd to .md; to build to .html (via Pandoc), set this option to 'html'
-  blogdown.method = 'markdown'
+  blogdown.method = 'markdown',
+  # autor por defecto, para que new_post()/crear_publicacion() no dejen el
+  # campo "author" vacío en el front matter
+  blogdown.author = "Bastián Olea Herrera"
 )
 
 # fix Hugo version
