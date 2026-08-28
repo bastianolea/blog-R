@@ -14,6 +14,7 @@ abrir_publicacion_reciente("modificado", cantidad = 10)
 # trabajar en borradores
 abrir_borradores(cantidad = Inf)
 
+
 ## crear ----
 
 # crear un post normal
@@ -33,6 +34,7 @@ crear_publicacion(
 
 
 # ideas ----
+# post sobre temas nuevos, con fotos
 # generar html con R (usar ejemplos del post de colores)
 # agregar usos de {territorial} a posts
 # hacer que R te pregunte cosas
