@@ -5,12 +5,16 @@ blogdown::build_site()
 
 # source("R/funciones.R")
 
-## posts ----
+## publicaciones ----
 
 # editar el más reciente
 abrir_publicacion_reciente("creado", cantidad = 6)
 abrir_publicacion_reciente("modificado", cantidad = 10)
 
+# trabajar en borradores
+abrir_borradores(cantidad = Inf)
+
+## crear ----
 
 # crear un post normal
 crear_publicacion(
@@ -28,25 +32,7 @@ crear_publicacion(
 )
 
 
-## borradores ----
-"content/blog/renv/index.qmd"
-"content/blog/mirai/index.qmd"
-"content/blog/desarrollo_paquetes/index.md"
-"content/blog/2026-07-23/index.qmd" # escala bivariada
-"content/blog/arrow/index.qmd" # ! como base de datos
-"content/blog/ggplot_densidad_puntos/index.qmd"
-"content/blog/unpivotr/index.qmd"
-"content/blog/ggtext/index.qmd"
-"content/blog/ggplot_numeros/index.qmd"
-"content/blog/ggplot_ordenar/index.qmd" #unir estos dos en ggplot_ajustes o algo así
-"content/blog/ggplot_sankey/index.qmd"
-"content/blog/googledrive/index.qmd"
-"content/blog/tutorial_digitalocean/index.md"
-# tutorial mapas: poner puntos a partir de tablas de datos en centroides
-
 # ideas ----
-# mejorar: "https://bastianolea.rbind.io/blog/validacion_avanzada/"
-# mapas de regiones de chile para que aparezcan en google, por clasificación con {territorial}
 # generar html con R (usar ejemplos del post de colores)
 # agregar usos de {territorial} a posts
 # hacer que R te pregunte cosas

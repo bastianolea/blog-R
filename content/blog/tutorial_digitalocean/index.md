@@ -3,7 +3,7 @@ title: 'Tutorial: publicar una app Shiny en Digital Ocean'
 author: Bastián Olea Herrera
 format: hugo-md
 date: 2024-11-06T00:00:00.000Z
-draft: false
+draft: true
 categories:
   - Tutoriales
 tags:
