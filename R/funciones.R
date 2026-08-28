@@ -105,10 +105,6 @@ crear_publicacion <- function(...) {
 }
 
 
-library(fs)
-library(purrr)
-
-
 #' Lista de borradores recientes
 #'
 #' Ejecutar para recibir una lista de los borradores más recientes en la carpeta de publicaciones del blog, y según el número que se entregue, el script se abre para editarlo.
@@ -118,12 +114,12 @@ library(purrr)
 #' @export
 abrir_borradores <- function(cantidad = 5) {
   # ruta a documentos
-  publicaciones <- dir_ls(
+  publicaciones <- fs::dir_ls(
     "content/blog/",
     recurse = TRUE,
     regexp = ".md$|.qmd$"
   ) |>
-    str_subset(
+    stringr::str_subset(
       "rsconnect",
       negate = TRUE
     )
@@ -131,7 +127,7 @@ abrir_borradores <- function(cantidad = 5) {
   # archivos[349]
 
   # filtrar los que son borrador
-  borradores <- map(
+  borradores <- purrr::map(
     publicaciones,
     \(archivo) {
       # leer archivos de texto
@@ -151,21 +147,21 @@ abrir_borradores <- function(cantidad = 5) {
       }
     }
   ) |>
-    list_c()
+    purrr::list_c()
 
   borradores
 
   # pasar a tabla
   tabla_borradores <- tibble(archivo = borradores) |>
-    mutate(carpeta = path_dir(archivo)) |>
-    mutate(fecha = file_info(archivo)$modification_time)
+    mutate(carpeta = fs::path_dir(archivo)) |>
+    mutate(fecha = fs::file_info(archivo)$modification_time)
 
   # priorizar qmd
   publicaciones_borradores <- tabla_borradores |>
     mutate(
       orden = case_when(
-        str_detect(archivo, ".qmd$") ~ 1,
-        str_detect(archivo, ".md$") ~ 2
+        stringr::str_detect(archivo, ".qmd$") ~ 1,
+        stringr::str_detect(archivo, ".md$") ~ 2
       )
     ) |>
     arrange(carpeta, orden) |>
@@ -177,7 +173,7 @@ abrir_borradores <- function(cantidad = 5) {
     publicaciones_borradores |>
       slice_max(fecha, n = cantidad) |>
       pull(carpeta),
-    title = str_glue("Borradores recientes:")
+    title = stringr::str_glue("Borradores recientes:")
   )
 
   elegido <- publicaciones_borradores |>
