@@ -195,12 +195,5 @@
 				<guid>https://bastianolea.rbind.io/blog/portafolio_trabajos_r/</guid>
 				<description>&lt;p&gt;En esta página mantengo muestras de algunos proyectos que he realizado como analista de datos y desarrollador de R, y que consisten principalmente en aplicaciones web para la visualización y exploración de datos usando el &#xA;&lt;a href=&#34;https://bastianolea.rbind.io/blog/r_introduccion/&#34;&gt;lenguaje de programación R&lt;/a&gt;, la &#xA;&lt;a href=&#34;https://bastianolea.rbind.io/tags/dplyr/&#34;&gt;suite de paquetes para ciencia de datos Tidyverse&lt;/a&gt;, y el paquete de &#xA;&lt;a href=&#34;https://bastianolea.rbind.io/tags/shiny/&#34;&gt;desarrollo de aplicaciones web Shiny&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Todo lo descrito ha sido programado íntegramente por mi, como parte de distintos equipos de trabajo.&lt;/p&gt;</description>
 			</item>
-			<item>
-				<title>Tutorial: publicar una app Shiny en Digital Ocean</title>
-				<link>https://bastianolea.rbind.io/blog/tutorial_digitalocean/</link>
-				<pubDate>Wed, 06 Nov 2024 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/blog/tutorial_digitalocean/</guid>
-				<description>&lt;div style=&#34;display: flex; align-items: center; gap: 15px; padding: 14px; &#xA;            background-color: #493365;&#xA;            border-radius: 6px;&#xA;            margin: 20px 40px 20px 40px;&#34;&gt;&#xA;  &#xA;  &lt;div style=&#34;flex-shrink: 0;&#34;&gt;&#xA;    &lt;i class=&#34;fas fa-triangle-exclamation&#34; style=&#34;font-size: 130%; margin-left: 2px; opacity: 1; color: #EAD2FA;&#34;&gt;&lt;/i&gt;&#xA;  &lt;/div&gt;&#xA;  &#xA;  &lt;aside style = &#34;font-size: 90%; color: #EAD2FA;&#34;&gt;&#xA;    ⚠️ Este post está en construcción ⚠️&#xA;  &lt;/aside&gt;&#xA;  &#xA;&lt;/div&gt;&#xA;&lt;p&gt;En este tutorial encuentras instrucciones paso a paso para crear un droplet (servidor privado) en Digital Ocean, en el cual puedes subir aplicaciones Shiny, ejecutar RStudio, dejar automatizados procesos recurrentes de análisis de datos o web scraping, y más.&lt;/p&gt;</description>
-			</item>
 	</channel>
 </rss>

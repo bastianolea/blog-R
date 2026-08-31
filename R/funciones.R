@@ -187,3 +187,111 @@ abrir_borradores <- function(cantidad = 5) {
   # navegar el panel Files a la carpeta de la nueva publicación
   rstudioapi::filesPaneNavigate(elegido$carpeta)
 }
+
+
+#' Revisar enlaces rotos por la reescritura de rutas de Quarto
+#'
+#' Cuando un `.qmd` pertenece a un proyecto Quarto (existe un `_quarto.yml`
+#' en su carpeta o en alguna carpeta ancestra), Quarto reescribe cualquier
+#' enlace markdown que empiece con `/` (pensado como ruta absoluta del sitio
+#' Hugo, ej. `/blog/mi-post/` o `/tags/mi-tag/`) quitándole la barra inicial
+#' y agregándole `./`, sin calcular la distancia real hacia la raíz del
+#' proyecto. El resultado es un enlace roto (ej. `./blog/mi-post/`) que en
+#' el sitio final se resuelve de forma incorrecta y arroja 404 (ver skill
+#' `hugo-blog`, sección sobre reescritura de rutas absolutas de Quarto).
+#'
+#' Esta función recorre todos los `.qmd` del blog, ubica el `index.md`
+#' generado en la misma carpeta, y busca en él enlaces markdown cuyo
+#' destino empiece con `./` (la firma de este problema), avisando en qué
+#' archivos aparecen para poder corregirlos (normalmente reemplazando la
+#' ruta por una relativa manual con suficientes `../`, ej.
+#' `../../../blog/mi-post/`, o por una URL completa).
+#'
+#' @param carpeta Carpeta del blog a revisar. Por defecto `"content/blog"`.
+#'
+#' @returns Un tibble con columnas `qmd`, `md`, `linea` y `enlace` con cada
+#' coincidencia encontrada (invisible). Si no se encuentra ningún problema,
+#' no retorna nada (`NULL`) y solo despliega un mensaje.
+#' @export
+revisar_enlaces_qmd <- function(carpeta = "content/blog") {
+  require(fs)
+  require(stringr)
+  require(dplyr)
+  require(purrr)
+  require(tidyr)
+
+  # ubicar todos los .qmd del blog (recursivo, para incluir r_introduccion/)
+  publicaciones_qmd <- fs::dir_ls(
+    carpeta,
+    recurse = TRUE,
+    regexp = "\\.qmd$"
+  ) |>
+    stringr::str_subset("rsconnect", negate = TRUE)
+
+  # para cada .qmd, revisar el index.md generado en la misma carpeta
+  resultado <- purrr::map(
+    publicaciones_qmd,
+    \(qmd) {
+      md <- fs::path(fs::path_dir(qmd), "index.md")
+
+      # si no existe el .md generado, no hay nada que revisar todavía
+      if (!fs::file_exists(md)) {
+        return(NULL)
+      }
+
+      lineas <- readLines(md, warn = FALSE)
+
+      # firma del problema: un enlace markdown cuyo destino empieza con "./"
+      # (originalmente era una ruta absoluta del sitio, ej. "/blog/...",
+      # que Quarto reescribió quitando la barra inicial)
+      coincidencias <- stringr::str_extract_all(
+        lineas,
+        "\\]\\(\\./[^)]*\\)"
+      )
+
+      hay_coincidencia <- purrr::map_lgl(coincidencias, \(x) length(x) > 0)
+
+      if (!any(hay_coincidencia)) {
+        return(NULL)
+      }
+
+      dplyr::tibble(
+        qmd = qmd,
+        md = md,
+        linea = which(hay_coincidencia),
+        enlace = purrr::map(coincidencias[hay_coincidencia], identity)
+      ) |>
+        tidyr::unnest(enlace)
+    }
+  ) |>
+    purrr::list_rbind()
+
+  # avisar el resultado
+  if (nrow(resultado) == 0) {
+    message("No se encontraron enlaces rotos por reescritura de rutas de Quarto. \u2705")
+    return(invisible(NULL))
+  }
+
+  archivos_afectados <- dplyr::n_distinct(resultado$qmd)
+
+  message(
+    "Se encontraron ",
+    nrow(resultado),
+    " enlaces rotos en ",
+    archivos_afectados,
+    " publicaci\u00f3n(es):"
+  )
+
+  resultado |>
+    dplyr::group_by(qmd) |>
+    dplyr::group_walk(\(datos, llave) {
+      message("\n- ", llave$qmd)
+      purrr::walk2(
+        datos$linea,
+        datos$enlace,
+        \(linea, enlace) message("    l\u00ednea ", linea, ": ", enlace)
+      )
+    })
+
+  invisible(resultado)
+}

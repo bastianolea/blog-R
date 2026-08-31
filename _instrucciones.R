@@ -118,3 +118,6 @@ convertr::r_to_qmd(
 
 # ver en github
 usethis::browse_github()
+
+# # revisar problemas
+# revisar_enlaces_qmd()

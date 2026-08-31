@@ -56,7 +56,7 @@ resultado <- datos |>
 
 En otras palabras, se empieza con los `datos`, los datos se modifican una vez en el primer paso, y en el segundo paso se modifica el resultado del paso anterior. Es una cadena de operaciones con un inicio (`datos`) y un final (`resultado`).
 
-Recordemos que, en R, el resultado (la *[asignación](./blog/r_introduccion/r_basico/#asignaciones)*) se pone al principio, porque es una forma de decir *vamos a hacer esto de la siguiente manera*, una especie de *título* de la operación.
+Recordemos que, en R, el resultado (la *[asignación](../../../blog/r_introduccion/r_basico/#asignaciones)*) se pone al principio, porque es una forma de decir *vamos a hacer esto de la siguiente manera*, una especie de *título* de la operación.
 
 ## Escritura del conector
 

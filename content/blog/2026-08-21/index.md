@@ -129,7 +129,7 @@ Uno de los usos de `{pointblank}` es ir agregando pasos de **validación de dato
 
 - Al cargar datos externos
 - Luego de modificar/limpiar los datos
-- Luego de transformaciones complejas, como [`pivot_wider()`](./blog/r_introduccion/tidyr_pivotar/) o [`left_join()`](./blog/left_join/)
+- Luego de transformaciones complejas, como [`pivot_wider()`](../../../blog/r_introduccion/tidyr_pivotar/) o [`left_join()`](../../../blog/left_join/)
 - Al actualizar los datos
 - Antes de exportarlos o pasarlos al siguiente paso
 

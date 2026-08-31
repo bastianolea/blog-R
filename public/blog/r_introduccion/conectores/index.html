@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="generator" content="Hugo 0.164.0">
-<title>Aprendiendo a usar conectores o pipes | Bastián Olea</title>
+<title>Aprendiendo a usar conectores o pipes para encadenar operaciones | Bastián Olea</title>
 
 
 <meta property="twitter:site" content="@bastimapache">
@@ -28,7 +28,7 @@
 
 
 <meta property="og:site_name" content="Bastián Olea">
-<meta property="og:title" content="Aprendiendo a usar conectores o pipes | Bastián Olea">
+<meta property="og:title" content="Aprendiendo a usar conectores o pipes para encadenar operaciones | Bastián Olea">
 <meta property="og:description" content="Los conectores o _pipes_ son símbolos que nos permiten encadenar varias operaciones. En inglés, _pipe_ significa literalmente &#39;tubería&#39;, porque la idea es que los datos fluyan a través de una serie de pasos. En esta guía comprenderemos cómo se usan los conectores, y cómo pueden ayudarnos a escribir mejores análisis." />
 <meta property="og:type" content="page" />
 <meta property="og:url" content="https://bastianolea.rbind.io/blog/r_introduccion/conectores/" />
@@ -44,21 +44,21 @@
     
     
   
-	<meta itemprop="name" content="Aprendiendo a usar conectores o _pipes_">
+	<meta itemprop="name" content="Aprendiendo a usar conectores o _pipes_ para encadenar operaciones">
 	<meta itemprop="description" content="Los conectores o pipes son símbolos que nos permiten encadenar varias operaciones. En inglés, pipe significa literalmente “tubería”, porque la idea es que los datos fluyan a través de una serie de pasos.
 El uso de conectores facilita la lectura del código, porque nos muestra el flujo de las operaciones de forma ordenada y lógica, y también simplifica la escritura, porque nos hace escribir en el mismo orden lógico que pensamos las operaciones, y porque además nos permite reordenar, comentar, agregar o eliminar pasos.">
 	<meta itemprop="datePublished" content="2025-11-24T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2025-11-24T00:00:00+00:00">
-	<meta itemprop="wordCount" content="1061">
+	<meta itemprop="wordCount" content="1084">
 	<meta itemprop="image" content="https://bastianolea.rbind.io/blog/r_introduccion/conectores/featured.png">
-	<meta itemprop="keywords" content="Tutoriales de R,Introducción a R">
+	<meta itemprop="keywords" content="Básico">
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="false" type="image/x-icon">
   <link rel="icon" href="false" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.bd66cfc27a4c0d51b6ce4a5157347dd04fb8bdaca67ac747a0d21a34854da9be.css" integrity="sha256-vWbPwnpMDVG2zkpRVzR90E&#43;4vaymesdHoNIaNIVNqb4=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.f5e7ead5925ce86b371d623765cd035012871c2a5eb2e0af2aad5ae0b7ba6e20.css" integrity="sha256-9efq1ZJc6Gs3HWI3Zc0DUBKHHCpesuCvKq1a4Le6biA=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
@@ -251,21 +251,34 @@ El uso de conectores facilita la lectura del código, porque nos muestra el fluj
   <section class="page-content mw7 center">
     <article class="post-content pa0 pl3-l">
       <header class="post-header">
-        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Aprendiendo a usar conectores o <em>pipes</em></h1>
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Aprendiendo a usar conectores o <em>pipes</em> para encadenar operaciones</h1>
         
         
         <p class="f7 db mv0 ttu">24/11/2025</p>
         
          
-         
+        
+  <dl class="f6 lh-copy">
+    <em><dd class="fw5 ml0"> <a href="https://bastianolea.rbind.io/tags/b%C3%A1sico"
+    style="margin-right: 2px; 
+                 color: #EAD2FA; 
+                 font-style: normal;
+                 text-decoration: none;
+                 font-size: 10pt;
+                 background-color: #9069C0; 
+                 border-radius: 3px; 
+                 padding: 2px 6px; ">
+      básico</a> </dd></em>
+  </dl>
+ 
         
       </header>
       <section class="post-body pt5 pb4">
-        <script src="conectores_files/libs/bslib-component-js-0.9.0/components.min.js"></script>
-<script src="conectores_files/libs/bslib-component-js-0.9.0/web-components.min.js" type="module"></script>
-<link href="conectores_files/libs/bslib-component-css-0.9.0/components.css" rel="stylesheet" />
-<link href="conectores_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
-<script src="conectores_files/libs/bslib-tag-require-0.9.0/tag-require.js"></script>
+        <script src="index_files/libs/bslib-component-js-0.12.0/components.min.js"></script>
+<script src="index_files/libs/bslib-component-js-0.12.0/web-components.min.js" type="module"></script>
+<link href="index_files/libs/bslib-component-css-0.12.0/components.css" rel="stylesheet" />
+<link href="index_files/libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
+<script src="index_files/libs/bslib-tag-require-0.12.0/tag-require.js"></script>
 <p>Los conectores o <em>pipes</em> son símbolos que nos permiten <strong>encadenar varias operaciones</strong>. En inglés, <em>pipe</em> significa literalmente &ldquo;tubería&rdquo;, porque la idea es que los datos fluyan a través de una serie de pasos.</p>
 <p>El uso de conectores <strong>facilita la lectura</strong> del código, porque nos muestra el flujo de las operaciones de forma ordenada y lógica, y también <strong>simplifica la escritura</strong>, porque nos hace escribir en el mismo orden lógico que pensamos las operaciones, y porque además nos permite reordenar, comentar, agregar o eliminar pasos.</p>
 <p>En R, el conector nativo es <code>|&gt;</code> y a continuación veremos cómo usarlo!</p>
@@ -290,7 +303,7 @@ El uso de conectores facilita la lectura del código, porque nos muestra el fluj
 </span></span><span class="line"><span class="cl">    <span class="nf">otra_acción</span><span class="p">()</span>
 </span></span></code></pre></div><p>En otras palabras, se empieza con los <code>datos</code>, los datos se modifican una vez en el primer paso, y en el segundo paso se modifica el resultado del paso anterior. Es una cadena de operaciones con un inicio (<code>datos</code>) y un final (<code>resultado</code>).</p>
 <p>Recordemos que, en R, el resultado (la <em>
-<a href="../../../../blog/r_introduccion/r_basico/#asignaciones">asignación</a></em>) se pone al principio, porque es una forma de decir <em>vamos a hacer esto de la siguiente manera</em>, una especie de <em>título</em> de la operación.</p>
+<a href="./blog/r_introduccion/r_basico/#asignaciones">asignación</a></em>) se pone al principio, porque es una forma de decir <em>vamos a hacer esto de la siguiente manera</em>, una especie de <em>título</em> de la operación.</p>
 
 
 
@@ -486,6 +499,21 @@ El uso de conectores facilita la lectura del código, porque nos muestra el fluj
 </span></span><span class="line"><span class="cl">  <span class="c1"># ordenarlos empeazndo por el más bebé</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">arrange</span><span class="p">(</span><span class="n">edad</span><span class="p">)</span>
 </span></span></code></pre></div><p>Solamente hay que acostumbrarse a fijarnos bien que los conectores <em>conecten</em> con algo: no dejar conectores apuntando a nada, porque hacen que R piense que el código conecta con lo que sea que tenga abajo, o peor, que R quede esperando que lo conectes con algo!<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+
+
+
+
+<h2 id="recursos">Recursos
+  <a href="#recursos"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<ul>
+<li>
+<a href="https://es.r4ds.hadley.nz/18-pipes.html" target="_blank" rel="noopener">Cápitulo sobre <em>pipes</em> en R</a> del libro 
+<a href="https://es.r4ds.hadley.nz/" target="_blank" rel="noopener">R para Ciencia de Datos</a>, que trata en profundidad el concepto de <em>proyectos</em> en RStudio.</li>
+</ul>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -512,11 +540,6 @@ El uso de conectores facilita la lectura del código, porque nos muestra el fluj
 
       </footer>
     </article>
-    
-      <div class="post-comments pa0 pa4-l mt4">
-  
-</div>
-
     
   </section>
 </main>
@@ -549,7 +572,7 @@ El uso de conectores facilita la lectura del código, porque nos muestra el fluj
           <li class="" hugo-nav="/blog/r_introduccion/r_intermedio/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/r_intermedio/">Herramientas básicas para programar con R</a></li>
         
           
-          <li class="active" hugo-nav="/blog/r_introduccion/conectores/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/conectores/">Aprendiendo a usar conectores o <em>pipes</em></a></li>
+          <li class="active" hugo-nav="/blog/r_introduccion/conectores/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/conectores/">Aprendiendo a usar conectores o <em>pipes</em> para encadenar operaciones</a></li>
         
           
           <li class="" hugo-nav="/blog/r_introduccion/proyectos/" style="line-height: 1.3; font-size: 95%; margin-left:-18px;"><a href="https://bastianolea.rbind.io/blog/r_introduccion/proyectos/">Organizar el trabajo en Proyectos de RStudio</a></li>
@@ -605,6 +628,7 @@ El uso de conectores facilita la lectura del código, porque nos muestra el fluj
         <li></li>
       </ul>
     </li>
+    <li><a href="#recursos">Recursos</a></li>
   </ul>
 </nav>
     </div>

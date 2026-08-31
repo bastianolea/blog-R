@@ -19,8 +19,12 @@ links:
     icon_pack: fas
     name: renv
     url: https://rstudio.github.io/renv/
+excerpt: "La reproducibilidad es un concepto clave en proyectos de ciencia de datos. Es muy importante planificar tus proyectos a futuro para que puedan seguir funcionando en otros computadores o ser ejecutados por otras personas, y que los resultados sigan siendo exactamente los mismos. El paquete de R `{renv}` te ayuda a _congelar_ las versiones de los paquetes que uses, para que puedas reinstalarlos en el futuro o en otros computadores y tu proyecto siga funcionando sin sorpresas."
 ---
 
+La [reproducibilidad](/tags/reproducibilidad/) es un concepto clave en proyectos de ciencia de datos. La **reproducibilidad** es el conjunto de prácticas que permiten que tus procesos puedan ser repetidos, ya sea por ti o por otras personas, garantizando que los resultados pueden volver a regenerarse de manera exacta. Esto es clave para las ciencias, pero también para garantizar que tus procesos estén preparados para el futuro, puedan actualizarse, y puedan ser usados por otras personas.
+
+En este sentido, el paquete de R `{renv}` te ayuda a _congelar_ las versiones de los paquetes que uses, para que puedas reinstalarlos en el futuro o en otros computadores y tu proyecto siga funcionando sin sorpresas.
 
 Taller [proyectos reproducibles con renv](https://paocorrales.github.io/intro-renv/), impartido por [Pao Corrales](https://paocorrales.github.io) en el marco de [Research Software Latinoamérica (RSLA26)](https://rs-latam.org).
 

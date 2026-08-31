@@ -40,9 +40,9 @@ links:
 ---
 
 
-Normalmente, cuando [creamos un mapa](./tags/mapas/) que visualice datos mediante color sólo podemos mostrar **un fenómeno a la vez**: la población de cada territorio, el ingreso promedio, el porcentaje de algo, etc. Pero, ¿qué pasa si queremos observar **cómo se relacionan dos variables** en un mismo mapa? Para eso existen los **mapas bivariados**! En vez de usar una [escala de colores](./blog/colores/) en una sola dimensión (por ejemplo, un color que va desde claro a oscuro), un mapa bivariado usa una **paleta de colores en dos dimensiones**: una cuadrícula de colores donde cada eje representa una variable distinta. De este modo, el color de cada territorio nos indica al mismo tiempo el valor de las dos variables, y podemos detectar visualmente en qué lugares ambas coinciden en ser altas, bajas, o una alta y la otra baja.
+Normalmente, cuando [creamos un mapa](../../../tags/mapas/) que visualice datos mediante color sólo podemos mostrar **un fenómeno a la vez**: la población de cada territorio, el ingreso promedio, el porcentaje de algo, etc. Pero, ¿qué pasa si queremos observar **cómo se relacionan dos variables** en un mismo mapa? Para eso existen los **mapas bivariados**! En vez de usar una [escala de colores](../../../blog/colores/) en una sola dimensión (por ejemplo, un color que va desde claro a oscuro), un mapa bivariado usa una **paleta de colores en dos dimensiones**: una cuadrícula de colores donde cada eje representa una variable distinta. De este modo, el color de cada territorio nos indica al mismo tiempo el valor de las dos variables, y podemos detectar visualmente en qué lugares ambas coinciden en ser altas, bajas, o una alta y la otra baja.
 
-En este tutorial crearemos un mapa bivariado de nivel comunal que cruza el **promedio de escolaridad**, obtenido del [Censo de Población y Vivienda 2024](./blog/censo_2024/), con la **pobreza por ingresos**, estimada por el [Ministerio de Desarrollo Social de Chile](https://bidat.gob.cl/directorio/Pobreza%20comunal/estimaciones-de-pobreza-comunal-2024).
+En este tutorial crearemos un mapa bivariado de nivel comunal que cruza el **promedio de escolaridad**, obtenido del [Censo de Población y Vivienda 2024](../../../blog/censo_2024/), con la **pobreza por ingresos**, estimada por el [Ministerio de Desarrollo Social de Chile](https://bidat.gob.cl/directorio/Pobreza%20comunal/estimaciones-de-pobreza-comunal-2024).
 
 ## Obtención de datos
 
@@ -51,11 +51,11 @@ Nuestro objetivo es obtener una tabla con dos indicadores por comuna:
 1.  **Promedio de años de escolaridad** de los habitantes de cada comuna de Chile, según el Censo 2024.
 2.  **Porcentaje de personas en situación de pobreza por ingresos**, según las estimaciones comunales realizadas por el Ministerio de Desarrollo Social en 2024.
 
-Como los datos vienen de dos fuentes distintas, los prepararemos por separado y luego los [uniremos](./blog/left_join/) por comuna.
+Como los datos vienen de dos fuentes distintas, los prepararemos por separado y luego los [uniremos](../../../blog/left_join/) por comuna.
 
 ### Escolaridad según el Censo 2024
 
-Los datos de escolaridad los obtenemos del Censo, que ya hemos usado [en tutoriales anteriores](./blog/censo_2024/), donde también vimos cómo descargar los microdatos y cargarlos como base de datos. Aquí repasaremos el proceso de forma más resumida, así que si no tienes experiencia con este conjunto de datos te recomiendo revisar ese tutorial primero.
+Los datos de escolaridad los obtenemos del Censo, que ya hemos usado [en tutoriales anteriores](../../../blog/censo_2024/), donde también vimos cómo descargar los microdatos y cargarlos como base de datos. Aquí repasaremos el proceso de forma más resumida, así que si no tienes experiencia con este conjunto de datos te recomiendo revisar ese tutorial primero.
 
 {{< relacionada "/blog/censo_2024/" "Tutorial relacionado" >}}
 
@@ -63,7 +63,7 @@ Lo primero es descargar los microdatos del Censo, [disponibles en su sitio ofici
 
 {{< boton "Resultados Censo 2024" "https://censo2024.ine.gob.cl/resultados/" "fas fa-file-download" >}}
 
-Cargamos la base de *personas* con la función `open_dataset()` de `{arrow}`, que abre los datos como [una base de datos](./blog/censo_2024/#cargar-datos-del-censo-en-r): esto significa que podemos filtrar y consultar millones de observaciones de forma eficiente, incluso cuando los datos son más grandes que la memoria de nuestras computadoras, y solamente cuando terminamos de manipular los datos copiamos los resultados a la memoria con la función `collect()`.
+Cargamos la base de *personas* con la función `open_dataset()` de `{arrow}`, que abre los datos como [una base de datos](../../../blog/censo_2024/#cargar-datos-del-censo-en-r): esto significa que podemos filtrar y consultar millones de observaciones de forma eficiente, incluso cuando los datos son más grandes que la memoria de nuestras computadoras, y solamente cuando terminamos de manipular los datos copiamos los resultados a la memoria con la función `collect()`.
 
 ``` r
 library(arrow)
@@ -112,7 +112,7 @@ Obtenemos una tabla con el promedio de años de escolaridad por cada código de 
 
 ### Pobreza por ingresos
 
-El segundo indicador proviene de las [estimaciones de pobreza comunal por ingresos](https://bidat.gob.cl/directorio/Pobreza%20comunal/estimaciones-de-pobreza-comunal-2024) (2024) calculadas por el Ministerio de Desarrollo Social de Chile a partir de la [encuesta Casen](./blog/casen_introduccion/).
+El segundo indicador proviene de las [estimaciones de pobreza comunal por ingresos](https://bidat.gob.cl/directorio/Pobreza%20comunal/estimaciones-de-pobreza-comunal-2024) (2024) calculadas por el Ministerio de Desarrollo Social de Chile a partir de la [encuesta Casen](../../../blog/casen_introduccion/).
 
 {{< boton "Descargar datos de pobreza" "sae_ingresos_2024.xlsx" "fas fa-file-download" >}}
 
@@ -183,7 +183,7 @@ Obtenemos una tabla con una fila por comuna y dos columnas de interés: `escolar
 
 ## Unir los datos con el mapa
 
-Ahora necesitamos obtener los **polígonos de las comunas** de Chile para poder dibujar el mapa. Obtendremos los mapas de Chile desde el [paquete `{chilemapas}`](https://pacha.dev/chilemapas/), como hemos visto en [otros tutoriales de mapas](./blog/tutorial_mapa_chile/) de este blog.
+Ahora necesitamos obtener los **polígonos de las comunas** de Chile para poder dibujar el mapa. Obtendremos los mapas de Chile desde el [paquete `{chilemapas}`](https://pacha.dev/chilemapas/), como hemos visto en [otros tutoriales de mapas](../../../blog/tutorial_mapa_chile/) de este blog.
 
 Si no tienes `{chilemapas}`, instálalo:
 
@@ -345,7 +345,7 @@ leyenda
 
 ### Mapa bivariado
 
-Creamos el mapa con `{ggplot2}` y `geom_sf()` (como vimos en el [tutorial de mapas con `{sf}`](./blog/mapas_sf/)), definiendo la escala de colores con `bi_scale_fill()` de `{biscale}` para expresar la columna `bi_class` en la paleta de colores en dos dimensiones. Ocultamos la leyenda automática (`show.legend = FALSE`) porque usaremos la leyenda personalizada que creamos recién.
+Creamos el mapa con `{ggplot2}` y `geom_sf()` (como vimos en el [tutorial de mapas con `{sf}`](../../../blog/mapas_sf/)), definiendo la escala de colores con `bi_scale_fill()` de `{biscale}` para expresar la columna `bi_class` en la paleta de colores en dos dimensiones. Ocultamos la leyenda automática (`show.legend = FALSE`) porque usaremos la leyenda personalizada que creamos recién.
 
 ``` r
 mapa <- mapa_datos_bi |>
@@ -368,7 +368,7 @@ Tenemos un mapa bivariado! Pero aún tenemos que agregarle la leyenda para que p
 
 ### Combinar mapa y leyenda
 
-Finalmente, usamos el paquete [`{patchwork}`](./blog/patchwork/) para **insertar la leyenda dentro del mapa** con `inset_element()`, ubicándola en una esquina. Los argumentos `left`, `bottom`, `right` y `top` definen la posición y el tamaño de la leyenda, en una escala de 0 a 1 relativa al gráfico.
+Finalmente, usamos el paquete [`{patchwork}`](../../../blog/patchwork/) para **insertar la leyenda dentro del mapa** con `inset_element()`, ubicándola en una esquina. Los argumentos `left`, `bottom`, `right` y `top` definen la posición y el tamaño de la leyenda, en una escala de 0 a 1 relativa al gráfico.
 
 ``` r
 library(patchwork)

@@ -10,9 +10,23 @@
 		
 		
 		
-			<lastBuildDate>Thu, 27 Aug 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Fri, 28 Aug 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="https://bastianolea.rbind.io/tags/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Consejos</title>
+				<link>https://bastianolea.rbind.io/tags/consejos/</link>
+				<pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
+				<guid>https://bastianolea.rbind.io/tags/consejos/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Limpieza de datos</title>
+				<link>https://bastianolea.rbind.io/tags/limpieza-de-datos/</link>
+				<pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
+				<guid>https://bastianolea.rbind.io/tags/limpieza-de-datos/</guid>
+				<description></description>
+			</item>
 			<item>
 				<title>Curiosidades</title>
 				<link>https://bastianolea.rbind.io/tags/curiosidades/</link>
@@ -25,13 +39,6 @@
 				<link>https://bastianolea.rbind.io/tags/estad%C3%ADstica/</link>
 				<pubDate>Wed, 26 Aug 2026 00:00:00 +0000</pubDate>
 				<guid>https://bastianolea.rbind.io/tags/estad%C3%ADstica/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Limpieza de datos</title>
-				<link>https://bastianolea.rbind.io/tags/limpieza-de-datos/</link>
-				<pubDate>Wed, 26 Aug 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/limpieza-de-datos/</guid>
 				<description></description>
 			</item>
 			<item>
@@ -67,13 +74,6 @@
 				<link>https://bastianolea.rbind.io/tags/automatizaci%C3%B3n/</link>
 				<pubDate>Tue, 18 Aug 2026 00:00:00 +0000</pubDate>
 				<guid>https://bastianolea.rbind.io/tags/automatizaci%C3%B3n/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Consejos</title>
-				<link>https://bastianolea.rbind.io/tags/consejos/</link>
-				<pubDate>Tue, 18 Aug 2026 00:00:00 +0000</pubDate>
-				<guid>https://bastianolea.rbind.io/tags/consejos/</guid>
 				<description></description>
 			</item>
 			<item>
@@ -228,6 +228,13 @@
 				<link>https://bastianolea.rbind.io/tags/estad%C3%ADsticas/</link>
 				<pubDate>Tue, 27 Jan 2026 00:00:00 +0000</pubDate>
 				<guid>https://bastianolea.rbind.io/tags/estad%C3%ADsticas/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Reproducibilidad</title>
+				<link>https://bastianolea.rbind.io/tags/reproducibilidad/</link>
+				<pubDate>Tue, 20 Jan 2026 00:00:00 +0000</pubDate>
+				<guid>https://bastianolea.rbind.io/tags/reproducibilidad/</guid>
 				<description></description>
 			</item>
 			<item>

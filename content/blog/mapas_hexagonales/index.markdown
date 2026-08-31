@@ -26,7 +26,7 @@ editor_options:
 excerpt: "Al visualizar datos espaciales detallados, como los de la cartografía censal a nivel de manzanas, los polígonos presentan diversos tamaños y niveles de detalle. Esto puede ser demasiado detallado para la visualización que necesitemos, puede desconcentrar mucho, o bien, podemos necesitar homogeneizar la distribución de los datos en el territorio. En este tutorial veremos cómo crear mapas de hexágonos y de cuadrículas a partir de todo tipo de _shapes_."
 ---
 
-Al visualizar datos espaciales detallados, como los de la [cartografía censal a nivel de manzanas](/blog/mapas_censo_2024/), los polígonos presentan diversos tamaños y niveles de detalle.  Esto puede ser demasiado detallado para la visualización que necesitemos, puede desconcentrar mucho, o bien, podemos necesitar homogeneizar la distribución de los datos en el territorio. En este tutorial veremos cómo crear mapas de hexágonos y de cuadrículas a partir de todo tipo de _shapes_.
+Al visualizar datos espaciales detallados, como los de la [cartografía censal a nivel de manzanas](../../../blog/mapas_censo_2024/), los polígonos presentan diversos tamaños y niveles de detalle.  Esto puede ser demasiado detallado para la visualización que necesitemos, puede desconcentrar mucho, o bien, podemos necesitar homogeneizar la distribución de los datos en el territorio. En este tutorial veremos cómo crear mapas de hexágonos y de cuadrículas a partir de todo tipo de _shapes_.
 
 
 
@@ -57,10 +57,6 @@ library(arrow)
 ```
 
 ```
-## Warning: package 'arrow' was built under R version 4.4.3
-```
-
-```
 ## 
 ## Attaching package: 'arrow'
 ```
@@ -85,7 +81,7 @@ Luego cargamos los datos con la función `open_dataset()` de `{arrow}`, que carg
 censo_manzanas <- open_dataset("Cartografia_censo2024_Pais_Manzanas.parquet")
 ```
 
-Como vimos en el [tutorial del Censo 2024](/blog/censo_2024/), cargar los datos censales como base de datos evita tener que cargar _todos los datos_ de una sola vez, sino que cargas una _referencia_ a los datos que no pesa nada, pero que puedes filtrar y seleccionar, y sólo cuando ya necesitas los datos los _copias_ a la memoria con la función `collect()`:
+Como vimos en el [tutorial del Censo 2024](../../../blog/censo_2024/), cargar los datos censales como base de datos evita tener que cargar _todos los datos_ de una sola vez, sino que cargas una _referencia_ a los datos que no pesa nada, pero que puedes filtrar y seleccionar, y sólo cuando ya necesitas los datos los _copias_ a la memoria con la función `collect()`:
 
 
 ``` r
@@ -122,7 +118,7 @@ head(censo_comuna)
 ```
 
 
-Veamos cómo se ve el mapa! Para ello, tenemos que usar el paquete `{sf}`, como vimos en el [tutorial de mapas con R](/blog/mapas_sf), para convertir el _dataframe_ en un dataframe de catacterísticas geoespaciales:
+Veamos cómo se ve el mapa! Para ello, tenemos que usar el paquete `{sf}`, como vimos en el [tutorial de mapas con R](../../../blog/mapas_sf), para convertir el _dataframe_ en un dataframe de catacterísticas geoespaciales:
 
 
 ``` r
@@ -130,11 +126,7 @@ library(sf)
 ```
 
 ```
-## Warning: package 'sf' was built under R version 4.4.3
-```
-
-```
-## Linking to GEOS 3.13.0, GDAL 3.8.5, PROJ 9.5.1; sf_use_s2() is TRUE
+## Linking to GEOS 3.14.1, GDAL 3.13.2, PROJ 9.8.1; sf_use_s2() is TRUE
 ```
 
 ``` r
@@ -179,7 +171,7 @@ censo_comuna_mapa |>
        caption = "Censo 2024, cartografía censal")
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" alt="" width="672" />
 
 <!-- También podemos ver el mapa de manera interactiva con el paquete `{mapview}`: -->
 
@@ -198,7 +190,7 @@ mapview(censo_comuna_mapa)
 
 Para poder visualizar estos datos territoriales en visualizaciones más homogéneas, como en cuadrículas o en hexágonos, primero tenemos que **convertir los polígonos en puntos**. Los puntos nos permitirán más adelante contar cuántos polígonos caen dentro de cada celda de las grillas.
 
-Para convertir polígonos en puntos, usamos `st_centroid()` sobre la columna con los datos espaciales para [calcular su centroide](/blog/mapas_sf/#calcular-centroide). Como precaución, podemos agregar `st_make_valid()` para corregir los polígonos de antemano.
+Para convertir polígonos en puntos, usamos `st_centroid()` sobre la columna con los datos espaciales para [calcular su centroide](../../../blog/mapas_sf/#calcular-centroide). Como precaución, podemos agregar `st_make_valid()` para corregir los polígonos de antemano.
 
 
 ``` r
@@ -245,7 +237,7 @@ censo_comuna_puntos |>
   scale_color_continuous(palette = "PurpOr")
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" alt="" width="672" />
 
 <!-- Veamos el resultado de forma interactiva:  -->
 
@@ -274,7 +266,7 @@ library(units)
 ```
 
 ```
-## udunits database from /Users/bolea/Library/R/x86_64/4.4/library/units/share/udunits/udunits2.xml
+## udunits database from /usr/local/share/udunits/udunits2.xml
 ```
 
 ``` r
@@ -316,7 +308,7 @@ cuadricula |>
   geom_sf(fill = "#9069C0", color = "#EBD2FA", lwd = 0.8)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/grilla_cuadrada_vacia-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/grilla_cuadrada_vacia-1.png" alt="" width="672" />
 
 La cuadrícula usa la misma superficie que el mapa original. Podemos confirmar esto graficando la cuadrícula con los puntos encima:
 
@@ -329,7 +321,7 @@ ggplot() +
           color = "#553A74", alpha = 0.7, size = 1)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/mapa_cuadricula_puntos-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/mapa_cuadricula_puntos-1.png" alt="" width="672" />
 
 Con el mapa anterior se entiende mejor el proceso que estamos haciendo: el valor de cada celda va a depender de los puntos que caen dentro de la misma. Para eso, tenemos que cruzar los puntos y las celdas, que hasta ahora son objetos distintos.
 
@@ -489,7 +481,7 @@ censo_comuna_conteo_cuadros |>
        caption = "Censo 2024, cartografía censal")
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" alt="" width="672" />
 
 ¡Queda hermoso! Esta nueva visualización simplifica la complejidad de los datos territoriales originales, representando el espacio en una cuadrícula homogénea que igual permite identificar tendencias en un fenómeno territorial.
 
@@ -522,7 +514,7 @@ hexagonos |>
   geom_sf(fill = "#9069C0", color = "#EBD2FA", lwd = 0.6)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/hexagonos_vacios-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/hexagonos_vacios-1.png" alt="" width="672" />
 
 Ahora comparemos la grilla hexagonal con los puntos de las observaciones de nuestros datos, para ver cómo se van a distribuir los valores de los hexágonos en base a los datos de los polígonos territoriales:
 
@@ -535,7 +527,7 @@ ggplot() +
           color = "#553A74", alpha = 0.7, size = 1)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/mapa_hexagonos_puntos-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/mapa_hexagonos_puntos-1.png" alt="" width="672" />
 
 Ahora unimos los datos de dos mapas según su  intersección geográfica con un _spatial join_ con `st_join()`. Así, se unirán los polígonos correspondientes a los hexágonos con los datos de los puntos cuando ambos compartan la misma ubicación en el territorio. Así, los puntos que caen dentro de una celda se unirán a la fila de esa celda:
 
@@ -650,7 +642,7 @@ censo_comuna_conteo_hex |>
        caption = "Censo 2024, cartografía censal")
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" alt="" width="672" />
 
 
 ``` r
@@ -671,11 +663,11 @@ Podemos repetir el proceso anterior, cambiando el tamaño de las celdas en `st_m
 
 Por ejemplo, podemos hacer los hexágonos más grandes:
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" alt="" width="672" />
 
 ...o hexágonos más chicos:
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" alt="" width="672" />
 
 {{< etiqueta "mapas" >}}
 

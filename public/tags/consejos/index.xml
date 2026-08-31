@@ -10,7 +10,7 @@
 		
 		
 		
-			<lastBuildDate>Tue, 18 Aug 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Fri, 28 Aug 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="https://bastianolea.rbind.io/tags/consejos/index.xml" rel="self" type="application/rss+xml" />
 			<item>
@@ -26,6 +26,13 @@
 				<pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
 				<guid>https://bastianolea.rbind.io/blog/r_introduccion/tutorial_github/</guid>
 				<description>&lt;a href=&#34;titulo_github-featured.png&#34; target=&#34;_blank&#34;&gt;&#xA;&#xA;  &lt;img src=&#34;titulo_github-featured.png&#34; style=&#34;border-radius: 5px; width: 80%; max-width: 700px; display: block; margin: auto; margin-bottom: 8px; margin-top: 8px;&#34;&gt;&#xA;  &#xA;&lt;/a&gt;&#xA;&lt;br&gt;&#xA;&lt;br&gt;&#xA;&lt;p&gt;En este tutorial aprenderás a empezar a usar Git con tus proyectos de R, mediante la creación de repositorios. Git te permite llevar un registro de las versiones y un control de cambios en tu código, mientras que GitHub te permite subir tus repositorios a un servicio online, en el cual puedes compartir tu código con otras personas, descargar el código de otros, y colaborar en un mismo proyecto.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Validar datos para prevenir problemas y errores futuros</title>
+				<link>https://bastianolea.rbind.io/blog/2026-08-21/</link>
+				<pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
+				<guid>https://bastianolea.rbind.io/blog/2026-08-21/</guid>
+				<description>&lt;p&gt;¿Alguna vez has tenido dudas sobre los datos que estás explorando?&lt;/p&gt;&#xA;&lt;p&gt;Últimamente he estado trabajando con &lt;em&gt;pipelines&lt;/em&gt; o flujos de procesamiento de datos extensos, y en cierto momento es imposible tener certeza de que los datos son como esperamos. También pasa que queremos confirmar que los datos tienen ciertas características luego de filtrarlos, cruzarlos, o transformarlos.&lt;/p&gt;&#xA;&lt;p&gt;Con el paquete &lt;code&gt;{pointblank}&lt;/code&gt; puedes olvidarte de las inseguridades cuando trabajes con datos!&lt;/p&gt;&#xA;&lt;p&gt;Por ejemplo, veamos estos datos de prueba:&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>Validación de datos con `{testthat}` y `{pointblank}`</title>

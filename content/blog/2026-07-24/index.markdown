@@ -25,19 +25,19 @@ editor_options:
 excerpt: "¿Cómo se distribuyen territorialmente el envejecimiento poblacional y la propiedad de viviendas en Chile? Un análisis exploratorio y visual por medio de mapas bivariados de cuatro regiones del país que revela patrones y dinámicas territoriales distintas."
 ---
 
-¿Dónde viven más adultos mayores, y dónde existen más viviendas propias? ¿En qué comunas conviven altos porcentajes de ambas características? Para responder este tipo de interrogantes, que han emergido a propósito del debate sobre la exención del pago de contribuciones en Chile, se pueden usar [mapas bivariados](/blog/mapas_bivariados/). Los mapas bivariados, como su nombre indica, representan dos variables simultáneamente por medio de una paleta que mezcla dos tonos de colores, permitiendo explorar visualmente correlaciones o co-currencias de fenómenos territoriales.
+¿Dónde viven más adultos mayores, y dónde existen más viviendas propias? ¿En qué comunas conviven altos porcentajes de ambas características? Para responder este tipo de interrogantes, que han emergido a propósito del debate sobre la exención del pago de contribuciones en Chile, se pueden usar [mapas bivariados](../../../blog/mapas_bivariados/). Los mapas bivariados, como su nombre indica, representan dos variables simultáneamente por medio de una paleta que mezcla dos tonos de colores, permitiendo explorar visualmente correlaciones o co-currencias de fenómenos territoriales.
 
-En esta publicación usaremos esta herramienta para explorar cómo se distribuyen geográficamente el **envejecimiento poblacional** y la **propiedad de viviendas** en distintas regiones de Chile, según datos del [Censo de Población y Vivienda 2024](/blog/censo_2024/).
+En esta publicación usaremos esta herramienta para explorar cómo se distribuyen geográficamente el **envejecimiento poblacional** y la **propiedad de viviendas** en distintas regiones de Chile, según datos del [Censo de Población y Vivienda 2024](../../../blog/censo_2024/).
 
 {{< relacionada "/blog/mapas_bivariados/" "Tutorial: Cómo crear mapas bivariados" >}}
 
 ## Preparar los datos
 
-Para este ejemplo necesitamos dos indicadores por comuna: el porcentaje de adultos mayores y el de viviendas propias, ambos del [Censo 2024](/blog/censo_2024/).
+Para este ejemplo necesitamos dos indicadores por comuna: el porcentaje de adultos mayores y el de viviendas propias, ambos del [Censo 2024](../../../blog/censo_2024/).
 
-{{< info "El procesamiento detallado de estos datos está disponible en el [tutorial detallado](/blog/mapas_bivariados/), o en mi [tutorial sobre el Censo](/blog/censo_2024/)." >}}
+{{< info "El procesamiento detallado de estos datos está disponible en el [tutorial detallado](../../../blog/mapas_bivariados/), o en mi [tutorial sobre el Censo](../../../blog/censo_2024/)." >}}
 
-Primero cargamos el Censo como una [base de datos](/blog/db_supabase/) y también el diccionario de datos del Censo:
+Primero cargamos el Censo como una [base de datos](../../../blog/db_supabase/) y también el diccionario de datos del Censo:
 
 
 
@@ -210,7 +210,7 @@ theme_set(
 )
 ```
 
-Siguiendo el [tutorial de mapas bivariados](/blog/mapas_bivariados/), sabemos que la leyenda de éstos requiere de una **paleta de colores**, una cantidad de **dimensiones**, y las etiquetas de las **variables** a usar. 
+Siguiendo el [tutorial de mapas bivariados](../../../blog/mapas_bivariados/), sabemos que la leyenda de éstos requiere de una **paleta de colores**, una cantidad de **dimensiones**, y las etiquetas de las **variables** a usar. 
 
 
 ``` r
