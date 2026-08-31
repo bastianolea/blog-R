@@ -13,7 +13,7 @@ footnoteReturnLinkContents = "&#8617;" # ↩
 pagination.pagerSize = 20
 preserveTaxonomyNames = true
 buildFuture = true # for posts set in the future
-ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.qmd$", "\\.knit\\.md$", "\\.utf8\\.md$"]
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.qmd$", "\\.knit\\.md$", "\\.utf8\\.md$", "/_freeze/", "/\\.quarto/"]
 enableEmoji = true
 titleCaseStyle = "firstupper"
 

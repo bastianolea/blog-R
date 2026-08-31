@@ -11,3 +11,9 @@ content/blog/mapas_sf/shapes/*
 !.posit/assistant/skills/*
 !.posit/assistant/plans/*
 .posit/assistant
+
+# output de build de Hugo y caché de recursos: Netlify los regenera en cada
+# deploy (netlify.toml corre `hugo` como build command), no hace falta
+# trackearlos en git
+/public/
+/resources/

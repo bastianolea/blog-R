@@ -18,7 +18,9 @@
       "cd *": "allow",
       "quarto *": "allow",
       "echo *": "allow",
-      "find *": "allow"
+      "find *": "allow",
+      "hugo *": "allow",
+      "tail *": "allow"
     },
     "executeCode": {
       "*": "allow"
