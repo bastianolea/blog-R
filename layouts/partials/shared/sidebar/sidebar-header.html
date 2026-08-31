@@ -8,5 +8,10 @@
 {{ $total_posts := len (where site.RegularPages "Section" "blog") }}
 <p class="f6 lh-copy measure">Actualmente hay {{ $total_posts }} publicaciones sobre R en este blog.</p>
 
+<div class="dn db-l">
 {{ partial "shared/tags-long.html" . }}
+</div>
+<div class="db dn-l">
+{{ partial "shared/tags-wide.html" . }}
+</div>
 

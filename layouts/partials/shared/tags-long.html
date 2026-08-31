@@ -1,5 +1,4 @@
 <!--lista de etiquetas-->
-
 <div style="font-size: 90%;">
   <h3 style="margin-bottom: 12px;">Temas:</h3>
   {{ range $index, $var := (first 20 (sort .Site.Taxonomies.tags "Count" "desc")) }} <!-- ordenar de mayor a menor-->

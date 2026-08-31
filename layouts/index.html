@@ -4,7 +4,7 @@
   <section class="page-content mw9 center">
     <div class="flex-l items-center" style="{{ if .Params.image_left }}flex-direction: row-reverse;{{ end }}">
       
-      <div class="mh4 w-50-l {{ if not .Params.text_align_left }}tr{{ end }}">
+      <div class="mh4 w-60-l {{ if not .Params.text_align_left }}tr{{ end }}">
         <!-- avatar arriba -->
                         <!-- <img src="/about/sidebar/avatar.jpg" class="h4 w4 dib br3" alt="avatar" style="margin:auto;max-width:60px;max-height:60px; margin-bottom: -10px; margin-top: -30px;"> -->
 
@@ -26,37 +26,26 @@
         {{ with .Params.description }}<p class="f4 mt4 lh-copy">{{ . | markdownify }}</p>{{ end }}
         <!-- {{ if .Params.show_action_link }}<a class="mt4 action {{ .Params.action_type }}" href="{{ .Params.action_link | relURL }}">{{ .Params.action_label | safeHTML }}</a>{{ end }} -->
         
-        
+        <!-- enlaces principales --->
         <a class="mt4 action text" href="/blog/">blog ></a>
         
         <a class="mt4 action text" href="https://bastianolea.github.io/aprende_r/">aprende R ></a>
         
         <a class="mt4 action text" href="https://bastianolea.github.io/shiny_apps/">apps ></a>
         
-        <!--
-        <a class="mt4 action text" href="https://bastianolea.github.io/shiny_apps/">apps ></a>
-        
-        
-        <a class="mt4 action text" href="https://bastianolea.github.io/datos_sociales/">repositorio de datos sociales ></a>
-        
-        
-        <a class="mt4 action text" href="/blog/r_introduccion//">aprende R desde cero gratis ></a>
-        -->
-        
-        <!--lista de etiquetas-->
-        {{ partial "shared/tags-wide.html" . }}
+        <!-- lista de etiquetas -->
+        {{ partial "shared/tags-wide-big.html" . }}
 
       </div>
       
       
-      
-      <div class="tr w-50-l {{ if .Params.image_left }}ml4{{ else }}mr4{{ end }}" style = "padding: 30px;">
+      <!--- imagen --->
+      <div class="dn db-l tr w-40-l {{ if .Params.image_left }}ml4{{ else }}mr4{{ end }}" style = "padding: 30px; max-width: 420px;">
       {{ with .Params.images }}
         {{ range first 1 . }}<img class="mv0 w-70-m" style = "border-radius: 5px;" src="{{ . }}"/>{{ end }}
       {{ end }}
       </div>
       
-     
       
     </div>
   </section>
