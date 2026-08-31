@@ -9,12 +9,13 @@ categories:
   - Tutoriales
 tags:
   - shiny
+  - básico
 excerpt: Shiny es un paquete de R que permite crear aplicaciones web interactivas usando sólo código de R. En este tutorial introductorio veremos cómo crear una app Shiny básica y subirla a un servidor gratuito para que puedas compartirla.
 ---
 
 {{< aviso "Existe una [versión mucho más completa](/blog/shiny/) de este tutorial! [Revísala aquí.](/blog/shiny/)" >}}
 
-Shiny es un paquete de R que permite crear aplicaciones web interactivas usando sólo código de R. Es muy fácil de aprender, puedes crear cosas interesantes en muy poco tiempo, y tiene la capacidad de [crear complejas y atractivas aplicaciones.](/apps/) 
+Shiny es un paquete de R que permite crear aplicaciones web interactivas usando sólo código de R. Es muy fácil de aprender, puedes crear cosas interesantes en muy poco tiempo, y tiene la capacidad de [crear complejas y atractivas aplicaciones.](/apps/)
 
 En este tutorial introductorio aprenderás cómo crear una app Shiny básica, que incluya texto, interacción para el usuario, y un resultado a partir de la interacción.
 
@@ -61,7 +62,7 @@ En el menú _File,_ elige _New Project_ y crea un proyecto en una nueva carpeta,
 
 {{< imagen "tutorial_shiny_1.png">}}
 
-### Crear el script 
+### Crear el script
 
 En RStudio, crea un nuevo script titulado `app.R`. Lo primero que vamos a poner en este script vacío, va a ser la carga del paquete `{shiny}` y del paquete `{bslib}` (que nos ayuda a construir aplicaciones más atractivas).
 
@@ -71,7 +72,7 @@ library(bslib)
 ```
 
 #### Interfaz básica
-El segundo paso será crear una interfaz visual para nuestra aplicación que esté vacía. 
+El segundo paso será crear una interfaz visual para nuestra aplicación que esté vacía.
 
 En esta interfaz es donde pondremos los títulos, textos, y botones de nuestra aplicación, y también donde posicionaremos las salidas o _outputs_ de nuestra aplicación, tales como gráficos, tablas, y más.
 
@@ -89,7 +90,7 @@ Esa sería una aplicación vacía, sin nada en ella. Podemos agregar los primero
 ```r
 ui <- page_fluid(
   h1("Título"),
-  
+
   h2("Introducción"),
   p("Bienvenidx a mi primera app")
   )
@@ -127,7 +128,7 @@ library(bslib)
 
 ui <- page_fluid(
   h1("Título"),
-  
+
   h2("Introducción"),
   p("Bienvenidx a mi primera app")
 )
@@ -149,7 +150,7 @@ A continuación aprenderemos a agregar los primeros _inputs_ y _outputs_ a nuest
 
 ### Inputs
 
-Los _inputs_ son todos los elementos visuales e interactivos que podemos poner en una aplicación, y que permiten que un usuario o usuario interactúe con nuestra aplicación, y a su vez, con el código que la compone. 
+Los _inputs_ son todos los elementos visuales e interactivos que podemos poner en una aplicación, y que permiten que un usuario o usuario interactúe con nuestra aplicación, y a su vez, con el código que la compone.
 
 Pueden ser elementos tales como selectores, botones, sliders, y otros. Shiny ofrece una amplia variedad de inputs a nuestra disposición, pero también hay otros paquetes de R que nos entregan más inputs.
 
@@ -158,23 +159,23 @@ Para agregar un input a tu aplicación, debes definirlo en la sección `ui` de l
 ```r
 ui <- page_fluid(
   h1("Título"),
-  
+
   h2("Introducción"),
   p("Bienvenidx a mi primera app"),
-  
+
   # agregar un input
-  textInput("nombre", 
+  textInput("nombre",
             label = "Escribe tu nombre")
   )
 ```
 
-Aquí agregamos un `textInput()`, un input que permite al usuario o usuaria escribir el texto que desee. 
+Aquí agregamos un `textInput()`, un input que permite al usuario o usuaria escribir el texto que desee.
 
-Los inputs tienen <ins>siempre</ins> como primer argumento su _nombre interno._ Este nombre interno debe ser único, y es el que se usará más adelante en `server` para referirnos al contenido de la selección del usuario/a. 
+Los inputs tienen <ins>siempre</ins> como primer argumento su _nombre interno._ Este nombre interno debe ser único, y es el que se usará más adelante en `server` para referirnos al contenido de la selección del usuario/a.
 
 Como segundo argumento, usualmente hay que poner la _etiqueta_ del input, que es el texto que el usuario verá inmediatamente antes del input, que le entrega instrucciones sobre qué debe o puede hacer con él.
 
-Luego de agregar el input al `ui` de tu app, puedes volver a ejecutarla para ver cómo va quedando. 
+Luego de agregar el input al `ui` de tu app, puedes volver a ejecutarla para ver cómo va quedando.
 
 <div style="text-align: center; margin:auto; max-width: 500px;">
 
@@ -183,17 +184,17 @@ Luego de agregar el input al `ui` de tu app, puedes volver a ejecutarla para ver
 </div>
 
 
-### Server 
+### Server
 Por ahora, el input que creamos no hace nada. Para hacer que haga algo, hay que usarlo en `server`.
 
-Crearemos un objeto dentro del `server` que recibirá el contenido del `input.` que acabamos de crear. Pero este objeto será un objeto especial, porque es creado con la función `reactive()`, que crea un _objeto reactivo._ 
+Crearemos un objeto dentro del `server` que recibirá el contenido del `input.` que acabamos de crear. Pero este objeto será un objeto especial, porque es creado con la función `reactive()`, que crea un _objeto reactivo._
 
 #### Reactividad
-Los objetos reactivos son la pieza fundamental de Shiny: son objetos de R que tienen una característica especial: cuando _cambia_ uno de los elementos que se usan dentro del objeto, o que se usan para construir el objeto, el objeto reactivo _se actualiza._ 
+Los objetos reactivos son la pieza fundamental de Shiny: son objetos de R que tienen una característica especial: cuando _cambia_ uno de los elementos que se usan dentro del objeto, o que se usan para construir el objeto, el objeto reactivo _se actualiza._
 
 En otras palabras, es como si crearas un objeto de R que se va a actualizar automáticamente si es que uno de los elementos que se usan para calcular el objeto cambian en su valor.
 
-_Por ejemplo:_ 
+_Por ejemplo:_
 ```r
 numero_a = 4
 numero_b = 8
@@ -205,13 +206,13 @@ En este ejemplo, se usan dos objetos para calcular un tercer objeto, `resultado`
 
 Pero en Shiny, este tipo de actualizaciones de los valores ocurren automáticamente, siempre y cuando se realicen rentro de la función `reactive()`. Así, cuando el usuario cambie `numero_a` o `numero_b`, el valor de `resultado` se actualizará automáticamente.
 
-De esta forma, los cálculos que hagamos en Shiny se van a actualizar siempre que el usuario o usuario haga cambios en los inputs que afectan al objeto. 
+De esta forma, los cálculos que hagamos en Shiny se van a actualizar siempre que el usuario o usuario haga cambios en los inputs que afectan al objeto.
 
 Definamos nuestro primero objeto reactivo dentro de `server`:
 
 ```r
 server <- function(input, output, session) {
-  
+
   # crear un objeto reactivo
   texto <- reactive({
     # aquí irá el cálculo
@@ -252,12 +253,12 @@ Confirmemos cómo va quedando nuestra sección `server` en su totalidad:
 
 ```r
 server <- function(input, output, session) {
-  
+
   # crear un objeto reactivo
   texto <- reactive({
     paste("Hola", input$nombre) # pegar el contenido del input con otro texto
   })
-  
+
   # output del objeto reactivo
   output$texto <- renderText({
     texto()
@@ -272,16 +273,16 @@ El último paso es poner en algún lugar de nuestra `ui` el _output_ que acabamo
 ```r
 ui <- page_fluid(
   h1("Título"),
-  
+
   h2("Introducción"),
   p("Bienvenidx a mi primera app"),
-  
-  textInput("nombre", 
+
+  textInput("nombre",
             label = "Escribe tu nombre"),
   hr(),
-  
+
   # salida desde server
-  textOutput("texto") 
+  textOutput("texto")
 )
 ```
 
@@ -292,8 +293,8 @@ Ahora que vimos lo básico de una app Shiny, podemos complejizar el ejemplo agre
 ```r
 selectInput("saludo",
               label = "Elije un saludo",
-              choices = c("Hola", 
-                          "Chao", 
+              choices = c("Hola",
+                          "Chao",
                           "Te odio" = "Hasta nunca,")),
 ```
 
