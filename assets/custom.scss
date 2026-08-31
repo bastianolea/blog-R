@@ -378,3 +378,11 @@ background-color: #A985C630;
 .nodes .cluster-label span p {
   color: #543A73 !important;
 }
+
+
+/* quitar espaciado arriba de los posts, para que se coincida verticalmente con el sidebar */
+@media screen {
+  .page-main.pa4 {
+    padding-top: 0.3rem !important; 
+  }
+}

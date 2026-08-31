@@ -5,5 +5,8 @@
   <!--{{ with .author }}<p class="f7 measure lh-copy i mh0-l">Escrito por {{ . | markdownify }}</p>{{ end }}-->
 {{ end }}
 
+{{ $total_posts := len (where site.RegularPages "Section" "blog") }}
+<p class="f6 lh-copy measure">Actualmente hay {{ $total_posts }} publicaciones sobre R en este blog.</p>
+
 {{ partial "shared/tags-long.html" . }}
 

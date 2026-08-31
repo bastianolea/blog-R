@@ -5,7 +5,7 @@ cascade:
   sidebar_left: true
   author: Bastián Olea Herrera
   show_author_byline: false
-  show_comments: true
+  show_comments: false
   show_post_date: true
   show_page_views: false
   sidebar:
@@ -22,7 +22,7 @@ sidebar:
   title: Blog
   author: Bastián Olea Herrera
   categories_link: false
-  description: "Tutoriales, reseñas y consejos sobre R para análisis de datos. Usa el [buscador](/buscar/) para encontrar publicaciones o navega los [temas](/tags/)."
+  description: "Tutoriales y consejos para aprender R para análisis de datos. Usa el [buscador](/buscar/) para encontrar publicaciones o navega por los [temas](/tags/) de tu interés."
   series_link: true
   show_sidebar_adunit: false
   tags_link: true
