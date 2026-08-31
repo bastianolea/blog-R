@@ -2,6 +2,7 @@
 blogdown::serve_site()
 blogdown::stop_server()
 blogdown::build_site()
+servr::httr("public")
 
 # source("R/funciones.R")
 

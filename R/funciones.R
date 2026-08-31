@@ -10,9 +10,9 @@ abrir_publicacion_reciente <- function(modo = "creado", cantidad = 5) {
   # de todas las carpetas con posts, presentar las más recientes,
   # y abrir el archivo quarto o markdown de la carpeta elegida
 
-  require(fs)
-  require(dplyr)
-  require(stringr)
+  require(fs) |> suppressPackageStartupMessages()
+  require(dplyr) |> suppressPackageStartupMessages()
+  require(stringr) |> suppressPackageStartupMessages()
 
   # obtener todas las carpetas del blog
   carpetas <- bind_rows(
@@ -214,11 +214,11 @@ abrir_borradores <- function(cantidad = 5) {
 #' no retorna nada (`NULL`) y solo despliega un mensaje.
 #' @export
 revisar_enlaces_qmd <- function(carpeta = "content/blog") {
-  require(fs)
-  require(stringr)
-  require(dplyr)
-  require(purrr)
-  require(tidyr)
+  require(fs) |> suppressPackageStartupMessages()
+  require(stringr) |> suppressPackageStartupMessages()
+  require(dplyr) |> suppressPackageStartupMessages()
+  require(purrr) |> suppressPackageStartupMessages()
+  require(tidyr) |> suppressPackageStartupMessages()
 
   # ubicar todos los .qmd del blog (recursivo, para incluir r_introduccion/)
   publicaciones_qmd <- fs::dir_ls(
@@ -268,18 +268,16 @@ revisar_enlaces_qmd <- function(carpeta = "content/blog") {
 
   # avisar el resultado
   if (nrow(resultado) == 0) {
-    message("No se encontraron enlaces rotos por reescritura de rutas de Quarto. \u2705")
+    message(
+      "No se encontraron enlaces rotos por reescritura de rutas de Quarto. \u2705"
+    )
     return(invisible(NULL))
   }
 
   archivos_afectados <- dplyr::n_distinct(resultado$qmd)
 
-  message(
-    "Se encontraron ",
-    nrow(resultado),
-    " enlaces rotos en ",
-    archivos_afectados,
-    " publicaci\u00f3n(es):"
+  cli::cli_alert_warning(
+    "Se encontraron {nrow(resultado)} enlaces rotos en {archivos_afectados} publicaciones:"
   )
 
   resultado |>
@@ -289,7 +287,7 @@ revisar_enlaces_qmd <- function(carpeta = "content/blog") {
       purrr::walk2(
         datos$linea,
         datos$enlace,
-        \(linea, enlace) message("    l\u00ednea ", linea, ": ", enlace)
+        \(linea, enlace) cli::cli_inform("    línea {linea}: {enlace}")
       )
     })
 
