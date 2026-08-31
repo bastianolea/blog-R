@@ -63,7 +63,7 @@ Las y los invito a crear su propio lugar en la internet, destinado a visibilizar
 ### Enlaces
 
 - [Portafolio de aplicaciones Shiny de análisis de datos](https://bastianolea.github.io/shiny_apps/)
-- [Tutorial Git y GitHub desde R](https://bastianolea.rbind.io/blog/r_introduccion/tutorial_github/)
+- [Tutorial Git y GitHub desde R](https://bastianolea.rbind.io/blog/tutorial_github/)
 - [Tutorial para crear blog con Quarto](https://bastianolea.rbind.io/blog/tutorial_quarto_github_pages/)
 
 

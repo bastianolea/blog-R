@@ -76,7 +76,7 @@ Algunos sitios web hechos con Quarto:
 
 Como vamos a publicar nuestro blog a través de GitHub, el primer paso es tener Git andando, y preparar nuestra cuenta y conectarla con RStudio. 
 
-{{< info "Si ya usas Git y GitHub con R, puedes saltarte esta sección. Si no sabes nada de esto, puedes verlo en detalle [en esta publicación.](/blog/r_introduccion/tutorial_github/)" >}}
+{{< info "Si ya usas Git y GitHub con R, puedes saltarte esta sección. Si no sabes nada de esto, puedes verlo en detalle [en esta publicación.](/blog/tutorial_github/)" >}}
 
 [**Git**](https://git-scm.com) es un software de código abierto que instalas en tu computador para llevar un registro de las versiones de tu código: cada vez que guardas un avance (un *commit*), Git recuerda ese estado de tus archivos, de modo que siempre puedes volver atrás o ver qué cambió.
 
@@ -86,7 +86,7 @@ Como vamos a publicar nuestro blog a través de GitHub, el primer paso es tener 
 
 {{< paso "2" "[Crea una cuenta de GitHub](https://github.com/join), si es que no la tienes aún, e inicia sesión en tu navegador web." >}}
 
-Si quieres profundizar en Git y GitHub más allá de lo necesario para este tutorial, revisa mi [tutorial de Git y GitHub para R](/blog/r_introduccion/tutorial_github/), o el libro [*Happy Git and GitHub for the useR*](https://happygitwithr.com).
+Si quieres profundizar en Git y GitHub más allá de lo necesario para este tutorial, revisa mi [tutorial de Git y GitHub para R](/blog/tutorial_github/), o el libro [*Happy Git and GitHub for the useR*](https://happygitwithr.com).
 
 {{< relacionada "blog/r_introduccion/tutorial_github/" >}}
 
@@ -135,7 +135,7 @@ Para revisar que la configuración quedó bien, puedes correr un diagnóstico:
 usethis::git_sitrep()
 ```
 
-El mensaje debería decirte tu cuenta de GitHub y que encontró el _token_ de acceso. Si tienes dudas o problemas, revisa [esta publicación](/blog/r_introduccion/tutorial_github/).
+El mensaje debería decirte tu cuenta de GitHub y que encontró el _token_ de acceso. Si tienes dudas o problemas, revisa [esta publicación](/blog/tutorial_github/).
 
 
 
@@ -633,7 +633,7 @@ El código de tu sitio queda público, y también el código que usas para const
 ## Recursos
 
 #### Tutoriales
-- [Crea un repositorio Git y comparte tu código en GitHub](/blog/r_introduccion/tutorial_github/)
+- [Crea un repositorio Git y comparte tu código en GitHub](/blog/tutorial_github/)
 - [Reportes y documentos con Quarto](/blog/quarto_reportes/)
 - [Crea páginas web y blogs con R + Quarto](/blog/tutorial_quarto_github_pages/)
 

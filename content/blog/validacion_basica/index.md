@@ -246,4 +246,4 @@ Estas pequeñas buenas prácticas te van a ayudar a reducir la incertidumbre en 
 
 ## Validación avanzada
 
-[El paquete de R `{pointblank}`](https://rstudio.github.io/pointblank/) se especializa en validación de datos, así que si requieres algo más avanzado para garantizar la calidad de tus datos y la estabilidad de tus procesos, [revisa este post con un tutorial!](../../../blog/validacion_avanzada/)
+[El paquete de R `{pointblank}`](https://rstudio.github.io/pointblank/) se especializa en validación de datos, así que si requieres algo más avanzado para garantizar la calidad de tus datos y la estabilidad de tus procesos, [revisa este post con un tutorial!](../../../blog/validacion_datos/)

@@ -286,7 +286,7 @@ Con esta configuración inicial, ahora puedes pasar a usar la IA con R de manera
 - [Análisis de sentimiento de textos con R](/blog/analisis_sentimiento_llm/)
 - [Resumir textos desde R](/blog/resumir_texto_llm/)
 - [Entregar datos a una IA para generar textos explicativos, resúmenes, o interpretaciones de tus datos](/blog/redactar_texto_llm/)
-- [Análisis de datos en formato texto con `{mall}`](/blog/introduccion_llm_mall/)
+- [Análisis de datos en formato texto con `{mall}`](/blog/inteligencia_artificial_mall/)
 - [{gander}, un asistente de código](/blog/gander/) que escribe código de R y reemplaza código o comentarios con lo que le pidas
 
 {{< etiqueta "inteligencia artificial" >}}

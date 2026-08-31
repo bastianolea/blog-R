@@ -38,7 +38,7 @@ Los contenidos son:
 
 Lo más probable es que todas las cosas que hemos aprendido sobre R y análisis de datos fueron porque alguna persona linda y bondadosa compartió gratuita y abiertamente lo que sabía o lo que creó, para que los demás se beneficien. Uno de los aspectos más positivos de la comunidad de usuarixs de R es su disposición a compartir y ayudar a los demás 💕 ¿Por qué no devolver la mano? 🥰
 
-Antes que nada, todas las opciones de este tutorial requieren que sepas usar GitHub, para poder subir tus proyectos de R a GitHub. Así que, para empezar, te resumiré las instrucciones necesarias para hacerlo. Encuentra [instrucciones más detalladas sobre usar git y GitHub con R en este tutorial.](https://bastianolea.rbind.io/blog/r_introduccion/tutorial_github/)
+Antes que nada, todas las opciones de este tutorial requieren que sepas usar GitHub, para poder subir tus proyectos de R a GitHub. Así que, para empezar, te resumiré las instrucciones necesarias para hacerlo. Encuentra [instrucciones más detalladas sobre usar git y GitHub con R en este tutorial.](https://bastianolea.rbind.io/blog/tutorial_github/)
 
 ## Crear un repositorio en GitHub para compartir código y/o datos
 
@@ -47,7 +47,7 @@ Quizás la forma más sencilla de poder compartir en internet tus trabajos, desa
 En este primer paso del tutorial, aprenderemos a crear un repositorio local `git` para tus proyectos de R, y luego subir este repositorio local a un repositorio remoto en GitHub para poder compartirlo y que otrxs puedan encontrarlo.
 
 ### Conectar R a GitHub
-- [Tutorial más detallado sobre esto escrito por mi](https://bastianolea.rbind.io/blog/r_introduccion/tutorial_github/)
+- [Tutorial más detallado sobre esto escrito por mi](https://bastianolea.rbind.io/blog/tutorial_github/)
 - Libro tutorial para aprender a usar git con R: [https://happygitwithr.com](https://happygitwithr.com)
 
 Para poder crear tus reposos remotos, primero tenemos que darle permiso a tu sesión de R para conectarse a tu cuenta de GitHub. 
@@ -101,7 +101,7 @@ Luego de tener el repositorio local, ahora toca subirlo como repositorio remoto 
 usethis::use_github()
 ```
 
-Con este comando se creará un repositorio remoto en tu cuenta de GitHub con el mismo nombre que el proyecto, y se abrirá una ventana de tu navegador con el repositorio subido. Este repositorio puedes enviárselo a otras personas, [y ellos pueden clonar el repositorio](https://bastianolea.rbind.io/blog/r_introduccion/tutorial_github/#clonar-un-repositorio-código-de-r-en-github) en sus propias sesiones de R para poder ejecutar tu mismo código.
+Con este comando se creará un repositorio remoto en tu cuenta de GitHub con el mismo nombre que el proyecto, y se abrirá una ventana de tu navegador con el repositorio subido. Este repositorio puedes enviárselo a otras personas, [y ellos pueden clonar el repositorio](https://bastianolea.rbind.io/blog/tutorial_github/#clonar-un-repositorio-código-de-r-en-github) en sus propias sesiones de R para poder ejecutar tu mismo código.
 
 
 ### Crear un archivo `readme.md`
@@ -114,7 +114,7 @@ usethis::use_readme()
 
 Con el solo hecho de tener un archivo `readme.md` en tu repositorio ya cuentas con una especie de sitio web donde puedes explayarte y compartir cosas más detalladas. Si bien no es la forma más atractiva de hacerlo, cumple con la función básica de poder compartir tus creaciones con el resto de la comunidad! 💜
 
-Si necesitas más información acerca del uso de git y GitHub con R, revisa el tutorial: [**Crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub**](https://bastianolea.rbind.io/blog/r_introduccion/tutorial_github/)
+Si necesitas más información acerca del uso de git y GitHub con R, revisa el tutorial: [**Crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub**](https://bastianolea.rbind.io/blog/tutorial_github/)
 
 ---- 
 

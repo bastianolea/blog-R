@@ -21,7 +21,7 @@ excerpt: >-
 ---
 
 
-[Hace poco](https://bastianolea.rbind.io/blog/introduccion_llm_mall/) conocí [el paquete `{mall}`](https://mlverse.github.io/mall/), que facilita mucho el uso de un un modelo de lenguaje (LLM) local como una herramienta cotidiana para el análisis y procesamiento de datos.
+[Hace poco](https://bastianolea.rbind.io/blog/inteligencia_artificial_mall/) conocí [el paquete `{mall}`](https://mlverse.github.io/mall/), que facilita mucho el uso de un un modelo de lenguaje (LLM) local como una herramienta cotidiana para el análisis y procesamiento de datos.
 
 El paquete incluye varias funciones para usar un modelo LLM local en las columnas de un dataframe. `{mall}` te puede ayudar a :
 - clasificar el contenido de una variable

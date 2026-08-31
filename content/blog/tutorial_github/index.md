@@ -5,7 +5,6 @@ author: Bastián Olea Herrera
 format: hugo-md
 date: 2025-02-07T00:00:00.000Z
 draft: false
-weight: 31
 categories:
   - Tutoriales
 tags:
@@ -106,7 +105,7 @@ Para hacer un nuevo commit, puedes volver a ejecutar `usethis::use_git()`, pero 
 En la parte superior de RStudio, presiona el icono de Git y elige la opción _commit_:
 {{< imagen "tutorial_github_5.png" >}}
 
-Se abrirá una nueva ventana donde aparecerán los archivos y datos nuevos en tu proyecto desde la última vez que hiciste _commit_. 
+Se abrirá una nueva ventana donde aparecerán los archivos y datos nuevos en tu proyecto desde la última vez que hiciste _commit_.
 
 {{< imagen "tutorial_github_6.png" >}}
 
@@ -124,13 +123,13 @@ El comando `git add .` agrega a todos los nuevos archivos y archivos modificados
 
 ## Configurar GitHub en R
 
-Lo primero que tienes que hacer es darle permiso a tu computador para conectarse a tu cuenta de GitHub. 
+Lo primero que tienes que hacer es darle permiso a tu computador para conectarse a tu cuenta de GitHub.
 
 Lógicamente, el primer paso es [crearse una cuenta en el servicio de GitHub](https://github.com).
 
-En R, ejecuta el comando `usethis::create_github_token()`, que abrirá una ventana de Github. En esta ventana se podrán crear _tokens_ para tu cuenta. 
+En R, ejecuta el comando `usethis::create_github_token()`, que abrirá una ventana de Github. En esta ventana se podrán crear _tokens_ para tu cuenta.
 
-Un _token_ es una especie de contraseña única y secreta de un solo uso, que te permite conectar tu cuenta a un computador sin tener que entregar tu clave de tu cuenta de GitHub, volviéndolo mucho más seguro. 
+Un _token_ es una especie de contraseña única y secreta de un solo uso, que te permite conectar tu cuenta a un computador sin tener que entregar tu clave de tu cuenta de GitHub, volviéndolo mucho más seguro.
 
 Crea el _token_ que necesitas, y copia del código secreto. Recuerda que este código solamente podrás verlo una vez, así que procura realizar el siguiente paso en seguida.
 
@@ -152,7 +151,7 @@ En tu proyecto de RStudio, ejecuta el comando `usethis::use_github()` para que a
 
 Puedes compartir el enlace a este repositorio para que otras personas puedan ver tu código, clonarlo en sus computadoras, y colaborar contigo. Es recomendable crear un archivo `readme.md` en tu proyecto para que aparezca como una descripción de tu repositorio GitHub, así como ponerle una descripción a tu repositorio de GitHub para que otras personas puedan entender de qué se.
 
-Recuerda que los repositorios en GitHub son por defecto **públicos y visibles** para las demás personas. Si necesitas respaldar, almacenar o compartir código y o datos privados, crea un repositorio privado con el comando `usethis::use_github(private = TRUE)`. En un repositorio privado, solamente tus computadoras autorizadas y personas que tú autorices podrán acceder a tu código. 
+Recuerda que los repositorios en GitHub son por defecto **públicos y visibles** para las demás personas. Si necesitas respaldar, almacenar o compartir código y o datos privados, crea un repositorio privado con el comando `usethis::use_github(private = TRUE)`. En un repositorio privado, solamente tus computadoras autorizadas y personas que tú autorices podrán acceder a tu código.
 
 
 {{<cafecito>}}

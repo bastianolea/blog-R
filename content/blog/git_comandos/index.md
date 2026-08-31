@@ -16,11 +16,11 @@ format:
 excerpt: "Colección de comandos de `git` para realizar acciones comunes y resolver problemas frecuentes. `git` es una herramienta para el control de versiones de código, respaldo de código, y colaboración."
 ---
 
-`git` es una herramienta para el control de versiones de código, respaldo de código, y colaboración. En otro post hice un tutorial para [aprender a usar `git` y GitHub con R y RStudio](/blog/r_introduccion/tutorial_github/). En este post voy a mantener una lista[^1] de los comandos que más uso en `git`, así como los comandos que necesito para resolver los **problemas más frecuentes.**
+`git` es una herramienta para el control de versiones de código, respaldo de código, y colaboración. En otro post hice un tutorial para [aprender a usar `git` y GitHub con R y RStudio](/blog/tutorial_github/). En este post voy a mantener una lista[^1] de los comandos que más uso en `git`, así como los comandos que necesito para resolver los **problemas más frecuentes.**
 
 [^1]: Hago esto porque tengo una nota en el computador con todos los comandos y siempre vuelvo a buscarla para copiarlos, así que mejor dejo todo eso acá 😋
 
-{{< relacionada "/blog/r_introduccion/tutorial_github/" >}}
+{{< relacionada "/blog/tutorial_github/" >}}
 
 Otro recurso mucho más completo es [ohshitgit.com](https://ohshitgit.com/es), que como su nombre indica, está enfocado en resolver problemas comunes con `git`.
 
@@ -47,7 +47,7 @@ Crearlo manualmente por la terminal, verificando que esté apuntando a la carpet
 git init
 ```
 
-Para más información sobre la integración de R con `git`, [revisa este post](/blog/r_introduccion/tutorial_github/). También existe el libro [Happy Git with R](https://happygitwithr.com), que detalla todos los pasos necesarios para poder usar `git` con R, incluyendo soluciones a problemas comunes.
+Para más información sobre la integración de R con `git`, [revisa este post](/blog/tutorial_github/). También existe el libro [Happy Git with R](https://happygitwithr.com), que detalla todos los pasos necesarios para poder usar `git` con R, incluyendo soluciones a problemas comunes.
 
 
 ### Ver estado del repositorio
@@ -109,7 +109,7 @@ git reflog
 
 ### Subir los cambios guardados al repositorio remoto
 
-Asumiendo que tu proyecto de RStudio tiene un repositorio `git`, que has hecho `commit` de tus cambios, y que [ya conectaste el repositorio local con un repositorio remoto](/blog/r_introduccion/tutorial_github/#crear-un-repositorio-remoto-en-github-para-tu-proyecto-de-r) en GitHub o GitLab:
+Asumiendo que tu proyecto de RStudio tiene un repositorio `git`, que has hecho `commit` de tus cambios, y que [ya conectaste el repositorio local con un repositorio remoto](/blog/tutorial_github/#crear-un-repositorio-remoto-en-github-para-tu-proyecto-de-r) en GitHub o GitLab:
 
 ```
 git push
@@ -318,7 +318,7 @@ Si te pasa como a mi y las ramas de tus proyectos usan el nombre antiguo, _maste
 git config --global init.defaultBranch main
 ```
 
-{{< relacionada "/blog/r_introduccion/tutorial_github/" >}}
+{{< relacionada "/blog/tutorial_github/" >}}
 
 
 ### Actualizar _token_ vencido
@@ -339,6 +339,6 @@ Podrás pegar el nuevo token en la consola, y tu computador quedará autorizado 
 
 Recursos para aprender a usar `git` con R:
 
-- [Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub](/blog/r_introduccion/tutorial_github/)
+- [Tutorial: crear un repositorio Git para tu proyecto de R y comparte tu código en GitHub](/blog/tutorial_github/)
 - [Libro _Happy Git with R_](https://happygitwithr.com)
 - [ohshitgit.com](https://ohshitgit.com/es)

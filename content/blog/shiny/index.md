@@ -136,7 +136,7 @@ Todas las aplicaciones Shiny empiezan muy sencillas, con unas cuantas líneas qu
 
 Para **entender los conceptos básicos**, haremos una aplicación completamente vacía. Empezamos **creando un nuevo script**, que llamaremos `app.R`.
 
-{{< info "Revisa este [otro tutorial mucho más básico de Shiny](/blog/r_introduccion/tutorial_shiny_1/) si crees que necesitas ir más lento" >}}
+{{< info "Revisa este [otro tutorial mucho más básico de Shiny](/blog/tutorial_shiny_1/) si crees que necesitas ir más lento" >}}
 
 #### Global
 

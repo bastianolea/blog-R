@@ -24,7 +24,7 @@ excerpt: "La validación de aplicaciones te permite crear un conjunto de pruebas
 
 {{< indice >}}
 
-Al igual que la [validación de datos](/blog/validacion_avanzada/), validar [aplicaciones Shiny](/tags/shiny/) te permite crear un conjunto de pruebas para **confirmar que tus aplicaciones funcionan bien sin tener que probarlas manualmente**. En la práctica, significa programar un _bot_ que apriete todos los botones de tu aplicación y obtenga capturas de pantalla que te confirmen que todo se ve bien, o realizar otros tipos de pruebas más complejas. 
+Al igual que la [validación de datos](/blog/validacion_datos/), validar [aplicaciones Shiny](/tags/shiny/) te permite crear un conjunto de pruebas para **confirmar que tus aplicaciones funcionan bien sin tener que probarlas manualmente**. En la práctica, significa programar un _bot_ que apriete todos los botones de tu aplicación y obtenga capturas de pantalla que te confirmen que todo se ve bien, o realizar otros tipos de pruebas más complejas. 
 
 En esta guía aprenderás a utilizar `{shinytest2}` para automatizar el testeo de tus aplicaciones Shiny, asegurando su correcto funcionamiento a través de capturas de pantalla y otras validaciones automáticas.
 
@@ -49,7 +49,7 @@ Si tu app está en otra carpeta ed tu proyecto, puedes especificar la ruta así:
 shinytest2::use_shinytest2(app_dir = "app/inversion_gores/")
 ```
 
-Este comando solamente crea las carpetas de `tests` que son básicas para [validación con `{testthat}`](/blog/validacion_avanzada/), pero no crea ningún test en particular.
+Este comando solamente crea las carpetas de `tests` que son básicas para [validación con `{testthat}`](/blog/validacion_datos/), pero no crea ningún test en particular.
 
 ### Grabar el primer test
 

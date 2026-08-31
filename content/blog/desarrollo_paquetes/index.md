@@ -75,9 +75,9 @@ También necesitaremos tener configurado y funcionando Git en nuestra sesión de
 usethis::git_sitrep()
 ```
 
-Si no has configurado Git con R aún, [revisa este tutorial.](https://bastianolea.rbind.io/blog/r_introduccion/tutorial_github/)
+Si no has configurado Git con R aún, [revisa este tutorial.](https://bastianolea.rbind.io/blog/tutorial_github/)
 
-{{< relacionada "/blog/r_introduccion/tutorial_github/" >}}
+{{< relacionada "/blog/tutorial_github/" >}}
 
 
 
@@ -160,7 +160,7 @@ devtools::load_all()
 
 ## Pruebas unitarias
 
-https://bastianolea.rbind.io/blog/validacion_avanzada/#validación-con-testthat
+https://bastianolea.rbind.io/blog/validacion_datos/#validación-con-testthat
 
 ```r
 usethis::use_testthat()

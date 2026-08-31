@@ -127,5 +127,5 @@ usethis::browse_github()
 # Quarto reescribe (/seccion/ -> ./seccion/) deben corregirse ANTES del push,
 # o quedarán rotos (404) en producción. Ver skill hugo-blog.
 source("R/funciones.R")
-corregir_enlaces_qmd()  # corrige ./seccion/ -> /seccion/ en los index.md
-revisar_enlaces_qmd()   # verifica que no queden enlaces rotos
+corregir_enlaces_qmd() # corrige ./seccion/ -> /seccion/ en los index.md
+revisar_enlaces_qmd() # verifica que no queden enlaces rotos

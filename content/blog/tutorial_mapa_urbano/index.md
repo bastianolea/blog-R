@@ -209,7 +209,7 @@ mapa_datos |>
 
 ### Agregar datos obtenidos desde internet al mapa
 
-Ahora, pasaremos a usar datos reales sobre nuestro mapa comunal. Pero en vez de entregarles datos copiados y pegados, obtendremos directamente los datos desde internet, [usando el paquete `{rvest}`](../../../blog/tutorial_scraping_rvest/) que sirve para hacer [web scraping](../../../blog/r_introduccion/web_scraping/) desde páginas web; es decir, descargar datos presentes en sitios de internet para usarlos directamente en R.
+Ahora, pasaremos a usar datos reales sobre nuestro mapa comunal. Pero en vez de entregarles datos copiados y pegados, obtendremos directamente los datos desde internet, [usando el paquete `{rvest}`](../../../blog/webscraping_rvest/) que sirve para hacer [web scraping](../../../blog/web_scraping/) desde páginas web; es decir, descargar datos presentes en sitios de internet para usarlos directamente en R.
 
 ``` r
 library(rvest)
@@ -262,7 +262,7 @@ glimpse(datos_comunas)
     $ idh_2005         <dbl> 0.866, 0.791, 0.817, 0.773, 0.826, 0.735, 0.772, 0.69…
     $ idh_2005_2       <chr> "Muy alto", "Alto", "Muy alto", "Alto", "Muy alto", "…
 
-{{< relacionada "/blog/tutorial_scraping_rvest/" >}}
+{{< relacionada "/blog/webscraping_rvest/" >}}
 
 #### Agregar variables al mapa
 
