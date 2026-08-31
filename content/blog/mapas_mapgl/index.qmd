@@ -1,7 +1,7 @@
 ---
 title: Mapas interactivos para visualizar datos geoespaciales con `{mapgl}`
 author: Bastián Olea Herrera
-date: '2026-08-05'
+date: '2026-08-31'
 freeze: false
 draft: true
 slug: []
@@ -31,6 +31,8 @@ excerpt: ""
 editor_options: 
   chunk_output_type: console
 ---
+
+~/Documents/Otros/blog-r/.posit/assistant/plans/2026-08-05-1400-plan.md
 
 
 Vengo a comentar sobre [`{mapgl}`, un paquete de R](https://walker-data.com/mapgl/) estupendo para visualizar datos geográficos por medio de visores de mapas interactivos: [Mapbox](https://www.mapbox.com) y [MapLibre](https://maplibre.org).
