@@ -195,7 +195,7 @@ Error in rmarkdown:::abs_path(input) : The file 'index.qmd' does not exist.
 ```
 Esto ocurre **incluso ejecutando el comando desde la carpeta correcta del post** — no es un problema de directorio de trabajo. Se confirmó empíricamente que `quarto render index.qmd` (sin `preview`) funciona bien sin `_quarto.yml`, pero `quarto preview` (que es lo que usa el botón Render) en Quarto 1.9.37 **requiere que el documento pertenezca a un proyecto Quarto** para resolver la ruta del archivo; sin un `_quarto.yml` en la carpeta del post, falla con ese error de `abs_path`.
 
-**Solución:** agregar un `_quarto.yml` vacío en la carpeta del post. Esto no tiene relación con los `_quarto.yml` de otros posts (`mapas_sf`, `mapas_hexagonales`, etc., usados para el patrón de `freeze`) — cada carpeta necesita el suyo de forma independiente, Quarto no considera carpetas hermanas.
+**Solución:** agregar un `_quarto.yml` vacío en la carpeta del post. Esto no tiene relación con los `_quarto.yml` de otros posts (`mapas_sf`, `mapas_hexagonales`, etc., usados para el patrón de `freeze`) — cada carpeta necesita el suyo de forma independiente, Quarto no considera carpetas hermanas. **Ojo:** el `_quarto.yml` es solo para el botón Render y el patrón `freeze`; **no** corrige la reescritura de enlaces absolutos que hace Quarto (ver sección «Enlaces internos rotos» más abajo) — se comprobó que un post con `_quarto.yml` igual queda con los enlaces rotos al renderizar.
 
 **Automatizado:** la función `crear_publicacion()` en `R/funciones.R` (envoltorio de `blogdown::new_post()`) crea automáticamente el `_quarto.yml` cuando el post es `.qmd`, y además navega el panel Files a la carpeta nueva. Usarla en vez de `blogdown::new_post()` directamente para posts Quarto.
 
@@ -207,6 +207,41 @@ Rendering content/blog/.../index.rmarkdown...
 Error in abs_path(input) : The file 'index.rmarkdown' does not exist.
 ```
 Es una condición de carrera benigna, no un fallo real: Quarto crea un archivo temporal `index.rmarkdown` de compatibilidad al renderizar un `.qmd` que pertenece a un proyecto, y el watcher de contenido de `blogdown::serve_site()` — que reconoce archivos vía el patrón `blogdown:::rmd_pattern` (`[.][Rr](md|markdown)$`, el cual calza con `.rmarkdown`) — intenta knitear ese archivo temporal justo cuando Quarto ya lo borró. El knit real del `.qmd` (el que sí actualiza el sitio) ya ocurrió por el canal normal de blogdown antes de esa carrera, así que el sitio se actualiza correctamente pese al error visible.
+
+
+## Enlaces internos rotos: Quarto reescribe rutas absolutas (`/seccion/` → `./seccion/`)
+
+**Problema (diagnosticado 2026-08-31):** en posts `.qmd`, los enlaces markdown a secciones del sitio escritos como rutas absolutas de Hugo (ej. `[texto](/tags/reproducibilidad/)`, `[texto](/blog/otro-post/)`) aparecen en el `index.md` generado con un punto antepuesto: `[texto](./tags/reproducibilidad/)`. Ese `./` hace que Hugo los resuelva **relativos a la página actual** (ej. `/blog/mi-post/tags/...`) en vez de a la raíz del sitio, produciendo 404.
+
+**Causa (confirmada empíricamente):** es comportamiento propio de **Quarto/Pandoc**, no de Hugo ni del `_quarto.yml`. Para Hugo, `/x` = raíz del **sitio**; para Quarto, `/x` = raíz del **proyecto Quarto**, y al escribir a `hugo-md` reescribe esas rutas como relativas al documento de salida, anteponiendo `./`. Ocurre con `quarto render` a secas y **da igual si existe o no un `_quarto.yml`** en la carpeta (`mapas_sf`, que sí lo tiene, también se rompe al re-renderizarlo). Posts antiguos se veían bien solo porque fueron renderizados con una versión previa de Quarto que no reescribía; al re-renderizarlos con Quarto 1.9.37 se rompen.
+
+**Qué sintaxis sobreviven la reescritura** (probado con Quarto 1.9.37):
+
+| Sintaxis en el `.qmd` | Resultado en el `.md` |
+|---|---|
+| `[t](/blog/x/)` markdown normal | `./blog/x/` — roto |
+| `[t](/blog/x/#ancla)` con ancla | `./blog/x/#ancla` — roto |
+| `[t][ref]` estilo referencia | `./blog/x/` — roto |
+| `<a href="/blog/x/">t</a>` HTML crudo | `/blog/x/` — intacto |
+| `{{< aviso "[t](/blog/x/)" >}}` shortcode | `/blog/x/` — intacto |
+
+Solo el HTML crudo y el contenido de shortcodes esquivan la reescritura, porque Quarto los pasa literales sin meterlos en el AST de Pandoc.
+
+**Solución (implementada):** la función `corregir_enlaces_qmd()` en `R/funciones.R` recorre los `index.md` generados y devuelve la barra inicial (`./seccion/` → `/seccion/`) **solo** a los enlaces cuyo primer segmento es una sección/taxonomía del sitio (`blog`, `tags`, `categories`, `series`, `apps`, `about`, `clases`, `tutoriales`, `paquetes`, `buscar`, `form`). Restringir a esas secciones evita tocar figuras y recursos del bundle (`./index_files/...`, `./datos.csv`), que sí deben quedar relativos.
+
+Se ejecuta desde **`R/build.R`**, que blogdown corre **antes** de que Hugo construya (dentro de `blogdown::build_site()`), de modo que el sitio publicado siempre queda con los enlaces correctos:
+```r
+# R/build.R
+source("R/funciones.R")
+corregir_enlaces_qmd()
+```
+La contraparte `revisar_enlaces_qmd()` (que solo **detecta** enlaces `](./...)` sin corregir) sigue llamándose desde `R/build2.R` como verificación post-build.
+
+**Cuándo corre `build.R` (comprobado empíricamente 2026-08-31):** `build.R` se ejecuta en el build **completo** — es decir, en `blogdown::build_site()` y en el build **inicial** de `blogdown::serve_site()` — pero **no** en los rebuilds **incrementales** que hace `serve_site()` mientras está activo (esos los hace Hugo solo, sin pasar por R). Se verificó instrumentando `build.R` con un marcador con timestamp: aparece una entrada al arrancar `serve_site()`, pero un `quarto render` posterior (con el servidor activo) no agrega otra y el enlace queda roto.
+
+**Ojo con el editing en vivo:** como `blogdown.knit.on_save = TRUE` re-renderiza el `.qmd` al guardar, el `index.md` vuelve a quedar con `./` tras cada guardado, y como el rebuild incremental no corre `build.R`, esos enlaces **no** se auto-corrigen durante la sesión de preview. Por eso: (1) para el sitio publicado, la corrección la garantiza `build.R` durante `build_site()` — pero como Netlify compila con `hugo` directo (ver `netlify.toml`), los `.md` commiteados ya deben estar corregidos: correr `corregir_enlaces_qmd()` (o `build_site()`) antes del `git push`; (2) durante la previsualización, tras guardar hay que volver a correr `corregir_enlaces_qmd()` a mano (o reiniciar `serve_site()`, que sí dispara el build inicial) para ver bien los enlaces internos.
+
+**Alternativa para casos puntuales:** escribir el enlace interno como HTML crudo (`<a href="/tags/x/">texto</a>`) o dentro de un shortcode, que son inmunes a la reescritura.
 
 
 ## Archetype de posts nuevos (`archetypes/blog.md`)
@@ -331,6 +366,8 @@ Archivo `static/_redirects` para migraciones de URL y dominios. Redirecciones de
 | iframeResizer (script local) | `static/js/iframeResizer.min.js` |
 | Redirects | `static/_redirects` |
 | Funciones R custom | `R/funciones.R` |
+| Hook pre-build (corrige enlaces con `corregir_enlaces_qmd()`) | `R/build.R` |
+| Hook post-build (verifica enlaces con `revisar_enlaces_qmd()`) | `R/build2.R` |
 | Instrucciones workflow | `_instrucciones.R` |
 
 

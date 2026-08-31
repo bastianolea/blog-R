@@ -120,5 +120,12 @@ convertr::r_to_qmd(
 # ver en github
 usethis::browse_github()
 
-# # revisar problemas
-# revisar_enlaces_qmd()
+## antes de publicar (git push) ----
+
+# Netlify compila con `hugo` directo (ver netlify.toml) sobre los .md ya
+# commiteados: NO corre R ni build_site(), así que los enlaces internos que
+# Quarto reescribe (/seccion/ -> ./seccion/) deben corregirse ANTES del push,
+# o quedarán rotos (404) en producción. Ver skill hugo-blog.
+source("R/funciones.R")
+corregir_enlaces_qmd()  # corrige ./seccion/ -> /seccion/ en los index.md
+revisar_enlaces_qmd()   # verifica que no queden enlaces rotos

@@ -3,7 +3,7 @@ title: Proyectos de R reproducibles y estables con `{renv}`
 author: Bastián Olea Herrera
 date: '2026-08-31'
 draft: true
-freeze: true
+freeze: false
 categories:
   - Tutoriales
 tags:
@@ -24,7 +24,7 @@ excerpt: "La reproducibilidad es un concepto clave en proyectos de ciencia de da
 
 La [reproducibilidad](/tags/reproducibilidad/) es un concepto clave en proyectos de ciencia de datos. La **reproducibilidad** es el conjunto de prácticas que permiten que tus procesos puedan ser repetidos, ya sea por ti o por otras personas, garantizando que los resultados pueden volver a regenerarse de manera exacta. Esto es clave para las ciencias, pero también para garantizar que tus procesos estén preparados para el futuro, puedan actualizarse, y puedan ser usados por otras personas.
 
-En este sentido, el paquete de R `{renv}` te ayuda a _congelar_ las versiones de los paquetes que uses, para que puedas reinstalarlos en el futuro o en otros computadores y tu proyecto siga funcionando sin sorpresas.
+Dentro de todas las cosas que pueden hacer que un proyecto **no sea reproducible** están los datos faltantes, las rutas a archivos fuera del proyecto, la aleatoriedad, y las versiones de los paquetes usados. Sobre este último punto, el paquete de R `{renv}` te ayuda a **congelar las versiones** de los paquetes que uses, para que puedas reinstalarlos en el futuro o en otros computadores y tu proyecto siga funcionando sin sorpresas.
 
 Taller [proyectos reproducibles con renv](https://paocorrales.github.io/intro-renv/), impartido por [Pao Corrales](https://paocorrales.github.io) en el marco de [Research Software Latinoamérica (RSLA26)](https://rs-latam.org).
 

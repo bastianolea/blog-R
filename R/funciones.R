@@ -268,27 +268,151 @@ revisar_enlaces_qmd <- function(carpeta = "content/blog") {
 
   # avisar el resultado
   if (nrow(resultado) == 0) {
-    message(
-      "No se encontraron enlaces rotos por reescritura de rutas de Quarto. \u2705"
+    cli::cli_alert_success(
+      "No se encontraron enlaces rotos por reescritura de rutas de Quarto"
     )
     return(invisible(NULL))
   }
 
   archivos_afectados <- dplyr::n_distinct(resultado$qmd)
 
+  texto_enlaces <- cli::pluralize(
+    "Se encontr{?ó/aron} {nrow(resultado)} enlace{?s} roto{?s}"
+  )
+  texto_publicaciones <- cli::pluralize(
+    "en {archivos_afectados} publicaci{?ón/ones}:"
+  )
   cli::cli_alert_warning(
-    "Se encontraron {nrow(resultado)} enlaces rotos en {archivos_afectados} publicaciones:"
+    paste(texto_enlaces, texto_publicaciones)
   )
 
   resultado |>
     dplyr::group_by(qmd) |>
     dplyr::group_walk(\(datos, llave) {
       message("\n- ", llave$qmd)
-      purrr::walk2(
-        datos$linea,
-        datos$enlace,
-        \(linea, enlace) cli::cli_inform("    línea {linea}: {enlace}")
-      )
+    })
+
+  invisible(resultado)
+}
+
+#' Corregir enlaces internos reescritos por Quarto en posts .qmd
+#'
+#' Contraparte de [revisar_enlaces_qmd()]. Al renderizar un `.qmd` a
+#' `hugo-md`, Quarto interpreta los enlaces absolutos del sitio (`/blog/...`,
+#' `/tags/...`) como relativos a la raíz del proyecto Quarto y los reescribe a
+#' `./blog/...`, lo que en Hugo apunta a la página actual y produce 404 (ver
+#' skill `hugo-blog`). Esta función recorre los `index.md` generados junto a
+#' cada `.qmd` y les devuelve la barra inicial a los enlaces cuyo primer
+#' segmento es una sección conocida del sitio.
+#'
+#' Solo se tocan enlaces a secciones del sitio, de modo que las figuras y
+#' recursos del bundle del post (`./index_files/...`, `./datos.csv`, etc.)
+#' quedan intactos como rutas relativas.
+#'
+#' Pensada para ejecutarse desde `R/build.R` (antes de que Hugo construya el
+#' sitio), pero también puede llamarse manualmente tras renderizar.
+#'
+#' @param carpeta Carpeta del blog a revisar. Por defecto `"content/blog"`.
+#' @param secciones Primeros segmentos de ruta que corresponden a secciones o
+#'   taxonomías del sitio y cuyos enlaces absolutos deben preservarse.
+#' @returns Un tibble (invisible) con columnas `qmd`, `md`, `linea` y `enlace`,
+#'   una fila por cada enlace corregido (con el `./` original), agrupado por
+#'   publicación en el mensaje. Si no hubo nada que corregir, retorna `NULL` y
+#'   muestra un mensaje.
+#' @export
+corregir_enlaces_qmd <- function(
+  carpeta = "content/blog",
+  secciones = c(
+    "blog",
+    "tags",
+    "categories",
+    "series",
+    "apps",
+    "about",
+    "clases",
+    "tutoriales",
+    "paquetes",
+    "buscar",
+    "form"
+  )
+) {
+  require(fs) |> suppressPackageStartupMessages()
+  require(stringr) |> suppressPackageStartupMessages()
+  require(purrr) |> suppressPackageStartupMessages()
+  require(dplyr) |> suppressPackageStartupMessages()
+  require(tidyr) |> suppressPackageStartupMessages()
+
+  # prefijo ']( ./seccion/' que Quarto reescribió desde '/seccion/' (para reemplazar)
+  patron <- paste0("\\]\\(\\./(", paste(secciones, collapse = "|"), ")/")
+  # enlace completo roto, para mostrarlo en el reporte
+  patron_extraer <- paste0(
+    "\\]\\(\\./(?:",
+    paste(secciones, collapse = "|"),
+    ")/[^)]*\\)"
+  )
+
+  publicaciones_qmd <- fs::dir_ls(
+    carpeta,
+    recurse = TRUE,
+    regexp = "\\.qmd$"
+  ) |>
+    stringr::str_subset("rsconnect", negate = TRUE)
+
+  resultado <- purrr::map(
+    publicaciones_qmd,
+    \(qmd) {
+      md <- fs::path(fs::path_dir(qmd), "index.md")
+
+      if (!fs::file_exists(md)) {
+        return(NULL)
+      }
+
+      lineas <- readLines(md, warn = FALSE)
+      corregidas <- stringr::str_replace_all(lineas, patron, "](/\\1/")
+
+      if (all(lineas == corregidas)) {
+        return(NULL)
+      }
+
+      writeLines(corregidas, md)
+
+      # capturar los enlaces corregidos (con el ./ original) para el reporte
+      coincidencias <- stringr::str_extract_all(lineas, patron_extraer)
+      hay_coincidencia <- purrr::map_lgl(coincidencias, \(x) length(x) > 0)
+
+      dplyr::tibble(
+        qmd = qmd,
+        md = md,
+        linea = which(hay_coincidencia),
+        enlace = coincidencias[hay_coincidencia]
+      ) |>
+        tidyr::unnest(enlace)
+    }
+  ) |>
+    purrr::list_rbind()
+
+  if (is.null(resultado) || nrow(resultado) == 0) {
+    cli::cli_alert_success("No hubo enlaces reescritos que corregir")
+    return(invisible(NULL))
+  }
+
+  archivos_afectados <- dplyr::n_distinct(resultado$qmd)
+
+  texto_enlaces <- cli::pluralize(
+    "Se corrigi{?ó/eron} {nrow(resultado)} enlace{?s}"
+  )
+  texto_publicaciones <- cli::pluralize(
+    "en {archivos_afectados} publicaci{?ón/ones}:"
+  )
+
+  cli::cli_alert_success(
+    paste(texto_enlaces, texto_publicaciones)
+  )
+
+  resultado |>
+    dplyr::group_by(qmd) |>
+    dplyr::group_walk(\(datos, llave) {
+      message("\n- ", llave$qmd)
     })
 
   invisible(resultado)
