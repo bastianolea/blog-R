@@ -1,5 +1,5 @@
 ---
-title: Aprendiendo a usar conectores o _pipes_
+title: Aprendiendo a usar conectores o _pipes_ para encadenar operaciones
 author: Bastián Olea Herrera
 date: '2025-11-24'
 format:
@@ -11,7 +11,8 @@ draft: false
 series: Introducción a R
 categories:
   - Tutoriales
-tags: []
+tags:
+  - básico
 excerpt: >-
   Los conectores o _pipes_ son símbolos que nos permiten encadenar varias
   operaciones. En inglés, _pipe_ significa literalmente 'tubería', porque la
@@ -24,11 +25,11 @@ execute:
 ---
 
 
-<script src="conectores_files/libs/bslib-component-js-0.9.0/components.min.js"></script>
-<script src="conectores_files/libs/bslib-component-js-0.9.0/web-components.min.js" type="module"></script>
-<link href="conectores_files/libs/bslib-component-css-0.9.0/components.css" rel="stylesheet" />
-<link href="conectores_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
-<script src="conectores_files/libs/bslib-tag-require-0.9.0/tag-require.js"></script>
+<script src="index_files/libs/bslib-component-js-0.12.0/components.min.js"></script>
+<script src="index_files/libs/bslib-component-js-0.12.0/web-components.min.js" type="module"></script>
+<link href="index_files/libs/bslib-component-css-0.12.0/components.css" rel="stylesheet" />
+<link href="index_files/libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
+<script src="index_files/libs/bslib-tag-require-0.12.0/tag-require.js"></script>
 
 
 Los conectores o *pipes* son símbolos que nos permiten **encadenar varias operaciones**. En inglés, *pipe* significa literalmente "tubería", porque la idea es que los datos fluyan a través de una serie de pasos.
@@ -55,7 +56,7 @@ resultado <- datos |>
 
 En otras palabras, se empieza con los `datos`, los datos se modifican una vez en el primer paso, y en el segundo paso se modifica el resultado del paso anterior. Es una cadena de operaciones con un inicio (`datos`) y un final (`resultado`).
 
-Recordemos que, en R, el resultado (la *[asignación](../../../../blog/r_introduccion/r_basico/#asignaciones)*) se pone al principio, porque es una forma de decir *vamos a hacer esto de la siguiente manera*, una especie de *título* de la operación.
+Recordemos que, en R, el resultado (la *[asignación](./blog/r_introduccion/r_basico/#asignaciones)*) se pone al principio, porque es una forma de decir *vamos a hacer esto de la siguiente manera*, una especie de *título* de la operación.
 
 ## Escritura del conector
 
@@ -222,5 +223,9 @@ datos |>
 ```
 
 Solamente hay que acostumbrarse a fijarnos bien que los conectores *conecten* con algo: no dejar conectores apuntando a nada, porque hacen que R piense que el código conecta con lo que sea que tenga abajo, o peor, que R quede esperando que lo conectes con algo![^1]
+
+## Recursos
+
+- [Cápitulo sobre *pipes* en R](https://es.r4ds.hadley.nz/18-pipes.html) del libro [R para Ciencia de Datos](https://es.r4ds.hadley.nz/), que trata en profundidad el concepto de *proyectos* en RStudio.
 
 [^1]: en cuyo caso hay que tirarle cualquier cosa a la consola para que retorne error y podamos seguir con nuestras vidas

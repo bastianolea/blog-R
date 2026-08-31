@@ -9,13 +9,14 @@ weight: 6
 tags:
   - consejos
   - básico
+  - reproducibilidad
 excerpt: "Antes de hacer cualquier trabajo que involucre datos con R, es recomendable crear un _Proyecto_ de RStudio. Ésta es una forma de definir la carpeta específica donde vamos a guardar todos los scripts y archivos que vamos a necesitar, lo cual previene muchos problemas, simplifica la carga y guardado de datos, y ordena nuestro trabajo."
 ---
 
 ## Proyectos
 Antes de hacer cualquier trabajo que involucre datos con R, **se recomienda crear un _Proyecto_ de RStudio**. Un proyecto es una forma de definir la carpeta específica donde vamos a guardar todos los scripts y archivos que vamos a necesitar. Se caracteriza por un archivo que termina en `.Rproj`, que marca nuestro espacio de trabajo: **una sola carpeta que reúne todas las piezas de nuestro análisis.**
 
-{{< aviso "Existe un post clásico en la comunidad de R que explica esto mucho mejor: [Project-oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/), mejor conocido como _si usas `setwd()` voy a ir a tu oficina a incendiar tu computador!_" >}}
+{{< info "Existe un post clásico en la comunidad de R que explica esto mucho mejor: [Project-oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/), mejor conocido como _si usas `setwd()` voy a ir a tu oficina a incendiar tu computador!_" >}}
 
 
 ### ¿Por qué trabajar con Proyectos? 
@@ -43,3 +44,7 @@ Para crear un proyecto nuevo, elegimos la opción _New Project..._ en el menú _
 Una vez que creamos el proyecto, podemos abrir nuestro proyecto haciendo doble clic en el archivo que termina en ".Rproj", seleccionando en RStudio el menú _File_ y el ítem _Open Project..._ o _Recent Projects_, o en la esquina superior derecha de RStudio, donde aparece un icono celeste que contiene los proyectos recientes.
 
 Es muy importante que, **antes de empezar a trabajar con R, te asegures de que estás dentro del proyecto correcto!**
+
+## Recursos 
+
+- [Cápitulo sobre flujos de trabajo en R](https://es.r4ds.hadley.nz/08-workflow-projects.html) del libro [R para Ciencia de Datos](https://es.r4ds.hadley.nz/), que trata en profundidad el concepto de _proyectos_ en RStudio.

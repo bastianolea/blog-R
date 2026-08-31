@@ -8,7 +8,7 @@ blogdown::build_site()
 ## publicaciones ----
 
 # editar el más reciente
-abrir_publicacion_reciente("creado", cantidad = 6)
+abrir_publicacion_reciente("creado", cantidad = 10)
 abrir_publicacion_reciente("modificado", cantidad = 10)
 
 # trabajar en borradores

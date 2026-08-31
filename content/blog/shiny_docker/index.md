@@ -7,6 +7,8 @@ categories: []
 tags:
   - shiny
   - optimización
+  - reproducibilidad
+  - avanzado
 draft: false
 format:
   hugo-md:

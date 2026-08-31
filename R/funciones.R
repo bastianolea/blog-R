@@ -152,32 +152,32 @@ abrir_borradores <- function(cantidad = 5) {
   borradores
 
   # pasar a tabla
-  tabla_borradores <- tibble(archivo = borradores) |>
-    mutate(carpeta = fs::path_dir(archivo)) |>
-    mutate(fecha = fs::file_info(archivo)$modification_time)
+  tabla_borradores <- dplyr::tibble(archivo = borradores) |>
+    dplyr::mutate(carpeta = fs::path_dir(archivo)) |>
+    dplyr::mutate(fecha = fs::file_info(archivo)$modification_time)
 
   # priorizar qmd
   publicaciones_borradores <- tabla_borradores |>
-    mutate(
-      orden = case_when(
+    dplyr::mutate(
+      orden = dplyr::case_when(
         stringr::str_detect(archivo, ".qmd$") ~ 1,
         stringr::str_detect(archivo, ".md$") ~ 2
       )
     ) |>
-    arrange(carpeta, orden) |>
-    distinct(carpeta, .keep_all = TRUE) |>
-    arrange(desc(fecha))
+    dplyr::arrange(carpeta, orden) |>
+    dplyr::distinct(carpeta, .keep_all = TRUE) |>
+    dplyr::arrange(dplyr::desc(fecha))
 
   # dar a elegir entre las 3
   eleccion <- menu(
     publicaciones_borradores |>
-      slice_max(fecha, n = cantidad) |>
-      pull(carpeta),
+      dplyr::slice_max(fecha, n = cantidad) |>
+      dplyr::pull(carpeta),
     title = stringr::str_glue("Borradores recientes:")
   )
 
   elegido <- publicaciones_borradores |>
-    slice(3)
+    dplyr::slice(eleccion)
 
   message(paste("abriendo", elegido$archivo))
 
