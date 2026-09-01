@@ -86,7 +86,13 @@ Al momento de escribir esta publicación, **faltan 17 días** para el dieciocho 
 
 ``` r
 días <- fecha + years(1) - today()
+```
 
+Así como existe la función `years()` para sumar o restar años a las fechas, también existen `months()`, `weeks()` y `days()`, entre otras! Y sí, `{lubridate}` puede [tomar en consideración años bisiestos y meses de distinto largo.](https://lubridate.tidyverse.org/articles/lubridate.html#arithmetic-with-date-times)
+
+Veamos el resultado:
+
+``` r
 días
 ```
 
