@@ -20,16 +20,16 @@ abrir_borradores(cantidad = Inf)
 
 # crear un post normal
 crear_publicacion(
-  title = "Categorizar una variable contínua con el método de cortes naturales Jenks",
+  title = "¿Cuántos días faltan para el dieciocho?",
   file = paste0("blog/", lubridate::today(), "/index.qmd"),
-  tags = c("procesamiento de datos")
+  tags = c("fechas", "curiosidades")
 )
 
 # crear un post con nombre
 crear_publicacion(
-  title = "Línea de tiempo del lenguaje de programación R",
-  file = "blog/pruebita4/index.qmd",
-  tags = c("curiosidades"),
+  title = "Operaciones con fechas en R usando `{lubridate}`",
+  file = "blog/lubridate_fechas/index.qmd",
+  tags = c("fechas"),
   categories = c()
 )
 
