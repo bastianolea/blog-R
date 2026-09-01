@@ -32,6 +32,9 @@ Para mejorar la reproducibilidad y estabilidad de tus proyectos, el paquete de R
 
 {{< info "Si necesitas garantizar la reproducibilidad a nivel de versiones de R, existe [rix: entornos reproducibles con Nix](https://docs.ropensci.org/rix/), y si lo requieres a nivel de sistema operativo, existe Docker" >}}
 
+{{< imagen "renv_featured.png" >}}
+{{< bajada "Esquema del funcionamiento de `{renv}` en tu sistema. Basado en [este diagama](https://rstudio.github.io/renv/#workflow)." >}}
+
 ----
 
 Taller [proyectos reproducibles con renv](https://paocorrales.github.io/intro-renv/), impartido por [Pao Corrales](https://paocorrales.github.io) en el marco de [Research Software Latinoamérica (RSLA26)](https://rs-latam.org).
