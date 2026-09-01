@@ -30,9 +30,13 @@ excerpt: >-
 ---
 
 
-La [reproducibilidad](/tags/reproducibilidad/) es un concepto clave en proyectos de ciencia de datos. La **reproducibilidad** es el conjunto de prácticas que permiten que tus procesos puedan ser repetidos, ya sea por ti o por otras personas, garantizando que los resultados pueden volver a regenerarse de manera exacta. Esto es clave para las ciencias, pero también para garantizar que tus procesos estén preparados para el futuro, puedan actualizarse, y puedan ser usados por otras personas.
+La [reproducibilidad](./tags/reproducibilidad/) es un concepto clave en proyectos de ciencia de datos. La **reproducibilidad** es el conjunto de prácticas que permiten que tus procesos puedan ser repetidos, ya sea por ti o por otras personas, garantizando que los resultados pueden volver a regenerarse de manera exacta. Esto es clave para las ciencias, pero también para garantizar que tus procesos estén preparados para el futuro, puedan actualizarse, y puedan ser usados por otras personas.
+
+{{< imagen_lateral "renv.png" "128px" >}}
 
 Dentro de todas las cosas que pueden hacer que un proyecto **no sea reproducible** están los datos faltantes, las rutas a archivos fuera del proyecto, la aleatoriedad, y las versiones de los paquetes usados. Sobre este último punto, el paquete de R `{renv}` te ayuda a **congelar las versiones** de los paquetes que uses, para que puedas reinstalarlos en el futuro o en otros computadores y tu proyecto siga funcionando sin sorpresas.
+
+{{< info "Si necesitas garantizar la reproducibilidad a nivel de versiones de R, existe [rix: entornos reproducibles con Nix](https://docs.ropensci.org/rix/), y si lo requieres a nivel de sistema operativo, existe Docker" >}}
 
 Taller [proyectos reproducibles con renv](https://paocorrales.github.io/intro-renv/), impartido por [Pao Corrales](https://paocorrales.github.io) en el marco de [Research Software Latinoamérica (RSLA26)](https://rs-latam.org).
 
@@ -70,3 +74,4 @@ Desactivar `renv`
 
 - [Introducción a `renv`](https://rstudio.github.io/renv/articles/renv.html)
 - Taller [proyectos reproducibles con renv](https://paocorrales.github.io/intro-renv/), impartido por [Pao Corrales](https://paocorrales.github.io)
+- [rix: entornos reproducibles para R con Nix](https://docs.ropensci.org/rix/), que llevan la reproducibilidad más allá que `{renv}`

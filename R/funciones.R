@@ -61,7 +61,7 @@ abrir_publicacion_reciente <- function(modo = "creado", cantidad = 5) {
   invisible(rstudioapi::navigateToFile(archivo))
 
   # navegar el panel Files a la carpeta de la nueva publicación
-  rstudioapi::filesPaneNavigate(dirname(archivo))
+  rstudioapi::filesPaneNavigate(normalizePath(dirname(archivo)))
 }
 
 
