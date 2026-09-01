@@ -26,6 +26,7 @@
     <div class="flex flex-column w-100 w-60-ns {{ if $root.Params.thumbnail_left }}pr3-ns{{ else }}pl3-ns{{ end }}">
       <header class="w-100">
         <h1 class="f3 mv2 lh-title underline"><a href="{{ .RelPermalink }}" class="db">{{ .Title | markdownify }}</a></h1>
+        {{ with .Params.subtitle }}<p class="f5 mv1 i custom-heading-font" style="opacity: .85; font-size: 17px;">{{ . | markdownify }}</p>{{ end }}
         {{ if gt (len .Pages) 0 }}<p class="f6 mv1 i">{{ len .Pages }} {{ if eq (len .Pages) 1 }}publicación{{ else }}publicaciones{{ end }}</p>{{ end }}
         
         {{ range first 1 (.GetTerms "series") }}
@@ -67,6 +68,7 @@
     <div class="flex flex-column w-100">
       <header class="w-100">
         <h1 class="f3 mv2 lh-title underline"><a href="{{ .RelPermalink }}" class="db">{{ .Title | markdownify }}</a></h1>
+        {{ with .Params.subtitle }}<p class="f5 mv1 i custom-heading-font" style="opacity: .85; font-size: 17px;">{{ . | markdownify }}</p>{{ end }}
         {{ if gt (len .Pages) 0 }}<p class="f6 mv1 i">{{ len .Pages }} {{ if eq (len .Pages) 1 }}publicación{{ else }}publicaciones{{ end }}</p>{{ end }}
         
         {{ range first 1 (.GetTerms "series") }}
@@ -107,6 +109,7 @@
   <div class="measure-wide center mb4 mb5-l">
     <header>
       <h1 class="f3 mt0 mb2 lh-title underline fw4"><a href="{{ .RelPermalink }}" class="db">{{ .Title | markdownify }}</a></h1>
+      {{ with .Params.subtitle }}<p class="f5 mv1 i custom-heading-font" style="opacity: .85; font-size: 17px;">{{ . | markdownify }}</p>{{ end }}
       {{ if gt (len .Pages) 0 }}<p class="f6 mv0 i gray">{{ len .Pages }} {{ if eq (len .Pages) 1 }}publicación{{ else }}publicaciones{{ end }}</p>{{ end }}
       {{ range first 1 (.GetTerms "series") }}
       <h2 class="f5"><i class="fas fa-stream fa-fw pr1"></i><small class="f5 ttu tracked">Series: </small><a class="link i dim" href="{{ $section.RelPermalink }}">{{ .LinkTitle }}</a></h2>
