@@ -1,7 +1,7 @@
 {{ $page := . }}                           <!--save current page-->
 {{ $section := $page.CurrentSection }}     <!--save branch section-->
 {{ $root := .Scratch.Get "$root" }}     <!--save root section-->
-<article class="mv4 mv5-l bb">
+<article class="mv4 mv4-l bb">
 
   <!--if show_post_thumbnail is TRUE in root-->
   {{ if $root.Params.show_post_thumbnail }}
@@ -17,7 +17,7 @@
   <!-- Check if thumbnail exists to determine layout -->
   {{ if $thumbnail }}
   <!-- Layout WITH thumbnail: two-column flex layout -->
-  <div class="flex flex-column mb4 mb5-l {{ if (ne $hex nil) }}items-center{{ end }} {{ if $root.Params.thumbnail_left }}flex-row-ns{{ else }}flex-row-reverse-ns{{ end }}">
+  <div class="flex flex-column mb4 mb4-l {{ if (ne $hex nil) }}items-center{{ end }} {{ if $root.Params.thumbnail_left }}flex-row-ns{{ else }}flex-row-reverse-ns{{ end }}">
     <figure class="{{ if $root.Params.thumbnail_left }}mr4-ns{{ else }}ml4-ns{{ end }} ma0 mb2 mb0-l w-100 w-40-ns">
       <a href="{{ .RelPermalink }}" class="db">
         <img src="{{ $thumbnail.RelPermalink | absURL }}" class="db ma0 dim" alt="" loading="lazy" style="border-radius: 4px; margin-top: 18px;">
@@ -64,7 +64,7 @@
   </div>
   {{ else }}
   <!-- Layout WITHOUT thumbnail: full-width layout with same spacing -->
-  <div class="flex flex-column mb4 mb5-l pl3-ns">
+  <div class="flex flex-column mb4 mb4-l pl3-ns">
     <div class="flex flex-column w-100">
       <header class="w-100">
         <h1 class="f3 mv2 lh-title underline"><a href="{{ .RelPermalink }}" class="db">{{ .Title | markdownify }}</a></h1>
