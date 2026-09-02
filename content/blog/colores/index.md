@@ -377,20 +377,20 @@ Aquí puedes ver una lista de los **principales colores de R** y copiar sus nomb
 # toma todos los colores con nombres desde `colors()` y los ordena por tono, intensidad y brillo, y genera html con todos los colores en pildoritas
 
 colores <- colors(distinct = T) |> 
-  stringr::str_subset("gray", negate = T) |> 
-  stringr::str_subset("4", negate = T)
+stringr::str_subset("gray", negate = T) |> 
+stringr::str_subset("4", negate = T)
 
 library(dplyr)
 
 tabla_colores <- tibble(color = colores) |> 
-  mutate(hex = gplots::col2hex(color)) |> 
-  mutate(tono = shades::hue(color)) |> 
-  mutate(brillo = shades::lightness(color)) |> 
-  mutate(croma = shades::chroma(color)) |> 
-  # mutate(contraste = colorspace::contrast_ratio(color, "black")) |> 
-  mutate(across(where(is.numeric), ~round(.x, 0) |> signif(2))) |> 
-  arrange(desc(tono), desc(croma), desc(brillo)) |>
-  filter(!color %in% c("black", "white"))
+mutate(hex = gplots::col2hex(color)) |> 
+mutate(tono = shades::hue(color)) |> 
+mutate(brillo = shades::lightness(color)) |> 
+mutate(croma = shades::chroma(color)) |> 
+# mutate(contraste = colorspace::contrast_ratio(color, "black")) |> 
+mutate(across(where(is.numeric), ~round(.x, 0) |> signif(2))) |> 
+arrange(desc(tono), desc(croma), desc(brillo)) |>
+filter(!color %in% c("black", "white"))
 
 colores <- tabla_colores$color
 
@@ -399,21 +399,21 @@ colores <- c("white", colores, "grey", "black")
 estilo <- "color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9;"
 
 cuadritos <- purrr::map(
-  colores,
-  \(color) {
-    shiny::span(
-      color, 
-      style = paste("background-color:", gplots::col2hex(color), ";",
-                    estilo,
-                    paste("color:", 
-                          ifelse(
-                            colorspace::contrast_ratio(color, "black") < 4, 
-                            "white", "black"),
-                          ";"),
-                    paste("border: solid 1px", colorspace::darken(color, 0.3), ";")
-      )
-    )
-  })
+colores,
+\(color) {
+shiny::span(
+color, 
+style = paste("background-color:", gplots::col2hex(color), ";",
+estilo,
+paste("color:", 
+ifelse(
+colorspace::contrast_ratio(color, "black") < 4, 
+"white", "black"),
+";"),
+paste("border: solid 1px", colorspace::darken(color, 0.3), ";")
+)
+)
+})
 
 shiny::tagList(cuadritos)
 ```
@@ -478,40 +478,40 @@ colores <- c("#DEC5F2", "#9069C0", "#6E3A98")
 
 ``` r
 paleta <- function(colores) {
-  
-  # colores <- colors(distinct = T) |> 
-  #   stringr::str_subset("gray", negate = T)
-  
-  tamaño <- "width: 90px; height: 90px; font-size: 12px;"
-  forma <- "border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all;"
-  centrar <- "align-items: center; justify-content: center; text-align: center;"
-  
-  estilo <- paste(tamaño, forma, centrar)
-  
-  cuadritos <- purrr::map(
-    colores,
-    \(color) {
-      shiny::div(
-        color, 
-        style = paste(
-          paste("background-color:", gplots::col2hex(color), ";"),
-          estilo,
-          paste("color:", 
-                ifelse(
-                  colorspace::contrast_ratio(color, "black") < 4, 
-                  "white", "black"), ";",
-                paste("border: solid 1px", colorspace::darken(color, 0.2), ";")
-          )
-        ),
-      )
-    })
-  
-  
-  output <- shiny::div(style = centrar,
-                       shiny::tagList(cuadritos)
-  ) 
-  
-  return(output)
+
+# colores <- colors(distinct = T) |> 
+#   stringr::str_subset("gray", negate = T)
+
+tamaño <- "width: 90px; height: 90px; font-size: 12px;"
+forma <- "border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all;"
+centrar <- "align-items: center; justify-content: center; text-align: center;"
+
+estilo <- paste(tamaño, forma, centrar)
+
+cuadritos <- purrr::map(
+colores,
+\(color) {
+shiny::div(
+color, 
+style = paste(
+paste("background-color:", gplots::col2hex(color), ";"),
+estilo,
+paste("color:", 
+ifelse(
+colorspace::contrast_ratio(color, "black") < 4, 
+"white", "black"), ";",
+paste("border: solid 1px", colorspace::darken(color, 0.2), ";")
+)
+),
+)
+})
+
+
+output <- shiny::div(style = centrar,
+shiny::tagList(cuadritos)
+) 
+
+return(output)
 }
 
 # usar
@@ -1587,6 +1587,150 @@ Así puedes experimentar visualizando de inmediato las mezclas de colores y pale
 
 {{< etiqueta "visualización de datos" >}}
 
+## Accesibilidad
+
+### Simular deficiencias cromáticas
+
+El daltonismo, o los distintos tipos de deficiencia para distinguir la visión de colores, afecta aproximadamente a un 8% de los hombres y a un 0,5% de las mujeres. Por eso es importante probar las paletas de colores para comprobar que sean distinguibles y accesibles.
+
+Creemos una paleta de colores:
+
+``` r
+library(colorspace)
+
+colores <- colorspace::rainbow_hcl(
+  6, 
+  c = 90,
+  l = 70,
+  start = 0,
+  end = 300)
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #FF80A0 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #D7597C ;">#FF80A0</div>
+<div style="background-color: #D8A400 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #AA8100 ;">#D8A400</div>
+<div style="background-color: #63C02A ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #50962A ;">#63C02A</div>
+<div style="background-color: #00CBB6 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #089F8F ;">#00CBB6</div>
+<div style="background-color: #16B5FF ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #0C8ECA ;">#16B5FF</div>
+<div style="background-color: #E984FB ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C658D8 ;">#E984FB</div>
+</div>
+
+Usando funciones del paquete `{colorspace}` podemos convertir la paleta creada a los distintos tipos de daltonismo dicromático:
+
+**Deuteranomalía:** deficiencia en los conos verdes, el tipo de daltonismo más usual.
+
+``` r
+deuteranopia <- deutan(colores)
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #B7B19D ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #908B79 ;">#B7B19D</div>
+<div style="background-color: #C7B116 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #9D8B02 ;">#C7B116</div>
+<div style="background-color: #BBA83B ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #938433 ;">#BBA83B</div>
+<div style="background-color: #ABAEB8 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #868891 ;">#ABAEB8</div>
+<div style="background-color: #73A2FE ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #517FD2 ;">#73A2FE</div>
+<div style="background-color: #90AFF8 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #6A89CE ;">#90AFF8</div>
+</div>
+
+**Protanomalía:** deficiencia de los conos rojos, la segunda más prevalente.
+
+``` r
+protanopia <- protan(colores)
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #9799A1 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #77787F ;">#9799A1</div>
+<div style="background-color: #BBA400 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #938102 ;">#BBA400</div>
+<div style="background-color: #C7AF00 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #9C8909 ;">#C7AF00</div>
+<div style="background-color: #C1BEB5 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #97958C ;">#C1BEB5</div>
+<div style="background-color: #91B5FF ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #688ED5 ;">#91B5FF</div>
+<div style="background-color: #72A4FF ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #5081D3 ;">#72A4FF</div>
+</div>
+
+**Tritanomalía:** deficiencia de los conos azules, muy poco frecuente (0.01% de cada sexo).
+
+``` r
+tritanopia <- tritan(colores)
+```
+
+<div style="align-items: center; justify-content: center; text-align: center;">
+<div style="background-color: #FF748C ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #D74F69 ;">#FF748C</div>
+<div style="background-color: #EB938B ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C06F68 ;">#EB938B</div>
+<div style="background-color: #5EB9A4 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #4D9181 ;">#5EB9A4</div>
+<div style="background-color: #00CFC4 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #0AA29A ;">#00CFC4</div>
+<div style="background-color: #00C8CF ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #039DA3 ;">#00C8CF</div>
+<div style="background-color: #EB93B4 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #C36D8F ;">#EB93B4</div>
+</div>
+
+Ojo que también existen personas con anomalía tricromática, donde tienen los tres conos receptores de color, pero perciben colores alterados. Por consiguiente, se recomienda usar **anotaciones** en los gráficos y codificar la información con **redundancia**: mezclar colores con figuras, colores con tamaños, etc.
+
+Como regla general para mejorar la inclusividad de paletas de colores, se recomienda elegir colores que sean seguros para personas daltónicas (evitar paletas rojo/verde o azul/morado), y hacer que los colores varíen tanto por su tono como por su saturación y brillo, de manera que una persona que no pueda distinguir entre tonos de todas maneras pueda distinguir por la intensidad del color.
+
+### Analizar el contraste de colores
+
+Para mejorar la visibilidad y accesibilidad de tus visualizaciones de datos, puedes calcular el valor de contraste que tienen tus colores en comparación con otro. Por ejemplo, medir el contraste que tendría un texto negro encima de los colores de tu paleta:
+
+``` r
+# paleta de morados de distinta intensidad
+colores <- colorspace::sequential_hcl(5, h = 290, c = 70)
+```
+
+``` r
+colorspace::contrast_ratio(colores, "black", plot = TRUE)
+```
+
+<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-142-1.png" width="768" />
+
+``` r
+colorspace::contrast_ratio(colores, "white", plot = TRUE)
+```
+
+<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-143-1.png" width="768" />
+
+La función `contrast_ratio()` del paquete `{colorspace}` retorna números que representan el contraste, donde un valor menor significa menor contraste, y por lo tanto menor visibilidad del color en comparación con el color de referencia.
+
+Esto mismo se puede hacer con páginas como [WebAIM](https://webaim.org/resources/contrastchecker/), pero la gracia de hacerlo con R es que podemos usar la información del contraste para tomar decisiones: por ejemplo, decidir automáticamente si un texto debe ser blanco o negro dependiendo del color que le corresponde:
+
+``` r
+library(dplyr)
+library(ggplot2)
+library(colorspace)
+
+# paleta de morados de distinta intensidad
+colores <- colorspace::sequential_hcl(5, h = 290, c = 70)
+
+# poner colores en tabla
+tabla <- tibble(colores = colores,
+                secuencia = seq_along(colores)) |> 
+  # calcular contraste de cada color respecto al color negro
+  mutate(contraste = contrast_ratio(colores, "black"))
+
+# gráfico simple para mostrar los colores
+tabla |> 
+  ggplot() +
+  # gráfico de mosaicos
+  aes(x = secuencia, y = 1,
+      fill = colores) +
+  geom_tile(color = "#EAD1FA") +
+  # texto con nombre de colores
+  geom_text(
+    aes(label = colores),
+    # definir color del texto según el contraste
+    color = ifelse(tabla$contraste > 7, "black", "white")
+  ) +
+  # aplicar el color que viene en la columna usada para el `fill`
+  scale_fill_identity() +
+  theme_void(
+    base_family = "Atkinson Hyperlegible",
+    paper = "#EAD1FA",
+    accent = "#9069C0",
+    ink = "#553A74")
+```
+
+<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-144-1.png" width="768" />
+
+Ahora el color del texto se decide dependiendo del contraste del color de fondo!
+
 ## Avanzado
 
 ### Analizar colores
@@ -1648,7 +1792,7 @@ colores <- colorspace::sequential_hcl(5, h = 290, c = 70)
 colorspace::specplot(colores)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-137-1.png" width="768" />
+<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-149-1.png" width="768" />
 
 En el gráfico anterior vemos que los colores de la paleta no cambian de tono (*hue*), pero sí aumentan en brillo (*luminance*) y bajan en intensidad (*chroma*). Usualmente se recomienda que las paletas tengan también un cambio de tono, lo que ayuda con la accesibilidad. Así que podemos hacer un cambio en la paleta para mejorarla un poco, indicando que queretmos que el tono (argumento `h`) cambie:
 
@@ -1664,72 +1808,7 @@ colores <- colorspace::sequential_hcl(5, h = c(290, 350), c = 70)
 <div style="background-color: #E2E2E2 ; width: 90px; height: 90px; font-size: 12px; border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all; align-items: center; justify-content: center; text-align: center; color: black ; border: solid 1px #B0B0B0 ;">#E2E2E2</div>
 </div>
 
-### Analizar el contraste de colores
-
-Para mejorar la visibilidad y accesibilidad de tus visualizaciones de datos, puedes calcular el valor de contraste que tienen tus colores en comparación con otro. Por ejemplo, medir el contraste que tendría un texto negro encima de los colores de tu paleta:
-
-``` r
-# paleta de morados de distinta intensidad
-colores <- colorspace::sequential_hcl(5, h = 290, c = 70)
-```
-
-``` r
-colorspace::contrast_ratio(colores, "black", plot = TRUE)
-```
-
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-141-1.png" width="768" />
-
-``` r
-colorspace::contrast_ratio(colores, "white", plot = TRUE)
-```
-
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-142-1.png" width="768" />
-
-La función `contrast_ratio()` del paquete `{colorspace}` retorna números que representan el contraste, donde un valor menor significa menor contraste, y por lo tanto menor visibilidad del color en comparación con el color de referencia.
-
-Esto mismo se puede hacer con páginas como [WebAIM](https://webaim.org/resources/contrastchecker/), pero la gracia de hacerlo con R es que podemos usar la información del contraste para tomar decisiones: por ejemplo, decidir automáticamente si un texto debe ser blanco o negro dependiendo del color que le corresponde:
-
-``` r
-library(dplyr)
-library(ggplot2)
-library(colorspace)
-
-# paleta de morados de distinta intensidad
-colores <- colorspace::sequential_hcl(5, h = 290, c = 70)
-
-# poner colores en tabla
-tabla <- tibble(colores = colores,
-                secuencia = seq_along(colores)) |> 
-  # calcular contraste de cada color respecto al color negro
-  mutate(contraste = contrast_ratio(colores, "black"))
-
-# gráfico simple para mostrar los colores
-tabla |> 
-  ggplot() +
-  # gráfico de mosaicos
-  aes(x = secuencia, y = 1,
-      fill = colores) +
-  geom_tile(color = "#EAD1FA") +
-  # texto con nombre de colores
-  geom_text(
-    aes(label = colores),
-    # definir color del texto según el contraste
-    color = ifelse(tabla$contraste > 7, "black", "white")
-    ) +
-  # aplicar el color que viene en la columna usada para el `fill`
-  scale_fill_identity() +
-  theme_void(
-    base_family = "Atkinson Hyperlegible",
-    paper = "#EAD1FA",
-    accent = "#9069C0",
-    ink = "#553A74")
-```
-
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-143-1.png" width="768" />
-
-Ahora el color del texto se decide dependiendo del contraste del color de fondo!
-
-### Convertir colores a código hecadecimal
+### Convertir colores a código hexadecimal
 
 Si tenemos colores definidos como nombres, podemos convertirlos a su valor hexadecimal con la función `col2hex()` [del paquete `{gplots}`:](https://talgalili.github.io/gplots/)
 
@@ -1751,7 +1830,7 @@ colores <- sequential_hcl(7, h = 280, c = 80, l = c(35, 95))
 colorspace::hclplot(colores)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-145-1.png" width="768" />
+<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-153-1.png" width="768" />
 
 ``` r
 colores <- sequential_hcl(7, h = c(280, 220), c = c(50, 70, 20), l = c(30, 90), power = 1.1)
@@ -1759,7 +1838,7 @@ colores <- sequential_hcl(7, h = c(280, 220), c = c(50, 70, 20), l = c(30, 90), 
 colorspace::hclplot(colores)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-146-1.png" width="768" />
+<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-154-1.png" width="768" />
 
 {{< etiqueta "gráficos" >}}
 
