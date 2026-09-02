@@ -6,6 +6,7 @@ slug: []
 categories: []
 tags:
   - fechas
+  - texto
 draft: false
 format:
   hugo-md:
@@ -15,10 +16,10 @@ execute:
   message: false
   warning: false
 excerpt: >-
-  Cuando trabajamos con fechas, a veces necesitamos formatear o redactar las
-  fechas en español, para pasar de números a un texto que redacte la fecha. Para
-  eso tenemos en R la función `format()`, de manera que el mes `03` pasa a ser
-  _marzo_.
+  Cuando trabajamos con fechas, a veces necesitamos pasar desde una fecha en
+  números a una redactada de manera natural, pasando de algo como `2026-09-01` a
+  "1 de septiembre de 2026". Para eso tenemos en R la función `format()`, de
+  manera que el mes `09` pasa a ser _septiembre_.
 links:
   - icon: registered
     icon_pack: fas

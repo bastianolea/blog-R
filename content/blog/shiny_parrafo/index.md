@@ -90,7 +90,7 @@ ui <- page_fillable(
     selectInput(
       "territorio",
       label = NULL,
-      c("Chile" = "Chile", "región" = "Región", "comuna" = "Comuna")
+      c("Chile", "región", "comuna")
     ),
 
     # artículo de la variable
@@ -142,15 +142,18 @@ ui <- page_fillable(
     # inicio del texto
     span("En"),
     
-    # preposición "la" solamente aparece si se elige "región" o "comuna"
+    # preposición "la" para decir "la región"
     span("la", id = "preposicion_territorio") |> hidden(),
 
     # selector de territorio
     selectInput(
       "territorio",
       label = NULL,
-      c("Chile" = "Chile", "región" = "Región", "comuna" = "Comuna")
+      c("Chile", "región", "comuna")
     ),
+    
+    # preposición "de" para decir "región de"
+    span("de"),
 
     # selector de regiones
     selectInput(
@@ -164,14 +167,14 @@ ui <- page_fillable(
 
 Si te fijas, al primer elemento le dimos un `id` para poder hacerlo aprecer, mientras que el segundo tiene como identificador el valor de *input*, que es `region`.
 
-Ahora los haremos aparecer en la sección server de la app:
+Ahora los haremos aparecer en la sección server de la app: creamos un **observador** con `observe()`, y dentro le pedimos que si se selecciona "Región", muestre los elementos apropiados.
 
 ```r
 server <- function(input, output, session) {
   
   # mostrar/ocultar preposición y selector de regiones
   observe({
-    if (input$territorio == "Región") {
+    if (input$territorio == "región") {
       show("preposicion_territorio")
       show("region")
     }
@@ -182,6 +185,46 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 {{< imagen "img/shiny_parrafo_3.png" >}}
+
+Naturalmente, si no se selecciona "Región", hay que volver a ocultar los elementos, así que en el `else` le pedimos eso mismo:
+
+```r {hl_lines=["8-11"]}
+server <- function(input, output, session) {
+  
+  # mostrar/ocultar preposición y selector de regiones
+  observe({
+    if (input$territorio == "región") {
+      show("preposicion_territorio")
+      show("region")
+    } else {
+      hide("preposicion_territorio")
+      hide("region")
+    }
+  })
+  
+  }
+```
+
+Pero el selector de **regiones** está vacío! Podemos rellenarlo con las regiones que vienen en la función `regiones()` [del paquete `{territorial}`](https://bastianolea.github.io/territorial/), o bien, extraer las regiones desde los datos. Haremos lo primero, así que necesitamos instalar el paquete:
+
+``` r
+pak::pak("bastianolea/territorial")
+```
+
+Lo aplicamos en el `selectInput()`:
+
+```r {hl_lines=["7"]}
+ui <- page_fillable(
+    # ...
+    # selector de regiones
+    selectInput(
+      "region",
+      label = NULL,
+      choices = territorial::regiones()
+    ) |>
+      hidden(),
+   # ...
+```
 
 ------------------------------------------------------------------------
 

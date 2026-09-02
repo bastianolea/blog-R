@@ -26,7 +26,7 @@ editor_options:
 excerpt: "Al visualizar datos espaciales detallados, como los de la cartografía censal a nivel de manzanas, los polígonos presentan diversos tamaños y niveles de detalle. Esto puede ser demasiado detallado para la visualización que necesitemos, puede desconcentrar mucho, o bien, podemos necesitar homogeneizar la distribución de los datos en el territorio. En este tutorial veremos cómo crear mapas de hexágonos y de cuadrículas a partir de todo tipo de _shapes_."
 ---
 
-Al visualizar datos espaciales detallados, como los de la [cartografía censal a nivel de manzanas](../../../blog/mapas_censo_2024/), los polígonos presentan diversos tamaños y niveles de detalle.  Esto puede ser demasiado detallado para la visualización que necesitemos, puede desconcentrar mucho, o bien, podemos necesitar homogeneizar la distribución de los datos en el territorio. En este tutorial veremos cómo crear mapas de hexágonos y de cuadrículas a partir de todo tipo de _shapes_.
+Al visualizar datos espaciales detallados, como los de la [cartografía censal a nivel de manzanas](/blog/mapas_censo_2024/), los polígonos presentan diversos tamaños y niveles de detalle.  Esto puede ser demasiado detallado para la visualización que necesitemos, puede desconcentrar mucho, o bien, podemos necesitar homogeneizar la distribución de los datos en el territorio. En este tutorial veremos cómo crear mapas de hexágonos y de cuadrículas a partir de todo tipo de _shapes_.
 
 
 ```{r}
@@ -43,7 +43,8 @@ library(arrow)
 ```{r}
 #| echo: false
 # cargar datos de cartografía censal
-censo_manzanas <- open_dataset("~/Documents/Datos/Censo/2024/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
+# censo_manzanas <- open_dataset("~/Documents/Datos/Censo/2024/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
+censo_manzanas <- open_dataset("/Volumes/Externo/Datos/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
 ```
 
 Luego cargamos los datos con la función `open_dataset()` de `{arrow}`, que carga los datos como una base de datos para que el proceso sea eficiente.
@@ -53,7 +54,7 @@ Luego cargamos los datos con la función `open_dataset()` de `{arrow}`, que carg
 censo_manzanas <- open_dataset("Cartografia_censo2024_Pais_Manzanas.parquet")
 ```
 
-Como vimos en el [tutorial del Censo 2024](../../../blog/censo_2024/), cargar los datos censales como base de datos evita tener que cargar _todos los datos_ de una sola vez, sino que cargas una _referencia_ a los datos que no pesa nada, pero que puedes filtrar y seleccionar, y sólo cuando ya necesitas los datos los _copias_ a la memoria con la función `collect()`:
+Como vimos en el [tutorial del Censo 2024](/blog/censo_2024/), cargar los datos censales como base de datos evita tener que cargar _todos los datos_ de una sola vez, sino que cargas una _referencia_ a los datos que no pesa nada, pero que puedes filtrar y seleccionar, y sólo cuando ya necesitas los datos los _copias_ a la memoria con la función `collect()`:
 
 ```{r censo_db}
 # filtrar datos de cartografía censal por manzana
@@ -76,7 +77,7 @@ head(censo_comuna)
 ```
 
 
-Veamos cómo se ve el mapa! Para ello, tenemos que usar el paquete `{sf}`, como vimos en el [tutorial de mapas con R](../../../blog/mapas_sf), para convertir el _dataframe_ en un dataframe de catacterísticas geoespaciales:
+Veamos cómo se ve el mapa! Para ello, tenemos que usar el paquete `{sf}`, como vimos en el [tutorial de mapas con R](/blog/mapas_sf), para convertir el _dataframe_ en un dataframe de catacterísticas geoespaciales:
 
 ```{r}
 library(sf)
@@ -137,7 +138,7 @@ mapview(censo_comuna_mapa)
 
 Para poder visualizar estos datos territoriales en visualizaciones más homogéneas, como en cuadrículas o en hexágonos, primero tenemos que **convertir los polígonos en puntos**. Los puntos nos permitirán más adelante contar cuántos polígonos caen dentro de cada celda de las grillas.
 
-Para convertir polígonos en puntos, usamos `st_centroid()` sobre la columna con los datos espaciales para [calcular su centroide](../../../blog/mapas_sf/#calcular-centroide). Como precaución, podemos agregar `st_make_valid()` para corregir los polígonos de antemano.
+Para convertir polígonos en puntos, usamos `st_centroid()` sobre la columna con los datos espaciales para [calcular su centroide](/blog/mapas_sf/#calcular-centroide). Como precaución, podemos agregar `st_make_valid()` para corregir los polígonos de antemano.
 
 ```{r mapa_puntos}
 # pasar de polígonos a puntos

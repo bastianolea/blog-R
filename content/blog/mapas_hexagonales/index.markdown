@@ -26,7 +26,7 @@ editor_options:
 excerpt: "Al visualizar datos espaciales detallados, como los de la cartografía censal a nivel de manzanas, los polígonos presentan diversos tamaños y niveles de detalle. Esto puede ser demasiado detallado para la visualización que necesitemos, puede desconcentrar mucho, o bien, podemos necesitar homogeneizar la distribución de los datos en el territorio. En este tutorial veremos cómo crear mapas de hexágonos y de cuadrículas a partir de todo tipo de _shapes_."
 ---
 
-Al visualizar datos espaciales detallados, como los de la [cartografía censal a nivel de manzanas](../../../blog/mapas_censo_2024/), los polígonos presentan diversos tamaños y niveles de detalle.  Esto puede ser demasiado detallado para la visualización que necesitemos, puede desconcentrar mucho, o bien, podemos necesitar homogeneizar la distribución de los datos en el territorio. En este tutorial veremos cómo crear mapas de hexágonos y de cuadrículas a partir de todo tipo de _shapes_.
+Al visualizar datos espaciales detallados, como los de la [cartografía censal a nivel de manzanas](/blog/mapas_censo_2024/), los polígonos presentan diversos tamaños y niveles de detalle.  Esto puede ser demasiado detallado para la visualización que necesitemos, puede desconcentrar mucho, o bien, podemos necesitar homogeneizar la distribución de los datos en el territorio. En este tutorial veremos cómo crear mapas de hexágonos y de cuadrículas a partir de todo tipo de _shapes_.
 
 
 
@@ -81,7 +81,7 @@ Luego cargamos los datos con la función `open_dataset()` de `{arrow}`, que carg
 censo_manzanas <- open_dataset("Cartografia_censo2024_Pais_Manzanas.parquet")
 ```
 
-Como vimos en el [tutorial del Censo 2024](../../../blog/censo_2024/), cargar los datos censales como base de datos evita tener que cargar _todos los datos_ de una sola vez, sino que cargas una _referencia_ a los datos que no pesa nada, pero que puedes filtrar y seleccionar, y sólo cuando ya necesitas los datos los _copias_ a la memoria con la función `collect()`:
+Como vimos en el [tutorial del Censo 2024](/blog/censo_2024/), cargar los datos censales como base de datos evita tener que cargar _todos los datos_ de una sola vez, sino que cargas una _referencia_ a los datos que no pesa nada, pero que puedes filtrar y seleccionar, y sólo cuando ya necesitas los datos los _copias_ a la memoria con la función `collect()`:
 
 
 ``` r
@@ -118,7 +118,7 @@ head(censo_comuna)
 ```
 
 
-Veamos cómo se ve el mapa! Para ello, tenemos que usar el paquete `{sf}`, como vimos en el [tutorial de mapas con R](../../../blog/mapas_sf), para convertir el _dataframe_ en un dataframe de catacterísticas geoespaciales:
+Veamos cómo se ve el mapa! Para ello, tenemos que usar el paquete `{sf}`, como vimos en el [tutorial de mapas con R](/blog/mapas_sf), para convertir el _dataframe_ en un dataframe de catacterísticas geoespaciales:
 
 
 ``` r
@@ -126,7 +126,7 @@ library(sf)
 ```
 
 ```
-## Linking to GEOS 3.14.1, GDAL 3.13.2, PROJ 9.8.1; sf_use_s2() is TRUE
+## Linking to GEOS 3.13.0, GDAL 3.8.5, PROJ 9.5.1; sf_use_s2() is TRUE
 ```
 
 ``` r
@@ -190,7 +190,7 @@ mapview(censo_comuna_mapa)
 
 Para poder visualizar estos datos territoriales en visualizaciones más homogéneas, como en cuadrículas o en hexágonos, primero tenemos que **convertir los polígonos en puntos**. Los puntos nos permitirán más adelante contar cuántos polígonos caen dentro de cada celda de las grillas.
 
-Para convertir polígonos en puntos, usamos `st_centroid()` sobre la columna con los datos espaciales para [calcular su centroide](../../../blog/mapas_sf/#calcular-centroide). Como precaución, podemos agregar `st_make_valid()` para corregir los polígonos de antemano.
+Para convertir polígonos en puntos, usamos `st_centroid()` sobre la columna con los datos espaciales para [calcular su centroide](/blog/mapas_sf/#calcular-centroide). Como precaución, podemos agregar `st_make_valid()` para corregir los polígonos de antemano.
 
 
 ``` r
@@ -266,7 +266,7 @@ library(units)
 ```
 
 ```
-## udunits database from /usr/local/share/udunits/udunits2.xml
+## udunits database from /Library/Frameworks/R.framework/Versions/4.6/Resources/library/units/share/udunits/udunits2.xml
 ```
 
 ``` r

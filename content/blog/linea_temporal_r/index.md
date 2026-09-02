@@ -7,6 +7,8 @@ author: Bastián Olea Herrera
 date: '2026-08-27'
 tags:
   - curiosidades
+  - fechas
+  - gráficos
 format:
   hugo-md:
     output-file: index
@@ -37,7 +39,6 @@ Siguiendo la estructura sugerida por [el paquete `{vistime}`](https://shosaco.gi
 library(dplyr)
 ```
 
-
     Attaching package: 'dplyr'
 
     The following objects are masked from 'package:stats':
@@ -51,7 +52,6 @@ library(dplyr)
 ``` r
 library(lubridate)
 ```
-
 
     Attaching package: 'lubridate'
 
@@ -340,11 +340,10 @@ timeline_3 <- timeline_2 +
 
 El resultado es la siguiente visualización en línea de tiempo:
 
-{{< imagen_tamaño "r_timeline.jpg" "100%" >}}
-
-*There's also an english version available:*
-
+{{< imagen_tamaño "r_timeline_es.jpg" "100%" >}}
+{{< detalles "**There's also an english version available!**" >}}
 {{< imagen_tamaño "r_timeline_en.jpg" "100%" >}}
+{{< /detalles >}}
 
 Varias cosas me resultaron interesantes, como la varianza en el tiempo que dura cada versión mayor de R, la tardía introducción de RStudio, pero por sobre todo el hecho de que `{dplyr}`, un paquete que me parece fundamental, fue introducido *después* que `{ggplot2}` y `{shiny}`!
 

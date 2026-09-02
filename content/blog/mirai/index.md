@@ -1,10 +1,12 @@
 ---
-title: Operaciones asíncronas en R con `{mirai}`
+title: Procesamiento paralelo y operaciones asíncronas en R con `{mirai}`
 draft: true
+freeze: true
 execute:
   eval: false
 categories:
   - optimización
+  - avanzado
 excerpt: Procesamiento asíncrono
 ---
 
@@ -105,4 +107,26 @@ daemons(0)
 
 ``` r
 # https://3mw.albert-rapp.de/p/avoiding-the-pitfalls-of-async-mirai?utm_source=3mw.albert-rapp.de&utm_medium=newsletter&utm_campaign=avoiding-the-pitfalls-of-async-mirai&_bhlid=32a7baa2206bd444d188644a9c3e7503662c9bfb&jwt_token=
+```
+
+``` r
+## variable ----
+indice_grupos <- indice |>
+  filter(nivel == "variable") |>
+  group_by(macrozona, ambito, subambito, variable)
+
+cortes <- with(
+  daemons(6),
+
+  mirai_map(
+    group_split(indice_grupos),
+    \(grupo) {
+      BAMMtools::getJenksBreaks(grupo$integracion, 6)
+    }
+  )[.progress]
+)
+
+cortes_variable <- indice_grupos |>
+  group_keys() |>
+  mutate(corte = cortes)
 ```
