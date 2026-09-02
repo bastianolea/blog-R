@@ -31,7 +31,7 @@ También hay una versión en colores claros, que es una variación del tema _Tom
 
 ## Instalación
 
-Este tema afecta muchos aspectos de RStudio que cambian con cada actualización, por lo que el tema requiere de una instalación por medio de un script que detecta tu versión de RStudio y adapta el tema a ella.
+Este tema afecta muchos aspectos de RStudio que cambian con cada actualización, por lo que, idealmente, el tema requiere de una instalación por medio de un script que detecta tu versión de RStudio y adapta el tema a ella. 
 
 1. [Clonar](https://bastianolea.rbind.io/blog/tutorial_github/#clonar-un-repositorio-código-de-r-en-github) en tu computadora [este repositorio](https://github.com/bastianolea/rstudio_purple_dark_theme/) usando Git o RStudio (_File_ > _New Project_ > _Version Control_)
 2. Abrir el proyecto con RStudio
@@ -68,6 +68,6 @@ Para personalizar la apariencia de RStudio se usan temas, que son simplemente ho
 Por lo tanto, los temas que cambian aspectos profundos de la interfaz se echan a perder con cada actualización, porque cambian las clases ofuscadas. El código en el [repositorio](https://github.com/bastianolea/rstudio_purple_dark_theme) implementa scripts que revisan las clases ofuscadas y les asigna _nombres semánticos_; por ejemplo, la clase ofuscada `GCOP2I3BHW` se identifica como el elemento `ThemeResources.toolbarButton`, lo que permite personalizarlo. Más información en el [_readme_ del repositorio.](https://github.com/bastianolea/rstudio_purple_dark_theme)
 
 ## Actualizaciones
-- **2026/09/01**: Actualización mayor. Debido a que el tema afecta todos los aspectos de la IDE, requiere de un script de instalación.
+- **2026/09/01**: Actualización mayor para abarcar más elementos de RStudio. Debido a lo anterior, se recomienda ejecutar el script de instalación.
 - **2026/04/22**: Tema actualizado para compatibilidad con la última versión de RStudio (2026.04.0)
 - **2025/12/03**: Ahora más morado! 💜 y más rosado! 🩷 Celebrando la [actualización del tema para el código](/blog/2025-12-02/) de este blog.
