@@ -380,24 +380,23 @@ Aquí puedes ver una lista de los **principales colores de R** y copiar sus nomb
 {{< detalles “Ver código para generar los cuadritos con colores que aparecen arriba” >}}
 
 ``` r
-#| output: asis
 # toma todos los colores con nombres desde `colors()` y los ordena por tono, intensidad y brillo, y genera html con todos los colores en pildoritas
 
 colores <- colors(distinct = T) |> 
-stringr::str_subset("gray", negate = T) |> 
-stringr::str_subset("4", negate = T)
+  stringr::str_subset("gray", negate = T) |> 
+  stringr::str_subset("4", negate = T)
 
 library(dplyr)
 
 tabla_colores <- tibble(color = colores) |> 
-mutate(hex = gplots::col2hex(color)) |> 
-mutate(tono = shades::hue(color)) |> 
-mutate(brillo = shades::lightness(color)) |> 
-mutate(croma = shades::chroma(color)) |> 
-# mutate(contraste = colorspace::contrast_ratio(color, "black")) |> 
-mutate(across(where(is.numeric), ~round(.x, 0) |> signif(2))) |> 
-arrange(desc(tono), desc(croma), desc(brillo)) |>
-filter(!color %in% c("black", "white"))
+  mutate(hex = gplots::col2hex(color)) |> 
+  mutate(tono = shades::hue(color)) |> 
+  mutate(brillo = shades::lightness(color)) |> 
+  mutate(croma = shades::chroma(color)) |> 
+  # mutate(contraste = colorspace::contrast_ratio(color, "black")) |> 
+  mutate(across(where(is.numeric), ~round(.x, 0) |> signif(2))) |> 
+  arrange(desc(tono), desc(croma), desc(brillo)) |>
+  filter(!color %in% c("black", "white"))
 
 colores <- tabla_colores$color
 
@@ -406,21 +405,21 @@ colores <- c("white", colores, "grey", "black")
 estilo <- "color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9;"
 
 cuadritos <- purrr::map(
-colores,
-\(color) {
-shiny::span(
-color, 
-style = paste("background-color:", gplots::col2hex(color), ";",
-estilo,
-paste("color:", 
-ifelse(
-colorspace::contrast_ratio(color, "black") < 4, 
-"white", "black"),
-";"),
-paste("border: solid 1px", colorspace::darken(color, 0.3), ";")
-)
-)
-})
+  colores,
+  \(color) {
+    shiny::span(
+      color, 
+      style = paste("background-color:", gplots::col2hex(color), ";",
+                    estilo,
+                    paste("color:", 
+                          ifelse(
+                            colorspace::contrast_ratio(color, "black") < 4, 
+                            "white", "black"),
+                          ";"),
+                    paste("border: solid 1px", colorspace::darken(color, 0.3), ";")
+      )
+    )
+  })
 
 shiny::tagList(cuadritos)
 ```
@@ -486,40 +485,40 @@ colores <- c("#DEC5F2", "#9069C0", "#6E3A98")
 
 ``` r
 paleta <- function(colores) {
-
-# colores <- colors(distinct = T) |> 
-#   stringr::str_subset("gray", negate = T)
-
-tamaño <- "width: 90px; height: 90px; font-size: 12px;"
-forma <- "border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all;"
-centrar <- "align-items: center; justify-content: center; text-align: center;"
-
-estilo <- paste(tamaño, forma, centrar)
-
-cuadritos <- purrr::map(
-colores,
-\(color) {
-shiny::div(
-color, 
-style = paste(
-paste("background-color:", gplots::col2hex(color), ";"),
-estilo,
-paste("color:", 
-ifelse(
-colorspace::contrast_ratio(color, "black") < 4, 
-"white", "black"), ";",
-paste("border: solid 1px", colorspace::darken(color, 0.2), ";")
-)
-),
-)
-})
-
-
-output <- shiny::div(style = centrar,
-shiny::tagList(cuadritos)
-) 
-
-return(output)
+  
+  # colores <- colors(distinct = T) |> 
+  #   stringr::str_subset("gray", negate = T)
+  
+  tamaño <- "width: 90px; height: 90px; font-size: 12px;"
+  forma <- "border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all;"
+  centrar <- "align-items: center; justify-content: center; text-align: center;"
+  
+  estilo <- paste(tamaño, forma, centrar)
+  
+  cuadritos <- purrr::map(
+    colores,
+    \(color) {
+      shiny::div(
+        color, 
+        style = paste(
+          paste("background-color:", gplots::col2hex(color), ";"),
+          estilo,
+          paste("color:", 
+                ifelse(
+                  colorspace::contrast_ratio(color, "black") < 4, 
+                  "white", "black"), ";",
+                paste("border: solid 1px", colorspace::darken(color, 0.2), ";")
+          )
+        ),
+      )
+    })
+  
+  
+  output <- shiny::div(style = centrar,
+                       shiny::tagList(cuadritos)
+  ) 
+  
+  return(output)
 }
 
 # usar
@@ -661,7 +660,7 @@ iris |>
   scale_color_brewer(palette = "Set2")
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-26-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-28-1.png" alt="" width="672" />
 
 Con el paquete `{colorspace}` también podemos ver otras paletas disponibles:
 
@@ -786,7 +785,7 @@ iris |>
   scale_y_continuous(expand = expansion(c(0, 0.1)))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-42-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-44-1.png" alt="" width="672" />
 
 Encuentra una lista que compila todas las paletas de colores de la comunidad de R [en este repositorio.](https://github.com/EmilHvitfeldt/r-color-palettes)
 
@@ -813,7 +812,7 @@ iris |>
   )
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-43-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-45-1.png" alt="" width="672" />
 
 O bien, se puede aplicar cada color a cada valor específico de la variable:
 
@@ -831,7 +830,7 @@ iris |>
   )
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-44-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-46-1.png" alt="" width="672" />
 
 ### Paletas de colores predefinidos
 
@@ -851,7 +850,7 @@ iris |>
   scale_y_continuous(expand = expansion(c(0, 0.1)))
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-45-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-47-1.png" alt="" width="672" />
 
 ``` r
 # escalas para variables continuas
@@ -864,7 +863,7 @@ iris |>
   guides(color = guide_colorsteps())
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-46-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-48-1.png" alt="" width="672" />
 
 ``` r
 # escalas para variables continuas
@@ -877,7 +876,7 @@ iris |>
   guides(color = guide_colorsteps())
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-47-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-49-1.png" alt="" width="672" />
 
 O bien, las paletas de `{RColorBrewer}` que vimos antes:
 
@@ -892,7 +891,7 @@ iris |>
   scale_color_brewer(palette = "Accent")
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-48-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-50-1.png" alt="" width="672" />
 
 Algunas de las funciones para aplicar paletas de colores tienen funcionalidades extras. Por ejemplo, las funciones de `{colorspace}` permiten modificar sus paletas en términos de la saturación (*chroma*) y el brillo del color (*luminance*), entregándote más libertad al momento de definir una apariencia específica:
 
@@ -911,7 +910,7 @@ grafico +
     l1 = 40) # brillo del color
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-50-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-52-1.png" alt="" width="672" />
 
 ``` r
 grafico +
@@ -921,7 +920,7 @@ grafico +
     l1 = 30) # brillo del color
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-51-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-53-1.png" alt="" width="672" />
 
 {{< aviso “Si quieres aprender `{ggplot2}`, revisa [este tutorial sobre visualización de datos desde cero!](/blog/r_introduccion/tutorial_visualizacion_ggplot/)” >}}
 
@@ -1254,7 +1253,7 @@ datos |>
   scale_color_manual(values = colores)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-86-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-88-1.png" alt="" width="672" />
 
 ## Personalizar y crear colores
 
@@ -1513,7 +1512,7 @@ color <- hsv(h = 0, s = 1, v = 1)
 
 Para guiarse, la siguiente gráfica muestra la tonalidad de colores entre `0` y `1`,
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-124-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-126-1.png" alt="" width="672" />
 
 {{< detalles “Ver código de la secuencia de colores y el gráfico” >}}
 
@@ -1525,23 +1524,23 @@ library(ggplot2)
 secuencia <- seq(0.0, 1.0, 0.1)
 
 colores <- map(secuencia,
-~hsv(h = .x, s = 1, v = 1))
+               ~hsv(h = .x, s = 1, v = 1))
 
 tabla <- tibble(secuencia,
-colores = unlist(colores))
+                colores = unlist(colores))
 
 tabla |> 
-ggplot() +
-aes(x = secuencia, y = 1,
-fill = colores) +
-geom_tile(color = "#EAD1FA") +
-scale_fill_identity() +
-scale_x_continuous(breaks = secuencia) +
-theme_void(
-paper = "#EAD1FA",
-accent = "#9069C0",
-ink = "#553A74") +
-theme(axis.text.x = element_text(margin = margin(t = 1, b = 6)))
+  ggplot() +
+  aes(x = secuencia, y = 1,
+      fill = colores) +
+  geom_tile(color = "#EAD1FA") +
+  scale_fill_identity() +
+  scale_x_continuous(breaks = secuencia) +
+  theme_void(
+    paper = "#EAD1FA",
+    accent = "#9069C0",
+    ink = "#553A74") +
+  theme(axis.text.x = element_text(margin = margin(t = 1, b = 6)))
 ```
 
 {{< /detalles >}}
@@ -1587,7 +1586,7 @@ colores <- c("#DEC5F2", "#9069C0", "#6E3A98")
 shades::swatch(colores)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-131-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-134-1.png" alt="" width="672" />
 
 {{< columna >}}
 
@@ -1595,7 +1594,7 @@ shades::swatch(colores)
 scales::show_col(colores)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-132-1.png" alt="" width="384" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-135-1.png" alt="" width="384" />
 
 {{< fin_columnas >}}
 
@@ -1695,13 +1694,13 @@ colores <- colorspace::sequential_hcl(5, h = 290, c = 70)
 colorspace::contrast_ratio(colores, "black", plot = TRUE)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-142-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-145-1.png" alt="" width="672" />
 
 ``` r
 colorspace::contrast_ratio(colores, "white", plot = TRUE)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-143-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-146-1.png" alt="" width="672" />
 
 La función `contrast_ratio()` del paquete `{colorspace}` retorna números que representan el contraste, donde un valor menor significa menor contraste, y por lo tanto menor visibilidad del color en comparación con el color de referencia.
 
@@ -1743,7 +1742,7 @@ tabla |>
     ink = "#553A74")
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-144-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-147-1.png" alt="" width="672" />
 
 Ahora el color del texto se decide dependiendo del contraste del color de fondo!
 
@@ -1808,7 +1807,7 @@ colores <- colorspace::sequential_hcl(5, h = 290, c = 70)
 colorspace::specplot(colores)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-149-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-152-1.png" alt="" width="672" />
 
 En el gráfico anterior vemos que los colores de la paleta no cambian de tono (*hue*), pero sí aumentan en brillo (*luminance*) y bajan en intensidad (*chroma*). Usualmente se recomienda que las paletas tengan también un cambio de tono, lo que ayuda con la accesibilidad. Así que podemos hacer un cambio en la paleta para mejorarla un poco, indicando que queretmos que el tono (argumento `h`) cambie:
 
@@ -1846,7 +1845,7 @@ colores <- sequential_hcl(7, h = 280, c = 80, l = c(35, 95))
 colorspace::hclplot(colores)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-153-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-156-1.png" alt="" width="672" />
 
 ``` r
 colores <- sequential_hcl(7, h = c(280, 220), c = c(50, 70, 20), l = c(30, 90), power = 1.1)
@@ -1854,7 +1853,7 @@ colores <- sequential_hcl(7, h = c(280, 220), c = c(50, 70, 20), l = c(30, 90), 
 colorspace::hclplot(colores)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-154-1.png" alt="" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-157-1.png" alt="" width="672" />
 
 {{< etiqueta “gráficos” >}}
 
