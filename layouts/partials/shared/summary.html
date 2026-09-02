@@ -55,9 +55,9 @@
       </div>
       
       {{ if and $root.Params.show_button_links .Params.links }}
-        <p class="db pt1">
+        <div class="db pt2">
         {{ partial "shared/btn-links.html" . }}
-        </p>
+        </div>
       {{ end }}
     </footer>
     </div>
@@ -95,9 +95,9 @@
       </div>
       
       {{ if and $root.Params.show_button_links .Params.links }}
-        <p class="db pt1">
+        <div class="db pt2">
         {{ partial "shared/btn-links.html" . }}
-        </p>
+        </div>
       {{ end }}
     </footer>
     </div>
@@ -128,9 +128,9 @@
       {{ if $root.Params.show_author_byline }}<p class="f7 db mv2">{{ if .Params.author }}Por {{ .Params.author }}{{ end }}{{ with .Params.categories }} in{{ range . }} <a href="{{ "categories/" | absURL }}{{ . | urlize }}">{{ . }}</a> {{ end }}{{ end }}</p>{{ end }}
       {{ if $root.Params.show_post_date }}<p class="f7 db mv2">{{ .PublishDate.Format "2/1/2006" }}</p>{{ end }}
       {{ if and $root.Params.show_button_links .Params.links }}
-        <p class="db pt1">
+        <div class="db pt2">
         {{ partial "shared/btn-links.html" . }}
-        </p>
+        </div>
       {{ end }}
     </footer>
   </div>
