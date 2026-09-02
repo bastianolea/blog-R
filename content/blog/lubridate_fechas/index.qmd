@@ -54,3 +54,41 @@ días
 ```
 
 al momento de escribir esta publicación, faltan `{r} días` días para el dieciocho de septiembre
+
+
+```{r}
+now() + hours(6)
+```
+
+```{r}
+now() |> as_date()
+```
+
+
+
+Este año febrero tuvo 28 días.
+
+```{r}
+as_date("2026-02-28") + days(1)
+```
+
+
+```{r}
+fechas <- c("2024-05-12", "2025-02-28", "2026-01-13")
+
+fechas <- as_date(fechas)
+
+year(fechas)
+```
+
+
+Días de la semana
+
+```{r}
+lubridate::wday(secuencia, week_start = 1)
+```
+
+Un 5 va a ser viernes
+
+
+{{< etiqueta "fechas" >}}
