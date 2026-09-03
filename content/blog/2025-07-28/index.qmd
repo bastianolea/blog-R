@@ -42,7 +42,7 @@ Para obtener los datos de mis canciones escuchadas usé [el paquete `{lastfmR}`]
 
 ```{r}
 #| eval: false
-devtools::install_github("ppatrzyk/lastfmR")
+pak::pak("ppatrzyk/lastfmR")
 ```
 
 ```{r}

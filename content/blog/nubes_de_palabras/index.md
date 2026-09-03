@@ -170,7 +170,7 @@ palabras_conteo |>
 Si no tienes el paquete instalado, puedes instalarlo con el siguiente código:
 
 ``` r
-devtools::install_github("lchiffon/wordcloud2")
+pak::pak("lchiffon/wordcloud2")
 ```
 
 Para crear una nube de palabras con `{wordcloud2}` solo necesitas que la primera columna del dataframe contenga las palabras, y la segunda contenga el conteo de frecuencia de las palabras:
@@ -213,7 +213,7 @@ Otra forma de hacer nubes de palabras es agregando una geometría personalizada 
 Instalar el paquete:
 
 ``` r
-devtools::install_github("lepennec/ggwordcloud")
+pak::pak("lepennec/ggwordcloud")
 ```
 
 Configuramos un tema general para los gráficos, para que se vean bonitos aquí 🥰

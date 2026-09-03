@@ -41,7 +41,7 @@ pak::pkg_install("bastianolea/rutera")
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("bastianolea/rutera")
+pak::pak("bastianolea/rutera")
 ```
 
 ## Calcular dígito verificador

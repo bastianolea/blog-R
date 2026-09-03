@@ -46,7 +46,7 @@ Así que me apliqué con `{ggplot2}`, usando un paquete que agrega una visualiza
 Para obtener los datos de mis canciones escuchadas usé [el paquete `{lastfmR}`](https://github.com/ppatrzyk/lastfmR):
 
 ``` r
-devtools::install_github("ppatrzyk/lastfmR")
+pak::pak("ppatrzyk/lastfmR")
 ```
 
 ``` r

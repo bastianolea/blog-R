@@ -22,17 +22,21 @@ Otra buena forma de poder documentar tu código, que no sea dejando comentarios 
 
 Sin embargo, yo no acostumbro mucho a empezar mis análisis desde un documento Quarto, sino que desde scripts de R. Entonces, cuando quise transformar mis script de R a documentos Quarto para poder publicarlos en este blog, me encontré con el fastidio de tener que convertir todos los comentarios a texto, y tener que introducir _todos_ los bloques de código dentro de bloques (_chunks_). 
 
-[El paquete `{convertr}`](https://github.com/martinasladek/convertr) permite convertir scripts R a documentos Quarto, y documentos Quarto a scripts de R:
+[El paquete `{convertr}`](https://github.com/martinasladek/convertr) permite convertir scripts R a documentos Quarto, y documentos Quarto a scripts de R.
+
+Instálalo así:
 
 ```r
 # instalación
-devtools::install_github("martinasladek/convertr")
+pak::pak("martinasladek/convertr")
 ```
+
+Luego puedes ejecutar código como el siguiente para crear un archivo `.qmd` basado en tu script:
 
 ```r
 convertr::r_to_qmd(
-  input_dir = "path/to/some_R_script.R",
-  output_dir = "path/to/new_converted_qmd_file.qmd"
+  input_dir = "script.R",
+  output_dir = "reporte.qmd"
 )
 ```
 
