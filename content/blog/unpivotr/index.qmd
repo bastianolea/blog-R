@@ -1,0 +1,101 @@
+---
+title: "Limpia planillas de Excel complejas en R con `{unpivotr}`"
+subtitle: "Convertir planillas con múltiples encabezados, tablas dinámicas o pivotadas a _dataframes_"
+author: Bastián Olea Herrera
+date: '2026-09-03'
+slug: []
+categories: []
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+draft: true
+tags:
+  - limpieza de datos
+  - procesamiento de datos
+  - Excel
+execute:
+  message: false
+  warning: false
+links:
+  - icon: registered
+    icon_pack: fas
+    name: unpivotr
+    url: https://nacnudus.github.io/unpivotr/
+excerpt: "El problema es porque los datos vienen pivotados: no se respetan los principios de los datos ordenados (_tidy data_) así que tenemos variables en filas y columnas, y variables sobre otras variables en un encabezado."
+---
+
+http://datos.sinim.gov.cl/datos_municipales.php
+
+```{r}
+#| eval: false
+pak::pak("nacnudus/unpivotr")
+```
+
+- Ingresos Municipales (Ingreso Total Percibido) (M$) `IADM01`
+- Ingresos por Fondo Común Municipal (M$) `IADM40`
+- Ingresos Propios Permanentes (IPP) (M$) `IADM41`
+
+```{r}
+# install.packages('openxlsx2')
+library(openxlsx2)
+
+datos <- read_xlsx("datos_municipales_20260903181833_Sin-Corrección-Monetaria.xlsx")
+```
+
+```{r}
+#| echo: false
+#| output: asis
+library(dplyr)
+
+datos |> 
+  head() |> 
+  knitr::kable()
+```
+
+
+Esta planilla es un asco
+
+Problemas:
+- no tiene nombres de columnas
+- primera fila contiene nombres de variables
+- segunda fila también contiene nombres de variables (`CODIGO`, `MUNICIPIO`)
+- segunda fila representa la variable `año` que aplica a las celdas de abajo
+- valor vacío en primeras celdas de las dos primeras columnas
+
+El problema es porque los datos vienen pivotados: no se respetan los principios de los datos ordenados (_tidy data_) así que tenemos variables en filas y columnas, y variables sobre otras variables en un encabezado.
+
+Vamos a _despivotar_
+
+El princpio es _descabezar_ la tabla, indicando dónde están las variables (arriba? abajo? al lado?) para ir extrayéndolas paso a paso, y poniéndolas en columnas como dios manda.
+
+|                        |       |       |       |       |     |
+|------------------------|-------|-------|-------|-------|-----|
+| Valores en miles de …¹ | ...2  | ...3  | ...4  | ...5  | ... |
+| NA                     | NA    | IADM… | IADM… | IADM… | ... |
+| CODIGO                 | MUNI… | 2024  | 2023  | 2022  | ... |
+| 1101                   | IQUI… | 1260… | 1250… | 1253… | ... |
+| 1107                   | ALTO… | 3539… | 2318… | 1972… | ... |
+| 1401                   | POZO… | 18141 | 11617 | 6603  | ... |
+| ...                    | ...   | ...   | ...   | ...   | ... |
+
+```{r}
+library(unpivotr)
+
+celdas <- datos |> 
+  as_cells()
+
+celdas
+```
+
+```{r}
+celdas |> 
+  behead(direction = "up", name = "a") |> 
+  behead(direction = "left", name = "codigo") |> 
+  behead(direction = "left", name = "comuna") |> 
+  behead(direction = "up", name = "año") |> 
+  mutate(valor = as.integer(chr)) |> 
+  select(-row, -col, -data_type, -chr)
+
+```
+

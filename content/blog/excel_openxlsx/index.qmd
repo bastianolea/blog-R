@@ -1,11 +1,16 @@
 ---
-title: "Crea planillas de Excel con formato personalizado desde R con {openxlsx}"
+title: "Crea planillas de Excel con formato personalizado desde R con `{openxlsx}`"
+subtitle: "Formateo programático de archivos Excel"
 author: Bastián Olea Herrera
 date: '2025-08-08'
 slug: []
 categories: []
 draft: false
 freeze: true
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
 tags:
   - limpieza de datos
   - procesamiento de datos
@@ -20,6 +25,8 @@ links:
 excerpt: El paquete `{openxlsx}` nos entrega funciones para generar archivos Excel desde R que contengan todo tipo de formato, estilo de tablas, y manipulación celda por celda del archivo resultante, con lo que podemos generar planillas de Excel atractivas desde R. La gracia es que podremos usar estas herramientas de forma reproducible (poder re-hacer gratis la planilla con datos actualizados o corregidos), y también podremos combinar la programación de R para crear estilos condicionales, crear cientos de archivos Excel, o planillas de cientos de hojas, y mucho más.
 ---
 
+{{< aviso "Ya está disponible el paquete `{openxlsx2}`, [revisa su documentación aquí!](https://janmarvin.github.io/openxlsx2/)" >}}
+
 Al terminar el procesamiento o limpieza de un conjunto de datos, usualmente necesitamos _entregar_ la base en un formato más amigable para otros colegas o usuarios/as, lo que significa: Excel. Exportar datos de R a Excel es fácil: con la función `writexl::write_xlsx()` podemos guardar cualquier dataframe en Excel. Pero esta función hace sólo eso, y el archivo resultante es básico y hasta feo.
 
 Sin embargo, existe el [paquete `{openxlsx}`](https://ycphs.github.io/openxlsx/), que además de leer y escribir archivos Excel, nos entrega funciones para generar archivos Excel desde R que contengan **todo tipo de formato, estilo de tablas, y manipulación celda por celda** del archivo resultante, con lo que podemos **generar planillas de Excel atractivas desde R.**
@@ -31,7 +38,6 @@ La gracia es que podremos usar estas herramientas de forma reproducible (poder r
 Carguemos un conjunto de datos de indicadores de calidad de vida urbana de Chile, del [Sistema de Indicadores y Estándares de Desarrollo Urbano](https://github.com/bastianolea/siedu_indicadores_urbanos).
 
 ```{r}
-#| cache: true
 library(arrow)
 
 datos <- read_parquet("https://github.com/bastianolea/siedu_indicadores_urbanos/raw/main/datos/siedu_indicadores_desarrollo_urbano.parquet")

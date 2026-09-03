@@ -1,0 +1,75 @@
+---
+title: Exporta tablas hechas con `{gt}` a formato Excel
+author: Bastián Olea Herrera
+date: '2026-09-03'
+slug: []
+categories: []
+tags:
+  - tablas
+  - Excel
+draft: false
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+execute:
+  message: false
+  warning: false
+excerpt: Con `{gtxlsx}` puedes exportar tus tablas `{gt}` fácilmente en archivos de Excel editables, manteniendo todas sus características visuales. Esto facilita muchísimo la exportación de datos desde R, ya sea para su procesamiento, para consulta o para presentación de resultados, manteniendo un estándar visual mucho más elevado.
+links:
+  - icon: registered
+    icon_pack: fas
+    name: gtxlsx
+    url: https://janmarvin.github.io/gtxlsx/
+---
+
+[El paquete `{gt}`](/blog/tablas_gt/) es [una entre tantas](/tags/tablas/) excelentes alternativas para crear tablas personalizadas y atractivas con R. Pero una de sus limitaciones era su exportación: produce tablas en HTML o en PDF, lo cual está bien para reportes, aplicaciones o diapositivas, pero también significaba que tus tablas eran un resultado final u _output_, y **dejaban de ser editables** (para eso había que recurrir a [alternativas](/blog/excel_openxlsx/)).
+
+Pero [el nuevo paquete `{gtxlsx}`](https://janmarvin.github.io/gtxlsx/) lo cambia todo. Este paquete permite exportar cualquier tabla `{gt}` a archivos Excel editables, manteniendo el formato y la personalización!
+
+Esto facilita muchísimo la **exportación de datos** desde R, ya sea para su procesamiento, para consulta o para presentación de resultados, manteniendo un estándar visual mucho más elevado.
+
+Para instalarlo requieres tener `{openxlsx2}` y, obviamente, `{gt}` instalados:
+
+```{r}
+#| eval: false
+# install.packages("openxlsx2")
+# install.packages("gt")
+
+install.packages(
+  "gtxlsx",
+  repos = c("https://janmarvin.r-universe.dev", "https://cloud.r-project.org")
+)
+```
+
+{{< imagen "gt_rstudio.png" "400px" >}}
+{{< bajada "Una tabla `gt` en RStudio" >}}
+
+Luego, teniendo una tabla hecha en `{gt}`, por ejemplo un objeto llamado `tabla`, la insertas en una hoja de Excel y guardas el archivo:
+
+```{r}
+#| eval: false
+
+library(gt)
+library(openxlsx2)
+library(gtxlsx)
+
+# crear un libro de Excel
+hoja <- wb_workbook()$add_worksheet(grid_lines = FALSE)
+
+# agregar la tabla al archivo
+hoja <- wb_add_gt(tabla, tabla)
+
+# # abrir el archivo Excel
+# wb$open()
+
+# guardar el archivo
+hoja$save(file = "Tabla.xlsx")
+```
+
+{{< imagen "gt_excel.png" "400px" >}}
+{{< bajada "La misma tabla de antes pero en Excel" >}}
+
+En mi experiencia el resultado es increíblemente fiel a lo que creas con `gt`! Esto facilita muchísimo la exportación de datos en tablas con formatos complejos o altamente visuales con R, ya que facilmente podemos crear tablas más atractivas que las generadas con `writexl::write_xlsx()`!
+
+{{< etiqueta "tablas" >}}

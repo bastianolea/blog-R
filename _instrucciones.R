@@ -27,14 +27,15 @@ crear_publicacion(
 
 # crear un post con nombre
 crear_publicacion(
-  title = "Operaciones con fechas en R usando `{lubridate}`",
-  file = "blog/lubridate_fechas/index.qmd",
-  tags = c("fechas"),
+  title = "Exporta tablas hechas con `{gt}` a formato Excel",
+  file = "blog/tablas_gt_excel/index.qmd",
+  tags = c("tablas"),
   categories = c()
 )
 
 
 # ideas ----
+# actualizar "content/blog/excel_openxlsx/index.qmd"
 # post sobre temas nuevos, con fotos
 # generar html con R (usar ejemplos del post de colores)
 # agregar usos de {territorial} a posts

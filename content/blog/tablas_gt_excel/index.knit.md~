@@ -1,0 +1,34 @@
+---
+title: Exporta tablas hechas con `{gt}` a formato Excel
+author: Bastián Olea Herrera
+date: '2026-09-03'
+slug: []
+categories: []
+tags:
+  - tablas
+draft: true
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+execute:
+  message: false
+  warning: false
+excerpt: Resumen del post
+links:
+  - icon: file-code
+    icon_pack: fas
+    name: Código
+    url: https://github.com/bastianolea
+---
+
+[El paquete `{gt}`](/blog/tablas_gt/) es [una entre tantas](/tags/tablas/) excelentes alternativas para crear tablas personalizadas y atractivas con R. Pero una de sus limitaciones era su exportación: produce tablas en HTML o en PDF, lo cual está bien, pero significa que tus tablas eran un resultado final u _output_, y dejaban de ser editables (para eso había que recurrir a [alternativas](/blog/excel_openxlsx/)).
+
+Pero [el nuevo paquete `{gtxlsx}`](https://janmarvin.github.io/gtxlsx/) lo cambia todo. Este paquete permite exportar cualquier tabla `{gt}` a archivos Excel editables, manteniendo el formato y la personalización!
+
+Para instalarlo requieres tener `{openxlsx2}` y, obviamente, `{gt}` instalados:
+
+
+
+
+
