@@ -3,7 +3,7 @@ title: Mapas interactivos en R para visualizar datos geoespaciales con `{mapgl}`
 subtitle: Visor de mapas interactivo, moderno y gratuito en R
 author: Bastián Olea Herrera
 date: '2026-09-04'
-freeze: false
+freeze: true
 draft: false
 slug: []
 categories:
@@ -72,8 +72,8 @@ manzanas <- open_dataset("Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_
 #| echo: false
 library(arrow)
 
-# manzanas <- read_parquet("~/Documents/Datos/Censo/2024/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
-censo <- open_dataset("/Volumes/Externo/Datos/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
+censo <- open_dataset("~/Documents/Datos/Censo/2024/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
+# censo <- open_dataset("/Volumes/Externo/Datos/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
 ```
 
 Cargamos los datos del Censo como **base de datos**, lo que significa que la información no está _cargada_ aún en nuestro computador, sino que obtuvimos un _esquema_ de los datos. Tenemos que hacer una **consulta** (_query_) a la base de datos para que Arrow obtenga los datos y los cargue al entorno de R. Filtraremos los datos con `{dplyr}` y luego los obtendremos con `collect()`. De esta manera sólo cargamos lo que necesitamos!
@@ -87,13 +87,14 @@ manzanas <- censo |>
   filter(COD_REGION == 8) |> 
   # seleccionar algunas variables interesantes
   select(SHAPE,
-         CUT, COMUNA,
-         COD_MANZANA, COD_DISTRITO,
-         n_per, n_edad_60_mas, n_edad_0_5, 
+         CUT, COMUNA, LOCALIDAD,
+         COD_MANZANA, 
+         n_per, prom_edad, n_edad_60_mas, n_edad_0_5, 
          n_discapacidad, prom_escolaridad18, 
          n_desocupado, n_analfabet,
          n_transporte_bicicleta, n_jefatura_mujer,
          n_viv_hacinadas) |> 
+  # copiar a la memoria
   collect()
 ```
 
@@ -135,7 +136,7 @@ Indicamos unas coordenadas y un nivel de zoom. Prueba moviendo el mapa o acercá
 Ahora usemos `{mapgl}` con los datos censales. Creamos el mapa base con `maplibre()`, y ahora le agregamos una **capa de relleno** con `add_fill_layer()`:
 
 ```{r mapa_fill}
-maplibre(
+mapa_poligono <- maplibre(
   center = c(-73.1, -36.8), 
   zoom = 11) |> 
   # capa con polígonos
@@ -144,6 +145,8 @@ maplibre(
     source = manzanas, # objeto sf
     fill_color = "#6E3998",
     fill_opacity = 0.6)
+
+mapa_poligono
 ```
 
 Obtenemos el mapa base con los polígonos encima, con un color de nuestra elección. Hazle zoom para ver el nivel de calidad!
@@ -185,7 +188,7 @@ Una vez que tenemos la `escala` de colores, la usamos en el argumento `fill_colo
 
 ```{r mapa_coropletico_1}
 # mapa base
-maplibre(
+mapa_poblacion <- maplibre(
   center = c(-73.10, -36.74),
   zoom = 11) |> 
   # capa de relleno
@@ -208,9 +211,53 @@ maplibre(
       text_size = 10
     )
   )
+
+mapa_poblacion
 ```
 
 Como vemos, la leyenda adquiere sus características desde la escala que creamos antes, y además tiene varias opciones de personalización.
+
+### Agregar _tooltips_
+
+Los _tooltips_ son clave para entregar información más detallada en mapas interactivos. Permiten que el/la usuario/a pase el cursor sobre los polígonos para ver información relevante.
+
+Agregamos _tooltips_ a una capa de relleno de polígonos, como la que agregamos en el paso anterior, con el argumento `tooltip`. Este argumento recibe el nombre de una variable, o bien, se pueden construir textos con la función `concat()`, y usando dentro HTML y la función `get_column()` para referirnos al valor del polígono en alguna variable.
+
+En este ejemplo agregamos un _tooltip_ que hace referencia a tres variables:
+
+```{r mapa_tooltip_1}
+mapa_tooltip <- maplibre(
+  center = c(-73.10, -36.76),
+  zoom = 14) |> 
+  # capa de relleno
+  add_fill_layer(
+    id = "comuna",
+    source = comuna, 
+    fill_color = escala$expression,
+    fill_opacity = 0.8,
+    # agregar tooltip
+    tooltip = concat(
+      "<div style='font-size: 120%;'>Personas por manzana</div>",
+      "<b>Población: </b>", get_column("n_per"), " personas",
+      "<br>",
+      "<b>Edad promedio: </b>", get_column("prom_edad"), " años",
+      "<br>",
+      "<b>Escolaridad: </b>", get_column("prom_escolaridad18")
+      ),
+    # personalizar estilo de tooltip
+    tooltip_style = tooltip_style(
+          max_width = 200,
+          padding = 8,
+          background_color = "#FFFFFF",
+          background_opacity = .9,
+        )
+  )
+
+mapa_tooltip
+```
+
+En el argumento `tooltip_style` podemos personalizar la ventanita, pero si necesitamos algo más personalizado siempre podemos usar CSS.
+
 
 {{< aviso "Tutorial en construcción! Todavía estoy aprendiendo, pero pronto iré complementando con más información." >}}
 
