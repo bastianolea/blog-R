@@ -12,6 +12,8 @@ content/blog/mapas_sf/shapes/*
 !.posit/assistant/plans/*
 .posit/assistant
 
+.markdown
+
 # carpetas creadas por Hugo que no son necesarias de seguir con Git
 /public/
 /resources/
