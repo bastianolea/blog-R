@@ -9,8 +9,8 @@ servr::httr("public")
 ## publicaciones ----
 
 # editar el más reciente
-abrir_publicacion_reciente("creado", cantidad = 10)
-abrir_publicacion_reciente("modificado", cantidad = 10)
+abrir_publicacion_reciente("creado", cantidad = 6)
+abrir_publicacion_reciente("modificado", cantidad = 6)
 
 # trabajar en borradores
 abrir_borradores(cantidad = Inf)

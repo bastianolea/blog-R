@@ -1,13 +1,15 @@
 ---
-title: Cargar archivos csv más rápido en R con Arrow
+title: Cargar archivos CSV más rápido en R con `{arrow}`
 author: Bastián Olea Herrera
 date: '2025-02-12'
 format: hugo-md
+freeze: true
 slug: []
 categories: []
 tags:
   - consejos
   - datos
+  - optimización
 execute:
   eval: true
 ---
@@ -86,3 +88,5 @@ En el resultado final de este experimento, cargar un archivo csv con `arrow::rea
 Si revisamos la columna `mem_alloc`, también podemos confirmar que, además de ser más rápido, ocupa muchísima menos memoria para llevar a cabo la carga: mientras R base consume casi 6 GB de memoria, Arrow lo logra con ~120 MB!
 
 En el análisis de datos, si bien la conveniencia es un factor primordial (código más sencillo, legible y fácil de escribir nos permite generar resultados mucho más rápido), siempre es posible replantearnos la forma en que trabajamos para pensar alternativas más optimizadas y veloces, si es que el volumen de datos con los que trabajamos lo amerita.
+
+{{< etiqueta "optimización" >}}

@@ -1,8 +1,9 @@
 ---
-title: Cargar archivos csv más rápido en R con Arrow
+title: Cargar archivos CSV más rápido en R con `{arrow}`
 author: Bastián Olea Herrera
 date: '2025-02-12'
 format: hugo-md
+freeze: true
 slug: []
 categories: []
 tags:
@@ -100,3 +101,5 @@ Si revisamos la columna `mem_alloc`, también podemos confirmar que, además de 
 En el análisis de datos, si bien la conveniencia es un factor primordial (código más sencillo, legible y fácil de escribir nos permite generar resultados mucho más rápido), siempre es posible replantearnos la forma en que trabajamos para pensar alternativas más optimizadas y veloces, si es que el volumen de datos con los que trabajamos lo amerita.
 
 [^1]: Se trata de una base de datos de beneficiarios del Fondo Nacional de Salud de Chile (Fonasa), disponible [en su sitio web de datos abiertos](https://datosabiertos.fonasa.cl/dimensiones-beneficiarios/). Una versión agregada de los datos está [disponible en mi GitHub.](https://github.com/bastianolea/fonasa_beneficiarios?tab=readme-ov-file)
+
+{{< etiqueta "optimización" >}}
