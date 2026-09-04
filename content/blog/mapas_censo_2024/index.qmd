@@ -54,7 +54,8 @@ manzanas <- read_parquet("Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_
 #| message: false
 library(arrow)
 
-manzanas <- read_parquet("~/Documents/Datos/Censo/2024/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
+# manzanas <- read_parquet("~/Documents/Datos/Censo/2024/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
+manzanas <- read_parquet("/Volumes/Externo/Datos/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
 ```
 
 Con la función `glimpse()` de `{dplyr}` podemos echar un vistazo a las columnas que vienen en la tabla, pero no las mostraremos aquí porque son más de 200 😂

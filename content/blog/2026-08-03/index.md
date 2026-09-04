@@ -136,4 +136,6 @@ maplibre(center = c(-70.9, -33.5), minZoom = 4, maxZoom = 11) |>
 
 Tanto `{pmtiles}` para servidores de mapas optimizados por teselas (tiles), como `{mapgl}` para visores de mapas interactivos, fueron desarrollados por [el gran Kyle Walker!](https://walker-data.com)
 
+{{< relacionada "/blog/mapas_mapgl/" >}}
+
 {{< etiqueta "mapas" >}}

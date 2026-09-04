@@ -27,4 +27,6 @@ Gracias a este paquete desarrollado por [Kyle Walker](https://walker-data.com) e
 
 Pronto escribiré un [tutorial](/categories/tutoriales/), porque todavía estoy aprendiendo 🥰
 
+{{< relacionada "/blog/mapas_mapgl/" >}}
+
 {{< etiqueta "mapas" >}}

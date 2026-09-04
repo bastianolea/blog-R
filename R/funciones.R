@@ -185,7 +185,7 @@ abrir_borradores <- function(cantidad = 5) {
   invisible(rstudioapi::navigateToFile(elegido$archivo))
 
   # navegar el panel Files a la carpeta de la nueva publicación
-  rstudioapi::filesPaneNavigate(elegido$carpeta)
+  rstudioapi::filesPaneNavigate(normalizePath(dirname(elegido$archivo)))
 }
 
 

@@ -3,6 +3,7 @@ title: 'Conoce un formato de datos optimizado para rendimiento: Arrow'
 author: Bastián Olea Herrera
 date: '2025-12-19'
 draft: true
+freeze: true
 slug: []
 categories: []
 tags:
@@ -62,7 +63,7 @@ dset
 
 
 
-## Cargar CSV
+## Cargar CSV con Arrow
 https://bastianolea.rbind.io/blog/2025-02-12/
 
 ```{r}

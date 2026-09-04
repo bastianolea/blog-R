@@ -35,6 +35,7 @@ crear_publicacion(
 
 
 # ideas ----
+# completar "content/blog/mapas_mapgl/index.qmd"
 # actualizar "content/blog/excel_openxlsx/index.qmd"
 # post sobre temas nuevos, con fotos
 # generar html con R (usar ejemplos del post de colores)

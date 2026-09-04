@@ -1,5 +1,5 @@
 ---
-title: Introducción al manejo de datos con {dplyr}
+title: Introducción al manejo de datos con `{dplyr}`
 author: Bastián Olea Herrera
 date: '2025-02-15'
 format:
@@ -8,6 +8,7 @@ format:
     output-ext: md
 weight: 7
 draft: false
+freeze: true
 series: Introducción a R
 slug: []
 categories:
@@ -17,11 +18,13 @@ tags:
   - datos
   - básico
 excerpt: >-
-  Luego de haber aprendido las funcionalidades básicas del lenguaje y R, y
-  habernos familiarizado con herramientas un poco más avanzadas de la
-  programación en este lenguaje, ahora podemos aplicar estos aprendizajes a los
-  datos. Aprenderemos a explorar, comprender, y navegar tablas de datos, tanto
-  en la forma nativa de trabajar con R, como con la ayuda del paquete {dplyr}.
+  Luego de haber aprendido las [funcionalidades
+  básicas](/blog/r_introduccion/r_basico/) del lenguaje y R, y habernos
+  familiarizado con [herramientas un poco más avanzadas de la
+  programación](/blog/r_introduccion/r_intermedio/) en este lenguaje, ahora
+  podemos aplicar estos aprendizajes a los datos. Aprenderemos a explorar,
+  comprender, y navegar tablas de datos, tanto en la forma nativa de trabajar
+  con R, como con la ayuda del paquete `{dplyr}`.
 execute:
   error: true
   eval: true
@@ -40,9 +43,9 @@ La herramienta que utilizaremos para explorar, manipular, y transformar datos se
 
 Se caracteriza porque casi todas sus funciones son escritas por medio de *verbos*, lo que hace que su sintaxis sea muy legible, ya que cada función se corresponde con una acción que estamos realizando sobre nuestros datos.
 
-##### Nota sobre el uso de {dplyr}
+##### Nota sobre el uso de `{dplyr}`
 
-Probablemente el 98% de las cosas que necesitemos hacer con tablas de datos en R puedan hacerse por medio de {dplyr} y otros paquetes adyacentes a él. En mi opinión esto es bueno, porque creo que {dplyr} hace todo más sencillo, ordenado y fácil de interpretar. Sin embargo, creo que también es importante entender cómo se realizan las operaciones básicas sobre los datos con R base. Esto porque un entendimiento ---aunque sea básico--- de R base nos va a ayudar a comprender mejor el funcionamiento del lenguaje, y nos puede sacar de posibles problemas que encontremos. Es por esto que en este tutorial iremos viendo cómo realizar las operaciones básicas de manipulación de datos primero con R base y luego con {dplyr}.
+Probablemente el 98% de las cosas que necesitemos hacer con tablas de datos en R puedan hacerse por medio de `{dplyr}` y otros paquetes adyacentes a él. En mi opinión esto es bueno, porque creo que `{dplyr}` hace todo más sencillo, ordenado y fácil de interpretar. Sin embargo, creo que también es importante entender cómo se realizan las operaciones básicas sobre los datos con **R base**. Esto porque un entendimiento aunque sea básico de R base nos va a ayudar a comprender mejor el funcionamiento del lenguaje, y nos puede sacar de posibles problemas que encontremos. Es por esto que en este tutorial iremos viendo cómo realizar las operaciones básicas de manipulación de datos primero con R base y luego con `{dplyr}`.
 
 ### Instalación
 
@@ -62,7 +65,6 @@ Para cargar un paquete se utiliza la función `library()`:
 library("dplyr")
 ```
 
-
     Attaching package: 'dplyr'
 
     The following objects are masked from 'package:stats':
@@ -79,7 +81,7 @@ Después de cargar un paquete puede ser que aparezcan mensajes en la consola, pe
 
 Las tablas de datos, también conocidas como *dataframes*, son formas de almacenar información por medio de filas y columnas. Usualmente, las filas corresponden a observaciones, y las columnas corresponden a variables, pero no siempre esto se cumple. Otra característica de las tablas o *dataframes* es que son rectangulares: todas las columnas tienen la misma cantidad de filas.
 
-Usemos {dplyr} para tener nuestra primera aproximación a los datos en tablas construyendo una tabla. Cómo planteamos en el primer tutorial, las tablas de datos en R son construidas a partir de vectores, o dicho de otra forma, las columnas de las tablas son vectores.
+Usemos `{dplyr}` para tener nuestra primera aproximación a los datos en tablas construyendo una tabla. Cómo planteamos en el primer tutorial, las tablas de datos en R son construidas a partir de vectores, o dicho de otra forma, las columnas de las tablas son vectores.
 
 ### Crear una tabla
 
@@ -137,7 +139,7 @@ class(tabla)
 
     [1] "tbl_df"     "tbl"        "data.frame"
 
-Las tablas creadas con {dplyr} son de la clase `"tbl_df"`, que hace referencia a *tibble,* el tipo específico de tablas de datos de este paquete, que son más amigables y fáciles de leer.
+Las tablas creadas con `{dplyr}` son de la clase `"tbl_df"`, que hace referencia a *tibble,* el tipo específico de tablas de datos de este paquete, que son más amigables y fáciles de leer.
 
 ``` r
 length(tabla)
@@ -557,7 +559,7 @@ names(tabla)
 
     [1] "animal"  "tipo"    "piernas" "cola"    "zona"   
 
-Finalmente, la alternativa que entrega {dplyr} para renombrar columnas es la función `rename()`, a la cual se le entrega la tabla, y luego se le entrega el nombre nuevo de la columna, el signo `=` y el nombre original:
+Finalmente, la alternativa que entrega `{dplyr}` para renombrar columnas es la función `rename()`, a la cual se le entrega la tabla, y luego se le entrega el nombre nuevo de la columna, el signo `=` y el nombre original:
 
 ``` r
 tabla <- rename(tabla, nombre = animal)
@@ -651,7 +653,7 @@ tabla[order(tabla$piernas, decreasing = TRUE), ]
     5 pollo     ave            2 no    rural 
     6 serpiente reptil         0 toda  rural 
 
-La función `arrange()` de {dplyr} nos permite ordenar una tabla tan sólo entregándole la columna por la cual queremos ordenar:
+La función `arrange()` de `{dplyr}` nos permite ordenar una tabla tan sólo entregándole la columna por la cual queremos ordenar:
 
 ``` r
 arrange(tabla, piernas)
@@ -712,5 +714,6 @@ En ese tutorial nuevamente aprendimos herramientas básicas de R, esta vez orien
 
 **El siguiente paso** es aprender a [transformar datos con `{dplyr}` y `{tidyr}`](../../../../blog/r_introduccion/dplyr_intermedio/), o bien puedes pasar a los tutoriales aplicados, donde practicaremos estos aprendizajes en conjunto de datos reales: con [datos de proyecciones de población provenientes del Censo](../../../../blog/r_introduccion/tutorial_dplyr_censo/), y con [datos de un catastro de asentamientos de vivienda informales](../../../../blog/r_introduccion/tutorial_dplyr_campamentos/).
 
+{{< etiqueta "básico" >}}
 {{< cafecito >}}
 {{< cursos >}}
