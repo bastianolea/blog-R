@@ -1,9 +1,11 @@
 ---
-title: 'Datos en formato Parquet: tablas de datos optimizadas para rendimiento en R'
+title: 'Parquet: un formato de datos optimizado para rendimiento y eficiencia'
+subtitle: >-
+  _Benchmarks_ comparativos de velocidad de escritura, lectura y peso entre
+  Parquet, Excel y CSV
 author: Bastián Olea Herrera
-date: '2026-09-03'
+date: '2026-09-04'
 draft: false
-freeze: true
 slug: []
 categories: []
 tags:
