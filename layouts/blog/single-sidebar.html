@@ -8,7 +8,7 @@
     <article class="post-content pa0 pr3-l">
       <header class="post-header" style="margin-top:-30px;">
         <h1 class="f1 lh-solid measure-narrow mb3 fw4">{{ .Title | markdownify }}</h1>
-        {{ if .Params.subtitle }}<h4 class="f4 mt0 mb4 lh-title measure">{{ .Params.subtitle }}</h4>{{ end }}
+        {{ if .Params.subtitle }}<h4 class="f4 mt0 mb3 lh-title measure">{{ .Params.subtitle | markdownify }}</h4>{{ end }}
         {{ if .Params.show_author_byline }}<p class="f6 measure lh-copy mv1">{{ if .Params.author }}Por {{ .Params.author }}{{ end }}{{ with .Params.categories }} en{{ range . }} <a href="{{ "categories/" | absURL }}{{ . | urlize }}">{{ . }}</a> {{ end }}{{ end }}</p>{{ end }}
         
         <div style = "display: inline-block;">  <!-- para que queden en la misma línea -->
@@ -26,7 +26,7 @@
         
         <!-- etiquetas -->
         {{ with .Params.tags }}
-        <dl class="f6 lh-copy">
+        <dl class="f7 mt3 lh-copy">
           <em><dd class="fw5 ml0">{{ range . }} <a href="{{ "tags/" | absURL }}{{ . | urlize }}"
           style="margin-right: 2px; 
                        color: #EAD2FA; 
@@ -42,7 +42,7 @@
       
       <!-- botones -->  
       {{ if .Params.links }}
-      <div class="ph0 pt3">
+      <div class="ph0 pt1">
         {{ partial "shared/btn-links.html" . }}
       </div>
       {{ end }}
