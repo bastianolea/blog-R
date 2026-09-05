@@ -1,5 +1,5 @@
 ---
-title: Mapas interactivos en R para visualizar datos geoespaciales con `{mapgl}`
+title: Mapas interactivos con `{mapgl}` para visualizar datos geoespaciales
 subtitle: Visor de mapas interactivo, moderno y gratuito en R
 author: Bastián Olea Herrera
 date: '2026-09-04'
@@ -7,7 +7,7 @@ freeze: true
 draft: false
 slug: []
 categories:
-  - tutoriales
+  - Tutoriales
 tags:
   - mapas
   - visualización de datos
@@ -72,8 +72,8 @@ manzanas <- open_dataset("Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_
 #| echo: false
 library(arrow)
 
-censo <- open_dataset("~/Documents/Datos/Censo/2024/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
-# censo <- open_dataset("/Volumes/Externo/Datos/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
+# censo <- open_dataset("~/Documents/Datos/Censo/2024/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
+censo <- open_dataset("/Volumes/Externo/Datos/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
 ```
 
 Cargamos los datos del Censo como **base de datos**, lo que significa que la información no está _cargada_ aún en nuestro computador, sino que obtuvimos un _esquema_ de los datos. Tenemos que hacer una **consulta** (_query_) a la base de datos para que Arrow obtenga los datos y los cargue al entorno de R. Filtraremos los datos con `{dplyr}` y luego los obtendremos con `collect()`. De esta manera sólo cargamos lo que necesitamos!
@@ -227,7 +227,7 @@ En este ejemplo agregamos un _tooltip_ que hace referencia a tres variables:
 
 ```{r mapa_tooltip_1}
 mapa_tooltip <- maplibre(
-  center = c(-73.10, -36.76),
+  center = c(-73.13, -36.715),
   zoom = 14) |> 
   # capa de relleno
   add_fill_layer(
@@ -243,119 +243,214 @@ mapa_tooltip <- maplibre(
       "<b>Edad promedio: </b>", get_column("prom_edad"), " años",
       "<br>",
       "<b>Escolaridad: </b>", get_column("prom_escolaridad18")
-      ),
+    ),
     # personalizar estilo de tooltip
     tooltip_style = tooltip_style(
-          max_width = 200,
-          padding = 8,
-          background_color = "#FFFFFF",
-          background_opacity = .9,
-        )
+      max_width = 200,
+      padding = 8,
+      background_color = "#FFFFFF",
+      background_opacity = .9,
+    )
   )
 
 mapa_tooltip
 ```
 
+Pasa el cursor sobre el mapa para ver el _tooltip!_
+
 En el argumento `tooltip_style` podemos personalizar la ventanita, pero si necesitamos algo más personalizado siempre podemos usar CSS.
 
+## Mapa con marcadores
+
+Podemos agregar marcadores individuales a un mapa a partir de coordenadas (longitud y latitud). Para ello, creamos una tabla de datos con varios lugares y sus respectivas coordenadas de longitud y latitud:
+
+```{r}
+library(dplyr)
+
+# tabla de coordenadas
+lugares <- tribble(
+  ~lugar,       ~lon,     ~lat,   
+  "Barriga",    -70.9251, -33.5304, 
+  "Chada",      -70.6488, -33.9348, 
+  "Mallarauco", -70.9608, -33.6180, 
+  "Dormida",    -71.0096, -33.0618, 
+  "Chacabuco",  -70.7065, -32.9595
+  ) |> 
+  # texto en html
+  mutate(texto = paste("<b>Lugar:</b>", lugar))
+```
+
+También creamos una columna `texto` en la que agregaremos contenido HTML que aparecerá como _popup_ cuando se aprieten los marcadores.
+
+Convertimos esta tabla de coordenadas a una [tabla de datos geográficos](/blog/mapas_sf/#poner-un-punto-en-un-mapa) con `st_as_sf()` y la agregamos al mapa:
+
+```{r}
+puntos <- lugares |> 
+  st_as_sf(
+    coords = c("lon", "lat"), 
+    crs = 4326
+  )
+
+# agregar marcadores al mapa
+maplibre(
+  center = c(-70.65, -33.44),
+  zoom = 7
+  ) |>
+  add_markers(
+    data = puntos,
+    color = "#6E3998",
+    popup = "texto"
+  )
+```
+
+Presiona los marcadores para ver su información! Puedes ver un ejemplo aplicado de un mapa `{mapgl}` con marcadores y popups con imágenes [en mi blog personal.](https://bastimapache.cl/posts/paisajes/)
+
+{{< detalles "Ver una alternativa para agregar un solo marcador" >}}
+
+La primera sería agregar una única coordenada [creando un punto](/blog/mapas_sf/#poner-un-punto-en-un-mapa) con `sf::st_point()` a partir de los valores de longitud y latitud:
+
+```{r}
+library(sf)
+
+coordenadas <- c(-71.48135, -33.96850)
+
+# convertir las coordenadas en datos geográficos
+punto <- coordenadas |> 
+  st_point() |> 
+  st_sfc(crs = 4326)
+```
+
+Luego agregamos el punto como un marcador con `add_markers()`:
+
+```{r}
+
+# agregar al mapa
+maplibre(
+  center = coordenadas,
+  zoom = 8,
+) |>
+  add_markers(
+    data = punto,
+    color = "#6E3998")
+```
+
+{{< /detalles >}}
+
+{{< relacionada "/blog/mapas_sf/" >}}
+
+
+## Mapa con puntos o círculos
+
+Si tus datos geográficos representan coordenadas o lugares, pero además necesitas expresar o visualizar otras variables asociadas a esos lugares, las coordenadas pueden expresarse como puntos, donde su tamaño y color puede variar de acuerdo a los datos.
+
+Creemos una tabla de datos con coordenadas y otras variables extra. Esta tabla contiene las principales cuestas recorridas por ciclistas de la Región Metropolitana de Santiago, Chile, e incluye su longitud en kilómetros (`km`) y la pendiente de elevación promedio (`p`); es decir, cuán empinadas son.
+
+```{r}
+# tabla de coordenadas
+cuestas <- tribble(
+  ~lugar,       ~lon,     ~lat,     ~km,  ~p,
+  "Barriga",    -70.9251, -33.5304, 5.6,  5,
+  "Chada",      -70.6488, -33.9348, 4.1,  6,
+  "Mallarauco", -70.9608, -33.6180, 3.0,  10,
+  "Dormida",    -71.0096, -33.0618, 11.2, 6,
+  "Chacabuco",  -70.7065, -32.9595, 10.7, 6,
+  "Pie Andino", -70.5980, -33.3083, 6.3,  8,
+  "Farellones", -70.3172, -33.3555, 14.6, 7,
+  "Lagunillas", -70.2898, -33.6107, 17.3, 7
+  ) |> 
+  st_as_sf(
+    coords = c("lon", "lat"), 
+    crs = 4326
+  )
+```
+
+Al igual que con el [mapa de coropletas](#mapa-coroplético), primero creamos la paleta de **colores** a partir de una de las variables:
+
+```{r}
+escala <- interpolate_palette(
+  data = cuestas,
+  column = "p",
+  colors = c("#EAD1FA", "#9069C0", "#6E3998")
+)
+```
+
+Para que el **radio** de cada círculo dependa de una variable numérica (por ejemplo, `km`), usamos la función `interpolate()` para hacer que los valores de la variable `km` se expresen en distintos tamaños de los círculos:
+
+```{r}
+tamaños <- interpolate(
+      column = "km", 
+      values = range(cuestas$km), # rango de la variable
+      stops = c(6, 12) # tamaños de los círculos
+    )
+```
+
+Luego [creamos el mapa base](#visor-de-mapas-básico) centrado en una ubicación, con la tabla de datos geográficos, usando la paleta de colores (`escala`), y aplicamos la escala de tamaños (`tamaños`) en el argmento `circle_radius`. Además aprovechamos de [agregar tooltips](#agregar-tooltips) al mapa.
+
+```{r}
+# agregar marcadores al mapa
+maplibre(
+  center = c(-70.65, -33.44),
+  zoom = 7
+  ) |>
+  add_circle_layer(
+    id = "puntos",
+    source = cuestas,
+    # escala de colores
+    circle_color = escala$expression,
+    circle_opacity = 0.8,
+    # escala de tamaños
+    circle_radius = tamaños,
+    circle_stroke_color = "#FFFFFF",
+    circle_stroke_width = 1,
+    # contenido del tooltip
+    tooltip = concat(
+      "<b>Cuesta: ", get_column("lugar"),
+      "</b><br>",
+      get_column("km"), " kilómetros",
+      "<br>",
+      get_column("p"), "% de pendiente"
+      ),
+    # personalizar estilo de tooltip
+    tooltip_style = tooltip_style(
+      max_width = 200,
+      padding = 8,
+      background_color = "#FFFFFF",
+      background_opacity = .9,
+    )
+  )
+```
+
+Pasa el cursor sobre los círculos para ver la información!
+
+
+## Personalización
+
+Aquí dejaré más alternativas que ofrece el paquete `{maplibre}`.
+
+### Mapa en modo oscuro
+
+Los mapas `maplibre()` tienen tres temas posibles: `"voyager"`, `"positron"` y `"dark-matter"`, este último siendo un mapa en modo oscuro.
+
+```r
+maplibre(
+style = carto_style("dark-matter")
+)
+```
+
+### Desactivar atribución
+
+Para ocultar el panel blanco inferior que indica las atribuciones a MapLibre y OpenStreetMap, agrega el argumento `attributionControl = FALSE` a la capa base del mapa, así:
+
+```r
+maplibre(
+attributionControl = FALSE
+) 
+```
+
+Esto da como resultado un mapa más limpio, pero recuerda que es importante dar créditos a quienes están facilitándote estas herramientas gratuitas, así que considera dejar la atirbución activada 🙂
 
 {{< aviso "Tutorial en construcción! Todavía estoy aprendiendo, pero pronto iré complementando con más información." >}}
 
-<!---
-Mapa con marcadores
-
-
-```{r mapa}
-#| fig-height: 6
-#| eval: false
-maplibre(
-  style = carto_style("dark-matter"),
-  bounds = puntos,
-  zoom = 13,
-  minZoom = 7,
-  maxZoom = 13,
-  attributionControl = FALSE
-) |> 
-  add_markers(
-    data = puntos_popup,
-    
-    color = "#DD2694",
-    popup = "popup_html",
-  )
-```
-
-
-Mapa con tooltip y leyenda
-
-```{r}
-#| eval: false
-# mapa interactivo mapgl usando pmtiles
-# escala de color basada en variable desde los datos
-
-library(arrow)
-library(pmtiles)
-library(mapgl)
-
-# cargar datos
-loc_aisladas <- read_parquet(
-  "datos/parquet/LOC_AIS_17.parquet",
-  col_select = "HABITANTES"
-)
-
-pm_serve("datos/localidades.pmtiles", port = 8080)
-
-escala <- interpolate_palette(
-  data = loc_aisladas,
-  column = "HABITANTES",
-  method = "quantile",
-  n = 6,
-  colors = c("#fde0dd", "#fa9fb5", "#c51b8a"),
-  na_color = "gray"
-)
-
-maplibre(center = c(-70.9, -33.5), minZoom = 4, maxZoom = 11) |>
-  add_pmtiles_source(
-    "localidades",
-    url = "http://localhost:8080/localidades.pmtiles"
-  ) |>
-  add_fill_layer(
-    id = "localidades-fill",
-    source = "localidades",
-    source_layer = "localidades",
-    fill_color = escala$expression,
-    fill_opacity = 0.7,
-    # tooltips
-    tooltip = concat(
-      "<strong>",
-      get_column("NOMBRE"),
-      "</strong><br>",
-      get_column("COM_NOM"),
-      "<br>",
-      "Habitantes: ",
-      get_column("HABITANTES")
-    ),
-    tooltip_style = tooltip_style(
-      background_color = "#FFFFFF",
-      background_opacity = .6,
-      border_radius = 8
-    )
-  ) |>
-  add_continuous_legend(
-    legend_title = "Habitantes",
-    values = escala$breaks,
-    colors = escala$colors,
-    position = "bottom-left",
-    style = legend_style(
-      background_color = "#FFFFFF",
-      background_opacity = .6,
-      border_radius = 8,
-      padding = 8,
-      text_size = 9
-    )
-  )
-```
-
---->
 
 {{< etiqueta "mapas" >}}
 
