@@ -1,5 +1,6 @@
 ---
 title: Visualiza datos del Censo 2024 en mapas a nivel de manzana con R
+subtitle: Mapas coropléticos con datos sociodemográficos chilenos
 author: Bastián Olea Herrera
 date: '2025-12-17'
 slug: []
@@ -14,6 +15,9 @@ format:
   hugo-md:
     output-file: index
     output-ext: md
+execute: 
+  message: false
+  warning: false
 excerpt: "Recientemente lanzaron los datos 2024 del Censo de Población y Vivienda de Chile, incluyendo más de 200 variables a nivel de manzana. En este tutorial veremos dos formas de visualizar datos censales a nivel de manzana: con mapas estáticos en `{ggplot2}`, y con mapas interactivos con `{mapgl}`."
 links:
   - icon: file-code
@@ -69,12 +73,11 @@ glimpse(manzanas)
 
 Ahora que tenemos los datos, vamos a ver cómo visualizarlos en mapas!
 
-
 {{< relacionada "/blog/censo_2024/" >}}
 
 ## Mapas estáticos
 
-Para generar mapas a partir de cartografía censal, lo que haremos será: **filtrar** la base de datos para obtener la unidad territorial que nos interesa, luego **convertir** la cartografía a formato `{sf}`, y finalmente **visualizar** con `{ggplot2}`.
+Para generar mapas coropléticos a partir de cartografía censal, lo que haremos será: **filtrar** la base de datos para obtener la unidad territorial que nos interesa, luego **convertir** la cartografía a formato `{sf}`, y finalmente **visualizar** con `{ggplot2}`.
 
 {{< relacionada "/blog/mapas_sf/" >}}
 
@@ -183,6 +186,9 @@ manzanas |>
 
 Lo bueno de disponer del código es que podemos [**automatizar la creación de mapas** para distintas comunas o regiones](/blog/ggplot_purrr/), simplemente cambiando los filtros y las variables que queremos graficar, o podemos cambiar el nivel territorial cargando uno de los otros archivos, o bien, [realizando una operación de resumen](https://bastianolea.rbind.io/blog/r_introduccion/dplyr_summarize/) sobre los datos.
 
+{{< relacionada "/blog/r_introduccion/tutorial_visualizacion_ggplot/" >}}
+
+
 ### Mapa por comunas
 
 Solamente como prueba, filtremos una región del país, luego agrupemos por comunas, y sumemos la población de una de las variables en cada comuna con `summarize()` para **pasar desde un mapa por manzanas a un mapa por comunas**:
@@ -244,11 +250,12 @@ comunas |>
 
 ## Mapas interactivos
 
-Para visualizar **mapas interactivos** en R existen varias opciones, como [el paquete `{leaflet}`](https://rstudio.github.io/leaflet/), pero yo quería usar [el paquete `{mapgl}`](https://walker-data.com/mapgl/), desarrollado por [Kyle Walker](https://walker-data.com) que permite crear mapas interactivos usando [MapLibre](https://maplibre.org), una biblioteca de código abierto para mapas web.
+Para visualizar **mapas interactivos** en R existen varias opciones, como [el paquete `{leaflet}`](https://rstudio.github.io/leaflet/), pero yo quería usar [el paquete `{mapgl}`](/blog/mapas_mapgl/), desarrollado por [Kyle Walker](https://walker-data.com) que permite crear mapas interactivos usando [MapLibre](https://maplibre.org), una biblioteca de código abierto para mapas web.
 
-Este paquete se caracteriza por el acceso que ofrece a usuarixs de R a mapas online interactivos de alta calidad y alto rendimiento.
+Este paquete se caracteriza por el acceso que ofrece a usuarixs de R a visores de mapas interactivos de alta calidad y alto rendimiento.
 
 Primero instalamos [`{mapgl}`](https://walker-data.com/mapgl/):
+
 ```{r}
 #| eval: false
 install.packages("mapgl")
@@ -284,6 +291,15 @@ manzanas_comuna_sf <- manzanas_comuna |>
   st_as_sf(crs = 4326)
 ```
 
+```{r simplificar}
+#| echo: false
+library(rmapshaper)
+
+manzanas_comuna_sf <- manzanas_comuna_sf |> 
+  ms_simplify(keep = 0.4,
+              keep_shapes = TRUE)
+```
+
 Finalmente podemos **visualizar los datos en un mapa interactivo** con la función `maplibre_view()`, especificando la variable que queremos graficar en el mapa:
 
 ```{r}
@@ -293,7 +309,9 @@ manzanas_comuna_sf |>
 
 ¡Así de simple! 💜
 
-Lo interesante es que `{mapgl}` también permite hacer cosas [mucho más increíbles](https://walker-data.com/mapgl/articles/layers-overview.html) usando [Mapbox](https://www.mapbox.com/), una plataforma de mapas de primer nivel que tiene muchas más opciones de personalización y estilos de mapas, incluyendo figuras tridimensionales, edificios, efectos visuales y más.
+{{< relacionada "/blog/mapas_mapgl/" >}}
+
+Lo interesante es que `{mapgl}` también permite hacer cosas [mucho más increíbles](https://walker-data.com/mapgl/articles/layers-overview.html) usando [MapLibre](https://www.mapbox.com/), una plataforma de mapas de primer nivel que tiene muchas más opciones de personalización y estilos de mapas, incluyendo figuras tridimensionales, edificios, efectos visuales y más.
 
 {{< etiqueta "mapas" >}}
 

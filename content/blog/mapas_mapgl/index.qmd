@@ -2,7 +2,7 @@
 title: Mapas interactivos con `{mapgl}` para visualizar datos geoespaciales
 subtitle: Visor de mapas interactivo, moderno y gratuito en R
 author: Bastián Olea Herrera
-date: '2026-09-04'
+date: '2026-09-05'
 freeze: true
 draft: false
 slug: []
@@ -113,6 +113,22 @@ manzanas <- manzanas |>
   st_as_sf(crs = 4326)
 ```
 
+{{< detalles "**Nota:** para hacer más liviana esta página, se simplificaron los mapas" >}}
+
+Los mapas originales del Censo son extremadamente detallados, por lo que fueron [simplificados](/blog/simplificar_mapas/) para hacer qu esta página se cargue más rápido.
+
+```{r simplificar}
+library(rmapshaper)
+
+manzanas <- manzanas |> 
+  ms_simplify(keep = 0.4,
+              keep_shapes = TRUE)
+```
+
+Con esta configuración se retienen el 40% de todos los puntos del mapa, un cambio casi imperceptible. Para más información sobre este método, [revisa este tutorial!](/blog/simplificar_mapas/)
+
+{{< /detalles >}}
+
 Ahora sí podemos visualizar los datos en mapas!
 
 {{< relacionada "/blog/mapas_censo_2024/" >}}
@@ -133,16 +149,23 @@ Indicamos unas coordenadas y un nivel de zoom. Prueba moviendo el mapa o acercá
 
 ### Visualizar polígonos en el mapa
 
-Ahora usemos `{mapgl}` con los datos censales. Creamos el mapa base con `maplibre()`, y ahora le agregamos una **capa de relleno** con `add_fill_layer()`:
+Ahora usemos `{mapgl}` con los datos censales. Primero filtremos un poco los datos para hacer un mapa de ejemplo:
+
+```{r filtro_comuna_1}
+comuna <- manzanas |> 
+  filter(COMUNA == "CONCEPCIÓN")
+```
+
+Ahora crearemos el mapa base con `maplibre()`, y le agregamos una **capa de relleno** con `add_fill_layer()`:
 
 ```{r mapa_fill}
 mapa_poligono <- maplibre(
-  center = c(-73.1, -36.8), 
+  center = c(-73.04, -36.82), 
   zoom = 11) |> 
   # capa con polígonos
   add_fill_layer(
-    id = "manzanas",
-    source = manzanas, # objeto sf
+    id = "comuna",
+    source = comuna, # objeto sf
     fill_color = "#6E3998",
     fill_opacity = 0.6)
 
@@ -159,7 +182,7 @@ Los mapas coropléticos o de coropletas rellenan cada polígono del mapa con un 
 
 Filtremos un poco los datos para hacer un mapa de ejemplo:
 
-```{r filtro_comuna}
+```{r filtro_comuna_2}
 comuna <- manzanas |> 
   filter(COMUNA == "TALCAHUANO")
 ```
@@ -176,12 +199,6 @@ escala <- interpolate_palette(
   n = 5, 
   colors = c("#EAD1FA", "#9069C0", "#6E3998")
 )
-```
-
-Si vemos la escala, notamos que contiene información para producir el mapa:
-
-```{r}
-escala
 ```
 
 Una vez que tenemos la `escala` de colores, la usamos en el argumento `fill_color` como `escala$expression` para indicarle al mapa los cortes en los datos y los colores que les corresponden. Luego agregamos la leyenda correspondiente con `add_continuous_legend()`.
@@ -322,8 +339,7 @@ punto <- coordenadas |>
 
 Luego agregamos el punto como un marcador con `add_markers()`:
 
-```{r}
-
+```{r mapa_marcadores}
 # agregar al mapa
 maplibre(
   center = coordenadas,
@@ -380,17 +396,17 @@ Para que el **radio** de cada círculo dependa de una variable numérica (por ej
 tamaños <- interpolate(
       column = "km", 
       values = range(cuestas$km), # rango de la variable
-      stops = c(6, 12) # tamaños de los círculos
+      stops = c(8, 16) # tamaños de los círculos
     )
 ```
 
 Luego [creamos el mapa base](#visor-de-mapas-básico) centrado en una ubicación, con la tabla de datos geográficos, usando la paleta de colores (`escala`), y aplicamos la escala de tamaños (`tamaños`) en el argmento `circle_radius`. Además aprovechamos de [agregar tooltips](#agregar-tooltips) al mapa.
 
-```{r}
+```{r mapa_circulos}
 # agregar marcadores al mapa
 maplibre(
   center = c(-70.65, -33.44),
-  zoom = 7
+  zoom = 7.7
   ) |>
   add_circle_layer(
     id = "puntos",

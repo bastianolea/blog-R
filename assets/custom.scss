@@ -414,3 +414,9 @@ $line-height-copy: 1.3 !default;
 .maplibregl-ctrl-attrib {
   visibility: hidden !important;
 }
+
+/* ícono de enlaces */
+a>svg.anchor-symbol {
+  fill: #9069C060 !important;
+  margin-left: 0 !important;
+}
