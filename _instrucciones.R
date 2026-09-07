@@ -37,6 +37,7 @@ crear_publicacion(
 # ideas ----
 # convertir "content/blog/tablas_gt/index.qmd" en tutorial con instrucciones y tips
 # completar "content/blog/mapas_mapgl/index.qmd"
+# falta st_union en /blog/mapas_sf
 # actualizar "content/blog/excel_openxlsx/index.qmd"
 # post sobre temas nuevos, con fotos
 # generar html con R (usar ejemplos del post de colores)

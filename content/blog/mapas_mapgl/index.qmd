@@ -72,8 +72,8 @@ manzanas <- open_dataset("Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_
 #| echo: false
 library(arrow)
 
-# censo <- open_dataset("~/Documents/Datos/Censo/2024/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
-censo <- open_dataset("/Volumes/Externo/Datos/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
+censo <- open_dataset("~/Documents/Datos/Censo/2024/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
+# censo <- open_dataset("/Volumes/Externo/Datos/Cartografia_censo2024_Pais/Cartografia_censo2024_Pais_Manzanas.parquet")
 ```
 
 Cargamos los datos del Censo como **base de datos**, lo que significa que la información no está _cargada_ aún en nuestro computador, sino que obtuvimos un _esquema_ de los datos. Tenemos que hacer una **consulta** (_query_) a la base de datos para que Arrow obtenga los datos y los cargue al entorno de R. Filtraremos los datos con `{dplyr}` y luego los obtendremos con `collect()`. De esta manera sólo cargamos lo que necesitamos!
@@ -292,7 +292,7 @@ lugares <- tribble(
   "Mallarauco", -70.9608, -33.6180, 
   "Dormida",    -71.0096, -33.0618, 
   "Chacabuco",  -70.7065, -32.9595
-  ) |> 
+) |> 
   # texto en html
   mutate(texto = paste("<b>Lugar:</b>", lugar))
 ```
@@ -312,7 +312,7 @@ puntos <- lugares |>
 maplibre(
   center = c(-70.65, -33.44),
   zoom = 7
-  ) |>
+) |>
   add_markers(
     data = puntos,
     color = "#6E3998",
@@ -359,45 +359,49 @@ maplibre(
 
 Si tus datos geográficos representan coordenadas o lugares, pero además necesitas expresar o visualizar otras variables asociadas a esos lugares, las coordenadas pueden expresarse como puntos, donde su tamaño y color puede variar de acuerdo a los datos.
 
-Creemos una tabla de datos con coordenadas y otras variables extra. Esta tabla contiene las principales cuestas recorridas por ciclistas de la Región Metropolitana de Santiago, Chile, e incluye su longitud en kilómetros (`km`) y la pendiente de elevación promedio (`p`); es decir, cuán empinadas son.
+Transformemos los datos censales para expresar la desocupación por medio de puntos, pero como los datos vienen en manzanas, hagamos que cada punto represente una suma de varias manzanas. Para eso, agruparemos los datos por comuna y localidad con `group_by()`, luego [haremos un resumen de datos](/blog/r_introduccion/dplyr_summarize/) con `summarize()` donde sumaremos las variables y uniremos las manzanas en un sólo polígono/fila con `st_union()`, y [calcularemos el centroide](/blog/mapas_sf/#calcular-centroide) de los polígonos con `st_centroid()` para obtener los puntos, de manera que un punto resuma los datos de todas las manzanas de la misma localidad.
 
 ```{r}
-# tabla de coordenadas
-cuestas <- tribble(
-  ~lugar,       ~lon,     ~lat,     ~km,  ~p,
-  "Barriga",    -70.9251, -33.5304, 5.6,  5,
-  "Chada",      -70.6488, -33.9348, 4.1,  6,
-  "Mallarauco", -70.9608, -33.6180, 3.0,  10,
-  "Dormida",    -71.0096, -33.0618, 11.2, 6,
-  "Chacabuco",  -70.7065, -32.9595, 10.7, 6,
-  "Pie Andino", -70.5980, -33.3083, 6.3,  8,
-  "Farellones", -70.3172, -33.3555, 14.6, 7,
-  "Lagunillas", -70.2898, -33.6107, 17.3, 7
-  ) |> 
-  st_as_sf(
-    coords = c("lon", "lat"), 
-    crs = 4326
-  )
+# agrupar y unir manzanas
+localidades <- manzanas |> 
+  group_by(CUT, COMUNA, LOCALIDAD) |> 
+  summarize(n_desocupado = sum(n_desocupado),
+            n_per = sum(n_per),
+            SHAPE = st_union(SHAPE))
+
+# calcular porcentaje de desocupación
+localidades_b <- localidades |> 
+  mutate(p_desocupado = n_desocupado / n_per) |> 
+  mutate(p_desocupado = round(p_desocupado * 100, 1)) |> 
+  filter(p_desocupado > 1)
+
+# convertir a puntos
+puntos <- localidades_b |> 
+  mutate(SHAPE = st_centroid(SHAPE)) # calcular centroide
+
+puntos
 ```
 
-Al igual que con el [mapa de coropletas](#mapa-coroplético), primero creamos la paleta de **colores** a partir de una de las variables:
+El resultado es una tabla con menos observaciones, porque ahora cada fila representa a una localidad, y en vez de contener polígonos, el dato espacial se presenta como puntos.
+
+Al igual que con el [mapa de coropletas](#mapa-coroplético), primero creamos la paleta de **colores** a partir de una de las variables; en este caso `n_desocupado` para ver la desocupación:
 
 ```{r}
 escala <- interpolate_palette(
-  data = cuestas,
-  column = "p",
+  data = puntos,
+  column = "n_desocupado",
   colors = c("#EAD1FA", "#9069C0", "#6E3998")
 )
 ```
 
-Para que el **radio** de cada círculo dependa de una variable numérica (por ejemplo, `km`), usamos la función `interpolate()` para hacer que los valores de la variable `km` se expresen en distintos tamaños de los círculos:
+Para que el **radio** de cada círculo dependa de una variable numérica, usamos la función `interpolate()` para hacer que los valores de la variable `n_desocupado` se expresen en distintos tamaños de los círculos:
 
 ```{r}
 tamaños <- interpolate(
-      column = "km", 
-      values = range(cuestas$km), # rango de la variable
-      stops = c(8, 16) # tamaños de los círculos
-    )
+  column = "n_desocupado",
+  values = range(puntos$n_desocupado), # rango de la variable
+  stops = c(10, 26) # tamaños de los círculos
+)
 ```
 
 Luego [creamos el mapa base](#visor-de-mapas-básico) centrado en una ubicación, con la tabla de datos geográficos, usando la paleta de colores (`escala`), y aplicamos la escala de tamaños (`tamaños`) en el argmento `circle_radius`. Además aprovechamos de [agregar tooltips](#agregar-tooltips) al mapa.
@@ -405,12 +409,12 @@ Luego [creamos el mapa base](#visor-de-mapas-básico) centrado en una ubicación
 ```{r mapa_circulos}
 # agregar marcadores al mapa
 maplibre(
-  center = c(-70.65, -33.44),
-  zoom = 7.7
-  ) |>
+  center = c(-73.03, -36.81),
+  zoom = 10
+) |>
   add_circle_layer(
     id = "puntos",
-    source = cuestas,
+    source = puntos,
     # escala de colores
     circle_color = escala$expression,
     circle_opacity = 0.8,
@@ -420,12 +424,12 @@ maplibre(
     circle_stroke_width = 1,
     # contenido del tooltip
     tooltip = concat(
-      "<b>Cuesta: ", get_column("lugar"),
-      "</b><br>",
-      get_column("km"), " kilómetros",
+      "<b>Comuna: ", get_column("COMUNA"), "</b>",
       "<br>",
-      get_column("p"), "% de pendiente"
-      ),
+      "<b>Localidad: ", get_column("LOCALIDAD"), "</b>",
+      "<br>",
+      get_column("p_desocupado"), "% de desocupación"
+    ),
     # personalizar estilo de tooltip
     tooltip_style = tooltip_style(
       max_width = 200,
@@ -437,6 +441,70 @@ maplibre(
 ```
 
 Pasa el cursor sobre los círculos para ver la información!
+
+
+
+### Mapa con puntos agrupados
+
+```{r}
+comuna <- manzanas |> 
+  filter(COMUNA == "CONCEPCIÓN")
+
+puntos <- comuna |> 
+  mutate(p_discapacidad = n_discapacidad/n_per) |> 
+  filter(p_discapacidad > 0.2) |> 
+  mutate(p_discapacidad = round(p_discapacidad * 100, 1)) |> 
+  # convertir a puntos
+  mutate(SHAPE = st_centroid(SHAPE))
+
+escala <- interpolate_palette(
+  data = puntos,
+  column = "n_discapacidad",
+  colors = c("#E6C7FA", "#9069C0", "#6E3998")
+)
+
+maplibre(
+  center = c(-72.98, -36.81),
+  zoom = 10
+) |>
+  add_circle_layer(
+    id = "puntos",
+    source = puntos,
+    # escala de colores
+    circle_color = escala$expression,
+    circle_opacity = 0.9,
+    circle_radius = 6,
+    circle_stroke_color = "#FFFFFF",
+    circle_stroke_width = 1,
+    # opciones de agrupación de puntos
+    cluster_options = cluster_options(
+      circle_opacity = 0.9,
+      count_stops = c(10, 20, 30, 100),
+      radius_stops = c(12, 22, 30, 40),
+      color_stops = c("#BB98DD", "#9069C0", "#7F51AC", "#6E3998"),
+      cluster_radius = 60,
+      max_zoom = 12,
+      text_color = "#FFFFFF",
+      circle_stroke_color = "#FFFFFF",
+      circle_stroke_width = 1.2,
+    ),
+    # contenido del tooltip
+    tooltip = concat(
+      get_column("n_per"), " personas en total",
+      "<br>",
+      get_column("n_discapacidad"), " personas en situación de discapacidad, ",
+      get_column("p_discapacidad"), "% del total"
+    ),
+    # estilo de tooltip
+    tooltip_style = tooltip_style(
+      max_width = 200,
+      padding = 8,
+      background_color = "#FFFFFF",
+      background_opacity = .8,
+    )
+  )
+```
+
 
 
 ## Personalización
