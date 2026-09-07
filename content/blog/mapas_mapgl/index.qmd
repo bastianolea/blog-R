@@ -1,8 +1,7 @@
 ---
-title: Mapas interactivos con `{mapgl}` para visualizar datos geoespaciales
-subtitle: Visor de mapas interactivo, moderno y gratuito en R
+title: Mapas interactivos con `{mapgl}` para visualizar datos geoespaciales en R
 author: Bastián Olea Herrera
-date: '2026-09-05'
+date: '2026-09-07'
 freeze: true
 draft: false
 slug: []
@@ -176,114 +175,12 @@ Obtenemos el mapa base con los polígonos encima, con un color de nuestra elecci
 
 Esto nos sirve para probar los polígonos, o visualizaciones simples.
 
-## Mapa coroplético
-
-Los mapas coropléticos o de coropletas rellenan cada polígono del mapa con un color de acuerdo al valor de una variable. Es quizás la forma más básica e intuitiva de visualizar datos que se corresponden con polígonos.
-
-Filtremos un poco los datos para hacer un mapa de ejemplo:
-
-```{r filtro_comuna_2}
-comuna <- manzanas |> 
-  filter(COMUNA == "TALCAHUANO")
-```
-
-Para visualizar un mapa coloreando los polígonos según una variable en `{mapgl}`, primero tenemos que **crear una escala**. Esta escala nos permitirá definir la variable que queremos visualizar, los cortes en los datos, y los colores.
-
-Creamos la escala con `interpolate_palette()`, indicando la columna que nos interesa. Elegimos la variable `n_per`(cantidad de habitantes por manzana), junto al método para cortar la variable (en este caso, [el método Jenks](https://bastianolea.rbind.io/blog/2026-08-26/)), la cantidad de cortes, y la [paleta de colores.](/blog/colores/#crear-paletas-de-colores)
-
-```{r escala_1}
-escala <- interpolate_palette(
-  data = comuna,
-  column = "n_per",
-  method = "jenks", 
-  n = 5, 
-  colors = c("#EAD1FA", "#9069C0", "#6E3998")
-)
-```
-
-Una vez que tenemos la `escala` de colores, la usamos en el argumento `fill_color` como `escala$expression` para indicarle al mapa los cortes en los datos y los colores que les corresponden. Luego agregamos la leyenda correspondiente con `add_continuous_legend()`.
-
-```{r mapa_coropletico_1}
-# mapa base
-mapa_poblacion <- maplibre(
-  center = c(-73.10, -36.74),
-  zoom = 11) |> 
-  # capa de relleno
-  add_fill_layer(
-    id = "comuna",
-    source = comuna, # objeto sf con geometrías
-    fill_color = escala$expression, # desde escala
-    fill_opacity = 0.8
-  ) |> 
-  # leyenda
-  add_continuous_legend(
-    legend_title = "Personas por manzana",
-    values = escala$breaks,
-    colors = escala$colors,
-    position = "top-right",
-    style = legend_style(
-      border_radius = 6,
-      padding = 8,
-      background_opacity = 0.8,
-      text_size = 10
-    )
-  )
-
-mapa_poblacion
-```
-
-Como vemos, la leyenda adquiere sus características desde la escala que creamos antes, y además tiene varias opciones de personalización.
-
-### Agregar _tooltips_
-
-Los _tooltips_ son clave para entregar información más detallada en mapas interactivos. Permiten que el/la usuario/a pase el cursor sobre los polígonos para ver información relevante.
-
-Agregamos _tooltips_ a una capa de relleno de polígonos, como la que agregamos en el paso anterior, con el argumento `tooltip`. Este argumento recibe el nombre de una variable, o bien, se pueden construir textos con la función `concat()`, y usando dentro HTML y la función `get_column()` para referirnos al valor del polígono en alguna variable.
-
-En este ejemplo agregamos un _tooltip_ que hace referencia a tres variables:
-
-```{r mapa_tooltip_1}
-mapa_tooltip <- maplibre(
-  center = c(-73.13, -36.715),
-  zoom = 14) |> 
-  # capa de relleno
-  add_fill_layer(
-    id = "comuna",
-    source = comuna, 
-    fill_color = escala$expression,
-    fill_opacity = 0.8,
-    # agregar tooltip
-    tooltip = concat(
-      "<div style='font-size: 120%;'>Personas por manzana</div>",
-      "<b>Población: </b>", get_column("n_per"), " personas",
-      "<br>",
-      "<b>Edad promedio: </b>", get_column("prom_edad"), " años",
-      "<br>",
-      "<b>Escolaridad: </b>", get_column("prom_escolaridad18")
-    ),
-    # personalizar estilo de tooltip
-    tooltip_style = tooltip_style(
-      max_width = 200,
-      padding = 8,
-      background_color = "#FFFFFF",
-      background_opacity = .9,
-    )
-  )
-
-mapa_tooltip
-```
-
-Pasa el cursor sobre el mapa para ver el _tooltip!_
-
-En el argumento `tooltip_style` podemos personalizar la ventanita, pero si necesitamos algo más personalizado siempre podemos usar CSS.
 
 ## Mapa con marcadores
 
 Podemos agregar marcadores individuales a un mapa a partir de coordenadas (longitud y latitud). Para ello, creamos una tabla de datos con varios lugares y sus respectivas coordenadas de longitud y latitud:
 
 ```{r}
-library(dplyr)
-
 # tabla de coordenadas
 lugares <- tribble(
   ~lugar,       ~lon,     ~lat,   
@@ -352,14 +249,116 @@ maplibre(
 
 {{< /detalles >}}
 
-{{< relacionada "/blog/mapas_sf/" >}}
+
+## Mapa coroplético interactivo
+
+Los mapas coropléticos o de coropletas rellenan cada polígono del mapa con un color de acuerdo al valor de una variable. Es quizás la forma más básica e intuitiva de visualizar datos que se corresponden con polígonos.
+
+Filtremos un poco los datos para hacer un mapa de ejemplo:
+
+```{r filtro_comuna_2}
+comuna <- manzanas |> 
+  filter(COMUNA == "TALCAHUANO")
+```
+
+Para visualizar un mapa coloreando los polígonos según una variable en `{mapgl}`, primero tenemos que **crear una escala**. Esta escala nos permitirá definir la variable que queremos visualizar, los cortes en los datos, y los colores.
+
+Creamos la escala con `interpolate_palette()`, indicando la columna que nos interesa. Elegimos la variable `n_per`(cantidad de habitantes por manzana), junto al método para cortar la variable (en este caso, [el método Jenks](https://bastianolea.rbind.io/blog/2026-08-26/)), la cantidad de cortes, y la [paleta de colores.](/blog/colores/#crear-paletas-de-colores)
+
+```{r escala_1}
+escala <- interpolate_palette(
+  data = comuna,
+  column = "n_per",
+  method = "jenks", 
+  n = 5, 
+  colors = c("#EAD1FA", "#9069C0", "#6E3998")
+)
+```
+
+Una vez que tenemos la `escala` de colores, la usamos en el argumento `fill_color` como `escala$expression` para indicarle al mapa los cortes en los datos y los colores que les corresponden. Luego agregamos la leyenda correspondiente con `add_continuous_legend()`.
+
+```{r mapa_coropletico_1}
+# mapa base
+mapa_poblacion <- maplibre(
+  center = c(-73.10, -36.74),
+  zoom = 11) |> 
+  # capa de relleno
+  add_fill_layer(
+    id = "comuna",
+    source = comuna, # objeto sf con geometrías
+    fill_color = escala$expression, # desde escala
+    fill_opacity = 0.8
+  ) |> 
+  # leyenda
+  add_continuous_legend(
+    legend_title = "Personas por manzana",
+    values = escala$breaks,
+    colors = escala$colors,
+    position = "top-right",
+    style = legend_style(
+      border_radius = 6,
+      padding = 8,
+      background_opacity = 0.8,
+      text_size = 10
+    )
+  )
+
+mapa_poblacion
+```
+
+Como vemos, la leyenda adquiere sus características desde la escala que creamos antes, y además tiene varias opciones de personalización.
+
+### Agregar _tooltips_
+
+Los _tooltips_ permiten que el/la usuario/a pase el cursor sobre los polígonos o elementos del mapa para ver información relevante. Son clave para poder entregar información más detallada en mapas interactivos. 
+
+Podemos agregar _tooltips_ a una capa de relleno de polígonos, como la que agregamos en el paso anterior, con el argumento `tooltip` de la función `add_fill_layer()`. Este argumento recibe el nombre de una variable, o bien, se pueden construir textos con la función `concat()`, y usando dentro HTML y la función `get_column()` para referirnos al valor del polígono en alguna variable.
+
+En este ejemplo agregamos un _tooltip_ que hace referencia a tres variables:
+
+```{r mapa_tooltip_1}
+mapa_tooltip <- maplibre(
+  center = c(-73.13, -36.715),
+  zoom = 14) |> 
+  # capa de relleno
+  add_fill_layer(
+    id = "comuna",
+    source = comuna, 
+    fill_color = escala$expression,
+    fill_opacity = 0.8,
+    # agregar tooltip
+    tooltip = concat(
+      "<div style='font-size: 120%;'>Personas por manzana</div>",
+      "<b>Población: </b>", get_column("n_per"), " personas",
+      "<br>",
+      "<b>Edad promedio: </b>", get_column("prom_edad"), " años",
+      "<br>",
+      "<b>Escolaridad: </b>", get_column("prom_escolaridad18")
+    ),
+    # personalizar estilo de tooltip
+    tooltip_style = tooltip_style(
+      max_width = 200,
+      padding = 8,
+      background_color = "#FFFFFF",
+      background_opacity = .9,
+    )
+  )
+
+mapa_tooltip
+```
+
+Pasa el cursor sobre el mapa para ver el _tooltip!_
+
+En el argumento `tooltip_style` podemos personalizar la ventanita, pero si necesitamos algo más personalizado siempre podemos usar CSS.
 
 
-## Mapa con puntos o círculos
+## Mapa interactivo con puntos o círculos
 
 Si tus datos geográficos representan coordenadas o lugares, pero además necesitas expresar o visualizar otras variables asociadas a esos lugares, las coordenadas pueden expresarse como puntos, donde su tamaño y color puede variar de acuerdo a los datos.
 
-Transformemos los datos censales para expresar la desocupación por medio de puntos, pero como los datos vienen en manzanas, hagamos que cada punto represente una suma de varias manzanas. Para eso, agruparemos los datos por comuna y localidad con `group_by()`, luego [haremos un resumen de datos](/blog/r_introduccion/dplyr_summarize/) con `summarize()` donde sumaremos las variables y uniremos las manzanas en un sólo polígono/fila con `st_union()`, y [calcularemos el centroide](/blog/mapas_sf/#calcular-centroide) de los polígonos con `st_centroid()` para obtener los puntos, de manera que un punto resuma los datos de todas las manzanas de la misma localidad.
+Transformemos los datos censales para expresar la **desocupación** por medio de puntos. Recordemos que los datos del censo vienen por manzana, así que agregaremos la información a un nivel geográfico superior: las localidades. Así serán menos puntos, y cada uno representará un territorio más extenso: cada punto representará una suma de varias manzanas. 
+
+Agruparemos los datos por comuna y localidad con `group_by()`, luego [haremos un resumen de datos](/blog/r_introduccion/dplyr_summarize/) con `summarize()` donde sumaremos las variables y uniremos las manzanas con `st_union()`, de manera que todas las manzanas que estaban dentro de una misma localidad quedarán unidas. Luego, [calcularemos el centroide](/blog/mapas_sf/#calcular-centroide) de los polígonos con `st_centroid()` para obtener los puntos, de manera que un punto resuma los datos de todas las manzanas de la misma localidad.
 
 ```{r}
 # agrupar y unir manzanas
@@ -384,6 +383,8 @@ puntos
 
 El resultado es una tabla con menos observaciones, porque ahora cada fila representa a una localidad, y en vez de contener polígonos, el dato espacial se presenta como puntos.
 
+{{< relacionada "/blog/mapas_sf/" >}}
+
 Al igual que con el [mapa de coropletas](#mapa-coroplético), primero creamos la paleta de **colores** a partir de una de las variables; en este caso `n_desocupado` para ver la desocupación:
 
 ```{r}
@@ -394,7 +395,7 @@ escala <- interpolate_palette(
 )
 ```
 
-Para que el **radio** de cada círculo dependa de una variable numérica, usamos la función `interpolate()` para hacer que los valores de la variable `n_desocupado` se expresen en distintos tamaños de los círculos:
+Algo común al visualizar puntos o círculos es hacer que el **radio** o tamaño de cada círculo dependa de una variable numérica. Usamos la función `interpolate()` para hacer que los valores de una variable, en este caso `n_desocupado`, se expresen en distintos tamaños de los círculos:
 
 ```{r}
 tamaños <- interpolate(
@@ -404,7 +405,7 @@ tamaños <- interpolate(
 )
 ```
 
-Luego [creamos el mapa base](#visor-de-mapas-básico) centrado en una ubicación, con la tabla de datos geográficos, usando la paleta de colores (`escala`), y aplicamos la escala de tamaños (`tamaños`) en el argmento `circle_radius`. Además aprovechamos de [agregar tooltips](#agregar-tooltips) al mapa.
+Luego [creamos el mapa base](#visor-de-mapas-básico) centrado en una ubicación, con la tabla de datos geográficos, usando la paleta de colores (`escala`) en `circle_color`, y aplicamos la escala de tamaños (`tamaños`) en el argmento `circle_radius`. Además aprovechamos de [agregar tooltips](#agregar-tooltips) al mapa.
 
 ```{r mapa_circulos}
 # agregar marcadores al mapa
@@ -440,29 +441,43 @@ maplibre(
   )
 ```
 
-Pasa el cursor sobre los círculos para ver la información!
-
+Creamos un mapa interactivo donde cada unidad de información se representa mediante un círculo, y su color y tamaños dependen de una variable. Pasa el cursor sobre los círculos para ver la información!
 
 
 ### Mapa con puntos agrupados
 
+¿Qué pasa si queremos visualizar cientos o miles de puntos o coordenadas? Cuando tenemos demasiados puntos, la visualización puede complicarse. En este caso puede usarse el argumento `cluster_options` de la función `add_circle_layer()` para configurar que los puntos se agrupen cuando están demasiado cerca. El resultado será un mapa que presenta un resumen de la información y va revelando más puntos a medida que nos acercamos al mapa.
+
+Primero filtremos una comuna del conjunto de datos:
 ```{r}
 comuna <- manzanas |> 
   filter(COMUNA == "CONCEPCIÓN")
+```
 
+Ahora calculemos una variable para visualizar; en este caso, calcularemos el porcentaje de personas en situación de discapacidad (`n_discapacidad`) por manzana, y dejaremos aquellas donde haya más de un 20% de la población. Finalmente, convertimos los polígonos a puntos con `st_centroid()`, como en el paso anterior.
+
+```{r}
 puntos <- comuna |> 
   mutate(p_discapacidad = n_discapacidad/n_per) |> 
   filter(p_discapacidad > 0.2) |> 
   mutate(p_discapacidad = round(p_discapacidad * 100, 1)) |> 
   # convertir a puntos
   mutate(SHAPE = st_centroid(SHAPE))
+```
 
+Ahora creamos la escala de colores con `interpolate_palette()`, para que los tres colores de la paleta se correspondan con los valores de la variable `n_discapacidad`:
+
+```{r}
 escala <- interpolate_palette(
   data = puntos,
   column = "n_discapacidad",
   colors = c("#E6C7FA", "#9069C0", "#6E3998")
 )
+```
 
+Ahora creamos el mapa con `maplibre()` y `add_circle_layer()`, donde especificamos los datos (`puntos`), la escala de colores en el argumento `circle_color`, y ahora configuramos el argumento `cluster_options` con `cluster_options()`, donde tenemos amplio margen para experimentar definiendo los puntos de corte de los conteos de datos, los tamaños de los puntos de agrupación, los colores, y el tamaño del radio de agrupación de los puntos (`cluster_radius`). También, el argumento `max_zoom` nos permite poner un punto de corte para desagrupar todos los puntos a cierto nivel de _zoom_ en el mapa.
+
+```{r}
 maplibre(
   center = c(-72.98, -36.81),
   zoom = 10
@@ -505,6 +520,9 @@ maplibre(
   )
 ```
 
+Acércate al mapa o presiona sobre cada punto para ir acercándote. El mapa irá revelando más detalle a medida que te acercas!
+
+{{< aviso "Tutorial en construcción! Todavía estoy aprendiendo, pero pronto iré complementando con más información." >}}
 
 
 ## Personalización
@@ -531,10 +549,7 @@ attributionControl = FALSE
 ) 
 ```
 
-Esto da como resultado un mapa más limpio, pero recuerda que es importante dar créditos a quienes están facilitándote estas herramientas gratuitas, así que considera dejar la atirbución activada 🙂
-
-{{< aviso "Tutorial en construcción! Todavía estoy aprendiendo, pero pronto iré complementando con más información." >}}
-
+Esto da como resultado un mapa más limpio, pero recuerda que es importante dar créditos a quienes están facilitándote estas herramientas gratuitas, así que considera dejar la atirbución activada!
 
 {{< etiqueta "mapas" >}}
 
