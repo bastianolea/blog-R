@@ -29,7 +29,7 @@ links:
 ---
 
 
-[El paquete `{gt}`](/blog/tablas_gt/) es [una entre tantas](/tags/tablas/) excelentes alternativas para crear tablas personalizadas y atractivas con R. Pero una de sus limitaciones era su exportación: produce tablas en HTML o en PDF, lo cual está bien para reportes, aplicaciones o diapositivas, pero también significaba que tus tablas eran un resultado final u *output*, y **dejaban de ser editables** (para eso había que recurrir a [alternativas](/blog/excel_openxlsx/)).
+[El paquete `{gt}`](./blog/tablas_gt/) es [una entre tantas](./tags/tablas/) excelentes alternativas para crear tablas personalizadas y atractivas con R. Pero una de sus limitaciones era su exportación: produce tablas en HTML o en PDF, lo cual está bien para reportes, aplicaciones o diapositivas, pero también significaba que tus tablas eran un resultado final u *output*, y **dejaban de ser editables** (para eso había que recurrir a [alternativas](./blog/excel_openxlsx/)).
 
 Pero [el nuevo paquete `{gtxlsx}`](https://janmarvin.github.io/gtxlsx/) lo cambia todo. Este paquete permite exportar cualquier tabla `{gt}` a archivos Excel editables, manteniendo el formato y la personalización!
 
@@ -50,24 +50,27 @@ install.packages(
 {{< imagen "gt_rstudio.png" "400px" >}}
 {{< bajada "Una tabla `gt` en RStudio" >}}
 
-Luego, teniendo una tabla hecha en `{gt}`, por ejemplo un objeto llamado `tabla`, la insertas en una hoja de Excel y guardas el archivo:
+Luego, teniendo una tabla hecha en `{gt}`, por ejemplo un objeto llamado `tabla_gt`, la insertas en una hoja de Excel y guardas el archivo:
 
 ``` r
 library(gt)
 library(openxlsx2)
 library(gtxlsx)
 
-# crear un libro de Excel
-hoja <- wb_workbook()$add_worksheet(grid_lines = FALSE)
+# crear una planilla de Excel
+planilla <- wb_workbook()
 
-# agregar la tabla al archivo
-hoja <- wb_add_gt(tabla, tabla)
+# crear una hoja vacía en la planilla de Excel
+planilla$add_worksheet("Hoja", grid_lines = FALSE)
+
+# agregar la tabla {gt} a la hoja de la planilla
+planilla <- planilla |> wb_add_gt(tabla_gt, sheet = "Hoja")
 
 # # abrir el archivo Excel
-# wb$open()
+# planilla$open()
 
 # guardar el archivo
-hoja$save(file = "Tabla.xlsx")
+planilla$save(file = "Tabla.xlsx")
 ```
 
 {{< imagen "gt_excel.png" "400px" >}}

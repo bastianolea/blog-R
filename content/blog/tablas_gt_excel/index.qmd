@@ -45,7 +45,7 @@ install.packages(
 {{< imagen "gt_rstudio.png" "400px" >}}
 {{< bajada "Una tabla `gt` en RStudio" >}}
 
-Luego, teniendo una tabla hecha en `{gt}`, por ejemplo un objeto llamado `tabla`, la insertas en una hoja de Excel y guardas el archivo:
+Luego, teniendo una tabla hecha en `{gt}`, por ejemplo un objeto llamado `tabla_gt`, la insertas en una hoja de Excel y guardas el archivo:
 
 ```{r}
 #| eval: false
@@ -54,17 +54,20 @@ library(gt)
 library(openxlsx2)
 library(gtxlsx)
 
-# crear un libro de Excel
-hoja <- wb_workbook()$add_worksheet(grid_lines = FALSE)
+# crear una planilla de Excel
+planilla <- wb_workbook()
 
-# agregar la tabla al archivo
-hoja <- wb_add_gt(tabla, tabla)
+# crear una hoja vacía en la planilla de Excel
+planilla$add_worksheet("Hoja", grid_lines = FALSE)
+
+# agregar la tabla {gt} a la hoja de la planilla
+planilla <- planilla |> wb_add_gt(tabla_gt, sheet = "Hoja")
 
 # # abrir el archivo Excel
-# wb$open()
+# planilla$open()
 
 # guardar el archivo
-hoja$save(file = "Tabla.xlsx")
+planilla$save(file = "Tabla.xlsx")
 ```
 
 {{< imagen "gt_excel.png" "400px" >}}
