@@ -29,7 +29,7 @@ links:
 ---
 
 
-[El paquete `{gt}`](./blog/tablas_gt/) es [una entre tantas](./tags/tablas/) excelentes alternativas para crear tablas personalizadas y atractivas con R. Pero una de sus limitaciones era su exportación: produce tablas en HTML o en PDF, lo cual está bien para reportes, aplicaciones o diapositivas, pero también significaba que tus tablas eran un resultado final u *output*, y **dejaban de ser editables** (para eso había que recurrir a [alternativas](./blog/excel_openxlsx/)).
+[El paquete `{gt}`](/blog/tablas_gt/) es [una entre tantas](/tags/tablas/) excelentes alternativas para crear tablas personalizadas y atractivas con R. Pero una de sus limitaciones era su exportación: produce tablas en HTML o en PDF, lo cual está bien para reportes, aplicaciones o diapositivas, pero también significaba que tus tablas eran un resultado final u *output*, y **dejaban de ser editables** (para eso había que recurrir a [alternativas](/blog/excel_openxlsx/)).
 
 Pero [el nuevo paquete `{gtxlsx}`](https://janmarvin.github.io/gtxlsx/) lo cambia todo. Este paquete permite exportar cualquier tabla `{gt}` a archivos Excel editables, manteniendo el formato y la personalización!
 
