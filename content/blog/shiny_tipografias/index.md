@@ -135,6 +135,34 @@ shinyApp(ui, server)
 
 De esta forma la tipografía se carga desde los archivos locales, sin depender de una conexión a internet!
 
+#### Ejemplo
+
+Para usar localmente la tipografía de Google [Hedvig Letters Sans](https://fonts.google.com/specimen/Hedvig+Letters+Sans?preview.script=Latn), descargarla con:
+
+```r
+gfonts::setup_font("hedvig-letters-sans", "www/")
+```
+
+Luego en UI:
+
+```r
+gfonts::use_font(
+    id = "hedvig-letters-sans",
+    css_path = "www/css/hedvig-letters-sans.css",
+    css = "font-family: 'Hedvig Letters Sans';"
+  ),
+```
+
+Y en el tema:
+
+```r
+theme = bs_theme(
+    # ...
+    base_font = "hedvig-letters-sans",
+    heading_font = "Hedvig Letters Sans",
+  ),
+```
+
 {{< relacionada "/blog/ggplot_tipografias" >}}
 
 {{< etiqueta "shiny" >}}
