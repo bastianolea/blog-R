@@ -3,10 +3,10 @@ title: >-
   `{territorial}`: un paquete de R para trabajar con datos de comunas y regiones
   de Chile
 subtitle: >-
-  Herramientas para facilitar el procesamiento de datos de comunas y regiones de
-  Chile con R
+  Herramientas para facilitar el procesamiento y limpieza de datos terrioriales
+  de Chile con R
 author: Bastián Olea Herrera
-date: '2026-06-27'
+date: '2026-09-28'
 slug: []
 draft: false
 freeze: true
@@ -24,7 +24,7 @@ links:
   - icon: registered
     icon_pack: fas
     name: Sitio del paquete
-    url: https://bastianolea.github.io/territorial/
+    url: https://bastianolea.github.io/territorial/articles/territorial.html
   - icon: registered
     icon_pack: fas
     name: Funciones
@@ -39,20 +39,20 @@ excerpt: >-
 
 <a href="https://bastianolea.github.io/territorial/"><img src="hex-featured.png" align="right" height="180" alt="territorial website" /></a>
 
-El objetivo de este paquete es entregar [numerosas funciones](https://bastianolea.github.io/territorial/reference/index.html) para simplificar el análisis de datos territoriales de Chile, facilitando tareas de limpieza y procesamiento de datos que suelen ser necesarias al trabajar con datos de Chile a nivel comunal y regional.
-
 Los datos públicos sobre temáticas sociales siempre vienen en dudosa calidad, sobre todo cuando se refieren a comunas: nombres mal escritos, en mayúsculas, sin eñes, sin tildes, etc. Así que creé `{territorial}` para facilitar este tipo de tareas!
+
+El objetivo de este paquete es simplificar el análisis de datos territoriales de Chile, facilitando tareas de limpieza y procesamiento de datos que suelen ser necesarias al trabajar con datos de Chile a nivel comunal y regional. Para ello, [este paquete ofrece numerosas funciones](https://bastianolea.github.io/territorial/reference/index.html) de limpieza de datos para las tareas más frecuentes:
 
 Por ejemplo:
 
 - **Revisar** si los nombres de comunas y regiones vienen bien escritos (`validar_comunas()` y `validar_regiones()`)
-- **Limpiar** los nombres de las comunas automáticamente con `limpiar_comunas()`, incluso si vienen con faltas de ortografía o mal escritas
-- Agregar todos los datos territoriales (regiones y provincias con sus códigos únicos) a partir de las comunas (`contextualizar()`)
-- Convertir nombres de comunas a [códigos únicos territoriales](https://bastianolea.github.io/territorial/articles/codigos_unicos_territoriales.html) (`as_codigo_comuna()`) y viceversa (`as_nombre_comuna()`)
+- **Limpiar** los nombres de las comunas automáticamente con `limpiar_comunas()`, incluso si vienen con faltas de ortografía o mal escritas!
+- Convertir nombres de comunas a [códigos únicos territoriales](https://bastianolea.github.io/territorial/articles/codigos_unicos_territoriales.html) (`as_codigo_comuna()`) y viceversa (`as_nombre_comuna()`), para facilitar el cruce con otras fuentes de datos
 - **Ordenar las regiones** del país de norte a sur (`ordenar_regiones()`)
+- Si tienes los nombres o códigos de comuna, con `contextualizar()` puedes agregar todos los datos territoriales faltantes (regiones y provincias con sus códigos únicos) a partir de las comunas
 - Redactar los nombres de las regiones (`redactar_region()`) para que, por ejemplo, "Maule" sea "Región *del* Maule"
 - Clasificar las comunas de Chile en **urbanas, mixtas** y **rurales** con `agregar_clasificacion()`
-- Clasificar las regiones de Chile en **macrozonas** con `agregar_macrozona()`
+- [Clasificar las regiones de Chile en **macrozonas**](https://bastianolea.github.io/territorial/articles/mapas_regionales_macrozonas.html) con `agregar_macrozona()`
 - **Abreviar** las comunas de Chile a siglas de tres caracteres con `abreviar_comunas()`
 - y más!
 
@@ -60,9 +60,11 @@ Por ejemplo:
 
 {{< paquete "Paquete `{territorial}`"   "https://bastianolea.github.io/territorial/articles/territorial.html"   "hex-featured.png"   "Herramientas para facilitar el procesamiento de datos de comunas y regiones de Chile con R, ofreciendo funciones para validación de comunas, limpiar nombres de comunas, ordenar regiones, y más." >}}
 
+[Revisa la viñeta](https://bastianolea.github.io/territorial/articles/territorial.html) `vignette("territorial")` para una introducción al paquete!
+
 ## Instalación
 
-Puedes instalar la versión de desarrollo[^1] desde GitHub:
+Puedes instalar la versión de desarrollo este paquete desde GitHub:
 
 ``` r
 # install.packages("pak")
@@ -71,15 +73,15 @@ pak::pak("bastianolea/territorial")
 
 ## Usando `{territorial}`
 
-Como su nombre lo dice, `{territorial}` entrega varias herramientas para trabajar con datos territoriales de Chile, principalmente sus regiones o comunas.
+Como su nombre lo dice, `{territorial}` entrega herramientas para trabajar con datos territoriales de Chile, entendidos como datos tabulares cuyas observaciones correspondan a comunas o regiones del país.
 
 ``` r
 library(territorial)
 ```
 
-La premisa del paquete es que tenemos una tabla (`territorial::territorios`) que contiene los nombres oficiales y los códigos únicos territoriales de todas las regiones, provincias y comunas de Chile.
+La premisa del paquete es que tenemos una tabla (`territorial::territorios`) que contiene los nombres oficiales y los códigos únicos territoriales de todas las regiones, provincias y comunas de Chile. Usando esta tabla como fuente de verdad, podemos validar, corregir y complementar datos territoriales.
 
-También se plantea el estándar de llamar las columnas territoriales como `nombre_{x}` y `codigo_{x}` (por ejemplo, `nombre_comuna` y `codigo_comuna`), para mantener orden y compatibilidad de datos (pero es sólo una sugerencia).
+También se plantea el estándar de llamar las columnas como `nombre_{x}` y `codigo_{x}` (por ejemplo, `nombre_comuna` y `codigo_comuna`), para mantener orden y compatibilidad entre tablas, aunque esto es opcional.
 
 Probemos `{territorial}` con una tabla con datos de ejemplo:
 
@@ -87,42 +89,40 @@ Probemos `{territorial}` con una tabla con datos de ejemplo:
 # crear una tabla con datos de ejemplo
 datos <- dplyr::tibble(
   nombre_comuna = c("PIRQUE", "El Monte", "Maipu", "nunoa",
-                    "santiago", "prohibidencia", "CERRILLOS", 
-                    "San José De Maipo", "OHiggins")
-)
+                    "La calera", "prohibidencia", "Penialolen",
+                    "CERRILLOS", "San José De Maipo", "OHiggins"))
 
 datos
 ```
 
-    # A tibble: 9 × 1
-      nombre_comuna    
-      <chr>            
-    1 PIRQUE           
-    2 El Monte         
-    3 Maipu            
-    4 nunoa            
-    5 santiago         
-    6 prohibidencia    
-    7 CERRILLOS        
-    8 San José De Maipo
-    9 OHiggins         
+    # A tibble: 10 × 1
+       nombre_comuna    
+       <chr>            
+     1 PIRQUE           
+     2 El Monte         
+     3 Maipu            
+     4 nunoa            
+     5 La calera        
+     6 prohibidencia    
+     7 Penialolen       
+     8 CERRILLOS        
+     9 San José De Maipo
+    10 OHiggins         
 
 Estas comunas vienen en mayúsculas, con faltas de ortografía, y mal escritas!
 
-Si tienes datos comunales de Chile, puedes **revisar la calidad** de sus comunas con `validar_comunas()`, para detectar posibles problemas:
+Podemos **revisar la calidad** de los nombres de las comunas con `validar_comunas()`, para detectar posibles problemas:
 
 ``` r
 datos |> 
   validar_comunas(nombre_comuna) # cuando la columna con nombres de comunas se llama `nombre_comuna`, no es necesario especificarla
 ```
 
-    ℹ Validando calidad de nombres de comuna desde tabla de datos
-
-    ! Resumen: 8 casos de comunas que no conciden con comunas correctamente escritas (ver `territorial::comunas()`): PIRQUE, Maipu, nunoa, santiago, prohibidencia, CERRILLOS, San José De Maipo y OHiggins
+    ! Resumen: 9 casos de comunas que no conciden con comunas correctamente escritas (ver `territorial::comunas()`): PIRQUE, Maipu, nunoa, La calera, prohibidencia, Penialolen, CERRILLOS, San José De Maipo y OHiggins
 
     ! Mayúsculas: 2 casos de comunas escritas en mayúsculas: PIRQUE y CERRILLOS
 
-    ! Minúsculas: 3 casos de comunas escritas en minúsculas: nunoa, santiago y prohibidencia
+    ! Minúsculas: 2 casos de comunas escritas en minúsculas: nunoa y prohibidencia
 
     ! Mayúsculas: 1 caso de comunas con preposiciones ('de', 'del') escritas en mayúsculas: San José De Maipo
 
@@ -134,57 +134,62 @@ datos |>
 
     ✖ Validación de comunas: se encontraron 17 problemas con las comunas! Usa `territorial::limpiar_comunas()` para solucionarlos.
 
-También puedes limpiar automáticamente las comunas con `limpiar_comunas()`, y obtener una columna con las comunas correctas (que salen de la tabla `territorial::territorios`), obtenidas por medio de varias técnicas de limpieza de datos:
+Ahora sabemos qué tipo de problemas vienen en los nombres de las comunas de nuestra tabla de datos.
+
+Luego podemos limpiar automáticamente las comunas con `limpiar_comunas()`, y obtener una columna con las comunas correctamente escritas:
 
 ``` r
 datos |> 
   limpiar_comunas(nombre_comuna)
 ```
 
-    ℹ Limpiando 9 nombres de comunas (9 son distintas)
+    ℹ Limpiando 10 nombres de comunas (10 son distintas)
 
-    ── Paso 1: confirmar comunas correctas 
+    → Paso 1: confirmar comunas correctas
 
-    ℹ De las 9 comunas distintas, 1 ya eran correctas: El Monte
+    ℹ De las 10 comunas distintas, 1 ya eran correctas: El Monte
 
-    ── Paso 2: coincidencias por limpieza de texto 
+    → Paso 2: coincidencias por limpieza de texto
 
-    ℹ A partir de la limpieza de texto, se limpiaron 8 de 9 comunas: Pirque, El Monte, Maipú, Ñuñoa, Santiago, Cerrillos, San José de Maipo y O'Higgins
+    ℹ A partir de la limpieza de texto, se limpiaron 7 de 10 comunas: Pirque, El Monte, Maipú, Ñuñoa, Cerrillos, San José de Maipo y O'Higgins
 
-    ── Paso 3: casos especiales 
+    → Paso 3: casos especiales
 
-    ℹ Se encontraron 0 casos especiales: 
+    ℹ Se encontró 1 caso especial: Calera
 
-    ── Paso 4: coincidencias aproximadas de texto 
+    → Paso 4: coincidencias aproximadas de texto
 
-    ℹ Se limpiaron 1 de 1 comunas por medio de coincidencias aproximadas de texto: Providencia
+    ℹ Se limpiaron 2 de 2 comunas por medio de coincidencias aproximadas de texto: Providencia y Peñalolén
 
-    ── Conclusión de limpieza de comunas 
+    → Conclusión de limpieza de comunas
 
-    ✔ De las 9 comunas distintas, se limpiaron 9 en total (100%)
+    ✔ De las 10 comunas distintas, se limpiaron 10 en total (100%)
 
-    # A tibble: 9 × 1
-      nombre_comuna    
-      <chr>            
-    1 Pirque           
-    2 El Monte         
-    3 Maipú            
-    4 Ñuñoa            
-    5 Santiago         
-    6 Providencia      
-    7 Cerrillos        
-    8 San José de Maipo
-    9 O'Higgins        
+    # A tibble: 10 × 1
+       nombre_comuna    
+       <chr>            
+     1 Pirque           
+     2 El Monte         
+     3 Maipú            
+     4 Ñuñoa            
+     5 Calera           
+     6 Providencia      
+     7 Peñalolén        
+     8 Cerrillos        
+     9 San José de Maipo
+    10 O'Higgins        
 
-Si necesitamos **agregar variables territoriales faltantes** a una tabla de datos que solamente tiene las comunas o los códigos únicos territoriales de Chile (`vignette(codigos_unicos_territoriales)`), podemos usar `contextualizar()` para agregar rápidamente todas las columnas territoriales que falten.
+Esta función usa varias técnicas para limpiar automáticamente los nombres de las comunas y municipios de Chile. Si encuentras casos que no se limpian bien, [escríbeme un *issue*.](https://github.com/bastianolea/territorial/issues/new)
+
+Si tenemos una tabla que solamente tiene comunas, y necesitamos **agregar las variables territoriales faltantes** como región, provincia, y los [códigos únicos territoriales](https://bastianolea.github.io/territorial/articles/codigos_unicos_territoriales.html) de Chile (`vignette(codigos_unicos_territoriales)`), podemos usar `contextualizar()` para agregar automáticamente todas las columnas territoriales que falten.
 
 ``` r
 datos <- dplyr::tribble(
-  ~nombre_comuna, ~poblacion,
-  "Puente Alto",    1,
-  "La Florida",     1,
-  "La Granja",      1,
-  "San Joaquín",    1)
+  ~nombre_comuna, ~personas,
+  "Puente Alto",    14,
+  "La Florida",     23,
+  "La Granja",      156,
+  "San Joaquín",    12)
 ```
 
 ``` r
@@ -192,7 +197,7 @@ datos |>
   contextualizar(nombre_comuna)
 ```
 
-    ℹ columnas agregadas: codigo_region, nombre_region, codigo_provincia, nombre_provincia y codigo_comuna
+    ℹ Columnas agregadas: codigo_region, nombre_region, codigo_provincia, nombre_provincia y codigo_comuna
 
     # A tibble: 4 × 7
       codigo_region nombre_region    codigo_provincia nombre_provincia codigo_comuna
@@ -201,21 +206,55 @@ datos |>
     2            13 Metropolitana d…              131 Santiago                 13110
     3            13 Metropolitana d…              131 Santiago                 13111
     4            13 Metropolitana d…              131 Santiago                 13129
-    # ℹ 2 more variables: nombre_comuna <chr>, poblacion <dbl>
+    # ℹ 2 more variables: nombre_comuna <chr>, personas <dbl>
 
-Así, un dataframe que solamente tiene nombres de comuna puede pasar a tener todas las demás variables que descrien territorialmente a esos datos.
+Así, un dataframe que solamente tiene nombres de comuna o códigos únicos territoriales puede pasar a tener todas las demás variables que describen territorialmente a esos datos.
+
+Esto es extremadamente útil para limpiar datos: solamente necesitas una tabla con códigos únicos territoriales para aplicarle `contextualizar()` y obtener la tabla completa.
+
+Por ejemplo, la siguiente tabla:
+
+``` r
+datos <- dplyr::tribble(
+     ~codigo_comuna, ~personas,
+              13201,        14,
+              13110,        23,
+              13111,       156,
+              13129,        12)
+```
+
+Ahora le aplicamos `contextualizar()` y obtenemos una tabla con todas las variables que describen cada territorio de manera homogénea y estandarizada:
+
+``` r
+datos |> 
+  contextualizar(codigo_comuna)
+```
+
+    ℹ Columnas agregadas: codigo_region, nombre_region, codigo_provincia, nombre_provincia y nombre_comuna
+
+    # A tibble: 4 × 7
+      codigo_region nombre_region    codigo_provincia nombre_provincia codigo_comuna
+              <dbl> <chr>                       <dbl> <chr>                    <dbl>
+    1            13 Metropolitana d…              132 Cordillera               13201
+    2            13 Metropolitana d…              131 Santiago                 13110
+    3            13 Metropolitana d…              131 Santiago                 13111
+    4            13 Metropolitana d…              131 Santiago                 13129
+    # ℹ 2 more variables: nombre_comuna <chr>, personas <dbl>
 
 ------------------------------------------------------------------------
 
-Estas son algunas de las funciones principales, pero existen muchas más que facilitan el trabajo con datos territoriales de Chile: [revisa el índice!](https://bastianolea.github.io/territorial/reference/index.html)
+Estas son algunas de las funciones principales, pero existen muchas más que facilitan el trabajo con datos comunales y regionales de Chile: [revisa el índice](https://bastianolea.github.io/territorial/reference/index.html) para verlas todas, o [lee la viñeta](https://bastianolea.github.io/territorial/articles/territorial.html) para una guía de uso más completa.
 
-{{< boton "Visita el sitio del paquete" "https://bastianolea.github.io/territorial/" "fab fa-github" >}}
-{{< etiqueta "Chile" >}}
+## Ejemplos de uso
+
+En el sitio de la documentación del paquete tengo varios ejemplos de usos de `{territorial}` con datos reales:
+
+- [Ejemplo de limpieza de datos electorales (Servel)](https://bastianolea.github.io/territorial/articles/ejemplo_servel.html)
+- [Ejemplo de limpieza de datos de uso de bibliotecas públicas en Chile](https://bastianolea.github.io/territorial/articles/ejemplo_bibliotecas.html)
+- [Ejemplo de limpieza de datos de beneficiarios de programas de emprendimiento en Chile](https://bastianolea.github.io/territorial/articles/ejemplo_sercotec.html)
+
+También hay un ejemplo ficticio de [limpieza de datos extremadamente sucios](https://bastianolea.github.io/territorial/articles/suciedad_extrema.html) y un par de tutoriales para usar `{territorial}` para facilitar la [creación de mapas comunales](https://bastianolea.github.io/territorial/articles/mapas_comunales.html) y [mapas regionales por macrozonas](https://bastianolea.github.io/territorial/articles/mapas_regionales_macrozonas.html).
 
 ------------------------------------------------------------------------
 
-Paquete desarrollado bajo el [programa de Campeones de
-ROpenSci](https://ropensci.org/es/champions/), con el apoyo de mi
-mentora [Andrea Gómez Vargas](https://github.com/SoyAndrea)
-
-[^1]: El paquete está en etapa de desarrollo. Si bien es funcional y útil en este momento, sus funciones pueden cambiar en futuras versiones, y su estabilidad aún no está garantizada.
+Paquete desarrollado bajo el [programa de Campeones de ROpenSci](https://ropensci.org/es/champions/), con el apoyo de mi mentora [Andrea Gómez Vargas](https://github.com/SoyAndrea).

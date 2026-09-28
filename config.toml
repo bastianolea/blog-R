@@ -165,6 +165,10 @@ titleCaseStyle = "firstupper"
       icon_pack = "fas"
       url       = "https://bastimapache.cl"
   [[params.social]]
+      icon      = "coffee"
+      icon_pack = "fas"
+      url       = "https://buymeacoffee.com/bastimapache"
+  [[params.social]]
       icon      = "envelope"
       icon_pack = "fas"
       url       = "/contacto/"
