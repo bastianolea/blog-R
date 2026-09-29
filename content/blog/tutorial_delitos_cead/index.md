@@ -8,8 +8,8 @@ categories:
   - Tutoriales
 tags:
   - web scraping
-  - chile
-  - fuentes de datos
+  - Chile
+  - datos
 format: hugo-md
 editor_options:
   chunk_output_type: console

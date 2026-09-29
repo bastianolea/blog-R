@@ -1,5 +1,6 @@
 ---
 title: Crea tablas con píldoras de colores usando `{gt}` en R
+subtitle: Destaca las cifras en tus tablas con este tip!
 author: Bastián Olea Herrera
 date: '2026-01-20'
 slug: []
@@ -79,11 +80,8 @@ _¡Está horrible!_ 😣 Esto es porque hay que pedirle a `{gt}` **interpretar l
 ```{r}
 tabla <- datos |> 
   # crear píldora html
-  mutate(pildora = "<div style='padding: 2px 12px; 
-                                border-radius: 12px; 
-                                background: #9069C0; color: white;'>
-                     Hola
-                    </div>") |> 
+  mutate(
+    pildora = "<div style='padding: 2px 12px; border-radius: 12px; background: #9069C0; color: white;'>Hola</div>") |> 
   # hacer tabla
   gt() |> 
   fmt_markdown(columns = "pildora")
@@ -106,15 +104,11 @@ Ahora podemos reemplazar el código anterior para que muestre el valor de la col
 tabla <- datos |> 
   # crear píldora html
   mutate(tipo = glue(
-    "<div style='padding: 2px 12px; 
-                 border-radius: 12px; 
-                 background: #9069C0; color: white;'>
-      {tipo}
-     </div>")) |> 
+    "<div style='padding: 2px 12px; border-radius: 12px; background: #9069C0; color: white;'> {tipo} </div>")) |> 
   # hacer tabla
   gt() |> 
   # que la columna se interprete como html
-  fmt_markdown(columns = "tipo") |> 
+  fmt_markdown(columns = "tipo") |>
   cols_align(tipo, align = "center")
 ```
 
@@ -132,12 +126,11 @@ Hagamos que el código anterior sea más ordenado **creando una función** que h
 ```{r}
 # crear una función que hace píldoras 
 pildora <- function(valor) {
+  # estilo de la píldora
+  estilo <- "padding: 2px 12px; border-radius: 12px; background: #9069C0; color: white;"
+  
   # crear píldora html
-  glue("<div style='padding: 2px 12px; 
-                    border-radius: 12px; 
-                    background: #9069C0; color: white;'>
-         {valor}
-        </div>")
+  glue("<div style='{estilo}'>{valor}</div>")
 }
 ```
 
@@ -165,17 +158,16 @@ Ahora complementemos la función que creamos, para que los colores de las píldo
 # mejorar la función
 pildora <- function(valor) {
   # definir colores en base a valores
-  color <- case_match(valor,
-                      "alto" ~ "#E56B6F",
-                      "medio" ~ "#b56576",
-                      "bajo" ~ "#6d597a")
+  color <- recode_values(valor,
+                         "alto" ~ "#E56B6F",
+                         "medio" ~ "#b56576",
+                         "bajo" ~ "#6d597a")
+  
+  # estilo css
+  estilo <- glue("padding: 2px 12px; border-radius: 12px; background: {color}; color: white;")
   
   # crear píldora html
-  glue("<div style='padding: 2px 12px; 
-                    border-radius: 12px; 
-                    background: {color}; color: white;'>
-         {valor}
-        </div>")
+  glue("<div style='{estilo}'>{valor}</div>")
 }
 
 # aplicar función a la tabla
@@ -206,29 +198,27 @@ pildora_categorica <- function(valor) {
                       "medio" ~ "#b56576",
                       "bajo" ~ "#6d597a")
   
+  # estilo css
+  estilo <- glue("padding: 2px 12px; border-radius: 12px; background: {color}; color: white;")
+  
   # crear píldora html
-  glue("<div style='padding: 2px 12px; 
-                    border-radius: 12px; 
-                    background: {color}; color: white;'>
-         {valor}
-        </div>")
+  glue("<div style='{estilo}'>{valor}</div>")
 }
 ```
 
 La función para **variables numéricas** va a asignar color a las celdas dependiendo de si se cumple o no el criterio numérico que le demos:
 ```{r}
-# función para variables categóricas
+# función para variables numéricas
 pildora_numerica <- function(valor) {
   # definir colores en base a valores
   color <- case_when(valor >= 4 ~ "#749c75",
                      valor < 4 ~ "#b2bd7e")
   
+  # estilo css
+  estilo <- glue("padding: 2px 12px; border-radius: 12px; background: {color}; color: white;")
+  
   # crear píldora html
-  glue("<div style='padding: 2px 12px; 
-                    border-radius: 12px; 
-                    background: {color}; color: white;'>
-         {valor}
-        </div>")
+  glue("<div style='{estilo}'>{valor}</div>")
 }
 ```
 
@@ -236,12 +226,11 @@ La tercera función simplemente le da el color que especifiquemos a todas las ce
 ```{r}
 # función para color manual
 pildora_manual <- function(valor, color) {
+  # estilo css
+  estilo <- glue("padding: 2px 12px; border-radius: 12px; background: {color}; color: white;")
+  
   # crear píldora html
-  glue("<div style='padding: 2px 12px; 
-                    border-radius: 12px; 
-                    background: {color}; color: white;'>
-         {valor}
-        </div>")
+  glue("<div style='{estilo}'>{valor}</div>")
 }
 ```
 
@@ -271,15 +260,16 @@ Otra variación de las funciones anteriores puede ser para que la píldora solam
 pildora_alerta <- function(valor, alerta) {
   color_alerta <- "#ce4257"
   
+  # estilo css para alerta
+  estilo_alerta <- glue("padding: 2px 12px; border-radius: 12px; background: {color_alerta}; color: white;")
+  # estilo css para sin alerta
+  estilo_sin_alerta <- "padding: 2px 12px;"
+  
   ifelse(valor == alerta,
          # si el valor coincide con la alerta, pildora
-         glue("<div style='padding: 2px 12px; 
-                    border-radius: 12px; 
-                    background: {color_alerta}; color: white;'>
-                {valor}
-              </div>"),
+         glue("<div style='{estilo_alerta}'>{valor}</div>"),
          # si no, solo cifra con espaciado
-         glue("<div style='padding: 2px 12px;'>{valor}</div>")
+         glue("<div style='{estilo_sin_alerta}'>{valor}</div>")
   )
 }
 ```
@@ -314,11 +304,10 @@ pildora_degradado <- function(valor, maximo, color) {
   # aplicar transparencia al color
   color <- scales::alpha(color, transparencia+0.1)
   
-  glue("<div style='padding: 2px 12px; 
-                    border-radius: 12px; 
-                    background: {color}; color: {texto};'>
-         {valor}
-        </div>")
+  # estilo css
+  estilo <- glue("padding: 2px 12px; border-radius: 12px; background: {color}; color: {texto};")
+  
+  glue("<div style='{estilo}'>{valor}</div>")
 }
 
 tabla <- datos |> 
@@ -355,11 +344,10 @@ pildora_degradado_2 <- function(valor, color_1, color_2) {
   # aplicar transparencia al color
   color <- scales::col_mix(color_1, color_2, transparencia-0.1)
   
-  glue("<div style='padding: 2px 12px; 
-                    border-radius: 12px; 
-                    background: {color}; color: {texto};'>
-         {valor}
-        </div>")
+  # estilo css
+  estilo <- glue("padding: 2px 12px; border-radius: 12px; background: {color}; color: {texto};")
+  
+  glue("<div style='{estilo}'>{valor}</div>")
 }
 
 tabla <- datos |> 

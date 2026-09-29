@@ -3,7 +3,7 @@ title: "Tutorial: Scraping de estadísticas delictuales del Centro de Estudios y
 author: "Bastián Olea Herrera"
 date: 2023-09-27
 categories: ['Tutoriales']
-tags: ['web scraping', 'chile', 'fuentes de datos']
+tags: ['web scraping', 'Chile', 'datos']
 format: hugo-md
 editor_options: 
   chunk_output_type: console
