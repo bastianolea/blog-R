@@ -55,8 +55,16 @@ td {
   font-size: 80% !important;
 }
 
-.stripe-dark:nth-child(odd), .post-body>table tbody tr:nth-child(odd), .page-body>table tbody tr:nth-child(odd) {
+.stripe-dark:nth-child(odd), .post-body table tbody tr:nth-child(odd), .page-body table tbody tr:nth-child(odd) {
 background-color: #A985C630;
+}
+
+// contenedor que agrega scroll horizontal solo cuando la tabla es más ancha
+// que el texto (ver layouts/_markup/render-table.html); el margen y el
+// borde de la tabla los sigue aportando scaffold.scss (clases .mv4/.ba)
+.table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 /*
@@ -419,4 +427,29 @@ $line-height-copy: 1.3 !default;
 a>svg.anchor-symbol {
   fill: #9069C060 !important;
   margin-left: 0 !important;
+}
+
+.etiquetas {
+  /*margin-right: 2px; 
+  line-height: 1.8 !important; 
+  color: #EAD2FA; 
+  font-style: normal;
+  text-decoration: none;
+  font-size: 20pt;
+  background-color: #9069C0;
+  border-radius: 3px; 
+  padding: 2px 6px; 
+  */
+  
+  margin-right: 2px;
+  line-height: 1.8 !important; 
+  color: #EAD2FA !important;
+  font-style: normal;
+  text-decoration: none;
+  font-size: 9pt;
+  white-space: nowrap;
+  background-color: #9069C0; 
+  border-radius: 3px; 
+  padding: 2px 6px;
+  padding-top: 3px;
 }

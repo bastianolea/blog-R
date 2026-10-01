@@ -120,7 +120,9 @@ h1, h2, h3, h4, h5, h6 {
 
   hr { @extend .mv4, .ba, .b--#{$borderColor} ; }
 
-  > table {
+  // selector sin `>` para que aplique también cuando la tabla queda
+  // envuelta en .table-scroll (ver layouts/_markup/render-table.html)
+  table {
     @extend .collapse, .mv4, .w-100, .ba, .bw1, .b--#{$borderColor} ;
 
     tbody tr { @extend .stripe-dark ; }
