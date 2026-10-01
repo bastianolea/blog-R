@@ -73,7 +73,7 @@ crear_publicacion(
 # {{< detalles "Hola" >}} {{< /detalles >}}
 
 # {{< boton "Buscador" "https://bastianoleah.shinyapps.io/buscador/" "fas fa-search" >}}
-# {{< boton "Desacargar datos" "https://bastianoleah.shinyapps.io/buscador/" "fas fa-file-download" >}}
+# {{< boton "Descargar datos" "https://bastianoleah.shinyapps.io/buscador/" "fas fa-file-download" >}}
 # {{< relacionada "blog/estudio_brechas_comunales/" >}}
 # {{< etiqueta "apps" >}}
 # {{< categoria "Tutoriales" "Más tutoriales de R" >}}

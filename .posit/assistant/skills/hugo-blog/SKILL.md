@@ -243,6 +243,52 @@ La contraparte `revisar_enlaces_qmd()` (que solo **detecta** enlaces `](./...)` 
 
 **Alternativa para casos puntuales:** escribir el enlace interno como HTML crudo (`<a href="/tags/x/">texto</a>`) o dentro de un shortcode, que son inmunes a la reescritura.
 
+> Este es un caso particular de un patrón más general — ver «HTML y bloques crudos en `.qmd`: qué sobrevive y qué no al pasar por Pandoc» más abajo.
+
+
+## HTML y bloques crudos en `.qmd`: qué sobrevive y qué no al pasar por Pandoc
+
+**Contexto general:** varios problemas aparentemente distintos y ya documentados en este archivo (enlaces rotos, `hl_lines` perdido, un `<div>` descartado al envolver una tabla) comparten la **misma causa raíz**. Quarto renderiza `.qmd` → `hugo-md` usando Pandoc internamente, con un escritor deliberadamente limitado (`markdown_strict+raw_html+...`, sin extensiones como `fenced_divs` o `attributes`). Cualquier cosa que Pandoc interprete como una estructura "enriquecida" de su AST (en vez de HTML/markdown crudo literal) puede perderse o transformarse silenciosamente al escribir en ese formato.
+
+**Regla mental clave:** nada de lo escrito en el `.qmd` es texto opaco por defecto. Pandoc **siempre** interpreta el documento completo al leerlo (incluyendo HTML embebido), lo convierte a su propio árbol (AST), y luego ese árbol se reescribe según las capacidades del formato de salida. Si la interpretación transforma algo en un nodo del AST que el escritor de salida no sabe representar, ese nodo se **degrada silenciosamente** (normalmente perdiendo atributos o el wrapper, pero conservando el contenido interno) — no hay error ni advertencia visible.
+
+### Matriz de comportamientos comprobados (Quarto 1.9.37, target `hugo-md`)
+
+| Qué se escribe en el `.qmd` | Qué sobrevive | Por qué |
+|---|---|---|
+| Enlace markdown con ruta absoluta `[t](/x/)` | Se reescribe a `./x/` (relativo, rompe navegación) | Pandoc interpreta `/x` relativo a la raíz del **proyecto Quarto**, no del sitio Hugo |
+| `<div class="x">contenido</div>` suelto, sin fences | El `<div>` se **descarta** (pierde su clase); el contenido interno sobrevive | Pandoc convierte el div crudo en un nodo "Div" nativo al leer; el escritor `markdown_strict` no soporta `fenced_divs`, así que al escribir omite el wrapper y solo imprime los hijos |
+| `<table>` crudo suelto, con o sin `colspan`/`rowspan` | Sobrevive intacto como HTML | Pandoc no tiene forma de convertirlo a su AST nativo sin perder información, así que lo deja como bloque raw |
+| Chunk de código markdown con atributos (` ```r {hl_lines=[...]} ` ``) | El atributo se descarta, solo queda el identificador de lenguaje | El escritor final es GFM, que no preserva atributos de bloques de código |
+| ```` ```{=html}<br>contenido<br>``` ```` (raw block explícito) | El contenido sobrevive **tal cual**, incluyendo wrappers como `<div>` | El bloque `{=html}` le indica a Pandoc "no reinterpretes esto como tu AST nativo, pásalo literal" |
+| ```` ```{=html} ``` ```` envolviendo una tabla simple (sin `colspan`/`rowspan`) | Esa tabla se **convierte** a tabla markdown nativa (pipe table) | Dentro de un raw block, Quarto aplica sus propios filtros de procesamiento de tablas; si la tabla es convertible sin pérdida a sintaxis nativa, Pandoc prefiere esa forma — el raw block no es un escape absoluto |
+| ```` ```{=html} ``` ```` envolviendo una tabla con `colspan`/`rowspan` | Sobrevive como HTML, con atributos extra agregados por Quarto (`data-quarto-postprocess`, etc.) | No es representable sin pérdida en markdown nativo |
+| ```` ```{=markdown}contenido``` ```` (raw block de markdown) | Sobrevive literal, sin reinterpretación | Mismo mecanismo que `{=html}`, pero fuerza a tratar el contenido como markdown ya-formateado (útil para preservar atributos de bloques de código, ver sección de `hl_lines` más arriba) |
+| `<a href="/x/">t</a>` HTML crudo en línea | Sobrevive intacto | Pandoc no tiene un nodo nativo equivalente a "enlace con atributos arbitrarios" que valga la pena construir — lo deja raw |
+| `{{< shortcode >}}contenido{{< /shortcode >}}` (shortcode par de Hugo) | Los delimitadores sobreviven literales, pero el **contenido interno se procesa como markdown normal** y puede sufrir cualquiera de los problemas anteriores | Quarto no reconoce el shortcode, pero tampoco aísla su contenido del parser — solo preserva el texto `{{< ... >}}` porque no se parece a sintaxis markdown/HTML conocida |
+| Argumento de shortcode en una sola línea, como string: `{{< aviso "[t](/x/)" >}}` | Sobrevive literal, inmune | Quarto no lo trata como contenido markdown a interpretar, sino como un string-argumento opaco que pasa directo a Hugo |
+
+### Receta práctica
+
+1. **Si el elemento final se puede escribir también en markdown nativo** (ej. una tabla sin `colspan`), prefiere esa opción. El render hook de Hugo (`layouts/_markup/render-table.html`) y los estilos de `custom.scss`/`scaffold.scss` están pensados para markdown nativo, y evitas por completo estos problemas.
+2. **Si necesitas que un wrapper (`<div>`, atributos) sobreviva intacto alrededor de HTML que sí debe quedar crudo** (ej. tabla con `colspan`): envuelve **todo el bloque** (wrapper + contenido) en un raw block de Pandoc (` ```{=html} `). Pero no es un escape total: dentro de ese bloque, Pandoc/Quarto puede seguir convirtiendo partes del HTML que sí sepa representar nativamente.
+3. **Nunca asumas que un shortcode de Hugo en formato par protege su contenido interno.** Solo los argumentos de shortcode en una sola línea, como string entre comillas, son inmunes a la reescritura de Pandoc.
+4. **Siempre verificar el `.md` resultante tras `quarto render`** cuando se usa HTML o markdown "no trivial" (atributos, wrappers, tablas complejas) — la ausencia de errores o warnings no significa que el resultado sea el esperado.
+
+### Cómo probar rápido sin re-renderizar el post completo
+
+Para entender cómo Pandoc/Quarto va a tratar un fragmento antes de tocar el post real, crear un `.qmd` mínimo en una carpeta temporal (ej. `/tmp/qtest/test.qmd`) con un front matter mínimo:
+```yaml
+---
+title: "test"
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+---
+```
+y pegar debajo el fragmento a probar. Correr `quarto render test.qmd` ahí mismo y leer el `index.md` resultante. Esto evita re-ejecutar código R pesado del post real y evita chocar con el watcher de `blogdown::serve_site()` (ver condición de carrera en la sección «Botón Render» más arriba).
+
 
 ## Archetype de posts nuevos (`archetypes/blog.md`)
 
@@ -326,6 +372,8 @@ ui <- page_fillable(
 Nota: usar este patrón solo para bloques de código **no ejecutables** (de documentación), no para chunks `{r}` que efectivamente corren código — para esos, no hay forma de aplicar `hl_lines` vía chunk options; hay que convertirlos primero a bloque estático con el resultado ya calculado si se necesita resaltar líneas.
 
 Verificar siempre el `.md` resultante tras `quarto render` (buscar el atributo `hl_lines` en el archivo) porque el raw block puede alterar el espaciado en líneas en blanco alrededor del bloque (ej. eliminar la línea vacía antes de un shortcode siguiente como `{{< imagen ... >}}`); conviene revisar visualmente el post tras el build de Hugo.
+
+> Este es un caso particular de un patrón más general — ver «HTML y bloques crudos en `.qmd`: qué sobrevive y qué no al pasar por Pandoc» más abajo.
 
 
 ## Menús de navegación

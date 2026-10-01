@@ -20,7 +20,8 @@
       "echo *": "allow",
       "find *": "allow",
       "hugo *": "allow",
-      "tail *": "allow"
+      "tail *": "allow",
+      "sed *": "allow"
     },
     "executeCode": {
       "*": "allow"
