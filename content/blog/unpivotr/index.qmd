@@ -196,8 +196,13 @@ tabla <- tabla |>
     variable = str_remove(variable, "Variable ")
   ) |> 
   arrange(observacion)
+```
 
-tabla
+```{r}
+#| echo: false
+#| output: asis
+tabla |> 
+  knitr::kable()
 ```
 
 Obtuvimos una tabla limpia, idéntica a la del ejemplo de más arriba, a partir de la tabla sucia!
@@ -225,9 +230,12 @@ Descargamos 3 variables de ingresos municipales para los años 2023 a 2025:
 
 {{< info "Debido a problemas de la plataforma SINIM, si descargas los datos en Excel es necesario abrirlos y guardarlos como `.xlsx` desde Excel, de lo contrario R no la puede abrir!" >}}
 
+<p>
 {{< imagen "tabla_sinim.png" >}}
-
+</p>
+<p>
 {{< bajada "Primeras filas y columnas de una tabla descargada desde SINIM" >}}
+</p>
 
 Cargamos los datos usando `{openxlsx2}`, sin nombres de columnas porque sabemos que los datos no vienen en una estructura confiable:
 
@@ -241,7 +249,7 @@ datos <- read_xlsx("datos_municipales_20260903181833_Sin-Correccion-Monetaria.xl
   as_tibble()
 ```
 
-Así se ve la planilla cargada en R:
+Más o menos así se ve la planilla cargada en R:
 
 ```{r}
 #| echo: false
@@ -252,7 +260,9 @@ datos |>
   knitr::kable()
 ```
 
-Esta planilla es un asco! Tiene varios problemas a la vez:
+Esta planilla es un asco! 🤮 
+
+Tiene varios problemas a la vez:
 
 - La primera fila es solamente una nota al pie (el texto "valores en miles de pesos...") que ocupa únicamente la primera columna
 - La segunda fila contiene los códigos de las variables (`IADM01`, `IADM40`, `IADM41`)
@@ -297,12 +307,19 @@ Estamos casi! Convertimos las columnas a numéricas y sacamos las columnas innec
 ```{r}
 tabla <- tabla |> 
   mutate(valor = as.integer(chr)) |> 
-  select(-row, -col, -data_type, -chr)
-
-tabla
+  select(-row, -col, -data_type, -chr) |> 
+  relocate(variable, .after = valor)
 ```
 
-Al convertir la columna `valor` a número aparece una advertencia de valores transformados en `NA`, pero son los valores que antes decían `"No Recepcionado"`, debido a queesa municipalidad no entregó la información.
+Al convertir la columna `valor` a número aparece una advertencia de valores transformados en `NA`, pero son los valores que antes decían `"No Recepcionado"`, debido a que esa municipalidad no entregó la información.
+
+```{r}
+#| echo: false
+#| output: asis
+tabla |> 
+  head() |> 
+  knitr::kable()
+```
 
 Con esto obtuvimos una tabla ordenada, rectangular, con variables claras y una fila por municipio ✨
 
@@ -316,9 +333,12 @@ El segundo ejemplo es todavía más desordenado: una planilla del Servicio de Im
 
 La planilla viene en formato `.xlsb` (Excel binario), que `{openxlsx2}` también puede leer. Pero también ábrela en Excel para **entenderla visualmente**. 
 
+<p>
 {{< imagen "tabla_sii.png" >}}
-
+</p>
+<p>
 {{< bajada "Primeras filas y columnas de la tabla de estadísticas del SII" >}}
+</p>
 
 Si nos fijamos, la tabla tiene muchas filas vacías arriba, así que cargamos saltándonos 7 filas definiendo `start_row = 7`:
 
@@ -389,24 +409,24 @@ tabla
 Con los 5 niveles extraídos, nos quedamos solamente con esas columnas y el valor de cada celda:
 
 ```{r}
-datos <- tabla |>
+tabla <- tabla |>
   mutate(valor = as.integer(chr)) |> 
   select(-row, -col, -data_type, -chr)
 
-datos
+tabla
 ```
 
 Revisemos que la variable `categoria`, que es la más extraña en la tabla, haya quedado bien extraída:
 
 ```{r}
-datos |>
+tabla |>
   distinct(categoria)
 ```
 
 Aparece un valor `NA`! En cambio, la columna `variable` sí se extrajo completa para todas las columnas:
 
 ```{r}
-datos |>
+tabla |>
   distinct(categoria, variable)
 ```
 
@@ -416,7 +436,7 @@ Veamos el problema en un caso puntual:
 
 ```{r}
 # ver el problema
-datos |>
+tabla |>
   filter(
     region == "Región de Coquimbo",
     tramo == "Tramo 1 - 0 a 13,5 UTA (Exento)",
@@ -431,11 +451,14 @@ Entonces la solución es repetir el valor de `categoria` con `fill()` hacia abaj
 
 ```{r}
 # rellenar
-datos_fill <- datos |>
+tabla <- tabla |>
   fill(categoria, .direction = "down")
+```
 
-# probar
-datos_fill |>
+Ahora sí! Y así se ve la tablita ordenada, filtrada:
+
+```{r eval=FALSE}
+tabla |>
   filter(
     region == "Región de Coquimbo",
     tramo == "Tramo 1 - 0 a 13,5 UTA (Exento)",
@@ -443,23 +466,47 @@ datos_fill |>
   )
 ```
 
-Ahora sí! Para terminar, en vez de dejar las 3 variables apiladas en una sola columna `valor`, conviene [transformarlas a formato ancho con `pivot_wider()`](/blog/r_introduccion/tidyr_pivotar/), para que cada variable (`N° de Personas`, `Renta Determinada`, `Impuesto Determinado`) quede en su propia columna:
+
+```{r}
+#| echo: false
+#| output: asis
+tabla |>
+  filter(
+    region == "Región de Coquimbo",
+    tramo == "Tramo 1 - 0 a 13,5 UTA (Exento)",
+    año == 2015
+  ) |> 
+  head() |> 
+  knitr::kable()
+```
+
+Mucho más claro!
+
+Para terminar, en vez de dejar las 3 variables apiladas en una sola columna `valor` (formato _largo_), conviene [transformarlas a formato ancho con `pivot_wider()`](/blog/r_introduccion/tidyr_pivotar/), para que cada variable (`N° de Personas`, `Renta Determinada`, `Impuesto Determinado`) quede en su propia columna:
 
 ```{r}
 library(tidyr)
 
-datos_wide <- datos_fill |>
+tabla_wide <- tabla |>
   pivot_wider(
     names_from = variable,
     values_from = valor
   )
-
-datos_wide
 ```
+
+```{r}
+#| echo: false
+#| output: asis
+tabla_wide |> 
+  head() |> 
+  knitr::kable()
+```
+
 
 La tabla del terror quedó con una fila por región, tramo, año y categoría de contribuyente, con sus 3 variables como columnas. 
 
 Y así, decapitando planillas nivel por nivel, pasamos de dos tablas de Excel verdaderamente infernales a datos ordenados y listos para analizar 🎉
+
 
 {{< etiqueta "tablas" >}}
 

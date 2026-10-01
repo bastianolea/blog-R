@@ -321,21 +321,18 @@ tabla <- tabla |>
     variable = str_remove(variable, "Variable ")
   ) |> 
   arrange(observacion)
-
-tabla
 ```
 
-    # A tibble: 8 × 5
-      año   observacion grupo variable valor
-      <chr> <chr>       <chr> <chr>    <chr>
-    1 2026  1           A     1        10   
-    2 2026  1           A     2        20   
-    3 2026  1           B     1        15   
-    4 2026  1           B     2        25   
-    5 2026  2           A     1        12   
-    6 2026  2           A     2        22   
-    7 2026  2           B     1        17   
-    8 2026  2           B     2        27   
+| año  | observacion | grupo | variable | valor |
+|:-----|:------------|:------|:---------|:------|
+| 2026 | 1           | A     | 1        | 10    |
+| 2026 | 1           | A     | 2        | 20    |
+| 2026 | 1           | B     | 1        | 15    |
+| 2026 | 1           | B     | 2        | 25    |
+| 2026 | 2           | A     | 1        | 12    |
+| 2026 | 2           | A     | 2        | 22    |
+| 2026 | 2           | B     | 1        | 17    |
+| 2026 | 2           | B     | 2        | 27    |
 
 Obtuvimos una tabla limpia, idéntica a la del ejemplo de más arriba, a partir de la tabla sucia!
 
@@ -360,8 +357,12 @@ Descargamos 3 variables de ingresos municipales para los años 2023 a 2025:
 - Ingresos Propios Permanentes (IPP) (M\$) `IADM41`
 
 {{< info "Debido a problemas de la plataforma SINIM, si descargas los datos en Excel es necesario abrirlos y guardarlos como `.xlsx` desde Excel, de lo contrario R no la puede abrir!" >}}
+<p>
 {{< imagen "tabla_sinim.png" >}}
+</p>
+<p>
 {{< bajada "Primeras filas y columnas de una tabla descargada desde SINIM" >}}
+</p>
 
 Cargamos los datos usando `{openxlsx2}`, sin nombres de columnas porque sabemos que los datos no vienen en una estructura confiable:
 
@@ -375,7 +376,7 @@ datos <- read_xlsx("datos_municipales_20260903181833_Sin-Correccion-Monetaria.xl
   as_tibble()
 ```
 
-Así se ve la planilla cargada en R:
+Más o menos así se ve la planilla cargada en R:
 
 | A | B | C | D | E | F | G | H |
 |:---------|:---|:----------|:----------|:----------|:--------|:--------|:--------|
@@ -386,7 +387,9 @@ Así se ve la planilla cargada en R:
 | 1107 | ALTO HOSPICIO | 36876247 | 34424619 | 27951929 | 21540651 | 19217898 | 16489486 |
 | 1401 | POZO ALMONTE | 20133051 | 22382992 | 17792283 | 5820144 | 4170737 | 3685890 |
 
-Esta planilla es un asco! Tiene varios problemas a la vez:
+Esta planilla es un asco! 🤮
+
+Tiene varios problemas a la vez:
 
 - La primera fila es solamente una nota al pie (el texto "valores en miles de pesos...") que ocupa únicamente la primera columna
 - La segunda fila contiene los códigos de las variables (`IADM01`, `IADM40`, `IADM41`)
@@ -461,7 +464,8 @@ Estamos casi! Convertimos las columnas a numéricas y sacamos las columnas innec
 ``` r
 tabla <- tabla |> 
   mutate(valor = as.integer(chr)) |> 
-  select(-row, -col, -data_type, -chr)
+  select(-row, -col, -data_type, -chr) |> 
+  relocate(variable, .after = valor)
 ```
 
     Warning: There was 1 warning in `mutate()`.
@@ -469,26 +473,16 @@ tabla <- tabla |>
     Caused by warning:
     ! NAs introduced by coercion
 
-``` r
-tabla
-```
+Al convertir la columna `valor` a número aparece una advertencia de valores transformados en `NA`, pero son los valores que antes decían `"No Recepcionado"`, debido a que esa municipalidad no entregó la información.
 
-    # A tibble: 3,105 × 5
-       variable                                           año   codigo comuna  valor
-       <chr>                                              <chr> <chr>  <chr>   <int>
-     1 IADM01 (M$) Ingresos Municipales (Ingreso Total P… 2025  1101   IQUIQ… 1.09e8
-     2 IADM01 (M$) Ingresos Municipales (Ingreso Total P… 2025  1107   ALTO … 3.69e7
-     3 IADM01 (M$) Ingresos Municipales (Ingreso Total P… 2025  1401   POZO … 2.01e7
-     4 IADM01 (M$) Ingresos Municipales (Ingreso Total P… 2025  1402   CAMIÑA 4.61e6
-     5 IADM01 (M$) Ingresos Municipales (Ingreso Total P… 2025  1403   COLCH… 4.08e6
-     6 IADM01 (M$) Ingresos Municipales (Ingreso Total P… 2025  1404   HUARA  7.52e6
-     7 IADM01 (M$) Ingresos Municipales (Ingreso Total P… 2025  1405   PICA   1.19e7
-     8 IADM01 (M$) Ingresos Municipales (Ingreso Total P… 2025  2101   ANTOF… 1.92e8
-     9 IADM01 (M$) Ingresos Municipales (Ingreso Total P… 2025  2102   MEJIL… 1.51e7
-    10 IADM01 (M$) Ingresos Municipales (Ingreso Total P… 2025  2103   SIERR… 1.36e7
-    # ℹ 3,095 more rows
-
-Al convertir la columna `valor` a número aparece una advertencia de valores transformados en `NA`, pero son los valores que antes decían `"No Recepcionado"`, debido a queesa municipalidad no entregó la información.
+| año | codigo | comuna | valor | variable |
+|:----|:-----|:----------|-------:|:-----------------------------------------|
+| 2025 | 1101 | IQUIQUE | 108892278 | IADM01 (M$) Ingresos Municipales (Ingreso Total Percibido) |
+|2025 |1107   |ALTO HOSPICIO |  36876247|IADM01 (M$) Ingresos Municipales (Ingreso Total Percibido) |
+| 2025 | 1401 | POZO ALMONTE | 20133051 | IADM01 (M$) Ingresos Municipales (Ingreso Total Percibido) |
+|2025 |1402   |CAMIÑA        |   4606673|IADM01 (M$) Ingresos Municipales (Ingreso Total Percibido) |
+| 2025 | 1403 | COLCHANE | 4076487 | IADM01 (M$) Ingresos Municipales (Ingreso Total Percibido) |
+|2025 |1404   |HUARA         |   7521191|IADM01 (M$) Ingresos Municipales (Ingreso Total Percibido) |
 
 Con esto obtuvimos una tabla ordenada, rectangular, con variables claras y una fila por municipio ✨
 
@@ -502,8 +496,12 @@ El segundo ejemplo es todavía más desordenado: una planilla del Servicio de Im
 
 La planilla viene en formato `.xlsb` (Excel binario), que `{openxlsx2}` también puede leer. Pero también ábrela en Excel para **entenderla visualmente**.
 
+<p>
 {{< imagen "tabla_sii.png" >}}
+</p>
+<p>
 {{< bajada "Primeras filas y columnas de la tabla de estadísticas del SII" >}}
+</p>
 
 Si nos fijamos, la tabla tiene muchas filas vacías arriba, así que cargamos saltándonos 7 filas definiendo `start_row = 7`:
 
@@ -617,7 +615,7 @@ tabla
 Con los 5 niveles extraídos, nos quedamos solamente con esas columnas y el valor de cada celda:
 
 ``` r
-datos <- tabla |>
+tabla <- tabla |>
   mutate(valor = as.integer(chr)) |> 
   select(-row, -col, -data_type, -chr)
 ```
@@ -628,7 +626,7 @@ datos <- tabla |>
     ! NAs introduced by coercion
 
 ``` r
-datos
+tabla
 ```
 
     # A tibble: 24,021 × 6
@@ -649,7 +647,7 @@ datos
 Revisemos que la variable `categoria`, que es la más extraña en la tabla, haya quedado bien extraída:
 
 ``` r
-datos |>
+tabla |>
   distinct(categoria)
 ```
 
@@ -664,7 +662,7 @@ datos |>
 Aparece un valor `NA`! En cambio, la columna `variable` sí se extrajo completa para todas las columnas:
 
 ``` r
-datos |>
+tabla |>
   distinct(categoria, variable)
 ```
 
@@ -683,7 +681,7 @@ Veamos el problema en un caso puntual:
 
 ``` r
 # ver el problema
-datos |>
+tabla |>
   filter(
     region == "Región de Coquimbo",
     tramo == "Tramo 1 - 0 a 13,5 UTA (Exento)",
@@ -711,11 +709,14 @@ Entonces la solución es repetir el valor de `categoria` con `fill()` hacia abaj
 
 ``` r
 # rellenar
-datos_fill <- datos |>
+tabla <- tabla |>
   fill(categoria, .direction = "down")
+```
 
-# probar
-datos_fill |>
+Ahora sí! Y así se ve la tablita ordenada, filtrada:
+
+``` r
+tabla |>
   filter(
     region == "Región de Coquimbo",
     tramo == "Tramo 1 - 0 a 13,5 UTA (Exento)",
@@ -723,49 +724,35 @@ datos_fill |>
   )
 ```
 
-    # A tibble: 9 × 6
-      año   region             tramo                       categoria variable  valor
-      <chr> <chr>              <chr>                       <chr>     <chr>     <int>
-    1 2015  Región de Coquimbo Tramo 1 - 0 a 13,5 UTA (Ex… Per. Nat… N° de P…  55840
-    2 2015  Región de Coquimbo Tramo 1 - 0 a 13,5 UTA (Ex… Per. Nat… Renta D… 169887
-    3 2015  Región de Coquimbo Tramo 1 - 0 a 13,5 UTA (Ex… Per. Nat… Impuest…      0
-    4 2015  Región de Coquimbo Tramo 1 - 0 a 13,5 UTA (Ex… Per. Nat… N° de P… 146253
-    5 2015  Región de Coquimbo Tramo 1 - 0 a 13,5 UTA (Ex… Per. Nat… Renta D… 381320
-    6 2015  Región de Coquimbo Tramo 1 - 0 a 13,5 UTA (Ex… Per. Nat… Impuest…    953
-    7 2015  Región de Coquimbo Tramo 1 - 0 a 13,5 UTA (Ex… Consolid… N° de P… 202093
-    8 2015  Región de Coquimbo Tramo 1 - 0 a 13,5 UTA (Ex… Consolid… Renta D… 551207
-    9 2015  Región de Coquimbo Tramo 1 - 0 a 13,5 UTA (Ex… Consolid… Impuest…    953
+| año | region | tramo | categoria | variable | valor |
+|:---|:---------|:---------------|:-------------------|:-------------------|----:|
+| 2015 | Región de Coquimbo | Tramo 1 - 0 a 13,5 UTA (Exento) | Per. Naturales contribuyentes de GC | N° de Personas | 55840 |
+| 2015 | Región de Coquimbo | Tramo 1 - 0 a 13,5 UTA (Exento) | Per. Naturales contribuyentes de GC | Renta Determinada (Millones de pesos) | 169887 |
+| 2015 | Región de Coquimbo | Tramo 1 - 0 a 13,5 UTA (Exento) | Per. Naturales contribuyentes de GC | Impuesto Determinado (Millones de pesos) | 0 |
+| 2015 | Región de Coquimbo | Tramo 1 - 0 a 13,5 UTA (Exento) | Per. Naturales contribuyentes de 2a Cat. | N° de Personas | 146253 |
+| 2015 | Región de Coquimbo | Tramo 1 - 0 a 13,5 UTA (Exento) | Per. Naturales contribuyentes de 2a Cat. | Renta Determinada (Millones de pesos) | 381320 |
+| 2015 | Región de Coquimbo | Tramo 1 - 0 a 13,5 UTA (Exento) | Per. Naturales contribuyentes de 2a Cat. | Impuesto Determinado (Millones de pesos) | 953 |
 
-Ahora sí! Para terminar, en vez de dejar las 3 variables apiladas en una sola columna `valor`, conviene [transformarlas a formato ancho con `pivot_wider()`](/blog/r_introduccion/tidyr_pivotar/), para que cada variable (`N° de Personas`, `Renta Determinada`, `Impuesto Determinado`) quede en su propia columna:
+Para terminar, en vez de dejar las 3 variables apiladas en una sola columna `valor` (formato *largo*), conviene [transformarlas a formato ancho con `pivot_wider()`](/blog/r_introduccion/tidyr_pivotar/), para que cada variable (`N° de Personas`, `Renta Determinada`, `Impuesto Determinado`) quede en su propia columna:
 
 ``` r
 library(tidyr)
 
-datos_wide <- datos_fill |>
+tabla_wide <- tabla |>
   pivot_wider(
     names_from = variable,
     values_from = valor
   )
-
-datos_wide
 ```
 
-    # A tibble: 8,007 × 7
-       año   region          tramo categoria `N° de Personas` Renta Determinada (M…¹
-       <chr> <chr>           <chr> <chr>                <int>                  <int>
-     1 2005  Región de Tara… Tram… Per. Nat…            19227                  29106
-     2 2005  Región de Tara… Tram… Per. Nat…             4817                  36693
-     3 2005  Región de Tara… Tram… Per. Nat…             1969                  28371
-     4 2005  Región de Tara… Tram… Per. Nat…              817                  18316
-     5 2005  Región de Tara… Tram… Per. Nat…              386                  11509
-     6 2005  Región de Tara… Tram… Per. Nat…              231                   8933
-     7 2005  Región de Tara… Tram… Per. Nat…               89                     NA
-     8 2005  Región de Tara… Tram… Per. Nat…               59                   5698
-     9 2005  Región de Anto… Tram… Per. Nat…            33232                  53569
-    10 2005  Región de Anto… Tram… Per. Nat…            10679                  82955
-    # ℹ 7,997 more rows
-    # ℹ abbreviated name: ¹​`Renta Determinada (Millones de pesos)`
-    # ℹ 1 more variable: `Impuesto Determinado (Millones de pesos)` <int>
+| año | region | tramo | categoria | N° de Personas | Renta Determinada (Millones de pesos) | Impuesto Determinado (Millones de pesos) |
+|:--|:-------|:------------|:-------------|------:|-------------:|--------------:|
+| 2005 | Región de Tarapacá | Tramo 1 - 0 a 13,5 UTA (Exento) | Per. Naturales contribuyentes de GC | 19227 | 29106 | 0 |
+| 2005 | Región de Tarapacá | Tramo 2 - 13,5 a 30 UTA (Tasa 5%) | Per. Naturales contribuyentes de GC | 4817 | 36693 | 602 |
+| 2005 | Región de Tarapacá | Tramo 3 - 30 a 50 UTA (Tasa 10%) | Per. Naturales contribuyentes de GC | 1969 | 28371 | 1213 |
+| 2005 | Región de Tarapacá | Tramo 4 - 50 a 70 UTA (Tasa 15%) | Per. Naturales contribuyentes de GC | 817 | 18316 | 1300 |
+| 2005 | Región de Tarapacá | Tramo 5 - 70 a 90 UTA (Tasa 25%) | Per. Naturales contribuyentes de GC | 386 | 11509 | 1169 |
+| 2005 | Región de Tarapacá | Tramo 6 - 90 a 120 UTA (Tasa 32%) | Per. Naturales contribuyentes de GC | 231 | 8933 | 1285 |
 
 La tabla del terror quedó con una fila por región, tramo, año y categoría de contribuyente, con sus 3 variables como columnas.
 
