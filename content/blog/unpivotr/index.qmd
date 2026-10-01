@@ -2,22 +2,23 @@
 title: "Limpiar planillas de Excel complejas en R con `{unpivotr}`"
 subtitle: "Convertir planillas con múltiples encabezados, tablas dinámicas o pivotadas a _dataframes_"
 author: Bastián Olea Herrera
-date: '2026-09-29'
+date: '2026-10-01'
 slug: []
 categories: []
 format:
   hugo-md:
     output-file: index
     output-ext: md
-draft: true
+draft: false
 tags:
   - limpieza de datos
   - procesamiento de datos
+  - tablas
   - Excel
 execute:
-  eval: false
-  message: false
-  warning: false
+  eval: true
+  warning: true
+  freeze: true
 links:
   - icon: registered
     icon_pack: fas
@@ -33,6 +34,8 @@ Muchas planillas Excel presentan sus datos de forma no-rectangular; por ejemplo,
 ## Datos desordenados
 Veamos un ejemplo de datos desordenados:
 
+```{=html}
+<div class="table-scroll">
 <table>
 	<thead>
 		<tr>
@@ -69,6 +72,8 @@ Veamos un ejemplo de datos desordenados:
 		</tr>
 	</tbody>
 </table>
+</div>
+```
 
 La tabla anterior está **desordenada** porque tiene nombres de variables encima de nombres de variables, los datos sobre las observaciones no están en sus propias columnas, y hay datos escondidos como nombres de columnas (los años).
 
@@ -80,75 +85,16 @@ Un dolor de cabeza! 🫠
 
 Así serían los mismos datos, pero en **formato ordenado** o _tidy data_, donde cada variable es una columna y cada observación es una fila:
 
-<table>
-	<thead>
-		<tr>
-			<th>Año</th>
-			<th>Observación</th>
-			<th>Grupo</th>
-			<th>Variable</th>
-			<th>Valor</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>2026</td>
-			<td>1</td>
-			<td>A</td>
-			<td>1</td>
-			<td>10</td>
-		</tr>
-		<tr>
-			<td>2026</td>
-			<td>1</td>
-			<td>A</td>
-			<td>2</td>
-			<td>20</td>
-		</tr>
-		<tr>
-			<td>2026</td>
-			<td>1</td>
-			<td>B</td>
-			<td>1</td>
-			<td>15</td>
-		</tr>
-		<tr>
-			<td>2026</td>
-			<td>1</td>
-			<td>B</td>
-			<td>2</td>
-			<td>25</td>
-		</tr>
-		<tr>
-			<td>2026</td>
-			<td>2</td>
-			<td>A</td>
-			<td>1</td>
-			<td>12</td>
-		</tr>
-		<tr>
-			<td>2026</td>
-			<td>2</td>
-			<td>A</td>
-			<td>2</td>
-			<td>22</td>
-		</tr>
-		<tr>
-			<td>2026</td>
-			<td>2</td>
-			<td>B</td>
-			<td>1</td>
-			<td>17</td>
-		</tr>
-		<tr>
-			<td>2026</td>
-			<td>2</td>
-			<td>B</td>
-			<td>2</td>
-			<td>27</td>
-		</tr>
-	</tbody>
-</table>
+| Año  | Observación | Grupo | Variable | Valor |
+|------|-------------|-------|----------|-------|
+| 2026 | 1           | A     | 1        | 10    |
+| 2026 | 1           | A     | 2        | 20    |
+| 2026 | 1           | B     | 1        | 15    |
+| 2026 | 1           | B     | 2        | 25    |
+| 2026 | 2           | A     | 1        | 12    |
+| 2026 | 2           | A     | 2        | 22    |
+| 2026 | 2           | B     | 1        | 17    |
+| 2026 | 2           | B     | 2        | 27    |
 
 
 El paquete `{unpivotr}` fue diseñado para _despivotar_ este tipo de tablas y volver a estructurar la información desestructurada en filas y columnas.
@@ -263,59 +209,60 @@ Obtuvimos una tabla limpia, idéntica a la del ejemplo de más arriba, a partir 
 
 ## Ejemplos con datos reales
 
+Ahora que entendimos la lógica de `{unpivotr}` con un ejemplo mínimo, veamos cómo se aplica a dos planillas con datos reales.
 
 ### Datos municipales
 
-http://datos.sinim.gov.cl/datos_municipales.php
+El primer ejemplo es una planilla descargada desde el [Sistema Nacional de Información Municipal (SINIM)](http://datos.sinim.gov.cl/datos_municipales.php), que entrega información financiera de todas las municipalidades de Chile. 
 
+{{< boton "Descargar datos de prueba" "datos_municipales_20260903181833_Sin-Correccion-Monetaria.xlsx" "fas fa-file-download" >}}
+
+Descargamos 3 variables de ingresos municipales para los años 2023 a 2025:
 
 - Ingresos Municipales (Ingreso Total Percibido) (M$) `IADM01`
 - Ingresos por Fondo Común Municipal (M$) `IADM40`
 - Ingresos Propios Permanentes (IPP) (M$) `IADM41`
 
+{{< info "Debido a problemas de la plataforma SINIM, si descargas los datos en Excel es necesario abrirlos y guardarlos como `.xlsx` desde Excel, de lo contrario R no la puede abrir!" >}}
+
+{{< imagen "tabla_sinim.png" >}}
+
+{{< bajada "Primeras filas y columnas de una tabla descargada desde SINIM" >}}
+
+Cargamos los datos usando `{openxlsx2}`, sin nombres de columnas porque sabemos que los datos no vienen en una estructura confiable:
+
 ```{r}
 # install.packages('openxlsx2')
 library(openxlsx2)
+library(dplyr)
 
-datos <- read_xlsx("datos_municipales_20260903181833_Sin-Corrección-Monetaria.xlsx")
+datos <- read_xlsx("datos_municipales_20260903181833_Sin-Correccion-Monetaria.xlsx",
+                   col_names = FALSE) |> 
+  as_tibble()
 ```
+
+Así se ve la planilla cargada en R:
 
 ```{r}
 #| echo: false
 #| output: asis
-library(dplyr)
-
 datos |> 
   head() |> 
+  select(1:8) |> 
   knitr::kable()
 ```
 
+Esta planilla es un asco! Tiene varios problemas a la vez:
 
-Esta planilla es un asco
+- La primera fila es solamente una nota al pie (el texto "valores en miles de pesos...") que ocupa únicamente la primera columna
+- La segunda fila contiene los códigos de las variables (`IADM01`, `IADM40`, `IADM41`)
+- La tercera fila mezcla los nombres de columna reales (`CODIGO`, `MUNICIPIO`) con los años de cada variable (2025, 2024, 2023)
+- Cada variable queda repartida en 3 columnas, una por año, en vez de existir una sola columna `Año`
+- No hay una fila de nombres de columna claros!
 
-Problemas:
-- no tiene nombres de columnas
-- primera fila contiene nombres de variables
-- segunda fila también contiene nombres de variables (`CODIGO`, `MUNICIPIO`)
-- segunda fila representa la variable `año` que aplica a las celdas de abajo
-- valor vacío en primeras celdas de las dos primeras columnas
+El problema es porque los datos vienen pivotados: no se respetan los principios de los datos ordenados (_tidy data_), así que tenemos variables en filas y columnas, y variables sobre otras variables en un encabezado. Algo así, de forma simplificada:
 
-El problema es porque los datos vienen pivotados: no se respetan los principios de los datos ordenados (_tidy data_) así que tenemos variables en filas y columnas, y variables sobre otras variables en un encabezado.
-
-Vamos a _despivotar_
-
-El princpio es _descabezar_ la tabla, indicando dónde están las variables (arriba? abajo? al lado?) para ir extrayéndolas paso a paso, y poniéndolas en columnas como dios manda.
-
-|                        |       |       |       |       |     |
-|------------------------|-------|-------|-------|-------|-----|
-| Valores en miles de …¹ | ...2  | ...3  | ...4  | ...5  | ... |
-| NA                     | NA    | IADM… | IADM… | IADM… | ... |
-| CODIGO                 | MUNI… | 2024  | 2023  | 2022  | ... |
-| 1101                   | IQUI… | 1260… | 1250… | 1253… | ... |
-| 1107                   | ALTO… | 3539… | 2318… | 1972… | ... |
-| 1401                   | POZO… | 18141 | 11617 | 6603  | ... |
-| ...                    | ...   | ...   | ...   | ...   | ... |
-
+Como ya vimos, el primer paso de la limpieza para despivotar es tokenizar la planilla con `as_cells()`:
 
 ```{r}
 library(unpivotr)
@@ -326,23 +273,54 @@ celdas <- datos |>
 celdas
 ```
 
+La nota la primera celda (una pésima práctica) queda convertida en una celda más, en la fila 1, columna 1. Podemos descartarla con un simple filtro antes de empezar a _decapitar_:
+
 ```{r}
-celdas |> 
-  behead(direction = "up", name = "a") |> 
-  behead(direction = "left", name = "codigo") |> 
-  behead(direction = "left", name = "comuna") |> 
+celdas <- celdas |> 
+  filter(row > 1)
+```
+
+Ahora, y siempre mirando la tabla original, aplicamos la misma lógica del ejemplo anterior: extraemos dos variables de arriba de la tabla (`variable` y `año`) y dos variables a la izquierda (`codigo` y `comuna`). Como ya vimos el procedimiento paso a paso, esta vez encadenamos los cuatro niveles de una sola vez:
+
+```{r}
+tabla <- celdas |> 
+  behead(direction = "up", name = "variable") |> 
   behead(direction = "up", name = "año") |> 
+  behead(direction = "left", name = "codigo") |> 
+  behead(direction = "left", name = "comuna")
+
+tabla
+```
+
+Estamos casi! Convertimos las columnas a numéricas y sacamos las columnas innecesarias que describían las celdas:
+
+```{r}
+tabla <- tabla |> 
   mutate(valor = as.integer(chr)) |> 
   select(-row, -col, -data_type, -chr)
 
+tabla
 ```
 
+Al convertir la columna `valor` a número aparece una advertencia de valores transformados en `NA`, pero son los valores que antes decían `"No Recepcionado"`, debido a queesa municipalidad no entregó la información.
 
+Con esto obtuvimos una tabla ordenada, rectangular, con variables claras y una fila por municipio ✨
+
+----
 
 ### Datos de empresas
 
-Número de contribuyentes y montos de impuesto global complementario y único de segunda categoría (desagregado por región)
-https://www.sii.cl/sobre_el_sii/estadisticas_de_personas_naturales.html
+El segundo ejemplo es todavía más desordenado: una planilla del Servicio de Impuestos Internos (SII) con [estadísticas de personas naturales y sus montos de impuesto global complementario y único de segunda categoría](https://www.sii.cl/sobre_el_sii/estadisticas_de_personas_naturales.html), desagregados por región. 
+
+{{< boton "Descargar datos de prueba" "PUB_Region.xlsb" "fas fa-file-download" >}}
+
+La planilla viene en formato `.xlsb` (Excel binario), que `{openxlsx2}` también puede leer. Pero también ábrela en Excel para **entenderla visualmente**. 
+
+{{< imagen "tabla_sii.png" >}}
+
+{{< bajada "Primeras filas y columnas de la tabla de estadísticas del SII" >}}
+
+Si nos fijamos, la tabla tiene muchas filas vacías arriba, así que cargamos saltándonos 7 filas definiendo `start_row = 7`:
 
 ```{r}
 # install.packages('openxlsx2')
@@ -350,50 +328,125 @@ library(openxlsx2)
 library(unpivotr)
 
 # cargar
-datos <- wb_read("PUB_Region.xlsb")
+datos <- wb_read(
+  "PUB_Region.xlsb",
+  col_names = FALSE,
+  start_row = 7
+  ) |> 
+  as_tibble()
+```
 
+
+```{r}
+#| echo: false
+#| output: asis
+datos |> 
+  head() |> 
+  select(1:8) |> 
+  knitr::kable()
+```
+
+Esta planilla tiene 2 niveles de encabezado hacia arriba (que podríamos llamar `categoria` y `variable`) y 3 niveles hacia la izquierda (`año`, `región` y `tramo`).
+
+
+Ahora convertimos a celdas:
+
+```{r}
 celdas <- as_cells(datos)
+```
 
-# celdas <- tidyxl::xlsx_cells("datos/personas_tribut_n/PUB_Region.xlsx")
+Recomiendo ir haciendo línea por línea la decapitación de la tabla, así vamos viendo cómo aparecen las columnas nuevas:
 
-# despivotar
-datos <- celdas |>
-  filter(row > 5) |>
-  behead("up", "categoria") |>
-  behead("up", "variable") |>
+Empezamos por la izquierda:
+
+```{r}
+celdas |>
+  behead("left", "año") 
+```
+
+Seguimos extrayendo las variables de la izquierda...
+
+```{r}
+celdas |>
   behead("left", "año") |>
   behead("left", "region") |>
-  behead("left", "tramo") |>
-  glimpse()
+  behead("left", "tramo") 
+```
 
-datos <- datos |>
-  select(categoria:tramo, valor = chr)
+Ya empieza a tomar forma! Ahora las de arriba:
 
+```{r}
+tabla <- celdas |>
+  behead("left", "año") |>
+  behead("left", "region") |>
+  behead("left", "tramo") |> 
+  behead("up", "categoria") |>
+  behead("up", "variable")
+
+tabla
+```
+
+Con los 5 niveles extraídos, nos quedamos solamente con esas columnas y el valor de cada celda:
+
+```{r}
+datos <- tabla |>
+  mutate(valor = as.integer(chr)) |> 
+  select(-row, -col, -data_type, -chr)
+
+datos
+```
+
+Revisemos que la variable `categoria`, que es la más extraña en la tabla, haya quedado bien extraída:
+
+```{r}
 datos |>
   distinct(categoria)
+```
 
+Aparece un valor `NA`! En cambio, la columna `variable` sí se extrajo completa para todas las columnas:
+
+```{r}
 datos |>
   distinct(categoria, variable)
+```
 
+Esto pasa porque, en la planilla original, el encabezado de cada `categoria` corresponde a una celda combinada que abarca 3 columnas (una por cada `variable`), o sea que, de las 3 columnas, el texto solo aparece en la primera, y las otras dos están vacías, así que salen como `NA` dado que se asume que la persona que mira la tabla se imagina que el primer valor se repite hacia el lado. Por eso `behead("up", "categoria")` no tiene nada que extraer para ellas y quedan en `NA`. 
+
+Veamos el problema en un caso puntual:
+
+```{r}
 # ver el problema
 datos |>
   filter(
     region == "Región de Coquimbo",
     tramo == "Tramo 1 - 0 a 13,5 UTA (Exento)",
     año == 2015
-  )
+  ) |> 
+  select(-region)
+```
 
+De las 9 filas, solamente las que corresponden a la primera variable de cada categoría (`N° de Personas`) quedaron con su `categoria` bien puesta; las otras 2 de cada grupo quedaron en `NA`. 
+
+Entonces la solución es repetir el valor de `categoria` con `fill()` hacia abajo, para rellenar esos `NA`, igual como hicimos con la variable `año` en el ejemplo anterior:
+
+```{r}
 # rellenar
 datos_fill <- datos |>
   fill(categoria, .direction = "down")
 
+# probar
 datos_fill |>
   filter(
     region == "Región de Coquimbo",
     tramo == "Tramo 1 - 0 a 13,5 UTA (Exento)",
     año == 2015
   )
+```
 
+Ahora sí! Para terminar, en vez de dejar las 3 variables apiladas en una sola columna `valor`, conviene [transformarlas a formato ancho con `pivot_wider()`](/blog/r_introduccion/tidyr_pivotar/), para que cada variable (`N° de Personas`, `Renta Determinada`, `Impuesto Determinado`) quede en su propia columna:
+
+```{r}
+library(tidyr)
 
 datos_wide <- datos_fill |>
   pivot_wider(
@@ -401,14 +454,15 @@ datos_wide <- datos_fill |>
     values_from = valor
   )
 
-datos_wide |>
-  filter(
-    categoria == "Per. Naturales contribuyentes de 2a Cat.",
-    region == "Región de Coquimbo",
-    tramo == "Tramo 8 - Más de 150 UTA (Tasa 40%)",
-    año == 2015
-  ) |>
-  glimpse()
-
+datos_wide
 ```
 
+La tabla del terror quedó con una fila por región, tramo, año y categoría de contribuyente, con sus 3 variables como columnas. 
+
+Y así, decapitando planillas nivel por nivel, pasamos de dos tablas de Excel verdaderamente infernales a datos ordenados y listos para analizar 🎉
+
+{{< etiqueta "tablas" >}}
+
+{{< etiqueta "limpieza de datos" >}}
+
+{{< cafecito >}}

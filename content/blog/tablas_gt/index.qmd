@@ -144,16 +144,16 @@ tabla |>
   as_raw_html()
 ```
 
-Cambiar **tamaño del texto** de la tabla:
+Cambiar **tamaño del texto** de la tabla con `opt_table_font()` o también con `tab_options(table.font.size = "80%")`:
 
 ```{r eval=FALSE}
 tabla |> 
-  tab_options(table.font.size = "80%")
+  opt_table_font(size = "80%")
 ```
 
 ```{r echo=FALSE}
 tabla |> 
-  tab_options(table.font.size = "80%") |> 
+  opt_table_font(size = "80%") |> 
   as_raw_html()
 ```
 
