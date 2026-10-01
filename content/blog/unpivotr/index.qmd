@@ -75,7 +75,7 @@ Veamos un ejemplo de datos desordenados:
 </div>
 ```
 
-La tabla anterior está **desordenada** porque tiene nombres de variables encima de nombres de variables, los datos sobre las observaciones no están en sus propias columnas, y hay datos escondidos como nombres de columnas (los años).
+La tabla anterior está **desordenada** porque tiene nombres de variables encima de nombres de variables, tienen valores como encabezados de columnas (años, grupos) los datos sobre las observaciones no están en sus propias columnas, y hay datos escondidos como nombres de columnas (los años).
 
 Si bien este tipo de _tablas pivotadas_ muchas veces facilita la lectura y mejora la densidad de información, da muchos problemas para manipular y transformar los datos:
 
@@ -85,16 +85,12 @@ Un dolor de cabeza! 🫠
 
 Así serían los mismos datos, pero en **formato ordenado** o _tidy data_, donde cada variable es una columna y cada observación es una fila:
 
-| Año  | Observación | Grupo | Variable | Valor |
-|------|-------------|-------|----------|-------|
-| 2026 | 1           | A     | 1        | 10    |
-| 2026 | 1           | A     | 2        | 20    |
-| 2026 | 1           | B     | 1        | 15    |
-| 2026 | 1           | B     | 2        | 25    |
-| 2026 | 2           | A     | 1        | 12    |
-| 2026 | 2           | A     | 2        | 22    |
-| 2026 | 2           | B     | 1        | 17    |
-| 2026 | 2           | B     | 2        | 27    |
+| Año  | Observación | Grupo | Variable 1 | Variable 2 |
+|------|-------------|-------|------------|------------|
+| 2026 | 1           | A     | 10         | 20         |
+| 2026 | 1           | B     | 15         | 25         |
+| 2026 | 2           | A     | 12         | 22         |
+| 2026 | 2           | B     | 17         | 27         |
 
 
 El paquete `{unpivotr}` fue diseñado para _despivotar_ este tipo de tablas y volver a estructurar la información desestructurada en filas y columnas.
@@ -134,7 +130,7 @@ celdas <- as_cells(desorden)
 celdas
 ```
 
-Si ignoramos las primeras 3 columnas, vemos que tenemos todas las celdas en una sola columna (`chr`),
+Si ignoramos las primeras 3 columnas, vemos que tenemos todas las celdas en una sola columna (`chr`).
 
 Ahora que tenemos la tabla tokenizada, procedemos a iluminar a esta bestia del abismo con la función `behead()`, o _decapitar_ 🔪
 
@@ -197,6 +193,19 @@ tabla <- tabla |>
   ) |> 
   arrange(observacion)
 ```
+
+Ahora podemos pivotar la tabla para obtener datos ordenados (_tidy_): una columna por cada variable, una fila por cada observación:
+
+```{r}
+library(tidyr)
+
+tabla <- tabla |> 
+  pivot_wider(
+    names_from = variable, 
+    values_from = valor, 
+    names_prefix = "variable_")
+```
+
 
 ```{r}
 #| echo: false
@@ -270,9 +279,9 @@ Tiene varios problemas a la vez:
 - Cada variable queda repartida en 3 columnas, una por año, en vez de existir una sola columna `Año`
 - No hay una fila de nombres de columna claros!
 
-El problema es porque los datos vienen pivotados: no se respetan los principios de los datos ordenados (_tidy data_), así que tenemos variables en filas y columnas, y variables sobre otras variables en un encabezado. Algo así, de forma simplificada:
+El problema es porque los datos vienen pivotados: no se respetan los principios de los datos ordenados (_tidy data_), así que tenemos variables en filas y columnas, y variables sobre otras variables en un encabezado. 
 
-Como ya vimos, el primer paso de la limpieza para despivotar es tokenizar la planilla con `as_cells()`:
+Como ya vimos, el primer paso de la limpieza para despivotar tablas es tokenizar la planilla con `as_cells()` para convertirla a una fila por celda:
 
 ```{r}
 library(unpivotr)
@@ -283,7 +292,7 @@ celdas <- datos |>
 celdas
 ```
 
-La nota la primera celda (una pésima práctica) queda convertida en una celda más, en la fila 1, columna 1. Podemos descartarla con un simple filtro antes de empezar a _decapitar_:
+La nota en la primera celda (una pésima práctica) queda convertida en una celda más, en la fila 1, columna 1. Podemos descartarla con un simple filtro antes de empezar a _decapitar_:
 
 ```{r}
 celdas <- celdas |> 

@@ -86,7 +86,7 @@ Veamos un ejemplo de datos desordenados:
 
 </div>
 
-La tabla anterior está **desordenada** porque tiene nombres de variables encima de nombres de variables, los datos sobre las observaciones no están en sus propias columnas, y hay datos escondidos como nombres de columnas (los años).
+La tabla anterior está **desordenada** porque tiene nombres de variables encima de nombres de variables, tienen valores como encabezados de columnas (años, grupos) los datos sobre las observaciones no están en sus propias columnas, y hay datos escondidos como nombres de columnas (los años).
 
 Si bien este tipo de *tablas pivotadas* muchas veces facilita la lectura y mejora la densidad de información, da muchos problemas para manipular y transformar los datos:
 
@@ -96,16 +96,12 @@ Un dolor de cabeza! 🫠
 
 Así serían los mismos datos, pero en **formato ordenado** o *tidy data*, donde cada variable es una columna y cada observación es una fila:
 
-| Año  | Observación | Grupo | Variable | Valor |
-|------|-------------|-------|----------|-------|
-| 2026 | 1           | A     | 1        | 10    |
-| 2026 | 1           | A     | 2        | 20    |
-| 2026 | 1           | B     | 1        | 15    |
-| 2026 | 1           | B     | 2        | 25    |
-| 2026 | 2           | A     | 1        | 12    |
-| 2026 | 2           | A     | 2        | 22    |
-| 2026 | 2           | B     | 1        | 17    |
-| 2026 | 2           | B     | 2        | 27    |
+| Año  | Observación | Grupo | Variable 1 | Variable 2 |
+|------|-------------|-------|------------|------------|
+| 2026 | 1           | A     | 10         | 20         |
+| 2026 | 1           | B     | 15         | 25         |
+| 2026 | 2           | A     | 12         | 22         |
+| 2026 | 2           | B     | 17         | 27         |
 
 El paquete `{unpivotr}` fue diseñado para *despivotar* este tipo de tablas y volver a estructurar la información desestructurada en filas y columnas.
 
@@ -180,7 +176,7 @@ celdas
     10     5     2 chr       12           
     # ℹ 15 more rows
 
-Si ignoramos las primeras 3 columnas, vemos que tenemos todas las celdas en una sola columna (`chr`),
+Si ignoramos las primeras 3 columnas, vemos que tenemos todas las celdas en una sola columna (`chr`).
 
 Ahora que tenemos la tabla tokenizada, procedemos a iluminar a esta bestia del abismo con la función `behead()`, o *decapitar* 🔪
 
@@ -323,16 +319,24 @@ tabla <- tabla |>
   arrange(observacion)
 ```
 
-| año  | observacion | grupo | variable | valor |
-|:-----|:------------|:------|:---------|:------|
-| 2026 | 1           | A     | 1        | 10    |
-| 2026 | 1           | A     | 2        | 20    |
-| 2026 | 1           | B     | 1        | 15    |
-| 2026 | 1           | B     | 2        | 25    |
-| 2026 | 2           | A     | 1        | 12    |
-| 2026 | 2           | A     | 2        | 22    |
-| 2026 | 2           | B     | 1        | 17    |
-| 2026 | 2           | B     | 2        | 27    |
+Ahora podemos pivotar la tabla para obtener datos ordenados (*tidy*): una columna por cada variable, una fila por cada observación:
+
+``` r
+library(tidyr)
+
+tabla <- tabla |> 
+  pivot_wider(
+    names_from = variable, 
+    values_from = valor, 
+    names_prefix = "variable_")
+```
+
+| año  | observacion | grupo | variable_1 | variable_2 |
+|:-----|:------------|:------|:-----------|:-----------|
+| 2026 | 1           | A     | 10         | 20         |
+| 2026 | 1           | B     | 15         | 25         |
+| 2026 | 2           | A     | 12         | 22         |
+| 2026 | 2           | B     | 17         | 27         |
 
 Obtuvimos una tabla limpia, idéntica a la del ejemplo de más arriba, a partir de la tabla sucia!
 
@@ -397,9 +401,9 @@ Tiene varios problemas a la vez:
 - Cada variable queda repartida en 3 columnas, una por año, en vez de existir una sola columna `Año`
 - No hay una fila de nombres de columna claros!
 
-El problema es porque los datos vienen pivotados: no se respetan los principios de los datos ordenados (*tidy data*), así que tenemos variables en filas y columnas, y variables sobre otras variables en un encabezado. Algo así, de forma simplificada:
+El problema es porque los datos vienen pivotados: no se respetan los principios de los datos ordenados (*tidy data*), así que tenemos variables en filas y columnas, y variables sobre otras variables en un encabezado.
 
-Como ya vimos, el primer paso de la limpieza para despivotar es tokenizar la planilla con `as_cells()`:
+Como ya vimos, el primer paso de la limpieza para despivotar tablas es tokenizar la planilla con `as_cells()` para convertirla a una fila por celda:
 
 ``` r
 library(unpivotr)
@@ -425,7 +429,7 @@ celdas
     10    10     1 chr       1405                                                 
     # ℹ 3,818 more rows
 
-La nota la primera celda (una pésima práctica) queda convertida en una celda más, en la fila 1, columna 1. Podemos descartarla con un simple filtro antes de empezar a *decapitar*:
+La nota en la primera celda (una pésima práctica) queda convertida en una celda más, en la fila 1, columna 1. Podemos descartarla con un simple filtro antes de empezar a *decapitar*:
 
 ``` r
 celdas <- celdas |> 
@@ -732,6 +736,8 @@ tabla |>
 | 2015 | Región de Coquimbo | Tramo 1 - 0 a 13,5 UTA (Exento) | Per. Naturales contribuyentes de 2a Cat. | N° de Personas | 146253 |
 | 2015 | Región de Coquimbo | Tramo 1 - 0 a 13,5 UTA (Exento) | Per. Naturales contribuyentes de 2a Cat. | Renta Determinada (Millones de pesos) | 381320 |
 | 2015 | Región de Coquimbo | Tramo 1 - 0 a 13,5 UTA (Exento) | Per. Naturales contribuyentes de 2a Cat. | Impuesto Determinado (Millones de pesos) | 953 |
+
+Mucho más claro!
 
 Para terminar, en vez de dejar las 3 variables apiladas en una sola columna `valor` (formato *largo*), conviene [transformarlas a formato ancho con `pivot_wider()`](/blog/r_introduccion/tidyr_pivotar/), para que cada variable (`N° de Personas`, `Renta Determinada`, `Impuesto Determinado`) quede en su propia columna:
 
