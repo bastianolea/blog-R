@@ -25,34 +25,58 @@ execute:
 
 ## Introducción a R
 
-Esta guía contiene instrucciones paso a paso para aprender los aspectos más básicos del lenguaje R. Va dirigida a personas sin ningún conocimiento previo de R, así que si quieres aprender R desde cero, ¡sigue este tutorial!
+Este tutorial contiene instrucciones paso a paso para aprender los aspectos más básicos del lenguaje R. Va dirigida a personas **sin ningún conocimiento previo** de R, así que si quieres aprender R desde cero, ¡sigue este tutorial!
 
-Si sigues estas instrucciones de principio a fin, aprenderás a: trabajar con el programa RStudio, a gestionar tus scripts para el análisis, a realizar las primeras operaciones matemáticas, a comprender los distintos tipos de datos que existen en R, y a manejar las operaciones fundamentales para todo análisis posterior, ya sea básico o avanzado: objetos, comparaciones, asignaciones, vectores, y funciones.
+Si sigues estas instrucciones de principio a fin, aprenderás a:
 
-Entender estos aspectos básicos del lenguaje es fundamental para que, en un futuro cercano, puedas utilizar R para analizar datos, crear visualizaciones, generar reportes, desarrollar aplicaciones, y mucho más.
+- trabajar con el programa RStudio,
+- a gestionar tus [scripts](#scripts) para el análisis,
+- a realizar las primeras [operaciones matemáticas](#operaciones-matemáticas),
+- a comprender los distintos [tipos de datos](#tipos-de-datos) que existen en R,
+- y a manejar las [operaciones fundamentales](#primeras-operaciones-en-r) para todo análisis posterior, ya sea básico o avanzado: objetos, comparaciones, asignaciones, vectores, y funciones.
 
 La idea de esta guía es aproximarnos a los principios más básicos de R, en partes pequeñas y con ejemplos simples, para poder entenderlos más fácilmente. Una vez que entendamos estos principios básicos, veremos que son aplicables a bases de datos de cientos o millones de observaciones simultáneamente, sin demasiada diferencia.
+
+Entender estos aspectos básicos del lenguaje es fundamental para que, en un futuro cercano, puedas usar R para analizar datos, [crear visualizaciones](../../../../blog/r_introduccion/tutorial_visualizacion_ggplot/), [generar reportes](../../../../blog/quarto_reportes/), [hacer tablas de datos](../../../../blog/tablas_gt/), [desarrollar aplicaciones](../../../../blog/shiny/), y mucho más!
 
 ### Instalación de R
 
 Para **instalar R**, el lenguaje de programación, y además RStudio, el programa que te ayuda a trabajar con el lenguaje, dirígete a este post donde doy todas las instrucciones: [Primer paso: Instalar R](../../../../blog/r_introduccion/instalar_r/)
 
+{{< relacionada "/blog/r_introduccion/instalar_r/" >}}
+
+Pero en resumen, lo que necesitamos es instalar el lenguaje de programación R:
+
+{{< boton "Descargar R" "https://cran.r-project.org" "fas fa-download" >}}
+
+Y luego, instalar también el programa RStudio para poder usar el lenguaje de programación con más comodidad:
+
+{{< boton "Descargar RStudio" "https://posit.co/download/rstudio-desktop/#download" "fas fa-download" >}}
+
 ### RStudio
 
-Una vez que [hayamos instalado R y R Studio](../../../../blog/r_introduccion/instalar_r/), abrimos RStudio.
+RStudio es el programa (o IDE) que instalarás en tu computadora para usar el lenguaje R. Una vez que [hayamos instalado R y R Studio](../../../../blog/r_introduccion/instalar_r/), abrimos RStudio.
 
-El programa debía haberse más o menos así:
+{{< info "Si por cualquier motivo no puedes instalar RStudio, puedes usarlo en la nube mediante un navegador web con el servicio [Posit Cloud](https://posit.cloud)." >}}
+
+En tu computador, RStudio debía haberse más o menos así:
 
 ![](rstudio.png)
 
-Vemos que el estudio tiene cuatro paneles. De izquierda a derecha, y de arriba a abajo, los paneles principales son:
+Vemos que RStudio tiene cuatro paneles. De izquierda a derecha, y de arriba a abajo, los paneles principales son:
 
 1.  *Panel de scripts:* aquí tenemos nuestros archivos de texto con nuestro código. Podemos tener varias pestañas de distintos archivos de texto.
 2.  *Panel de entorno:* acá veremos los objetos que vayamos creando, que pueden ser números, texto, tablas de datos, funciones, gráficos y otros.
 3.  *Panel de consola:* en la consola se imprimen los resultados que arroja R a partir del código que ejecutamos en los scripts. También podemos ejecutar código directamente en la consola.
 4.  *Panel de archivos:* en este panel podemos navegar los archivos y carpetas de nuestro proyecto y/o computador.
 
+Recientemente, se agregó un [asistente de IA a RStudio](../../../../blog/posit_assistant/), llamado Posit Assistant, que puedes conocer en esta publicación:
+
+{{< relacionada "/blog/posit_assistant/" >}}
+
 ### Scripts
+
+<i class='fas fa-file-code icono-lateral'></i>
 
 Al trabajar en R, realizamos nuestros análisis y pruebas mediante scripts. Los **scripts** son archivos de texto que terminan en `.R`. En estos archivos de texto escribimos nuestro código, intentando tener una instrucción por línea. Dentro del script, ejecutamos las instrucciones línea por línea, poniendo el cursor de texto en la línea que deseamos ejecutar, y presionando el botón *"Run"* (arriba a la derecha en el panel de scripts), o bien, presionando las teclas `comando + enter` en Mac y `control + enter` en Windows.
 
@@ -727,7 +751,7 @@ numeros <- 1:10000000
 sample(numeros, size = 1)
 ```
 
-    [1] 5682161
+    [1] 9329807
 
 La función recibe como primer argumento el vector de elementos, y como segundo argumento la cantidad de elementos que queremos obtener al azar.
 
@@ -801,7 +825,7 @@ animales <- c("gato", "mapache", "castor", "pollo", "ratón", "pudú")
 paste("el animal más lindo es el", sample(animales, 1))
 ```
 
-    [1] "el animal más lindo es el gato"
+    [1] "el animal más lindo es el castor"
 
 ### Redondear datos
 
@@ -909,9 +933,13 @@ Si bien en estas instrucciones no aprendimos a analizar datos, si considero que 
 
 El entender cómo funcionan estas pequeñas herramientas, y familiarizarse con su uso nos facilitará bastante la aplicación del lenguaje al procesamiento de tablas, bases de datos, y otras situaciones en las que podemos aplicar R para ayudarnos y para producir resultados.
 
+{{< etiqueta "básico" >}}
+
 ------------------------------------------------------------------------
 
 *Si entendiste este tutorial y quieres pasar al siguiente nivel, revisa [**Herramientas básicas para programar con R**](../../../../blog/r_introduccion/r_intermedio) para aprender cómo aplicar lo que aprendiste dentro de flujos de procesamiento de datos más complejos. Luego podrías atreverte a intentar con este otro tutorial, en el cual se abarcan herramientas básicas de manipulación de datos: [**Introducción a {dplyr} con datos de población**](../../../../blog/r_introduccion/tutorial_dplyr_censo/).*
+
+{{< relacionada "/blog/r_introduccion/r_intermedio/" >}}
 
 Si este tutorial te sirvió, por favor considera hacerme una donación, al menos para poder tomarme un cafecito 🥺
 

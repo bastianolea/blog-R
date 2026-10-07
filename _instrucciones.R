@@ -86,6 +86,7 @@ crear_publicacion(
 # íconos
 # <i class='fas fa-chalkboard-user'></i>
 # <i class='fas fa-chalkboard-user' style='font-size: 200%'></i>
+# <i class='fas fa-chalkboard-user icono-lateral'></i>
 
 # destacar código
 # ```r {hl_lines=["5-9"]}
