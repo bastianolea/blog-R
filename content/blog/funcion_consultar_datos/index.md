@@ -10,6 +10,7 @@ tags:
   - Chile
   - funciones
   - inteligencia artificial
+  - bases de datos
 format:
   hugo-md:
     output-file: index

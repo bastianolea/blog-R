@@ -11,6 +11,7 @@ tags:
   - datos
   - optimización
   - dplyr
+  - bases de datos
 format:
   hugo-md:
     output-file: index

@@ -10,6 +10,7 @@ tags:
   - shiny
   - ciencias sociales
   - datos
+  - bases de datos
 links:
 - icon: registered
   icon_pack: fas

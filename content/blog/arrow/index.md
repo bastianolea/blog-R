@@ -11,6 +11,7 @@ categories: []
 tags:
   - datos
   - optimización
+  - bases de datos
 format:
   hugo-md:
     output-file: index

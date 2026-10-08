@@ -17,3 +17,4 @@ http://bastianolea.rbind.io/*       https://bastianolea.rbind.io/:splat  301!
 /blog/r_introduccion/tutorial_shiny_1/ /blog/tutorial_shiny_1/
 /blog/r_introduccion/tutorial_shinyapps/ /blog/tutorial_shinyapps/
 /blog/r_introduccion/tutorial_github/ /blog/tutorial_github/
+/blog/2025-02-12/ /blog/arrow_csv/

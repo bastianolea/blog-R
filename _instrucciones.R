@@ -4,7 +4,7 @@ blogdown::stop_server()
 blogdown::build_site()
 servr::httr("public")
 
-# source("R/funciones.R")
+source("R/funciones.R")
 
 ## publicaciones ----
 
@@ -27,9 +27,9 @@ crear_publicacion(
 
 # crear un post con nombre
 crear_publicacion(
-  title = "Exporta tablas hechas con `{gt}` a formato Excel",
-  file = "blog/tablas_gt_excel/index.qmd",
-  tags = c("tablas"),
+  title = "Crear diapositivas en R con Quarto RevealJS",
+  file = "blog/quarto_diapositivas/index.qmd",
+  tags = c("quarto"),
   categories = c()
 )
 

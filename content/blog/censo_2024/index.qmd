@@ -9,8 +9,9 @@ categories:
   - Tutoriales
 tags:
   - datos
-  - chile
+  - Chile
   - procesamiento de datos
+  - bases de datos
 format:
   hugo-md:
     output-file: index

@@ -1,0 +1,308 @@
+---
+title: Cargar archivos CSV más rápido en R con `{arrow}`
+author: Bastián Olea Herrera
+date: '2026-10-12'
+# date: '2025-02-12'
+format: hugo-md
+freeze: true
+slug: []
+categories: []
+tags:
+  - consejos
+  - datos
+  - optimización
+execute:
+  eval: true
+editor_options: 
+  chunk_output_type: console
+excerpt: "Los archivos CSV (_comma-separated values,_ valores separados por comas) suelen ser el formato más básico para guardar datos. En esta publicación compararemos 4 formas de cargar este formato de datos, introduciendo el uso de Arrow para cargarlos casi 10 veces más rápido que R base, e incluso cargarlos como base de datos para consultarlos realizando operaciones más eficientes y livianas."
+---
+
+En el análisis de datos, si bien la conveniencia es un factor primordial (código más sencillo, legible y fácil de escribir nos permite generar resultados mucho más rápido), siempre es posible replantearnos la forma en que trabajamos para pensar alternativas más optimizadas y veloces, si es que el volumen de datos con los que trabajamos lo amerita.
+
+Los archivos `CSV` (_comma-separated values,_ valores separados por comas) suelen ser el formato más básico para guardar datos. Los beneficios que tienen los CSV con respecto a compatibilidad y accesibilidad son a su vez la causa de sus desventajas: son más pesados porque sus datos no se guardan comprimidos, y suelen ser **más lentos de cargar**, porque los datos no vienen codificados de una forma optimizada.
+
+Sin embargo, usualmente grandes bases de datos son guardadas en archivos CSV, con varios millones de filas, lo que puede hacer que la carga de un archivo dure entre varios segundos a **minutos**.
+
+Hagamos una comparación cargando un archivo CSV de 1,36 GB, de más de 3 millones de filas y 66 columnas, por medio de 4 funciones: `read.csv()` de R base, `read_csv` de [{readr}](https://readr.tidyverse.org), `read_csv_arrow` de [{arrow}](https://arrow.apache.org/docs/r/), y finalmente `open_csv_dataset` de Arrow para [cargar archivos como base de datos](/blog/arrow/).
+
+## Datos
+
+Los datos corresponden al [registro de asistencia anual por estudiante del Ministerio de Educación de Chile](https://datosabiertos.mineduc.cl/asistencia-anual-por-estudiante/), el cual puedes descargar aquí:
+
+{{< boton "Ir a los datos" "https://datosabiertos.mineduc.cl/asistencia-anual-por-estudiante/" "fas fa-file-download" >}}
+
+
+``` r
+library(readr)
+library(arrow)
+library(tictoc) # para medir el tiempo que tardan
+
+# ruta de la base
+archivo <- "~/Downloads/Asistencia-anual-2025/ASISTENCIA_ANUAL_PUBL_2025.csv" 
+```
+
+## Opción 1: `read.csv()`
+
+Esta función viene por defecto en R, y es la que peor desempeño tiene, además de cargar los datos en un dataframe tradicional en lugar de un [tibble](https://tibble.tidyverse.org):
+
+
+``` r
+tic()
+datos <- read.csv2(archivo)
+toc()
+```
+
+```
+62.01 sec elapsed
+```
+
+La carga del archivo demora más de un minuto con este método!
+
+## Opción 2: `readr::read_csv()`
+
+El paquete `{readr}` es muy versátil para leer y escribir datos con un desempeño aceptable y una sintaxis consistente:
+
+
+``` r
+tic()
+datos <- readr::read_csv2(archivo)
+toc()
+```
+
+```
+15.665 sec elapsed
+```
+
+Usando `read_csv()` cargamos datos **mucho más rápido** que con el método de R por defecto! Además, obtenemos los datos en un cómodo y moderno `tibble`. Pero todavía puede ser más rápido...
+
+## Opción 3: `arrow::read_csv_arrow()`
+
+Los desarrolladores de la [tecnología Arrow](https://arrow.apache.org), principalmente conocida por el excelente [formato de datos columnares `.parquet`](https://arrow.apache.org/docs/r/articles/arrow.html#reading-and-writing-data) (que supera a cualquier otro en velocidad de lectura y eficiencia de almacenamiento), ofrecen una [función optimizada](https://arrow.apache.org/docs/r/reference/read_delim_arrow.html) para la lectura de archivos csv:
+
+
+``` r
+tic()
+datos <- arrow::read_csv2_arrow(archivo)
+toc()
+```
+
+```
+3.682 sec elapsed
+```
+
+¡Bajamos de 62 a tan sólo 3,6 segundos! 
+
+El paquete `{arrow}` ofrece un lector optimizado de archivos CSV que supera en velocidad a cualquier otro que podamos usar en R.
+
+{{< info 'Si el archivo viniera en otra codificación, agrega el argumento `read_options = csv_read_options(encoding = "latin1")`. Y si tuviera otro delimitador, podemos usar `parse_options = CsvParseOptions$create(delimiter = ";")`' >}}
+
+
+## Opción 4: cargar como base de datos
+
+Como se explica en este [tutorial sobre Arrow](/blog/arrow/), una de las potencialidades de Arrow es poder cargar grandes volúmenes de datos como una [base de datos](/blog/arrow/#cargar-datos-como-dataset) a la cual hacemos consultas.
+
+En este caso, abrimos un _dataset_ e indicamos el separador (por ejemplo, punto y coma):
+
+
+``` r
+tic()
+datos <- open_delim_dataset(archivo, 
+                            delim = ";")
+toc()
+```
+
+```
+## 0.048 sec elapsed
+```
+
+La carga es instantánea! Pero esto es porque los datos no se leyeron realmente:
+
+
+``` r
+datos
+```
+
+```
+## FileSystemDataset with 1 csv file
+## 66 columns
+## MRUN: int64
+## AGNO: int64
+## RBD: int64
+## MES_ESCOLAR: int64
+## NOM_RBD: string
+## COD_REG_RBD: int64
+## NOM_REG_RBD_A: string
+## COD_PRO_RBD: int64
+## COD_COM_RBD: int64
+## NOM_COM_RBD: string
+## COD_DEPROV_RBD: int64
+## NOM_DEPROV_RBD: string
+## RURAL_RBD: int64
+## COD_DEPE2: int64
+## COD_ENSE: int64
+## COD_ENSE2: int64
+## COD_GRADO: int64
+## LET_CUR: string
+## GEN_ALU: int64
+## DIAS_ASISTIDOS_3: int64
+## ...
+## 46 more columns
+## Use `schema()` to see entire schema
+```
+
+Obtenemos un _esquema_ de los datos, a partir del cual podemos solicitar datos y obtenerlos con la función `collect()`.
+
+Como vimos [en el tutorial de Arrow](/blog/arrow/#cargar-datos-como-dataset), necesitamos saber qué operaciones realizar sobre los datos, y luego solicitarlas. Por ejemplo, seleccionemos solamente las columnas que necesitamos, y las cargamos con `collect()`:
+
+
+``` r
+library(dplyr)
+
+tic()
+datos |> 
+  select(AGNO, NOM_RBD, COD_COM_RBD, TASA_ASISTENCIA_ANUAL) |> 
+  collect()
+```
+
+```
+## # A tibble: 3,284,345 × 4
+##     AGNO NOM_RBD                               COD_COM_RBD TASA_ASISTENCIA_ANUAL
+##    <int> <chr>                                       <int> <chr>                
+##  1  2025 LICEO TEC. PROFESIONAL DE ADULTOS DE…        5802 0,44736842105263203  
+##  2  2025 COLEGIO JUAN LUIS VIVES                      5101 0,95862068965517200  
+##  3  2025 COLEGIO JUAN LUIS VIVES                      5101 0,95312500000000000  
+##  4  2025 ESCUELA BASICA DALCAHUE                     10205 0,58333333333333304  
+##  5  2025 COLEGIO JUAN LUIS VIVES                      5101 0,21969696969697000  
+##  6  2025 COLEGIO ADULTOS  ALFRED NOBEL               13119 0,97058823529411797  
+##  7  2025 LICEO DE ADULTOS PART.FERMIN VIVACETA       13101 0,92405063291139200  
+##  8  2025 ESCUELA DEL CARIÑO SAINT CHRISTIAN          13111 1,00000000000000000  
+##  9  2025 COLEGIO JUAN LUIS VIVES                      6101 0,96923076923076901  
+## 10  2025 ESCUELA PARTICULAR SAN SEBASTIAN             9106 0,34000000000000002  
+## # ℹ 3,284,335 more rows
+```
+
+``` r
+toc()
+```
+
+```
+## 3.863 sec elapsed
+```
+Se demoró poquísimo, y la optimización aumenta cuando aplicamos `filter()` e incluso otras operaciones de R, como `mutate()` o incluso `summarize()`!
+
+
+``` r
+tic()
+datos |> 
+  select(AGNO, NOM_RBD, COD_COM_RBD, TASA_ASISTENCIA_ANUAL) |> 
+  filter(COD_COM_RBD == 1101) |> 
+  collect()
+```
+
+```
+## # A tibble: 44,481 × 4
+##     AGNO NOM_RBD                               COD_COM_RBD TASA_ASISTENCIA_ANUAL
+##    <int> <chr>                                       <int> <chr>                
+##  1  2025 COLEGIO BULNES                               1101 0,12318840579710100  
+##  2  2025 LICEO C.E.I.A. JOSE ALEJANDRO SORIA …        1101 0,21686746987951799  
+##  3  2025 COLEGIO BULNES                               1101 0,74522292993630612  
+##  4  2025 COLEGIO BULNES                               1101 0,75903614457831292  
+##  5  2025 LICEO C.E.I.A. JOSE ALEJANDRO SORIA …        1101 0,25396825396825401  
+##  6  2025 LICEO C.E.I.A. JOSE ALEJANDRO SORIA …        1101 0,80722891566265109  
+##  7  2025 LICEO C.E.I.A. JOSE ALEJANDRO SORIA …        1101 0,63551401869158897  
+##  8  2025 COLEGIO BULNES                               1101 0,37349397590361400  
+##  9  2025 LICEO C.E.I.A. JOSE ALEJANDRO SORIA …        1101 0,82242990654205606  
+## 10  2025 LICEO C.E.I.A. JOSE ALEJANDRO SORIA …        1101 0,63253012048192803  
+## # ℹ 44,471 more rows
+```
+
+``` r
+toc()
+```
+
+```
+## 2.893 sec elapsed
+```
+
+
+Si se requiere cargar una columna en un formato distinto al asumido, por ejemplo, una columna numérica donde los números se separan con comas, puede indicarse así:
+
+
+``` r
+datos <- open_delim_dataset(
+  archivo,
+  delim = ";",
+  col_types = schema(TASA_ASISTENCIA_ANUAL = double()),
+  convert_options = CsvConvertOptions$create(decimal_point = ",")
+)
+```
+
+Luego realizamos la operación sobre los datos cargados como base de datos:
+
+
+``` r
+tic()
+datos |> 
+  select(AGNO, COD_REG_RBD, NOM_COM_RBD, TASA_ASISTENCIA_ANUAL) |> 
+  filter(COD_REG_RBD == 1) |> 
+  group_by(NOM_COM_RBD) |> 
+  summarize(TASA_ASISTENCIA_ANUAL = mean(TASA_ASISTENCIA_ANUAL, na.rm = T)) |>
+  collect()
+```
+
+```
+## # A tibble: 7 × 2
+##   NOM_COM_RBD   TASA_ASISTENCIA_ANUAL
+##   <chr>                         <dbl>
+## 1 IQUIQUE                       0.848
+## 2 HUARA                         0.831
+## 3 ALTO HOSPICIO                 0.854
+## 4 PICA                          0.839
+## 5 POZO ALMONTE                  0.883
+## 6 COLCHANE                      0.863
+## 7 CAMIÑA                        0.923
+```
+
+``` r
+toc()
+```
+
+```
+## 2.663 sec elapsed
+```
+
+{{< relacionada "/blog/arrow/" >}}
+
+
+## Conclusiones
+
+Realicemos un _benchmark_ para contar con los datos claros sobre el veredicto final:
+
+
+``` r
+bench::mark(
+  check = FALSE, iterations = 1,
+  base = read.csv2(archivo),
+  readr = readr::read_csv2(archivo, show_col_types = F),
+  arrow = arrow::read_csv2_arrow(archivo),
+)
+```
+
+```
+# A tibble: 3 × 13                                                                           
+  expression      min   median `itr/sec` mem_alloc total_time
+  <bch:expr> <bch:tm> <bch:tm>     <dbl> <bch:byt>   <bch:tm>  
+1 base          1.02m    1.02m    0.0163    6.66GB      1.02m 
+2 readr           18s      18s    0.0556    1.62GB        18s 
+3 arrow         2.04s    2.04s    0.489   613.92MB      2.04s 
+```
+
+En el resultado final de este experimento, cargar un archivo csv con `arrow::read_csv_arrow()` resulta **casi 10 veces más rápido** que cargarlo con `readr::read_csv()`, el cual es a su vez cinco veces más rápido que cargarlo con el típico `read.csv()`! 
+
+Si revisamos la columna `mem_alloc`, también podemos confirmar que, además de ser más rápido, ocupa muchísima menos memoria para llevar a cabo la carga: mientras R base consume casi 6 GB de memoria, Arrow lo logra con ~600 MB!
+
+
+{{< relacionada "/blog/arrow/" >}}
+
+{{< etiqueta "optimización" >}}

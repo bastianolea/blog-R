@@ -159,7 +159,7 @@ usethis::git_vaccinate()
 Por si la embarraste y agregaste un archivo incorrecto a la zona de preparación:
 
 ```
-git rm archivo.R
+git rm --cached archivo.R
 ```
 
 ### Deshacer `git add .`

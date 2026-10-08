@@ -1,0 +1,33 @@
+---
+title: Crear diapositivas en R con Quarto RevealJS
+author: ''
+date: '2026-10-07'
+slug: []
+categories: []
+tags:
+  - quarto
+draft: true
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+execute:
+  message: false
+  warning: false
+excerpt: Resumen del post
+links:
+  - icon: file-code
+    icon_pack: fas
+    name: Código
+    url: https://github.com/bastianolea
+---
+
+
+Todavía no he hecho un tutorial sobre diapositivas! Quizás debería. En principio es como tu dices, el mismo flujo de trabajo que Quarto, solo que el format en vez de ser html o pdf, es revealjs. Con eso, Quarto genera el html de diapositivas, donde los títulos # y ## hacen nuevas diapositivas, y puedes también crearlas manualmente con ---- (4 guiones medios). Se genera igual que otros reportes, apretando Render o con quarto::quarto_render() Pero sí, hacer diapositivas es más cercano a hacer sitios web con Quarto, porque para diapositivas, a diferencia de los reportes, se suele necesitar poner cosas más personalizadas, como imágenes centradas, en los costados, cuadritos, etc. Por ejemplo, en las diapositivas de mi último curso de R (https://github.com/bastianolea/curso_intro_R_3/blob/master/diapositivas.qmd) creé varios estilos para destacar contenidos, como .cuadro y .subtitulo para dar estilo a algunos elementos. Otra cosa es que puedes usar el estilo .fragment para hacer que un bloque de elementos solo aparezca al avanzar la diapositiva, y si es una lista de texto, le puedes poner .incremental para que cada punto de texto aparezca al ir avanzando.
+
+Yo aprendí equivocándome mucho y con estos recursos:
+- https://emilhvitfeldt.com/project/slidecraft-101/- https://slidecrafting-book.com
+- Si usas IA, hay una skill bien útil: https://github.com/mcmullarkey/posit-2026-talk/tree/main/.agents/skills/quarto-revealjs
+
+
+{{< etiqueta "quarto" >}}
