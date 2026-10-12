@@ -1,0 +1,79 @@
+{{/* Override de themes/hugo-apero/layouts/partials/shared/contact-form.html
+     Agrega un captcha de suma simple + honeypot para frenar spam.
+     La URL de Formspree no se escribe en el HTML: se asigna con JavaScript
+     solo después de resolver la suma correctamente. */}}
+<form name="{{ .Title | lower }}-submission" id="contact-form" method="post" accept-charset="utf-8"{{ with .Params.formspree_form_id }} data-f="{{ . | base64Encode }}"{{ end }}>
+  <fieldset id="{{ .Title | lower }}-inputs">
+    <legend>{{ .Params.Name }}</legend>
+    <label for="full-name">Nombre completo</label>
+    <input type="text" name="name" id="full-name" placeholder=" " required>
+    <label for="email-address">Correo electrónico</label>
+    <input type="email" name="_replyto" id="email-address" placeholder=" " required>
+    <label for="message">Mensaje</label>
+    <textarea rows="6" name="message" id="message" placeholder=" " required></textarea>
+    <input type="hidden" name="_subject" id="email-subject" value="{{ .Params.Name | title }} Submission" />
+
+    {{/* honeypot: Formspree descarta envíos donde este campo venga lleno */}}
+    <div aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;">
+      <label for="gotcha">No llenar este campo</label>
+      <input type="text" name="_gotcha" id="gotcha" tabindex="-1" autocomplete="off">
+    </div>
+
+    {{/* captcha: sin atributo name, así no se envía a Formspree */}}
+    <label for="captcha-respuesta" id="captcha-pregunta">Verificación: ¿cuánto es…?</label>
+    <input type="text" id="captcha-respuesta" inputmode="numeric" autocomplete="off" placeholder=" " required>
+    <small id="captcha-ayuda" class="db mb3" aria-live="polite">Responde con un número para confirmar que eres una persona.</small>
+  </fieldset>
+  <input type="submit" id="contact-submit" value="{{ if .Params.submit_button_label }}{{ .Params.submit_button_label }}{{ end }}" disabled style="opacity:0.5; cursor:not-allowed;">
+  {{ if .Params.show_poweredby_formspree }}<small class="db dib-l ml4-l">Basado en <a href="https://formspree.io" target="_blank">Formspree</a></small>{{ end }}
+  <noscript><p><small>Para enviar el formulario necesitas tener JavaScript activado.</small></p></noscript>
+</form>
+
+<script>
+(function () {
+  var form = document.getElementById("contact-form");
+  if (!form || !form.dataset.f) return;
+  var pregunta = document.getElementById("captcha-pregunta");
+  var respuesta = document.getElementById("captcha-respuesta");
+  var ayuda = document.getElementById("captcha-ayuda");
+  var boton = document.getElementById("contact-submit");
+
+  // números en palabras para que no sea trivial de leer automáticamente
+  var palabras = ["cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez"];
+  var a = Math.floor(Math.random() * 10) + 1;
+  var b = Math.floor(Math.random() * 10) + 1;
+  var resultado = a + b;
+  pregunta.textContent = "Verificación: ¿cuánto es " + palabras[a] + " más " + palabras[b] + "?";
+
+  function correcto() {
+    return parseInt(respuesta.value.trim(), 10) === resultado;
+  }
+
+  var textoAyuda = ayuda.textContent;
+
+  function actualizar() {
+    var ok = correcto();
+    boton.disabled = !ok;
+    boton.style.opacity = ok ? "" : "0.5";
+    boton.style.cursor = ok ? "" : "not-allowed";
+    if (ok) ayuda.textContent = textoAyuda;
+  }
+
+  // algunos navegadores (Firefox) restauran valores y estado del botón al recargar,
+  // lo que dejaría una respuesta vieja frente a una suma nueva
+  respuesta.value = "";
+  actualizar();
+
+  respuesta.addEventListener("input", actualizar);
+
+  form.addEventListener("submit", function (e) {
+    if (!correcto()) {
+      e.preventDefault();
+      ayuda.textContent = "La respuesta no es correcta, inténtalo de nuevo.";
+      respuesta.focus();
+      return;
+    }
+    form.action = "https://formspree.io/f/" + atob(form.dataset.f);
+  });
+})();
+</script>
