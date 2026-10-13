@@ -196,20 +196,30 @@ titleCaseStyle = "firstupper"
     url = "https://bastianolea.github.io/aprende_r/"
     weight = 2
   [[menu.header]]
+    name = "Temas"
+    title = "Temas"
+    url = "/tags/"
+    weight = 3.1
+    [menu.header.params]
+      dropdown = "tags"
+      dropdown_n = 10
+      # tags que no se muestran en el dropdown (nombre del tag tal como va en el front matter)
+      dropdown_exclude = ["blog", "chile"]
+  [[menu.header]]
     name = "Apps"
     title = "Apps"
     url = "https://bastianolea.github.io/shiny_apps/"
-    weight = 3.1
+    weight = 3.2
   [[menu.header]]
     name = "Datos"
     title = "Datos"
     url = "https://bastianolea.github.io/datos_sociales/"
-    weight = 3.2
+    weight = 3.3
   # [[menu.header]]
   #   name = "Paquetes"
   #   title = "Paquetes de R"
   #   url = "/categories/paquetes/"
-  #   weight = 3.3
+  #   weight = 3.4
   [[menu.header]]
     name = "Tutoriales"
     title = "Tutoriales"
@@ -220,11 +230,6 @@ titleCaseStyle = "firstupper"
     title = "Buscador"
     url = "/buscar/"
     weight = 5
-  [[menu.header]]
-    name = "Temas"
-    title = "Temas"
-    url = "/tags/"
-    weight = 6
   [[menu.header]]
    name = "Cursos"
    title = "Cursos"

@@ -461,3 +461,77 @@ a>svg.anchor-symbol {
   margin: 16px;
   color: #9069C0;
 }
+
+// menú desplegable de "Temas" en el header (layouts/partials/header.html)
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  padding-top: 8px; // puente para que no se cierre al bajar el cursor
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+  display: block;
+}
+
+.nav-dropdown-inner {
+  background-color: #ead1fa;
+  border: 2px solid #CCAFE3;
+  border-radius: 8px;
+  /* box-shadow: 0 6px 18px rgba(84,58,116,.18); */
+  padding: 6px 0;
+  min-width: 220px;
+  text-align: left;
+}
+
+.site-links .nav-dropdown-menu a.nav-dropdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 5px 14px;
+  font-size: 0.9rem;
+  color: #6E3998;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color .2s;
+}
+
+// anula la animación de subrayado de .site-links a (scaffold.scss)
+.site-links .nav-dropdown-menu a.nav-dropdown-item:after {
+  display: none;
+}
+
+.site-links .nav-dropdown-menu a.nav-dropdown-item:hover,
+.site-links .nav-dropdown-menu a.nav-dropdown-item:focus {
+  background-color: #CCAFE360;
+}
+
+.nav-dropdown-count {
+  font-size: 0.75rem;
+  color: #A885C6;
+}
+
+.site-links .nav-dropdown-menu a.nav-dropdown-all {
+  border-top: 1px solid #CCAFE3;
+  margin-top: 4px;
+  padding-top: 8px;
+  font-weight: 600;
+}
+
+// en móvil no hay hover: el enlace lleva directo a /tags/
+@media (hover: none) {
+  .nav-dropdown-menu {
+    display: none !important;
+  }
+}

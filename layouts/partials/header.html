@@ -9,7 +9,29 @@
         {{ $active := or ($page.IsMenuCurrent "header" .) ($page.HasMenuCurrent "header" .) }}
         {{ $active = or $active (eq $page.Section (trim .URL "/")) }}
         {{ $active = or $active (eq $page.RelPermalink .URL ) }}
+      {{ if eq .Params.dropdown "tags" }}
+      <div class="nav-dropdown dib">
+        <a class="link f6 f5-l dib pv1 ph2 {{ if $active }}active{{ end }}" href="{{ .URL }}" title="{{ .Title }}" aria-haspopup="true">{{ .Name }}</a>
+        <div class="nav-dropdown-menu" role="menu">
+          <div class="nav-dropdown-inner">
+            {{ $n := .Params.dropdown_n | default 10 }}
+            {{ $excluir := slice }}
+            {{ range .Params.dropdown_exclude | default slice }}{{ $excluir = $excluir | append (lower .) }}{{ end }}
+            {{ $mostrados := 0 }}
+            {{ range site.Taxonomies.tags.ByCount }}
+              {{ if ge $mostrados $n }}{{ break }}{{ end }}
+              {{ if not (in $excluir (lower .Name)) }}
+                {{ $mostrados = add $mostrados 1 }}
+            <a class="nav-dropdown-item" href="{{ .Page.RelPermalink }}" role="menuitem">{{ .Page.Title }} <span class="nav-dropdown-count">{{ .Count }}</span></a>
+              {{ end }}
+            {{ end }}
+            <a class="nav-dropdown-item nav-dropdown-all" href="{{ .URL }}" role="menuitem">Todos los temas &rarr;</a>
+          </div>
+        </div>
+      </div>
+      {{ else }}
       <a class="link f6 f5-l dib pv1 ph2 {{ if $active }}active{{ end }}" href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
+      {{ end }}
       {{ end }}
       {{ if .Site.Params.socialInHeader }}
       <!-- separar logos de redes sociales de los items del menu -->
