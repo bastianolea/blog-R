@@ -1,0 +1,31 @@
+{{- /*
+  Limpia el markdown de una publicación para la versión index.md (LLMs):
+  quita los datos de htmlwidgets y convierte rutas relativas en URLs absolutas,
+  para que el archivo se pueda leer de forma aislada (sin el contexto del sitio).
+  Uso: partial "llms/limpiar.html" (dict "page" . "texto" .RenderShortcodes)
+*/ -}}
+{{- $raiz := site.BaseURL -}}
+{{- $pagina := .page.Permalink -}}
+{{- $t := .texto -}}
+
+{{- /* htmlwidgets (mapgl, leaflet, ggiraph, gt...): datos JSON de varios MB, librerías y CSS */ -}}
+{{- $t = replaceRE `(?s)<script type="application/json" data-for="htmlwidget-[^"]*">.*?</script>` "_[Visualización interactiva: disponible en la versión web de esta publicación]_" $t -}}
+{{- $t = replaceRE `<div[^>]*class="[^"]*html-widget[^"]*"[^>]*>\s*</div>` "" $t -}}
+{{- $t = replaceRE `<script src="[^"]*"[^>]*>\s*</script>` "" $t -}}
+{{- $t = replaceRE `<link href="[^"]*index_files/libs/[^"]*"[^>]*/?>` "" $t -}}
+{{- $t = replaceRE `(?s)\n<style[^>]*>.*?</style>` "\n" $t -}}
+
+{{- /* imágenes en HTML crudo (posts de blogdown .markdown) → markdown */ -}}
+{{- $t = replaceRE `<img\s+[^>]*?src="([^"]+)"[^>]*?>` "![]($1)" $t -}}
+
+{{- /* ../../blog/x/ (Quarto antiguo) y /blog/x/ → raíz del sitio */ -}}
+{{- $t = replaceRE `\]\((?:\.\./)+` (printf "](%s" $raiz) $t -}}
+{{- $t = replaceRE `\]\(/([^/])` (printf "](%s$1" $raiz) $t -}}
+
+{{- /* ./index_files/x.png y archivo.png → relativo a la publicación */ -}}
+{{- $t = replaceRE `\]\(\./` (printf "](%s" $pagina) $t -}}
+{{- $t = replaceRE `\]\(([A-Za-z0-9_%ñÑ][^)\s:]*)\)` (printf "](%s$1)" $pagina) $t -}}
+
+{{- /* máximo una línea en blanco seguida */ -}}
+{{- $t = replaceRE `\n{3,}` "\n\n" $t -}}
+{{- return (strings.TrimSpace $t) -}}

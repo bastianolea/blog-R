@@ -62,6 +62,11 @@ titleCaseStyle = "firstupper"
 
   goatcounter = "bastimapache"
 
+  # /llms.txt agrupa las publicaciones por tema: cada una aparece una sola vez,
+  # en el primer tema de esta lista que tenga entre sus tags (de más específico a más general)
+  [params.llms]
+    temas = ["shiny", "mapas", "web scraping", "inteligencia artificial", "análisis de texto", "quarto", "tablas", "ggplot2", "gráficos", "visualización de datos", "limpieza de datos", "procesamiento de datos", "automatización", "optimización", "loops", "funciones", "estadística", "básico", "consejos", "datos", "curiosidades"]
+
   # "utterances" o "" (desactivados)
   comments = ""
 
@@ -242,6 +247,25 @@ titleCaseStyle = "firstupper"
     disable = false
     privacyEnhanced = true
 
+# salida para LLMs: /llms.txt (índice) e index.md por publicación
+# plantillas: layouts/index.llms.txt, layouts/_default/single.markdown.md
+# y variantes layouts/shortcodes/*.markdown.md
+[mediaTypes."text/markdown"]
+  suffixes = ["md"]
+
+[outputFormats.markdown]
+  mediaType = "text/markdown"
+  baseName = "index"
+  isPlainText = true
+  rel = "alternate"
+
+[outputFormats.llms]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  root = true
+  notAlternative = true
+
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
-  page = ["HTML"]
+  home = ["HTML", "RSS", "JSON", "llms"]
+  page = ["HTML", "markdown"]

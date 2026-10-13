@@ -55,6 +55,17 @@ ol, blockquote {
   margin-bottom: -12px;
 }
 
+// botón "Copiar texto para IA" (layouts/partials/llms/boton-copiar.html)
+.boton-copiar-ia {
+  white-space: nowrap;
+}
+
+// en el sidebar de series la columna es angosta
+.serie-sidebar-ia .boton {
+  font-size: 85%;
+  padding: 10px 14px 7px 10px;
+}
+
 // colores de tablas
 th {
   padding: 8px !important;

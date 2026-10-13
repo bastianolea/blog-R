@@ -1,0 +1,41 @@
+{{- /*
+  Botón "Copiar texto para IA": copia al portapapeles la versión Markdown del post
+  (index.md, ver layouts/_default/single.markdown.md). Sin JavaScript, el enlace abre el .md.
+  Uso: partial "llms/boton-copiar.html" .
+*/ -}}
+{{- with .OutputFormats.Get "markdown" }}
+<div class="db pt1" style="margin-bottom: 34px;">
+  <a class="btn-links mr2 ba dib boton boton-copiar-ia" href="{{ .RelPermalink }}" title="Copia el contenido de esta publicación en Markdown, para pegarlo en un chat con IA">
+    <i class="fas fa-clone fa-lg fa-fw mr2"></i>
+    <span class="boton-copiar-ia-texto">Copiar texto para IA</span></a>
+</div>
+
+<script>
+  document.querySelectorAll(".boton-copiar-ia").forEach(function (boton) {
+    boton.addEventListener("click", async function (e) {
+      if (!navigator.clipboard) return; // sin API de portapapeles: abrir el .md
+      e.preventDefault();
+      const etiqueta = boton.querySelector(".boton-copiar-ia-texto");
+      const original = etiqueta.textContent;
+      const texto = fetch(boton.href)
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); });
+      try {
+        // ClipboardItem con promesa: Safari exige iniciar la copia dentro del clic, antes del fetch
+        if (window.ClipboardItem) {
+          await navigator.clipboard.write([new ClipboardItem({
+            "text/plain": texto.then(function (t) { return new Blob([t], { type: "text/plain" }); })
+          })]);
+        } else {
+          await navigator.clipboard.writeText(await texto);
+        }
+        etiqueta.textContent = "¡Texto copiado!";
+      } catch (err) {
+        window.open(boton.href, "_blank");
+        etiqueta.textContent = original;
+        return;
+      }
+      setTimeout(function () { etiqueta.textContent = original; }, 2500);
+    });
+  });
+</script>
+{{- end }}

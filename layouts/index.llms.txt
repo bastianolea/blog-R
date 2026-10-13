@@ -1,0 +1,55 @@
+{{- /*
+  Índice /llms.txt según https://llmstxt.org
+  Las publicaciones se agrupan por tema según site.Params.llms.temas;
+  cada una aparece solo una vez (en el primer tema que calce).
+  Ojo con los espacios: cada ítem empieza con salto de línea y cada sección con dos.
+*/ -}}
+{{- define "llms-item" -}}
+{{- $url := .Permalink -}}
+{{- with .OutputFormats.Get "markdown" }}{{ $url = .Permalink }}{{ end }}
+- [{{ .Title | markdownify | plainify | htmlUnescape }}]({{ $url }})
+{{- with .Params.excerpt | default .Params.subtitle }}: {{ . | markdownify | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace | truncate 160 "…" }}{{ end -}}
+{{- end -}}
+
+# {{ site.Params.orgName }}
+
+> {{ site.Params.description }}
+
+Blog en español de Bastián Olea Herrera sobre programación en R, análisis y visualización de datos, aplicaciones Shiny y datos sociales de Chile. La mayoría de las publicaciones son tutoriales con código reproducible.
+
+Cada publicación tiene una versión en Markdown (sin menús ni estilos) en la misma URL terminada en `index.md`; los enlaces de este índice apuntan a esas versiones.
+
+{{- $posts := (where site.RegularPages "Section" "blog").ByDate.Reverse -}}
+{{- $usados := slice -}}
+{{- range $tema := site.Params.llms.temas -}}
+  {{- $grupo := slice -}}
+  {{- range $posts -}}
+    {{- $tags := slice -}}
+    {{- range .Params.tags }}{{ $tags = $tags | append (lower .) }}{{ end -}}
+    {{- if and (in $tags (lower $tema)) (not (in $usados .RelPermalink)) -}}
+      {{- $grupo = $grupo | append . -}}
+      {{- $usados = $usados | append .RelPermalink -}}
+    {{- end -}}
+  {{- end -}}
+  {{- with $grupo }}
+
+## {{ cond (eq $tema "ggplot2") $tema ($tema | strings.FirstUpper) }}
+{{ range . }}{{ template "llms-item" . }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $resto := slice -}}
+{{- range $posts }}{{ if not (in $usados .RelPermalink) }}{{ $resto = $resto | append . }}{{ end }}{{ end -}}
+{{- with $resto }}
+
+## Otras publicaciones
+{{ range . }}{{ template "llms-item" . }}{{ end -}}
+{{- end }}
+
+## Optional
+
+- [Sobre mí]({{ "about/" | absURL }}): quién soy y qué hago
+- [Cursos y clases]({{ "clases/" | absURL }}): cursos de R que he impartido
+- [Aprende R](https://bastianolea.github.io/aprende_r/): material para aprender R desde cero
+- [Apps](https://bastianolea.github.io/shiny_apps/): aplicaciones Shiny con datos sociales de Chile
+- [Datos](https://bastianolea.github.io/datos_sociales/): repositorio de datos sociales de Chile

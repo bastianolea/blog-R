@@ -1,0 +1,8 @@
+# Encabezados HTTP de Netlify
+# salida para LLMs: UTF-8 explícito (tildes y ñ) y sin indexar los .md en buscadores
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+
+/*.md
+  Content-Type: text/markdown; charset=utf-8
+  X-Robots-Tag: noindex

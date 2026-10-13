@@ -75,16 +75,18 @@
   <!-- índice de la página -->
   {{ $headers := findRE "<h[2].*>" $page.Content }}
   {{- $has_headers := ge (len $headers) 1 -}}
-  {{- if $has_headers -}}
-    <div id="PageTableOfContents" style="margin-top: 24px; position: sticky; top: 108px;">
-        <div class="blog-info ph4 pb4 pb0-l">
-        <h3 style="margin-bottom: 12px;">Índice:</h3>
-          <div class="pl2 pr0 mh0" style = "font-size: 90%; margin-top: -8px; margin-left: -22px; margin-bottom: 32px;">
-            {{ $page.TableOfContents }}
-          </div>
+  <!-- índice y botón para IA comparten el contenedor sticky -->
+  <div id="PageTableOfContents" style="margin-top: 24px; position: sticky; top: 108px;">
+    <div class="blog-info ph4 pb4 pb0-l">
+      {{- if $has_headers -}}
+      <h3 style="margin-bottom: 12px;">Índice:</h3>
+        <div class="pl2 pr0 mh0" style = "font-size: 90%; margin-top: -8px; margin-left: -22px; margin-bottom: 32px;">
+          {{ $page.TableOfContents }}
         </div>
+      {{ end }}
+      {{ partial "llms/boton-copiar.html" $page }}
     </div>
-  {{ end }}
+  </div>
   
 
 </aside>

@@ -14,6 +14,49 @@ Blog de análisis de datos de Bastián Olea Herrera.
 - **URL**: https://bastianolea.rbind.io/
 - **Idioma**: Español (es-ES)
 
+## Inventario del sitio (relevado 2026-10-13)
+
+Resumen del estado del sitio para no tener que re-explorarlo. Las cifras son aproximadas y cambian con cada post; re-verificar si una tarea depende de un número exacto.
+
+**Versión y build**
+- Hugo **0.164.0 extended** (local y en Netlify, fijado en `netlify.toml` con `HUGO_VERSION`).
+- `netlify.toml`: `command = 'hugo'`, `publish = 'public'`; branch-deploy y deploy-preview usan `hugo -F -b $DEPLOY_PRIME_URL`; producción define `HUGO_ENV = 'production'`. Netlify **no** corre R ni Quarto: compila los `.md`/`.markdown` ya commiteados.
+- `public/` y `resources/` están en `.gitignore`.
+- Un build completo local toma ~8–13 s.
+
+**Contenido** (en `content/blog/`)
+- ~230 `index.md` + ~54 `index.markdown` (Rmarkdown antiguo, vía blogdown) + 1 `index.html` (`blog/2025-07-27`, HTML crudo) + ~33 `.md`/`.markdown` sueltos (no `index`). Algunos bundles tienen tanto `index.md` como `index.markdown` sobrante.
+- ~132 posts con fuente `.qmd` (renderizados a `index.md` con `hugo-md`); 0 `.Rmd`/`.Rmarkdown` en uso.
+- ~220 posts publicados en `blog/` (descontando ~20 con `draft: true`). Otras secciones: `clases/` (12), `about/` (5, modular), páginas sueltas (`contacto`, `license`, `code-of-conduct`, `contributors`).
+- Front matter: casi todos tienen `excerpt` (~248); ~62 tienen `subtitle`; **ninguno** usa `description`. Muchos tienen `links:` (icono + url).
+- Categorías: `Tutoriales` (~111 posts), `Paquetes`.
+- Tags más usados: Chile (59), visualización de datos (56), datos (43), consejos (39), gráficos (38), ggplot2 (37), blog (34), mapas (33), limpieza de datos (30), shiny (26), básico (26), apps (25), texto, inteligencia artificial, procesamiento de datos, curiosidades, web scraping (21–23).
+
+**Layouts**
+- Se usa el sistema **antiguo** de plantillas (`layouts/_default/`, `layouts/partials/`, `layouts/shortcodes/`), no el de Hugo 0.146+ (`_partials`, `_shortcodes`, `home.html`); Hugo 0.164 los sigue leyendo.
+- Top-level de `layouts/`: `_default/`, `_markup/`, `about/`, `blog/`, `buscar/`, `form/`, `index.html`, `index.json`, `index.llms.txt`, `partials/`, `robots.txt`, `shortcodes/`, `taxonomy/`.
+- El `<head>` está en `layouts/partials/head.html`; recorre `.AlternativeOutputFormats` para emitir los `<link rel="alternate">` (RSS, JSON, Markdown).
+- `config.toml` no tenía `[outputFormats]`/`[mediaTypes]` antes de la salida para LLMs.
+
+**Shortcodes propios** (`layouts/shortcodes/`, 30 + `blogdown/postref`) y usos aproximados en el contenido:
+
+| Shortcode | Usos | | Shortcode | Usos |
+|---|---|---|---|---|
+| `blogdown/postref` | 451 | | `cursos` | 83 |
+| `imagen` | 444 | | `imagen_tamaño` | 38 |
+| `relacionada` | 193 | | `indice` | 31 |
+| `detalles` | 161 | | `extension` | 27 |
+| `info` | 155 | | `video` | 23 |
+| `boton` | 153 | | `paso`, `imagen_cuadricula` | 15 c/u |
+| `cafecito` | 135 | | `imagen_lateral` | 10 |
+| `bajada` | 115 | | `columnas`/`columna`/`fin_columnas`, `video_ancho`, `externo` | 6–8 |
+| `etiqueta` | 112 | | `youtube` (integrado), `paquete`, `gist`, `figure` (integrado), `categoria`, `imagen_alto`, `embed` | 1–6 |
+| `aviso` | 98 | | | |
+
+Del tema (`themes/hugo-apero/layouts/shortcodes/`): `here`, `panel`, `panelset`. `blogdown/postref` imprime el permalink del post y aparece dentro de `<img src="...">` en los `.markdown` antiguos.
+
+**Posts con salidas pesadas** (htmlwidgets embebidos en el `.md`): `mapas_mapgl`, `mapas_censo_2024` (JSON de varios MB), `ggiraph`, `ggrepel` (SVG en JSON), `tablas_gt`, `gt_pildoras` (tablas gt con CSS), `colores`. `excel_openxlsx` imprime un data frame gigante (~3.5 MB).
+
 ## Stack
 
 - **Hugo** con tema **Hugo Apéro**
@@ -30,7 +73,7 @@ Blog de análisis de datos de Bastián Olea Herrera.
 ```
 content/
 ├── _index.md              # Homepage (type: home)
-├── blog/                  # Posts principales (150+)
+├── blog/                  # Posts principales (~220 publicados)
 │   ├── _index.md          # Índice del blog con cascade config
 │   ├── 2025-01-12/        # Posts con fecha (YYYY-MM-DD/index.md|qmd)
 │   ├── mapas_sf/          # Posts con slug semántico
@@ -299,6 +342,24 @@ format:
 y pegar debajo el fragmento a probar. Correr `quarto render test.qmd` ahí mismo y leer el `index.md` resultante. Esto evita re-ejecutar código R pesado del post real y evita chocar con el watcher de `blogdown::serve_site()` (ver condición de carrera en la sección «Botón Render» más arriba).
 
 
+## Salida para LLMs (`/llms.txt` e `index.md` por publicación)
+
+Implementado 2026-10-13, equivalente a `llms-txt: true` de Quarto. Hugo genera en cada build (también en Netlify):
+
+- **`/llms.txt`**: índice según llmstxt.org. Plantilla `layouts/index.llms.txt`. Agrupa los posts de `blog/` por tema según la lista **`params.llms.temas`** de `config.toml` (orden de prioridad, de más específico a más general); cada post aparece una sola vez, en el primer tema que calce con sus tags, y los que no calzan van a «Otras publicaciones». Para cambiar la agrupación, editar esa lista.
+- **`index.md` junto a cada `index.html`** (todas las páginas regulares, no solo blog): versión Markdown limpia. Plantilla `layouts/_default/single.markdown.md` (encabezado con título, excerpt, URL, fecha, tags y `links`) + `.RenderShortcodes`, pasado por el partial `layouts/partials/llms/limpiar.html`, que quita los JSON de htmlwidgets (mapgl, ggiraph: varios MB), scripts/CSS de librerías y bloques `<style>`, y convierte rutas relativas (`./index_files/...`, `imagen.png`, `../../../blog/x/`, `/blog/x/`) en URLs absolutas.
+- Config en `config.toml`: media type `text/markdown`, output formats `markdown` (`rel = "alternate"`, por eso `head.html` emite `<link rel="alternate" type="text/markdown">` en cada post) y `llms` (`notAlternative`); `outputs.home` incluye `llms` y `outputs.page` incluye `markdown`.
+- `static/_headers`: `charset=utf-8` para `.md` y `llms.txt`, y `X-Robots-Tag: noindex` en los `.md` (evita contenido duplicado en Google).
+
+**Botón «Copiar texto para IA»:** partial `layouts/partials/llms/boton-copiar.html`, incluido en `layouts/blog/single-sidebar.html` debajo del índice (ambos dentro del contenedor sticky `#PageTableOfContents`, que ahora se muestra aunque el post no tenga encabezados). Usa la clase `.boton` de `custom.scss` e ícono `fas fa-clone`. El JS descarga el `index.md` y lo copia con `ClipboardItem` (con promesa, necesario para Safari) o `writeText`; si falla, abre el `.md` en otra pestaña. En los posts de serie (`single-series.html`, ej. `r_introduccion`) se incluye desde el override `layouts/partials/shared/series-sidebar.html`, en la columna del índice de la página, debajo de este. Ojo: `scaffold.scss` le da `.w-50` a `details#PageTableOfContents`; al envolverlo en un contenedor, ese ancho pasa al contenedor (`w-50-l`) y `details` va con `width: 100%` inline, si no el índice queda a la mitad de angosto. En esa columna el botón se achica (`.serie-sidebar-ia .boton` en `custom.scss`) y `.boton-copiar-ia` usa `white-space: nowrap`.
+
+**Cuándo se actualizan:** los genera Hugo a partir del `content/.../index.md` (o `.markdown`) en cada build; no se guardan en el repo. Flujo: editar `.qmd` → render (Quarto/blogdown) actualiza `content/.../index.md` → `serve_site()` lo refleja en local y, en producción, Netlify recompila al hacer `git push`. Con `freeze: true`, el render del archivo individual (botón Render o guardar con blogdown) sí re-ejecuta el código; revisar que `_freeze/` se haya actualizado y commitearlo junto al `index.md`. Corregir un post cambia su `index.md` publicado; `/llms.txt` solo cambia si cambian el título, el excerpt o los tags.
+
+**Regla: todo shortcode nuevo necesita su variante `layouts/shortcodes/<nombre>.markdown.md`.** Hugo elige la plantilla del shortcode según el formato de salida; si no existe la variante, usa la `.html` y el `index.md` queda con HTML y estilos inline. Las variantes devuelven Markdown mínimo (imagen → `![](src)`, aviso/info → blockquote, botón → enlace, relacionada/etiqueta → enlaces a los `index.md`, decorativos → vacío). También hay variantes para los integrados `youtube` y `figure`, para `blogdown/postref` (sin salto de línea final: se usa dentro de `src="..."`) y para `panel`/`panelset`/`here` del tema.
+
+**Verificar tras cambios:** `hugo -d /tmp/x` y revisar `/tmp/x/llms.txt`; buscar residuos con `grep -rl 'style=' --include=index.md /tmp/x` y ver los más pesados con `find /tmp/x -name index.md -exec wc -c {} + | sort -rn | head`. Lo que queda de HTML en los `.md` es contenido propio de los posts (tablas gt, bloques HTML escritos a mano), no de shortcodes.
+
+
 ## Archetype de posts nuevos (`archetypes/blog.md`)
 
 El front matter por defecto que se aplica a los posts creados con `blogdown::new_post()` (o `crear_publicacion()`, envoltorio en `R/funciones.R`) vive en **`archetypes/blog.md`** (archivo plano en la raíz del proyecto), no en un archetype de tipo directorio (`archetypes/blog/index.md`).
@@ -418,6 +479,9 @@ Archivo `static/_redirects` para migraciones de URL y dominios. Redirecciones de
 | Meta/SEO tags (override raíz) | `layouts/partials/meta.html` |
 | Paginación prev/next (override raíz) | `layouts/partials/shared/post-pagination.html` |
 | Buscador JSON | `layouts/index.json` |
+| Índice para LLMs (`/llms.txt`) | `layouts/index.llms.txt` |
+| Markdown por publicación (`index.md`) | `layouts/_default/single.markdown.md` + `layouts/partials/llms/limpiar.html` + `layouts/shortcodes/*.markdown.md` |
+| Encabezados HTTP Netlify | `static/_headers` |
 | Página buscador (iframe Shiny) | `content/buscar/_index.md` |
 | Layout buscador con iframe | `layouts/buscar/list.html` |
 | iframeResizer (script local) | `static/js/iframeResizer.min.js` |
