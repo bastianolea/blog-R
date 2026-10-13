@@ -12,7 +12,7 @@
 
   function precargarBuscador() {
     var iframe = document.createElement('iframe')
-    iframe.src = 'https://bastianoleah.shinyapps.io/buscador/'
+    iframe.src = 'https://bastianolea-blog-buscador.share.connect.posit.cloud/'
     iframe.style.cssText = 'position:absolute; width:1px; height:1px; opacity:0; pointer-events:none; border:none;'
     iframe.setAttribute('aria-hidden', 'true')
     iframe.setAttribute('tabindex', '-1')
