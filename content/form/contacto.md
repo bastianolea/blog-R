@@ -1,6 +1,7 @@
 ---
 date: "2019-02-25T13:38:41-06:00"
-description: Puedes escribirme cualquier duda o consulta! Me gustan las preguntas ☺️ Haré lo posible por responderte a la brevedad
+description: |
+  Puedes escribirme cualquier consulta que tengas. Me gusta que me hagan preguntas sobre R️!
 draft: false
 formspree_form_id: xrbgprnw
 layout: split-right

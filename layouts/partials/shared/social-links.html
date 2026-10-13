@@ -14,9 +14,14 @@
     {{ else if in (slice "http" "https") $scheme }}
       {{ $target = "target=\"_blank\" rel=\"me noopener\"" }}
     {{ end }}
-    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="{{ $link | safeURL }}" title="{{ .icon }}" {{ $target | safeHTMLAttr }}
+    {{ $nombre := .name | default .icon }}
+    <!-- nav-tooltip: muestra el nombre al hacer hover (solo en el header, ver custom.scss) -->
+    <span class="nav-tooltip dib">
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="{{ $link | safeURL }}" aria-label="{{ $nombre }}" {{ $target | safeHTMLAttr }}
     style="margin-bottom: 6px !important;"> <!-- espacio vertical extra entre cada icono -->
       <i class="{{ $pack }} {{ $pack_prefix }}-{{ .icon }} fa-lg fa-fw"></i>
     </a>
+    <span class="nav-dropdown-menu" role="tooltip"><span class="nav-dropdown-inner">{{ $nombre }}</span></span>
+    </span>
   {{ end }}
 </div>

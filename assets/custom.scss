@@ -484,6 +484,12 @@ a>svg.anchor-symbol {
   display: block;
 }
 
+// mantener subrayado "Temas" mientras el dropdown está abierto
+.site-links .nav-dropdown:hover > a:after,
+.site-links .nav-dropdown:focus-within > a:after {
+  width: 85%;
+}
+
 .nav-dropdown-inner {
   background-color: #ead1fa;
   border: 2px solid #CCAFE3;
@@ -529,7 +535,38 @@ a>svg.anchor-symbol {
   font-weight: 600;
 }
 
-// en móvil no hay hover: el enlace lleva directo a /tags/
+// tooltips de los íconos sociales (layouts/partials/shared/social-links.html)
+// reutilizan el estilo del dropdown; abren hacia abajo, salvo en el footer
+.nav-tooltip {
+  position: relative;
+}
+
+.nav-tooltip:hover .nav-dropdown-menu,
+.nav-tooltip:focus-within .nav-dropdown-menu {
+  display: block;
+}
+
+// en el footer no hay espacio abajo: abrir hacia arriba
+.site-footer .nav-tooltip .nav-dropdown-menu {
+  top: auto;
+  bottom: 100%;
+  padding-top: 0;
+  padding-bottom: 16px; // 4px más que el dropdown hacia abajo
+}
+
+.nav-tooltip .nav-dropdown-menu {
+  margin-left: -4px; // compensa el mr2 del ícono para centrar bajo él
+}
+
+.nav-tooltip .nav-dropdown-inner {
+  min-width: 0;
+  padding: 5px 14px;
+  font-size: 0.9rem;
+  color: #6E3998;
+  white-space: nowrap;
+}
+
+// en móvil no hay hover: los enlaces llevan directo a su destino
 @media (hover: none) {
   .nav-dropdown-menu {
     display: none !important;

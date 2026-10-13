@@ -78,18 +78,22 @@ titleCaseStyle = "firstupper"
   # íconos sociales del header y footer (fab = marcas, fas = sólidos)
   [[params.social]]
     icon = "search"
+    name = "Buscar publicaciones"
     icon_pack = "fas"
     url = "/buscar/"
   [[params.social]]
     icon = "linkedin"
+    name = "LinkedIn"
     icon_pack = "fab"
     url = "https://www.linkedin.com/in/bastianolea/"
   [[params.social]]
     icon = "github"
+    name = "GitHub"
     icon_pack = "fab"
     url = "https://github.com/bastianolea"
   [[params.social]]
     icon = "twitter"
+    name = "Twitter / X"
     icon_pack = "fab"
     url = "https://x.com/bastimapache"
   # [[params.social]]
@@ -114,14 +118,17 @@ titleCaseStyle = "firstupper"
   #   url = "https://bsky.app/profile/bastianolea.rbind.io"
   [[params.social]]
     icon = "heart"
+    name = "Mi sitio personal"
     icon_pack = "fas"
     url = "https://bastimapache.cl"
   [[params.social]]
     icon = "coffee"
+    name = "Regálame un cafecito"
     icon_pack = "fas"
     url = "https://buymeacoffee.com/bastimapache"
   [[params.social]]
     icon = "envelope"
+    name = "Contacto"
     icon_pack = "fas"
     url = "/contacto/"
 
