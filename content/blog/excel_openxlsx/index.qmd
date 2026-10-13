@@ -38,19 +38,19 @@ La gracia es que podremos usar estas herramientas de forma reproducible (poder r
 Carguemos un conjunto de datos de indicadores de calidad de vida urbana de Chile, del [Sistema de Indicadores y Estándares de Desarrollo Urbano](https://github.com/bastianolea/siedu_indicadores_urbanos).
 
 ```{r}
+#| message: false
+#| warning: false
+library(dplyr)
 library(arrow)
 
 datos <- read_parquet("https://github.com/bastianolea/siedu_indicadores_urbanos/raw/main/datos/siedu_indicadores_desarrollo_urbano.parquet")
 
-datos
+head(datos)
 ```
 
 Filtremos los datos para dejar tres indicadores, y sólo los valores más recientes para cada unidad territorial.
-```{r}
-#| message: false
-#| warning: false
-library(dplyr)
 
+```{r}
 datos <- datos |> 
   # filtrar variables
   filter(variable %in% c("Distancia a plazas públicas",
