@@ -1,13 +1,16 @@
 <!-- shortcode Hugo que agrega un botón con logo Font Awesome -->
-<!-- 0 es el enlace, 1 es el texto, y 2 es el logo -->
-<!-- El logo debe incluir "fab" si son logos de marcas, o "fas" si son los demás; por ejemplo, "fas fa-file-arrow-down" es un ícono de descarga -->
+<!-- 0 es el texto, 1 es el enlace, y 2 es el logo -->
+<!-- El logo solo necesita el nombre del ícono (ej. "file-arrow-down"), y se le antepone "fas fa-" automáticamente. Para íconos de marca u otro estilo, especifica la clase completa con espacio (ej. "fab fa-github") -->
+
+{{ $icon := .Get 2 | default "fab fa-github" }}
+{{ $iconClass := cond (in $icon " ") $icon (printf "fas fa-%s" $icon) }}
 
 <div class = "db pt1"
 style = "margin-bottom: 34px;">
 
 <a class = "btn-links mr2 ba dib boton"
 href = "{{.Get 1}}" target="_blank">
-<i class="{{.Get 2 | default "fab fa-github"}} fa-lg fa-fw mr2"></i>
+<i class="{{ $iconClass }} fa-lg fa-fw mr2"></i>
 {{.Get 0 | markdownify }}</a>
 
 </div>

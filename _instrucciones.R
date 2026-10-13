@@ -27,9 +27,9 @@ crear_publicacion(
 
 # crear un post con nombre
 crear_publicacion(
-  title = "Crear diapositivas en R con Quarto RevealJS",
-  file = "blog/quarto_diapositivas/index.qmd",
-  tags = c("quarto"),
+  title = "Consejos para programar en R con inteligencia artificial",
+  file = "blog/ia_r/index.qmd",
+  tags = c("inteligencia artificial"),
   categories = c()
 )
 

@@ -160,7 +160,7 @@ titleCaseStyle = "firstupper"
     weight = 3.1
     [menu.header.params]
       dropdown = "tags"
-      dropdown_n = 10
+      dropdown_n = 16
       # tags que no se muestran en el dropdown (nombre tal como va en el front matter)
       dropdown_exclude = ["blog", "chile"]
   [[menu.header]]

@@ -1,0 +1,5 @@
+{{ $icon := .Get 1 | default "window-maximize" }}
+{{ $iconClass := cond (in $icon " ") $icon (printf "fas fa-%s" $icon) }}
+<span class="btn-links mr2 mb2 ba dib mini-tag">
+  <i class="{{ $iconClass }} fa-lg fa-fw mr2" style="margin-right:4px;"></i><span style="position: relative; top: -1px;">{{ .Get 0 | markdownify }}</span>
+</span>

@@ -60,6 +60,18 @@ ol, blockquote {
   white-space: nowrap;
 }
 
+.mini-tag {
+  padding: 6px;
+  padding-bottom: 3px;
+  border-radius: 5px;
+  padding-right: 10px;
+  text-decoration: none;
+  border: 1px solid;
+  color: #9069c0!important;
+  font-size: 10pt;
+  border: solid 2px color(srgb 0.5634 0.4121 0.7542);
+}
+
 // en el sidebar de series la columna es angosta
 .serie-sidebar-ia .boton {
   font-size: 85%;
@@ -255,6 +267,15 @@ background-color: #A985C630;
     margin-top: 0px !important;
   }
   
+}
+
+
+.cuadro-info {
+  display: flex; align-items: center; gap: 15px; padding: 14px; 
+            /*background-color: #A985C650;*/
+            background-color: #DEC4F2;
+            border-radius: 6px;
+            margin: 20px 40px 20px 40px;
 }
 
 
