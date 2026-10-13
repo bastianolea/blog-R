@@ -1,190 +1,136 @@
 baseURL = "https://bastianolea.rbind.io/"
-# baseURL = "https://bastianoleah.netlify.app/"
 theme = "hugo-apero"
 defaultContentLanguage = "es"
 title = "Bastián Olea"
 author = "Bastián Olea Herrera"
-copyright = "" # set to override the auto generated copyright using org info and now year
-googleAnalytics = ""
-#disqusShortname = "" # see params.comments to use utterances or giscus instead of Disqus
-metaDataFormat = "yaml"
-footnoteReturnLinkContents = "&#8617;" # ↩
-# set deliberately low for testing choose your preffered number based on the blog layout you've chosen
+copyright = "" # vacío: se genera automáticamente con orgName, orgLocal y el año
+timeZone = "America/Santiago"
 pagination.pagerSize = 20
-preserveTaxonomyNames = true
-buildFuture = true # for posts set in the future
+buildFuture = true # publica posts con fecha futura
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.qmd$", "\\.knit\\.md$", "\\.utf8\\.md$", "/_freeze/", "/\\.quarto/"]
 enableEmoji = true
+enableRobotsTXT = true # plantilla en layouts/robots.txt
 titleCaseStyle = "firstupper"
 
-    
 [languages]
   [languages.es]
-  label = "Spanish"
-  locale = 'es-ES'
-  weight = 1
+    label = "Español"
+    locale = "es-ES"
+    weight = 1
 
 [markup]
-  defaultMarkdownHandler = "goldmark"
   [markup.goldmark.renderer]
-    unsafe = true  # Enable user to embed HTML snippets in Markdown content.
-    hardwraps = false 
+    unsafe = true # permite HTML dentro del markdown
   [markup.tableOfContents]
     startLevel = 2
     endLevel = 3
     ordered = false
   [markup.highlight]
-    # one of: https://xyproto.github.io/splash/docs/ 
+    # estilos: https://xyproto.github.io/splash/docs/
     style = "rose-pine-moon"
-    noClasses = false # para usar css personalizado (en static/css/)
+    noClasses = false # usa el css personalizado de static/css/syntax.css
     # editar estilo con: https://gohugo.io/commands/hugo_gen_chromastyles/
-    # https://makewithhugo.com/syntax-hightlight-color/
-    # el css está en static/css/syntax.css
-    
+
+[sitemap]
+  changeFreq = "weekly"
+
+[minify]
+  minifyOutput = true
+
 [params]
   orgName = "Bastián Olea Herrera"
   orgLocal = "Chile"
-  description = "Blog de Bastián Olea, sociólogx y analista de datos"
-  favicon = false
+  description = "Tutoriales, guías y consejos de R en español para análisis y visualización de datos, con foco en ciencias sociales y datos de Chile."
+  favicon = "/favicon.ico"
   logo = "/img/logo.png"
   mainSections = ["blog", "apps", "about"]
   navallcaps = true
-  # show/hide social icons in site header & footer
-  # configure social icons and links below in [[params.social]]
   socialInHeader = true
   socialInFooter = true
-  # Default image for social sharing and search engines. 
-  # Place image file in `static` folder and specify image name here.
+  # imagen por defecto al compartir (ruta dentro de static/)
   sharing_image = "img/collage_horizontal_morado.jpg"
-  image = "img/collage_horizontal_morado.jpg"
-  # Twitter username (without @). Used when a visitor shares your site on Twitter
-  twitter = "bastimapache"
-  
-  # use a built-in color theme
-  # one of: earth / forest / grayscale / magma / paper / peach / plum /
-  #         poppy / primer / sky / violet / water 
-  theme = ""
-  
-  # or, leave theme empty & make your own palette
-  # see docs at https://hugo-apero.netlify.app/blog/color-themes/
-  # the custom scss file must be in the assets/ folder
-  # add the filename name here, without extension
-  # to use hex colors instead of named tachyons colors, include "hex" in filename
-  custom_theme = "tema-morado-hex" 
-  
-  # use an embedded font-family
-  # serif options: Fraunces / EB Garamond / Bitter
-  # sans-serif options: Commissioner / Atkinson Hyperlegible / Metropolis
-  # if you import your own fonts, name them here too
+  twitter = "bastimapache" # sin @
+
+  # paleta propia en assets/tema-morado-hex.scss
+  custom_theme = "tema-morado-hex"
+
   customtextFontFamily = "Atkinson Hyperlegible"
   customheadingFontFamily = "EB Garamond"
-  # alternatively, leave empty and select basic font options: sans-serif or serif
-  # for more http://tachyons.io/docs/typography/font-family/
+  # respaldo usado por scaffold.scss
   textFontFamily = "sans-serif"
   headingFontFamily = "serif"
+
   goatcounter = "bastimapache"
 
-  # Specify use of utterances, giscus or disqus
-  # comments = "utterances"
+  # "utterances" o "" (desactivados)
   comments = ""
-    
-  # utterances está configurado y funciona, pero solo para gente registrada en github
-  # Configuration of https://utteranc.es/ for comments
+
+  # utterances funciona, pero solo para personas con cuenta de GitHub
   [params.utterances]
     repo_name = "bastianolea/blog-R"
-    issue_term = "pathname" # url, pathname, or title
+    issue_term = "pathname"
     theme = "github-light"
     label = "comments"
 
-  # To enable giscus, the github discussions based comment section,
-  # Follow the steps described to enable giscus and get the values
-  # needed to populate the below information.
-  # https://www.joelnitta.com/posts/2021-11-24_using-giscus/
-  [params.giscus]
-    repo = "bastianolea/blog-r"
-    repo_id = "[REPO ID]="
-    category = "Comments"
-    category_id = "[category ID]"
-    mapping = "pathname"
-    reactions_enabled = "1"
-    emit_metadata = "0"
-    theme = "light"
-
-  # disqus funciona, pero es medio feo y cuesta configurar 
-  [services]
-    [services.disqus] 
-      shortname = 'bastianolea'
-  
-  # Configuration of math rendering
   [params.math]
-    renderer = "katex" # one of "mathjax" / "katex" 
+    renderer = "katex"
 
-  # Social icons may appear on homepage and in site header or footer
-  # Configure show/hide above - add as many as you like below
-  # Icon pack "fab" includes brand icons, see: https://fontawesome.com/icons?d=gallery&s=brands&m=free
-  # Icon pack "fas" includes solid icons, see: https://fontawesome.com/icons?d=gallery&s=solid&m=free
-  # Icon pack "far" includes regular icons, see: https://fontawesome.com/icons?d=gallery&s=regular&m=free
+  # íconos sociales del header y footer (fab = marcas, fas = sólidos)
   [[params.social]]
-    icon      = "search" # icon name without the 'fa-'
+    icon = "search"
     icon_pack = "fas"
     url = "/buscar/"
   [[params.social]]
-      icon      = "linkedin"
-      icon_pack = "fab"
-      url       = "https://www.linkedin.com/in/bastianolea/"
+    icon = "linkedin"
+    icon_pack = "fab"
+    url = "https://www.linkedin.com/in/bastianolea/"
   [[params.social]]
-      icon      = "github" # icon name without the 'fa-'
-      icon_pack = "fab"
-      url       = "https://github.com/bastianolea"
+    icon = "github"
+    icon_pack = "fab"
+    url = "https://github.com/bastianolea"
   [[params.social]]
-      icon      = "twitter"
-      icon_pack = "fab"
-      url       = "https://x.com/bastimapache"
+    icon = "twitter"
+    icon_pack = "fab"
+    url = "https://x.com/bastimapache"
   # [[params.social]]
-  #     icon      = "tiktok"
-  #     icon_pack = "fab"
-  #     url       = "https://www.tiktok.com/@bastimapache"
+  #   icon = "tiktok"
+  #   icon_pack = "fab"
+  #   url = "https://www.tiktok.com/@bastimapache"
   # [[params.social]]
-  #     icon      = "instagram"
-  #     icon_pack = "fab"
-  #     url       = "https://www.instagram.com/raccunnie"
+  #   icon = "instagram"
+  #   icon_pack = "fab"
+  #   url = "https://www.instagram.com/raccunnie"
   # [[params.social]]
-  #     icon      = "goodreads"
-  #     icon_pack = "fab"
-  #     url       = "https://www.goodreads.com/user/show/53224910-basti-n-olea-herrera"
+  #   icon = "goodreads"
+  #   icon_pack = "fab"
+  #   url = "https://www.goodreads.com/user/show/53224910-basti-n-olea-herrera"
   # [[params.social]]
-  #     icon      = "lastfm"
-  #     icon_pack = "fab"
-  #     url       = "https://www.last.fm/user/bastimapache"
+  #   icon = "lastfm"
+  #   icon_pack = "fab"
+  #   url = "https://www.last.fm/user/bastimapache"
   # [[params.social]]
-  #     icon      = "bluesky"
-  #     icon_pack = "fab"
-  #     url       = "https://bsky.app/profile/bastianolea.rbind.io"
+  #   icon = "bluesky"
+  #   icon_pack = "fab"
+  #   url = "https://bsky.app/profile/bastianolea.rbind.io"
   [[params.social]]
-      icon      = "heart"
-      icon_pack = "fas"
-      url       = "https://bastimapache.cl"
+    icon = "heart"
+    icon_pack = "fas"
+    url = "https://bastimapache.cl"
   [[params.social]]
-      icon      = "coffee"
-      icon_pack = "fas"
-      url       = "https://buymeacoffee.com/bastimapache"
+    icon = "coffee"
+    icon_pack = "fas"
+    url = "https://buymeacoffee.com/bastimapache"
   [[params.social]]
-      icon      = "envelope"
-      icon_pack = "fas"
-      url       = "/contacto/"
+    icon = "envelope"
+    icon_pack = "fas"
+    url = "/contacto/"
 
 [taxonomies]
   category = "categories"
   series = "series"
   tag = "tags"
-  
+
 [menu]
-  # Configure header 
-  [[menu.header]]
-    name = "Yo"
-    title = "Bastián Olea: Sobre mi"
-    url = "/about/"
-    weight = 10
   [[menu.header]]
     name = "Blog"
     title = "Bastián Olea: Blog de R"
@@ -203,7 +149,7 @@ titleCaseStyle = "firstupper"
     [menu.header.params]
       dropdown = "tags"
       dropdown_n = 10
-      # tags que no se muestran en el dropdown (nombre del tag tal como va en el front matter)
+      # tags que no se muestran en el dropdown (nombre tal como va en el front matter)
       dropdown_exclude = ["blog", "chile"]
   [[menu.header]]
     name = "Apps"
@@ -215,43 +161,37 @@ titleCaseStyle = "firstupper"
     title = "Datos"
     url = "https://bastianolea.github.io/datos_sociales/"
     weight = 3.3
-  # [[menu.header]]
-  #   name = "Paquetes"
-  #   title = "Paquetes de R"
-  #   url = "/categories/paquetes/"
-  #   weight = 3.4
   [[menu.header]]
     name = "Tutoriales"
     title = "Tutoriales"
     url = "/categories/tutoriales/"
     weight = 3.4
+  # [[menu.header]]
+  #   name = "Paquetes"
+  #   title = "Paquetes de R"
+  #   url = "/categories/paquetes/"
+  #   weight = 3.5
   [[menu.header]]
     name = "Buscar"
     title = "Buscador"
     url = "/buscar/"
     weight = 5
   [[menu.header]]
-   name = "Cursos"
-   title = "Cursos"
-   url = "/clases/"
-   weight = 7
+    name = "Cursos"
+    title = "Cursos"
+    url = "/clases/"
+    weight = 7
+  [[menu.header]]
+    name = "Yo"
+    title = "Bastián Olea: Sobre mi"
+    url = "/about/"
+    weight = 10
   [[menu.header]]
     name = "Enlaces"
     title = "Recursos"
     url = "/blog/r_introduccion/recursos_r/"
     weight = 11
-    
-  # Configure footer  
-  [[menu.footer]]
-    name = "Licencia"
-    title = "Bastián Olea: Licencia"
-    url = "/license/"
-    weight = 9
-  [[menu.footer]]
-    name = "Código de conducta"
-    title = "Bastián Olea: Código de conducta"
-    url = "/code-of-conduct/"
-    weight = 9
+
   [[menu.footer]]
     name = "Contacto"
     title = "Bastián Olea: Contacto"
@@ -267,15 +207,19 @@ titleCaseStyle = "firstupper"
     title = "Buscador"
     url = "/buscar/"
     weight = 3
-  
-# see https://gohugo.io/about/hugo-and-gdpr/    
+  [[menu.footer]]
+    name = "Licencia"
+    title = "Bastián Olea: Licencia"
+    url = "/license/"
+    weight = 9
+  [[menu.footer]]
+    name = "Código de conducta"
+    title = "Bastián Olea: Código de conducta"
+    url = "/code-of-conduct/"
+    weight = 10
+
+# https://gohugo.io/about/hugo-and-gdpr/
 [privacy]
-  [privacy.disqus]
-    disable = false
-  [privacy.googleAnalytics]
-    disable = true
-    anonymizeIP = true
-    respectDoNotTrack = true
   [privacy.instagram]
     disable = false
     simple = true
@@ -294,4 +238,3 @@ titleCaseStyle = "firstupper"
 [outputs]
   home = ["HTML", "RSS", "JSON"]
   page = ["HTML"]
-  

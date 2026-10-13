@@ -7,7 +7,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 {{ hugo.Generator }}
-<title>{{ if .IsHome }}{{ .Title | markdownify | plainify }}{{ else }}{{ .Page.Title | markdownify | plainify }} | {{ site.Title }}{{ end }}</title>
+{{/* seo_title en el front matter reemplaza el título completo (sin agregar " | site.Title") */}}
+{{ $seo_title := "" }}
+{{ with .Params.seo_title }}
+  {{ $seo_title = . }}
+{{ else }}
+  {{ $seo_title = cond .IsHome .Title (printf "%s | %s" .Title site.Title) }}
+{{ end }}
+{{ $seo_title = $seo_title | markdownify | plainify | htmlUnescape }}
+<title>{{ $seo_title }}</title>
 
 {{ with site.Params.twitter }}
 <meta property="twitter:site" content="@{{ . }}">
@@ -29,13 +37,16 @@
   {{ else }}
     {{ $desc = site.Params.description  }}
   {{ end }}
+{{/* markdown -> texto plano; htmlUnescape evita entidades dobles (&amp;rdquo;) */}}
+{{ $desc = $desc | markdownify | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace }}
 <meta name="description" content="{{ $desc }}">
+<link rel="canonical" href="{{ .Permalink }}">
 
 <!--opengraph tags-->
 <meta property="og:site_name" content="{{ site.Title }}">
-<meta property="og:title" content="{{ if .IsHome }}{{ .Title | markdownify | plainify }}{{ else }}{{ .Page.Title | markdownify | plainify }} | {{ site.Title }}{{ end }}">
+<meta property="og:title" content="{{ $seo_title }}">
 <meta property="og:description" content="{{ $desc }}" />
-<meta property="og:type" content="{{ if .IsPage }}page{{ else }}website{{ end }}" />
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
 <meta property="og:locale" content="{{ site.Language.Locale | default "es-ES" }}">
 
@@ -46,11 +57,9 @@
     <meta name="twitter:card" content="summary_large_image"/>
     {{- $image := (index . 0) -}}
     {{- $image_link_absolute := (findRE "^/" $image) -}}
-    {{- if $image_link_absolute -}}
-        <meta name="twitter:image" content="{{- $image | absURL -}}"/>
-    {{- else -}}
-        <meta name="twitter:image" content="{{- (printf "%s%s" $permalink $image) -}}"/>
-    {{- end -}}
+    {{- $image_url := cond (gt (len $image_link_absolute) 0) ($image | absURL) (printf "%s%s" $permalink $image) -}}
+    <meta property="og:image" content="{{ $image_url }}"/>
+    <meta name="twitter:image" content="{{ $image_url }}"/>
 <!--using featured images-->
 {{ else -}}
     <!--featured image for the leaf bundle-->

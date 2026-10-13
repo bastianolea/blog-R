@@ -1,6 +1,7 @@
 ---
 
 title: Bastián Olea Herrera
+seo_title: "Bastián Olea Herrera | Tutoriales de R y análisis de datos"
 subtitle: Sociólogx, analista de datos
 type: home
 

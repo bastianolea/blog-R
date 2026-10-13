@@ -61,6 +61,7 @@ tags: [visualización de datos, mapas, ggplot2]
 layout: single-sidebar
 draft: false
 excerpt: "Descripción breve para listados"
+seo_title: "Título para buscadores (opcional, reemplaza el <title> completo)"
 links:
   - icon: file-code
     icon_pack: fas
@@ -133,6 +134,14 @@ Los `_index.md` de tags ya creados con descripción: `chile`, `datos`, `visualiz
 - `mainSections = ["blog", "apps", "about"]`
 - `outputs.home = ["HTML", "RSS", "JSON"]` (JSON para buscador)
 - Syntax highlighting: estilo `rose-pine-moon` con CSS personalizado en `static/css/syntax.css`
+- `timeZone = "America/Santiago"`
+- `enableRobotsTXT = true` con plantilla en `layouts/robots.txt` (incluye la línea `Sitemap:`)
+- `[sitemap] changeFreq = "weekly"`
+- `[minify] minifyOutput = true` (Netlify compila con `hugo` sin `--minify`; si algo se ve raro en un post, probar quitando este bloque)
+- `params.favicon = "/favicon.ico"` (antes era `false` y generaba `href="false"`)
+- `params.description`: descripción por defecto del sitio, usada en páginas sin `description`/`subtitle`/`excerpt`
+- `textFontFamily`/`headingFontFamily` parecen redundantes con las fuentes custom, pero `assets/scaffold.scss` los usa como respaldo: no borrarlos
+- Limpieza 2026-10-12: se eliminaron claves obsoletas (`preserveTaxonomyNames`, `metaDataFormat`, `footnoteReturnLinkContents`, `googleAnalytics`) y la configuración sin uso de Disqus y giscus. Comentarios: solo queda configurado utterances, pero `params.comments = ""` los mantiene desactivados
 
 
 ## Flujo de trabajo (blogdown + RStudio)
@@ -413,6 +422,7 @@ Archivo `static/_redirects` para migraciones de URL y dominios. Redirecciones de
 | Layout buscador con iframe | `layouts/buscar/list.html` |
 | iframeResizer (script local) | `static/js/iframeResizer.min.js` |
 | Redirects | `static/_redirects` |
+| robots.txt (plantilla) | `layouts/robots.txt` |
 | Funciones R custom | `R/funciones.R` |
 | Hook pre-build (corrige enlaces con `corregir_enlaces_qmd()`) | `R/build.R` |
 | Hook post-build (verifica enlaces con `revisar_enlaces_qmd()`) | `R/build2.R` |
@@ -486,14 +496,43 @@ El override raíz `layouts/partials/shared/post-pagination.html` (copia del part
 
 ### SEO y metadatos (meta.html)
 
-El override raíz `layouts/partials/meta.html` (aplicado 2026-08-07) usa `markdownify | plainify` en `<title>` y `og:title` (el tema usa solo `plainify`, que **no** limpia backticks):
+El override raíz `layouts/partials/meta.html` genera `<title>`, la descripción, la etiqueta canonical y las etiquetas Open Graph/Twitter. Estado actual (actualizado 2026-10-12):
+
+**Título (`<title>` y `og:title`) y campo `seo_title`:** el título se calcula una sola vez en `$seo_title` y se reutiliza en ambas etiquetas:
 
 ```html
-<title>{{ if .IsHome }}{{ .Title | markdownify | plainify }}{{ else }}{{ .Page.Title | markdownify | plainify }} | {{ site.Title }}{{ end }}</title>
-<meta property="og:title" content="{{ if .IsHome }}{{ .Title | markdownify | plainify }}{{ else }}{{ .Page.Title | markdownify | plainify }} | {{ site.Title }}{{ end }}">
+{{ $seo_title := "" }}
+{{ with .Params.seo_title }}
+  {{ $seo_title = . }}
+{{ else }}
+  {{ $seo_title = cond .IsHome .Title (printf "%s | %s" .Title site.Title) }}
+{{ end }}
+{{ $seo_title = $seo_title | markdownify | plainify | htmlUnescape }}
+<title>{{ $seo_title }}</title>
 ```
 
-Nota: `meta name="description"` y `og:description` usan `$desc` crudo (excerpt/subtitle/description del front matter). Si un excerpt contiene markdown con backticks, podría mostrarlo en buscadores; pendiente de revisar si conviene aplicar `markdownify | plainify` también ahí.
+- Sin `seo_title`: la home usa su `title` tal cual; el resto de las páginas usa `Título de la página | Bastián Olea` (`site.Title` de `config.toml`, que conviene mantener corto porque Google corta en ~60 caracteres).
+- Con `seo_title` en el front matter: **reemplaza el título completo**, sin agregar el sufijo ` | Bastián Olea`. Sirve para dar a una página un título distinto en buscadores sin cambiar el título visible.
+- La home lo usa (`content/_index.md`): `seo_title: "Bastián Olea Herrera | Tutoriales de R y análisis de datos"`. Esto es necesario porque el `title` de la home también es el `<h1>` visible de la portada (`layouts/index.html` imprime `.Params.title`), así que no se puede alargar sin cambiar el encabezado.
+- Para usarlo en un post, agregar `seo_title: "..."` al front matter (opcional; no está en el archetype).
+
+**Descripción (`meta description` y `og:description`):** se toma de `description` > `subtitle` > `excerpt` > `site.Params.description`, y luego se limpia:
+
+```html
+{{ $desc = $desc | markdownify | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace }}
+```
+
+`htmlUnescape` es necesario porque `markdownify` convierte comillas en entidades tipográficas (`&rdquo;`) y Go las volvería a escapar dentro del atributo (`&amp;rdquo;`). Antes de este cambio la descripción de la home salía con `**` y `[texto](url)` literales.
+
+**Canonical:** `<link rel="canonical" href="{{ .Permalink }}">` en todas las páginas. Limitación conocida: en páginas paginadas (`/blog/page/2/`) `.Permalink` apunta a la primera página (`/blog/`) en vez de a sí misma. No se corrigió porque usar `.Paginator` en el `<head>` puede chocar con cómo los layouts de listado inicializan la paginación.
+
+**`og:type`:** `article` en páginas individuales (`.IsPage`), `website` en home, listados y taxonomías (antes decía `page`, que no es un valor válido de Open Graph).
+
+**Imágenes para compartir:** si la página define `images:` en el front matter (como la home, con `img/collage_vertical.jpg`), se emiten `og:image` y `twitter:image` con esa imagen (antes solo salía `twitter:image`, así que WhatsApp/LinkedIn/Facebook no mostraban imagen de la home). Si no, se busca en el bundle una imagen `*hex*` o `*feature*`, luego `*sidebar*` de la sección, y como último recurso `params.sharing_image`.
+
+**Pendiente:** `twitter:card`, `twitter:site` y `twitter:creator` usan `property=` en vez de `name=`.
+
+**Al verificar cambios en el HTML generado:** `[minify]` está activado en `config.toml`, así que el HTML compilado quita comillas de atributos simples (ej. `<meta name=description content="...">`, `<link rel=canonical href=...>`) y deja todo en una línea; ajustar los `grep` en consecuencia (y contar con `grep -o ... | wc -l`, no `grep -c`).
 
 ### Otros lugares con títulos crudos (no arreglados)
 

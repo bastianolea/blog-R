@@ -1,6 +1,6 @@
 <!--lista de etiquetas-->
 <div style="font-size: 90%;">
-  <h3 style="margin-bottom: 12px;">Temas:</h3>
+  <!--- <h3 style="margin-bottom: 12px;">Temas:</h3> --->
   {{ range $index, $var := (first 20 (sort .Site.Taxonomies.tags "Count" "desc")) }} <!-- ordenar de mayor a menor-->
   <!--(first 25 antes de (sort para elegir un máximo de tags-->
   <span style="margin-bottom: 10px; line-height: 1.1;">
