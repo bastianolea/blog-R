@@ -109,13 +109,13 @@ manzanas <- manzanas |>
 
 {{< detalles "**Nota:** para hacer más liviana esta página, se simplificaron los mapas" >}}
 
-Los mapas originales del Censo son extremadamente detallados, por lo que fueron [simplificados](/blog/simplificar_mapas/) para hacer qu esta página se cargue más rápido.
+Los mapas originales del Censo son extremadamente detallados, por lo que fueron [simplificados](/blog/simplificar_mapas/) para hacer que esta página se cargue más rápido.
 
 ```{r simplificar}
 library(rmapshaper)
 
 manzanas <- manzanas |> 
-  ms_simplify(keep = 0.4,
+  ms_simplify(keep = 0.3,
               keep_shapes = TRUE)
 ```
 
