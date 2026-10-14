@@ -3,7 +3,7 @@
 <main class="page-main pa4 {{ .Kind }}" role="main">
   <section class="blog-content mw7 center">
     <!-- con este se cambia el orden de los posts, pero cambia tambien en la pagina de blog -->
-    {{ $paginator := .Paginate (where .RegularPagesRecursive "Type" "blog").ByDate.Reverse }} <!-- .ByDate.Reverse -->
+    {{ $paginator := .Paginate (where .RegularPagesRecursive "Type" "blog").ByLastmod.Reverse }} <!-- ByLastmod: ordena por fecha de modificación si existe lastmod, si no por fecha de publicación -->
       {{ range $paginator.Pages }}
         {{ .Scratch.Set "$root" $caller }}
         {{ partial "shared/summary" . }}

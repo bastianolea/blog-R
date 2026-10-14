@@ -8,6 +8,7 @@
         {{ if .Params.subtitle }}<h4 class="f4 mt0 mb4 lh-title measure">{{ .Params.subtitle | markdownify }}</h4>{{ end }}
         <!-- {{ if .Params.show_author_byline }}<p class="f6 measure lh-copy mv1">{{ if .Params.author }}Por {{ .Params.author }}{{ end }}{{ with .Params.categories }} en{{ range . }} <a href="{{ "categories/" | absURL }}{{ . | urlize }}">{{ . }}</a> {{ end }}{{ end }}</p>{{ end }} -->
         {{ if .Params.show_post_date }}<p class="f7 db mv0 ttu">{{ .PublishDate.Format "2/1/2006" }}</p>{{ end }}
+        {{ if ne .Lastmod .PublishDate }}<p class="f7 db mv0 ttu" style = "margin-top: -8px; opacity: 0.6;">Actualizado el {{ .Lastmod.Format "2/1/2006" }}</p>{{ end }}
         
          <!-- etiquetas -->
         {{ partial "shared/tags.html" . }}

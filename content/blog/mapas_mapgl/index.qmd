@@ -1,8 +1,8 @@
 ---
 title: Mapas interactivos con `{mapgl}` para visualizar datos geoespaciales en R
 author: Bastián Olea Herrera
-# date: '2026-09-07'
-date: '2026-10-14'
+date: '2026-09-07'
+modified: '2026-10-14'
 freeze: true
 draft: false
 slug: []

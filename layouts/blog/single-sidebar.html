@@ -14,6 +14,8 @@
         <div style = "display: inline-block;">  <!-- para que queden en la misma línea -->
           {{ if .Params.show_post_date }}<p class="f7 db mv0 ttu" style = "display: inline-block;">
             {{ .PublishDate.Format "2/1/2006" }}</p>{{ end }}
+          {{ if ne .Lastmod .PublishDate }}<p class="f7 db mv0 ttu" style = "display: inline-block; margin-left: 8px; opacity: 0.6;">
+            Actualizado el {{ .Lastmod.Format "2/1/2006" }}</p>{{ end }}
           
           <!-- contador de visitas -->
           <!-- <span>
