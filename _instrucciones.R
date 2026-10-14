@@ -20,9 +20,9 @@ abrir_borradores(cantidad = Inf)
 
 # crear un post normal
 crear_publicacion(
-  title = "¿Cuántos días faltan para el dieciocho?",
+  title = "Plantilla de mapa interactivo de Chile con R, Shiny y MapGL",
   file = paste0("blog/", lubridate::today(), "/index.qmd"),
-  tags = c("fechas", "curiosidades")
+  tags = c("mapas", "Chile")
 )
 
 # crear un post con nombre
