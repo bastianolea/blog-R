@@ -46,7 +46,7 @@
       {{ if $root.Params.show_author_byline }}<p class="f7 db mv1">{{ if .Params.author }}Por {{ .Params.author }}{{ end }}{{ with .Params.categories }} in{{ range . }} <a href="{{ "categories/" | absURL }}{{ . | urlize }}">{{ . }}</a> {{ end }}{{ end }}</p>{{ end }}
       
       <div>{{ if $root.Params.show_post_date }}<div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">{{ .PublishDate.Format "2/1/2006" }}</div>{{ end }}
-      {{ if ne .Lastmod .PublishDate }}<div class="f7 db mv1" style="display:inline-block; margin-bottom:0; margin-left:8px; opacity:0.6;">Actualizado el {{ .Lastmod.Format "2/1/2006" }}</div>{{ end }}
+      {{ if ne .Lastmod .PublishDate }}<div class="f7 db mv1" style="display:inline-block; margin-bottom:0; margin-left:8px; opacity:0.4;">Actualizado el {{ .Lastmod.Format "2/1/2006" }}</div>{{ end }}
       <!-- contador de visitas -->
         <span>
           {{ if $root.Params.show_page_views }}
@@ -87,7 +87,7 @@
       {{ if $root.Params.show_author_byline }}<p class="f7 db mv1">{{ if .Params.author }}Por {{ .Params.author }}{{ end }}{{ with .Params.categories }} in{{ range . }} <a href="{{ "categories/" | absURL }}{{ . | urlize }}">{{ . }}</a> {{ end }}{{ end }}</p>{{ end }}
       
       <div>{{ if $root.Params.show_post_date }}<div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">{{ .PublishDate.Format "2/1/2006" }}</div>{{ end }}
-      {{ if ne .Lastmod .PublishDate }}<div class="f7 db mv1" style="display:inline-block; margin-bottom:0; margin-left:8px; opacity:0.6;">Actualizado el {{ .Lastmod.Format "2/1/2006" }}</div>{{ end }}
+      {{ if ne .Lastmod .PublishDate }}<div class="f7 db mv1" style="display:inline-block; margin-bottom:0; margin-left:8px; opacity:0.4;">Actualizado el {{ .Lastmod.Format "2/1/2006" }}</div>{{ end }}
       <!-- contador de visitas -->
         <!-- <span>
           {{ if $root.Params.show_page_views }}
@@ -125,7 +125,7 @@
         <!-- /agregar tags -->
       {{ if $root.Params.show_author_byline }}<p class="f7 db mv2">{{ if .Params.author }}Por {{ .Params.author }}{{ end }}{{ with .Params.categories }} in{{ range . }} <a href="{{ "categories/" | absURL }}{{ . | urlize }}">{{ . }}</a> {{ end }}{{ end }}</p>{{ end }}
       {{ if $root.Params.show_post_date }}<p class="f7 db mv2" style="display:inline-block;">{{ .PublishDate.Format "2/1/2006" }}</p>{{ end }}
-      {{ if ne .Lastmod .PublishDate }}<p class="f7 db mv2" style="display:inline-block; margin-left:8px; opacity:0.6;">Actualizado el {{ .Lastmod.Format "2/1/2006" }}</p>{{ end }}
+      {{ if ne .Lastmod .PublishDate }}<p class="f7 db mv2" style="display:inline-block; margin-left:8px; opacity:0.4;">Actualizado el {{ .Lastmod.Format "2/1/2006" }}</p>{{ end }}
       {{ if and $root.Params.show_button_links .Params.links }}
         <div class="db pt2">
         {{ partial "shared/btn-links.html" . }}
