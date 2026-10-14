@@ -37,7 +37,7 @@ links:
 
 Usando R, Shiny y MapGL es más fácil que nunca hacer apps web que presenten datos georeferenciados de manera precisa y personalizable!
 
-R para procesar datos, [Shiny para desarrollar aplicaciones web](./blog/shiny/), y [MapGL para visores de mapas interactivos.](./blog/mapas_mapgl/)
+R para procesar datos, [Shiny para desarrollar aplicaciones web](/blog/shiny/), y [MapGL para visores de mapas interactivos.](/blog/mapas_mapgl/)
 
 Para ayudarte, comparto este repositorio de una *plantilla base* de app Shiny que presenta un mapa de Chile con un filtro de regiones y comunas para hacerles zoom a los territorios seleccionados.
 

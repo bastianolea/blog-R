@@ -1,7 +1,8 @@
 ---
 title: Mapas y visualización de datos geoespaciales en R con `{sf}`
 author: Bastián Olea Herrera
-date: '2026-04-29'
+# date: '2026-04-29'
+date: '2026-10-13'
 freeze: true
 slug: []
 categories:
@@ -1323,6 +1324,45 @@ https://dominicroye.github.io/blog/inserted-map/
 
 
 -->
+
+### Unir polígonos
+
+Para unir varios polígonos en uno sólo usamos `st_union()`. En este caso, pasaremos de 24 regiones de Argentina a 1 solo polígono cuya área es la combinación de los demás.
+
+
+``` r
+mapa_unido <- mapa |>
+  summarize(
+    geometry = st_union(geometry)
+    )
+
+mapa_unido
+```
+
+```
+## Simple feature collection with 1 feature and 0 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -73.57274 ymin: -55.05202 xmax: -53.66155 ymax: -21.78694
+## Geodetic CRS:  WGS 84
+##                         geometry
+## 1 MULTIPOLYGON (((-61.90941 -...
+```
+
+<img src="/blog/mapas_sf/mapas_sf_files/figure-html/unnamed-chunk-92-1.png" alt="" width="672" />
+
+{{< detalles "Ver código del gráfico" >}}
+
+
+``` r
+ggplot() +
+  # mapa unido
+  geom_sf(data = mapa_unido,
+          fill = "#9069C0", color = "#EBD2FB",
+          linewidth = 0.1)
+```
+
+{{< /detalles >}}
 
 ----
 

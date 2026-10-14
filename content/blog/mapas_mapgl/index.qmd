@@ -1,7 +1,8 @@
 ---
 title: Mapas interactivos con `{mapgl}` para visualizar datos geoespaciales en R
 author: Bastián Olea Herrera
-date: '2026-09-07'
+# date: '2026-09-07'
+date: '2026-10-14'
 freeze: true
 draft: false
 slug: []
@@ -32,18 +33,12 @@ editor_options:
 ---
 
 
-```{r}
-#| echo: false
-#| eval: false
-".posit/assistant/plans/2026-08-05-1400-plan.md"
-```
-
-
 [`{mapgl}` es un paquete de R](https://walker-data.com/mapgl/) para visualizar datos geográficos de manera interactiva. Este paquete, desarrollado por [Kyle Walker](https://walker-data.com), implementa los visores de mapas interactivos [Mapbox](https://www.mapbox.com) y [MapLibre](https://maplibre.org) en R, para que puedas usarlos como lienzos para tus cartografías y datos geográficos.
 
 En este tutorial aprenderemos a usar `{mapgl}`, y como ejemplo usaremos la cartografía Censal del Censo 2024 de Chile.
 
 El primer paso es instalar [`{mapgl}`](https://walker-data.com/mapgl/): 
+
 ```r
 install.packages("mapgl")
 ```
@@ -141,7 +136,7 @@ library(mapgl)
 
 maplibre(
   center = c(-71.5, -33.0), 
-  zoom = 4)
+  zoom = 6, minZoom = 4)
 ```
 
 Indicamos unas coordenadas y un nivel de zoom. Prueba moviendo el mapa o acercándote! Guau! Esta función será la primera **capa** de nuestros mapas interactivos.
@@ -160,7 +155,7 @@ Ahora crearemos el mapa base con `maplibre()`, y le agregamos una **capa de rell
 ```{r mapa_fill}
 mapa_poligono <- maplibre(
   center = c(-73.04, -36.82), 
-  zoom = 11) |> 
+  zoom = 12, minZoom = 10) |> 
   # capa con polígonos
   add_fill_layer(
     id = "comuna",
@@ -208,7 +203,7 @@ puntos <- lugares |>
 # agregar marcadores al mapa
 maplibre(
   center = c(-70.65, -33.44),
-  zoom = 7
+  zoom = 7, minZoom = 6
 ) |>
   add_markers(
     data = puntos,
@@ -240,7 +235,7 @@ Luego agregamos el punto como un marcador con `add_markers()`:
 # agregar al mapa
 maplibre(
   center = coordenadas,
-  zoom = 8,
+  zoom = 8, minZoom = 6
 ) |>
   add_markers(
     data = punto,
@@ -281,7 +276,7 @@ Una vez que tenemos la `escala` de colores, la usamos en el argumento `fill_colo
 # mapa base
 mapa_poblacion <- maplibre(
   center = c(-73.10, -36.74),
-  zoom = 11) |> 
+  zoom = 11, minZoom = 10) |> 
   # capa de relleno
   add_fill_layer(
     id = "comuna",
@@ -319,7 +314,7 @@ En este ejemplo agregamos un _tooltip_ que hace referencia a tres variables:
 ```{r mapa_tooltip_1}
 mapa_tooltip <- maplibre(
   center = c(-73.13, -36.715),
-  zoom = 14) |> 
+  zoom = 14, minZoom = 10) |> 
   # capa de relleno
   add_fill_layer(
     id = "comuna",
@@ -350,6 +345,77 @@ mapa_tooltip
 Pasa el cursor sobre el mapa para ver el _tooltip!_
 
 En el argumento `tooltip_style` podemos personalizar la ventanita, pero si necesitamos algo más personalizado siempre podemos usar CSS.
+
+
+## Mapa interactivo categórico
+
+También podemos visualizar en el mapa no son numéricos, sino categóricos, donde tenemos varios niveles discretos que queremos expresar como colores sobre los puntos o polígonos.
+
+Primero cambiemos un poco los datos para [unir los polígonos](/blog/mapas_sf/#unir-polígonos) de las manzanas por localidades, y así obtener 6 polígonos:
+
+```{r}
+localidades <- manzanas |> 
+  filter(COMUNA == "TOMÉ") |>
+  # unir por localidades
+  group_by(LOCALIDAD) |>
+  summarize(SHAPE = st_union(SHAPE)) |> 
+  # agrandar para borrar calles
+  mutate(SHAPE = st_buffer(SHAPE, 15,
+                           max_cells = 100000
+                           ))
+
+localidades
+```
+
+Para visualizar datos categóricos en mapas, tenemos que crear una escala de colores para cada categoría. Usaremos la variable `LOCALIDAD` para colorear los polígonos, así que podemos usar su largo con `length()` dentro de una [función para generar paletas de colores](/blog/colores/#crear-paletas-cualitativas) para obtener 6 colores distintos:
+
+```{r}
+categorias <- unique(localidades$LOCALIDAD)
+
+library(colorspace)
+
+# paleta categórica de arcoíris
+paleta_categorica <- rainbow_hcl(
+  n = length(categorias), # cantidad de colores
+  c = 100, 
+  start = 180,
+  end = 360)
+```
+
+{{< relacionada "/blog/colores/" >}}
+
+Ahora, cuando creemos la capa de relleno con `add_fill_layer()` igual que antes, en el color de relleno usaremos `match_expr()`, función que requiere la variable a usar para aplicar el color (en este caso `LOCALIDAD`), los valores únicos de esta variable (`unique(localidades$LOCALIDAD)`) y finalmente los colores que creamos recién.
+
+También agregamos una **leyenda** categórica con `add_categorical_legend()`, que funciona casi igual que `match_expr()` y `add_continuous_legend()`.
+
+```{r}
+mapa_localidades <- maplibre(
+  center = c(-72.88, -36.60),
+  zoom = 10.5,
+  minZoom = 8, maxZoom = 12) |> 
+  # capa de figuras
+  add_fill_layer(
+    id = "localidades",
+    source = localidades,
+    # paleta categórica
+    fill_color = match_expr(
+      "LOCALIDAD", # variable a usar
+      values = categorias, # valores únicos
+      stops = paleta_categorica # colores para cada valor
+    ),
+    fill_opacity = 0.8
+  ) |> 
+  # leyenda categórica
+  add_categorical_legend(
+    legend_title = "Localidades",
+    values = categorias, # valores únicos
+    colors = paleta_categorica, # colores para cada valor
+    position = "top-right",
+    style = legend_style(background_opacity = .8)
+  )
+
+mapa_localidades
+```
 
 
 ## Mapa interactivo con puntos o círculos
@@ -411,7 +477,7 @@ Luego [creamos el mapa base](#visor-de-mapas-básico) centrado en una ubicación
 # agregar marcadores al mapa
 maplibre(
   center = c(-73.03, -36.81),
-  zoom = 10
+  zoom = 10, minZoom = 7
 ) |>
   add_circle_layer(
     id = "puntos",
@@ -480,7 +546,7 @@ Ahora creamos el mapa con `maplibre()` y `add_circle_layer()`, donde especificam
 ```{r}
 maplibre(
   center = c(-72.98, -36.81),
-  zoom = 10
+  zoom = 10, minZoom = 7
 ) |>
   add_circle_layer(
     id = "puntos",
