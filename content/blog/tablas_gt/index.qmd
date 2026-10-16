@@ -2,8 +2,8 @@
 title: "Creación de tablas atractivas y personalizables en R con `{gt}`"
 subtitle: "Genera tablas HTML con formato personalizado para reportes, presentaciones y apps"
 author: Bastián Olea Herrera
-# date: '2024-11-19'
-date: '2026-09-29'
+date: '2024-11-19'
+modified: '2026-09-29'
 format:
   hugo-md:
     output-file: index

@@ -1,8 +1,8 @@
 ---
 title: Validación de datos con `{testthat}` y `{pointblank}`
 author: Bastián Olea Herrera
-# date: '2025-10-15'
-date: '2026-08-18'
+date: '2025-10-15'
+modified: '2026-08-18'
 freeze: true
 slug: []
 categories: []
