@@ -1,6 +1,6 @@
 ---
-title: Instalar paquetes desde Posit Package Manager
-subtitle: Aumenta la velocidad de instalación y estabilidad instalando paquetes desde binarios
+title: Instalar paquetes de R desde Posit Package Manager
+subtitle: Aumenta la velocidad de instalación y estabilidad instalando paquetes precompilados en binarios
 author: Bastián Olea Herrera
 date: '2026-10-22'
 slug: []
@@ -38,7 +38,7 @@ Por ejemplo, puedes bajar tus paquetes de R desde el _mirror_ de CRAN alojado en
 
 Pero también puedes configurar repositorios completamente distintos, como [Bioconductor](https://www.bioconductor.org) o [R-Universe](https://r-universe.dev/search) de [ROpenSci](https://ropensci.org), para acceder a otras fuentes de paquetes distintas a CRAN.
 
-[Posit Package Manager](https://packagemanager.posit.co) es un repositorio que mantiene versiones optimizadas y versionadas de los paquetes de CRAN, actualizadas diariamente, para facilitar y optimizar la instalación de paquetes en R.
+[Posit Package Manager](https://packagemanager.posit.co) es un repositorio que mantiene versiones compiladas y versionadas de los paquetes de CRAN, actualizadas diariamente, para facilitar y optimizar la instalación de paquetes en R.
 
 {{< paso "1" "Obtener una URL de repositorio" >}}
 
