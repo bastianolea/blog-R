@@ -27,9 +27,9 @@ crear_publicacion(
 
 # crear un post con nombre
 crear_publicacion(
-  title = "Consejos para programar en R con inteligencia artificial",
-  file = "blog/ia_r/index.qmd",
-  tags = c("inteligencia artificial"),
+  title = "Instalar paquetes desde Posit Package Manager",
+  file = "blog/package_manager/index.qmd",
+  tags = c("básico"),
   categories = c()
 )
 
