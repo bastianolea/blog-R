@@ -1,8 +1,8 @@
 ---
 title: Cargar archivos CSV más rápido en R con `{arrow}`
 author: Bastián Olea Herrera
-date: '2026-10-12'
-# date: '2025-02-12'
+date: '2025-02-12'
+modified: '2026-10-12'
 format: hugo-md
 freeze: true
 slug: []

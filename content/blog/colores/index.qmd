@@ -2,8 +2,8 @@
 title: Colores y paletas de colores en R
 subtitle: Todo sobre la creación, personalización, modificación y uso de colores y paletas en R
 author: Bastián Olea Herrera
-# date: '2025-03-06'
-date: '2026-07-07'
+date: '2025-03-06'
+modified: '2026-07-07'
 format:
   hugo-md:
     output-file: "index"

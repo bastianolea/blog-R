@@ -3,9 +3,8 @@ title: Tema oscuro morado para RStudio
 subtitle: Personaliza la apariencia de RStudio con una paleta morada y rosada
 author: Bastián Olea Herrera
 format: hugo-md
-# date: 2025-12-03
-# date: 2026-04-23
-date: 2026-09-02
+date: 2025-12-03
+modified: 2026-09-02
 tags:
   - curiosidades
 excerpt: "¡Agrégale moradito a tu análisis de datos! Tema para RStudio enfocado en una paleta de colores morada y rosada, basado en el tema _base16 Default Dark_ de [`{rsthemes}`](https://github.com/gadenbuie/rsthemes?tab=readme-ov-file). Ahora actualizado para la última versión de RStudio."
