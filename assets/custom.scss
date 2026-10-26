@@ -234,10 +234,20 @@ background-color: #A985C630;
   min-width: 200px;
 }
 
+.cuadro-vertical-oscuro {
+  background-color: #9069c0ff; 
+  color: #EAD1FA;
+  padding: 12px 18px; 
+  margin: 12px;
+  border-radius: 8px;
+  text-align: center; 
+  min-width: 200px;
+}
+
 .flecha {
-  font-size: 1.6em; 
+  font-size: 1.3em; 
   margin: 0px;
-  line-height: 0.6;
+  line-height: 0.8;
 }
 
 .cuadros-verticales {
@@ -614,4 +624,14 @@ a>svg.anchor-symbol {
   .nav-dropdown-menu {
     display: none !important;
   }
+}
+
+
+.microtitulo {
+  font-size: 70%;
+  font-weight: bold;
+  margin-bottom: -10px;
+  text-transform: uppercase;
+  opacity: 80%;
+  color: color(srgb 0.5634 0.4121 0.7542);
 }
