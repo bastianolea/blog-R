@@ -617,6 +617,13 @@ attributionControl = FALSE
 
 Esto da como resultado un mapa más limpio, pero recuerda que es importante dar créditos a quienes están facilitándote estas herramientas gratuitas, así que considera dejar la atirbución activada!
 
+----
+
+## Recursos
+
+- Este artículo contiene [muchos y variados ejemplos de uso de `mapgl` en R](https://bodhimcnally.com/resources/interactive-maps-in-r-with-mapgl/)
+- [_Skill_ para inteligencia artificial de `mapgl`](https://github.com/arthurgailes/r-package-skills/tree/master/skills/r-mapgl) para que tu modelo de IA sepa usar mejor el paquete. [Más información sobre las _skills_ de IA aquí!](/blog/r_ia/)
+
 {{< etiqueta "mapas" >}}
 
 {{< cafecito >}}

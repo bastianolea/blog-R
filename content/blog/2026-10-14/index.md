@@ -38,7 +38,7 @@ links:
 
 Usando R, Shiny y MapGL es más fácil que nunca hacer apps web que presenten datos georeferenciados de manera precisa y personalizable!
 
-R para procesar datos, [Shiny para desarrollar aplicaciones web](./blog/shiny/), y [MapGL para visores de mapas interactivos.](./blog/mapas_mapgl/)
+R para procesar datos, [Shiny para desarrollar aplicaciones web](/blog/shiny/), y [MapGL para visores de mapas interactivos.](/blog/mapas_mapgl/)
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7516166687210151936?compact=1" height="420" width="80%" frameborder="0" allowfullscreen title="Publicación integrada" style="display: block; margin: 0 auto;">
 </iframe>

@@ -9,7 +9,7 @@ source("R/funciones.R")
 ## publicaciones ----
 
 # editar el más reciente
-abrir_publicacion_reciente("creado", cantidad = 6)
+abrir_publicacion_reciente("creado", cantidad = 16)
 abrir_publicacion_reciente("modificado", cantidad = 6)
 
 # trabajar en borradores

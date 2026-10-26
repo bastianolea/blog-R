@@ -234,9 +234,10 @@ Las _skills_ son documentos de texto con instrucciones y contenido que el LLM pu
 
 Una razón de que existan las _skills_ es que **añadir contexto cuesta dinero**, entonces la gracia de las _skills_ es que el modelo solamente carga el contexto que necesita para cada tarea sin tener que leerse un libro enorme cada vez que lo invocas.
 
-A continuación te dejo sitios donde puedes encontrar _skills_ para R:
+Sitios donde puedes encontrar _skills_ para R:
 
-- [Awesome R Stats Skills](https://github.com/christopherkenny/awesome-rstats-skills)
+- [Awesome R Stats Skills](https://github.com/christopherkenny/awesome-rstats-skills), colección de _skills_ centradas en análisis de datos, desarrollo y calidad de código
+- [R Package Skills](https://github.com/arthurgailes/r-package-skills/), lista de _skills_ para distintos paquetes de R, incluyendo una _skill_ para crear _skills_ con la documentación oficial de cualquier paquete!
 - [A collection of Claude Skills from Posit](https://github.com/posit-dev/skills)
 - [Modern R Development Guide](https://github.com/jeremy-allen/claude-skills), originalmente un [archivo `agents.md` por Sarah Johnson](https://gist.github.com/sj-io/3828d64d0969f2a0f05297e59e6c15ad) separado en skills por Jeremy Allen
 - [A Few Claude Skills for R Users](https://rworks.dev/posts/claude-skills-for-r-users/) por Isabella Velásquez
