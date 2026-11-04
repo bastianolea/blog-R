@@ -9,7 +9,7 @@ tags:
   - Chile
   - curiosidades
   - paquetes
-draft: true
+draft: false
 format:
   hugo-md:
     output-file: index
