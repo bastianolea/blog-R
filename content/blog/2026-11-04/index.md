@@ -33,9 +33,7 @@ links:
 
 Son 5 tipos de preguntas distintos, y las alternativas se crean al azar con respuestas que buscan engañarte. [Programé las preguntas](https://github.com/bastianolea/territorial/blob/main/R/pregunta_comuna.R) usando puras funciones de `{territorial}`, lo que también me sirvió para probar el paquete en aspectos que no había considerado, dando a luz [nuevas funciones](https://bastianolea.github.io/territorial/news/index.html).
 
-También puedes **jugar en tu navegador** [aquí](https://bastianolea.github.io/territorial/articles/trivia.html) o en la consola que saldrá a continuación!
-
-¡A ver si logras sacar el puntaje máximo! 🤓
+También puedes **jugar en tu navegador** [aquí](https://bastianolea.github.io/territorial/articles/trivia.html) o en la consola que saldrá a continuación:
 
 <!-- consola webR con territorial::trivia(). menu() necesita cross-origin isolation, y
      coi-serviceworker.js (en este mismo bundle) agrega los headers COOP/COEP solo en esta página.
@@ -44,12 +42,12 @@ También puedes **jugar en tu navegador** [aquí](https://bastianolea.github.io/
 <script>window.coi = { scope: "./" };</script>
 <script src="coi-serviceworker.js"></script>
 <p id="trivia-aviso" class="consola-aviso" hidden></p>
-<pre id="trivia-out" class="consola-salida" aria-live="polite">Cargando R en tu navegador (puede tardar unos segundos)...
+<pre id="trivia-out" class="consola-salida" aria-live="polite">Cargando R en tu navegador (puede tardar unos segundos)…
 </pre>
 <form id="trivia-form" class="consola-entrada" autocomplete="off">
   <input id="trivia-input" placeholder="Escribe tu respuesta y presiona Enter" aria-label="Respuesta" disabled>
   <button type="submit" id="trivia-send" disabled>Enviar</button>
-  <button type="button" id="trivia-again" class="secundario" disabled>Jugar de nuevo</button>
+  <button type="button" id="trivia-again" class="secundario" disabled>Reiniciar</button>
 </form>
 <script type="module">
   import { Console } from "https://webr.r-wasm.org/latest/webr.mjs";
@@ -57,7 +55,7 @@ También puedes **jugar en tu navegador** [aquí](https://bastianolea.github.io/
   const input = document.getElementById("trivia-input");
   const send = document.getElementById("trivia-send");
   const again = document.getElementById("trivia-again");
-  const ansi = /\x1b\[[0-9;]*[A-Za-z]/g;
+  const ansi = /\x1b\[[0-?]*[ -\/]*[@-~]/g;
   let started = false;
   let ready = false;
   const write = (text, cls) => {
@@ -90,6 +88,8 @@ También puedes **jugar en tu navegador** [aquí](https://bastianolea.github.io/
     stdout: (line) => {
       // ocultar el mensaje de bienvenida de R hasta que el paquete esté cargado
       if (!ready) {
+        // señal de que webR ya cargó y comienza la instalación del paquete
+        if (line === "__TRIVIA_INSTALANDO__") out.textContent = "Instalando el paquete {territorial}…\n";
         if (line === "__TRIVIA_LISTA__") { ready = true; out.textContent = ""; }
         return;
       }
@@ -130,6 +130,7 @@ También puedes **jugar en tu navegador** [aquí](https://bastianolea.github.io/
   sendLine(
     'invisible({' +
     'options(cli.num_colors = 1); ' +
+    'cat("__TRIVIA_INSTALANDO__\\n"); ' +
     'webr::install("territorial", repos = c("https://bastianolea.r-universe.dev", "https://repo.r-wasm.org"), quiet = TRUE); ' +
     'suppressPackageStartupMessages(library(territorial)); ' +
     'cat("__TRIVIA_LISTA__\\n"); ' +
@@ -140,11 +141,12 @@ También puedes **jugar en tu navegador** [aquí](https://bastianolea.github.io/
 </script>
 </div>
 
-R funciona directamente en tu navegador gracias a [webR](https://docs.r-wasm.org/webr/latest/), que permite ejecutar R en páginas web sin necesidad de instalar nada.
 
-{{< info "La consola de R que ves arriba es interactiva: al cargar la página se ejecuta `trivia()` automáticamente para que empiece el cuestionario. Responde cada pregunta con el número de la alternativa y presiona _enter_." >}}
+¡A ver si logras sacar el puntaje máximo! 🤓
 
-Si tienes R instalado, también puedes jugar en tu consola:
+{{< info "La consola de R que ves arriba es interactiva: al cargar la página se carga R y se ejecuta `territorial::trivia()` automáticamente para que empiece el cuestionario. Responde cada pregunta con el número de la alternativa y presiona _enter_. R funciona directamente en tu navegador gracias a [webR](https://docs.r-wasm.org/webr/latest/)!" >}}
+
+Si tienes R instalado, también puedes jugar localmente en tu consola:
 
 ```r
 # instalar {territorial}
@@ -155,3 +157,9 @@ library(territorial)
 trivia()
 ```
 
+Lee más sobre `{territorial}` en su documentación oficial:
+
+{{< paquete "Paquete `{territorial}`"
+  "https://bastianolea.github.io/territorial/articles/territorial.html"
+  "/blog/territorial/hex-featured.png"
+  "Herramientas para facilitar el procesamiento de datos de comunas y regiones de Chile con R, ofreciendo funciones para validación de comunas, limpiar nombres de comunas, ordenar regiones, y más." >}}
