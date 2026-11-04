@@ -21,7 +21,7 @@ excerpt: "Mi paquete para limpiar, complementar y validar comunas y regiones de 
 links:
   - icon: dice
     icon_pack: fas
-    name: Juego
+    name: Jugar
     url: https://bastianolea.github.io/territorial/articles/trivia.html
 ---
 
