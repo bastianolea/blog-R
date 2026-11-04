@@ -635,3 +635,107 @@ a>svg.anchor-symbol {
   opacity: 80%;
   color: color(srgb 0.5634 0.4121 0.7542);
 }
+
+/* consolas interactivas de R con webR (ej. blog/2026-11-04)
+   estructura: div.consola > p.consola-aviso + pre.consola-salida + form.consola-entrada (input + button)
+   los errores de R se marcan con span.err dentro de la salida; button.secundario para acciones secundarias */
+.consola {
+  .consola-salida {
+    height: 420px;
+    overflow-y: auto;
+    margin: 0;
+    padding: 1rem 1.2rem;
+    background: #31253B;
+    color: #c1a9de !important; /* más claro que el normal */
+    border-radius: 6px;
+    font-family: Consolas, monaco, monospace;
+    font-size: 85%;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+
+    .err {
+      color: #eb6f92;
+    }
+  }
+
+  .consola-aviso {
+    background: #493365;
+    color: #EAD1FA;
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    font-size: 85%;
+  }
+
+  .consola-entrada {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.8rem 0 1.5rem 0;
+    align-items: stretch;
+
+    /* mismo modelo de caja para que input y botones tengan el mismo alto */
+    input,
+    button {
+      box-sizing: border-box;
+      height: auto;
+      margin: 0;
+      line-height: 1.5;
+      padding-top: .6rem;
+      padding-bottom: .5rem;
+    }
+
+    input {
+      flex: 1 1 16rem;
+      padding-left: 0.8rem;
+      padding-right: 0.8rem;
+      border-radius: 5px;
+      border: 2px solid #A885C6;
+      background: #F1DFFB;
+      color: #543A74;
+      font: inherit;
+
+      &:focus {
+        outline: none;
+        border-color: #9069C0;
+      }
+
+      &::placeholder {
+        color: #A885C6;
+      }
+    }
+
+    button {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      border-radius: 5px;
+      border: 2px solid #9069C0;
+      background: #9069C0;
+      color: #EAD2FA;
+      font: inherit;
+      cursor: pointer;
+      white-space: nowrap;
+
+      &:hover:not(:disabled) {
+        background: #6E3998;
+        border-color: #6E3998;
+      }
+
+      &.secundario {
+        background: transparent;
+        color: #6E3998;
+        border-color: #A885C6;
+
+        &:hover:not(:disabled) {
+          background: #A985C640;
+        }
+      }
+    }
+
+    input:disabled,
+    button:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+  }
+}

@@ -81,6 +81,7 @@ Importación de fuentes en `assets/custom-fonts.scss`.
 6. **Syntax highlighting**: líneas destacadas (`.hl`) con fondo `#3b2c46`, líneas no destacadas se atenúan (opacity 0.4)
 7. **Responsive**: media queries para ≤500px (imagen lateral, tarjeta externo)
 8. **AI output**: estilo `.texto-ia` — monospace, borde izquierdo púrpura
+9. **Consolas webR**: `.consola` (wrapper) con `p.consola-aviso`, `pre.consola-salida` (fondo oscuro `#31253B`, errores en `span.err`) y `form.consola-entrada` (input + botones; `button.secundario` para acciones secundarias). Ejemplo completo en `content/blog/2026-11-04/index.md` (incluye `coi-serviceworker.js` en el bundle, necesario para `menu()`/`readline()` en webR).
 
 ## Syntax highlighting
 

@@ -20,9 +20,9 @@ abrir_borradores(cantidad = Inf)
 
 # crear un post normal
 crear_publicacion(
-  title = "Plantilla de mapa interactivo de Chile con R, Shiny y MapGL",
+  title = "Trivia de comunas, provincias y regiones de Chile",
   file = paste0("blog/", lubridate::today(), "/index.qmd"),
-  tags = c("mapas", "Chile")
+  tags = c("Chile", "curiosidades", "paquetes")
 )
 
 # crear un post con nombre

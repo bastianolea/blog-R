@@ -12,6 +12,8 @@
 {{- $t = replaceRE `(?s)<script type="application/json" data-for="htmlwidget-[^"]*">.*?</script>` "_[Visualización interactiva: disponible en la versión web de esta publicación]_" $t -}}
 {{- $t = replaceRE `<div[^>]*class="[^"]*html-widget[^"]*"[^>]*>\s*</div>` "" $t -}}
 {{- $t = replaceRE `<script src="[^"]*"[^>]*>\s*</script>` "" $t -}}
+{{- /* scripts inline (ej. consola webR de 2026-11-04) */ -}}
+{{- $t = replaceRE `(?s)<script(?:\s[^>]*)?>.*?</script>` "" $t -}}
 {{- $t = replaceRE `<link href="[^"]*index_files/libs/[^"]*"[^>]*/?>` "" $t -}}
 {{- $t = replaceRE `(?s)\n<style[^>]*>.*?</style>` "\n" $t -}}
 
