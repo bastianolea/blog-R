@@ -1,1 +1,6 @@
-<i class='{{.Get 0}}' style='{{.Get 1}}'></i>
+<!-- shortcode Hugo que agrega un ícono Font Awesome -->
+<!-- 0 es el ícono, 1 es el estilo css opcional -->
+<!-- El ícono solo necesita el nombre (ej. "file-arrow-down"), y se le antepone "fas fa-" automáticamente. Para íconos de marca u otro estilo, especifica la clase completa con espacio (ej. "fab fa-github") -->
+{{ $icon := .Get 0 }}
+{{ $iconClass := cond (in $icon " ") $icon (printf "fas fa-%s" $icon) }}
+<i class='{{ $iconClass }}' style='{{ .Get 1 }}'></i>

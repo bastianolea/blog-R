@@ -66,7 +66,7 @@ Como el mundo de la [inteligencia artificial](/tags/inteligencia-artificial/) es
 
 Vamos a ir de lo más simple/básico a lo más completo.
 
-## Ideas generales al usar IA
+## Ideas generales al usar inteligencia artificial para análisis de datos
 
 {{< tag "Chatbot" "message" >}}
 
@@ -75,7 +75,7 @@ Vamos a ir de lo más simple/básico a lo más completo.
 
 La IA está diseñada para responder con algo _estadísticamente similar a lo correcto_. En este sentido, uno de nuestros roles es aumentar esta probabilidad para que la IA nos de mejores resultados.
 
-Al usar IA, te recomiendo:
+Para que la IA te responda mejor, recomiendo:
 
 - Escribir **_prompts_ extensos** que expliquen **qué quieres obtener**, cómo lo estás haciendo, y qué herramientas estás usando
 - Entregarle **la mayor cantidad de contexto posible**: documentos, ejemplos, enlaces a información relacionada, como veremos adelante
@@ -87,14 +87,17 @@ Al usar IA, te recomiendo:
 
 <i class='fas fa-file-lines icono-lateral'></i>
 
-La calidad de lo que obtienes de la IA depende directamente de la calidad de lo que le entregas; es decir, la **calidad del contexto** con que la IA cuenta para responderte. Por eso recomiendo entregarle textos de apoyo, enlaces web, transcripciones de reuniones o conversaciones, documentos y todo tipo de material para generar mejores respuestas!
+La calidad de lo que obtienes de la IA depende directamente de la calidad de lo que le entregas; es decir, la **calidad del contexto** con que la IA cuenta para responderte. 
 
 {{< info "**Contexto:** se le llama así a todo el contenido de texto que usa la IA para poder entregar sus respuestas; mientras más contexto relevante reciba, más fundamentadas serán sus respuestas." >}}
 
-Al obtener respuestas de la IA, fijémonos en:
+{{< icono "lightbulb" >}} Recomiendo entregarle textos de apoyo, enlaces web, transcripciones de reuniones o conversaciones,y todo tipo de material para generar mejores respuestas!
+
+Al obtener respuestas de la IA, fíjate en:
 
 - **Revisar siempre** los resultados que entrega la IA, por más convincentes que parezcan!
 - **Cuestionar las respuestas** de la IA para explorar posibilidades alternativas, sin quedarnos con la primera respuesta que nos de! Recuerda que, si le preguntas de nuevo, lo más probable es que te de una respuesta _distinta._
+- **Confirmar que la IA usó las herramientas apropiadas** para leer datos, procesar datos, y realizar cualquier cálculo.
 
 
 
@@ -126,7 +129,7 @@ Revisa más información sobre [_Next Edit Suggestion_ aquí](https://positron.p
 
 Las sugerencias de autocompletado de más arriba aparecen automáticamente, pero también existen herramientas para invocar la ayuda de IA cuando y donde la necesites, por ejemplo con el [paquete de R `{gander}`](/blog/gander). 
 
-Con Gander, al seleccionar texto e invocar un atajo de teclado se abre una ventana donde puedes pedirle a la IA que haga cambios, correcciones o mejoras.
+Con Gander, al seleccionar texto e invocar un atajo de teclado se abre una ventana donde puedes pedirle a la IA que haga cambios, correcciones o mejoras **directamente en tu código**.
 
 En mi caso, tengo configurado [Gander](/blog/gander) con las teclas _comando + shift + G:_
 
@@ -140,15 +143,17 @@ Sin embargo, para usarlo necesitas [configurar una llave de API en R!](/blog/ell
 {{< tag "Arnés de IA" "laptop-code" >}}
 {{< tag "Proyectos" "cube" >}}
 
-Para guiar de manera general a la IA dentro de un proyecto de análisis de datos se recomienda crear un archivo `agents.md`.
+Para guiar de manera general a la IA dentro de un proyecto de análisis de datos se recomienda crear un archivo `AGENTS.md`.
 
-El `agents.md` es un  [archivo Markdown](/blog/quarto_reportes/#markdown) donde van todas las indicaciones generales que necesitas que tu IA conozca. 
+El `AGENTS.md` es un  [archivo Markdown](/blog/quarto_reportes/#markdown) donde van todas las indicaciones generales que necesitas que tu IA conozca. 
 
-Los [arneses de IA](#integración-directa-con-r-posit-assistant) que pueden acceder a la carpeta de tu proyecto **detectan automáticamente** la presencia de `agents.md`, y lo leen apenas empieza la conversación. Así, la conversación inicia con un contexto general que guía el trabajo y mejora las respuestas.
+Los [arneses de IA](#integración-directa-con-r-posit-assistant) que pueden acceder a la carpeta de tu proyecto **detectan automáticamente** la presencia de `AGENTS.md`, y lo leen apenas empieza la conversación. Así, la conversación inicia con un contexto general que guía el trabajo y mejora las respuestas.
 
-<i class='fas fa-circle-info'></i> De esta forma no necesitas repetirle a la IA el contexto ni mismas las instrucciones de siempre.
+{{< icono "circle-info">}} Así no necesitas repetirle a la IA el contexto ni mismas las instrucciones de siempre.
 
-Algunas recomendaciones sobre qué indicar en `agents.md`:
+{{< info "También puedes tener un arhcivo `AGENTS.md` que aplique a todos tus proyectos si lo pones en tu carpeta de usuario, o si usas R con [Posit Assistant](#integración-directa-con-r-posit-assistant), puedes ponerlo en `~/.posit/assistant/AGENTS.md`" >}}
+
+Algunas recomendaciones sobre qué indicar en `AGENTS.md`:
 
 | Indicación | Ejemplo |
 |------------|---------|
@@ -159,10 +164,11 @@ Algunas recomendaciones sobre qué indicar en `agents.md`:
 | **Consejos** para guiar a la IA | _Usa solamente Tidyverse, privilegia código simple y legible, agrega comentarios breves antes de cada bloque_ |
 | El **flujo de trabajo** a seguir | _Crea una carpeta por fuente de datos en `datos`, con un script de limpieza por cada una, y guarda los datos limpios en `resultados/datos/`_ |
 | **Ejemplos** de cómo actuar | _[Valida los datos](/blog/2026-08-21/) en cada paso con `{pointblank}` así {inserte código}...El procedimiento para calcular el el índice debería ser {inserte fórmula}..._ |
+| Otras **configuraciones** | _Escribe todos los comentarios en minúsculas, crea nombres de variables y funciones en español..._ |
 
 Este documento va a ser leído por tu agente _antes de cada respuesta_, por lo que debe contener cosas que la IA **necesite saber** sobre su trabajo. Si el documento es demasiado extenso, podría hacerte consumir demasiados _tokens_ sin necesidad, y por consiguiente dinero/energía/uso de IA.
 
-{{< cuadro "**Recomiendo usar `agents.md`** cuando tengamos proyectos medianos o grandes, que requieren contexto, conocimientos básicos o instrucciones específicas. Así la IA ya sabrá de qué se trata el proyecto, su temática, tus preferencias para programación y análisis, qué debe hacer y evitar, etc." >}}
+{{< cuadro "**Recomiendo usar `AGENTS.md`** cuando tengas proyectos medianamente complejos, que requieren contexto, conocimientos básicos o instrucciones específicas. Así la IA ya sabrá de qué se trata el proyecto, su temática, tus preferencias para programación y análisis, qué debe hacer y evitar, etc." >}}
 
 ## Modo _planificación_
 
@@ -239,7 +245,7 @@ Sitios donde puedes encontrar _skills_ para R:
 - [Awesome R Stats Skills](https://github.com/christopherkenny/awesome-rstats-skills), colección de _skills_ centradas en análisis de datos, desarrollo y calidad de código
 - [R Package Skills](https://github.com/arthurgailes/r-package-skills/), lista de _skills_ para distintos paquetes de R, incluyendo una _skill_ para crear _skills_ con la documentación oficial de cualquier paquete!
 - [A collection of Claude Skills from Posit](https://github.com/posit-dev/skills)
-- [Modern R Development Guide](https://github.com/jeremy-allen/claude-skills), originalmente un [archivo `agents.md` por Sarah Johnson](https://gist.github.com/sj-io/3828d64d0969f2a0f05297e59e6c15ad) separado en skills por Jeremy Allen
+- [Modern R Development Guide](https://github.com/jeremy-allen/claude-skills), originalmente un [archivo `AGENTS.md` por Sarah Johnson](https://gist.github.com/sj-io/3828d64d0969f2a0f05297e59e6c15ad) separado en skills por Jeremy Allen
 - [A Few Claude Skills for R Users](https://rworks.dev/posts/claude-skills-for-r-users/) por Isabella Velásquez
 
 [Posit Assistant](#integración-directa-con-r-posit-assistant) viene con varias _skills_ de R instaladas!
