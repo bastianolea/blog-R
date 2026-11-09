@@ -26,7 +26,7 @@ Se usa el web scraping cuando un sitio web presenta información, cifras, datos,
 
 En este tutorial aprenderemos a hacer web scraping en R para **extraer cualquier información que veamos en un sitio web**, y traerla a nuestro entorno de R para poder procesarla como deseemos.
 
-{{< relacionada "blog/r_introduccion/web_scraping" >}}
+{{< relacionada "blog/web_scraping" >}}
 
 ## Web scraping con {rvest}
 

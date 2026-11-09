@@ -51,7 +51,7 @@ chrome <- ChromoteSession$new()
 
 Lo que hicimos aquí fue crear un objeto `chrome` te representa la instancia del navegador que abrimos, y desde el cual podremos ir ejecutando las instrucciones.
 
-{{< relacionada "blog/r_introduccion/web_scraping" >}}
+{{< relacionada "blog/web_scraping" >}}
 
 Como `{chromote}` principalmente funciona sin un interfaz gráfica, igual que `{rvest}`, podremos seguir desde nuestra consola de R sin tener que cambiar de aplicación.
 

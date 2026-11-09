@@ -2,7 +2,7 @@
 title: >-
   Extrae datos desde páginas de internet controlando un navegador web con
   `{RSelenium}` en R
-subtitle: Web scraping desde un navegador
+subtitle: Web scraping desde un navegador nativo en R
 author: Bastián Olea Herrera
 date: '2025-07-15'
 freeze: true
@@ -37,7 +37,7 @@ En este tutorial aprenderemos a usar `{RSelenium}` para programar scripts de R q
 
 En otro post aprendimos a [hacer web scraping con `{rvest}`](../../../blog/webscraping_rvest/), un paquete muy sencillo de usar para obtener información desde sitios web. Entonces ¿por qué aprender también `{RSelenium}`? La diferencia es que Selenium es capaz de controlar un *navegador web real* en tu computador, como Chrome o Firefox, lo cual puede marcar la diferencia para extraer datos de sitios que buscan dificultar o impedir el acceso a herramientas automatizadas de web scraping.
 
-{{< relacionada "blog/r_introduccion/web_scraping" >}}
+{{< relacionada "blog/web_scraping" >}}
 
 ### Iniciar un cliente
 
