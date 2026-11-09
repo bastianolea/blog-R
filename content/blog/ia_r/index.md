@@ -250,8 +250,7 @@ Sitios donde puedes encontrar _skills_ para R:
 
 [Posit Assistant](#integración-directa-con-r-posit-assistant) viene con varias _skills_ de R instaladas!
 
-
-#### Instalación de _skills_
+### Instalación de _skills_
 
 <i class='fas fa-circle-arrow-down icono-lateral'></i>
 
@@ -261,7 +260,9 @@ También puedes instalar _skills_ a nivel de usuario en tu computador, para que 
 
 {{< cuadro "Por ejemplo, si quieres instalar [la _skill_ de `mirai`](https://github.com/posit-dev/skills/blob/main/r-lib/r-mirai/SKILL.md) para usar el paquete `{mirai}` para paralelizar la ejecución de R, tienes que descargar el archivo `SKILL.md` y ponerlo dentro de `.posit/assistant/skills/r-mirai/SKILL.md` en tu proyecto de R." >}}
 
-#### Uso de _skills_
+{{< aviso "Algunas _skills_ se instalan como grupos de _skills_ o contienen carpetas con archivos de referencia. Recomiendo instalarlas clonando los repos o descargándolos (botón verde de la página de cada repositorio)." >}}
+
+### Uso de _skills_
 
 Simplemente pídele algo a tu IA relacionado a las _skills_ que tienes instaladas, o pídele explícitamente. Algunos _harness_ permiten ejecutar las skills directamente con un _slash_, por ejemplo `/quarto-authoring` para usar [la _skill_ de documentos Quarto](https://github.com/posit-dev/skills/tree/main/quarto/quarto-authoring).
 
@@ -272,9 +273,20 @@ Recuerda que cargar una _skill_ hace que entre en el contexto de tu IA, y por lo
 
 {{< cuadro "**Recomiendo usar _skills_** cuando necesitemos instrucciones específicas para ciertos procedimientos que la IA no maneja bien, o cuando hay un contexto extenso que sólo se necesita en ciertos momentos. Por ejemplo, _skills_ sobre paquetes de R avanzados y para metodologías o procedimientos estadísticos complejos." >}}
 
-<!---
-Para mantener este blog uso dos _skills_: una con mi [estilo personal de escritura](https://github.com/bastianolea/blog-R/blob/master/.posit/assistant/skills/estilo-escritura/SKILL.md) y otra que documenta [cómo funciona la estructura del blog](https://github.com/bastianolea/blog-R/blob/master/.posit/assistant/skills/hugo-blog/SKILL.md), que Posit Assistant consulta automáticamente cada vez que escribo o modifico una publicación.
---->
+
+### _Skills_ de R que yo uso
+
+Aquí algunas _skills_ que he encontrado e instalado para ayudarme en cosas puntuales con R:
+
+| _Skill_ del paquete | Uso |
+|-------------|-----|
+| [`{mapgl}`](https://github.com/arthurgailes/r-package-skills/tree/master/skills/r-mapgl) | Para creación de mapas interactivos |
+| [`{shiny}`](https://github.com/posit-dev/skills/tree/main/shiny) | Para crear apps robustas y optimizarlas |
+| [`{mirai}`](https://github.com/posit-dev/skills/tree/main/r-lib/r-mirai) | Para paralelizar código y optimizar rendimiento |
+| [`{testthat}`](https://github.com/posit-dev/skills/tree/main/r-lib/r-testthat) | Para crear mejores tests unitarios |
+| [`{targets}`](https://github.com/statzhero/targets-r-skill) | Para organizar _pipelines_ de procesamiento de datos |
+
+Además, para mantener este blog uso dos _skills_ que yo hice: una con mi [estilo personal de escritura](https://github.com/bastianolea/blog-R/blob/master/.posit/assistant/skills/estilo-escritura/SKILL.md) y otra que documenta [cómo funciona el blog Quarto](https://github.com/bastianolea/blog-R/blob/master/.posit/assistant/skills/hugo-blog/SKILL.md).
 
 
 

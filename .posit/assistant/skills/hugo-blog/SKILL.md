@@ -512,7 +512,7 @@ Shortcodes más usados:
 
 ## Páginas personalizadas con iframe
 
-La página `/buscar/` embebe la app Shiny del buscador (`https://bastianoleah.shinyapps.io/buscador/`) dentro del sitio, manteniendo el header y footer habituales.
+La página `/buscar/` embebe la app Shiny del buscador (`https://bastianolea-blog-buscador.share.connect.posit.cloud/`) dentro del sitio, manteniendo el header y footer habituales.
 
 **Patrón para crear una página de sección con layout propio:**
 1. Crear `content/{seccion}/_index.md` con front matter mínimo
