@@ -216,11 +216,22 @@ git commit --amend -m 'nuevo mensaje del ultimo commit'
 ## Recuperar cambios
 
 
+### Ver la versión respaldada de un archivo
+
+Para revisar cómo estaba el archivo en el último commit, por ejemplo si hiciste cambios y quieres mirar cómo estaba antes, ejecuta:
+
+```
+git show HEAD:ruta/al/archivo.R
+```
+
+En tu terminal se abrirá un visor del archivo para que lo revises.
+
+
 ### Deshacer un _commit_
 
 Buscar el _hash_ del commit problemático:
 
-```r
+```
 git log
 ```
 

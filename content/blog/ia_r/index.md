@@ -143,15 +143,21 @@ Sin embargo, para usarlo necesitas [configurar una llave de API en R!](/blog/ell
 {{< tag "Arnés de IA" "laptop-code" >}}
 {{< tag "Proyectos" "cube" >}}
 
-Para guiar de manera general a la IA dentro de un proyecto de análisis de datos se recomienda crear un archivo `AGENTS.md`.
+Para guiar de manera general a la IA dentro de un proyecto de análisis de datos se recomienda crear un archivo `AGENTS.md`. Es un [archivo Markdown](/blog/quarto_reportes/#markdown) donde van todas las indicaciones generales que necesitas que tu IA conozca. Cuando inicies una conversación nueva con la IA, la IA _ya sabrá_ todo lo incluido en el archivo `AGENTS.md`. A esto se le suele llamar **memoria**, ya que permite que tu IA retenga conocimientos entre sesiones.
 
-El `AGENTS.md` es un  [archivo Markdown](/blog/quarto_reportes/#markdown) donde van todas las indicaciones generales que necesitas que tu IA conozca. 
+{{< icono "circle-info">}} Así no necesitas repetirle a la IA de qué se trata tu proyecto, ni darle las mismas instrucciones de siempre.
 
-Los [arneses de IA](#integración-directa-con-r-posit-assistant) que pueden acceder a la carpeta de tu proyecto **detectan automáticamente** la presencia de `AGENTS.md`, y lo leen apenas empieza la conversación. Así, la conversación inicia con un contexto general que guía el trabajo y mejora las respuestas.
+Los [arneses de IA](#integración-directa-con-r-posit-assistant) **detectan automáticamente** la presencia de `AGENTS.md` en la raíz de tu proyecto/carpeta de trabajo, y lo leen apenas empieza la conversación.
 
-{{< icono "circle-info">}} Así no necesitas repetirle a la IA el contexto ni mismas las instrucciones de siempre.
+Si usas [Posit Assistant](#integración-directa-con-r-posit-assistant) en RStudio o Positron, puedes presionar el ícono de engranaje y elegir _Open project memory_ o _Open user memory_, dependiendo de si quieres que tu IA sepa cosas sobre tu proyecto, o sepa cosas que apliquen a todos tus proyectos.
 
-{{< info "También puedes tener un arhcivo `AGENTS.md` que aplique a todos tus proyectos si lo pones en tu carpeta de usuario, o si usas R con [Posit Assistant](#integración-directa-con-r-posit-assistant), puedes ponerlo en `~/.posit/assistant/AGENTS.md`" >}}
+{{< imagen "posit_assistant_agents.png" "200px" >}}
+
+{{< bajada "Menú de opciones de [Posit Assistant](#integración-directa-con-r-posit-assistant) para crear/editar la memoria en `AGENTS.md`" >}}
+
+El `AGENTS.md` va a ser leído por tu agente _antes de cada respuesta_, por lo que debe contener cosas que la IA **necesite saber** sobre su trabajo. 
+
+{{< icono "triangle-exclamation" >}} Si `AGENTS.md` es demasiado extenso, podría hacerte consumir demasiados _tokens_ sin necesidad, y por consiguiente dinero/energía/uso de IA.
 
 Algunas recomendaciones sobre qué indicar en `AGENTS.md`:
 
@@ -163,10 +169,10 @@ Algunas recomendaciones sobre qué indicar en `AGENTS.md`:
 | **Instrucciones** sobre cómo responder | _Explícame cada paso que hagas como si fuera un principiante en estadísticas... Eres un profesional de ciencias sociales computacionales, responde siempre con lenguaje formal y técnico_ |
 | **Consejos** para guiar a la IA | _Usa solamente Tidyverse, privilegia código simple y legible, agrega comentarios breves antes de cada bloque_ |
 | El **flujo de trabajo** a seguir | _Crea una carpeta por fuente de datos en `datos`, con un script de limpieza por cada una, y guarda los datos limpios en `resultados/datos/`_ |
-| **Ejemplos** de cómo actuar | _[Valida los datos](/blog/2026-08-21/) en cada paso con `{pointblank}` así {inserte código}...El procedimiento para calcular el el índice debería ser {inserte fórmula}..._ |
+| **Ejemplos** de cómo actuar | _[Valida los datos](/blog/2026-08-21/) en cada paso con `{pointblank}` así {inserte código}... El procedimiento para calcular el el índice debería ser {inserte fórmula}..._ |
 | Otras **configuraciones** | _Escribe todos los comentarios en minúsculas, crea nombres de variables y funciones en español..._ |
 
-Este documento va a ser leído por tu agente _antes de cada respuesta_, por lo que debe contener cosas que la IA **necesite saber** sobre su trabajo. Si el documento es demasiado extenso, podría hacerte consumir demasiados _tokens_ sin necesidad, y por consiguiente dinero/energía/uso de IA.
+
 
 {{< cuadro "**Recomiendo usar `AGENTS.md`** cuando tengas proyectos medianamente complejos, que requieren contexto, conocimientos básicos o instrucciones específicas. Así la IA ya sabrá de qué se trata el proyecto, su temática, tus preferencias para programación y análisis, qué debe hacer y evitar, etc." >}}
 
@@ -353,18 +359,23 @@ Algunos usos que le puedes dar:
 {{< tag "Llave de API" "key" >}}
 {{< tag "Código" "code" >}}
 {{< tag "Archivos" "file" >}}
-{{< tag "loop" "repeat" >}}
+{{< tag "Loop" "repeat" >}}
 
 
 <i class='fas fa-terminal icono-lateral'></i>
 
-[Claude Code](https://claude.com/es/product/claude-code) (o Codex de OpenAI, Gemini CLI, Open Code, [Posit Assistant TUI](https://assistant.posit.co/downloads/tui/) u otras) es un software de línea de comandos (CLI) que instalas en tu computadora para dejar que la IA trabaje directamente sobre tus propios archivos, scripts y carpetas, usando comandos propios de tu computadora.
+[Claude Code](https://code.claude.com/docs/es/terminal-guide) (o Codex de OpenAI, Gemini CLI, Open Code, [Posit Assistant TUI](https://assistant.posit.co/downloads/tui/) u otras) es un software de línea de comandos (CLI) que instalas en tu computadora para dejar que la IA trabaje directamente sobre tus propios archivos, scripts y carpetas, usando comandos propios de tu computadora.
 
-Esto habilita posibilidades avanzadas que también permite [Posit Assistant](#integración-directa-con-r-posit-assistant), pero mucho más amplias en el sentido de que puede ocupar otros lenguajes de programación y en general hacer _cualquier cosa_ sobre tu sistema. En este sentido habilita lo que muchos llaman _vibe coding_, la práctica de simplemente describir lo que quieres que se desarrolle sin que tengas que saber nada.
+Esto habilita posibilidades avanzadas que también permite [Posit Assistant](#integración-directa-con-r-posit-assistant), pero mucho más amplias en el sentido de que puede ocupar otros lenguajes de programación y en general **hacer _cualquier cosa_** sobre tu sistema. 
+
+Estas opciones habilitan lo que muchos llaman **_vibe coding_**, la práctica de simplemente describir lo que quieres que se desarrolle sin que tengas que saber nada.
 
 {{< aviso "Sólo recomiendo usarlo si sabes lo que estás haciendo!" >}} 
 
 _Para usarlo necesitas de una llave de API._
+
+{{< imagen "claude-code.png" "400px" >}}
+{{< bajada "Ventana de Terminal ejecutando Claude Code para explorar un proyecto de ciencia de datos" >}}
 
 ## Permitir que la IA use R
 
@@ -377,7 +388,7 @@ Una última manera de usar IA en R es usarla directamente en el lenguaje de prog
 
 [El paquete de R `{ellmer}`](/blog/ellmer/) facilita la integración de inteligencia artificial en funciones de R, por ejemplo para crear una función que clasifica textos, para redactar respuestas o salidas paraa tus funciones, y más. 
 
-En princpio, cualquier cosa que una IA puede hacer podría ser integrada en una función de R y para aplicarla a tus datos de una manera más **controlada** y **reproducible**.
+En principio, cualquier cosa que una IA puede hacer podría ser integrada en una función de R y para aplicarla a tus datos de una manera más **controlada** y **reproducible**.
 
 {{< relacionada "/blog/ellmer/" >}}
 
