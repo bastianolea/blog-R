@@ -2,6 +2,7 @@
 title: Comandos comunes de Git
 author: Bastián Olea Herrera
 date: '2025-10-27'
+modified: '2026-11-09'
 slug: []
 draft: false
 categories: []
@@ -16,22 +17,20 @@ format:
 excerpt: "Colección de comandos de `git` para realizar acciones comunes y resolver problemas frecuentes. `git` es una herramienta para el control de versiones de código, respaldo de código, y colaboración."
 ---
 
-`git` es una herramienta para el control de versiones de código, respaldo de código, y colaboración. En otro post hice un tutorial para [aprender a usar `git` y GitHub con R y RStudio](/blog/tutorial_github/). En este post voy a mantener una lista[^1] de los comandos que más uso en `git`, así como los comandos que necesito para resolver los **problemas más frecuentes.**
+`git` es una herramienta para el control de versiones de código, respaldo de código, y colaboración. En otro post hice un tutorial para [aprender a usar `git` y GitHub con R y RStudio](/blog/tutorial_github/). 
+
+En esta publicación voy a mantener una lista[^1] de los comandos que más uso en `git`, así como los comandos que necesito para resolver los **problemas más frecuentes.**
 
 [^1]: Hago esto porque tengo una nota en el computador con todos los comandos y siempre vuelvo a buscarla para copiarlos, así que mejor dejo todo eso acá 😋
 
-{{< relacionada "/blog/tutorial_github/" >}}
+{{< icono "info-circle" >}} Para configurar tu cuenta de GitHub en el git de tu computador, [sigue estas instrucciones!](https://bastianolea.rbind.io/blog/tutorial_github/#configurar-github-en-r)
 
-Otro recurso mucho más completo es [ohshitgit.com](https://ohshitgit.com/es), que como su nombre indica, está enfocado en resolver problemas comunes con `git`.
-
-
-{{< aviso "Este post está _en construcción_, y a medida que me encuentro con problemas o voy aprendiendo iré agregando y desarrollando." >}}
-
-{{< aviso "Ten mucho cuidado al ejecutar estos u otros comandos de `git`, ya que pueden afectar tus archivos. Recuerda siempre tener **respaldos**!" >}}
+{{< info "Este post está _en construcción_, y a medida que me encuentro con problemas o voy aprendiendo iré agregando y desarrollando." >}}
 
 
 ## Comandos git básicos
 
+{{< aviso "Ten mucho cuidado al ejecutar estos u otros comandos de `git`, ya que pueden afectar tus archivos. Recuerda siempre tener **respaldos**!" >}}
 
 ### Crear repositorio git en proyecto de RStudio
 
@@ -154,6 +153,8 @@ usethis::git_vaccinate()
 ----
 
 ## Solucionar problemas
+
+Un recurso mucho más completo es [ohshitgit.com](https://ohshitgit.com/es), que como su nombre indica, está enfocado en resolver problemas comunes con `git`.
 
 ### Deshacer `git add archivo.R`
 Por si la embarraste y agregaste un archivo incorrecto a la zona de preparación:

@@ -3,7 +3,7 @@ title: Guía para programar en R con inteligencia artificial
 subtitle: Compilación de herramientas y alternativas para potenciar el análisis de datos en R usando IA
 author: Bastián Olea Herrera
 date: '2026-10-13'
-modified: '2026-11-09'
+modified: '2026-11-10'
 slug: []
 categories:
   - Tutoriales
