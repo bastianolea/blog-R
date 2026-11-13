@@ -1,0 +1,839 @@
+---
+title: Tablas interactivas en R con DataTables (`{DT}`)
+subtitle: "Búsqueda, filtros, formato, colores y estilos personalizados"
+author: Bastián Olea Herrera
+date: '2026-11-13'
+draft: true
+freeze: true
+slug: []
+categories:
+  - Tutoriales
+tags:
+  - tablas
+  - visualización de datos
+  - Chile
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+execute:
+  message: false
+  warning: false
+editor_options: 
+  chunk_output_type: console
+excerpt: "Guía de referencia para crear tablas interactivas en R con `{DT}`: búsqueda, filtros, traducción al español, formato de números, colores condicionales, barras, estilos con CSS y extensiones."
+links:
+  - icon: registered
+    icon_pack: fas
+    name: DT
+    url: https://rstudio.github.io/DT/
+---
+
+[El paquete `{DT}`](https://rstudio.github.io/DT/) genera tablas interactivas a partir de cualquier _data frame_, usando la librería JavaScript [DataTables](https://datatables.net). Las tablas permiten buscar, ordenar, paginar y filtrar, y funcionan en documentos [Quarto](/blog/quarto/), R Markdown y [apps Shiny](/blog/shiny/).
+
+Si lo que necesitas es una tabla estática para presentar resultados, revisa el [tutorial de tablas con `{gt}`](/blog/tablas_gt/).
+
+{{< relacionada "blog/tablas_gt/" >}}
+
+```r
+install.packages("DT")
+```
+
+{{< indice >}}
+
+## Datos
+
+Usaremos las [estimaciones de pobreza comunal 2022](https://github.com/bastianolea/pobreza_chile) del Ministerio de Desarrollo Social:
+
+```{r datos}
+library(dplyr)
+library(readr)
+
+pobreza <- read_csv2("https://raw.githubusercontent.com/bastianolea/pobreza_chile/refs/heads/main/pobreza_comunal/datos_procesados/pobreza_comunal.csv") |> 
+  select(region, comuna = nombre_comuna, poblacion, pobreza_n, pobreza_p)
+
+pobreza
+```
+
+Para que las tablas de este tutorial ocupen menos espacio, dejamos 5 filas por página en todas las tablas (ver [opciones globales](#opciones-globales)):
+
+```{r opciones_iniciales}
+options(DT.options = list(pageLength = 5))
+```
+
+
+## Tabla básica
+
+```{r tabla_basica}
+library(DT)
+
+datatable(pobreza)
+```
+
+Por defecto la tabla incluye buscador, ordenamiento por columnas, paginación y selección de filas. `{DT}` alinea las columnas numéricas a la derecha y no ordena la tabla al inicio.
+
+
+## Opciones básicas
+
+### Ocultar números de fila
+
+```{r rownames}
+datatable(pobreza, rownames = FALSE)
+```
+
+### Nombres de columnas
+
+Con un vector con todos los nombres:
+
+```{r colnames}
+datatable(pobreza, 
+          rownames = FALSE,
+          colnames = c("Región", "Comuna", "Población", 
+                       "Personas en pobreza", "Pobreza (%)"))
+```
+
+O solo algunas columnas, con la forma `"nombre nuevo" = "nombre_original"`:
+
+```{r colnames_parcial}
+#| eval: false
+datatable(pobreza, colnames = c("Comuna" = "comuna"))
+```
+
+### Título
+
+```{r caption}
+datatable(pobreza, 
+          rownames = FALSE,
+          caption = "Pobreza comunal, 2022")
+```
+
+### Desactivar selección de filas
+
+```{r selection}
+#| eval: false
+datatable(pobreza, selection = "none")
+```
+
+Otras opciones son `"single"` (una fila) y `"multiple"` (por defecto).
+
+### Filas por página
+
+```{r pagelength}
+datatable(pobreza, 
+          rownames = FALSE,
+          options = list(pageLength = 10,
+                         lengthMenu = c(10, 20, 50)))
+```
+
+### Elementos visibles
+
+La opción `dom` define qué elementos aparecen alrededor de la tabla, y en qué orden:
+
+| Letra | Elemento                         |
+|-------|----------------------------------|
+| `l`   | selector de cantidad de filas    |
+| `f`   | buscador                         |
+| `r`   | indicador de carga               |
+| `t`   | tabla                            |
+| `i`   | información de filas             |
+| `p`   | paginación                       |
+| `B`   | botones (extensión `Buttons`)    |
+
+```{r dom}
+# solo buscador, tabla y paginación
+datatable(pobreza, 
+          rownames = FALSE,
+          options = list(dom = "ftp"))
+```
+
+Para tablas cortas, también se pueden desactivar elementos individualmente con `paging = FALSE`, `info = FALSE` o `searching = FALSE`.
+
+### Orden inicial
+
+Las columnas se indican por su posición, **empezando desde 0**. Si la tabla muestra números de fila (`rownames = TRUE`), éstos ocupan la posición 0.
+
+```{r order}
+# ordenar por porcentaje de pobreza, descendente
+datatable(pobreza, 
+          rownames = FALSE,
+          options = list(order = list(list(4, "desc"))))
+```
+
+
+## Traducir al español
+
+### Traducción manual
+
+Con la opción `language` se reemplaza cada texto de la tabla. Los comodines `_TOTAL_`, `_START_`, `_END_`, `_MAX_` y `_MENU_` se reemplazan por cifras o controles.
+
+```{r idioma}
+idioma <- list(
+  info = "Total de _TOTAL_ comunas, mostrando de la _START_ a la _END_",
+  paginate = list(previous = "Anterior", `next` = "Siguiente", 
+                  first = "Primera", last = "Última"),
+  search = "Buscar:",
+  lengthMenu = "Mostrar _MENU_ comunas",
+  emptyTable = "No hay comunas con datos",
+  infoEmpty = "Mostrando 0 comunas",
+  zeroRecords = "Sin resultados",
+  infoFiltered = "(filtrando de un total de _MAX_ comunas)"
+)
+
+datatable(pobreza, 
+          rownames = FALSE,
+          options = list(language = idioma))
+```
+
+### Traducción con archivo oficial
+
+DataTables tiene [traducciones listas](https://datatables.net/plug-ins/i18n/) que se cargan desde internet:
+
+```{r idioma_url}
+#| eval: false
+datatable(pobreza, 
+          options = list(
+            language = list(url = "https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-CL.json")
+          ))
+```
+
+### Opciones globales
+
+Para aplicar opciones a todas las tablas de un script o documento, se definen con `options(DT.options = ...)`. Desde aquí, todas las tablas del tutorial quedan en español:
+
+```{r opciones_globales}
+options(DT.options = list(pageLength = 5, 
+                          language = idioma))
+```
+
+
+## Formato de números
+
+Las funciones `format...()` se agregan con `|>` después de `datatable()`, indicando las columnas por nombre:
+
+```{r formato}
+datatable(pobreza, rownames = FALSE) |> 
+  formatRound(c("poblacion", "pobreza_n"), 
+              digits = 0, mark = ".") |> 
+  formatPercentage("pobreza_p", 
+                   digits = 1, dec.mark = ",")
+```
+
+Otras funciones de formato:
+
+```{r formato_otros}
+#| eval: false
+# cifras en dinero
+formatCurrency("monto", currency = "$", 
+               mark = ".", dec.mark = ",", digits = 0)
+
+# agregar texto antes o después
+formatString("poblacion", suffix = " personas")
+
+# fechas
+formatDate("fecha", method = "toLocaleDateString")
+```
+
+Desde aquí guardamos la tabla con formato en un objeto, para reutilizarla:
+
+```{r formato_tabla}
+formatear_pobreza <- function(tabla) {
+  tabla |> 
+    formatRound(c("poblacion", "pobreza_n"), 
+                digits = 0, mark = ".") |> 
+    formatPercentage("pobreza_p", 
+                     digits = 1, dec.mark = ",")
+}
+```
+
+
+## Columnas
+
+Las opciones de columnas van en `columnDefs`, una lista donde cada elemento indica las columnas afectadas (`targets`, desde 0) y lo que se les aplica.
+
+### Alineación
+
+Clases disponibles: `dt-left`, `dt-center`, `dt-right`, y sus variantes para encabezados (`dt-head-center`) o solo celdas (`dt-body-center`).
+
+```{r alineacion}
+datatable(pobreza, 
+          rownames = FALSE,
+          options = list(
+            columnDefs = list(
+              list(targets = 0, className = "dt-right"),
+              list(targets = 1, className = "dt-center")
+            ))) |> 
+  formatear_pobreza()
+```
+
+### Ocultar columnas
+
+```{r ocultar}
+datatable(pobreza, 
+          rownames = FALSE,
+          options = list(
+            columnDefs = list(
+              list(targets = c(2, 3), visible = FALSE)
+            ))) |> 
+  formatear_pobreza()
+```
+
+Las columnas ocultas siguen disponibles para búsquedas y estilos.
+
+### Ancho de columnas
+
+Requiere `autoWidth = TRUE`:
+
+```{r ancho}
+datatable(pobreza, 
+          rownames = FALSE,
+          options = list(
+            autoWidth = TRUE,
+            columnDefs = list(
+              list(targets = 1, width = "300px")
+            ))) |> 
+  formatear_pobreza()
+```
+
+
+## Búsqueda y filtros
+
+### Filtros por columna
+
+`filter = "top"` (o `"bottom"`) agrega un filtro sobre cada columna: rangos deslizantes para números y fechas, listas para factores y cajas de texto para caracteres.
+
+```{r filtros}
+datatable(pobreza, 
+          rownames = FALSE,
+          filter = "top") |> 
+  formatear_pobreza()
+```
+
+### Resaltar resultados de búsqueda
+
+```{r resaltar}
+datatable(pobreza, 
+          rownames = FALSE,
+          options = list(searchHighlight = TRUE,
+                         search = list(search = "san"))) |> 
+  formatear_pobreza()
+```
+
+`search = list(search = "...")` define una búsqueda inicial.
+
+
+## Encabezados agrupados
+
+Con `container` se define la estructura HTML del encabezado, usando `rowspan` y `colspan` para agrupar columnas:
+
+```{r encabezados}
+encabezado <- htmltools::withTags(
+  table(
+    class = "display",
+    thead(
+      tr(
+        th(rowspan = 2, "Región"),
+        th(rowspan = 2, "Comuna"),
+        th(rowspan = 2, "Población"),
+        th(colspan = 2, "Pobreza")
+      ),
+      tr(
+        th("Cantidad"),
+        th("Porcentaje")
+      )
+    )
+  )
+)
+
+datatable(pobreza, 
+          rownames = FALSE,
+          container = encabezado) |> 
+  formatear_pobreza()
+```
+
+
+## Agrupar filas
+
+La extensión `RowGroup` agrupa las filas según una columna (que conviene ocultar). Los datos deben venir ordenados por esa columna.
+
+```{r agrupar}
+pobreza |> 
+  arrange(region) |> 
+  datatable(rownames = FALSE,
+            extensions = "RowGroup",
+            options = list(
+              rowGroup = list(dataSrc = 0),
+              columnDefs = list(list(targets = 0, visible = FALSE)),
+              pageLength = 10
+            )) |> 
+  formatear_pobreza()
+```
+
+
+## Apariencia y colores
+
+### Estilos de DataTables
+
+El argumento `class` combina clases de estilo de DataTables:
+
+| Clase         | Efecto                                          |
+|---------------|-------------------------------------------------|
+| `display`     | por defecto: `stripe`, `hover` y `row-border`   |
+| `stripe`      | filas de fondo alternado                        |
+| `hover`       | resalta la fila bajo el mouse                   |
+| `row-border`  | líneas horizontales entre filas                 |
+| `cell-border` | bordes en todas las celdas                      |
+| `compact`     | reduce el espaciado de las celdas               |
+| `nowrap`      | evita saltos de línea en las celdas             |
+
+```{r clases}
+datatable(pobreza, 
+          rownames = FALSE,
+          class = "cell-border stripe compact") |> 
+  formatear_pobreza()
+```
+
+### Estilo de columnas
+
+`formatStyle()` aplica cualquier propiedad CSS a las celdas de una o más columnas. Los nombres de propiedades se escriben en _camelCase_ (`fontWeight` en vez de `font-weight`).
+
+```{r estilo_columnas}
+datatable(pobreza, rownames = FALSE) |> 
+  formatear_pobreza() |> 
+  formatStyle("comuna", fontWeight = "bold") |> 
+  formatStyle(c("region", "poblacion"), 
+              color = "grey", fontSize = "85%")
+```
+
+### Colores por rangos
+
+`styleInterval()` recibe los cortes y un color por cada tramo (un color más que cortes):
+
+```{r colores_rangos}
+datatable(pobreza, rownames = FALSE) |> 
+  formatear_pobreza() |> 
+  formatStyle("pobreza_p",
+              backgroundColor = styleInterval(
+                cuts = c(0.15, 0.25), 
+                values = c("#D9F0D3", "#FEE8C8", "#FBB4AE")
+              ))
+```
+
+Funciona con cualquier propiedad: `color` para el texto, `fontWeight` para negritas, etc.
+
+### Degradado de colores
+
+Para un degradado, se usan muchos cortes (por ejemplo, cuantiles) y una paleta generada con `colorRampPalette()`:
+
+```{r degradado}
+cortes <- quantile(pobreza$pobreza_p, probs = seq(0.05, 0.95, 0.05))
+
+colores <- colorRampPalette(c("white", "#E34A33"))(length(cortes) + 1)
+
+datatable(pobreza, rownames = FALSE) |> 
+  formatear_pobreza() |> 
+  formatStyle("pobreza_p", backgroundColor = styleInterval(cortes, colores))
+```
+
+Para colorear varias columnas con la misma escala, se entregan todas en el primer argumento de `formatStyle()`.
+
+### Barras en celdas
+
+`styleColorBar()` dibuja una barra proporcional al valor de cada celda:
+
+```{r barras}
+datatable(pobreza, rownames = FALSE) |> 
+  formatear_pobreza() |> 
+  formatStyle("pobreza_n",
+              background = styleColorBar(pobreza$pobreza_n, "#C6B3E6"),
+              backgroundSize = "98% 70%",
+              backgroundRepeat = "no-repeat",
+              backgroundPosition = "center")
+```
+
+`backgroundSize` controla el alto de la barra, para que no ocupe toda la celda.
+
+### Colores por categoría
+
+Creamos una variable categórica con el tramo de pobreza, y definimos sus colores:
+
+```{r tramos}
+pobreza_tramos <- pobreza |> 
+  mutate(tramo = case_when(pobreza_p >= 0.25 ~ "alta",
+                           pobreza_p >= 0.15 ~ "media",
+                           .default = "baja"))
+
+colores_tramo <- c("baja" = "#D9F0D3", 
+                   "media" = "#FEE8C8", 
+                   "alta" = "#FBB4AE")
+```
+
+`styleEqual()` asigna un valor a cada categoría:
+
+```{r colores_categoria}
+datatable(pobreza_tramos, rownames = FALSE) |> 
+  formatear_pobreza() |> 
+  formatStyle("tramo",
+              backgroundColor = styleEqual(
+                levels = names(colores_tramo), 
+                values = colores_tramo
+              ))
+```
+
+### Colorear una columna según otra
+
+El segundo argumento de `formatStyle()` (`valueColumns`) indica la columna de la que salen los valores, y el primero la columna a la que se aplica el estilo. Así, la columna `tramo` puede quedar oculta:
+
+```{r colores_otra_columna}
+datatable(pobreza_tramos, 
+          rownames = FALSE,
+          options = list(
+            columnDefs = list(list(targets = 5, visible = FALSE))
+          )) |> 
+  formatear_pobreza() |> 
+  formatStyle(columns = c("comuna", "pobreza_p"), 
+              valueColumns = "tramo",
+              backgroundColor = styleEqual(names(colores_tramo), colores_tramo))
+```
+
+### Colorear filas completas
+
+Con `target = "row"` el estilo se aplica a toda la fila:
+
+```{r colores_filas}
+datatable(pobreza, rownames = FALSE) |> 
+  formatear_pobreza() |> 
+  formatStyle("region", 
+              target = "row",
+              backgroundColor = styleEqual("Metropolitana", "#E6DAF5"),
+              fontWeight = styleEqual("Metropolitana", "bold"))
+```
+
+### HTML dentro de celdas
+
+Con `escape = FALSE` las celdas interpretan HTML, lo que permite crear etiquetas con estilo propio:
+
+```{r html}
+pobreza_etiquetas <- pobreza_tramos |> 
+  mutate(tramo = paste0(
+    '<span style="background-color: ', colores_tramo[tramo], '; ',
+    'padding: 2px 10px; border-radius: 10px;">', 
+    tramo, '</span>'
+  ))
+
+datatable(pobreza_etiquetas, 
+          rownames = FALSE,
+          escape = FALSE) |> 
+  formatear_pobreza()
+```
+
+Usa `escape = FALSE` solo con datos confiables, ya que cualquier HTML en los datos se va a ejecutar.
+
+### Color del encabezado
+
+La opción `initComplete` ejecuta código JavaScript cuando la tabla termina de cargarse. Con `JS()` se escribe el código que cambia los colores del encabezado:
+
+```{r encabezado_color}
+datatable(pobreza, 
+          rownames = FALSE,
+          options = list(
+            initComplete = JS(
+              "function(settings, json) {",
+              "$(this.api().table().header()).css({'background-color': '#543A73', 'color': 'white'});",
+              "}")
+          )) |> 
+  formatear_pobreza()
+```
+
+### Estilo con CSS
+
+Para controlar toda la apariencia de la tabla, incluyendo buscador, paginación y textos, se usa CSS. Le damos un identificador a la tabla con `elementId`, y una clase con `class` (agregando `display` para mantener los estilos por defecto):
+
+```{r tabla_css}
+datatable(pobreza_tramos,
+          rownames = FALSE,
+          elementId = "tabla_pobreza",
+          class = "display compact",
+          selection = "single",
+          colnames = c("Región", "Comuna", "Población", 
+                       "Personas en pobreza", "Pobreza (%)", "Tramo"),
+          options = list(
+            columnDefs = list(list(targets = 5, visible = FALSE))
+          )) |> 
+  formatear_pobreza() |> 
+  formatStyle("comuna", fontWeight = "bold") |> 
+  formatStyle("region", color = "#9069C0") |> 
+  formatStyle("pobreza_p", 
+              valueColumns = "tramo",
+              backgroundColor = styleEqual(names(colores_tramo), colores_tramo)) |> 
+  formatStyle("pobreza_n",
+              background = styleColorBar(pobreza$pobreza_n, "#D9C6F2"),
+              backgroundSize = "98% 60%",
+              backgroundRepeat = "no-repeat",
+              backgroundPosition = "center")
+```
+
+El CSS usa variables (`--tabla-fondo`, etc.) para cambiar todos los colores desde un solo lugar:
+
+```css
+/* colores */
+#tabla_pobreza {
+  --tabla-fondo: #F6EEFC;
+  --tabla-texto: #3A2752;
+  --tabla-detalle: #9069C0;
+  color: var(--tabla-texto);
+}
+
+/* encabezado */
+#tabla_pobreza thead th {
+  background-color: var(--tabla-detalle);
+  color: white;
+  font-size: 90%;
+  border-bottom: none !important;
+}
+
+/* celdas */
+#tabla_pobreza tbody td {
+  background-color: var(--tabla-fondo);
+  font-size: 85%;
+  border-top: 2px solid white !important;
+}
+
+/* fila bajo el mouse */
+#tabla_pobreza tbody tr:hover > td {
+  box-shadow: inset 0 0 0 9999px rgba(144, 105, 192, 0.15) !important;
+}
+
+/* fila seleccionada */
+#tabla_pobreza tbody tr.selected > td {
+  box-shadow: inset 0 0 0 9999px rgba(144, 105, 192, 0.6) !important;
+  color: white;
+}
+
+/* buscador y selector de filas */
+#tabla_pobreza .dataTables_filter input,
+#tabla_pobreza .dataTables_length select {
+  background-color: var(--tabla-fondo);
+  border: none;
+  border-bottom: 2px solid var(--tabla-detalle);
+  border-radius: 0;
+}
+
+/* textos de información */
+#tabla_pobreza .dataTables_info {
+  font-size: 80%;
+  color: var(--tabla-detalle) !important;
+}
+
+/* botones de paginación */
+#tabla_pobreza .dataTables_paginate .paginate_button {
+  border-radius: 6px;
+  border: none !important;
+  color: var(--tabla-texto) !important;
+}
+
+#tabla_pobreza .dataTables_paginate .paginate_button:hover {
+  background: var(--tabla-fondo) !important;
+}
+
+#tabla_pobreza .dataTables_paginate .paginate_button.current,
+#tabla_pobreza .dataTables_paginate .paginate_button.current:hover {
+  background: var(--tabla-detalle) !important;
+  color: white !important;
+}
+```
+
+```{=html}
+<style>
+#tabla_pobreza {
+  --tabla-fondo: #F6EEFC;
+  --tabla-texto: #3A2752;
+  --tabla-detalle: #9069C0;
+  color: var(--tabla-texto);
+}
+#tabla_pobreza thead th {
+  background-color: var(--tabla-detalle);
+  color: white;
+  font-size: 90%;
+  border-bottom: none !important;
+}
+#tabla_pobreza tbody td {
+  background-color: var(--tabla-fondo);
+  font-size: 85%;
+  border-top: 2px solid white !important;
+}
+#tabla_pobreza tbody tr:hover > td {
+  box-shadow: inset 0 0 0 9999px rgba(144, 105, 192, 0.15) !important;
+}
+#tabla_pobreza tbody tr.selected > td {
+  box-shadow: inset 0 0 0 9999px rgba(144, 105, 192, 0.6) !important;
+  color: white;
+}
+#tabla_pobreza .dataTables_filter input,
+#tabla_pobreza .dataTables_length select {
+  background-color: var(--tabla-fondo);
+  border: none;
+  border-bottom: 2px solid var(--tabla-detalle);
+  border-radius: 0;
+}
+#tabla_pobreza .dataTables_info {
+  font-size: 80%;
+  color: var(--tabla-detalle) !important;
+}
+#tabla_pobreza .dataTables_paginate .paginate_button {
+  border-radius: 6px;
+  border: none !important;
+  color: var(--tabla-texto) !important;
+}
+#tabla_pobreza .dataTables_paginate .paginate_button:hover {
+  background: var(--tabla-fondo) !important;
+}
+#tabla_pobreza .dataTables_paginate .paginate_button.current,
+#tabla_pobreza .dataTables_paginate .paginate_button.current:hover {
+  background: var(--tabla-detalle) !important;
+  color: white !important;
+}
+</style>
+```
+
+En Quarto o R Markdown, el CSS va en un chunk `{css}` o en un archivo `.css` incluido en el documento. En Shiny, en un archivo `www/styles.css` o con `tags$style()`. Si hay varias tablas con el mismo estilo, conviene usar una clase (`class = "display tabla_dt"`) y reemplazar `#tabla_pobreza` por `.tabla_dt` en los selectores de la tabla.
+
+
+## Extensiones
+
+Las extensiones se activan con el argumento `extensions`, y se configuran en `options`.
+
+### Botones de descarga
+
+```{r botones}
+datatable(pobreza, 
+          rownames = FALSE,
+          extensions = "Buttons",
+          options = list(
+            dom = "Bfrtip",
+            buttons = list(
+              list(extend = "copy", text = "Copiar"),
+              list(extend = "csv", text = "CSV"),
+              list(extend = "excel", text = "Excel")
+            ))) |> 
+  formatear_pobreza()
+```
+
+Los botones `"excel"` y `"pdf"` descargan solo las filas cargadas en el navegador.
+
+### Encabezado fijo
+
+Mantiene el encabezado visible al bajar por la página:
+
+```{r fixedheader}
+#| eval: false
+datatable(pobreza, 
+          extensions = "FixedHeader",
+          options = list(pageLength = 50, fixedHeader = TRUE))
+```
+
+### Columnas fijas
+
+Para tablas anchas con desplazamiento horizontal, mantiene visibles las primeras columnas:
+
+```{r fixedcolumns}
+#| eval: false
+datatable(pobreza, 
+          rownames = FALSE,
+          extensions = "FixedColumns",
+          options = list(scrollX = TRUE,
+                         fixedColumns = list(leftColumns = 2)))
+```
+
+### Tablas para celulares
+
+`Responsive` esconde las columnas que no caben en pantallas angostas, y las muestra al tocar la fila:
+
+```{r responsive}
+datatable(pobreza, 
+          rownames = FALSE,
+          extensions = "Responsive") |> 
+  formatear_pobreza()
+```
+
+### Tablas largas con desplazamiento
+
+`Scroller` reemplaza la paginación por desplazamiento vertical, cargando solo las filas visibles:
+
+```{r scroller}
+datatable(pobreza, 
+          rownames = FALSE,
+          extensions = "Scroller",
+          options = list(deferRender = TRUE,
+                         scrollY = 300,
+                         scroller = TRUE)) |> 
+  formatear_pobreza()
+```
+
+### Otras extensiones
+
+- `ColReorder`: reordenar columnas arrastrándolas (`colReorder = TRUE`)
+- `KeyTable`: navegar celdas con el teclado (`keys = TRUE`)
+- `SearchPanes`: paneles de filtro por categorías
+- `Select`: selección avanzada de filas, columnas o celdas
+
+[Lista completa de extensiones](https://rstudio.github.io/DT/extensions.html).
+
+
+## Otros
+
+### Recortar textos largos
+
+Con `render` en `columnDefs` se modifica cómo se muestra el contenido de una columna. Este código recorta los textos a 6 caracteres y muestra el texto completo al posar el mouse:
+
+```{r recortar}
+datatable(pobreza, 
+          rownames = FALSE,
+          options = list(
+            columnDefs = list(list(
+              targets = 0,
+              render = JS(
+                "function(data, type, row, meta) {",
+                "return type === 'display' && data.length > 6 ?",
+                "'<span title=\"' + data + '\">' + data.substr(0, 6) + '…</span>' : data;",
+                "}")
+            )))) |> 
+  formatear_pobreza()
+```
+
+### Celdas editables
+
+Con `editable = TRUE` se pueden editar las celdas con doble clic. Los cambios solo se pueden recuperar desde [Shiny](/blog/shiny/).
+
+```{r editable}
+#| eval: false
+datatable(pobreza, editable = TRUE)
+```
+
+### Guardar como HTML
+
+```{r guardar}
+#| eval: false
+tabla <- datatable(pobreza)
+
+saveWidget(tabla, "tabla_pobreza.html")
+```
+
+### Tablas en Shiny
+
+En Shiny, se usa `DTOutput("tabla")` en la interfaz y `output$tabla <- renderDT(...)` en el servidor. La fila seleccionada se obtiene con `input$tabla_rows_selected`.
+
+
+## Recursos
+
+- [Documentación de `{DT}`](https://rstudio.github.io/DT/)
+- [Opciones de DT](https://rstudio.github.io/DT/options.html)
+- [Funciones de formato y estilo](https://rstudio.github.io/DT/functions.html)
+- [Ejemplos de estilos](https://rstudio.github.io/DT/010-style.html)
+- [Extensiones](https://rstudio.github.io/DT/extensions.html)
+- [Referencia de opciones de DataTables](https://datatables.net/reference/option/)
+
+{{< etiqueta "tablas" >}}
+
+{{< cafecito >}}
+
+{{< cursos >}}
