@@ -53,9 +53,6 @@ Por ejemplo:
   "https://bastianolea.github.io/territorial/articles/territorial.html"
   "hex-featured.png"
   "Herramientas para facilitar el procesamiento de datos de comunas y regiones de Chile con R, ofreciendo funciones para validación de comunas, limpiar nombres de comunas, ordenar regiones, y más." >}}
-  
-
-[Revisa la viñeta](https://bastianolea.github.io/territorial/articles/territorial.html) `vignette("territorial")` para una introducción al paquete!
 
 
 ## Instalación

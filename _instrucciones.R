@@ -27,10 +27,10 @@ crear_publicacion(
 
 # crear un post con nombre
 crear_publicacion(
-  title = "Instalar paquetes desde Posit Package Manager",
-  file = "blog/package_manager/index.qmd",
-  tags = c("básico"),
-  categories = c()
+  title = "Poblador",
+  file = "blog/poblador/index.qmd",
+  tags = c("paquetes", "datos", "Chile"),
+  categories = c("Paquetes")
 )
 
 

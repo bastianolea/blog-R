@@ -60,8 +60,6 @@ Por ejemplo:
 
 {{< paquete "Paquete `{territorial}`"   "https://bastianolea.github.io/territorial/articles/territorial.html"   "hex-featured.png"   "Herramientas para facilitar el procesamiento de datos de comunas y regiones de Chile con R, ofreciendo funciones para validación de comunas, limpiar nombres de comunas, ordenar regiones, y más." >}}
 
-[Revisa la viñeta](https://bastianolea.github.io/territorial/articles/territorial.html) `vignette("territorial")` para una introducción al paquete!
-
 ## Instalación
 
 Puedes instalar la versión de desarrollo este paquete desde GitHub:
@@ -258,3 +256,5 @@ También hay un ejemplo ficticio de [limpieza de datos extremadamente sucios](ht
 ------------------------------------------------------------------------
 
 Paquete desarrollado bajo el [programa de Campeones de ROpenSci](https://ropensci.org/es/champions/), con el apoyo de mi mentora [Andrea Gómez Vargas](https://github.com/SoyAndrea).
+
+{{< cafecito >}}
