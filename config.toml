@@ -178,11 +178,11 @@ titleCaseStyle = "firstupper"
     title = "Tutoriales"
     url = "/categories/tutoriales/"
     weight = 3.4
-  # [[menu.header]]
-  #   name = "Paquetes"
-  #   title = "Paquetes de R"
-  #   url = "/categories/paquetes/"
-  #   weight = 3.5
+  [[menu.header]]
+    name = "Paquetes"
+    title = "Paquetes de R"
+    url = "/categories/paquetes/"
+    weight = 3.5
   [[menu.header]]
     name = "Buscar"
     title = "Buscador"
