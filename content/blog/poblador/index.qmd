@@ -18,7 +18,7 @@ format:
 execute:
   message: false
   warning: false
-excerpt: "Este paquete ofrece tablas de datos de población desde fuentes oficiales de Chile, como censo_poblacion_2024, así como funciones para simplificar el uso de estos datos como complemento a otros conjuntos de datos, como para agregar población oficial a una tabla de comunas o regiones con agregar_poblacion(), entre otras."
+excerpt: "Este paquete de R ofrece tablas de datos de población desde fuentes oficiales de Chile, como `censo_poblacion_2024`, así como funciones para simplificar el uso de estos datos como complemento a otros conjuntos de datos, como para agregar población oficial a una tabla de comunas o regiones con `agregar_poblacion()`, entre otras."
 links:
   - icon: registered
     icon_pack: fas

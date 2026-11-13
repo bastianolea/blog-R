@@ -20,7 +20,7 @@
   </div>
 </div>
 -->
-      {{ with .Params.title }}<h1 class="f2 f1-m f-subheadline-l fw5-ns mv4 lh-solid" style = "font-size: 400%; margin-top: 8px;">{{ . }}</h1>{{ end }}
+      {{ with .Params.title }}<h1 class="f2 f1-m f-subheadline-l fw5-ns mv4 lh-solid" style = "font-size: 400%; margin-top: 8px;"><a href="/blog/" style="color: inherit; text-decoration: none;">{{ . }}</a></h1>{{ end }}
     {{ with .Params.subtitle }}<h2 class="f5 fw7 mt0 mb4 ttu tracked">{{ . }}</h2>{{ end }}
                 {{ if .Params.show_social_links }}{{ partial "shared/social-links.html" . }}{{ end }}
         {{ with .Params.description }}<p class="f4 mt4 lh-copy">{{ . | markdownify }}</p>{{ end }}
@@ -42,7 +42,7 @@
       <!--- imagen --->
       <div class="dn db-l tr w-40-l {{ if .Params.image_left }}ml4{{ else }}mr4{{ end }}" style = "padding: 30px; max-width: 420px;">
       {{ with .Params.images }}
-        {{ range first 1 . }}<img class="mv0 w-70-m" style = "border-radius: 5px;" src="{{ . }}"/>{{ end }}
+        {{ range first 1 . }}<a href="/blog/"><img class="mv0 w-70-m" style = "border-radius: 5px;" src="{{ . }}"/></a>{{ end }}
       {{ end }}
       </div>
       

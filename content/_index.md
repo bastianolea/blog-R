@@ -5,7 +5,7 @@ seo_title: "Bastián Olea Herrera | Tutoriales de R y análisis de datos"
 subtitle: Sociólogx, analista de datos
 type: home
 
-description: "**Análisis y visualización de datos en R**, con un foco en las ciencias sociales. Visita el [**blog**](/blog/) para encontrar tutoriales, guías y consejos sobre R, o usa el [**buscador**](/buscar/). Atrévete a [**aprender R**](https://bastianolea.github.io/aprende_r/)!"
+description: "**Análisis y visualización de datos en R**, con un foco en las ciencias sociales. Visita el [**blog**](/blog/) para encontrar [tutoriales](/categories/tutoriales/), guías y consejos sobre R, o usa el [**buscador**](/buscar/)."
 
 image_left: true
 images:
