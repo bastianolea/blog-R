@@ -20,7 +20,7 @@ execute:
   warning: false
 editor_options: 
   chunk_output_type: console
-excerpt: "Una de las dificultades más frecuentes en el análisis de datos es poder acceder a datos censales, porque su tamaño suele ser muy grande para la mayoría de los computadores, o bien imposible de abrir con programas como Excel. En este tutorial veremos cómo cargar los datos del Censo 2024 de Chile con R, accediendo a bases de datos de millones de observaciones para calcular estadísticas poblacionales sin colapsar nuestros computadores."
+excerpt: "Una de las principales dificultades en el análisis de datos sociales es poder acceder a datos censales, porque su tamaño suele ser muy grande para la mayoría de los computadores, o bien imposible de abrir con programas como Excel. En este tutorial veremos cómo cargar los datos del Censo 2024 de Chile con R, accediendo a bases de datos de millones de observaciones para calcular estadísticas poblacionales sin colapsar nuestros computadores."
 ---
 
 <!---
@@ -100,6 +100,7 @@ Si intentamos ver los datos cargados, encontraremos que no tenemos un _dataframe
 ```{r}
 personas 
 ```
+
 En lugar de eso, tenemos una base de datos que **representa** los datos del censo, pero que **no los carga** en la memoria. 
 
 Sin embargo, podemos usar todas las funciones de `{dplyr}` para trabajar con los datos como normalmente hacemos, solo que al terminar las operaciones podemos obtener una **previsualización** del resultado, o bien, podemos **cargar el resultado a la memoria** con la función `collect()`, tomando **precauciones** para no cargar casi 19 millones de filas por accidente.
@@ -404,7 +405,9 @@ tabla_region_area_porcentaje |>
 
 En el Censo, la base de **personas** tiene una fila por cada habitante, mientras que la base de **hogares** tiene una fila por cada hogar, y la de **vivienda** tiene una fila por cada vivienda. En una vivenda (la construcción física) pueden haber múltiples hogares (personas que conviven y comparten un mismo presupuesto para alimentación).
 
-Estas bases tienen variables distintas debido a su distinta unidad de observación : las viviendas tienen `edad` o `sexo`, etc., los hogares comparten variables como su _fuente de energía para calefaccionar_ y su _tenencia_ (si la vivienda es propia, etc.), y las viviendas tienen características como su _materialidad_ o _número de habitaciones_.
+Estas bases tienen variables distintas debido a su distinta unidad de observación: las **personas** tienen `edad` o `sexo`, etc., los **hogares** comparten variables como su _fuente de energía para calefaccionar_ y su _tenencia_ (si la vivienda es propia, etc.), y las **viviendas** tienen características como su _materialidad_ o _número de habitaciones_.[^1]
+
+[^1]: Muchas gracias a Esteban Vásquez por las correcciones!
 
 Para [cruzar](/blog/left_join/) estas bases, necesitamos usar las variables `id_vivienda` y  `id_hogar`, que son las que permiten identificar a qué hogar y vivienda corresponde cada persona censada.
 
@@ -733,6 +736,8 @@ caption = "Fuente: Censo 2024, INE")
 
 
 -->
+
+{{< relacionada "blog/mapas_censo_2024" >}}
 
 {{< etiqueta "chile" >}}
 

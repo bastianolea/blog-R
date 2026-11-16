@@ -21,7 +21,7 @@ execute:
 editor_options:
   chunk_output_type: console
 excerpt: >-
-  Una de las dificultades más frecuentes en el análisis de datos es poder
+  Una de las principales dificultades en el análisis de datos sociales es poder
   acceder a datos censales, porque su tamaño suele ser muy grande para la
   mayoría de los computadores, o bien imposible de abrir con programas como
   Excel. En este tutorial veremos cómo cargar los datos del Censo 2024 de Chile
@@ -134,12 +134,12 @@ personas |>
     # A tibble: 6 × 4
       comuna  area  sexo  edad
        <int> <int> <int> <int>
-    1   8202     1     1    31
-    2   9101     1     2    21
-    3   9101     1     2    21
-    4   9101     1     2    51
-    5   6108     1     2     9
-    6   6108     1     1     6
+    1   5802     1     2    80
+    2   5802     1     1    52
+    3   5802     1     2    45
+    4   5802     1     2     8
+    5   4303     2     1    69
+    6   4303     2     2    65
 
 Para ver la estructura de la base de datos, usamos `glimpse()` de `{dplyr}`:
 
@@ -552,7 +552,7 @@ Población chilena por región y área, Censo 2024
 
 En el Censo, la base de **personas** tiene una fila por cada habitante, mientras que la base de **hogares** tiene una fila por cada hogar, y la de **vivienda** tiene una fila por cada vivienda. En una vivenda (la construcción física) pueden haber múltiples hogares (personas que conviven y comparten un mismo presupuesto para alimentación).
 
-Estas bases tienen variables distintas debido a su distinta unidad de observación : las viviendas tienen `edad` o `sexo`, etc., los hogares comparten variables como su *fuente de energía para calefaccionar* y su *tenencia* (si la vivienda es propia, etc.), y las viviendas tienen características como su *materialidad* o *número de habitaciones*.
+Estas bases tienen variables distintas debido a su distinta unidad de observación: las **personas** tienen `edad` o `sexo`, etc., los **hogares** comparten variables como su *fuente de energía para calefaccionar* y su *tenencia* (si la vivienda es propia, etc.), y las **viviendas** tienen características como su *materialidad* o *número de habitaciones*.[^1]
 
 Para [cruzar](../../../blog/left_join/) estas bases, necesitamos usar las variables `id_vivienda` y `id_hogar`, que son las que permiten identificar a qué hogar y vivienda corresponde cada persona censada.
 
@@ -623,12 +623,12 @@ personas_hogares |>
     # A tibble: 6 × 7
       id_vivienda id_hogar region comuna  sexo edad_quinquenal p12_tenencia_viv
             <int>    <int>  <int>  <int> <int>           <int>            <int>
-    1       27362        1     13  13113     2              45                2
-    2       27363        1      5   5701     1              75                1
-    3       27364        1     13  13125     2              55                1
-    4       27364        1     13  13125     2              20                1
-    5       27365        1     13  13122     2              30                7
-    6       27365        1     13  13122     2              10                7
+    1           1        1      5   5802     2              80                4
+    2           1        1      5   5802     1              50                4
+    3           1        1      5   5802     2              45                4
+    4           1        1      5   5802     2               5                4
+    5           2        1      4   4303     1              65                9
+    6           2        1      4   4303     2              65                9
 
 ``` r
 # cantidad de observaciones en la tabla
@@ -751,14 +751,14 @@ personas_hogares_comunas |>
 ```
 
     # A tibble: 6 × 11
-      id_vivienda id_hogar nombre_region           region nombre_comuna comuna sexo 
-            <int>    <int> <chr>                    <int> <chr>          <int> <chr>
-    1       27362        1 Metropolitana de Santi…     13 La Reina       13113 Mujer
-    2       27363        1 Valparaíso                   5 San Felipe      5701 Homb…
-    3       27364        1 Metropolitana de Santi…     13 Quilicura      13125 Mujer
-    4       27364        1 Metropolitana de Santi…     13 Quilicura      13125 Mujer
-    5       27365        1 Metropolitana de Santi…     13 Peñalolén      13122 Mujer
-    6       27365        1 Metropolitana de Santi…     13 Peñalolén      13122 Mujer
+      id_vivienda id_hogar nombre_region region nombre_comuna comuna sexo  
+            <int>    <int> <chr>          <int> <chr>          <int> <chr> 
+    1      136623        1 Biobío             8 Concepción      8101 Hombre
+    2      136625        1 Biobío             8 Concepción      8101 Hombre
+    3      136625        1 Biobío             8 Concepción      8101 Mujer 
+    4      136625        1 Biobío             8 Concepción      8101 Mujer 
+    5      136625        1 Biobío             8 Concepción      8101 Hombre
+    6      136625        1 Biobío             8 Concepción      8101 Mujer 
     # ℹ 4 more variables: edad_quinquenal <int>, p12_tenencia_viv <int>,
     #   propiedad <chr>, adulto_mayor <chr>
 
@@ -777,8 +777,8 @@ personas_hogares_comunas |>
     # A tibble: 2 × 2
       adulto_mayor           n
       <chr>              <int>
-    1 Adulto mayor     3163986
-    2 No adulto mayor 15316446
+    1 No adulto mayor 15316446
+    2 Adulto mayor     3163986
 
 Podemos obtener el mismo conteo a nivel regional:
 
@@ -789,18 +789,18 @@ personas_hogares_comunas |>
 ```
 
     # A tibble: 32 × 3
-       nombre_region                         adulto_mayor          n
-       <chr>                                 <chr>             <int>
-     1 Libertador General Bernardo O'Higgins No adulto mayor  806791
-     2 Metropolitana de Santiago             No adulto mayor 6198954
-     3 Metropolitana de Santiago             Adulto mayor    1201787
-     4 Libertador General Bernardo O'Higgins Adulto mayor     180437
-     5 La Araucanía                          No adulto mayor  825586
-     6 Valparaíso                            No adulto mayor 1516774
-     7 Biobío                                No adulto mayor 1322719
-     8 Biobío                                Adulto mayor     290340
-     9 Ñuble                                 No adulto mayor  409410
-    10 Los Lagos                             No adulto mayor  743943
+       nombre_region                             adulto_mayor          n
+       <chr>                                     <chr>             <int>
+     1 Valparaíso                                Adulto mayor     379279
+     2 Valparaíso                                No adulto mayor 1516774
+     3 Coquimbo                                  Adulto mayor     145007
+     4 Coquimbo                                  No adulto mayor  687857
+     5 Aysén del General Carlos Ibáñez del Campo No adulto mayor   85155
+     6 Tarapacá                                  Adulto mayor      43959
+     7 Tarapacá                                  No adulto mayor  325847
+     8 Biobío                                    Adulto mayor     290340
+     9 Metropolitana de Santiago                 No adulto mayor 6198954
+    10 Biobío                                    No adulto mayor 1322719
     # ℹ 22 more rows
 
 {{< relacionada "blog/mapas_censo_2024" >}}
@@ -959,6 +959,9 @@ caption = "Fuente: Censo 2024, INE")
 
 
 -->
+{{< relacionada "blog/mapas_censo_2024" >}}
 {{< etiqueta "chile" >}}
 {{< etiqueta "datos" >}}
 {{< cafecito >}}
+
+[^1]: Muchas gracias a Esteban Vásquez por las correcciones!

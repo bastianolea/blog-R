@@ -1,5 +1,5 @@
 ---
-title: 'Limpieza y recodificación de datos de texto en R con {stringr}'
+title: 'Limpieza y recodificación de datos de texto en R con `{stringr}`'
 author: Bastián Olea Herrera
 date: '2025-06-08'
 draft: false

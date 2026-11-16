@@ -9,8 +9,9 @@ categories:
   - Tutoriales
 tags:
   - datos
-  - chile
+  - Chile
   - procesamiento de datos
+  - bases de datos
 format:
   hugo-md:
     output-file: index
@@ -19,7 +20,7 @@ execute:
   warning: false
 editor_options: 
   chunk_output_type: console
-excerpt: "Una de las dificultades más frecuentes en el análisis de datos es poder acceder a datos censales, porque su tamaño suele ser muy grande para la mayoría de los computadores, o bien imposible de abrir con programas como Excel. En este tutorial veremos cómo cargar los datos del Censo 2024 de Chile con R, accediendo a bases de datos de millones de observaciones para calcular estadísticas poblacionales sin colapsar nuestros computadores."
+excerpt: "Una de las principales dificultades en el análisis de datos sociales es poder acceder a datos censales, porque su tamaño suele ser muy grande para la mayoría de los computadores, o bien imposible de abrir con programas como Excel. En este tutorial veremos cómo cargar los datos del Censo 2024 de Chile con R, accediendo a bases de datos de millones de observaciones para calcular estadísticas poblacionales sin colapsar nuestros computadores."
 ---
 
 <!---
@@ -127,6 +128,7 @@ personas
 ## 43 more columns
 ## Use `schema()` to see entire schema
 ```
+
 En lugar de eso, tenemos una base de datos que **representa** los datos del censo, pero que **no los carga** en la memoria. 
 
 Sin embargo, podemos usar todas las funciones de `{dplyr}` para trabajar con los datos como normalmente hacemos, solo que al terminar las operaciones podemos obtener una **previsualización** del resultado, o bien, podemos **cargar el resultado a la memoria** con la función `collect()`, tomando **precauciones** para no cargar casi 19 millones de filas por accidente.
@@ -511,7 +513,7 @@ codigos_territoriales <- read_xlsx("diccionario_variables_censo2024.xlsx",
 ```
 
 ```
-## here() starts at /Users/baolea/R/blog-r
+## here() starts at /Users/bolea/Documents/Otros/blog-r
 ```
 
 
@@ -766,7 +768,9 @@ tabla_region_area_porcentaje <- personas_region_area |>
 
 En el Censo, la base de **personas** tiene una fila por cada habitante, mientras que la base de **hogares** tiene una fila por cada hogar, y la de **vivienda** tiene una fila por cada vivienda. En una vivenda (la construcción física) pueden haber múltiples hogares (personas que conviven y comparten un mismo presupuesto para alimentación).
 
-Estas bases tienen variables distintas debido a su distinta unidad de observación : las viviendas tienen `edad` o `sexo`, etc., los hogares comparten variables como su _fuente de energía para calefaccionar_ y su _tenencia_ (si la vivienda es propia, etc.), y las viviendas tienen características como su _materialidad_ o _número de habitaciones_.
+Estas bases tienen variables distintas debido a su distinta unidad de observación: las **personas** tienen `edad` o `sexo`, etc., los **hogares** comparten variables como su _fuente de energía para calefaccionar_ y su _tenencia_ (si la vivienda es propia, etc.), y las **viviendas** tienen características como su _materialidad_ o _número de habitaciones_.[^1]
+
+[^1]: Muchas gracias a Esteban Vásquez por las correcciones!
 
 Para [cruzar](/blog/left_join/) estas bases, necesitamos usar las variables `id_vivienda` y  `id_hogar`, que son las que permiten identificar a qué hogar y vivienda corresponde cada persona censada.
 
@@ -846,12 +850,12 @@ personas_hogares |>
 ## # A tibble: 6 × 7
 ##   id_vivienda id_hogar region comuna  sexo edad_quinquenal p12_tenencia_viv
 ##         <int>    <int>  <int>  <int> <int>           <int>            <int>
-## 1       27362        1     13  13113     2              45                2
-## 2       27363        1      5   5701     1              75                1
-## 3       27364        1     13  13125     2              55                1
-## 4       27364        1     13  13125     2              20                1
-## 5       27365        1     13  13122     2              30                7
-## 6       27365        1     13  13122     2              10                7
+## 1       13755        1      6   6101     2              10                1
+## 2       13755        1      6   6101     2              15                1
+## 3       13756        1     13  13105     1              20                4
+## 4       13756        1     13  13105     2              40                4
+## 5       13756        1     13  13105     2              15                4
+## 6       13757        1     13  13129     2              65                1
 ```
 
 ``` r
@@ -1032,18 +1036,18 @@ personas_hogares_comunas |>
 
 ```
 ## # A tibble: 32 × 3
-##    nombre_region             adulto_mayor          n
-##    <chr>                     <chr>             <int>
-##  1 La Araucanía              No adulto mayor  825586
-##  2 Metropolitana de Santiago No adulto mayor 6198954
-##  3 Maule                     No adulto mayor  915362
-##  4 Antofagasta               No adulto mayor  558114
-##  5 Los Lagos                 Adulto mayor     146341
-##  6 Maule                     Adulto mayor     207646
-##  7 Metropolitana de Santiago Adulto mayor    1201787
-##  8 Biobío                    No adulto mayor 1322719
-##  9 Ñuble                     Adulto mayor     102879
-## 10 Ñuble                     No adulto mayor  409410
+##    nombre_region                         adulto_mayor          n
+##    <chr>                                 <chr>             <int>
+##  1 Biobío                                No adulto mayor 1322719
+##  2 La Araucanía                          No adulto mayor  825586
+##  3 Libertador General Bernardo O'Higgins No adulto mayor  806791
+##  4 La Araucanía                          Adulto mayor     184837
+##  5 Tarapacá                              No adulto mayor  325847
+##  6 Metropolitana de Santiago             Adulto mayor    1201787
+##  7 Metropolitana de Santiago             No adulto mayor 6198954
+##  8 Antofagasta                           No adulto mayor  558114
+##  9 Valparaíso                            No adulto mayor 1516774
+## 10 Biobío                                Adulto mayor     290340
 ## # ℹ 22 more rows
 ```
 
@@ -1082,8 +1086,8 @@ tabla_propiedad <- conteo_propiedad |>
 
 |adulto mayor    |propiedad |  cantidad| porcentaje|
 |:---------------|:---------|---------:|----------:|
-|Adulto mayor    |No propia |   682.085|      21,6%|
 |Adulto mayor    |Propia    | 2.481.901|      78,4%|
+|Adulto mayor    |No propia |   682.085|      21,6%|
 |No adulto mayor |Propia    | 9.071.829|      59,2%|
 |No adulto mayor |No propia | 6.244.617|      40,8%|
 
@@ -1111,10 +1115,10 @@ tabla_propiedad_ancha <- conteo_propiedad |>
 <p class="titulo_tabla">Cantidad y porcentaje de personas adultas mayores según propiedad del hogar</p>
 
 
-|adulto mayor    |No propia (cantidad) |Propia (cantidad) |No propia (porcentaje) |Propia (porcentaje) |
-|:---------------|:--------------------|:-----------------|:----------------------|:-------------------|
-|Adulto mayor    |682.085              |2.481.901         |22%                    |78%                 |
-|No adulto mayor |6.244.617            |9.071.829         |41%                    |59%                 |
+|adulto mayor    |Propia (cantidad) |No propia (cantidad) |Propia (porcentaje) |No propia (porcentaje) |
+|:---------------|:-----------------|:--------------------|:-------------------|:----------------------|
+|Adulto mayor    |2.481.901         |682.085              |78%                 |22%                    |
+|No adulto mayor |9.071.829         |6.244.617            |59%                 |41%                    |
 
 Obtenemos un resultado interesante: dentro de la **población adulta mayor**, un **78% reside** en hogares de tipo de **tenencia propia**, mientras dentro de la población que no es adulta mayor, el porcentaje de personas que residen en hogares de tenencia propia es solo un **59%**.
 
@@ -1204,6 +1208,8 @@ caption = "Fuente: Censo 2024, INE")
 
 
 -->
+
+{{< relacionada "blog/mapas_censo_2024" >}}
 
 {{< etiqueta "chile" >}}
 
