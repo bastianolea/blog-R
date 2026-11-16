@@ -8,6 +8,8 @@ http://bastianolea.rbind.io/*       https://bastianolea.rbind.io/:splat  301!
 
 /shiny_apps   https://bastianolea.github.io/shiny_apps/
 /datos        https://bastianolea.github.io/datos_sociales/
+/territorial  https://bastianolea.github.io/territorial/
+/poblador     https://bastianolea.github.io/poblador/
 /blog/2025-03-31/    /blog/limpiar_texto_simbolos/
 /blog/tutorial_gt/   /blog/tablas_gt/
 /blog/tutorial_scraping_chromote/   /blog/webscraping_chromote/
