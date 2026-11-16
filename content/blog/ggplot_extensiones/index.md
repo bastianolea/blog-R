@@ -14,8 +14,6 @@ format:
 excerpt: "Existen muchas extensiones para `{ggplot2}` desarrolladas por la comunidad, que le agregan nuevas funcionalidades, formas de visualizar datos, mejoras, paletas de colores y más. En esta publicación compartiré las extensiones de `{ggplot2}` que más uso y/o que recomiendo."
 ---
 
-{{< aviso "Publicación en construcción! A medida que encuentre (y recuerde) más extensiones las iré listando aquí." >}}
-
 <!---
 {{< imagen_lateral "ggplot2_extensiones_featured.png" "300px" >}}
 -->
@@ -24,7 +22,9 @@ excerpt: "Existen muchas extensiones para `{ggplot2}` desarrolladas por la comun
 </div>
   
 
-Una de las ventajas de usar `{ggplot2}` para visualización de datos en R es su **flexibilidad** y capacidad de **personalización**. Existen [muchas extensiones desarrolladas por la comunidad](https://exts.ggplot2.tidyverse.org) para agregar nuevas funcionalidades, formas de visualizar datos, mejoras, paletas de colores y más.
+Una de las ventajas de [usar `{ggplot2}` para visualización de datos](/blog/ggplot2) es su **flexibilidad** y capacidad de **personalización**. Existen [muchas extensiones desarrolladas por la comunidad](https://exts.ggplot2.tidyverse.org) para agregar nuevas funcionalidades, formas de visualizar datos, mejoras, paletas de colores y más.
+
+{{< relacionada "/blog/ggplot2/" >}}
 
 A continuación, compartiré acá enlaces a las extensiones de `{ggplot2}` que más uso y/o que recomiendo:
 
@@ -247,6 +247,7 @@ Paquete que simplifica la creación de gráficos atractivos y simples de hacer e
 "Extensión que hace posible agregar detalles estadísticos, combinando al visualización de los datos con el modelado y la aplicación de técnicas estadísticas." >}}
 
 
+¿Conoces alguna otra extensión que recomiendes? [Escríbeme aquí!](/contacto/)
 ## Más extensiones
 
 Existen varias listas de extensiones de `{ggplot2}`:
@@ -256,6 +257,8 @@ Existen varias listas de extensiones de `{ggplot2}`:
 - [Galería interactiva de extensiones](https://companion.ggplot2-extended-book.com)
 - [Libro _`ggplot2` extended_, de Antti Rask](https://ggplot2-extended-book.com)
 
+
+{{< etiqueta "gráficos" >}}
 
 {{< etiqueta "visualización de datos" >}}
 

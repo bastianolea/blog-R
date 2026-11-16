@@ -37,7 +37,7 @@ Los datos de delincuencia están disponibles en el [repositorio `delincuencia_ch
 
 Puedes descargar los datos en formato **Parquet** en el siguiente enlace:
 
-{{< boton "Descargar datos de delincuencia" "https://github.com/bastianolea/delincuencia_chile/raw/main/datos_procesados/cead_delincuencia_chile.parquet" "fas fa-file-download" >}}
+{{< boton "Descargar datos de delincuencia" "https://github.com/bastianolea/delincuencia_chile/raw/main/datos/procesados/cead_delincuencia_chile.parquet" "fas fa-file-download" >}}
 
 ## Cargar los datos
 
@@ -47,7 +47,7 @@ Cargamos los datos usando `read_parquet()` del paquete `{arrow}`:
 library(arrow)
 
 # cargar directamente desde internet
-# delitos <- read_parquet("https://github.com/bastianolea/delincuencia_chile/raw/main/datos_procesados/cead_delincuencia_chile.parquet")
+# delitos <- read_parquet("https://github.com/bastianolea/delincuencia_chile/raw/main/datos/procesados/cead_delincuencia_chile.parquet")
 
 # cargar archivo descargado
 delitos <- read_parquet("cead_delincuencia_chile.parquet")
