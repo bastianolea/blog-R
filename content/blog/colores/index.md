@@ -639,7 +639,7 @@ RColorBrewer::display.brewer.all()
 
 {{< /detalles >}}
 
-Cuando **elijas** una de las paletas, puedes usarla [en cualquier gráfico de `{ggplot2}`](../../../blog/r_introduccion/tutorial_visualizacion_ggplot/) con la función `scale_color_brewer()` o `scale_fill_brewer()`, según corresponda a la variable que quieres pintar, y elije la paleta por medio de su nombre:
+Cuando **elijas** una de las paletas, puedes usarla [en cualquier gráfico de `{ggplot2}`](../../../blog/ggplot2/) con la función `scale_color_brewer()` o `scale_fill_brewer()`, según corresponda a la variable que quieres pintar, y elije la paleta por medio de su nombre:
 
 ``` r
 library(ggplot2)
@@ -780,7 +780,7 @@ Encuentra una lista que compila todas las paletas de colores de la comunidad de 
 
 La forma más simple de usar colores en gráficos de `{ggplot2}` es definiéndolos en la escala de color apropiada.
 
-{{< relacionada "/blog/r_introduccion/tutorial_visualizacion_ggplot/" >}}
+{{< relacionada "/blog/ggplot2/" >}}
 
 Para una variable *discreta* o *categórica*, los colores se aplican en la capa `scale_color_manual()` y se aplican en el orden de la variable:
 
@@ -907,7 +907,7 @@ grafico +
 
 <img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-53-1.png" width="768" />
 
-{{< aviso "Si quieres aprender `{ggplot2}`, revisa [este tutorial sobre visualización de datos desde cero!](/blog/r_introduccion/tutorial_visualizacion_ggplot/)" >}}
+{{< aviso "Si quieres aprender `{ggplot2}`, revisa [este tutorial sobre visualización de datos desde cero!](/blog/ggplot2/)" >}}
 
 ## Crear paletas de colores
 

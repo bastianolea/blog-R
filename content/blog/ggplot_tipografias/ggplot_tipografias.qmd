@@ -66,7 +66,7 @@ grafico
 A pesar de no ser malas tipografías, se vuelven aburridas rápidamente.
 
 
-{{< aviso "Si necesitas aprender a usar `{ggplot2}` para gráficos en R, primero revisa [este tutorial introductorio!](http://localhost:4321/blog/r_introduccion/tutorial_visualizacion_ggplot/)" >}}
+{{< aviso "Si necesitas aprender a usar `{ggplot2}` para gráficos en R, primero revisa [este tutorial introductorio!](http://localhost:4321/blog/ggplot2/)" >}}
 
 
 

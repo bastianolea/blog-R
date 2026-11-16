@@ -10,11 +10,12 @@ tags:
   - loops
 ---
 
-En este tutorial aprenderemos a crear [reportes parametrizados](https://posit.co/blog/parameterized-quarto/) con Quarto. Un reporte parametrizado es un reporte diseñado para que el contenido, incluyendo textos, gráficos y más, cambien al modificar una variable en su encabezado. En este sentido, por _parámetro_ nos referimos a un valor que podremos cambiar para alterar el resultado obtenido por un mismo reporte.
+En este tutorial aprenderemos a crear [reportes parametrizados](https://posit.co/blog/parameterized-quarto/) con [Quarto](/blog/quarto_reportes/). Un reporte parametrizado es un reporte diseñado para que el contenido, incluyendo textos, gráficos y más, cambien al modificar una variable en su encabezado. En este sentido, por _parámetro_ nos referimos a un valor que podremos cambiar para alterar el resultado obtenido por un mismo reporte.
 
 De esta manera, podemos **generar múltiples versiones de un mismo reporte simplemente cambiando el parámetro**, por ejemplo, para diseñar un reporte con datos para un país, en base a un conjuntos de datos de múltiples países, y luego obtener múltiples versiones del mismo reporte pero para distintos países. O generar un reporte con datos de un año específico, y luego generar versiones del mismo reporte para distintos años.
 
-{{< aviso "Si quieres aprender a crear [documentos Quarto](/tags/quarto) desde cero, [revisa este tutorial!](/blog/quarto_reportes)" >}}
+
+{{< relacionada "/blog/quarto_reportes/" >}}
 
 Si tengo un reporte donde los resultados dependen de un filtro en mis datos, definimos el valor de la variable a filtrar en el encabezado bajo la etiqueta `params`:
 
@@ -27,6 +28,7 @@ El código completo de un reporte parametrizado básico, que define una variable
 
 {{< gist bastianolea 3dc51f96aadd25f4832d36e4a1d8210e >}}
 
+{{< info "Si quieres aprender a crear [documentos Quarto](/tags/quarto) desde cero, [revisa este tutorial!](/blog/quarto_reportes)" >}}
 
 Luego, en el código del documento, puedo acceder al contenido de `especie` usando `params$especie`. La idea de un reporte parametrizado, entonces, es que **sin tocar el código del documento, puedo cambiar el valor de la variable parametrizada desde el encabezado del reporte.**
 
@@ -73,7 +75,7 @@ De esta forma obtenemos tres reportes con el trabajo de haber diseñado sólo un
 
 ## Ejemplo práctico: reporte parametrizado de resultados electorales 
 
-Para dar un ejemplo de parametrización de reportes, crearemos un pequeño documento Quarto que carga [datos de las elecciones presidenciales de 2021](https://github.com/bastianolea/presidenciales_2021_chile/) y genera un reporte que muestra un gráfico, un texto redactado en base a los datos, y una tabla. Este documento estará parametrizado por la región del país de la cual se desean obtener los resultados. 
+Para dar un ejemplo de parametrización de reportes, crearemos un pequeño documento Quarto que carga [datos de las elecciones presidenciales de 2021](https://github.com/bastianolea/presidenciales_2021_chile/) y genera un reporte que muestra [un gráfico hecho con `{ggplot2}`](/blog/ggplot2/), un [texto redactado en base a los datos](/blog/redactar_texto/), y [una tabla hecha con `{gt}`](/blog/tablas_gt/). Este documento estará parametrizado por la región del país de la cual se desean obtener los resultados. 
 
 ```yaml
 params:
@@ -126,5 +128,10 @@ Con el código anterior obtuvimos 16 reportes, uno por cada región del país, c
 
 {{< imagen "quarto_params_4.png" >}}
 
+{{< etiqueta "quarto" >}}
+
+{{< relacionada "/blog/ggplot2/" >}}
+{{< relacionada "/blog/redactar_texto/" >}}
+{{< relacionada "/blog/tablas_gt/" >}}
 
 {{< cafecito >}}

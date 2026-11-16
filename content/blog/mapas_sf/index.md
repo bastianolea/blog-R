@@ -269,7 +269,7 @@ mapa |>
 
 <img src="mapas_sf.markdown_strict_files/figure-markdown_strict/mapa_basico-1.png" width="768" />
 
-{{< aviso "Si necesitas aprender lo básico de `{ggplot2}` para visualización de datos, [revisa este completo tutorial](/blog/r_introduccion/tutorial_visualizacion_ggplot/)." >}}
+{{< aviso "Si necesitas aprender lo básico de `{ggplot2}` para visualización de datos, [revisa este completo tutorial](/blog/ggplot2/)." >}}
 <!--
 IDEAS PARA LA SECCIÓN «Visualización básica de mapas» (pendientes de evaluar). Varias de estas cosas ya se usan en los gráficos del post pero nunca se explican, así que podrían ser acápites cortos aquí, cada uno con su mapa:
 

@@ -20,7 +20,7 @@ Se trata de un gráfico de densidad, donde las densidades están apiladas vertic
 
 En este post reproduciremos este gráfico en R, pero usando datos socioeconómicos de la [Encuesta de caracterización socioeconómica nacional (Casen) 2022.](https://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-casen-2022)
 
-{{< aviso "Este post es sobre visualización de datos con `{ggplot2}`. Si quieres aprender, puedes revisar [este tutorial sobre visualización de datos desde cero!](/blog/r_introduccion/tutorial_visualizacion_ggplot/)" >}}
+{{< aviso "Este post es sobre visualización de datos con `{ggplot2}`. Si quieres aprender, puedes revisar [este tutorial sobre visualización de datos desde cero!](/blog/ggplot2/)" >}}
 
 Los paquetes que usaremos son los siguientes: 
 ```r
@@ -135,7 +135,7 @@ casen_ingresos_2 <- casen_ingresos |>
          comuna = fct_reorder(comuna, mediana))
 ```
 
-Finalmente, preparamos los datos para la visualización. [El tipo de visualización que vamos a usar, el **gráfico de densidad**](https://bastianolea.rbind.io/blog/r_introduccion/tutorial_visualizacion_ggplot/#densidad), realiza un cálculo de densidades; es decir, distribuye todas las observaciones a través del eje horizontal del gráfico, y eleva a una curva en relación a la cantidad de personas que percibe los ingresos correspondientes a cada punto del eje. 
+Finalmente, preparamos los datos para la visualización. [El tipo de visualización que vamos a usar, el **gráfico de densidad**](https://bastianolea.rbind.io/blog/ggplot2/#densidad), realiza un cálculo de densidades; es decir, distribuye todas las observaciones a través del eje horizontal del gráfico, y eleva a una curva en relación a la cantidad de personas que percibe los ingresos correspondientes a cada punto del eje. 
 
 Entonces, necesitamos que cada observación de nuestra tabla corresponda a una _persona_ que percibe un ingreso específico. 
 

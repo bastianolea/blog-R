@@ -42,7 +42,7 @@ En este post veremos a agregar **textos que se distancian entre sí automáticam
 
 Usaremos el [paquete de R `{ggrepel}`](https://ggrepel.slowkow.com) para etiquetar puntos en un gráfico con textos que se repelen entre sí de forma automática.
 
-{{< aviso "Este post requiere conocimientos de `{ggplot2}`. Si quieres aprender a hacer gráficos en R, revisa [este tutorial sobre visualización de datos](/blog/r_introduccion/tutorial_visualizacion_ggplot/) primero." >}}
+{{< aviso "Este post requiere conocimientos de `{ggplot2}`. Si quieres aprender a hacer gráficos en R, revisa [este tutorial sobre visualización de datos](/blog/ggplot2/) primero." >}}
 
 ### Datos
 
@@ -76,7 +76,7 @@ head(plebiscito)
 
 ## Procesamiento
 
-Vamos a hacer un [gráfico de dispersión](https://bastianolea.rbind.io/blog/r_introduccion/tutorial_visualizacion_ggplot/#dispersión) con `{ggplot2}`, para el cual necesitamos dos columnas con las dos opciones de voto: apruebo y rechazo. Como en el conjunto de datos que cargamos las opciones vienen en una columna (`opciones`), y el conteo viene en otra (`votos`), transformaremos la estructura de los datos a un formato *ancho* usando `pivot_wider()`:
+Vamos a hacer un [gráfico de dispersión](https://bastianolea.rbind.io/blog/ggplot2/#dispersión) con `{ggplot2}`, para el cual necesitamos dos columnas con las dos opciones de voto: apruebo y rechazo. Como en el conjunto de datos que cargamos las opciones vienen en una columna (`opciones`), y el conteo viene en otra (`votos`), transformaremos la estructura de los datos a un formato *ancho* usando `pivot_wider()`:
 
 ``` r
 library(tidyr)

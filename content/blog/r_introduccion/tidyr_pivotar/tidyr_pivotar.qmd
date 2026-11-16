@@ -444,7 +444,7 @@ En general, te vas a dar cuenta intuitivamente que el formato de tus datos te es
 
 **Formato largo:**
 
-- Cuando vayas a [hacer gráficos con `{ggplot2}`](/blog/r_introduccion/tutorial_visualizacion_ggplot/)
+- Cuando vayas a [hacer gráficos con `{ggplot2}`](/blog/ggplot2/)
 - Cuando necesites agrupar y resumir datos con `group_by()` y `summarise()`
 - Cuando quieras aplicar filtros sobre los valores de las variables
 

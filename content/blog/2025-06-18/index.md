@@ -135,7 +135,7 @@ datos_outliers
 
 Obtenemos la variable `outlier` con `TRUE` si es outlier, y `FALSE` si no lo es.
 
-Ahora vamos a visualizar estos datos con el paquete `{ggplot2}`. Si necesitas una introducción a esta librería de visualización de datos, [te recomiendo revisar este tutorial](../../../blog/r_introduccion/tutorial_visualizacion_ggplot/), donde explicamos en mayor detalle varias de estas visualizaciones.
+Ahora vamos a visualizar estos datos con el paquete `{ggplot2}`. Si necesitas una introducción a esta librería de visualización de datos, [te recomiendo revisar este tutorial](../../../blog/ggplot2/), donde explicamos en mayor detalle varias de estas visualizaciones.
 
 ## Gráfico de cajas o *boxplot*
 

@@ -37,7 +37,7 @@ _Sitios con contenido educacional para que aprendas R._
 ### <i class='fas fa-chart-line'></i> Visualización de datos en R
 - [R Graph Gallery](https://www.r-graph-gallery.com/), galería de gráficos y visualizaciones de datos hechas con R
 - [R Charts](https://r-charts.com/es/), galería de gráficos y visualizaciones de datos hechas con R
-- [Tutorial de visualización de datos con `{ggplot2}`](/blog/r_introduccion/tutorial_visualizacion_ggplot/)
+- [Tutorial de visualización de datos con `{ggplot2}`](/blog/ggplot2/)
 - [A ggplot2 Tutorial for Beautiful Plotting in R](https://cedricscherer.netlify.app/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/), tutorial recomendado de `{ggplot2}` (en inglés)
 - [Galería de extensiones de `{ggplot2}`](https://exts.ggplot2.tidyverse.org/gallery/)
 - [Data Folks: Galería de profesionales de la visualización de datos](https://juanchiparra.github.io/data-folks/), para encontrar inspiración y referentes

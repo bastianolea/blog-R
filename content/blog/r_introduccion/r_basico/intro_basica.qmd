@@ -33,7 +33,7 @@ Si sigues estas instrucciones de principio a fin, aprenderás a:
 
 La idea de esta guía es aproximarnos a los principios más básicos de R, en partes pequeñas y con ejemplos simples, para poder entenderlos más fácilmente. Una vez que entendamos estos principios básicos, veremos que son aplicables a bases de datos de cientos o millones de observaciones simultáneamente, sin demasiada diferencia.
 
-Entender estos aspectos básicos del lenguaje es fundamental para que, en un futuro cercano, puedas usar R para analizar datos, [crear visualizaciones](/blog/r_introduccion/tutorial_visualizacion_ggplot/), [generar reportes](/blog/quarto_reportes/), [hacer tablas de datos](/blog/tablas_gt/), [desarrollar aplicaciones](/blog/shiny/), y mucho más!
+Entender estos aspectos básicos del lenguaje es fundamental para que, en un futuro cercano, puedas usar R para analizar datos, [crear visualizaciones](/blog/ggplot2/), [generar reportes](/blog/quarto_reportes/), [hacer tablas de datos](/blog/tablas_gt/), [desarrollar aplicaciones](/blog/shiny/), y mucho más!
 
 
 ### Instalación de R

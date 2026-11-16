@@ -554,7 +554,7 @@ datos_ancho |>
 
 ![](index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-26-1.jpeg)
 
-Como siempre, `{ggplot2}` es una herramienta extremadamente versátil para visualizar cualquier tipo de información. Puedes [aprender a crear visualizaciones de datos desde cero en R siguiendo este tutorial de `{ggplot2}`.](https://bastianolea.rbind.io/blog/r_introduccion/tutorial_visualizacion_ggplot/)
+Como siempre, `{ggplot2}` es una herramienta extremadamente versátil para visualizar cualquier tipo de información. Puedes [aprender a crear visualizaciones de datos desde cero en R siguiendo este tutorial de `{ggplot2}`.](https://bastianolea.rbind.io/blog/ggplot2/)
 
 ------------------------------------------------------------------------
 

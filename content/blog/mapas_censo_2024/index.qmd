@@ -115,9 +115,9 @@ Cada fila del _dataframe_ corresponde a una unidad territorial, y en la columna 
 
 ### Visualización
 
-Vamos a generar mapas estáticos con [`{ggplot2}`, un paquete](/blog/r_introduccion/tutorial_visualizacion_ggplot/) muy poderoso y personalizable para visualización de datos.
+Vamos a generar mapas estáticos con [`{ggplot2}`, un paquete](/blog/ggplot2/) muy poderoso y personalizable para visualización de datos.
 
-{{< aviso "Si necesitas aprender a usar `{ggplot2}`, [revisa este tutorial completo de introducción a `{ggplot2}`](/blog/r_introduccion/tutorial_visualizacion_ggplot/)!" >}}
+{{< aviso "Si necesitas aprender a usar `{ggplot2}`, [revisa este tutorial completo de introducción a `{ggplot2}`](/blog/ggplot2/)!" >}}
 
 Para visualizar estos datos en `{ggplot2}`, usamos la función de geometría `geom_sf()`, que está diseñada para trabajar con datos espaciales en formato `{sf}`. Esta función detecta la columna que contiene los datos espaciales y otras características espaciales, y permite visualizarlas como mapas.
 
@@ -186,7 +186,7 @@ manzanas |>
 
 Lo bueno de disponer del código es que podemos [**automatizar la creación de mapas** para distintas comunas o regiones](/blog/ggplot_purrr/), simplemente cambiando los filtros y las variables que queremos graficar, o podemos cambiar el nivel territorial cargando uno de los otros archivos, o bien, [realizando una operación de resumen](https://bastianolea.rbind.io/blog/r_introduccion/dplyr_summarize/) sobre los datos.
 
-{{< relacionada "/blog/r_introduccion/tutorial_visualizacion_ggplot/" >}}
+{{< relacionada "/blog/ggplot2/" >}}
 
 
 ### Mapa por comunas

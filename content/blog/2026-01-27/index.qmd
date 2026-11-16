@@ -83,7 +83,7 @@ Al calcular algunos estadísticos descriptivos (**promedio**, **mediana** y **va
 
 ## Visualizar los datos
 
-Para comparar los grupos del cuarteto de Anscombe, queremos graficar un [gráfico de dispersión](/blog/r_introduccion/tutorial_visualizacion_ggplot/#dispersión-1), y para eso necesitamos tener los valores del _eje x_ e _y_ en columnas distintas. Actualmente están en una sola columna (`valor`), y se distinguen por el valor de la columna `variable`, así que podemos [usar `pivot_wider()` para volver a pivotar los datos hacia el **formato ancho**](/blog/r_introduccion/tidyr_pivotar/#desde-largo-hacia-ancho), y pasar de una columna descrita por otra, a dos columnas con nombres distintos:
+Para comparar los grupos del cuarteto de Anscombe, queremos graficar un [gráfico de dispersión](/blog/ggplot2/#dispersión-1), y para eso necesitamos tener los valores del _eje x_ e _y_ en columnas distintas. Actualmente están en una sola columna (`valor`), y se distinguen por el valor de la columna `variable`, así que podemos [usar `pivot_wider()` para volver a pivotar los datos hacia el **formato ancho**](/blog/r_introduccion/tidyr_pivotar/#desde-largo-hacia-ancho), y pasar de una columna descrita por otra, a dos columnas con nombres distintos:
 
 ```{r}
 # crear identificación única de cada valor del conjunto
@@ -135,7 +135,7 @@ theme_set(
 
 {{< /detalles >}}
 
-{{< info "Para aprender a crear gráficos con `{ggplot2}`, revisa este tutorial introductorio a la [visualización de datos](/blog/r_introduccion/tutorial_visualizacion_ggplot/)." >}}
+{{< info "Para aprender a crear gráficos con `{ggplot2}`, revisa este tutorial introductorio a la [visualización de datos](/blog/ggplot2/)." >}}
 
 
 Al graficar los datos de cada grupo, podemos ver que las distribuciones son muy diferentes entre sí, a pesar de tener estadísticas descriptivas similares.

@@ -328,7 +328,7 @@ mapa
 
 Tenemos un mapa bivariado! Pero aún tenemos que agregarle la leyenda para que pueda ser interpretable.
 
-{{< relacionada "/blog/r_introduccion/tutorial_visualizacion_ggplot/" >}}
+{{< relacionada "/blog/ggplot2/" >}}
 
 ### Combinar mapa y leyenda
 

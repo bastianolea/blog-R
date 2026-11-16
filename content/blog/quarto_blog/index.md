@@ -290,7 +290,7 @@ La lógica de Markdown es **separae el contenido del estilo**: tu solamente te p
 
 ### Código de R en las publicaciones
 
-Una de las gracias de Quarto es que puedes incluir código de R directamente en tus publicaciones, y que se ejecute al momento de generar el sitio. De esta forma puedes agregar cualquier cosa que hagas en R a tu blog: [gráficos](/blog/r_introduccion/tutorial_visualizacion_ggplot/), [tablas personalizadas](/blog/tablas_gt), [mapas interactivos](/blog/mapas_mapgl/), y más.
+Una de las gracias de Quarto es que puedes incluir código de R directamente en tus publicaciones, y que se ejecute al momento de generar el sitio. De esta forma puedes agregar cualquier cosa que hagas en R a tu blog: [gráficos](/blog/ggplot2/), [tablas personalizadas](/blog/tablas_gt), [mapas interactivos](/blog/mapas_mapgl/), y más.
 
 Para agregar un bloque de código (también llamado *chunk*), se delimita con tres comillas invertidas seguidas del lenguaje entre llaves:
 

@@ -53,7 +53,7 @@ Veámoslo con un ejemplo:
 
 Para entender el proceso, crearemos un gráfico básico y luego lo adaptaremos para incluir interactividad.
 
-Vamos a crear un [gráfico de dispersión con `{ggplot2}`](/blog/r_introduccion/tutorial_visualizacion_ggplot/#dispersión), agregándole un [tema de colores personalizado con `{thematic}`](/blog/ggplot_temas/).
+Vamos a crear un [gráfico de dispersión con `{ggplot2}`](/blog/ggplot2/#dispersión), agregándole un [tema de colores personalizado con `{thematic}`](/blog/ggplot_temas/).
 
 
 ```{r}
@@ -69,7 +69,7 @@ iris |>
   geom_point(size = 2) +
   scale_color_brewer(palette = "Dark2")
 ```
-Ahora convertimos el gráfico en interactivo usando `{ggiraph}`. Para ello, identificaremos las [funciones de geometrías](/blog/r_introduccion/tutorial_visualizacion_ggplot/#introducción) del gráfico (en este caso `geom_point()` y la cambiaremos a `geom_point_interactive()`. Esta capa del gráfico seguirá funcionando igual que antes, pero ahora podremos agregarle nuevos argumentos:
+Ahora convertimos el gráfico en interactivo usando `{ggiraph}`. Para ello, identificaremos las [funciones de geometrías](/blog/ggplot2/#introducción) del gráfico (en este caso `geom_point()` y la cambiaremos a `geom_point_interactive()`. Esta capa del gráfico seguirá funcionando igual que antes, pero ahora podremos agregarle nuevos argumentos:
 
 - En el argumento `data_id`, dentro de `aes()` indicaremos una variable que identifique los elementos del gráfico. Esto puede ser un **identificador único** si queremos que la interactividad se aplique a cada elemento de manera independiente, o una variable que **agrupe las observaciones** para aplicar interactividad que opere a varios elementos a la vez.
 - El argumento `tooltip` dentro de `aes()` será donde definamos el **texto que aparecerá al pasar el cursor** sobre un elemento del gráfico. En este texto podemos usar `paste()` o `glue()` para agregar información de otras variables que correspondan al elemento destacado, y también podemos usar HTML para dar estilo al texto.

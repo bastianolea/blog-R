@@ -855,7 +855,7 @@ Antes de poner un gráfico en una app, recomiendo empezar con una prueba del gr�
 
 {{< relacionada "/blog/r_introduccion/tutorial_visualizacion_ggplot" >}}
 
-[Haremos un **gráfico de barras**](/blog/r_introduccion/tutorial_visualizacion_ggplot/#barras-ordenado) que muestre los principales campamentos de cada región elegida por el/la usuario/a.
+[Haremos un **gráfico de barras**](/blog/ggplot2/#barras-ordenado) que muestre los principales campamentos de cada región elegida por el/la usuario/a.
 
 Cargamos los datos, los filtramos por región (pensando en cómo lo haríamos con el selector `input$region`), luego reducimos la cantidad de observaciones a las más relevantes con `slice_max()` para dejar sólo las con más hogares, y al final ordenamos las observaciones por la variable numérica `hogares`:
 

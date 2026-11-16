@@ -66,4 +66,4 @@ Intenta reproducirlo en tu R! Si no te resulta, puede deberse a que el backend g
 
 <!-- {{< imagen "grafico_ggplot_cumple_penca.png" >}} -->
 
-Si quieres aprender `{ggplot2}` desde cero, [revisa este tutorial gratuito que hice](/blog/r_introduccion/tutorial_visualizacion_ggplot/), donde te explico a usar esta útil y flexible herramienta desde lo más sencillo, con muchos ejemplos de visualizaciones aplicadas a datos reales.
+Si quieres aprender `{ggplot2}` desde cero, [revisa este tutorial gratuito que hice](/blog/ggplot2/), donde te explico a usar esta útil y flexible herramienta desde lo más sencillo, con muchos ejemplos de visualizaciones aplicadas a datos reales.

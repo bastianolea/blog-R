@@ -4,9 +4,11 @@ https://bastianoleah.netlify.com/*  https://bastianolea.rbind.io/:splat  301!
 http://bastianoleah.netlify.com/*   https://bastianolea.rbind.io/:splat  301!
 http://bastianolea.rbind.io/*       https://bastianolea.rbind.io/:splat  301!
 
+# en enlace A reridigirá al enlace B
+
 /shiny_apps   https://bastianolea.github.io/shiny_apps/
 /datos        https://bastianolea.github.io/datos_sociales/
-/blog/2025-03-31/    /blog/r_introduccion/limpiar_texto_simbolos/
+/blog/2025-03-31/    /blog/limpiar_texto_simbolos/
 /blog/tutorial_gt/   /blog/tablas_gt/
 /blog/tutorial_scraping_chromote/   /blog/webscraping_chromote/
 /blog/tutorial_scraping_rvest/      /blog/webscraping_rvest/
@@ -18,3 +20,4 @@ http://bastianolea.rbind.io/*       https://bastianolea.rbind.io/:splat  301!
 /blog/r_introduccion/tutorial_shinyapps/ /blog/tutorial_shinyapps/
 /blog/r_introduccion/tutorial_github/ /blog/tutorial_github/
 /blog/2025-02-12/ /blog/arrow_csv/
+/blog/r_introduccion/tutorial_visualizacion_ggplot/ /blog/ggplot2/

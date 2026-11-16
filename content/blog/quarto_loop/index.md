@@ -1,5 +1,6 @@
 ---
-title: Generar contenido en serie usando loops en un reporte Quarto
+title: Generar contenido en serie usando _loops_ en un reporte Quarto
+subtitle: Usa código para repetir variaciones de elementos dentro de un mismo reporte
 author: Bastián Olea Herrera
 date: '2025-06-08'
 draft: false
@@ -19,7 +20,9 @@ tags:
 
 Una de las gracias de generar documentos en Quarto es que podemos combinar la redacción con el código. Pero esto puede ir más allá que simplemente escribir un párrafo de texto y seguido de un párrafo de código. Podemos usar código para literalmente generar texto, títulos y más.
 
-En otros tutoriales vimos cómo podemos [incluir resultados del código dentro de nuestros párrafos de texto](../../../blog/quarto_reportes/#código-entre-el-texto), por ejemplo, para que una cifra que esté dentro de una oración venga directamente del resultado de un cálculo en vez de tener que escribirle de forma manual. Pero en esta guía vamos a ver cómo podemos programar la generación masiva de títulos, párrafos y gráficos en base a una [iteración, bucle o *loop*.](../../../blog/r_introduccion/r_intermedio/#bucles)
+En otros tutoriales vimos cómo podemos [incluir resultados del código dentro de nuestros párrafos de texto](/blog/quarto_reportes/#código-entre-el-texto), por ejemplo, para que una cifra que esté dentro de una oración venga directamente del resultado de un cálculo en vez de tener que escribirle de forma manual. Pero en esta guía vamos a ver cómo podemos programar la generación masiva de títulos, párrafos y gráficos en base a una [iteración, bucle o *loop*.](/blog/r_introduccion/r_intermedio/#bucles)
+
+{{< relacionada "/blog/quarto_reportes" >}}
 
 ## Generar contenido del reporte desde loops
 
@@ -154,6 +157,5 @@ Usando esta técnica podemos producir documentos muy extensos con poco código, 
 
 Esto puede sernos útil si es que estamos generando un documento en el que estamos presentando resultados y tenemos que repetir varias veces contenido similar para los distintos valores de una variable, o si tenemos que mostrar muchos gráficos similares para distintas variables, etc.
 
-------------------------------------------------------------------------
-
+{{< etiqueta "quarto" >}}
 {{< cafecito >}}

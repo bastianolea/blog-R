@@ -63,7 +63,7 @@ glimpse(datos)
 
 En este conjunto de datos, de 304 mil observaciones, cada fila representa a una persona que dio la _Prueba de Acceso a la Educación Superior_ (PAES), y en las columnas se detallan características de las personas y los puntajes obtenidos. Las columnas que empiezan con `paes_` contienen los puntajes.
 
-Exploremos visualmente dos de las variables con un [gráfico de dispersión](https://bastianolea.rbind.io/blog/r_introduccion/tutorial_visualizacion_ggplot/#dispersión):
+Exploremos visualmente dos de las variables con un [gráfico de dispersión](https://bastianolea.rbind.io/blog/ggplot2/#dispersión):
 
 ```{r}
 library(ggplot2)
@@ -91,7 +91,7 @@ Esto significa qeu podemos generar gráficos para subgrupos de la población; en
 
 ## Gráfico
 
-{{< aviso "Si necesitas aprender a visualizar datos desde cero, [revisa este tutorial de `{ggplot2}`](https://bastianolea.rbind.io/blog/r_introduccion/tutorial_visualizacion_ggplot/)" >}}
+{{< aviso "Si necesitas aprender a visualizar datos desde cero, [revisa este tutorial de `{ggplot2}`](https://bastianolea.rbind.io/blog/ggplot2/)" >}}
 
 Podemos intentar volver a generar el mismo gráfico con **exactamente el mismo código**, pero antes filtrando una comuna, para obtener sólo los resultados de estudiantes que viven en la comuna de La Florida:
 

@@ -104,7 +104,7 @@ tabla <- datos |>
 as_raw_html(tabla)
 ```
 
-A partir de este punto, y similar a como cuando [hacemos gráficos con `{ggplot2}`](/blog/r_introduccion/tutorial_visualizacion_ggplot/), a la tabla le podemos seguir agregando funciones de `{gt}`, por ejemplo un título con `tab_header()`:
+A partir de este punto, y similar a como cuando [hacemos gráficos con `{ggplot2}`](/blog/ggplot2/), a la tabla le podemos seguir agregando funciones de `{gt}`, por ejemplo un título con `tab_header()`:
 
 ```{r}
 tabla <- datos |> 
