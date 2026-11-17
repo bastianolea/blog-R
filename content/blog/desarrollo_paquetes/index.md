@@ -294,13 +294,14 @@ Una vez instalado, podemos cargarlo con `library(nombre)` desde **cualquier otro
 
 ### Instalación desde internet
 
-Si subiste tu paquete a GitHub, cualquier persona puede instalarlo indicando tu nombre de usuario/a y el nombre del repositorio:
+Si subiste tu paquete a GitHub, **cualquier persona puede instalarlo** indicando tu nombre de usuario/a y el nombre del repositorio:
 
 ```r
 pak::pak("usuario/nombre")
 ```
 
 Por ejemplo, para instalar [mi paquete `territorial`](/blog/territorial/):
+
 ```r
 pak::pak("bastianolea/territorial")
 ``` 
@@ -391,6 +392,26 @@ A grandes rasgos, la documentación de la [función de ejemplo que vimos más ar
 
 Podemos ayudarnos si presionamos dentro de la función y en el menú _Code_ elegimos _Insert Roxygen Skeleton_, o si seleccionamos el código y usamod un [agente de IA como `gander`](/blog/gander/) para que escriba la documentación por nosotres.
 
+### Dependencias
+
+{{< icono-lateral "cubes" >}}
+
+Si tus funciones usan funciones de **otros paquetes**, tenemos que declararlos como dependencias, para que se instalen automáticamente cuando alguien instale nuestro paquete. De lo contrario no funcionarían!
+
+Declaramos dependencias con `usethis::use_package()`:
+
+```r
+# agregar dependencia a un paquete
+usethis::use_package("dplyr")
+usethis::use_package("cli")
+usethis::use_package("stringr")
+```
+
+Esta función agrega automáticamente el paquete a la sección `Imports` del archivo `DESCRIPTION`.
+
+{{< info "Cada dependencia que agregas es un paquete más que tus usuarios/as tienen que instalar, y un posible punto de falla si ese paquete cambia en el futuro. Por eso conviene mantener la cantidad de dependencias al mínimo." >}}
+
+
 ## Incluir datos
 
 {{< icono-lateral "database" >}}
@@ -437,26 +458,6 @@ Los datos también tienen que **documentarse**. Para esto, creamos un script `R/
 #' @source <https://www.subdere.gov.cl>
 "territorios"
 ```
-
-
-## Dependencias
-
-{{< icono-lateral "cubes" >}}
-
-Si nuestras funciones usan funciones de **otros paquetes**, tenemos que declararlos como dependencias, para que se instalen automáticamente cuando alguien instale nuestro paquete. De lo contrario no funcionarían!
-
-Declaramos dependencias con `usethis::use_package()`:
-
-```r
-# agregar dependencia a un paquete
-usethis::use_package("dplyr")
-usethis::use_package("cli")
-usethis::use_package("stringr")
-```
-
-Esta función agrega automáticamente el paquete a la sección `Imports` del archivo `DESCRIPTION`.
-
-{{< info "Cada dependencia que agregas es un paquete más que tus usuarios/as tienen que instalar, y un posible punto de falla si ese paquete cambia en el futuro. Por eso conviene mantener la cantidad de dependencias al mínimo." >}}
 
 ## Revisiones
 
@@ -685,12 +686,47 @@ Luego de haberte familiarizado con el proceso de desarrollo, te darás cuenta qu
 
 Cada cierto tiempo, cuando tengamos avances relevantes, documentamos con `devtools::document()`, revisamos con `devtools::check()`, y si todo está bien, guardamos los cambios en Git (_commit_) y los subimos a GitHub (_push_).
 
+## Recomendaciones
+
+Recomiendo editar tu archivo `.Rprofile` local con `usethis::edit_r_profile()` y agregarle el siguiente código para que los paquetes indispensables para el desarrollo se carguen solitos al iniciar tu sesión de R:
+
+```r
+if (interactive()) {
+  library(devtools)
+  library(usethis)
+  library(testthat)
+
+  # options(.gander_chat = ellmer::chat_claude()) # opcional, si usas {gander}
+}
+```
+
+
+### Avanzado
+
+#### Sitio web en español
+
+Cambia el idioma del sitio `pkgdown` a español agregando lo siguiente a `.github/workflows/pkgdown.yaml`:
+
+```yaml
+- name: Set locale to Spanish
+  run: |
+    sudo locale-gen es_ES.UTF-8
+    sudo update-locale LANG=es_ES.UTF-8
+  shell: bash
+
+- name: Build site
+  run: pkgdown::build_site_github_pages(new_process = FALSE, install = TRUE, quiet = FALSE)
+  shell: Rscript {0}
+  env:
+    LANG: es_ES.UTF-8
+```
+
 
 ## Recursos
 
 - Libro [R Packages](https://r-pkgs.org), de Hadley Wickham y Jennifer Bryan, la referencia principal sobre desarrollo de paquetes.
-- Documentación de [`{usethis}`](https://usethis.r-lib.org), [`{devtools}`](https://devtools.r-lib.org), [`{roxygen2}`](https://roxygen2.r-lib.org), [`{testthat}`](https://testthat.r-lib.org) y [`{pkgdown}`](https://pkgdown.r-lib.org).
 - Libro [Paquetes de rOpenSci: Desarrollo, mantenimiento y revisión por pares](https://devguide.ropensci.org/es/index.es.html), con buenas prácticas para desarrollar paquetes de calidad.
+- Documentación de [`usethis`](https://usethis.r-lib.org), [`devtools`](https://devtools.r-lib.org), [`roxygen2`](https://roxygen2.r-lib.org), [`testthat`](https://testthat.r-lib.org) y [`pkgdown`](https://pkgdown.r-lib.org).
 
 
 {{< etiqueta "paquetes" >}}
