@@ -853,7 +853,7 @@ shinyApp(ui, server)
 #### Hacer un gráfico de prueba primero
 Antes de poner un gráfico en una app, recomiendo empezar con una prueba del gráfico en un script separado, y luego portar el script a la app.
 
-{{< relacionada "/blog/r_introduccion/tutorial_visualizacion_ggplot" >}}
+{{< relacionada "/blog/ggplot2/" >}}
 
 [Haremos un **gráfico de barras**](/blog/ggplot2/#barras-ordenado) que muestre los principales campamentos de cada región elegida por el/la usuario/a.
 

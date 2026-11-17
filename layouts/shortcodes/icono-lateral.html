@@ -1,0 +1,6 @@
+<!-- shortcode Hugo que agrega un ícono Font Awesome con la clase icono-lateral -->
+<!-- 0 es el ícono, 1 es el estilo css opcional -->
+<!-- El ícono solo necesita el nombre (ej. "gear"), y se le antepone "fas fa-" automáticamente. Para íconos de marca u otro estilo, especifica la clase completa con espacio (ej. "fab fa-github") -->
+{{ $icon := .Get 0 }}
+{{ $iconClass := cond (in $icon " ") $icon (printf "fas fa-%s" $icon) }}
+<i class='{{ $iconClass }} icono-lateral' style='{{ .Get 1 }}'></i>

@@ -249,6 +249,15 @@ background-color: #A985C630;
   min-width: 200px;
 }
 
+div.cuadros-verticales p {
+  margin-bottom: 8px !important;
+  margin-top: 2px !important;
+}
+
+div.cuadros-verticales code {
+  opacity: 70%;
+}
+
 .flecha {
   font-size: 1.3em; 
   margin: 0px;
