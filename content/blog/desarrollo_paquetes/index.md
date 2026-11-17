@@ -116,7 +116,7 @@ Hay otros archivos indispensables, como `NAMESPACE` y `man/`, pero se generan au
 
 ### Ciclo de desarrollo de un paquete de R
 
-Luego de haber levantado los **cimientos** del paquete, el desarrollo es una especie de ciclo en el que vamos repitiendo la creación de funciones, documentación, creación de pruebas, chequeo del paquete, y repetir.
+Luego de haber levantado los **cimientos** del paquete, [el desarrollo es una especie de ciclo](#iteración) en el que vamos repitiendo la creación de funciones, documentación, creación de pruebas, chequeo del paquete, y repetir.
 
 En detalle, el ciclo de desarrollo de un paquete es así:
 
@@ -126,7 +126,7 @@ En detalle, el ciclo de desarrollo de un paquete es así:
 2. **Documentamos la función** con [comentarios de `{roxygen2}`](https://roxygen2.r-lib.org) directamente encima del script de la función que creamos
 3. Creamos **pruebas unitarias** para la función creada con `usethis::use_test()`
     * Ponemos a prueba la función y especificamos qué debería retornar, para asegurarnos ahora y en el futuro de que funciona correctamente
-4. **Chequeamos** que todo esté bien en el paquete con `devtools::check()`
+4. **Chequeamos** que todo esté bien en el paquete con `devtools::check()` y `devtools::test()`
 
 Veremos todos estos pasos y más en este tutorial!
 
