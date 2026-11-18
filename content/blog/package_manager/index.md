@@ -79,4 +79,8 @@ Con esto, los paquetes que instales se bajarán mucho más rápido, tendrás muc
 
 {{< cuadro "En mi experiencia, las instalaciones fueron muchísimo más rápidas, e incluso paquetes difíciles de instalar como `{sf}` se instalaron al tiro!" >}}
 
+
+## Recursos
+- [Ease `renv::restore()` by updating your repository to Posit Public Package Manager](https://www.pipinghotdata.com/posts/2024-09-16-ease-renvrestore-by-updating-your-repositories-to-p3m/)
+
 {{< etiqueta "consejos" >}}

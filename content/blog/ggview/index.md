@@ -1,5 +1,5 @@
 ---
-title: "Controla las dimensiones de tus gráficos con {ggview}"
+title: "Controla las dimensiones de tus gráficos con `{ggview}`"
 author: "Bastián Olea Herrera"
 date: '2025-07-08'
 slug: []
@@ -11,6 +11,8 @@ tags:
   - "ggplot2"
 excerpt: "¿Te ha pasado que estás haciendo un gráfico con `{ggplot2}` pero al momento de guardarlo te das cuenta que sale en otro tamaño y en otra proporción? Entonces este consejo es para ti: `{ggview}` es un paquete de R que te ayuda a previsualizar gráficos en `{ggplot2}` manteniendo un tamaño fijo."
 ---
+
+{{< info "Una actualización reciente de RStudio implementó esta misma funcionalidad! Ahora el panel _Plots_ tiene un botón para ajustar el tamaño del visor. Actualiza tu RStudio!" >}}
 
 [`{ggview}`](https://github.com/idmn/ggview) es un paquete de R que te ayuda a crear gráficos en `{ggplot2}` manteniendo un tamaño fijo.
 
