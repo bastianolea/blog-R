@@ -2,6 +2,7 @@
 title: Desplegar aplicaciones Shiny a producción en contenedores Docker
 author: Bastián Olea Herrera
 date: '2026-01-20'
+modified: '2026-11-15'
 slug: []
 categories: []
 tags:
@@ -98,7 +99,24 @@ CMD R -e 'shiny::runApp("/srv/shiny-server",host="0.0.0.0",port=3838)'
 - Después ejecuta varios comandos de Linux con `RUN`, entre ellos los necesarios para activar `{renv}` y así instalar las versiones específicas de los paquetes usados en tu sesión de R. 
 - Finalmente usa `COPY` para copiar los archivos de tu app a la carpeta `/srv/shiny-server/`, desde la cual se ejecutará tu app.
 
+----
 
+**Ejemplo de una creación de contenedor Docker** con `shiny2docker` a partir de un [_lockfile_ de `renv`](/blog/renv/), usando una [imagen personalizada](https://rocker-project.org/images/versioned/shiny.html), y [Posit Package Manager](/blog/package_manager/) para instalar en Linux con mayor velocidad:
+
+```r
+library(shiny2docker)
+
+shiny2docker(
+  path = ".",
+  lockfile = "renv.lock",
+  FROM = "rocker/shiny-verse:4.6.1",
+  repos = "https://packagemanager.posit.co/cran/__linux__/resolute/latest"
+)
+```
+
+Luego creamos un `compose.yml` manualmente.
+
+----
 
 ### Crear un contenedor manualmente
 

@@ -3,6 +3,7 @@ title: Entornos reproducibles para análisis de datos con `{renv}`
 subtitle: Mejora la reproducibilidad de tus proyectos fijando las versiones de los paquetes usados
 author: Bastián Olea Herrera
 date: '2026-11-18'
+modified: '2026-11-19'
 draft: false
 categories:
   - Tutoriales
@@ -362,7 +363,9 @@ renv::deactivate()
 Esto conserva el _lockfile_ y la carpeta `renv`, así que podemos volver a activarlo en cualquier momento con `renv::activate()`. Si queremos eliminar todo rastro de `{renv}` del proyecto, usamos `renv::deactivate(clean = TRUE)` o bien borramos todos los archivos y carpetas asociados a `renv`.
 
 
-## Limitaciones
+## Avanzado
+
+### Limitaciones
 
 {{< icono "circle-exclamation" >}} `{renv}` fija las versiones de los paquetes, pero no controla la versión de R ni las dependencias del sistema operativo que algunos paquetes necesitan (por ejemplo, librerías geoespaciales para `{sf}`). 
   - Si necesitas ejecutar **varias versiones de R** en un mismo computador y cambiar entre ellas, usa [rig](https://rig.r-lib.org).
@@ -370,8 +373,31 @@ Esto conserva el _lockfile_ y la carpeta `renv`, así que podemos volver a activ
 
 {{< icono "circle-exclamation" >}} La restauración de un proyecto puede fallar si un paquete tiene que **compilarse** desde el código fuente. Esto pasa porque, si bien CRAN ofrece versiones compiladas de los paquetes, no las ofrece para versiones antiguas, por lo que se dificultan las restauraciones. Para evitarlo, conviene instalar paquetes desde [Posit Package Manager](/blog/package_manager/), que entrega paquetes binarios precompilados incluso de versiones antiguas, que se instalan más fácil y rápido.
 
-
 {{< relacionada "blog/package_manager/" >}}
+
+
+### Instalar paquetes desde otros repositorios
+
+Para instalar paquetes desde repositorios distintos a CRAN, como R-Universe, y que después `renv` sepa dónde encontrarlos para instalarlos, primero hay que especificar el repositorio al momento de instalar:
+
+```r
+renv::install(
+  "territorial", 
+  repos = "https://bastianolea.r-universe.dev")
+```
+
+Luego agregar a los repositorios de `renv` las alternativas:
+```r
+options(
+  repos = c(
+    runiverse = "https://bastianolea.r-universe.dev",
+    CRAN = "https://cloud.r-project.org"
+    )
+  )
+```
+
+Y finalmente hacer `renv::snapshot()`.
+
 
 ## Recursos
 
