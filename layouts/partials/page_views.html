@@ -1,17 +1,26 @@
 <!-- https://haseebmajid.dev/posts/2022-11-25-how-to-add-page-views-to-your-hugo-blog-posts-using-goatcounter/ -->
 
-<!-- contador de visitas -->
+<!-- contador de visitas: se configura en config.toml, [params.contador_visitas] -->
+{{ $config := site.Params.contador_visitas }}
+{{ if and $config.activar site.Params.goatcounter }}
+{{ $visitas_minimas := $config.visitas_minimas | default 0 }}
 
-
-<span style="font-size: 79%; opacity: 100%; margin-left: 6px;">
-<span id="{{ .File.UniqueID }}" title="visitas">
-</span>
+<span id="{{ .File.UniqueID }}" style="font-size: 79%; margin-left: 6px; opacity: .4;" hidden></span>
 <script>
-    var r = new XMLHttpRequest();
-    r.addEventListener('load', function() {
-        document.getElementById('{{ .File.UniqueID }}').innerText = JSON.parse(this.responseText).count_unique + ' ' + 'visitas'
-    })
-    r.open('GET', "https://{{ .Site.Params.goatcounter }}.goatcounter.com/counter/" + encodeURIComponent({{ .RelPermalink }}.replace(/(\/)?$/, '')) + '.json')
-    r.send()
+    (function() {
+        var contador = document.getElementById('{{ .File.UniqueID }}');
+        var visitas_minimas = {{ $visitas_minimas }};
+        var r = new XMLHttpRequest();
+        r.addEventListener('load', function() {
+            if (this.status !== 200) return;
+            var visitas = JSON.parse(this.responseText).count_unique;
+            if (visitas > visitas_minimas) {
+                contador.innerHTML = '<i class="fas fa-eye" style="margin-right: 3px;"></i>' + visitas + ' visitas';
+                contador.hidden = false;
+            }
+        })
+        r.open('GET', "https://{{ .Site.Params.goatcounter }}.goatcounter.com/counter/" + encodeURIComponent({{ .RelPermalink }}.replace(/(\/)?$/, '')) + '.json')
+        r.send()
+    })();
 </script>
-</span>
+{{ end }}

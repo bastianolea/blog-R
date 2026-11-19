@@ -7,7 +7,7 @@ cascade:
   show_author_byline: false
   show_comments: false
   show_post_date: true
-  show_page_views: false
+  show_page_views: true
   sidebar:
     show_sidebar_adunit: false
     text_link_label: Publicaciones recientes
@@ -17,6 +17,7 @@ layout: list-sidebar #define la estructura de la página de posts
 show_author_byline: false
 show_button_links: true
 show_post_date: true
+show_page_views: true
 show_post_thumbnail: true
 sidebar:
   title: Blog
