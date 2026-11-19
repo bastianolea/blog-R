@@ -31,8 +31,6 @@ Puedes usar esta plantilla como base para tus aplicaciones sobre datos de Chile!
 
 Si quieres aprender a hacer apps Shiny, [revisa este tutorial que hice](/blog/shiny).
 
-
-
 {{< relacionada "/blog/2026-10-14/" >}}
 
 {{< relacionada "/blog/shiny/" >}}

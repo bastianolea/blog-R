@@ -35,7 +35,6 @@ links:
     url: https://bastianolea-mapa-chile-mapgl.share.connect.posit.cloud/
 ---
 
-
 Usando R, Shiny y MapGL es más fácil que nunca hacer apps web que presenten datos georeferenciados de manera precisa y personalizable!
 
 R para procesar datos, [Shiny para desarrollar aplicaciones web](/blog/shiny/), y [MapGL para visores de mapas interactivos.](/blog/mapas_mapgl/)
