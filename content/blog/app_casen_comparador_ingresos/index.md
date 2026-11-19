@@ -2,7 +2,7 @@
 title: "App: Comparador de ingresos Casen"
 subtitle: Visualizador interactivo de ingresos
 tags:
-  - apps
+  - aplicaciones
   - datos
   - Chile
 categories:

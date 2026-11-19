@@ -6,7 +6,7 @@ slug: []
 categories:
   - aplicaciones
 tags:
-  - apps
+  - aplicaciones
   - shiny
   - mapas
   - Chile

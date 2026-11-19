@@ -2,7 +2,7 @@
 title: "App: Genocidio en Palestina"
 subtitle: Visualizador sobre cifras de la masacre que Israel está llevando a cabo en Palestina y la franja de Gaza
 tags:
-  - apps
+  - aplicaciones
 categories:
   - Aplicaciones
 author: Bastián Olea Herrera

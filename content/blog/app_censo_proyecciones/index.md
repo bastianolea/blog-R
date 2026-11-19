@@ -2,7 +2,7 @@
 title: "App: Proyecciones de población del Censo"
 subtitle: Visualizador proyecciones estadísticas oficiales de población para Chile
 tags:
-  - apps
+  - aplicaciones
   - Chile
 categories:
   - Aplicaciones

@@ -4,7 +4,7 @@ subtitle: Visualizador y análisis de texto de datos de prensa
 tags:
   - análisis de texto
   - web scraping
-  - apps
+  - aplicaciones
   - Chile
   - gráficos
 categories:

@@ -6,10 +6,11 @@ slug: []
 categories:
   - Aplicaciones
 tags:
-  - apps
+  - aplicaciones
   - Chile
   - datos
   - gráficos
+  - aplicaciones
 format:
   hugo-md:
     output-file: index

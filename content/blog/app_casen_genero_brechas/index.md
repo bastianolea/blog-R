@@ -2,7 +2,7 @@
 title: "App: Brechas de género Casen"
 subtitle: Visualizador de desigualdad de género
 tags:
-  - apps
+  - aplicaciones
   - Chile
   - género
 categories:

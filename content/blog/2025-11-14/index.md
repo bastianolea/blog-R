@@ -9,7 +9,7 @@ tags:
   - blog
   - datos
   - Chile
-  - apps
+  - aplicaciones
 format:
   hugo-md:
     output-file: index

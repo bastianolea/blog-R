@@ -2,7 +2,7 @@
 title: "App: Relacionador de datos sociales Casen"
 subtitle: Visualizador interactivo variables socioeconómicas
 tags:
-  - apps
+  - aplicaciones
   - datos
   - Chile
   - ciencias sociales

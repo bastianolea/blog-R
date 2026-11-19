@@ -9,7 +9,7 @@ categories:
 tags:
   - chile
   - datos
-  - apps
+  - aplicaciones
   - blog
   - Quarto
   - shiny

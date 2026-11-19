@@ -7,7 +7,7 @@ slug: []
 categories:
   - aplicaciones
 tags:
-  - apps
+  - aplicaciones
   - datos
   - Chile
   - género

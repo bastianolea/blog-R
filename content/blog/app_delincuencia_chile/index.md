@@ -2,9 +2,10 @@
 title: "App: Estadísticas de delincuencia en Chile"
 subtitle: Visualizador interactivo de datos oficiales sobre delincuencia
 tags:
-  - apps
+  - aplicaciones
   - datos
   - Chile
+  - aplicaciones
 categories:
   - Aplicaciones
 author: Bastián Olea Herrera

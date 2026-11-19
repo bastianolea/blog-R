@@ -7,7 +7,7 @@ slug: []
 categories:
   - Aplicaciones
 tags:
-  - apps
+  - aplicaciones
   - chile
   - datos
   - blog

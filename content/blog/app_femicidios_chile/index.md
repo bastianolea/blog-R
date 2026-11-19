@@ -2,7 +2,7 @@
 title: "App: Femicidios en Chile"
 subtitle: Visualizador de estadísticas de femicidios
 tags:
-  - apps
+  - aplicaciones
   - datos
   - Chile
   - género

@@ -4,7 +4,7 @@ author: Bastián Olea Herrera
 date: '2025-09-11'
 slug: []
 tags:
-  - apps
+  - aplicaciones
   - Chile
 links:
   - icon: link

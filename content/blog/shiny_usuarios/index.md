@@ -7,7 +7,7 @@ categories:
   - tutoriales
 tags:
   - shiny
-  - apps
+  - aplicaciones
 excerpt: "Si creaste una aplicación Shiny y quieres compartirla con otros/as, pero tu app contiene información que no puede ser vista por cualquiera, ¡entonces sigue estos pasos! En unos minutos tendrás una aplicación que requiere de usuario y contraseña para poder usarla."
 ---
 

@@ -6,7 +6,7 @@ date: "2024-12-16"
 categories:
   - Aplicaciones
 tags:
-  - apps
+  - aplicaciones
   - Chile
 draft: false
 excerpt: "Consulta datos históricos de temperaturas extremas en el país, desde 1970 hasta 2024, y visualiza los cambios históricos en las temperaturas producto de la crisis climática."

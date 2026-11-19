@@ -2,11 +2,12 @@
 title: "App: Corrupción en Chile"
 subtitle: Visualizador de datos de corrupción
 tags:
-  - apps
+  - aplicaciones
   - datos
   - Chile
   - gráficos
   - tablas 
+  - aplicaciones
 categories:
   - Aplicaciones
 author: Bastián Olea Herrera

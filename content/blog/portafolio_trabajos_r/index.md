@@ -5,7 +5,7 @@ date: '2024-11-26'
 slug: []
 categories: []
 tags:
-  - apps
+  - aplicaciones
   - gráficos
   - shiny
   - tablas

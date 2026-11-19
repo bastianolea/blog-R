@@ -7,7 +7,7 @@ categories:
   - Tutoriales
 tags:
   - shiny
-  - apps
+  - aplicaciones
 format:
   hugo-md:
     output-file: index

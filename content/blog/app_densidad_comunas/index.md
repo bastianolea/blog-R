@@ -8,7 +8,7 @@ categories:
 tags:
   - Chile
   - gráficos
-  - apps
+  - aplicaciones
 format:
   hugo-md:
     output-file: index

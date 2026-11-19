@@ -20,7 +20,7 @@ abrir_borradores(cantidad = Inf)
 
 # crear un post normal
 crear_publicacion(
-  title = "Trivia de comunas, provincias y regiones de Chile",
+  title = "Plantilla de app Shiny con selector de regiones y comunas de Chile",
   file = paste0("blog/", lubridate::today(), "/index.qmd"),
   tags = c("Chile", "curiosidades", "paquetes")
 )

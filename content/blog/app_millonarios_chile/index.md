@@ -2,7 +2,7 @@
 title: "App: Millonarios de Chile"
 subtitle: Visualizador de riquezas extremas
 tags:
-  - apps
+  - aplicaciones
   - Chile
 categories:
   - Aplicaciones
