@@ -522,6 +522,56 @@ a>svg.anchor-symbol {
 }
 
 
+// publicaciones más vistas en la portada (layouts/partials/mas_vistos.html)
+.mas-vistos {
+  margin-top: 28px;
+  text-align: left;
+}
+
+.mas-vistos-fila {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: #9069C060 transparent;
+}
+
+.mas-vistos-item {
+  flex: 0 0 230px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px 8px 0;
+  scroll-snap-align: start;
+  text-decoration: none !important;
+  color: inherit;
+
+  img, .mas-vistos-sin-imagen {
+    flex-shrink: 0;
+    width: 52px;
+    height: 38px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 4px;
+    margin: 0;
+  }
+
+  .mas-vistos-sin-imagen {
+    background-color: #9069C020;
+  }
+
+  span {
+    font-size: 88%;
+    color: #9069C0;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+}
+
+
 .icono-lateral {
   font-size: 400%;
   float: right;

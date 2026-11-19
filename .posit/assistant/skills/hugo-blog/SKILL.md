@@ -455,6 +455,11 @@ Verificar siempre el `.md` resultante tras `quarto render` (buscar el atributo `
 El ícono de lupa en `params.social` (header) también apunta a `/buscar/`.
 
 
+## Sección «Los más vistos» (portada)
+
+Partial `layouts/partials/mas_vistos.html`, incluido en `layouts/index.html` bajo las etiquetas. Lee `data/mas_vistos.yaml` (campos `publicaciones: [{ruta, visitas}]`), busca cada `ruta` en `site.RegularPages` por `RelPermalink` y muestra hasta 10 en scroll horizontal (estilos `.mas-vistos*` en `assets/custom.scss`). El YAML se genera **a mano** con `actualizar_mas_vistos()` (`R/funciones.R`), que consulta la API de GoatCounter (`/api/v0/stats/hits`, últimos 12 meses) con `GOATCOUNTER_TOKEN` de `.Renviron`; hay que commitearlo. Sin el archivo, la sección no se muestra.
+
+
 ## Redirects
 
 Archivo `static/_redirects` para migraciones de URL y dominios. Redirecciones de `bastianoleah.netlify.com` → `bastianolea.rbind.io`.

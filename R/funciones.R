@@ -417,3 +417,78 @@ corregir_enlaces_qmd <- function(
 
   invisible(resultado)
 }
+
+
+# publicaciones más vistas ----
+
+# consulta la api de goatcounter y guarda las publicaciones más visitadas en
+# data/mas_vistos.yaml, que hugo usa para la sección "los más vistos" de la portada
+# (layouts/partials/mas_vistos.html). requiere GOATCOUNTER_TOKEN en .Renviron,
+# con permiso de lectura de estadísticas. se ejecuta manualmente.
+actualizar_mas_vistos <- function(cantidad = 20, meses = 12) {
+  token <- Sys.getenv("GOATCOUNTER_TOKEN")
+
+  if (token == "") {
+    cli::cli_alert_danger(
+      "Falta la variable {.envvar GOATCOUNTER_TOKEN} en {.file .Renviron}; no se actualizó el archivo."
+    )
+    return(invisible(NULL))
+  }
+
+  fecha_fin <- lubridate::today()
+  fecha_inicio <- fecha_fin - lubridate::period(meses, "months")
+
+  respuesta <- tryCatch(
+    httr2::request("https://bastimapache.goatcounter.com/api/v0/stats/hits") |>
+      httr2::req_auth_bearer_token(token) |>
+      httr2::req_url_query(
+        start = format(fecha_inicio),
+        end = format(fecha_fin),
+        limit = 100
+      ) |>
+      httr2::req_perform() |>
+      httr2::resp_body_json(),
+    error = function(error) {
+      cli::cli_alert_danger("Error al consultar GoatCounter: {conditionMessage(error)}")
+      NULL
+    }
+  )
+
+  if (is.null(respuesta) || length(respuesta$hits) == 0) {
+    cli::cli_alert_warning("GoatCounter no entregó resultados; no se actualizó el archivo.")
+    return(invisible(NULL))
+  }
+
+  visitas_por_ruta <- respuesta$hits |>
+    purrr::map(\(visita) {
+      tibble::tibble(ruta = visita$path, visitas = visita$count)
+    }) |>
+    purrr::list_rbind() |>
+    # dejar solo rutas de publicaciones, con barra final y sin parámetros
+    dplyr::mutate(
+      ruta = stringr::str_remove(ruta, "[?#].*$"),
+      ruta = stringr::str_remove(ruta, "/+$"),
+      ruta = paste0(ruta, "/")
+    ) |>
+    dplyr::filter(
+      stringr::str_detect(ruta, "^/blog/[^/]+/"),
+      !stringr::str_detect(ruta, "^/blog/page/")
+    ) |>
+    dplyr::summarise(visitas = sum(visitas), .by = ruta) |>
+    dplyr::arrange(dplyr::desc(visitas)) |>
+    dplyr::slice_head(n = cantidad)
+
+  datos_yaml <- list(
+    actualizado = format(fecha_fin),
+    desde = format(fecha_inicio),
+    publicaciones = purrr::transpose(as.list(visitas_por_ruta))
+  )
+
+  yaml::write_yaml(datos_yaml, "data/mas_vistos.yaml")
+
+  cli::cli_alert_success(
+    "Se guardaron {nrow(visitas_por_ruta)} publicaciones en {.file data/mas_vistos.yaml}"
+  )
+
+  invisible(visitas_por_ruta)
+}

@@ -1,0 +1,35 @@
+{{/*
+  publicaciones más vistas en la portada, en scroll horizontal.
+  los datos vienen de data/mas_vistos.yaml, generado con actualizar_mas_vistos() (R/funciones.R)
+*/}}
+{{- with site.Data.mas_vistos -}}
+  {{- $paginas := slice -}}
+  {{- range .publicaciones -}}
+    {{- $ruta := .ruta -}}
+    {{- with where site.RegularPages "RelPermalink" $ruta -}}
+      {{- if lt (len $paginas) 10 -}}
+        {{- $paginas = $paginas | append (index . 0) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- with $paginas -}}
+  <div class="mas-vistos">
+    <p class="titulo-panel">Los más vistos</p>
+
+    <div class="mas-vistos-fila">
+      {{- range . -}}
+        {{- $miniatura := (.Resources.ByType "image").GetMatch "*feature*" -}}
+        <a class="mas-vistos-item" href="{{ .RelPermalink }}">
+          {{- with $miniatura }}
+          <img src="{{ .RelPermalink }}" alt="" loading="lazy">
+          {{- else }}
+          <div class="mas-vistos-sin-imagen"></div>
+          {{- end }}
+          <span>{{ .Title | markdownify }}</span>
+        </a>
+      {{- end -}}
+    </div>
+  </div>
+  {{- end -}}
+{{- end -}}
