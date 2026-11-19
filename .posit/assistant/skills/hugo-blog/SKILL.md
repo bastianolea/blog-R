@@ -457,7 +457,11 @@ El ícono de lupa en `params.social` (header) también apunta a `/buscar/`.
 
 ## Sección «Los más vistos» (portada)
 
-Partial `layouts/partials/mas_vistos.html`, incluido en `layouts/index.html` bajo las etiquetas. Lee `data/mas_vistos.yaml` (campos `publicaciones: [{ruta, visitas}]`), busca cada `ruta` en `site.RegularPages` por `RelPermalink` y muestra hasta 10 en scroll horizontal (estilos `.mas-vistos*` en `assets/custom.scss`). El YAML se genera **a mano** con `actualizar_mas_vistos()` (`R/funciones.R`), que consulta la API de GoatCounter (`/api/v0/stats/hits`, últimos 12 meses) con `GOATCOUNTER_TOKEN` de `.Renviron`; hay que commitearlo. Sin el archivo, la sección no se muestra.
+Partial `layouts/partials/mas_vistos.html`, incluido en `layouts/index.html` bajo las etiquetas. El título «Publicaciones más leídas:» (`.titulo-panel`, con `margin-top: 28px`) vive en `index.html`, envuelto en `{{ with site.Data.mas_vistos }}`; el partial solo dibuja la fila.
+
+- **Datos:** lee `data/mas_vistos.yaml` (`publicaciones: [{ruta, visitas}]`), busca cada `ruta` en `site.RegularPages` por `RelPermalink`, **excluye posts cuyo título o ruta contengan «curso»** y muestra hasta 10. Sin el archivo, la sección no se muestra.
+- **Generación:** a mano con `actualizar_mas_vistos()` (`R/funciones.R`), que consulta la API de GoatCounter (`/api/v0/stats/hits`, últimos 12 meses, guarda 20) con `GOATCOUNTER_TOKEN` de `.Renviron`; hay que commitear el YAML. La API exige `start`/`end` con hora (`2025-11-19T00:00:00Z`); con fecha sola responde 404/500.
+- **Interfaz** (estilos `.mas-vistos*` en `assets/custom.scss`, con variables `$mas-vistos-*`): tarjetas de 64 px con fondo morado translúcido y bordes redondeados, imagen `*feature*` completa (sin recortar, redondeada) y texto centrado verticalmente, hasta 3 líneas; último ítem «Ver más >» hacia `/blog/`; barra de scroll delgada morada (estándar + respaldo webkit); degradado en el borde derecho que un script del partial oculta al llegar al final (su alto es el de las tarjetas + 1 px). En móvil (< 60 em) la fila se extiende hasta los bordes de la pantalla anulando los 4 rem de márgenes del sitio; en escritorio no, porque a la derecha va la imagen de la portada.
 
 
 ## Redirects
