@@ -27,16 +27,20 @@
         <!-- {{ if .Params.show_action_link }}<a class="mt4 action {{ .Params.action_type }}" href="{{ .Params.action_link | relURL }}">{{ .Params.action_label | safeHTML }}</a>{{ end }} -->
         
         <!-- enlaces principales --->
-        <a class="mt4 action text" href="/blog/">blog ></a>
-        
-        <a class="mt4 action text" href="https://bastianolea.github.io/aprende_r/">aprende R ></a>
-        
-        <a class="mt4 action text" href="https://bastianolea.github.io/shiny_apps/">apps ></a>
+        <div class="mt4 mb4" style="display: flex; flex-wrap: wrap; gap: 0.5rem 1.8rem; align-items: baseline; {{ if not .Params.text_align_left }}justify-content: flex-end;{{ end }}">
+          <a class="action text" style="margin: 0;" href="/blog/">blog ></a>
+          <a class="action text" style="margin: 0;" href="https://bastianolea.github.io/aprende_r/">aprende R ></a>
+          <a class="action text" style="margin: 0;" href="https://bastianolea.github.io/shiny_apps/">apps ></a>
+        </div>
         
         <!-- lista de etiquetas -->
+        <p class="titulo-panel">Temas principales:</p>
         {{ partial "shared/tags-wide-big.html" . }}
 
         <!-- publicaciones más vistas -->
+        {{ with site.Data.mas_vistos }}
+        <p class="titulo-panel" style="margin-top: 28px;">Publicaciones más leídas:</p>
+        {{ end }}
         {{ partial "mas_vistos.html" . }}
 
       </div>

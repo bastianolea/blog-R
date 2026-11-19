@@ -1,7 +1,7 @@
 <!--lista de etiquetas-->
 <div style="font-size: 90%;">
   <!-- <h2 style="margin-top: 32px; margin-bottom: 12px;">Temas principales del <a href="/blog/">blog:</a></h2> -->
-  {{ range $index, $var := (first 20 (sort .Site.Taxonomies.tags "Count" "desc")) }} <!-- ordenar de mayor a menor-->
+  {{ range $index, $var := (first 16 (sort .Site.Taxonomies.tags "Count" "desc")) }} <!-- ordenar de mayor a menor-->
   <!--(first 25 antes de (sort para elegir un máximo de tags-->
   <span style="margin-bottom: 10px; line-height: 1.1;">
     <span style="margin: 3px; margin-left: 1px; margin-right: 1px; 
@@ -17,5 +17,5 @@
       href="{{ .Page.Permalink }}">{{ .Page.Title }}</a></span>
   </span>
 {{ end }}
-<a href="/tags/" style="margin-left: 3px;">y más!</a>
+<a href="/tags/" style="margin-left: 3px; font-size: 90%;">y más!</a>
 </div>

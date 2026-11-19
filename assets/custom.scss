@@ -523,51 +523,138 @@ a>svg.anchor-symbol {
 
 
 // publicaciones más vistas en la portada (layouts/partials/mas_vistos.html)
+$mas-vistos-alto: 64px;
+$mas-vistos-morado: #9069C0;
+$mas-vistos-fondo-sitio: #EAD1FA;
+// márgenes del sitio en móvil: main.pa4 (2rem) + columna mh4 (2rem)
+$mas-vistos-margen-movil: 4rem;
+
 .mas-vistos {
-  margin-top: 28px;
   text-align: left;
+}
+
+.mas-vistos-contenedor {
+  position: relative;
+
+  // degradado en el borde derecho que indica que hay más contenido;
+  // se oculta con js (clase .al-final) al llegar al final del scroll
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    // 1px más que las tarjetas, que es lo que medía en pantalla
+    height: $mas-vistos-alto + 1px;
+    width: 56px;
+    background: linear-gradient(to right, rgba($mas-vistos-fondo-sitio, 0), $mas-vistos-fondo-sitio);
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+
+  &.al-final::after {
+    opacity: 0;
+  }
 }
 
 .mas-vistos-fila {
   display: flex;
-  gap: 4px;
+  gap: 8px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
+  // barra de scroll delgada y morada en todas las plataformas
+  // (estándar: firefox, chrome 121+, safari 18.2+)
   scrollbar-width: thin;
-  scrollbar-color: #9069C060 transparent;
+  scrollbar-color: rgba($mas-vistos-morado, 0.38) transparent;
+
+  // respaldo para webkit antiguo
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba($mas-vistos-morado, 0.38);
+    border-radius: 3px;
+  }
+}
+
+// en móvil, extender el scroll hasta los bordes de la pantalla: se anulan los
+// márgenes del sitio y se devuelven como relleno
+@media (max-width: 59.99em) {
+  .mas-vistos-contenedor::after {
+    right: -$mas-vistos-margen-movil;
+  }
+
+  .mas-vistos-fila {
+    margin-left: -$mas-vistos-margen-movil;
+    margin-right: -$mas-vistos-margen-movil;
+    padding-left: $mas-vistos-margen-movil;
+    padding-right: $mas-vistos-margen-movil;
+    scroll-padding-left: $mas-vistos-margen-movil;
+  }
 }
 
 .mas-vistos-item {
-  flex: 0 0 230px;
+  flex: 0 0 250px;
   display: flex;
   flex-direction: row;
+  // centrar verticalmente imagen y texto
   align-items: center;
   gap: 12px;
-  padding: 8px 10px 8px 0;
+  height: $mas-vistos-alto;
+  padding: 6px 14px 6px 10px;
+  background-color: rgba($mas-vistos-morado, 0.1);
+  border-radius: 8px;
   scroll-snap-align: start;
   text-decoration: none !important;
   color: inherit;
 
-  img, .mas-vistos-sin-imagen {
+  img {
     flex-shrink: 0;
-    width: 52px;
-    height: 38px;
-    object-fit: cover;
-    object-position: center top;
-    border-radius: 4px;
     margin: 0;
+    // mostrar la imagen completa, sin recortarla; el tamaño se ajusta a la imagen
+    // para que el borde redondeado quede en la imagen y no en la caja
+    width: auto;
+    height: auto;
+    max-width: 52px;
+    max-height: 44px;
+    border-radius: 6px;
   }
 
+  // recuadro de relleno para publicaciones sin imagen
   .mas-vistos-sin-imagen {
-    background-color: #9069C020;
+    flex-shrink: 0;
+    width: 52px;
+    height: 44px;
+    border-radius: 6px;
+    background-color: rgba($mas-vistos-morado, 0.125);
   }
 
   span {
-    font-size: 88%;
-    color: #9069C0;
+    font-size: 80%;
+    color: $mas-vistos-morado;
     font-weight: 600;
-    line-height: 1.35;
+    line-height: 1.3;
+    // máximo 3 líneas de título
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  // enlace final «ver más»
+  &.mas-vistos-mas {
+    flex: 0 0 auto;
+    padding: 6px 14px;
+    background-color: transparent;
+    font-size: 80%;
+    font-weight: 600;
+    color: $mas-vistos-morado;
+    white-space: nowrap;
   }
 }
 

@@ -16,6 +16,9 @@ abrir_publicacion_reciente("modificado", cantidad = 6)
 abrir_borradores(cantidad = Inf)
 
 
+# actualizar más vistos
+actualizar_mas_vistos()
+
 ## crear ----
 
 # crear un post normal

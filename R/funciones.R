@@ -442,8 +442,9 @@ actualizar_mas_vistos <- function(cantidad = 20, meses = 12) {
     httr2::request("https://bastimapache.goatcounter.com/api/v0/stats/hits") |>
       httr2::req_auth_bearer_token(token) |>
       httr2::req_url_query(
-        start = format(fecha_inicio),
-        end = format(fecha_fin),
+        # la api exige fechas con hora en formato rfc 3339
+        start = paste0(fecha_inicio, "T00:00:00Z"),
+        end = paste0(fecha_fin, "T23:59:59Z"),
         limit = 100
       ) |>
       httr2::req_perform() |>

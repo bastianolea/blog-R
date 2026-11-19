@@ -7,29 +7,48 @@
   {{- range .publicaciones -}}
     {{- $ruta := .ruta -}}
     {{- with where site.RegularPages "RelPermalink" $ruta -}}
-      {{- if lt (len $paginas) 10 -}}
-        {{- $paginas = $paginas | append (index . 0) -}}
+      {{- $pagina := index . 0 -}}
+      {{/* excluir publicaciones de cursos */}}
+      {{- $es_curso := or (strings.Contains (lower $pagina.Title) "curso") (strings.Contains (lower $ruta) "curso") -}}
+      {{- if and (not $es_curso) (lt (len $paginas) 10) -}}
+        {{- $paginas = $paginas | append $pagina -}}
       {{- end -}}
     {{- end -}}
   {{- end -}}
 
   {{- with $paginas -}}
   <div class="mas-vistos">
-    <p class="titulo-panel">Los más vistos</p>
-
-    <div class="mas-vistos-fila">
-      {{- range . -}}
-        {{- $miniatura := (.Resources.ByType "image").GetMatch "*feature*" -}}
-        <a class="mas-vistos-item" href="{{ .RelPermalink }}">
-          {{- with $miniatura }}
-          <img src="{{ .RelPermalink }}" alt="" loading="lazy">
-          {{- else }}
-          <div class="mas-vistos-sin-imagen"></div>
-          {{- end }}
-          <span>{{ .Title | markdownify }}</span>
-        </a>
-      {{- end -}}
+    <div class="mas-vistos-contenedor">
+      <div class="mas-vistos-fila">
+        {{- range . -}}
+          {{- $miniatura := (.Resources.ByType "image").GetMatch "*feature*" -}}
+          <a class="mas-vistos-item" href="{{ .RelPermalink }}">
+            {{- with $miniatura }}
+            <img src="{{ .RelPermalink }}" alt="" loading="lazy">
+            {{- else }}
+            <div class="mas-vistos-sin-imagen"></div>
+            {{- end }}
+            <span>{{ .Title | markdownify }}</span>
+          </a>
+        {{- end -}}
+        <a class="mas-vistos-item mas-vistos-mas" href="/blog/">Ver más &gt;</a>
+      </div>
     </div>
+
+    <script>
+      // quitar el degradado del borde derecho cuando el scroll llega al final
+      (function () {
+        var contenedor = document.currentScript.parentElement.querySelector('.mas-vistos-contenedor');
+        var fila = contenedor.querySelector('.mas-vistos-fila');
+        function actualizar() {
+          var al_final = fila.scrollLeft + fila.clientWidth >= fila.scrollWidth - 4;
+          contenedor.classList.toggle('al-final', al_final);
+        }
+        fila.addEventListener('scroll', actualizar, { passive: true });
+        window.addEventListener('resize', actualizar);
+        actualizar();
+      })();
+    </script>
   </div>
   {{- end -}}
 {{- end -}}
