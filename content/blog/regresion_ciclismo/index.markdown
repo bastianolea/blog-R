@@ -7,7 +7,7 @@ format: hugo-md
 slug: []
 categories: []
 tags:
-  - estadística
+  - estadísticas
   - ggplot2
   - curiosidades
 excerpt: "Se me ocurrió aplicar estadísticas a una duda cotidiana: si se tiene un historial de kilómetros recorridos, ¿cómo podemos predecir los kilómetros que se recorrerán en el futuro? En este post aplicamos una regresión lineal en R para averiguarlo."

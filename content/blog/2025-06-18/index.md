@@ -13,7 +13,7 @@ tags:
   - ggplot2
   - gráficos
   - visualización de datos
-  - estadística
+  - estadísticas
 excerpt: >-
   Los datos anómalos o _outliers_ son datos que se alejan considerablemente de
   los demás. Crearemos un dataset simulando datos outliers y luego mostraremos

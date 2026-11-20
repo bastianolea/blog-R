@@ -8,7 +8,7 @@ format: hugo-md
 slug: []
 categories: []
 tags:
-  - estadística
+  - estadísticas
   - ggplot2
   - curiosidades
 excerpt: >-

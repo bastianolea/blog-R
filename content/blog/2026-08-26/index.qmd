@@ -5,7 +5,7 @@ date: '2026-08-26'
 freeze: true
 tags:
   - procesamiento de datos
-  - estadística
+  - estadísticas
   - limpieza de datos
 format:
   hugo-md:

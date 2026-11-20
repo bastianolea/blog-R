@@ -9,10 +9,10 @@ categories:
 tags:
   - dplyr
   - Chile
-  - estadística
+  - estadísticas
   - ciencias sociales
   - datos
-excerpt: "Tutorial para cargar y explorar los datos de la encuesta Casen 2022 en R, obteniendo resultados a nivel de país, región y comuna con dos formas de aplicar el factor de expansión."
+excerpt: "Esta publicación ejemplifica tres formas de cargar y explorar los datos de la encuesta Casen 2022 en R, obteniendo resultados a nivel de país, región y comuna con dos formas de aplicar el factor de expansión."
 ---
 
 Esta publicación ejemplifica tres formas de cargar y explorar los datos de la encuesta Casen 2022, la [Encuesta de caracterización socioeconómica nacional](https://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-casen-2022).

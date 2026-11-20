@@ -13,7 +13,7 @@ slug: []
 categories: 
   - Tutoriales
 tags:
-  - estadística
+  - estadísticas
   - ggplot2
   - gráficos
   - visualización de datos
