@@ -1,54 +1,26 @@
 {{/*
   publicaciones más vistas en la portada, en scroll horizontal.
-  los datos vienen de data/mas_vistos.yaml, generado con actualizar_mas_vistos() (R/funciones.R)
+  las candidatas vienen de mas_vistos_candidatas.html (data/mas_vistos.yaml)
 */}}
-{{- with site.Data.mas_vistos -}}
-  {{- $paginas := slice -}}
-  {{- range .publicaciones -}}
-    {{- $ruta := .ruta -}}
-    {{- with where site.RegularPages "RelPermalink" $ruta -}}
-      {{- $pagina := index . 0 -}}
-      {{/* excluir publicaciones de cursos */}}
-      {{- $es_curso := or (strings.Contains (lower $pagina.Title) "curso") (strings.Contains (lower $ruta) "curso") -}}
-      {{- if and (not $es_curso) (lt (len $paginas) 10) -}}
-        {{- $paginas = $paginas | append $pagina -}}
+{{- with first 10 (partialCached "mas_vistos_candidatas.html" .) -}}
+<div class="mas-vistos">
+  <div class="mas-vistos-contenedor">
+    <div class="mas-vistos-fila">
+      {{- range . -}}
+        {{- $pagina := .pagina -}}
+        {{- $miniatura := ($pagina.Resources.ByType "image").GetMatch "*feature*" -}}
+        <a class="mas-vistos-item" href="{{ $pagina.RelPermalink }}">
+          {{- with $miniatura }}
+          <img src="{{ .RelPermalink }}" alt="" loading="lazy">
+          {{- else }}
+          <div class="mas-vistos-sin-imagen"></div>
+          {{- end }}
+          <span>{{ $pagina.Title | markdownify }}</span>
+        </a>
       {{- end -}}
-    {{- end -}}
-  {{- end -}}
-
-  {{- with $paginas -}}
-  <div class="mas-vistos">
-    <div class="mas-vistos-contenedor">
-      <div class="mas-vistos-fila">
-        {{- range . -}}
-          {{- $miniatura := (.Resources.ByType "image").GetMatch "*feature*" -}}
-          <a class="mas-vistos-item" href="{{ .RelPermalink }}">
-            {{- with $miniatura }}
-            <img src="{{ .RelPermalink }}" alt="" loading="lazy">
-            {{- else }}
-            <div class="mas-vistos-sin-imagen"></div>
-            {{- end }}
-            <span>{{ .Title | markdownify }}</span>
-          </a>
-        {{- end -}}
-        <a class="mas-vistos-item mas-vistos-mas" href="/blog/">Ver más &gt;</a>
-      </div>
+      <a class="mas-vistos-item mas-vistos-mas" href="/blog/">Ver más &gt;</a>
     </div>
-
-    <script>
-      // quitar el degradado del borde derecho cuando el scroll llega al final
-      (function () {
-        var contenedor = document.currentScript.parentElement.querySelector('.mas-vistos-contenedor');
-        var fila = contenedor.querySelector('.mas-vistos-fila');
-        function actualizar() {
-          var al_final = fila.scrollLeft + fila.clientWidth >= fila.scrollWidth - 4;
-          contenedor.classList.toggle('al-final', al_final);
-        }
-        fila.addEventListener('scroll', actualizar, { passive: true });
-        window.addEventListener('resize', actualizar);
-        actualizar();
-      })();
-    </script>
   </div>
-  {{- end -}}
+  <script src="/js/mas-vistos.js" defer></script>
+</div>
 {{- end -}}

@@ -490,9 +490,21 @@ El ícono de lupa en `params.social` (header) también apunta a `/buscar/`.
 
 Partial `layouts/partials/mas_vistos.html`, incluido en `layouts/index.html` bajo las etiquetas. El título «Publicaciones más leídas:» (`.titulo-panel`, con `margin-top: 28px`) vive en `index.html`, envuelto en `{{ with site.Data.mas_vistos }}`; el partial solo dibuja la fila.
 
-- **Datos:** lee `data/mas_vistos.yaml` (`publicaciones: [{ruta, visitas}]`), busca cada `ruta` en `site.RegularPages` por `RelPermalink`, **excluye posts cuyo título o ruta contengan «curso»** y muestra hasta 10. Sin el archivo, la sección no se muestra.
-- **Generación:** a mano con `actualizar_mas_vistos()` (`R/funciones.R`), que consulta la API de GoatCounter (`/api/v0/stats/hits`, últimos 12 meses, guarda 20) con `GOATCOUNTER_TOKEN` de `.Renviron`; hay que commitear el YAML. La API exige `start`/`end` con hora (`2025-11-19T00:00:00Z`); con fecha sola responde 404/500.
-- **Interfaz** (estilos `.mas-vistos*` en `assets/custom.scss`, con variables `$mas-vistos-*`): tarjetas de 64 px con fondo morado translúcido y bordes redondeados, imagen `*feature*` completa (sin recortar, redondeada) y texto centrado verticalmente, hasta 3 líneas; último ítem «Ver más >» hacia `/blog/`; barra de scroll delgada morada (estándar + respaldo webkit); degradado en el borde derecho que un script del partial oculta al llegar al final (su alto es el de las tarjetas + 1 px). En móvil (< 60 em) la fila se extiende hasta los bordes de la pantalla anulando los 4 rem de márgenes del sitio; en escritorio no, porque a la derecha va la imagen de la portada.
+- **Datos:** el partial compartido `layouts/partials/mas_vistos_candidatas.html` (se llama con `partialCached`, una vez por build) lee `data/mas_vistos.yaml` (`publicaciones: [{ruta, visitas}]`), busca cada `ruta` en `site.RegularPages` por `RelPermalink`, **excluye posts cuyo título o ruta contengan «curso»** y devuelve una lista de `{pagina, visitas}`. La portada muestra las primeras 10. Sin el archivo, la sección no se muestra.
+- **Generación:** a mano con `actualizar_mas_vistos()` (`R/funciones.R`), que consulta la API de GoatCounter (`/api/v0/stats/hits`, últimos 12 meses, guarda 60) con `GOATCOUNTER_TOKEN` de `.Renviron`; hay que commitear el YAML. La API exige `start`/`end` con hora (`2025-11-19T00:00:00Z`); con fecha sola responde 404/500.
+- **Interfaz** (estilos `.mas-vistos*` en `assets/custom.scss`, con variables `$mas-vistos-*`): tarjetas de 64 px con fondo morado translúcido y bordes redondeados, imagen `*feature*` completa (sin recortar, redondeada) y texto centrado verticalmente, hasta 3 líneas; último ítem «Ver más >» hacia `/blog/`; barra de scroll delgada morada (estándar + respaldo webkit); degradado en el borde derecho que `static/js/mas-vistos.js` (compartido con las recomendaciones de cada post) oculta al llegar al final (su alto es el de las tarjetas + 1 px). En móvil (< 60 em) la fila se extiende hasta los bordes de la pantalla anulando los 4 rem de márgenes del sitio; en escritorio no, porque a la derecha va la imagen de la portada.
+
+
+## Publicaciones similares y populares (final de cada post)
+
+Partial `layouts/partials/mas_vistos_relacionadas.html`, incluido en el `<footer class="post-footer">` de `layouts/blog/single-sidebar.html` (reemplaza la paginación prev/next) y en `layouts/blog/single-series.html` (arriba de la paginación, que en las series se mantiene porque ahí los posts sí son secuenciales). El bloque «detalles» (`post-details.html`) se eliminó de los posts de `single-sidebar.html`; sigue usándose en `_default/single.html`.
+
+- **Candidatas:** `mas_vistos_candidatas.html` (las mismas del bloque de la portada; ver arriba), sin la publicación actual.
+- **Similitud:** solo entran las que comparten al menos una etiqueta con el post actual (se ignora `blog`, lista `$ignorar`). Cada etiqueta compartida suma `1 / nº de posts con esa etiqueta` (`site.Taxonomies.tags`), así las genéricas (`Chile`, `datos`) pesan poco.
+- **Puntaje:** `similitud × visitas / visitas de la más vista`. Se muestran hasta 6 (`$maximo`); si ninguna calza, no se renderiza nada. Solo mira etiquetas (no categorías, serie ni contenido).
+- **Tarjetas** (`.tarjeta-popular*` en `assets/custom.scss`, reutilizan `.mas-vistos-contenedor/-fila` para scroll y degradado): 190 px de ancho, imagen `*feature*` arriba y título; bajada = `subtitle` y, si no hay, `excerpt` (no se usa `description` en este blog), con 3 líneas. Sin imagen (clase `.sin-imagen`) no se dibuja recuadro y el texto parte desde arriba con hasta 12 líneas de bajada. Hay `padding-bottom: 14px` entre tarjetas y barra de scroll; el `calc(100% - 14px)` del degradado debe coincidir con ese valor. En móvil la fila llega a los bordes (2 rem de margen del layout de post).
+- **JS:** `static/js/mas-vistos.js` (con `defer`) maneja todas las filas `.mas-vistos-contenedor` de la página.
+- No requiere variante `.markdown.md` (no es shortcode).
 
 
 ## Redirects
@@ -517,7 +529,10 @@ Archivo `static/_redirects` para migraciones de URL y dominios. Redirecciones de
 | Summaries (blog list) | `layouts/partials/shared/summary.html` |
 | Summaries (tags) | `layouts/partials/shared/summary-thumbnail.html` |
 | Meta/SEO tags (override raíz) | `layouts/partials/meta.html` |
-| Paginación prev/next (override raíz) | `layouts/partials/shared/post-pagination.html` |
+| Paginación prev/next (override raíz; solo series y páginas sueltas) | `layouts/partials/shared/post-pagination.html` |
+| Candidatas más vistas (compartido) | `layouts/partials/mas_vistos_candidatas.html` |
+| Recomendaciones al final del post | `layouts/partials/mas_vistos_relacionadas.html` |
+| JS del scroll de «más vistos» | `static/js/mas-vistos.js` |
 | Buscador JSON | `layouts/index.json` |
 | Índice para LLMs (`/llms.txt`) | `layouts/index.llms.txt` |
 | Markdown por publicación (`index.md`) | `layouts/_default/single.markdown.md` + `layouts/partials/llms/limpiar.html` + `layouts/shortcodes/*.markdown.md` |

@@ -1,0 +1,23 @@
+{{/*
+  publicaciones más vistas ya resueltas a páginas de Hugo, en orden de visitas.
+  - fuente: data/mas_vistos.yaml (generado con actualizar_mas_vistos(), R/funciones.R)
+  - excluye publicaciones de cursos (título o ruta con «curso»)
+  - devuelve una lista de { pagina, visitas }
+  uso (con caché, se calcula una vez por build):
+    {{ $candidatas := partialCached "mas_vistos_candidatas.html" . }}
+*/}}
+{{- $candidatas := slice -}}
+{{- with site.Data.mas_vistos -}}
+  {{- range .publicaciones -}}
+    {{- $ruta := .ruta -}}
+    {{- $visitas := .visitas -}}
+    {{- with where site.RegularPages "RelPermalink" $ruta -}}
+      {{- $pagina := index . 0 -}}
+      {{- $es_curso := or (strings.Contains (lower $pagina.Title) "curso") (strings.Contains (lower $ruta) "curso") -}}
+      {{- if not $es_curso -}}
+        {{- $candidatas = $candidatas | append (dict "pagina" $pagina "visitas" $visitas) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $candidatas -}}
