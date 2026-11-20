@@ -1,0 +1,90 @@
+{{/*
+  publicaciones populares y parecidas a la actual, al final de cada publicación (scroll horizontal).
+  - candidatas: data/mas_vistos.yaml (generado con actualizar_mas_vistos(), R/funciones.R)
+  - similitud: etiquetas en común, ponderadas por rareza (peso = 1 / nº de publicaciones con la etiqueta)
+  - puntaje = similitud * (visitas / visitas de la más vista)
+  uso: {{ partial "mas_vistos_relacionadas.html" . }}
+*/}}
+{{- $actual := . -}}
+{{- $maximo := 6 -}}
+{{- $ignorar := slice "blog" -}}
+
+{{- with site.Data.mas_vistos -}}
+  {{- $publicaciones := .publicaciones -}}
+  {{- $visitas_maximas := 1 -}}
+  {{- with $publicaciones }}{{ $visitas_maximas = math.Max 1 (index . 0).visitas }}{{ end -}}
+
+  {{- $etiquetas_actual := slice -}}
+  {{- range $actual.Params.tags -}}
+    {{- if not (in $ignorar (lower .)) -}}
+      {{- $etiquetas_actual = $etiquetas_actual | append (lower .) -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- $candidatas := slice -}}
+  {{- if $etiquetas_actual -}}
+    {{- range $publicaciones -}}
+      {{- $ruta := .ruta -}}
+      {{- $visitas := .visitas -}}
+      {{- with where site.RegularPages "RelPermalink" $ruta -}}
+        {{- $pagina := index . 0 -}}
+        {{- $es_curso := or (strings.Contains (lower $pagina.Title) "curso") (strings.Contains (lower $ruta) "curso") -}}
+        {{- if and (not $es_curso) (ne $pagina.RelPermalink $actual.RelPermalink) -}}
+          {{- $similitud := 0.0 -}}
+          {{- range $pagina.Params.tags -}}
+            {{- $etiqueta := lower . -}}
+            {{- if in $etiquetas_actual $etiqueta -}}
+              {{- $cantidad := 1 -}}
+              {{- with site.Taxonomies.tags.Get $etiqueta }}{{ $cantidad = math.Max 1 (len .) }}{{ end -}}
+              {{- $similitud = add $similitud (div 1.0 $cantidad) -}}
+            {{- end -}}
+          {{- end -}}
+          {{- if gt $similitud 0.0 -}}
+            {{- $puntaje := mul $similitud (div (float $visitas) $visitas_maximas) -}}
+            {{- $candidatas = $candidatas | append (dict "pagina" $pagina "puntaje" $puntaje) -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- with $candidatas -}}
+  <div class="populares-relacionadas">
+    <p class="titulo-panel">Publicaciones similares:</p>
+    <div class="mas-vistos-contenedor">
+      <div class="mas-vistos-fila">
+        {{- range first $maximo (sort . "puntaje" "desc") -}}
+          {{- $pagina := .pagina -}}
+          {{- $miniatura := ($pagina.Resources.ByType "image").GetMatch "*feature*" -}}
+          {{/* bajada: subtítulo, luego excerpt */}}
+          {{- $resumen := $pagina.Params.subtitle | default $pagina.Params.excerpt -}}
+          <a class="tarjeta-popular{{ if not $miniatura }} sin-imagen{{ end }}" href="{{ $pagina.RelPermalink }}">
+            {{- with $miniatura }}
+            <img src="{{ .RelPermalink }}" alt="" loading="lazy">
+            {{- end }}
+            <p class="tarjeta-popular-titulo">{{ $pagina.Title | markdownify }}</p>
+            {{- with $resumen }}
+            <p class="tarjeta-popular-resumen">{{ . | markdownify | plainify | truncate (cond (not $miniatura) 200 110) "…" }}</p>
+            {{- end }}
+          </a>
+        {{- end -}}
+      </div>
+    </div>
+
+    <script>
+      // quitar el degradado del borde derecho cuando el scroll llega al final
+      (function () {
+        var contenedor = document.currentScript.parentElement.querySelector('.mas-vistos-contenedor');
+        var fila = contenedor.querySelector('.mas-vistos-fila');
+        function actualizar() {
+          var al_final = fila.scrollLeft + fila.clientWidth >= fila.scrollWidth - 4;
+          contenedor.classList.toggle('al-final', al_final);
+        }
+        fila.addEventListener('scroll', actualizar, { passive: true });
+        window.addEventListener('resize', actualizar);
+        actualizar();
+      })();
+    </script>
+  </div>
+  {{- end -}}
+{{- end -}}

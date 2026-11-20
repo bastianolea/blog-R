@@ -18,6 +18,7 @@
         {{ .Content }}
       </section>
       <footer class="post-footer">
+        {{ partial "mas_vistos_relacionadas.html" . }}
         {{ partial "shared/post-pagination.html" . }}
       </footer>
     </article>

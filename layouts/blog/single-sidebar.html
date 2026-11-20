@@ -44,7 +44,7 @@
     </section>
       
     <footer class="post-footer">
-        {{ partial "shared/post-pagination.html" . }}
+        {{ partial "mas_vistos_relacionadas.html" . }}
     </footer>
     
   </article>
@@ -53,11 +53,12 @@
     {{ end }}
 </section>
   
-<!-- detalles al fondo del post -->
+{{/* detalles al fondo del post: desactivado (reemplazado por mas_vistos_relacionadas)
 <section class="post-body pt5 pb4">
   {{ .Scratch.Set "details" "closed" }}
   {{ partial "shared/post-details.html" . }}
 </section>
+*/}}
 </main>
 
 <!-- barra lateral del post -->

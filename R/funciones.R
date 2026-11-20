@@ -425,7 +425,7 @@ corregir_enlaces_qmd <- function(
 # data/mas_vistos.yaml, que hugo usa para la sección "los más vistos" de la portada
 # (layouts/partials/mas_vistos.html). requiere GOATCOUNTER_TOKEN en .Renviron,
 # con permiso de lectura de estadísticas. se ejecuta manualmente.
-actualizar_mas_vistos <- function(cantidad = 20, meses = 12) {
+actualizar_mas_vistos <- function(cantidad = 60, meses = 12) {
   token <- Sys.getenv("GOATCOUNTER_TOKEN")
 
   if (token == "") {
