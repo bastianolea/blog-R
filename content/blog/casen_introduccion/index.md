@@ -1,5 +1,5 @@
 ---
-title: 'Cargar y explorar datos de la encuesta Casen en R, usando factor de expansión'
+title: 'Cargar y explorar datos de la encuesta Casen 2022 en R, usando factor de expansión'
 author: Bastián Olea Herrera
 date: '2024-11-10'
 format: hugo-md
@@ -12,10 +12,10 @@ tags:
   - estadística
   - ciencias sociales
   - datos
+excerpt: "Tutorial para cargar y explorar los datos de la encuesta Casen 2022 en R, obteniendo resultados a nivel de país, región y comuna con dos formas de aplicar el factor de expansión."
 ---
 
-
-Este post ejemplifica tres formas de cargar y explorar los datos de la encuesta Casen 2022, la [Encuesta de caracterización socioeconómica nacional](https://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-casen-2022).
+Esta publicación ejemplifica tres formas de cargar y explorar los datos de la encuesta Casen 2022, la [Encuesta de caracterización socioeconómica nacional](https://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-casen-2022).
 
 Veremos cómo obtener resultados de la Casen a nivel de país, región y comuna, usando dos formas de aplicar el factor de expansión. El factor de expansión es necesario de aplicar para transformar los resultados de la muestra de la encuesta a cifras que tienen representación a los distintos niveles de agrupación geográfica.
 
@@ -574,16 +574,6 @@ Los resultados de los tres métodos difieren, especialmente los del primer méto
 3.  Entre los tres métodos, el más correcto de utilizar es el tercero, usando el paquete `{srvyr}`. Además de entregar los resultados con mayor eficiencia y velocidad, aplica correctamente la metodología de muestreo especificada por la encuesta, por lo que también es el método más exacto.
 
 
-------------------------------------------------------------------------
+{{< etiqueta "chile" >}}
 
-
-Si este tutorial te sirvió, por favor considera hacerme una pequeña donación para poder tomarme un cafecito mientras escribo el siguiente tutorial 🥺
-
-<div style = "height: 18px;">
-</div>
-<div>
-  <div style="display: flex;
-  justify-content: center;
-  align-items: center;">
-    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="bastimapache" data-color="#FFDD00" data-emoji="☕"  data-font="Cookie" data-text="Regálame un cafecito" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
-  </div>
+{{< cafecito >}}
