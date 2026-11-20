@@ -446,6 +446,37 @@ Verificar siempre el `.md` resultante tras `quarto render` (buscar el atributo `
 > Este es un caso particular de un patrón más general — ver «HTML y bloques crudos en `.qmd`: qué sobrevive y qué no al pasar por Pandoc» más abajo.
 
 
+## Mostrar código sin duplicarlo en `.qmd` (`ref.label`)
+
+**Problema:** en varios posts hay código que se ejecuta oculto (`echo: false`, por ejemplo una función auxiliar o un bloque que genera HTML) y luego se copia a mano dentro de un `{{< detalles "Ver código..." >}}` con `eval: false`. Las dos copias se desincronizan con facilidad.
+
+**Solución:** la opción de chunk de knitr `ref.label` reutiliza el código de otro chunk por su etiqueta. El chunk original lleva etiqueta (dentro de `{r etiqueta}`) y se ejecuta oculto; el chunk de referencia no tiene código propio:
+
+````
+```{r funcion}
+#| echo: false
+paleta <- function(colores) { ... }
+```
+
+{{< detalles "Ver código de la función" >}}
+
+```{r}
+#| ref.label: funcion
+#| echo: true
+#| eval: false
+```
+
+{{< /detalles >}}
+````
+
+Notas:
+- Hay que repetir `echo: true` y `eval: false` en el chunk de referencia, porque no hereda las opciones del original.
+- El código mostrado es idéntico al original, incluyendo comentarios (por ejemplo, líneas comentadas). No sirve si se quiere mostrar algo distinto a lo ejecutado; en ese caso, agregar aparte un chunk `eval: false` con el ejemplo de uso.
+- Es útil con `freeze: true`, ya que el código mostrado siempre corresponde al ejecutado.
+- Implementado en el post `colores` (`ref.label: cuadritos` y `ref.label: funcion`). Aún sin verificar el `index.md` resultante tras `quarto render` con `hugo-md`: revisar que el código aparezca en el bloque de «Ver código».
+- Buscar otros posts candidatos: `grep -rn "eval: false" content/blog --include=index.qmd` y comparar con chunks ocultos (`echo: false`) de contenido idéntico.
+
+
 ## Menús de navegación
 
 **Header**: Yo, Blog, Buscar (`/buscar/`), Temas (`/tags/`), Tutoriales (`/categories/tutoriales/`), Paquetes (`/categories/paquetes/`), Aprende R (externo), Cursos, Apps (externo), Datos (externo), Enlaces

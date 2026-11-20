@@ -1,6 +1,6 @@
 ---
-title: Colores y paletas de colores en R
-subtitle: Todo sobre la creación, personalización, modificación y uso de colores y paletas en R
+title: "Colores y paletas en R: crea, modifica y mezcla colores"
+subtitle: "Personalización de colores para visualización de datos con `ggplot2`, incluyendo accesibilidad para daltónicos"
 author: Bastián Olea Herrera
 date: '2025-03-06'
 modified: '2026-07-07'
@@ -16,6 +16,7 @@ freeze: true
 tags:
   - visualización de datos
   - ggplot2
+  - básico
 execute:
   message: false
   warning: false
@@ -28,13 +29,13 @@ links:
     icon_pack: fas
     name: shades
     url: https://github.com/jonclayden/shades
-excerpt: "El uso del color es clave para comunicar, y el ecosistema de R tiene varios trucos convenientes para ayudarnos a usar el color de mejores formas. En este post veremos consejos y trucos para trabajar con colores: incluyendo previsualizarlos, mezclarlos, modificarlos y usarlos como paletas en gráficos."
+excerpt: "El uso del color es clave para comunicar, y el ecosistema de R tiene varios trucos convenientes para ayudarnos a usar el color de mejores formas. En esta publicación veremos consejos y trucos para trabajar con colores: incluyendo previsualizarlos, mezclarlos, modificarlos, confirmar su contraste y accesibilidad, y usarlos como paletas en gráficos."
 ---
 
 
 El uso del color es clave para comunicar, y el ecosistema de R tiene varios trucos convenientes para ayudarnos a usar el color de mejores formas. 
 
-En R, los colores se escriben como código, y a grandes rasgos pueden ser colores con **nombre** (por ejemplo, `"purple"`), colores **hexadecimales** (escritos como códigos de al menos 6 dígitos, como `#FFFFFF`), o como parte de funciones que producen **paletas** de colores.
+En R, los colores se escriben como código, y a grandes rasgos pueden ser colores con **nombre** (por ejemplo, `"purple"`), colores **hexadecimales** (escritos como códigos de 6 u 8 dígitos, como `#FFFFFF`), o como parte de funciones que producen **paletas** de colores.
 
 ```{r setup}
 #| echo: false
@@ -102,10 +103,9 @@ paleta <- function(colores) {
 ```
 
 
-## Usar colores
+## Nombres de colores en R
 
-La forma más básica de elegir un color en R es por su _nombre_. 
-Por defecto, en R **existen `r length(colors())` colores** con nombre. 
+La forma más básica de elegir un color en R es por su _nombre_. Por defecto, en R **existen más de 500 colores** con nombre. 
 
 Aquí puedes ver una lista de los **principales colores de R** y copiar sus nombres para usarlos:
 
@@ -176,50 +176,9 @@ colors(distinct = T) |>
 {{< detalles "Ver código para generar los cuadritos con colores que aparecen arriba" >}}
 
 ```{r}
+#| ref.label: cuadritos
+#| echo: true
 #| eval: false
-#| output: asis
-# toma todos los colores con nombres desde `colors()` y los ordena por tono, intensidad y brillo, y genera html con todos los colores en pildoritas
-
-colores <- colors(distinct = T) |> 
-  stringr::str_subset("gray", negate = T) |> 
-  stringr::str_subset("4", negate = T)
-
-library(dplyr)
-
-tabla_colores <- tibble(color = colores) |> 
-  mutate(hex = gplots::col2hex(color)) |> 
-  mutate(tono = shades::hue(color)) |> 
-  mutate(brillo = shades::lightness(color)) |> 
-  mutate(croma = shades::chroma(color)) |> 
-  # mutate(contraste = colorspace::contrast_ratio(color, "black")) |> 
-  mutate(across(where(is.numeric), ~round(.x, 0) |> signif(2))) |> 
-  arrange(desc(tono), desc(croma), desc(brillo)) |>
-  filter(!color %in% c("black", "white"))
-
-colores <- tabla_colores$color
-
-colores <- c("white", colores, "grey", "black")
-
-estilo <- "color: black; border-radius: 4px; padding: 1px 4px; margin: 2px; line-height: 1.9;"
-
-cuadritos <- purrr::map(
-  colores,
-  \(color) {
-    shiny::span(
-      color, 
-      style = paste("background-color:", gplots::col2hex(color), ";",
-                    estilo,
-                    paste("color:", 
-                          ifelse(
-                            colorspace::contrast_ratio(color, "black") < 4, 
-                            "white", "black"),
-                          ";"),
-                    paste("border: solid 1px", colorspace::darken(color, 0.3), ";")
-      )
-    )
-  })
-
-shiny::tagList(cuadritos)
 ```
 
 {{< /detalles >}}
@@ -273,45 +232,13 @@ paleta(colores)
 {{< detalles "Ver código para generar estos círculos con colores" >}}
 
 ```{r}
+#| ref.label: funcion
+#| echo: true
 #| eval: false
-paleta <- function(colores) {
-  
-  # colores <- colors(distinct = T) |> 
-  #   stringr::str_subset("gray", negate = T)
-  
-  tamaño <- "width: 90px; height: 90px; font-size: 12px;"
-  forma <- "border-radius: 50%; margin: 8px; display: inline-flex; word-break: break-all;"
-  centrar <- "align-items: center; justify-content: center; text-align: center;"
-  
-  estilo <- paste(tamaño, forma, centrar)
-  
-  cuadritos <- purrr::map(
-    colores,
-    \(color) {
-      shiny::div(
-        color, 
-        style = paste(
-          paste("background-color:", gplots::col2hex(color), ";"),
-          estilo,
-          paste("color:", 
-                ifelse(
-                  colorspace::contrast_ratio(color, "black") < 4, 
-                  "white", "black"), ";",
-                paste("border: solid 1px", colorspace::darken(color, 0.2), ";")
-          )
-        ),
-      )
-    })
-  
-  
-  output <- shiny::div(style = centrar,
-                       shiny::tagList(cuadritos)
-  ) 
-  
-  return(output)
-}
+```
 
-# usar
+```{r}
+#| eval: false
 paleta(c("#DEC5F2", "#9069C0", "#6E3A98"))
 ```
 
@@ -324,7 +251,7 @@ Varios paquetes de R contienen sus propias paletas de colores prediseñadas. Ver
 
 Uno de los conjuntos de paletas principales en visualización de datos, sobre todo para mapas, son las de [Color Brewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3), a las que puedes acceder con el paquete `{RColorBrewer}`.
 
-Éstas son algunas de las paletas de Color Brewer:
+Estas son algunas de las paletas de Color Brewer:
 
 ```{r}
 library(RColorBrewer)
@@ -408,7 +335,7 @@ RColorBrewer::display.brewer.all()
 {{< /detalles >}}
 
 
-Cuando **elijas** una de las paletas, puedes usarla [en cualquier gráfico de `{ggplot2}`](/blog/ggplot2/) con la función `scale_color_brewer()` o `scale_fill_brewer()`, según corresponda a la variable que quieres pintar, y elije la paleta por medio de su nombre:
+Cuando **elijas** una de las paletas, puedes usarla [en cualquier gráfico de `{ggplot2}`](/blog/ggplot2/) con la función `scale_color_brewer()` o `scale_fill_brewer()`, según corresponda a la variable que quieres pintar, y elige la paleta por medio de su nombre:
 
 ```{r}
 library(ggplot2)
@@ -417,7 +344,7 @@ iris |>
   ggplot() +
   aes(x = Sepal.Length, y = Sepal.Width, color = Species) +
   geom_point(size = 3, alpha = 0.8) +
-  # usar la paleta "PuRd"
+  # usar la paleta "Set2"
   scale_color_brewer(palette = "Set2")
 ```
 
@@ -526,8 +453,6 @@ La forma más simple de usar colores en gráficos de `{ggplot2}` es definiéndol
 Para una variable _discreta_ o _categórica_, los colores se aplican en la capa `scale_color_manual()` y se aplican en el orden de la variable:
 
 ```{r}
-library(ggplot2)
-
 iris |> 
   ggplot() +
   aes(Sepal.Width, Sepal.Length, 
@@ -563,8 +488,6 @@ Muchos paquetes de R incorporan funciones de escalas de colores (`scale_color_x(
 Por ejemplo, las paletas de `{colorspace}` que vimos más arriba:
 
 ```{r}
-library(ggplot2)
-
 # escalas para variables discretas
 iris |> 
   ggplot() +
@@ -600,13 +523,11 @@ iris |>
 O bien, las paletas de `{RColorBrewer}` que vimos antes:
 
 ```{r}
-library(ggplot2)
-
 iris |> 
   ggplot() +
   aes(x = Sepal.Length, y = Sepal.Width, color = Species) +
   geom_point(size = 3, alpha = 0.9) +
-  # usar la paleta "Set2" de Color Brewer
+  # usar la paleta "Accent" de Color Brewer
   scale_color_brewer(palette = "Accent")
 ```
 
@@ -655,7 +576,8 @@ colores <- colorspace::sequential_hcl(6, h = 300)
 ```{r echo=FALSE}
 paleta(colores)
 ```
-Ahora, una paleta de 6 colores, que empiece en el tono 300 y termine por el tono 100, a la vez que va aclarándose:
+
+Ahora, una paleta de 8 colores, que empiece en el tono 300 y termine por el tono 100, a la vez que va aclarándose:
 
 ```{r}
 colores <- colorspace::sequential_hcl(8, h = c(300, 100))
@@ -665,12 +587,14 @@ colores <- colorspace::sequential_hcl(8, h = c(300, 100))
 paleta(colores)
 ```
 
-Puedes explorar los argumentos para personalizar la paleta. Por ejemplo: 6 colores por el tono 200 definido en `h`, cambiando la intensidad del color en el argumento `c`, y pasando de una luminancia de `25` a una de `85`
+Puedes explorar los argumentos para personalizar la paleta. Por ejemplo: 5 colores por el tono 200 definido en `h`, cambiando la intensidad del color en el argumento `c`, y pasando de una luminancia de `25` a una de `85`
+
 ```{r}
-colores <- colorspace::sequential_hcl(5, 
-                                      h = 200,
-                                      c = c(45, 25), 
-                                      l = c(25, 80)
+colores <- colorspace::sequential_hcl(
+  5, 
+  h = 200,
+  c = c(45, 25), 
+  l = c(25, 80)
 )
 ```
 
@@ -699,7 +623,7 @@ paleta(colores)
 
 ### Crear paletas cualitativas
 
-Como su nombre ética, en las paletas cualitativas los colores van saltando para maximizar la diferencia entre ellos. Se utilizan para variables cualitativas, categóricas o discretas, donde cada elemento de una secuencia es independiente de los demás, y el objetivo del uso del color es poder distinguirlos. 
+Como su nombre indica, en las paletas cualitativas los colores van saltando para maximizar la diferencia entre ellos. Se utilizan para variables cualitativas, categóricas o discretas, donde cada elemento de una secuencia es independiente de los demás, y el objetivo del uso del color es poder distinguirlos. 
 
 La función `rainbow_hcl()` de `{colorspace}` entrega una típica paleta de arcoíris, pero con la posibilidad de modificar sus atributos de color en sus argumentos, tales como las tonalidades (_hue_) de inicio o final, la intensidad (_chroma_) de los tonos, y más.
 
@@ -727,6 +651,7 @@ paleta(colores)
 ```
 
 Un arcoíris de 6 colores con intensidad de 60, luminancia de 30, que empiece en el tono 230 y termine en el 370:
+
 ```{r}
 colores <- colorspace::rainbow_hcl(6, 
                                    c = 60, 
@@ -754,6 +679,7 @@ paleta(colores)
 ```
 
 Seis colores de la paleta de colores cálidos, con intensidad (_chroma_) de 70:
+
 ```{r}
 colores <- colorspace::qualitative_hcl(6, 
                                        palette = "Warm", 
@@ -767,7 +693,7 @@ paleta(colores)
 
 ### Crear paletas divergentes
 
-Las paletas divergentes se utilizan cuando una variable expresa dos polos; una una misma magnitud donde los extremos son separados por una brecha central.
+Las paletas divergentes se utilizan cuando una variable expresa dos polos; una misma magnitud donde los extremos son separados por una brecha central.
 
 ```{r}
 colores <- colorspace::diverging_hcl(n = 5, 
@@ -797,6 +723,7 @@ colores <- colorspace::diverging_hcl(n = 6,
 ```{r echo=FALSE}
 paleta(colores)
 ```
+
 Como podemos ver, todas las paletas divergentes pasan por un tono blanco en el intermedio.
 
 ### Extender paletas de colores
@@ -822,6 +749,7 @@ paleta(colores)
 ```
 
 También podemos usar esta función para crear con facilidad una paleta secuencial entre dos o más colores:
+
 ```{r}
 colores <- c("#df65b2", "#fae55f")
 ```
@@ -831,7 +759,7 @@ paleta(colores)
 ```
 
 ```{r}
-# extender la paleta a 8 colores
+# extender la paleta a 16 colores
 colores <- colorRampPalette(colores)(16)
 ```
 
@@ -849,7 +777,6 @@ Una vez que pensaste una paleta de colores, puedes usarla en cualquier gráfico 
 En este ejemplo, usamos la paleta de colores fríos para un gráfico de dispersión de la base de datos `msleep` que viene con `{ggplot2}`:
 
 ```{r}
-library(ggplot2)
 library(dplyr)
 
 # preparar datos de prueba
@@ -878,9 +805,10 @@ datos |>
 
 ### Modificar colores existentes
 
-Las funciones del paquete `{shades}` nos permitan obtener información detallada sobre cada uno de los colores, y usar esta misma información para modificarlos con mucho detalle.
+Las funciones del paquete `{shades}` nos permiten obtener información detallada sobre cada uno de los colores, y usar esta misma información para modificarlos con mucho detalle.
 
 Por ejemplo, definamos un color, y luego obtengamos el valor de su tonalidad. Recordemos que la tonalidad de los colores se expresan como grados entre 0° y 360°.
+
 ```{r}
 color <- "#f65b74"
 ```
@@ -893,7 +821,7 @@ paleta(color)
 shades::hue(color)
 ```
 
-Obtenemos que, para el color definido, el valor de su tonalidad es `r shades::hue(color)`. Podemos usar esta información para modificar levemente el mismo color y así obtener una variable del mismo color levemente más anaranjada.
+Obtenemos que, para el color definido, el valor de su tonalidad es `r shades::hue(color)`. Podemos usar esta información para modificar levemente el mismo color y así obtener una variante del mismo color levemente más anaranjada.
 
 ```{r}
 color2 <- shades::hue(color, 370)
@@ -903,7 +831,7 @@ color2 <- shades::hue(color, 370)
 paleta(c(color, color2))
 ```
 
-Podemos obtener mismos resultados utilizando el _delta_ de la tonalidad del color; es decir, sumándole restándole una cantidad de grados a el valor de la tonalidad del color mismo:
+Podemos obtener mismos resultados utilizando el _delta_ de la tonalidad del color; es decir, sumándole o restándole una cantidad de grados al valor de la tonalidad del color mismo:
 
 
 ```{r}
@@ -955,6 +883,7 @@ paleta(color)
 ```
 
 Por su parte, la **saturación** aumenta la intensidad del color.
+
 ```{r}
 color <- color |> saturation(delta(30))
 ```
@@ -964,6 +893,7 @@ paleta(color)
 ```
 
 Podemos utilizar la función `delta()` para crear una sencilla paleta de colores a partir de un mismo color, aumentando y disminuyendo su intensidad (_chroma_):
+
 ```{r}
 colores <- c(color |> chroma(delta(30)), 
              color,
@@ -987,12 +917,12 @@ paleta(color)
 Podemos combinar estas técnicas para crear una paleta de colores más compleja, construida toda a partir de un solo color al cual se le va aumentando o disminuyendo sus valores de claridad e intensidad. El beneficio de hacerlo de esta manera es que luego basta con cambiar el color principal para obtener una paleta de iguales características, pero basada en una tonalidad distinta.
 
 ```{r}
-color_principal = "#4D4484"
+color_principal <- "#4D4484"
 
-color_fondo = color_principal |> lightness(13) |> chroma(20)
-color_detalle = color_principal |> lightness(20) |> chroma(40)
-color_destacado = color_principal |> lightness(50) |> chroma(65)
-color_texto = color_principal |> lightness(80)
+color_fondo <- color_principal |> lightness(13) |> chroma(20)
+color_detalle <- color_principal |> lightness(20) |> chroma(40)
+color_destacado <- color_principal |> lightness(50) |> chroma(65)
+color_texto <- color_principal |> lightness(80)
 
 colores <- c(color_principal,
              color_fondo,
@@ -1004,15 +934,16 @@ colores <- c(color_principal,
 ```{r echo=FALSE}
 paleta(colores)
 ```
+
 Ahora usamos el mismo código, pero cambiando el color de origen:
 
 ```{r}
-color_principal = "#3170ac"
+color_principal <- "#3170ac"
 
-color_fondo = color_principal |> lightness(13) |> chroma(20)
-color_detalle = color_principal |> lightness(20) |> chroma(40)
-color_destacado = color_principal |> lightness(50) |> chroma(65)
-color_texto = color_principal |> lightness(80)
+color_fondo <- color_principal |> lightness(13) |> chroma(20)
+color_detalle <- color_principal |> lightness(20) |> chroma(40)
+color_destacado <- color_principal |> lightness(50) |> chroma(65)
+color_texto <- color_principal |> lightness(80)
 
 colores <- c(color_principal,
              color_fondo,
@@ -1025,12 +956,12 @@ colores <- c(color_principal,
 paleta(colores)
 ```
 
-Notar que el código es igual, y sólo se cambió el valor del `color_principal`. Esta estrategia es muy útil si se están produciendo visualizaciones o aplicaciones que ocupan una paleta de colores monocromática.
+Notemos que el código es igual, y sólo se cambió el valor del `color_principal`. Esta estrategia es muy útil si se están produciendo visualizaciones o aplicaciones que ocupan una paleta de colores monocromática.
 
 
 ### Mezclar colores
 
-Las funciones `submix()` y `addmix()` del paquete `{shades}` facilitan el mezclado de colores sustraje ctivo y aditivo, respectivamente. 
+Las funciones `submix()` y `addmix()` del paquete `{shades}` facilitan el mezclado de colores sustractivo y aditivo, respectivamente. 
 
 A partir de dos colores, entrega la mezcla de ellos, abriendo muchas posibilidades para la experimentación y creación de nuevos colores.
 
@@ -1069,7 +1000,7 @@ paleta(colores)
 
 ### Aplicar una tonalidad a una paleta de colores
 
-El paquete `{scales}` también provee una función para **mezclar** colores: `col_mix()`. Cualquiera de estas funciones, ya sea `scales:col_mix()` o `shades::addmix()` y `shades::submix()` pueden usarse para tomar una paleta de colores y volverla más **coherente** al aplicarle una pequeña fracción de otro color. Veamos primero la paleta:
+El paquete `{scales}` también provee una función para **mezclar** colores: `col_mix()`. Cualquiera de estas funciones, ya sea `scales::col_mix()` o `shades::addmix()` y `shades::submix()` pueden usarse para tomar una paleta de colores y volverla más **coherente** al aplicarle una pequeña fracción de otro color. Veamos primero la paleta:
 
 ```{r echo=FALSE}
 paleta(c("#77d671", "#70f1d5", "#fae55f", "#ff479c"))
@@ -1103,7 +1034,7 @@ color <- hsv(h = 0, s = 1, v = 1)
 paleta(color)
 ```
 
-Para guiarse, la siguiente gráfica muestra la tonalidad de colores entre `0` y `1`,
+Para guiarse, la siguiente gráfica muestra la tonalidad de colores entre `0` y `1`:
 
 ```{r}
 #| fig-height: 1
@@ -1185,6 +1116,7 @@ paleta(color)
 ```
 
 Luego podemos modificar la saturación y brillo del color con los otros dos argumentos de `hsv()`:
+
 ```{r}
 #| fig-height: 3
 color <- hsv(0.82, 0.5, 0.4)
@@ -1319,8 +1251,6 @@ Esto mismo se puede hacer con páginas como [WebAIM](https://webaim.org/resource
 ```{r}
 #| fig-height: 1
 
-library(dplyr)
-library(ggplot2)
 library(colorspace)
 
 # paleta de morados de distinta intensidad
@@ -1369,8 +1299,6 @@ colores <- colors()
 ```
 
 ```{r}
-library(dplyr)
-
 # crear una tabla con el vector de colores
 tabla <- tibble(color = colores)
 ```
@@ -1378,8 +1306,6 @@ tabla <- tibble(color = colores)
 Con las funciones `hue()`, `lightness()` y `chroma()` del paquete `{shades}` podemos calcular el tono, brillo e intensidad de cada color:
 
 ```{r}
-library(shades)
-
 tabla <- tabla |> 
   mutate(tono = shades::hue(color)) |> 
   mutate(brillo = shades::lightness(color)) |> 
