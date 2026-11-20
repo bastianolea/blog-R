@@ -425,7 +425,7 @@ corregir_enlaces_qmd <- function(
 # data/mas_vistos.yaml, que hugo usa para la sección "los más vistos" de la portada
 # (layouts/partials/mas_vistos.html). requiere GOATCOUNTER_TOKEN en .Renviron,
 # con permiso de lectura de estadísticas. se ejecuta manualmente.
-actualizar_mas_vistos <- function(cantidad = 60, meses = 12) {
+actualizar_mas_vistos <- function(cantidad = 100, meses = 12) {
   token <- Sys.getenv("GOATCOUNTER_TOKEN")
 
   if (token == "") {
@@ -447,16 +447,28 @@ actualizar_mas_vistos <- function(cantidad = 60, meses = 12) {
         end = paste0(fecha_fin, "T23:59:59Z"),
         limit = 100
       ) |>
+      # la api de goatcounter falla de forma intermitente (404/500)
+      httr2::req_retry(
+        max_tries = 4,
+        is_transient = \(resp) {
+          httr2::resp_status(resp) %in% c(404, 429, 500, 502, 503)
+        },
+        backoff = \(intento) 2
+      ) |>
       httr2::req_perform() |>
       httr2::resp_body_json(),
     error = function(error) {
-      cli::cli_alert_danger("Error al consultar GoatCounter: {conditionMessage(error)}")
+      cli::cli_alert_danger(
+        "Error al consultar GoatCounter: {conditionMessage(error)}"
+      )
       NULL
     }
   )
 
   if (is.null(respuesta) || length(respuesta$hits) == 0) {
-    cli::cli_alert_warning("GoatCounter no entregó resultados; no se actualizó el archivo.")
+    cli::cli_alert_warning(
+      "GoatCounter no entregó resultados; no se actualizó el archivo."
+    )
     return(invisible(NULL))
   }
 
