@@ -2,8 +2,7 @@
 title: Ordenar las regiones de Chile de norte a sur en R
 author: Bastián Olea Herrera
 date: '2025-06-06'
-slug: []
-categories: []
+modified: '2026-11-20'
 format:
   hugo-md:
     output-file: "index"
@@ -13,9 +12,16 @@ tags:
   - mapas
   - Chile
 excerpt: La franja larga y angosta que es Chile tiene el beneficio de que sus regiones se ubican casi perfectamente una sobre la otra, de norte a sur. Este orgen geográfico natural de sus regiones resulta familiar para sus habitantes, por lo que se vuelve recomendable ordenar los datos a nivel regional siguiendo este orden geográfico.
+links:
+  - icon: registered
+    icon_pack: fas
+    name: Territorial
+    url: https://bastianolea.github.io/territorial/
 ---
 
 La franja larga y angosta que es Chile tiene el beneficio de que sus regiones se ubican casi perfectamente una sobre la otra, de norte a sur. Este orgen geográfico natural de sus regiones resulta familiar para sus habitantes, por lo que se vuelve recomendable ordenar los datos a nivel regional siguiendo este orden geográfico.
+
+En esta publicación veremos dos formas de hacerlo: manualmente con `{dplyr}` y automáticamente con [`{territorial}`](https://bastianolea.github.io/territorial/).
 
 Creemos una tabla o _dataframe_ con las regiones de Chile. Ejecuta el siguiente código en R para obtener una tabla:
 
@@ -42,7 +48,6 @@ library(dplyr)
 ```
 
 
-
 ``` r
 regiones <- tibble::tribble(
   ~codigo_region,                  ~nombre_region,
@@ -65,7 +70,24 @@ regiones <- tibble::tribble(
 )
 ```
 
-En esta tabla tenemos el nombre de las 16 regiones del país, y además una columna de código de región. El código de región corresponde al nombre antiguo que tenían las regiones (instaurado en dictadura), y que hoy en día no se sigue utilizando, pero que sin embargo se mantiene como código identificador de las regiones en la mayoría de las bases de datos oficiales. Si bien este código originalmente ordenaba las regiones, hoy en día la creación de nuevas regiones (como Ñuble en 2017 o Arica y Parinacota en 2007) provoca que este ordenamiento antiguo no se corresponda con el orden geográfico de las regiones.
+También puedes obtener una tabla con las regiones de Chile desde el [paquete `{territorial}`](https://bastianolea.github.io/territorial/), así:
+
+
+``` r
+library(territorial)
+
+regiones <- territorios |> 
+  select(ends_with("region")) |> 
+  distinct()
+```
+
+En esta tabla tenemos el nombre de las 16 regiones del país, y además una columna de código de región. 
+
+{{< detalles "Sobre los códigos regionales" >}}
+
+El **código de región** corresponde al nombre antiguo que tenían las regiones (instaurado en dictadura), y que hoy en día no se sigue utilizando, pero que sin embargo se mantiene como [código único territorial](https://bastianolea.github.io/territorial/articles/codigos_unicos_territoriales.html) de las regiones en la mayoría de las bases de datos oficiales. Si bien este código originalmente ordenaba las regiones, hoy en día la creación de nuevas regiones (como Ñuble en 2017 o Arica y Parinacota en 2007) provoca que este ordenamiento antiguo no se corresponda con el orden geográfico de las regiones.
+
+{{< /detalles >}}
 
 Si ejecutamos esta tabla de datos, veremos que las regiones no están ordenadas geográficamente:
 
@@ -102,23 +124,24 @@ Para **ordenar geográficamente las regiones de Chile** podemos crear una variab
 ``` r
 regiones_ordenadas <- regiones |> 
   # agregar orden de región de norte a sur
-  mutate(orden_region = recode_values(codigo_region,
-                                   15 ~ 1,
-                                   1 ~ 2,
-                                   2 ~ 3,
-                                   3 ~ 4,
-                                   4 ~ 5,
-                                   5 ~ 6,
-                                   13 ~ 7,
-                                   6 ~ 8,
-                                   7 ~ 9,
-                                   16 ~ 10,
-                                   8 ~ 11,
-                                   9 ~ 12,
-                                   14 ~ 13,
-                                   10 ~ 14,
-                                   11 ~ 15,
-                                   12 ~ 16)
+  mutate(orden_region = recode_values(
+    codigo_region,
+    15 ~ 1,
+    1 ~ 2,
+    2 ~ 3,
+    3 ~ 4,
+    4 ~ 5,
+    5 ~ 6,
+    13 ~ 7,
+    6 ~ 8,
+    7 ~ 9,
+    16 ~ 10,
+    8 ~ 11,
+    9 ~ 12,
+    14 ~ 13,
+    10 ~ 14,
+    11 ~ 15,
+    12 ~ 16)
   )
 ```
 
@@ -128,24 +151,25 @@ Se recomienda hacer este tipo de operaciones usando el código de las regiones, 
 ``` r
 regiones_ordenadas <- regiones |> 
   # agregar orden de región de norte a sur
-  mutate(orden_region = recode_values(nombre_region,
-                                      "Tarapacá" ~  2,
-                                   "Antofagasta" ~  3,
-                                       "Atacama" ~  4,
-                                      "Coquimbo" ~  5,
-                                    "Valparaíso" ~  6,
-         "Libertador General Bernardo O'Higgins" ~  8,
-                                         "Maule" ~  9,
-                                        "Biobío" ~  11,
-                                  "La Araucanía" ~  12,
-                                     "Los Lagos" ~  14,
-     "Aysén del General Carlos Ibáñez del Campo" ~  15,
-          "Magallanes y de la Antártica Chilena" ~  16,
-                     "Metropolitana de Santiago" ~  7,
-                                      "Los Ríos" ~  13,
-                            "Arica y Parinacota" ~  1,
-                                         "Ñuble" ~  10)
-     )
+  mutate(orden_region = recode_values(
+    nombre_region,
+    "Tarapacá" ~  2,
+    "Antofagasta" ~  3,
+    "Atacama" ~  4,
+    "Coquimbo" ~  5,
+    "Valparaíso" ~  6,
+    "Libertador General Bernardo O'Higgins" ~  8,
+    "Maule" ~  9,
+    "Biobío" ~  11,
+    "La Araucanía" ~  12,
+    "Los Lagos" ~  14,
+    "Aysén del General Carlos Ibáñez del Campo" ~  15,
+    "Magallanes y de la Antártica Chilena" ~  16,
+    "Metropolitana de Santiago" ~  7,
+    "Los Ríos" ~  13,
+    "Arica y Parinacota" ~  1,
+    "Ñuble" ~  10)
+  )
 ```
 
 
@@ -181,7 +205,36 @@ regiones_ordenadas |>
 ## 16            12 Magallanes y de la Antártica Chilena                16
 ```
 
-¡Ahora sí aparecen ordenadas geográficamente! ¿Pero qué pasa si hacemos un gráfico con estas regiones?
+¡Ahora sí aparecen ordenadas geográficamente! 
+
+Otra forma mucho más fácil de ordenar las regiones en R es con la [función `ordenar_regiones()`](https://bastianolea.github.io/territorial/reference/ordenar_regiones.html) de `{territorial}`:
+
+
+``` r
+regiones |> 
+  territorial::ordenar_regiones(limpiar = FALSE)
+```
+
+{{< relacionada "/blog/territorial/" >}}
+
+## Gráfico de regiones ordenadas
+
+¿Pero qué pasa si hacemos un gráfico con estas regiones?
+
+
+``` r
+library(ggplot2)
+
+# aplicar tema de colores
+theme_set(
+  theme_grey(
+    paper = "#EAD1FA",
+    ink = "#543A73",
+    accent = "#9069C0",
+    base_family = "Atkinson Hyperlegible")
+)
+```
+
 
 
 ``` r
@@ -190,17 +243,15 @@ library(ggplot2)
 regiones_ordenadas |> 
   ggplot() +
   aes(x = codigo_region, 
-      y = nombre_region, 
-      fill = codigo_region) +
-  geom_col() +
-  theme_minimal()
+      y = nombre_region) +
+  geom_col()
 ```
 
-<img src="/blog/ordenar_regiones/ordenar_regiones_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="/blog/ordenar_regiones/ordenar_regiones_files/figure-html/unnamed-chunk-10-1.png" alt="" width="672" />
 
 Las regiones nuevamente aparecen desordenadas. ¿Por qué? Porque `{ggplot2}`, la librería de visualización de datos que usamos, así como muchos otros paquetes, no se basan en en el orden de las filas de la base de datos que usemos, sino en el _orden de la variable._ Como la variable `nombre_region` es una variable de texto (tipo _caracter_), no tiene un orden, así que se asume que su orden es alfabético (en el gráfico vemos que abajo están las regiones que empiezan con _A_, porque el eje `y` nace desde el cero que está abajo y aumenta hacia arriba).
 
-La solución sería darle un _orden_ a la variable. En R, las variables de texto que contienen información sobre su ordenamiento se llaman _factores._ Un factor es una variable categórica de tipo ordinal; es decir, una variable de texto que tiene categorías de texto, pero que estas categorías tienen un ordenamiento entre ellas: por ejemplo, _bajo_, _medio_ y _alto_ deberían tener un orden de 1 a 3, de lo contrario se ordenarían alfabéticamente y _alto_ quedaría antes que _bajo_.
+La solución sería darle un **orden** a la variable. En R, las variables de texto que contienen información sobre su ordenamiento se llaman **factores**. Un factor es una variable categórica de tipo ordinal; es decir, una variable de texto que tiene categorías de texto, pero que estas categorías tienen un ordenamiento entre ellas: por ejemplo, _bajo_, _medio_ y _alto_ deberían tener un orden de 1 a 3, de lo contrario se ordenarían alfabéticamente y _alto_ quedaría antes que _bajo_.
 
 El paquete `{forcats}` facilita todo tipo de trabajo con variables tipo factor o categóricas. Entre sus funciones está `fct_reorder()`, que nos permite ordenar una variable de texto en base al ordenamiento que nos da una variable numérica: en nuestro caso, ordenar el `nombre_region` en base al `orden_region`:
 
@@ -221,14 +272,11 @@ Si ahora volvemos a hacer el gráfico, la variable `nombre_region` sí aparecer�
 regiones_ordenadas_2 |> 
   ggplot() +
   aes(x = orden_region,
-      y = nombre_region, 
-      fill = orden_region) +
-  geom_col() +
-  theme_minimal() +
-  guides(fill = guide_none())
+      y = nombre_region) +
+  geom_col()
 ```
 
-<img src="/blog/ordenar_regiones/ordenar_regiones_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="/blog/ordenar_regiones/ordenar_regiones_files/figure-html/unnamed-chunk-12-1.png" alt="" width="672" />
 
 Naturalmente, las regiones aparecen al revés, porque el eje `y` parte desde abajo y aumenta hacia arriba, entonces la primera región (la de más al norte) aparece abajo. Pero sería esperable que las regiones estén ordenadas de norte a sur y de arriba hacia abajo (en el hemisferio sur), así que podemos invertir el orden del factor:
 
@@ -238,17 +286,18 @@ regiones_ordenadas_2 |>
   # invertir orden de la variable
   mutate(nombre_region = forcats::fct_rev(nombre_region)) |> 
   ggplot() +
-    aes(x = orden_region,
-      y = nombre_region, 
-      fill = orden_region) +
-  geom_col() +
-  theme_minimal() +
-  guides(fill = guide_none())
+  aes(x = orden_region,
+      y = nombre_region) +
+  geom_col()
 ```
 
-<img src="/blog/ordenar_regiones/ordenar_regiones_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="/blog/ordenar_regiones/ordenar_regiones_files/figure-html/unnamed-chunk-13-1.png" alt="" width="672" />
 
-¡Listo! Si te sirve, acá dejo un dataframe con las regiones del país, su código y su orden, para que puedas copiarlo y pegarlo en tu script de R, y luego [agregarlo a tus datos usando `left_join()`:](/blog/left_join/)
+¡Listo! 
+
+Pero ojo! `{territorial}` contiene una solución a este problema: en [la función `ordenar_regiones()`](https://bastianolea.github.io/territorial/reference/ordenar_regiones.html) existe el argumento `invertir = TRUE`, que entrega las regiones ordenadas _al revés_ para que se vean bien en gráficos.
+
+Si te sirve, acá dejo un dataframe con las regiones del país, su código y su orden, para que puedas copiarlo y pegarlo en tu script de R, y luego [agregarlo a tus datos usando `left_join()`:](/blog/left_join/)
 
 
 ``` r
@@ -256,23 +305,23 @@ regiones_ordenadas_2 |>
 #   datapasta::dpasta()
 
 tibble::tribble(
-     ~codigo_region,                              ~nombre_region, ~orden_region,
-                  1,                                  "Tarapacá",             2,
-                  2,                               "Antofagasta",             3,
-                  3,                                   "Atacama",             4,
-                  4,                                  "Coquimbo",             5,
-                  5,                                "Valparaíso",             6,
-                  6,     "Libertador General Bernardo O'Higgins",             8,
-                  7,                                     "Maule",             9,
-                  8,                                    "Biobío",            11,
-                  9,                              "La Araucanía",            12,
-                 10,                                 "Los Lagos",            14,
-                 11, "Aysén del General Carlos Ibáñez del Campo",            15,
-                 12,      "Magallanes y de la Antártica Chilena",            16,
-                 13,                 "Metropolitana de Santiago",             7,
-                 14,                                  "Los Ríos",            13,
-                 15,                        "Arica y Parinacota",             1,
-                 16,                                     "Ñuble",            10)
+  ~codigo_region,                              ~nombre_region, ~orden_region,
+  1,                                  "Tarapacá",             2,
+  2,                               "Antofagasta",             3,
+  3,                                   "Atacama",             4,
+  4,                                  "Coquimbo",             5,
+  5,                                "Valparaíso",             6,
+  6,     "Libertador General Bernardo O'Higgins",             8,
+  7,                                     "Maule",             9,
+  8,                                    "Biobío",            11,
+  9,                              "La Araucanía",            12,
+  10,                                 "Los Lagos",            14,
+  11, "Aysén del General Carlos Ibáñez del Campo",            15,
+  12,      "Magallanes y de la Antártica Chilena",            16,
+  13,                 "Metropolitana de Santiago",             7,
+  14,                                  "Los Ríos",            13,
+  15,                        "Arica y Parinacota",             1,
+  16,                                     "Ñuble",            10)
 ```
 
 ```
@@ -298,5 +347,7 @@ tibble::tribble(
 ```
 
 {{< relacionada "/blog/left_join/" >}}
+
+{{< relacionada "/blog/territorial/" >}}
 
 {{< etiqueta "mapas" >}}
