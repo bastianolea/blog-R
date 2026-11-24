@@ -2,7 +2,7 @@ sf
 chilemapas
 dplyr
 ggplot2
+scales
 rvest
 janitor
 stringr
-scales

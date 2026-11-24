@@ -1,20 +1,29 @@
 ---
-title: Crea un mapa de Chile y visualiza datos comunales y regionales con mapas en R
+title: Visualizar datos comunales y regionales en mapas con R
+subtitle: Mapas comunales y regionales de Chile con `{chilemapas}`, `{sf}` y `{ggplot2}`
 author: Bastián Olea Herrera
 date: '2024-11-25'
+modified: '2026-11-24'
 draft: false
 freeze: true
-format: hugo-md
+format:
+  hugo-md:
+    output-file: index
+    output-ext: md
+knitr:
+  opts_chunk:
+    dev.args:
+      bg: transparent
 slug: []
 categories:
   - tutoriales
 tags:
   - mapas
-  - gráficos
   - ciencias sociales
   - Chile
+  - web scraping
 editor_options:
-  chunk_output_type: inline
+  chunk_output_type: console
 execute:
   warning: false
   message: false
@@ -33,11 +42,13 @@ links:
 ---
 
 
-{{< indice >}}
+Visualizar datos geográficamente es una herramienta de comunicación y análisis de datos muy potente. En este tutorial veremos cómo obtener mapas comunales y regionales de Chile en R, y cómo crear un gráficos que visualizan variables numéricas en las comunas y regiones del país.
 
-Visualizar datos geográficamente es una herramienta de comunicación y análisis de datos muy potente. En este tutorial te explico cómo obtener mapas comunales y regionales de Chile en R, y cómo crear un gráficos que visualizan variables numéricas en las comunas y regiones del país. En pocos pasos puedes transformar tus datos territoriales en visualizaciones mucho más densas e informativas.
+En pocos pasos puedes transformar tus datos territoriales en visualizaciones mucho más densas e informativas!
 
-Para crear mapas sencillos, donde una variable numérica se visualice en cada unidad territorial por medio de una escala de colores, solamente se necesitan dos cosas: la información geográfica que te permite visualizar el mapa en sí mismo, y los datos que podamos corresponder con las unidades territoriales del mapa.
+{{< imagen "featured.jpg" >}}
+
+Para crear [mapas](/tags/mapas/) sencillos en R, donde una variable numérica se visualice en cada unidad territorial por medio de una escala de colores, solamente se necesitan dos cosas: la información geográfica o polígonos que te permiten visualizar el mapa en sí mismo, y los datos que podamos corresponder con las unidades territoriales del mapa.
 
 En este breve tutorial veremos cómo obtener los mapas, como unir los datos al mapa, y cómo generar visualizaciones de estos mapas en R.
 
@@ -76,29 +87,49 @@ mapa_comunas
 
 En este dataframe, la columna `geometry` representa los polígonos de cada comuna. Esta información ya es suficiente para visualizar el mapa con R usando `{ggplot2}` y [`{sf}`, un paquete para trabajar con datos espaciales](https://r-spatial.github.io/sf/).
 
-Para visualizar el mapa, primero usamos `sf::st_set_geometry()` para asignar la geometría al dataframe. De este modo, le indicamos a R que estos datos deben graficarse en un mapa con determinadas coordenadas e información sobre proyección.
+Para visualizar el mapa, primero usamos `sf::st_as_sf()` para que el *dataframe* se transforme en una [tabla con datos geoespaciales](/blog/mapas_sf/). De este modo, le indicamos a R que estos datos deben graficarse en un mapa con determinadas coordenadas e información sobre proyección.
+
+<details class="code-fold">
+<summary>Ver tema de los gráficos</summary>
+
+``` r
+library(ggplot2)
+
+# aplicar tema de colores
+theme_set(
+  theme_grey(
+    paper = "#EAD1FA",
+    ink = "#543A73",
+    accent = "#9069C0",
+    base_family = "Atkinson Hyperlegible")
+)
+```
+
+</details>
 
 ``` r
 grafico_comunas <- mapa_comunas |> 
-  st_set_geometry(mapa_comunas$geometry) |> # asignar geometría
+  st_as_sf() |> # geometrías
   ggplot() + # gráfico
-  geom_sf() # capa geométrica
+  geom_sf(fill = "#9069C0", 
+          color = "#DFC6EF",
+          linewidth = 0.08) # capa geométrica
 
-grafico_comunas +
-  theme_classic()
+grafico_comunas
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
+<img src="index.markdown_strict_files/figure-markdown_strict/grafico-comunas-1.png" width="768" />
+
+{{< relacionada "/blog/ggplot2" >}}
 
 Dado que Chile tiene islas muy alejadas del territorio continental, como Rapa Nui o Juan Fernández, el mapa queda con mucho espacio en blanco. Podemos recortar las coordenadas de la longitud del mapa (el eje *x* del gráfico) para que el mapa solamente abarque Chile continental:
 
 ``` r
 grafico_comunas + 
-  coord_sf(xlim = c(-77, -65)) +
-  theme_classic()
+  coord_sf(xlim = c(-77, -65))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="288" />
+<img src="index.markdown_strict_files/figure-markdown_strict/grafico-comunas-recortado-1.png" width="288" />
 
 ## Mapa regional de Chile
 
@@ -138,18 +169,21 @@ Obtenemos un dataframe con una fila por región, dado que las comunas fueron uni
 
 ``` r
 grafico_regiones <- mapa_regiones |> 
-  st_set_geometry(mapa_regiones$geometry) |> # especificar la geometría del mapa
+  st_as_sf() |> # especificar la geometría del mapa
   ggplot() + # graficar
-  geom_sf() + # capa geográfica
+  geom_sf(fill = "#9069C0", 
+          color = "#DFC6EF",
+          linewidth = 0.08) + # capa geográfica
   coord_sf(xlim = c(-77, -65)) # recortar coordenadas
 
-grafico_regiones +
-  theme_classic()
+grafico_regiones
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-1.png" width="288" />
+<img src="index.markdown_strict_files/figure-markdown_strict/grafico-regiones-1.png" width="288" />
 
 Ahora que tenemos nuestros mapas por comunas y por regiones, la idea es poder utilizarlos para visualizar datos en ellos.
+
+{{< etiqueta "mapas" >}}
 
 ## Visualizar datos en el mapa
 
@@ -165,7 +199,7 @@ Entonces, deberíamos tener nuestro dataframe con el mapa, y otro dataframe dond
 
 #### Obtener datos por web scraping
 
-Para visualizar un mapa de datos comunales, primero obtendremos datos comunales desde Wikipedia. Usamos el paquete para hacer un web scraping y obtener una [tabla de datos de las comunas del país.](https://es.wikipedia.org/wiki/Anexo:Comunas_de_Chile)
+Para visualizar un mapa de datos comunales, primero obtendremos datos comunales desde Wikipedia. Usamos el paquete [`rvest` para hacer web scraping](/blog/webscraping_rvest/) y obtener una [tabla de datos de las comunas del país.](https://es.wikipedia.org/wiki/Anexo:Comunas_de_Chile)
 
 ``` r
 library(rvest)
@@ -196,10 +230,13 @@ tabla[[1]]
     10 01404                         Huara  ""    Tamarugal Tarap… 10.474,6         
     # ℹ 336 more rows
     # ℹ abbreviated name: ¹​`CUT (Código Único Territorial)`
-    # ℹ 6 more variables: Población2020 <chr>, `Densidad(hab./km²)` <chr>,
-    #   `IDH 2005` <chr>, `IDH 2005` <chr>, Latitud <chr>, Longitud <chr>
+    # ℹ 6 more variables: `Población2024\n(Censo)` <chr>,
+    #   `Densidad(hab./km²)` <chr>, `IDH 2005` <chr>, `IDH 2005` <chr>,
+    #   Latitud <chr>, Longitud <chr>
 
-Luego obtener los datos, realizamos una pequeña limpieza. Limpiamos los nombres de las variables, seleccionamos las variables que nos interesan, y luego las convertimos apropiadamente a valores numéricos, donde tenemos que eliminar los separadores de miles, y transformar los separadores de decimales a puntos.
+{{< relacionada "/blog/webscraping_rvest/">}}
+
+Luego de obtener los datos, realizamos una pequeña limpieza. Limpiamos los nombres de las variables, seleccionamos las variables que nos interesan, y luego las convertimos apropiadamente a valores numéricos, donde tenemos que eliminar los separadores de miles, y transformar los separadores de decimales a puntos.
 
 ``` r
 library(janitor)
@@ -211,7 +248,7 @@ datos_comunas <- tabla[[1]] |>
   # seleccionar y renombrar columnas
   select(codigo_comuna = cut_codigo_unico_territorial,
          nombre, region, superficie_km2,
-         poblacion = poblacion2020) |> 
+         poblacion = poblacion2024_censo) |> 
   # eliminar espacios de la columna de población
   mutate(poblacion = str_remove_all(poblacion, " "),
          poblacion = as.numeric(poblacion)) |> 
@@ -225,25 +262,29 @@ datos_comunas
 ```
 
     # A tibble: 346 × 5
-       codigo_comuna nombre        region             superficie_km2 poblacion
-       <chr>         <chr>         <chr>                       <dbl>     <dbl>
-     1 15101         Arica         Arica y Parinacota          4799.    247552
-     2 15102         Camarones     Arica y Parinacota          3927       1233
-     3 15201         Putre         Arica y Parinacota          5902.      2515
-     4 15202         General Lagos Arica y Parinacota          2244.       810
-     5 01101         Iquique       Tarapacá                    2242.    223463
-     6 01107         Alto Hospicio Tarapacá                    5729     129999
-     7 01401         Pozo Almonte  Tarapacá                   13766.     17395
-     8 01402         Camiña        Tarapacá                    2200.      1375
-     9 01403         Colchane      Tarapacá                    4016.      1583
-    10 01404         Huara         Tarapacá                   10475.      3000
+       codigo_comuna nombre        region                   superficie_km2 poblacion
+       <chr>         <chr>         <chr>                             <dbl>     <dbl>
+     1 15101         Arica         Arica y Parinacota Aric…          4799.    241653
+     2 15102         Camarones     Arica y Parinacota Aric…          3927        861
+     3 15201         Putre         Arica y Parinacota Aric…          5902.      1547
+     4 15202         General Lagos Arica y Parinacota Aric…          2244.       508
+     5 01101         Iquique       Tarapacá Tarapacá                 2242.    199587
+     6 01107         Alto Hospicio Tarapacá Tarapacá                 5729     142086
+     7 01401         Pozo Almonte  Tarapacá Tarapacá                13766.     16878
+     8 01402         Camiña        Tarapacá Tarapacá                 2200.      1335
+     9 01403         Colchane      Tarapacá Tarapacá                 4016.       790
+    10 01404         Huara         Tarapacá Tarapacá                10475.      2858
     # ℹ 336 more rows
 
-Ahora que tenemos una tabla de datos que contiene la columna `codigo_comuna` con el código único territorial de las comunas, podemos unirla al mapa de comunas.
+Ahora que tenemos una tabla de datos que contiene la columna `codigo_comuna` con el [código único territorial](https://bastianolea.github.io/territorial/articles/codigos_unicos_territoriales.html) de las comunas, podemos unirla al mapa de comunas.
+
+{{< info "Si tus datos no tienen códigos comunales o regionales, o vienen con nombres de comunas o regiones incorrectos que necesitas limpiar, [prueba el paquete de R `{territorial}`](/blog/territorial/) que contiene funciones como [`limpiar_comunas()`](https://bastianolea.github.io/territorial/reference/limpiar_comunas.html) y [`as_codigo_comuna()`](https://bastianolea.github.io/territorial/reference/as_codigo_comuna.html)!" >}}
 
 #### Agregar datos a los mapas
 
-Esta operación de unir dos tablas de datos diferentes, pero que coinciden en una columna en común, se realiza [con la función `left_join()`](../../../blog/left_join/). El principio de `left_join()` es que tenemos dos tablas de datos, y ambas tablas de datos tienen una misma columna, que poseen los mismos valores (en nuestro caso, una columna con las comunas o los códigos únicos territoriales de las comunas). Entonces, ambas tablas se van a unir según la correspondencias de estas columnas en común.
+Esta operación de unir dos tablas de datos diferentes, pero que coinciden en una columna en común, se realiza [con la función `left_join()`](/blog/left_join/).
+
+El principio de `left_join()` es que tenemos dos tablas de datos, y ambas tablas de datos tienen una misma columna, que poseen los mismos valores (en nuestro caso, una columna con las comunas o los códigos únicos territoriales de las comunas). Entonces, ambas tablas se van a unir según la correspondencias de estas columnas en común.
 
 *Ejemplo:*
 
@@ -272,7 +313,7 @@ left_join(tabla_a,
 
 En el ejemplo, tenemos dos tablas, donde las dos tienen una misma columna con los mismos datos, y otras columnas con datos distintos. Usando `left_join()` podemos unir ambas tablas de datos a partir de la columna que tienen en común. Como resultado obtenemos una nueva tabla que tiene todas las columnas.
 
-------------------------------------------------------------------------
+{{< relacionada "/blog/left_join/">}}
 
 Procedemos a unir los datos con el mapa usando `left_join()`, especificando en el argumento `by` que la unión sea a partir de la columna `codigo_comuna`.
 
@@ -304,6 +345,8 @@ mapa_comunas_2
 
 Como resultado, tenemos un nuevo dataframe que además de tener los datos geográficos de las comunas, también tiene nuevas columnas con datos que podemos visualizar.
 
+{{< info "Si necesitas limpiar tus datos comunales o regionales para poder cruzarlos con los polígonos de los mapas, [revisa el paquete de R `{territorial}`](/blog/territorial/), que cuenta con herramientas para limpiar y validar automáticamente este tipo de datos!" >}}
+
 #### Visualizar datos comunales
 
 Para visualizar datos comunales en un mapa, especificamos la columna de geometría que contiene la información geográfica, y creamos un gráfico de `{ggplot2}`. En este gráfico, especificamos que el relleno de los polígonos (`fill`) se haga a partir de una de las variables numéricas.
@@ -312,11 +355,10 @@ Usamos la función `geom_sf()` para agregar una capa de geometría a nuestro gr�
 
 ``` r
 mapa_comunas_2 |> 
-  st_set_geometry(mapa_comunas_2$geometry) |> # asignar geometría
+  st_as_sf() |> # asignar geometría
   ggplot() + # gráfico
   aes(fill = poblacion) +
   geom_sf(linewidth = 0) + # capa geométrica
-  theme_classic() +
   scale_fill_distiller(type = "seq", palette = 12, 
                        labels = label_comma(big.mark = ".")) + # colores
   scale_x_continuous(breaks = seq(-76, -65, length.out = 3) |> floor()) + # escala x
@@ -324,7 +366,7 @@ mapa_comunas_2 |>
   theme(legend.key.width = unit(3, "mm"))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-1.png" width="288" />
+<img src="index.markdown_strict_files/figure-markdown_strict/mapa-poblacion-comunas-1.png" width="288" />
 
 Como resultado obtenemos un mapa coroplético, o mapa de coropletas, que es un mapa donde cada región o polígono está relleno de un color que representa un valor en una escala de una variable.
 
@@ -332,19 +374,20 @@ Acá hacemos otro mapa, usando el mismo código y simplemente cambiando la varia
 
 ``` r
 mapa_comunas_2 |> 
-  st_set_geometry(mapa_comunas_2$geometry) |>
+  st_as_sf() |>
   ggplot() +
   aes(fill = superficie_km2) + # variable de relleno
   geom_sf(linewidth = 0) +
-  theme_classic() +
-  scale_fill_distiller(type = "seq", palette = 11,
+  scale_fill_distiller(type = "seq", palette = 13,
                        labels = label_comma(big.mark = ".")) + 
   scale_x_continuous(breaks = seq(-76, -65, length.out = 3) |> floor()) +
   coord_sf(xlim = c(-77, -65)) + 
   theme(legend.key.width = unit(3, "mm"))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="288" />
+<img src="index.markdown_strict_files/figure-markdown_strict/mapa-superficie-comunas-1.png" width="288" />
+
+{{< relacionada "/blog/tutorial_mapa_urbano/" >}}
 
 #### Mapa de una sola región, por comunas
 
@@ -357,30 +400,31 @@ mapa_comunas_filtro <- mapa_comunas_2 |>
 
 # mapa
 mapa_comunas_filtro |> 
-  st_set_geometry(mapa_comunas_filtro$geometry) |>
+  st_as_sf() |> 
   ggplot() +
   aes(fill = poblacion) +
-  geom_sf(linewidth = 0.12, color = "white") +
+  geom_sf(linewidth = 0.1, color = "#DFC6EF") +
   geom_sf_text(aes(label = comma(poblacion, big.mark = ".")), 
-               size = 2, color = "white", check_overlap = T) +
-  theme_classic() +
+               size = 2, color = "#EAD2FA", check_overlap = T) +
   scale_fill_distiller(type = "seq", palette = 12,
                        labels = label_comma(big.mark = ".")) + 
   theme(legend.key.width = unit(3, "mm")) +
   theme(axis.title = element_blank())
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png" width="576" />
+<img src="index.markdown_strict_files/figure-markdown_strict/mapa-region-ohiggins-1.png" width="576" />
 
 En este caso, agregamos también la función `geom_sf_text()` para agregar una capa nuestro gráfico que contiene las cifras para cada comuna. Hay que tener en consideración que poner números o textos sobre mapas suele ser complejo, porque el mapa ya es denso visualmente, y agregarle texto puede hacer que se vuelva ilegible. Hay que tener especial cuidado en resolver situaciones como textos que pasan por encima de bordes en el mapa, que se ubican incorrectamente dentro de los polígonos, o que se sobreponen uno sobre otros debido a que los polígonos se ven muy pequeños dentro del mapa.
 
-------------------------------------------------------------------------
+{{< relacionada "/blog/mapas_sf/">}}
 
 ### Datos regionales
 
 #### Obtener datos por web scraping
 
-Para hacer el ejemplo de visualizar datos a nivel regional, nuevamente obtendremos datos a esta escala usando web scraping. Obtendremos una tabla del Producto Interno Bruto regional desde el [sitio web de el Banco Central de Chile.](https://si3.bcentral.cl/Siete/ES/Siete/Cuadro/CAP_CCNN/MN_CCNN76/CCNN2018_PIB_REGIONAL_N/637899740344107786)
+Para hacer el ejemplo de visualizar datos a nivel regional, nuevamente obtendremos datos a esta escala usando [web scraping](/blog/webscraping_rvest/).
+
+Obtendremos una tabla del **Producto Interno Bruto regional** desde el [sitio web de el Banco Central de Chile.](https://si3.bcentral.cl/Siete/ES/Siete/Cuadro/CAP_CCNN/MN_CCNN76/CCNN2018_PIB_REGIONAL_N/637899740344107786)
 
 ``` r
 library(rvest)
@@ -394,10 +438,12 @@ tabla_pib <- session(url) |>
   html_table(convert = FALSE)
 ```
 
+{{< relacionada "/blog/webscraping_rvest/">}}
+
 Limpiamos los datos seleccionando las columnas que necesitamos, transformando la columna a tipo numérico, y filtrando las filas para quedar solamente con las que corresponden a las regiones de Chile:
 
 ``` r
-datos_regiones <- tabla_pib [[1]] |> 
+datos_regiones <- tabla_pib[[1]] |> 
   janitor::clean_names() |> 
   select(region = serie, pib = x2023) |> 
   mutate(pib = str_remove_all(pib, "\\."),
@@ -410,30 +456,36 @@ datos_regiones
     # A tibble: 16 × 2
        region                                                 pib
        <chr>                                                <dbl>
-     1 Región de Arica y Parinacota                          2169
-     2 Región de Tarapacá                                    7892
-     3 Región de Antofagasta                                31290
-     4 Región de Atacama                                     6004
-     5 Región de Coquimbo                                    9174
-     6 Región de Valparaíso                                 20275
-     7 Región Metropolitana de Santiago                    109143
-     8 Región del Libertador General Bernardo OHiggins      11910
-     9 Región del Maule                                     10348
-    10 Región de Ñuble                                       4106
-    11 Región del Biobío                                    16731
-    12 Región de La Araucanía                                7743
-    13 Región de Los Ríos                                    3561
-    14 Región de Los Lagos                                   9432
-    15 Región de Aysén del General Carlos Ibáñez del Campo   1573
-    16 Región de Magallanes y de la Antártica Chilena        2490
+     1 Región de Arica y Parinacota                          2262
+     2 Región de Tarapacá                                    7832
+     3 Región de Antofagasta                                28046
+     4 Región de Atacama                                     6211
+     5 Región de Coquimbo                                    9119
+     6 Región de Valparaíso                                 20607
+     7 Región Metropolitana de Santiago                    110770
+     8 Región del Libertador General Bernardo OHiggins      11979
+     9 Región del Maule                                     10654
+    10 Región de Ñuble                                       4008
+    11 Región del Biobío                                    17122
+    12 Región de La Araucanía                                7935
+    13 Región de Los Ríos                                    3601
+    14 Región de Los Lagos                                   9233
+    15 Región de Aysén del General Carlos Ibáñez del Campo   1502
+    16 Región de Magallanes y de la Antártica Chilena        2485
 
 #### Crear columna de códigos regionales
 
-Los datos que obtuvimos no contienen una variable con el código único territorial de las regiones, dado que es un dato que está en desuso desde la promulgación de una ley en 2018 que prohíbe el uso de los números en comunicaciones públicas. Sin embargo, en muchas base de datos oficiales se sigue usando la numeración de las regiones, principalmente para evitar problemas de diferencias en los nombres de las regiones, por ejemplo, si contienen o no las palabras *Región de* o *Región del* para cada región, si contienen tildes o no, si contienen abreviaciones o no, si contienen símbolos como *eñes* o apóstrofes, etc. Todos estos problemas son resueltos por el uso de identificador numérico de las regiones.
+Los datos que obtuvimos no contienen una variable con el [código único territorial](https://bastianolea.github.io/territorial/articles/codigos_unicos_territoriales.html) de las regiones, dado que es un dato que está en desuso desde la promulgación de una ley en 2018 que prohíbe el uso de los números en comunicaciones públicas. Sin embargo, en muchas base de datos oficiales se sigue usando la [numeración de las regiones](https://bastianolea.github.io/territorial/reference/as_codigo_region.html), principalmente para evitar problemas de diferencias en los nombres de las regiones, por ejemplo, si contienen o no las palabras *Región de* o *Región del* para cada región, si contienen tildes o no, si contienen abreviaciones o no, si contienen símbolos como *eñes* o apóstrofes, etc. Todos estos problemas son resueltos por el uso de identificador numérico de las regiones.
 
-Como el mapa que obtuvimos con el paquete `{chilemapas}` utiliza el código regional, en el dato frente de nuestros datos crearemos una columna con los mismos códigos regionales, asignados a cada región a partir de la coincidencia con los textos. Por ejemplo, si el texto del nombre de la región contiene la palabra *Arica*, se le asigna el código `15`. Esta forma de asignar los códigos regionales puede ser inexacta, pero es muy sencillo confirmar si es que la asignación de códigos funciona correctamente, y también siempre es posible utilizar [expresiones regulares en `{stringr}`](https://stringr.tidyverse.org/articles/regular-expressions.html) para hacer coincidencias más flexibles, como por ejemplo, coincidir una palabra con un código sin importar si la palabra tiene o no tilde, o está mal escrita.
+{{< info "Para limpiar nombres de regiones y convertirlos en sus códigos únicos territoriales, usa la función [`limpiar_regiones()`](https://bastianolea.github.io/territorial/reference/limpiar_regiones.html) y luego [`as_codigo_region()`](https://bastianolea.github.io/territorial/reference/as_codigo_region.html) del [paquete `{territorial}`](https://bastianolea.github.io/territorial/)." >}}
+
+Como el mapa que obtuvimos con el paquete `{chilemapas}` utiliza el código regional, en el *dataframe* de nuestros datos que obtuvimos con scraping crearemos una columna con los mismos códigos regionales, asignados a cada región a partir de la coincidencia con los textos. Por ejemplo, si el texto del nombre de la región contiene la palabra *Arica*, se le asigna el código `15`.
+
+Esta forma de asignar los códigos regionales puede ser inexacta, pero es muy sencillo confirmar si es que la asignación de códigos funciona correctamente, y también siempre es posible utilizar [expresiones regulares en `{stringr}`](https://stringr.tidyverse.org/articles/regular-expressions.html) para hacer coincidencias más flexibles, como por ejemplo, coincidir una palabra con un código sin importar si la palabra tiene o no tilde, o está mal escrita.
 
 ``` r
+library(stringr)
+
 datos_regiones_2 <- datos_regiones |> 
   mutate(codigo_region = case_when(
     str_detect(region, "Arica") ~ 15,
@@ -456,6 +508,41 @@ datos_regiones_2 <- datos_regiones |>
   rename(nombre_region = region)
 ```
 
+Sin embargo, la mejor forma de agregar códigos regionales a los datos sería con la función [`as_codigo_region()`](https://bastianolea.github.io/territorial/reference/as_codigo_region.html) del [paquete `{territorial}`](https://bastianolea.github.io/territorial/):
+
+``` r
+# install.packages("territorial", 
+#                  repos = c("https://bastianolea.r-universe.dev",
+#                            "https://cloud.r-project.org"))
+
+library(territorial)
+
+datos_regiones |> 
+  rename(nombre_region = region) |> 
+  limpiar_regiones(nombre_region) |> 
+  mutate(codigo_region = as_codigo_region(nombre_region))
+```
+
+    # A tibble: 16 × 3
+       nombre_region                                pib codigo_region
+       <chr>                                      <dbl>         <dbl>
+     1 Arica y Parinacota                          2262            15
+     2 Tarapacá                                    7832             1
+     3 Antofagasta                                28046             2
+     4 Atacama                                     6211             3
+     5 Coquimbo                                    9119             4
+     6 Valparaíso                                 20607             5
+     7 Metropolitana de Santiago                 110770            13
+     8 Libertador General Bernardo O'Higgins      11979             6
+     9 Maule                                      10654             7
+    10 Ñuble                                       4008            16
+    11 Biobío                                     17122             8
+    12 La Araucanía                                7935             9
+    13 Los Ríos                                    3601            14
+    14 Los Lagos                                   9233            10
+    15 Aysén del General Carlos Ibáñez del Campo   1502            11
+    16 Magallanes y de la Antártica Chilena        2485            12
+
 #### Unir datos con mapa
 
 Luego de crear la variable de códigos regionales, podemos hacer la unión entre ambas tablas de datos, mapas y datos regionales, usando `left_join()`:
@@ -473,22 +560,22 @@ mapa_regiones_2
     # A tibble: 16 × 4
        codigo_region nombre_region                     pib                  geometry
                <dbl> <chr>                           <dbl>            <GEOMETRY [°]>
-     1             1 Región de Tarapacá               7892 POLYGON ((-69.93023 -21.…
-     2             2 Región de Antofagasta           31290 MULTIPOLYGON (((-68.0676…
-     3             3 Región de Atacama                6004 MULTIPOLYGON (((-71.5849…
-     4             4 Región de Coquimbo               9174 MULTIPOLYGON (((-70.5455…
-     5             5 Región de Valparaíso            20275 MULTIPOLYGON (((-71.3383…
-     6             6 Región del Libertador General…  11910 POLYGON ((-71.5477 -34.8…
-     7             7 Región del Maule                10348 POLYGON ((-70.41724 -35.…
-     8             8 Región del Biobío               16731 MULTIPOLYGON (((-73.5346…
-     9             9 Región de La Araucanía           7743 MULTIPOLYGON (((-73.3530…
-    10            10 Región de Los Lagos              9432 MULTIPOLYGON (((-73.1691…
-    11            11 Región de Aysén del General C…   1573 MULTIPOLYGON (((-75.4175…
-    12            12 Región de Magallanes y de la …   2490 MULTIPOLYGON (((-70.3556…
-    13            13 Región Metropolitana de Santi… 109143 POLYGON ((-70.47405 -33.…
-    14            14 Región de Los Ríos               3561 MULTIPOLYGON (((-73.3950…
-    15            15 Región de Arica y Parinacota     2169 POLYGON ((-69.07223 -19.…
-    16            16 Región de Ñuble                  4106 POLYGON ((-72.38553 -36.…
+     1             1 Región de Tarapacá               7832 POLYGON ((-69.93023 -21.…
+     2             2 Región de Antofagasta           28046 MULTIPOLYGON (((-68.0676…
+     3             3 Región de Atacama                6211 MULTIPOLYGON (((-71.5849…
+     4             4 Región de Coquimbo               9119 MULTIPOLYGON (((-70.5455…
+     5             5 Región de Valparaíso            20607 MULTIPOLYGON (((-71.3383…
+     6             6 Región del Libertador General…  11979 POLYGON ((-71.5477 -34.8…
+     7             7 Región del Maule                10654 POLYGON ((-70.41724 -35.…
+     8             8 Región del Biobío               17122 MULTIPOLYGON (((-73.5346…
+     9             9 Región de La Araucanía           7935 MULTIPOLYGON (((-73.3530…
+    10            10 Región de Los Lagos              9233 MULTIPOLYGON (((-73.1691…
+    11            11 Región de Aysén del General C…   1502 MULTIPOLYGON (((-75.4175…
+    12            12 Región de Magallanes y de la …   2485 MULTIPOLYGON (((-70.3556…
+    13            13 Región Metropolitana de Santi… 110770 POLYGON ((-70.47405 -33.…
+    14            14 Región de Los Ríos               3601 MULTIPOLYGON (((-73.3950…
+    15            15 Región de Arica y Parinacota     2262 POLYGON ((-69.07223 -19.…
+    16            16 Región de Ñuble                  4008 POLYGON ((-72.38553 -36.…
 
 #### Visualizar datos regionales
 
@@ -496,26 +583,22 @@ Finalmente, visualizamos los datos en un mapa regional de la misma forma que lo 
 
 ``` r
 mapa_regiones_2 |> 
-  st_set_geometry(mapa_regiones_2$geometry) |> # asignar geometría
+  st_as_sf() |> # asignar geometría
   ggplot() + # gráfico
   aes(fill = pib) +
-  geom_sf(linewidth = 0.12, color = "white") + # capa geométrica
-  theme_classic() +
-  scale_fill_distiller(type = "seq", palette = 18,
+  geom_sf(linewidth = 0.08, color = "#DEC6EF") + # capa geométrica
+  scale_fill_distiller(type = "seq", palette = 11,
                        labels = label_comma(big.mark = ".")) +
   scale_x_continuous(breaks = seq(-76, -65, length.out = 3) |> floor()) +
   coord_sf(expand = F, xlim = c(-77, -65)) + # recortar coordenadas
   theme(legend.key.width = unit(3, "mm"))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-18-1.png" width="288" />
+<img src="index.markdown_strict_files/figure-markdown_strict/mapa-pib-regiones-1.png" width="288" />
 
 ------------------------------------------------------------------------
 
 Visualizar datos geográficamente es una herramienta de comunicación y análisis de datos muy potente. Personalmente, encuentro que el potencial de la visualización de datos en mapas radica mucho más allá de simplemente mapear una variable a un territorio, sino a **incentivar que el público analice el mapa en relación a todo el conjunto de conocimientos que tenemos sobre del espacio que habitamos, sus características sociales, y las desigualdades distribuidas en el territorio.**
 
-------------------------------------------------------------------------
-
-Si este tutorial te sirvió, por favor considera hacerme una pequeña donación para poder tomarme un cafecito mientras escribo el siguiente tutorial 🥺
-
+{{< etiqueta "mapas" >}}
 {{< cafecito >}}
