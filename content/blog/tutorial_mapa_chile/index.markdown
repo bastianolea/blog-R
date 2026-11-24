@@ -22,12 +22,14 @@ tags:
   - ciencias sociales
   - Chile
   - web scraping
+  - visualización de datos
+  - ggplot2
 editor_options: 
   chunk_output_type: console
 execute: 
   warning: false
   message: false
-excerpt: Visualizar datos geográficamente es una herramienta de comunicación y análisis de datos muy potente. En este tutorial te explico cómo obtener mapas comunales y regionales de Chile en R, y cómo crear un gráficos que visualizan variables numéricas en las comunas y regiones del país. En pocos pasos puedes transformar tus datos territoriales en visualizaciones mucho más densas e informativas.
+excerpt: La visualización geográfica de datos es una herramienta clave para el análisis y la comunicación de datos sociales. En este tutorial veremos cómo obtener mapas comunales y regionales de Chile fácilmente en R, y cómo crear mapas que visualizan variables numéricas en las comunas y regiones del país. En pocos pasos puedes transformar tus datos territoriales en mapas!
 links:
   - icon: github
     icon_pack: fab
@@ -35,15 +37,15 @@ links:
     url: https://gist.github.com/bastianolea/df03203e88534261ef831f2cb4fca254
 ---
 
-Visualizar datos geográficamente es una herramienta de comunicación y análisis de datos muy potente. En este tutorial veremos cómo obtener mapas comunales y regionales de Chile en R, y cómo crear un gráficos que visualizan variables numéricas en las comunas y regiones del país. 
+Visualizar datos geográficamente es una herramienta de comunicación y análisis de datos muy potente. En este tutorial veremos cómo obtener mapas comunales y regionales de Chile en R, y cómo crear gráficos que visualizan variables numéricas en las comunas y regiones del país. 
 
 En pocos pasos puedes transformar tus datos territoriales en visualizaciones mucho más densas e informativas!
 
 {{< imagen "featured.jpg" >}}
 
-Para crear [mapas](/tags/mapas/) sencillos en R, donde una variable numérica se visualice en cada unidad territorial por medio de una escala de colores, solamente se necesitan dos cosas: la información geográfica o polígonos que te permiten visualizar el mapa en sí mismo, y los datos que podamos corresponder con las unidades territoriales del mapa.
+Para crear [mapas](/tags/mapas/) sencillos en R, donde una variable numérica se visualice en cada unidad territorial por medio de una escala de colores, solamente se necesitan dos cosas: la información geográfica o polígonos que te permiten visualizar el mapa en sí mismo, y los datos que se correspondan con las unidades territoriales del mapa.
 
-En este breve tutorial veremos cómo obtener los mapas, como unir los datos al mapa, y cómo generar visualizaciones de estos mapas en R.
+En este breve tutorial veremos cómo obtener los mapas, cómo unir los datos al mapa, y cómo generar visualizaciones de estos mapas en R.
 
 
 ``` r
@@ -56,7 +58,7 @@ library(sf) # manipulación de datos geográficos
 
 ## Mapa de Chile por comunas
 
-El paquete [`{chilemapas}`](https://pacha.dev/chilemapas/), desarrollado por [Mauricio Vargas](https://pacha.dev), ofrece una colección de mapas terrestres de Chile con topología simplificada. Simplemente llamando el objeto `mapa_comunas` obtenemos un dataframe con la información geográfica de cada comuna del país.
+El paquete [`{chilemapas}`](https://pacha.dev/chilemapas/), desarrollado por [Mauricio Vargas](https://pacha.dev), ofrece una colección de mapas terrestres de Chile con [topología simplificada](/blog/simplificar_mapas/). Simplemente llamando al objeto `mapa_comunas` obtenemos un _dataframe_ con la información geográfica de cada comuna del país. Si prefieres trabajar con la cartografía oficial, revisa este tutorial para [crear un mapa de Chile desde la cartografía oficial](/blog/tutorial_mapa_chile_subdere/).
 
 
 ``` r
@@ -82,7 +84,7 @@ mapa_comunas
 ## # ℹ 335 more rows
 ```
 
-En este dataframe, la columna `geometry` representa los polígonos de cada comuna. Esta información ya es suficiente para visualizar el mapa con R usando `{ggplot2}` y [`{sf}`, un paquete para trabajar con datos espaciales](https://r-spatial.github.io/sf/).
+En este _dataframe_, la columna `geometry` representa los polígonos de cada comuna. Esta información ya es suficiente para visualizar el mapa con R usando `{ggplot2}` y [`{sf}`, un paquete para trabajar con datos espaciales](https://r-spatial.github.io/sf/).
 
 Para visualizar el mapa, primero usamos `sf::st_as_sf()` para que el _dataframe_ se transforme en una [tabla con datos geoespaciales](/blog/mapas_sf/). De este modo, le indicamos a R que estos datos deben graficarse en un mapa con determinadas coordenadas e información sobre proyección.
 
@@ -116,7 +118,9 @@ grafico_comunas
 
 {{< relacionada "/blog/ggplot2" >}}
 
-Dado que Chile tiene islas muy alejadas del territorio continental, como Rapa Nui o Juan Fernández, el mapa queda con mucho espacio en blanco. Podemos recortar las coordenadas de la longitud del mapa (el eje _x_ del gráfico) para que el mapa solamente abarque Chile continental: 
+Dado que Chile tiene islas muy alejadas del territorio continental, como Rapa Nui o Juan Fernández, el mapa queda con mucho espacio vacío. 
+
+Podemos [**recortar** las coordenadas](/blog/mapas_sf/#recortar-un-mapa) de la longitud del mapa (el eje _x_ del gráfico) para que el mapa solamente abarque Chile continental: 
 
 
 ``` r
@@ -128,9 +132,9 @@ grafico_comunas +
 
 ## Mapa regional de Chile
 
-Para generar un mapa de regiones, debemos crear las regiones. Esto no es complicado si pensamos que, en el fondo, las regiones son simplemente la unión de las comunas que las componen. El paquete `{sf}` simplifica muchísimo el trabajo con datos geográficos, en este caso la unión de distintos polígonos en uno solo.
+Los datos que tenemos están a nivel de comunas, por lo que debemos _crear_ las regiones. Esto no es complicado si pensamos que, en el fondo, las regiones son simplemente la **unión** de las comunas que las componen. El paquete `{sf}` simplifica muchísimo el trabajo con datos geográficos, en este caso la [unión de distintos polígonos en uno solo](/blog/mapas_sf/#unir-polígonos).
 
-Agrupamos las filas del dataframe por la variable `codigo_region`, para que todas las comunas que pertenecen a la misma región estén agrupadas, y usamos `summarize()` junto a la función `sf::st_union()` para que los polígonos de las comunas dentro de cada región se combinen, obteniendo polígonos regionales:
+Agrupamos las filas del _dataframe_ [con `group_by()`](/blog/r_introduccion/dplyr_intro/) por la variable `codigo_region`, para que todas las comunas que pertenecen a la misma región estén agrupadas, y [usamos la función `summarize()`](/blog/r_introduccion/dplyr_summarize/) junto a la función `sf::st_union()` para que los polígonos de las comunas dentro de cada región se combinen:
 
 
 ``` r
@@ -163,7 +167,9 @@ mapa_regiones
 ## 16 16            POLYGON ((-72.38553 -36.91169, -72.37685 -36.91617, -72.37034 …
 ```
 
-Obtenemos un dataframe con una fila por región, dado que las comunas fueron unidas en polígonos regionales. La columna `geometry` ahora contiene la unión de las comunas que hicimos con la función `st_union()`. Podemos visualizar este nuevo dataframe regional usando `{ggplot2}` y `{sf}`, igual que en el paso anterior:
+Obtenemos un _dataframe_ con una fila por región, dado que las comunas fueron unidas. La columna `geometry` ahora contiene la unión de las comunas que hicimos con la función `st_union()`. 
+
+Podemos visualizar este nuevo _dataframe_ regional usando `{ggplot2}` y `{sf}`, igual que en el paso anterior:
 
 
 ``` r
@@ -180,25 +186,26 @@ grafico_regiones
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/grafico-regiones-1.png" alt="" width="288" />
 
-Ahora que tenemos nuestros mapas por comunas y por regiones, la idea es poder utilizarlos para visualizar datos en ellos.
+Ahora que tenemos nuestros mapas por comunas y por regiones, la idea es poder utilizarlos para visualizar datos en ellos!
 
-{{< etiqueta "mapas" >}}
+{{< relacionada "/blog/tutorial_mapa_chile_subdere/" >}}
 
 ## Visualizar datos en el mapa
 
-Para visualizar los datos en un mapa, aplicaremos colores a los distintos polígonos de nuestro mapa, ya sean comunas o regiones. La intensidad del color, o su posición dentro de la escala de color elegida, representará el valor de la variable numérica que queremos visualizar.
+Para visualizar los datos en un mapa, aplicaremos **colores** a los distintos polígonos de nuestro mapa, ya sean comunas o regiones. La intensidad del color, o su posición dentro de la escala de color elegida, representará el valor de la variable numérica que queremos visualizar. A esto se le llama un **mapa coroplético**: un mapa donde cada polígono está relleno de un color que representa un valor en la escala de una variable.
 
-La idea de fondo para entender la visualización de datos geográficos por polígonos es entender que los mapas que obtuvimos contienen en cada fila un polígono (la información geográfica para dibujar la comuna o región), y además, en cada fila contienen información que identifica al polígono correspondiente. En nuestro caso, la información de los polígonos corresponde al _código único territorial_ de las comunas, y el código de regiones en el caso de las regiones. Éstos son códigos numéricos que identifican cada unidad territorial del país.
+La idea de fondo para entender la visualización de datos geográficos por polígonos es entender que los mapas que obtuvimos contienen en cada fila un polígono (la información geográfica para dibujar la comuna o región), y además, en cada fila contienen información que identifica al polígono correspondiente. En nuestro caso, la información de los polígonos corresponde al _[código único territorial](https://bastianolea.github.io/territorial/articles/codigos_unicos_territoriales.html)_ de las comunas, y el código de regiones en el caso de las regiones. Éstos son códigos numéricos que identifican cada unidad territorial del país.
 
-La idea es poder agregarle datos a nuestro mapa, de manera que las filas que representan unidades territoriales tengan también columnas con datos sobre dichas unidades territoriales.
+La idea es poder **agregarle datos al mapa**, de manera que las filas que representan unidades territoriales tengan también columnas con datos sobre dichas unidades territoriales.
 
-Entonces, deberíamos tener nuestro dataframe con el mapa, y otro dataframe donde tengamos los datos que queremos adjuntar al mapa. Si tenemos un mapa de comunas, tenemos que tener los datos por comuna que queremos agregarle al mapa. 
+Entonces, deberíamos tener nuestro _dataframe_ con el mapa, y otro _dataframe_ donde tengamos los datos que queremos adjuntar al mapa. Si tenemos un mapa de comunas, tenemos que tener los datos por comuna que queremos agregarle al mapa. 
 
 ### Datos comunales
 
 #### Obtener datos por web scraping
 
-Para visualizar un mapa de datos comunales, primero obtendremos datos comunales desde Wikipedia. Usamos el paquete [`rvest` para hacer web scraping](/blog/webscraping_rvest/) y obtener una [tabla de datos de las comunas del país.](https://es.wikipedia.org/wiki/Anexo:Comunas_de_Chile)
+Para visualizar un mapa de datos comunales, obtendremos datos desde Wikipedia por medio de [_web scraping_](/blog/web_scraping/). Usamos el paquete [`rvest` para hacer web scraping](/blog/webscraping_rvest/) y así obtener una [tabla de datos de las comunas del país.](https://es.wikipedia.org/wiki/Anexo:Comunas_de_Chile)
+
 
 
 ``` r
@@ -224,7 +231,7 @@ tabla[[1]]
 ##  3 15201                         Putre  ""    Parinaco… Arica… 5.902,5          
 ##  4 15202                         Gener… ""    Parinaco… Arica… 2.244,4          
 ##  5 01101                         Iquiq… ""    Iquique   Tarap… 2.242,1          
-##  6 01107                         Alto … ""    Iquique   Tarap… 572.9            
+##  6 01107                         Alto … ""    Iquique   Tarap… 572,9            
 ##  7 01401                         Pozo … ""    Tamarugal Tarap… 13.765,8         
 ##  8 01402                         Camiña ""    Tamarugal Tarap… 2.200,2          
 ##  9 01403                         Colch… ""    Tamarugal Tarap… 4.015,6          
@@ -238,7 +245,9 @@ tabla[[1]]
 
 {{< relacionada "/blog/webscraping_rvest/">}}
 
-Luego de obtener los datos, realizamos una pequeña limpieza. Limpiamos los nombres de las variables, seleccionamos las variables que nos interesan, y luego las convertimos apropiadamente a valores numéricos, donde tenemos que eliminar los separadores de miles, y transformar los separadores de decimales a puntos.
+{{< info "Si solamente necesitas datos de población comunal, también puedes obtenerlos sin _scraping_ con el [paquete de R `{poblador}`](/blog/poblador/), que agrega la población a tus datos directamente desde los datos del Censo!" >}}
+
+Luego de obtener los datos, realizamos una pequeña limpieza: limpiamos los nombres de las variables, seleccionamos las variables que nos interesan, y luego las convertimos apropiadamente a valores numéricos, donde tenemos que eliminar los separadores de miles, y transformar los separadores de decimales a puntos [usando `{stringr}`](/blog/stringr_texto/).
 
 
 ``` r
@@ -273,7 +282,7 @@ datos_comunas
 ##  3 15201         Putre         Arica y Parinacota Aric…          5902.      1547
 ##  4 15202         General Lagos Arica y Parinacota Aric…          2244.       508
 ##  5 01101         Iquique       Tarapacá Tarapacá                 2242.    199587
-##  6 01107         Alto Hospicio Tarapacá Tarapacá                 5729     142086
+##  6 01107         Alto Hospicio Tarapacá Tarapacá                  573.    142086
 ##  7 01401         Pozo Almonte  Tarapacá Tarapacá                13766.     16878
 ##  8 01402         Camiña        Tarapacá Tarapacá                 2200.      1335
 ##  9 01403         Colchane      Tarapacá Tarapacá                 4016.       790
@@ -287,9 +296,9 @@ Ahora que tenemos una tabla de datos que contiene la columna `codigo_comuna` con
 
 #### Agregar datos a los mapas
 
-Esta operación de unir dos tablas de datos diferentes, pero que coinciden en una columna en común, se realiza [con la función `left_join()`](/blog/left_join/). 
+La operación de **unir dos tablas de datos** diferentes, pero que coinciden en una columna en común, se realiza [con la función `left_join()`](/blog/left_join/). 
 
-El principio de `left_join()` es que tenemos dos tablas de datos, y ambas tablas de datos tienen una misma columna, que poseen los mismos valores (en nuestro caso, una columna con las comunas o los códigos únicos territoriales de las comunas). Entonces, ambas tablas se van a unir según la correspondencias de estas columnas en común.
+El principio de un _left join_ es que tenemos dos tablas de datos, y ambas tablas tienen una misma columna que comparten valores (en nuestro caso, una columna con los nombres de comunas o los códigos únicos territoriales de las comunas). Entonces, ambas tablas se van a unir según la correspondencia de estos valores en común.
 
 _Ejemplo:_
 
@@ -331,7 +340,7 @@ mapa_comunas_2 <- mapa_comunas |>
   # adjuntar datos al mapa, coincidiendo por columna de código de comunas
   left_join(datos_comunas,
             by = join_by(codigo_comuna)) |> 
-  relocate(geometry, .after = 0) # tirar geometría al final
+  relocate(geometry, .after = last_col()) # tirar geometría al final
 
 mapa_comunas_2
 ```
@@ -345,7 +354,7 @@ mapa_comunas_2
 ##  3 01405         014              01            Pica       Tarap…          8934.
 ##  4 01402         014              01            Camiña     Tarap…          2200.
 ##  5 01404         014              01            Huara      Tarap…         10475.
-##  6 01107         011              01            Alto Hosp… Tarap…          5729 
+##  6 01107         011              01            Alto Hosp… Tarap…           573.
 ##  7 01101         011              01            Iquique    Tarap…          2242.
 ##  8 02104         021              02            Taltal     Antof…         20405.
 ##  9 02101         021              02            Antofagas… Antof…         30718.
@@ -354,15 +363,13 @@ mapa_comunas_2
 ## # ℹ 2 more variables: poblacion <dbl>, geometry <MULTIPOLYGON [°]>
 ```
 
-Como resultado, tenemos un nuevo dataframe que además de tener los datos geográficos de las comunas, también tiene nuevas columnas con datos que podemos visualizar.
-
-{{< info "Si necesitas limpiar tus datos comunales o regionales para poder cruzarlos con los polígonos de los mapas, [revisa el paquete de R `{territorial}`](/blog/territorial/), que cuenta con herramientas para limpiar y validar automáticamente este tipo de datos!" >}}
+Como resultado, tenemos un nuevo _dataframe_ que además de tener los datos geográficos de las comunas, también tiene nuevas columnas con datos que podemos visualizar.
 
 #### Visualizar datos comunales
 
 Para visualizar datos comunales en un mapa, especificamos la columna de geometría que contiene la información geográfica, y creamos un gráfico de `{ggplot2}`. En este gráfico, especificamos que el relleno de los polígonos (`fill`) se haga a partir de una de las variables numéricas. 
 
-Usamos la función `geom_sf()` para agregar una capa de geometría a nuestro gráfico que contenga los polígonos territoriales de las comunas. Luego, definimos un tema, una paleta de colores, y corregimos la escala del eje horizontal. 
+Usamos la función `geom_sf()` para agregar una capa de geometría a nuestro gráfico que contenga los polígonos territoriales de las comunas. Luego, definimos una paleta de colores, corregimos la escala del eje horizontal, y ajustamos el ancho de la leyenda en el tema. 
 
 
 ``` r
@@ -385,7 +392,9 @@ mapa_comunas_2 |>
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/mapa-poblacion-comunas-1.png" alt="" width="288" />
 
-Como resultado obtenemos un mapa coroplético, o mapa de coropletas, que es un mapa donde cada región o polígono está relleno de un color que representa un valor en una escala de una variable.
+Como resultado obtenemos un **mapa coroplético** de la población comunal.
+
+Notarás que la mayoría de las comunas aparecen con colores similares: unas pocas comunas muy pobladas concentran la parte alta de la escala, y el resto queda comprimido en los tonos más bajos. En estos casos conviene transformar la escala, o [categorizar la variable con el método de cortes naturales Jenks](/blog/2026-08-26/).
 
 Acá hacemos otro mapa, usando el mismo código y simplemente cambiando la variable de relleno de los polígonos territoriales:
 
@@ -414,7 +423,9 @@ mapa_comunas_2 |>
 
 #### Mapa de una sola región, por comunas
 
-Si queremos visualizar una sola región del país, subdividida por comunas, tan sencillo como agregar un filtro a los datos que filtre las filas que pertenecen a la región que nos interesa. En este caso, vamos a visualizar la población por comunas de la región del Libertador General Bernardo O'Higgins:
+Si queremos visualizar una sola región del país, subdividida por comunas, es tan sencillo como filtrar las filas que pertenecen a la región que nos interesa. 
+
+Vamos a visualizar la **población por comunas** de la región del Libertador General Bernardo O'Higgins:
 
 
 ``` r
@@ -428,8 +439,8 @@ mapa_comunas_filtro |>
   ggplot() +
   aes(fill = poblacion) +
   geom_sf(linewidth = 0.1, color = "#DFC6EF") +
-  geom_sf_text(aes(label = comma(poblacion, big.mark = ".")), 
-               size = 2, color = "#EAD2FA", check_overlap = T) +
+  geom_sf_text(aes(label = label_comma(big.mark = ".")(poblacion)), 
+               size = 2, color = "#EAD2FA", check_overlap = TRUE) +
   scale_fill_distiller(type = "seq", palette = 12,
                        labels = label_comma(big.mark = ".")) + 
   theme(legend.key.width = unit(3, "mm")) +
@@ -453,7 +464,9 @@ mapa_comunas_filtro |>
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/mapa-region-ohiggins-1.png" alt="" width="576" />
 
-En este caso, agregamos también la función `geom_sf_text()` para agregar una capa nuestro gráfico que contiene las cifras para cada comuna. Hay que tener en consideración que poner números o textos sobre mapas suele ser complejo, porque el mapa ya es denso visualmente, y agregarle texto puede hacer que se vuelva ilegible. Hay que tener especial cuidado en resolver situaciones como textos que pasan por encima de bordes en el mapa, que se ubican incorrectamente dentro de los polígonos, o que se sobreponen uno sobre otros debido a que los polígonos se ven muy pequeños dentro del mapa.
+En este caso, agregamos también la función `geom_sf_text()` para agregar una capa a nuestro gráfico que contiene las **cifras** para cada comuna. 
+
+Hay que tener en consideración que poner números o textos sobre mapas suele ser complejo, porque el mapa ya es denso visualmente, y agregarle texto puede hacer que se vuelva ilegible. Hay que tener especial cuidado en resolver situaciones como textos que pasan por encima de bordes en el mapa, que se ubican incorrectamente dentro de los polígonos, o que se sobreponen unos sobre otros debido a que los polígonos se ven muy pequeños dentro del mapa. Para evitar que los textos se superpongan puedes [usar `{ggrepel}`](/blog/ggrepel/), o revisar otras opciones para [poner etiquetas de texto sobre un mapa](/blog/mapas_sf/#etiquetas-de-texto-sobre-un-mapa).
 
 {{< relacionada "/blog/mapas_sf/">}}
 
@@ -464,7 +477,7 @@ En este caso, agregamos también la función `geom_sf_text()` para agregar una c
 
 Para hacer el ejemplo de visualizar datos a nivel regional, nuevamente obtendremos datos a esta escala usando [web scraping](/blog/webscraping_rvest/). 
 
-Obtendremos una tabla del **Producto Interno Bruto regional** desde el [sitio web de el Banco Central de Chile.](https://si3.bcentral.cl/Siete/ES/Siete/Cuadro/CAP_CCNN/MN_CCNN76/CCNN2018_PIB_REGIONAL_N/637899740344107786)
+Obtendremos una tabla del **Producto Interno Bruto regional** desde el [sitio web del Banco Central de Chile.](https://si3.bcentral.cl/Siete/ES/Siete/Cuadro/CAP_CCNN/MN_CCNN76/CCNN2018_PIB_REGIONAL_N/637899740344107786)
 
 
 ``` r
@@ -473,13 +486,13 @@ library(rvest)
 # dirección del sitio del banco central
 url <- "https://si3.bcentral.cl/Siete/ES/Siete/Cuadro/CAP_CCNN/MN_CCNN76/CCNN2018_PIB_REGIONAL_N/637899740344107786"
 
-# obtener tabla con datos de comunas con web scraping
+# obtener tabla con datos del pib regional con web scraping
 tabla_pib <- session(url) |> 
   read_html() |> 
   html_table(convert = FALSE)
 ```
 
-{{< relacionada "/blog/webscraping_rvest/">}}
+{{< relacionada "/blog/web_scraping/">}}
 
 Limpiamos los datos seleccionando las columnas que necesitamos, transformando la columna a tipo numérico, y filtrando las filas para quedar solamente con las que corresponden a las regiones de Chile:
 
@@ -519,11 +532,19 @@ datos_regiones
 
 #### Crear columna de códigos regionales
 
-Los datos que obtuvimos no contienen una variable con el [código único territorial](https://bastianolea.github.io/territorial/articles/codigos_unicos_territoriales.html) de las regiones, dado que es un dato que está en desuso desde la promulgación de una ley en 2018 que prohíbe el uso de los números en comunicaciones públicas. Sin embargo, en muchas base de datos oficiales se sigue usando la [numeración de las regiones](https://bastianolea.github.io/territorial/reference/as_codigo_region.html), principalmente para evitar problemas de diferencias en los nombres de las regiones, por ejemplo, si contienen o no las palabras _Región de_ o _Región del_ para cada región, si contienen tildes o no, si contienen abreviaciones o no, si contienen símbolos como _eñes_ o apóstrofes, etc. Todos estos problemas son resueltos por el uso de identificador numérico de las regiones.
+Los datos que obtuvimos no contienen una variable con el [código único territorial](https://bastianolea.github.io/territorial/articles/codigos_unicos_territoriales.html) de las regiones. 
+
+Los códigos de regiones son útiles para evitar problemas como cuando las regiones contienen o no las palabras _Región de_ o _Región del_ para cada región, si contienen tildes o no, si contienen abreviaciones o no, si contienen símbolos como _eñes_ o apóstrofes, etc. Todos estos problemas son resueltos por el uso del identificador numérico de las regiones.
+
+{{< detalles "Sobre el uso actual de los códigos de regiones" >}}
+
+Desde la promulgación de la _Ley 21.074 de Fortalecimiento de la Regionalización_, las regiones dejaron de denominarse con números romanos, y se nombran solamente por su nombre. Sin embargo, el [código numérico de las regiones](https://bastianolea.github.io/territorial/reference/as_codigo_region.html) se sigue usando como identificador oficial en muchas bases de datos, principalmente para evitar problemas de diferencias en los nombres de las regiones.
+
+{{< /detalles >}}
 
 {{< info "Para limpiar nombres de regiones y convertirlos en sus códigos únicos territoriales, usa la función [`limpiar_regiones()`](https://bastianolea.github.io/territorial/reference/limpiar_regiones.html) y luego [`as_codigo_region()`](https://bastianolea.github.io/territorial/reference/as_codigo_region.html) del [paquete `{territorial}`](https://bastianolea.github.io/territorial/)." >}}
 
-Como el mapa que obtuvimos con el paquete `{chilemapas}` utiliza el código regional, en el _dataframe_ de nuestros datos que obtuvimos con scraping crearemos una columna con los mismos códigos regionales, asignados a cada región a partir de la coincidencia con los textos. Por ejemplo, si el texto del nombre de la región contiene la palabra _Arica_, se le asigna el código `15`. 
+Como el mapa que obtuvimos con el paquete `{chilemapas}` utiliza el código regional, en el _dataframe_ de nuestros datos que obtuvimos con scraping [crearemos una columna](/blog/r_introduccion/dplyr_mutate/) con `mutate()` y `case_when()` que contenga los mismos códigos regionales, asignados a cada región a partir de la coincidencia con los textos. Por ejemplo, si el texto del nombre de la región contiene la palabra _Arica_, se le asigna el código `15`. 
 
 Esta forma de asignar los códigos regionales puede ser inexacta, pero es muy sencillo confirmar si es que la asignación de códigos funciona correctamente, y también siempre es posible utilizar [expresiones regulares en `{stringr}`](https://stringr.tidyverse.org/articles/regular-expressions.html) para hacer coincidencias más flexibles, como por ejemplo, coincidir una palabra con un código sin importar si la palabra tiene o no tilde, o está mal escrita.
 
@@ -654,7 +675,7 @@ mapa_regiones_2 <- mapa_regiones |>
   mutate(codigo_region = as.numeric(codigo_region)) |> 
   left_join(datos_regiones_2,
             by = join_by(codigo_region)) |> 
-  relocate(geometry, .after = 0) # tirar columna al final
+  relocate(geometry, .after = last_col()) # tirar columna al final
 
 mapa_regiones_2
 ```
@@ -683,7 +704,7 @@ mapa_regiones_2
 
 #### Visualizar datos regionales
 
-Finalmente, visualizamos los datos en un mapa regional de la misma forma que lo hicimos con los mapas comunales. Esta vez, el mapa y los datos vienen en una fila por región, con la variable `geometry` que conteniendo la geometría del polígono regional. Por tanto, el código es exactamente el mismo, y solamente cambia el dataframe que usamos para generar el gráfico:
+Finalmente, visualizamos los datos en un mapa regional de la misma forma que lo hicimos con los mapas comunales. Esta vez, el mapa y los datos vienen en una fila por región, con la variable `geometry` que contiene la geometría del polígono regional. Por tanto, el código es exactamente el mismo, y solamente cambia el _dataframe_ que usamos para generar el gráfico:
   
 
 ``` r
@@ -695,7 +716,7 @@ mapa_regiones_2 |>
   scale_fill_distiller(type = "seq", palette = 11,
                        labels = label_comma(big.mark = ".")) +
   scale_x_continuous(breaks = seq(-76, -65, length.out = 3) |> floor()) +
-  coord_sf(expand = F, xlim = c(-77, -65)) + # recortar coordenadas
+  coord_sf(expand = FALSE, xlim = c(-77, -65)) + # recortar coordenadas
   theme(legend.key.width = unit(3, "mm"))
 ```
 
@@ -708,7 +729,7 @@ mapa_regiones_2 |>
 
 ----
 
-Visualizar datos geográficamente es una herramienta de comunicación y análisis de datos muy potente. Personalmente, encuentro que el potencial de la visualización de datos en mapas radica mucho más allá de simplemente mapear una variable a un territorio, sino a **incentivar que el público analice el mapa en relación a todo el conjunto de conocimientos que tenemos sobre del espacio que habitamos, sus características sociales, y las desigualdades distribuidas en el territorio.** 
+Visualizar datos geográficamente es una herramienta de comunicación y análisis de datos muy potente. Personalmente, encuentro que el potencial de la visualización de datos en mapas va mucho más allá de simplemente mapear una variable a un territorio: está en **incentivar que el público analice el mapa en relación a todo el conjunto de conocimientos que tenemos sobre el espacio que habitamos, sus características sociales, y las desigualdades distribuidas en el territorio.** 
 
 {{< etiqueta "mapas" >}}
 
