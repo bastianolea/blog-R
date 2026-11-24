@@ -507,6 +507,15 @@ Partial `layouts/partials/mas_vistos_relacionadas.html`, incluido en el `<footer
 - No requiere variante `.markdown.md` (no es shortcode).
 
 
+## Precarga del buscador
+
+Al abrir cualquier página, `static/js/precargar-buscador.js` crea (cuando la página terminó de cargar y el navegador está ocioso) un iframe invisible con la app Shiny del buscador, para «calentar» el proceso de R del servidor y que `/buscar/` cargue más rápido. No corre en `/buscar/`, ni con `saveData`, ni en conexiones 2G.
+
+- **Setting:** `params.precargar_buscador` en `config.toml` (`true`/`false`). Si es `false`, `layouts/_default/baseof.html` no incluye el script (verificado: el build no contiene `precargar-buscador` en el HTML).
+- **Al probarlo:** editar el valor en `config.toml`; la variable de entorno `HUGO_PARAMS_PRECARGAR_BUSCADOR` no funcionó.
+- La URL de la app está escrita directo en el script y en `layouts/buscar/list.html`; si cambia el despliegue, actualizar ambos.
+
+
 ## Redirects
 
 Archivo `static/_redirects` para migraciones de URL y dominios. Redirecciones de `bastianoleah.netlify.com` → `bastianolea.rbind.io`.
@@ -540,6 +549,7 @@ Archivo `static/_redirects` para migraciones de URL y dominios. Redirecciones de
 | Página buscador (iframe Shiny) | `content/buscar/_index.md` |
 | Layout buscador con iframe | `layouts/buscar/list.html` |
 | iframeResizer (script local) | `static/js/iframeResizer.min.js` |
+| Precarga del buscador (setting `params.precargar_buscador`) | `static/js/precargar-buscador.js` + `layouts/_default/baseof.html` |
 | Redirects | `static/_redirects` |
 | robots.txt (plantilla) | `layouts/robots.txt` |
 | Funciones R custom | `R/funciones.R` |

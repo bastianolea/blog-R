@@ -62,11 +62,15 @@ titleCaseStyle = "firstupper"
 
   goatcounter = "bastimapache"
 
+  # precarga en segundo plano la app del buscador al abrir cualquier página,
+  # para que /buscar/ cargue más rápido (static/js/precargar-buscador.js)
+  precargar_buscador = false
+
   # contador de visitas de goatcounter en posts y listados (requiere goatcounter);
   # solo se muestra en publicaciones con más visitas únicas que el mínimo
   [params.contador_visitas]
     activar = true
-    visitas_minimas = 30
+    visitas_minimas = 20
 
   # /llms.txt agrupa las publicaciones por tema: cada una aparece una sola vez,
   # en el primer tema de esta lista que tenga entre sus tags (de más específico a más general)

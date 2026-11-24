@@ -11,6 +11,8 @@
         {{- end}}
         {{- block "footer" . }}{{- partial "footer.html" . -}}{{- end }}
       </div>
+      {{- if site.Params.precargar_buscador }}
       <script src="/js/precargar-buscador.js" defer></script>
+      {{- end }}
     </body>
 </html>
