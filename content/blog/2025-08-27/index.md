@@ -2,12 +2,14 @@
 title: Generando ruido visual con R
 author: Bastián Olea Herrera
 date: '2025-08-27'
+modified: "2026-11-24"
 slug: []
 categories: []
 tags:
   - curiosidades
   - arte generativo
   - loops
+  - aplicaciones
 format:
   hugo-md:
     output-file: index
@@ -18,6 +20,10 @@ links:
   icon_pack: fab
   name: código
   url: https://github.com/bastianolea/ruido_visual
+- icon: link
+  icon-pack: fas
+  name: aplicación
+  url: https://bastianolea-ruido-visual.share.connect.posit.cloud
 ---
 
 El otro día tuve que usar R para generar comandos muy largos (para automatizar el convertir cientos de reportes `html` a `pdf` usando un navegador web), y el código resultante fue eterno. Al pegarlo en la consola se produjo un aluvión de texto:
@@ -170,4 +176,6 @@ for (i in 1:n) {
 
 {{< video_ancho "videos/ruido_15.mp4" >}}
 
-Me encantó esta primera aproximación al arte generativo, y ojalá poder seguir descrubriendo nuevas formas de generar patrones interesantes! Sería ideal desarrollar una aplicación interactiva donde los patrones fluyan continuamente y vayan siendo alterados directamente desde el código, en tiempo real.
+Me encantó esta primera aproximación al arte generativo, y ojalá poder seguir descrubriendo nuevas formas de generar patrones interesantes!
+
+~~Sería ideal desarrollar~~ [Desarrollé una aplicación interactiva](https://bastianolea-ruido-visual.share.connect.posit.cloud) con R y [Shiny](/blog/shiny/) donde los patrones fluyan continuamente y vayan siendo alterados directamente desde el código, en tiempo real. [Pruébala aquí!](https://bastianolea-ruido-visual.share.connect.posit.cloud)
