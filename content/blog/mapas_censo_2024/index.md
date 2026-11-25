@@ -174,7 +174,7 @@ manzanas_comuna_sf |>
   theme_minimal(base_size = 10)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-1.png" width="768" />
 
 Con ésto anterior obtenemos el **mapa base**, generado a partir de los polígonos de la columna `SHAPE`.
 
@@ -197,7 +197,7 @@ manzanas_comuna_sf |>
        caption = "Fuente: Censo 2024, INE")
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="1540" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="1540" />
 
 ### Reutilizar mapa
 
@@ -223,7 +223,7 @@ manzanas |>
        caption = "Fuente: Censo 2024, INE")
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="1320" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="1320" />
 
 Lo bueno de disponer del código es que podemos [**automatizar la creación de mapas** para distintas comunas o regiones](../../../blog/ggplot_purrr/), simplemente cambiando los filtros y las variables que queremos graficar, o podemos cambiar el nivel territorial cargando uno de los otros archivos, o bien, [realizando una operación de resumen](https://bastianolea.rbind.io/blog/r_introduccion/dplyr_summarize/) sobre los datos.
 
@@ -296,7 +296,7 @@ comunas |>
        caption = "Fuente: Censo 2024, INE")
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="1320" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="1320" />
 
 {{< info "Para más información sobre visualización de mapas de Chile comunales y regionales, revisa [este tutorial](/blog/tutorial_mapa_chile/) sobre mapas básicos de Chile, o [este tutorial](/blog/tutorial_mapa_chile_subdere/) para usar cartografías oficiales." >}}
 

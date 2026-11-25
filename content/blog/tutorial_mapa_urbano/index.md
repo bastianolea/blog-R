@@ -143,7 +143,7 @@ mapa |>
   geom_sf(fill = "#553A74", col = "#EAD2FA", alpha = 0.8)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/region_prueba-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/region_prueba-1.png" width="768" />
 
 Obtuvimos un mapa básico de todas las comunas de la Región Metropolitana de Santiago!
 
@@ -203,7 +203,7 @@ mapa_datos |>
   scale_fill_discrete(na.value = "#9069C0") # color para comunas sin datos
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
 
 {{< relacionada "blog/mapas_sf/" >}}
 
@@ -315,7 +315,7 @@ mapa_datos_2 |>
        fill = "Población")
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/region_fill_continuo-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/region_fill_continuo-1.png" width="768" />
 
 #### Mapa comunal del índice de desarrollo humano
 
@@ -338,7 +338,7 @@ mapa_datos_2 |>
   theme(legend.position = "bottom")
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/region_fill_categorico-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/region_fill_categorico-1.png" width="768" />
 
 Sin embargo, podemos ver que estos mapas no se ajustan perfectamente a la imagen mental que tiene un ciudadano común acerca de cómo se ve la Región Metropolitana. Por ejemplo, vemos cómo la comuna de San José de Maipo abarca una superficie enorme dado que limita en la cordillera de los Andes con Argentina, o que comunas como Lo Barnechea se expanden hacia superficies cordilleranas de gran extensión.
 
@@ -375,7 +375,7 @@ mapa_zonas_urbanas |>
   geom_sf(fill = "#553A74", color = "#EBD2FA", linewidth = 0.1)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
 
 Podemos mejorar esta visualización agrupando los polígonos por comuna y luego **uniendo** con `st_union()` las zonas urbanas intra-comunales en sus respectivas comunas, para volver a obtener un mapa comunal, pero que recorta las comunas para que sólo consideren su la **superficie urbana** de cada una:
 
@@ -390,7 +390,7 @@ mapa_zonas_urbanas |>
   geom_sf(fill = "#553A74", color = "#EBD2FA", linewidth = 0.1)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/region_zonas_comunas-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/region_zonas_comunas-1.png" width="768" />
 
 De inmediato, podemos ver que emerge una figura más familiar de lo que es el *Gran Santiago,* pero ahora tenemos otro problema: el mapa también contiene las zonas urbanas de comunas menos céntricas de la región, tales como Buin, Curacaví, Talagante y otras. Esto se debe a que nuestro mapa aún contiene comunas que no son mayoritariamente urbanas, dado que poseen sectores despoblados o de actividad agrícola, minera u otras, y que por consiguiente dan una apariencia discontinua a nuestro mapa.
 
@@ -422,7 +422,7 @@ mapa_zonas_urbanas |>
   geom_sf(fill = "#553A74", color = "#EBD2FA", linewidth = 0.1)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/region_urbano_opcion1-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/region_urbano_opcion1-1.png" width="768" />
 
 #### Definir contorno urbano en base a provincias
 
@@ -440,7 +440,7 @@ mapa_zonas_urbanas |>
   geom_sf(fill = "#553A74", color = "#EBD2FA", linewidth = 0.1)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/region_urbano_opcion2-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/region_urbano_opcion2-1.png" width="768" />
 
 La decisión que tomes depende de los objetivos del usuario y de tu visualzación, pero dejo ambas aproximaciones a modo de aprendizaje.
 
@@ -464,7 +464,7 @@ mapa_zonas_urbanas |>
     size = 3)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/prueba_islas-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/prueba_islas-1.png" width="768" />
 
 Bastaría con anotar los geocódigos para filtrarlos.
 
@@ -503,7 +503,7 @@ mapa_urbano |>
           linewidth = 0.1, alpha = 0.8)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="768" />
 
 De esta forma ya logramos graficar un mapa del Gran Santiago mucho más definido y limpio.
 
@@ -525,7 +525,7 @@ mapa_urbano_2 |>
   labs(fill = "Densidad poblacional")
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/region_urbana_fill_continuo-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/region_urbana_fill_continuo-1.png" width="768" />
 
 Finalmente, podemos poner nuestro nuevo mapa urbano de la Región Metropolitana de Santiago sobre el mapa de la región completa:
 
@@ -546,7 +546,7 @@ ggplot() +
         legend.ticks.length = unit(0.4, "mm"))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/region_urbana_fill_continuo_contexto-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/region_urbana_fill_continuo_contexto-1.png" width="768" />
 
 También podemos **recortar** el mapa con `coord_sf()` para hacerle un poco de zoom a la zona urbana dentro del contexto de la región completa:
 
@@ -571,7 +571,7 @@ ggplot() +
         legend.ticks.length = unit(0.4, "mm"))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/region_urbana_fill_continuo_contexto_zoom-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/region_urbana_fill_continuo_contexto_zoom-1.png" width="768" />
 
 {{< relacionada "/blog/mapas_sf/" "Para profundizar en mapas con R" >}}
 {{< etiqueta "mapas" >}}

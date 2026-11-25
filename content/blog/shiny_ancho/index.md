@@ -211,7 +211,7 @@ grafico <- ggplot(iris) +
 grafico
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-1-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-1-1.png" width="768" />
 
 Para incluirlo en la app, debería ir dentro de `renderPlot()`
 
@@ -254,7 +254,7 @@ if (ancho() < 600) {
 })
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
 
 Como el **espacio horizontal es más escaso en celulares**, adaptamos el gráfico para que la leyenda aparezca arriba, y así haya más espacio para los datos!
 

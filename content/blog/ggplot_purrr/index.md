@@ -95,7 +95,7 @@ datos |>
   labs(x = "Matemáticas", y = "Comprensión lectora")
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
 
 Obtenemos una tenebrosa nube que correlaciona los puntajes de la prueba de comprensión lectora y la de matemátitas. En este gráfico cada punto es un estudiante, y la ubicación del punto corresponde al puntaje que obtuvo en las pruebas de Matemática y Comprensión Lectora. Como los datos vienen con más variables de caracterización de las observaciones, podemos filtrar los datos por comuna:
 
@@ -148,7 +148,7 @@ datos |>
        x = "Matemáticas", y = "Comprensión lectora")
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="768" />
 
 Obviamente podemos filtrar por cualquier otra comuna (o cualquier otra variable) y obtendremos el gráfico de los estudiantes correspondientes.
 
@@ -192,7 +192,7 @@ grafico_bonito <- grafico_base +
 grafico_bonito
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-1.png" width="768" />
 
 Efectivamente obtenemos un gráfico más bonito ☺️ donde especificamos de antemano un objeto `comuna` con el nombre de la unidad administrativa que queremos visualizar. Luego, este objeto se usa para filtrar los datos y para poner un título al gráfico.
 
@@ -235,13 +235,13 @@ Ahora que creamos la función, solo tenemos que ejecutar `grafico()` para genera
 grafico(datos, "La Reina")
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="768" />
 
 ``` r
 grafico(datos, "Cerrillos")
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-2.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-2.png" width="768" />
 
 ## Automatización
 

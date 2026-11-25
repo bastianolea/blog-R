@@ -267,7 +267,7 @@ mapa |>
           linewidth = 0.1)
 ```
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/mapa_basico-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/mapa_basico-1.png" width="768" />
 
 {{< aviso "Si necesitas aprender lo básico de `{ggplot2}` para visualización de datos, [revisa este completo tutorial](/blog/ggplot2/)." >}}
 <!--
@@ -316,7 +316,7 @@ punto <- coordenadas |>
            crs = st_crs(mapa))
 ```
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico">}}
 
@@ -350,7 +350,7 @@ puntos <- coordenadas |>
            crs = st_crs(mapa))
 ```
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico">}}
 
@@ -397,7 +397,7 @@ circulo <- punto |>
   st_buffer(dist = 150000) # radio en metros
 ```
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-15-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-15-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico">}}
 
@@ -440,7 +440,7 @@ cuadrado <- punto |>
   st_as_sfc(crs = st_crs(mapa)) # convertir a sf
 ```
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-18-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-18-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico">}}
 
@@ -464,7 +464,7 @@ ggplot() +
 
 Paso a paso, el proceso de crear el punto, agrandarlo, y formarlo en un cuadrado se vería así:
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-20-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-20-1.png" width="768" />
 
 {{< detalles "Ver código del proceso y del gráfico">}}
 
@@ -520,7 +520,7 @@ rectangulo <- puntos |>
   st_as_sfc(crs = st_crs(mapa))
 ```
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-23-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-23-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico">}}
 
@@ -563,7 +563,7 @@ poligono <- puntos |>
   st_cast("POLYGON")
 ```
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/poligonos_1-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/poligonos_1-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -611,7 +611,7 @@ poligono <- puntos |>
   st_cast("POLYGON")
 ```
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/poligonos_2-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/poligonos_2-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -693,7 +693,7 @@ mapa_centroide <- mapa |>
     3856            La Pampa POINT (-65.44562 -37.12691)
     3857             Córdoba POINT (-63.76859 -32.07319)
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/mapa_centroide-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/mapa_centroide-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -756,7 +756,7 @@ mapa_centroide_coordenadas <- mapa_centroide |>
     3856            La Pampa -65.44562 -37.12691
     3857             Córdoba -63.76859 -32.07319
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/barras_latitud-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/barras_latitud-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -794,7 +794,7 @@ mapa_buffer <- mapa |>
                             max_cells = 10000))
 ```
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/mapa_buffer-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/mapa_buffer-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -835,7 +835,7 @@ rectangulo <- caja |>
   st_as_sfc(crs = st_crs(mapa))
 ```
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-39-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-39-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -881,7 +881,7 @@ puntos <- tribble(~nombre, ~lon,     ~lat,
 
 Así se ven los puntitos por sí solos:
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-42-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-42-1.png" width="768" />
 
 Como estos puntos están en Chile, necesitamos un mapa de Chile de fondo. Lo obtenemos desde `{rnaturalearth}` con `ne_countries()`, que entrega el polígono completo de un país (a diferencia de `ne_states()`, que [usamos al inicio](#cargar-mapas-de-cualquier-país) para obtener sus regiones):
 
@@ -911,7 +911,7 @@ chile_recorte <- chile |>
   st_crop(caja_puntos)
 ```
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-46-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-46-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -965,7 +965,7 @@ Lo que sumemos o restemos a las coordenadas depende del sistema de coordenadas d
 
 En el gráfico vemos en color más tenue las posiciones originales de los puntos que fueron modificados.
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-50-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-50-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -1019,7 +1019,7 @@ chile_recorte <- chile |>
 
 Al visualizar los puntos sobre el mapa, vemos que los cinco puntos quedan amontonados uno encima del otro, y cuesta distinguir cuántos son:
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-54-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-54-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -1046,7 +1046,7 @@ Al igual que cuando [movimos puntos manualmente](#mover-puntos-de-un-mapa), la c
 
 En el gráfico vemos en color más tenue las posiciones originales de los puntos, y en color más oscuro las nuevas posiciones aleatorias:
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-58-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-58-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -1085,7 +1085,7 @@ mapa_unido
                             geometry
     1 MULTIPOLYGON (((-61.90941 -...
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-61-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-61-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -1157,7 +1157,7 @@ chile_recortado <- chile |>
 
 En este caso, hacemos un recorte para obtener el territorio continental de Chile (excluyendo las islas Juan Fernández, Isla de Pascua y Antártica)
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-65-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-65-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -1180,7 +1180,7 @@ mapa_completo + mapa_recortado
 
 También podemos hacer recortes que pasen por encima de los polígonos, eliminando la geografía que quede fuera del recorte. En este caso hacemos un recorte más cercano a la zona costera de Temuco y Valdivia:
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-67-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-67-1.png" width="768" />
 
 #### Recortar un mapa a partir de otro mapa
 
@@ -1204,7 +1204,7 @@ regiones <- chile |>
   filter(region %in% c("O'Higgins", "Maule", "Ñuble", "Biobío", "La Araucanía", "Los Ríos"))
 ```
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-69-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-69-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -1227,7 +1227,7 @@ region <- regiones |>
   filter(region == "Ñuble")
 ```
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-72-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-72-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -1250,7 +1250,7 @@ fondo_region <- regiones |>
   st_crop(st_bbox(region)) # recortar en base a caja
 ```
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-75-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-75-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -1267,7 +1267,7 @@ fondo_region |>
 
 Obtenemos el mapa del país recortado a la caja del mapa regional. Luego podemos combinar ambos para una visualización de un mapa regional que tenga contexto de sus alrededores:
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-77-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-77-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -1295,7 +1295,7 @@ fondo_region <- regiones |>
             st_bbox()) # calcular caja
 ```
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-80-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-80-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 
@@ -1312,7 +1312,7 @@ fondo_region |>
 
 Ahora combinamos ambas capas, mapa de fondo recortado, y mapa principal:
 
-<img src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-82-1.png" width="768" />
+<img loading="lazy" src="mapas_sf.markdown_strict_files/figure-markdown_strict/unnamed-chunk-82-1.png" width="768" />
 
 {{< detalles "Ver código del gráfico" >}}
 

@@ -135,19 +135,19 @@ for (especie in unique(iris$Species)) {
 
 ### Especie setosa
 
-<img src="quarto_loop.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
+<img loading="lazy" src="quarto_loop.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
 
 La observación más alta en largo de pétalos en la especie **setosa** es: 1.9
 
 ### Especie versicolor
 
-<img src="quarto_loop.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-2.png" width="768" />
+<img loading="lazy" src="quarto_loop.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-2.png" width="768" />
 
 La observación más alta en largo de pétalos en la especie **versicolor** es: 5.1
 
 ### Especie virginica
 
-<img src="quarto_loop.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-3.png" width="768" />
+<img loading="lazy" src="quarto_loop.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-3.png" width="768" />
 
 La observación más alta en largo de pétalos en la especie **virginica** es: 6.9
 

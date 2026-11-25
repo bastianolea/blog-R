@@ -68,7 +68,7 @@ mapa_2 |>
     theme_classic()
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
 
 Luego realizamos el primer paso para obtener los datos desde Open Street Map, que es definir las coordenadas de la caja delimitadora o *bounding box* del lugar del que vamos a solicitar datos. Por ejemplo, una ciudad específica. Si bien esto se puede hacer con la función `osmdata::getbb()`, los resultados no siempre coinciden con lo que esperamos (la región o ciudad puede salir más recortada de lo esperado), por lo que preferimos usar directamente la caja del mapa que queremos visualizar, usando `sf::st_bbox()`.
 
@@ -165,7 +165,7 @@ Finalmente, podemos aplicar las capas obtenidas a nuestro gráfico de `{ggplot2}
     theme_classic()
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-10-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-10-1.png" width="768" />
 
 Otro ejemplo del mapa visto desde más cerca, incluyendo la capa de calles interiores:
 
@@ -187,6 +187,6 @@ ggplot() +
     theme_classic()
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-1.png" width="768" />
 
 {{< cafecito >}}

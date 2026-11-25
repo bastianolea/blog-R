@@ -206,7 +206,7 @@ anscombe_ancho |>
   theme(plot.title = element_text(size = 14, face = "bold"))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/anscombe-1.png" width="672" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/anscombe-1.png" width="672" />
 
 Si nos hubiéramos quedado con las estadísticas descriptivas, habríamos pasado por alto las diferencias entre los grupos! *Moraleja:* siempre hacer gráficos exploratorios para comprender con qué estamos trabajando 🤓☝🏼
 
@@ -263,7 +263,7 @@ datasaurus_dozen |>
   theme(axis.title = element_blank())
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/datasaurus-1.png" width="672" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/datasaurus-1.png" width="672" />
 
 *¡Plop!*
 

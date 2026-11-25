@@ -38,7 +38,7 @@
         {{ partial "shared/tags-wide-big.html" . }}
 
         <!-- publicaciones más vistas -->
-        {{ with site.Data.mas_vistos }}
+        {{ with hugo.Data.mas_vistos }}
         <p class="titulo-panel" style="margin-top: 28px;">Publicaciones más leídas:</p>
         {{ end }}
         {{ partial "mas_vistos.html" . }}

@@ -7,7 +7,7 @@
     {{ $candidatas := partialCached "mas_vistos_candidatas.html" . }}
 */}}
 {{- $candidatas := slice -}}
-{{- with site.Data.mas_vistos -}}
+{{- with hugo.Data.mas_vistos -}}
   {{- range .publicaciones -}}
     {{- $ruta := .ruta -}}
     {{- $visitas := .visitas -}}

@@ -419,6 +419,82 @@ corregir_enlaces_qmd <- function(
 }
 
 
+#' Agregar carga diferida a las figuras de chunks en posts renderizados
+#'
+#' Quarto escribe las figuras de los chunks como HTML crudo
+#' (`<img src="index.markdown_strict_files/figure-markdown_strict/...png" width="768" />`),
+#' que no pasa por hooks de render de Hugo. Esta función recorre los
+#' `index.md` del blog y agrega `loading="lazy"` a esas etiquetas, para que el
+#' navegador solo descargue las figuras cuando se acercan a la pantalla.
+#'
+#' Solo toca imágenes cuya ruta contiene `_files/figure-` (figuras generadas
+#' por chunks); las demás imágenes quedan intactas. Es idempotente: una etiqueta
+#' que ya tiene `loading="lazy"` no vuelve a calzar con el patrón.
+#'
+#' Pensada para ejecutarse desde `R/build.R` (antes de que Hugo construya el
+#' sitio), igual que [corregir_enlaces_qmd()].
+#'
+#' @param carpeta Carpeta del blog a revisar. Por defecto `"content/blog"`.
+#' @returns Un tibble (invisible) con columnas `md` y `figuras`, con la cantidad
+#'   de figuras modificadas por archivo. Si no hubo nada que modificar, retorna
+#'   `NULL` y muestra un mensaje.
+#' @export
+agregar_lazy_figuras <- function(carpeta = "content/blog") {
+  require(fs) |> suppressPackageStartupMessages()
+  require(stringr) |> suppressPackageStartupMessages()
+  require(purrr) |> suppressPackageStartupMessages()
+  require(dplyr) |> suppressPackageStartupMessages()
+
+  # etiqueta img que empieza directo con un src de figura de chunk
+  patron <- '<img src="([^"]*_files/figure-[^"]*)"'
+
+  archivos_md <- fs::dir_ls(
+    carpeta,
+    recurse = TRUE,
+    regexp = "/index\\.md$"
+  )
+
+  resultado <- purrr::map(
+    archivos_md,
+    \(md) {
+      lineas <- readLines(md, warn = FALSE)
+      cantidad_figuras <- sum(stringr::str_count(lineas, patron))
+
+      if (cantidad_figuras == 0) {
+        return(NULL)
+      }
+
+      corregidas <- stringr::str_replace_all(
+        lineas,
+        patron,
+        '<img loading="lazy" src="\\1"'
+      )
+
+      writeLines(corregidas, md)
+
+      dplyr::tibble(md = md, figuras = cantidad_figuras)
+    }
+  ) |>
+    purrr::list_rbind()
+
+  if (is.null(resultado) || nrow(resultado) == 0) {
+    cli::cli_alert_success("No hubo figuras sin carga diferida")
+    return(invisible(NULL))
+  }
+
+  texto_figuras <- cli::pluralize(
+    "Se agregó carga diferida a {sum(resultado$figuras)} figura{?s}"
+  )
+  texto_publicaciones <- cli::pluralize(
+    "en {nrow(resultado)} publicaci{?ón/ones}"
+  )
+
+  cli::cli_alert_success(paste(texto_figuras, texto_publicaciones))
+
+  invisible(resultado)
+}
+
+
 # publicaciones más vistas ----
 
 # consulta la api de goatcounter y guarda las publicaciones más visitadas en

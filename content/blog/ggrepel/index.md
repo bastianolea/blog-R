@@ -147,7 +147,7 @@ plebiscito_comunas |>
   geom_point()
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-1.png" width="768" />
 
 Ahora mejoraremos un poco el gráfico anterior: definiremos el formato de los números de las escalas con `scales::number_options()`, ajustaremos el tamaño transparencia de los puntos de `geom_point()`, luego aplicaremos escalas numéricas más bonitas con `scale_{x}_continuous()`, y finalmente ajustaremos un poco el tema y textos del gráfico:
 
@@ -169,7 +169,7 @@ grafico_resultado <- plebiscito_comunas |>
 grafico_resultado
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="768" />
 
 Ahora, al gráfico anterior, le agregaremos inocentemente etiquetas de texto a cada punto, a ver qué pasa:
 
@@ -178,7 +178,7 @@ grafico_resultado +
   geom_text(aes(label = comuna), size = 2, color = "grey30", hjust = 0)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
 
 Absolutamente nefasto. Son tantos puntos que los textos se transforman en una masa gris debido a la concentración.
 
@@ -190,7 +190,7 @@ grafico_resultado +
             check_overlap = TRUE)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-10-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-10-1.png" width="768" />
 
 Sin embargo, esta solución es demasiado básica, y aún hay textos que aparece encima de puntos, o fuera del margen del gráfico.
 
@@ -205,7 +205,7 @@ grafico_resultado +
   )
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-1.png" width="768" />
 
 La función `geom_text_repel()` calcula la posesión de las etiquetas de texto con respecto a las demás, y decide el posicionamiento óptimo para que la mayor cantidad de textos aparezcan, sin que salgan encima de otros textos, ni encima de los puntos.
 
@@ -218,7 +218,7 @@ grafico_resultado +
                   max.overlaps = 30, max.time = 1)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
 
 En el gráfico anterior, aparecen nuevas etiquetas que no salieron antes, algunas de ellas conectadas por líneas con el punto correspondiente.
 
@@ -231,7 +231,7 @@ grafico_resultado +
                   segment.size = 0, max.overlaps = 30)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png" width="768" />
 
 Es importante dejar las observaciones que queremos excluir de el etiquetado de texto con un texto vacío o un espacio (`" "`), y no solamente filtrar las observaciones del dataset, porque así los puntos del gráfico seguirán teniendo un texto vacío encima de ellos, lo que hará que el resto de las etiquetas de texto también se alejen de los puntos sin etiqueta.
 
@@ -250,7 +250,7 @@ grafico_resultado +
     segment.size = 0, max.overlaps = 30, max.time = 5)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-14-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-14-1.png" width="768" />
 
 En este caso aplicamos condicionales más estrictas para que aparezcan o desaparezcan los puntos, con el objetivo de que aparezca la mayor cantidad de textos de un sector específico del gráfico.
 
@@ -267,7 +267,7 @@ grafico_resultado +
   labs(x = "Rechazo (detalle)", y = "Apruebo (detalle)")
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-15-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-15-1.png" width="768" />
 
 ## Gráfico interactivo
 

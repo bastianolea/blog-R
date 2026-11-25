@@ -96,7 +96,7 @@ Para identificar los *outliers*, utilizaremos el criterio del **rango intercuart
 
 En otras palabras, el *IQR* es una cifra que indica qué tanta distancia existe en la "mitad" de tus datos, si los esparcieras todos en una distribución, como aparece en el siguiente gráfico[^1].
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
 
 Luego, el rango intercuartílico se multiplica por 1,5, y se suma al valor del tercer cuartil (percentil 75), de modo que se identifiquen como *outliers* los datos que sean mayores[^2] al tercer cuartil más 1,5 veces el rango intercuartílico. Puedes calcular cualquier percentil de un vector o columna con la función `quantile(x, .75)`, donde el número identifica al percentil.
 
@@ -153,7 +153,7 @@ datos_outliers |>
   scale_y_continuous(expand = expansion(c(0.5, 0.5))) # aumentar margen del eje vertical
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-1.png" width="768" />
 
 En un *boxplot*, los puntos al extremo de la caja representan los casos anómalos.
 
@@ -178,7 +178,7 @@ datos_outliers |>
          y =  guide_none())
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="1152" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="1152" />
 
 ### Puntos con dispersión
 
@@ -196,7 +196,7 @@ datos_outliers |>
          y =  guide_none())
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
 
 ## Gráfico de violín
 
@@ -212,7 +212,7 @@ datos_outliers |>
   guides(y =  guide_none()) # ocultar eje y
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-10-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-10-1.png" width="768" />
 
 ## Combinar visualizaciones
 
@@ -244,7 +244,7 @@ grafico_outliers <- datos_outliers |>
 grafico_outliers
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-1.png" width="768" />
 
 Para combinar estas visualizaciones, aprovechamos la capacidad de `{ggplot2}` de especificar los datos que se usan en cada capa o geometría de la visualización por medio del argumento `data`. Normalmente, el argumento `data` se rellena por defecto con los datos que entregamos a la función `ggplot()`, pero si especificamos el argumento podemos hacer que cada capa use datos completamente distintos. En nuestro caso, no queremos datos distintos, sino **aplicar filtros a los datos de cada capa**, lo que se logra con `data = ~filter(.x, ...)`[^3], donde `...` sería el filtro que necesitemos. En la visualización anterior, queremos que `geom_point()` sólo muestre los datos que son `outlier == FALSE`, y que `geom_jitter()` sólo muestre los datos que son `outlier == TRUE`[^4].
 
@@ -268,7 +268,7 @@ grafico_outliers <- grafico_outliers +
 grafico_outliers
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png" width="768" />
 
 Ahora sabemos que *mapacha, pachache, chepama* y *chachema* son outliers 🤨
 
@@ -285,7 +285,7 @@ grafico_outliers <- grafico_outliers +
 grafico_outliers
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-14-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-14-1.png" width="768" />
 
 ## Gráfico interactivo
 

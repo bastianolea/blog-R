@@ -384,7 +384,7 @@ iris |>
   theme_minimal()
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
 
 Si queremos que no aparezca el código, y sólo aparezca el output, agregamos `#| echo: false` al inicio del bloque. De este modo sólo saldrá el resultado del código, sin el código mismo. Por ejemplo, si en un bloque pongo `head(iris)` pero agrego antes `#| echo: false`, sólo saldrá el resultado, sin el código:
 
@@ -423,7 +423,7 @@ iris |>
 ```
 ````
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="384" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="384" />
 
 ### Código entre el texto
 

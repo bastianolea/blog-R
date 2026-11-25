@@ -1,6 +1,8 @@
 ## 2026/11/25
 
 - Nuevo **botón de _copiar código_** en todos los bloques de código del sitio. Implementado [en este script](https://github.com/bastianolea/blog-R/tree/master/static/js/copiar-codigo.js) y se aplica a todas las páginas del blog al estar [en `baseof.html`](https://github.com/bastianolea/blog-R/tree/master/layouts/_default/baseof.html)
+- Mejora en los degradados de las publicaciones similares al final de los post.
+- Implementado _lazy loading_ en imágenes de publicaciones para cargas más rápidas del sitio.
 
 ## 2026/11/19
 

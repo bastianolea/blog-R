@@ -75,7 +75,7 @@ datos |>
   geom_col()
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
 
 Luego fui pensando qué características tenían que tener los datos para poder visualizarlos como en el gráfico original 🤔
 
@@ -215,7 +215,7 @@ datos |>
   guides(fill = guide_legend(position = "top"))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="768" />
 
 Claramente no podemos usar columnas (`geom_col()`) porque necesitamos indicar el punto de partida de cada columna en el eje vertical.
 
@@ -235,7 +235,7 @@ datos |>
   guides(fill = guide_legend(position = "top"))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
 
 ¡Estamos cerca! Ahora engrosamos las líneas con el argumento `linewidth` dentro de `geom_segment()`, agregamos texto con `geom_text()` que se posicione según si es positivo o negativo, una escala de colores con `scale_color_manual()`, y algunos detalles en el tema.
 
@@ -283,6 +283,6 @@ datos |>
         panel.grid.major.y = element_line(linetype = "dashed", linewidth = 0.2, color = "grey80"))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/grafico_puente_ggplot-1.png" width="1400" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/grafico_puente_ggplot-1.png" width="1400" />
 
 Listo! Quedó idéntico al original, y también más elegante, pero lo más importante: quedó **reproducible** y listo para empaquetarse en una función que te permita **crear cientos de estos mismos gráficos** con datos distintos o actualizados.

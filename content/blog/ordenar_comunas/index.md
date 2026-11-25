@@ -141,7 +141,7 @@ comunas |>
   scale_x_continuous(expand = c(0, 0))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
 
 Tampoco nos serviría ordenarla por los códigos únicos territoriales, dado que éstos empiezan con el código de las regiones, y [como vimos en el otro post,](../../../blog/ordenar_regiones/) los códigos regionales no ordenan geográficamente las regiones, y menos a las comunas.
 
@@ -284,7 +284,7 @@ comunas_ordenadas |>
   scale_x_continuous(expand = c(0, 0))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="768" />
 
 Al igual como nos pasó con el [ordenamiento de regiones](../../../blog/ordenar_regiones/), la variable `nombre_comuna` es una variable de texto (tipo caracter) y que no tiene un orden intrínseco, así que se asume que su orden es alfabético. Por lo tanto, tenemos que darle un orden a esta variable, convirtiéndola a factor con el orden de una segunda variable numérica usando `fct_reorder()`; en otras palabras, darle a `nombre_comuna` el orden que tiene la variable numérica `orden_comuna`:
 
@@ -313,6 +313,6 @@ comunas_ordenadas_2 |>
   scale_x_continuous(expand = c(0, 0))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-10-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-10-1.png" width="768" />
 
 Aparecen visualmente de norte a sur (de arriba a abajo) porque al ordenarlas le pusimos un orden descendiente (`.desc = TRUE`), y ésto es necesario porque generalmente en los gráficos el origen o inicio de los ejes es en 1 y el valor de la variable aumenta a medida que se aleja del origen.

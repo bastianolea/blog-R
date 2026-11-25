@@ -119,7 +119,7 @@ grafico_comunas <- mapa_comunas |>
 grafico_comunas
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/grafico-comunas-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/grafico-comunas-1.png" width="768" />
 
 {{< relacionada "/blog/ggplot2" >}}
 
@@ -132,7 +132,7 @@ grafico_comunas +
   coord_sf(xlim = c(-77, -65))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/grafico-comunas-recortado-1.png" width="288" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/grafico-comunas-recortado-1.png" width="288" />
 
 ## Mapa regional de Chile
 
@@ -184,7 +184,7 @@ grafico_regiones <- mapa_regiones |>
 grafico_regiones
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/grafico-regiones-1.png" width="288" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/grafico-regiones-1.png" width="288" />
 
 Ahora que tenemos nuestros mapas por comunas y por regiones, la idea es poder utilizarlos para visualizar datos en ellos!
 
@@ -370,7 +370,7 @@ mapa_comunas_2 |>
   theme(legend.key.width = unit(3, "mm"))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/mapa-poblacion-comunas-1.png" width="288" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/mapa-poblacion-comunas-1.png" width="288" />
 
 Como resultado obtenemos un **mapa coroplético** de la población comunal.
 
@@ -391,7 +391,7 @@ mapa_comunas_2 |>
   theme(legend.key.width = unit(3, "mm"))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/mapa-superficie-comunas-1.png" width="288" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/mapa-superficie-comunas-1.png" width="288" />
 
 {{< relacionada "/blog/tutorial_mapa_urbano/" >}}
 
@@ -420,7 +420,7 @@ mapa_comunas_filtro |>
   theme(axis.title = element_blank())
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/mapa-region-ohiggins-1.png" width="576" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/mapa-region-ohiggins-1.png" width="576" />
 
 En este caso, agregamos también la función `geom_sf_text()` para agregar una capa a nuestro gráfico que contiene las **cifras** para cada comuna.
 
@@ -611,7 +611,7 @@ mapa_regiones_2 |>
   theme(legend.key.width = unit(3, "mm"))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/mapa-pib-regiones-1.png" width="288" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/mapa-pib-regiones-1.png" width="288" />
 
 ------------------------------------------------------------------------
 

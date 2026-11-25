@@ -341,7 +341,7 @@ En concreto, la leyenda bivariada es un gráfico por sí mismo, así que podemos
 leyenda
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-14-1.png" width="384" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-14-1.png" width="384" />
 
 ### Mapa bivariado
 
@@ -360,7 +360,7 @@ mapa <- mapa_datos_bi |>
 mapa
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/mapa-bivariado-rm-sin-leyenda-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/mapa-bivariado-rm-sin-leyenda-1.png" width="768" />
 
 Tenemos un mapa bivariado! Pero aún tenemos que agregarle la leyenda para que pueda ser interpretable.
 
@@ -384,7 +384,7 @@ mapa_bivariado <- mapa +
 mapa_bivariado
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/mapa-bivariado-rm-escolaridad-pobreza-1.png" width="576" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/mapa-bivariado-rm-escolaridad-pobreza-1.png" width="576" />
 
 Obtenemos un mapa bivariado donde cada comuna se colorea según la combinación de sus dos variables.
 
@@ -452,7 +452,7 @@ mapa_bivariado <- mapa +
 mapa_bivariado
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/mapa-bivariado-ohiggins-escolaridad-pobreza-1.png" width="672" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/mapa-bivariado-ohiggins-escolaridad-pobreza-1.png" width="672" />
 
 Dos mapas por el precio de uno! Pero en este segundo mapa pusimos la leyenda un poco distinto: hicimos espacio debajo del mapa en la capa `theme()` del gráfico, dado que la forma del mapa no dejaba muchos espacios para poner la leyenda.
 

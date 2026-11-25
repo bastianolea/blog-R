@@ -63,7 +63,7 @@ datos |>
   geom_point(size = 4, alpha = 0.7)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
 
 {{< info "Aparentemente `{ggtern}` sobreescribe y cambia varias cosas del funcionamiento interno de `{ggplot2}, por lo que puede que provoque problemas o incompatibilidades. Recuerda que si tienes problemas, siempre se puede **Reiniciar R** desde el menú _Session_ de RStudio." >}}
 
@@ -84,7 +84,7 @@ datos |>
   geom_point(size = 4, alpha = 0.7)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="768" />
 
 Esto se debe a que, como se trata de tres variables, no pueden representarse exactamente como sí podrían en un plano cartesiano, sino que **los valores son escalados entre 0 y 100**. En este sentido, los valores que aparecen en los ejes refieren al porcentaje de la variable con respecto a las demás.
 
@@ -103,7 +103,7 @@ datos |>
   geom_point(size = 8, alpha = 0.7)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-1.png" width="768" />
 
 Pero lo mismo va a pasar si la suma de las tres variables no es 100, dado que, como dijimos, las variables se escalan.
 
@@ -124,7 +124,7 @@ datos |>
   ggtern::theme_hidelabels()
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-1.png" width="768" />
 
 ### Visualizar tres variables
 
@@ -149,7 +149,7 @@ datos |>
   ggtern::theme_hidelabels()
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="768" />
 
 En este ejemplo podemos ver que los valores del grupo A tienen mayor valor en la variable `x` que los del grupo `b`, los cuales a su vez tienen mayor valor de `z`.
 
@@ -197,7 +197,7 @@ datos |>
   labs(x = "A", y = "B", z = "C")
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
 
 En este gráfico podemos ver que la unidad de información empieza con alto valor de `C`, el cual va disminuyendo en la medida que aumenta su valor de `B` y levemente aumenta su valor de `A`, terminando en una posición más balanceada.
 
@@ -275,7 +275,7 @@ ggtern() +
   ggtern::theme_hidelabels()
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
 
 Para aclarar los colores del fondo podemos usar la función `col_lighter()` de `{scales}`, como detallamos en el [post sobre colores en `{ggplot2}`](../../../blog/colores/):
 
@@ -292,7 +292,7 @@ ggtern() +
   ggtern::theme_hidelabels()
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png" width="768" />
 
 Finalmente podemos agregar los datos en otra capa de `geom_point()` sobre el fondo:
 
@@ -317,7 +317,7 @@ datos |>
   ggtern::theme_hidelabels()
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-14-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-14-1.png" width="768" />
 
 ## Referencias
 

@@ -282,7 +282,7 @@ paleta <- c("#C490FF",
 show_col(paleta)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-18-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-18-1.png" width="768" />
 
 ``` r
 color_base = "#5911AC"
@@ -294,7 +294,7 @@ color_detalle = col_mix(color_base, "white", amount = 0.1) |>
 show_col(c(color_base, color_fondo, color_texto, color_detalle))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-18-2.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-18-2.png" width="768" />
 
 Luego definimos algunos elementos del tema del gráfico, como el fondo oscuro y las letras claras, y la eliminación de elementos del panel del gráfico que no necesitamos:
 

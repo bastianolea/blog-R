@@ -261,7 +261,7 @@ desarrollo_largo |>
   labs(y = "Índice de desarrollo humano", color = "País", x = NULL)
 ```
 
-<img src="tidyr_pivotar.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
+<img loading="lazy" src="tidyr_pivotar.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
 
 {{< /detalles >}}
 
@@ -368,7 +368,7 @@ pobreza_largo |>
   labs(x = NULL, y = NULL)
 ```
 
-<img src="tidyr_pivotar.markdown_strict_files/figure-markdown_strict/unnamed-chunk-18-1.png" width="768" />
+<img loading="lazy" src="tidyr_pivotar.markdown_strict_files/figure-markdown_strict/unnamed-chunk-18-1.png" width="768" />
 
 {{< /detalles >}}
 

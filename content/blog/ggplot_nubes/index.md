@@ -51,7 +51,7 @@ iris |>
   theme(plot.background = element_rect(fill = "#EAD1FA", linewidth = 0))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="672" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="672" />
 
 Luego que tenemos un gráfico base, hacemos una prueba aplicando `geom_jitter()` a los puntos, que hace que la posición de los puntos sea siempre aleatoria, y cambiamos los rangos de tamaño y de transparencia:
 
@@ -71,7 +71,7 @@ iris |>
   theme(plot.background = element_rect(fill = "#EAD1FA", linewidth = 0))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="672" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="672" />
 
 Ahora que tenemos un gráfico de movimiento aleatorio, agregamos a `geom_jitter()` la función `with_blur()` del paquete `{ggfx}`, que desenfoca el elemento al que se la apliquemos. Así creamos el efecto de humo o nube:
 
@@ -91,7 +91,7 @@ iris |>
   theme(plot.background = element_rect(fill = "#EAD1FA", linewidth = 0))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="672" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="672" />
 
 Una vez que tenemos un gráfico interesante, le agregamos más parámetros aleatorios, y lo metemos dentro de `purrr::map()` para generar muchos gráficos de una sola vez:
 
@@ -127,47 +127,47 @@ map(1:9, ~{
 
     [[1]]
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="672" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="672" />
 
 
     [[2]]
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-2.png" width="672" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-2.png" width="672" />
 
 
     [[3]]
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-3.png" width="672" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-3.png" width="672" />
 
 
     [[4]]
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-4.png" width="672" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-4.png" width="672" />
 
 
     [[5]]
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-5.png" width="672" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-5.png" width="672" />
 
 
     [[6]]
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-6.png" width="672" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-6.png" width="672" />
 
 
     [[7]]
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-7.png" width="672" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-7.png" width="672" />
 
 
     [[8]]
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-8.png" width="672" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-8.png" width="672" />
 
 
     [[9]]
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-9.png" width="672" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-9.png" width="672" />
 
 Si queremos guardar los resultados a una carpeta, agregamos el siguiente código dentro de la iteración con `map()` para guardar los gráficos en una carpeta, dándole a los archivos nombres aleatorios para que no se sobreescriban.
 

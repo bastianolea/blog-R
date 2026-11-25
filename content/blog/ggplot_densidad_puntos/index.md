@@ -158,7 +158,7 @@ puntos(200, radio = 1)[[1]] |>
   theme_void()
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-1.png" width="768" />
 
 Perfecto: los puntos quedan distribuidos de forma homogénea por todo el interior del círculo.
 
@@ -229,7 +229,7 @@ ggplot() +
     ℹ Please consider using `annotate()` or provide this layer with data containing
       a single row.
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-10-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-10-1.png" width="768" />
 
 Nótese que le pasamos `distinct(nombre_comuna)` como datos del círculo, porque queremos **un solo círculo por ciudad** (no uno por cada punto). El radio es ligeramente más grande que el de los puntos (`radio + 0.04`) para que actúe como borde visual.
 
@@ -257,7 +257,7 @@ ggplot() +
     ℹ Please consider using `annotate()` or provide this layer with data containing
       a single row.
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-1.png" width="768" />
 
 Ya se puede ver el efecto: las ciudades con más densidad tienen el círculo más lleno de puntos. Santiago tiene el círculo repleto, mientras que Castro tiene apenas unos pocos puntos dispersos.
 
@@ -298,7 +298,7 @@ ggplot() +
     ℹ Please consider using `annotate()` or provide this layer with data containing
       a single row.
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
 
 El argumento `clip = "off"` en `coord_fixed()` es importante: sin él, el texto que sobresale del panel quedaría cortado.
 
@@ -343,7 +343,7 @@ ggplot() +
     Warning in prettyNum(.Internal(format(x, trim, digits, nsmall, width, 3L, :
     'big.mark' and 'decimal.mark' are both '.', which could be confusing
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png" width="768" />
 
 ### Paso 5: Tema y estética final
 
@@ -411,7 +411,7 @@ ggplot() +
     Warning in prettyNum(.Internal(format(x, trim, digits, nsmall, width, 3L, :
     'big.mark' and 'decimal.mark' are both '.', which could be confusing
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-14-1.png" width="864" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-14-1.png" width="864" />
 
 ## El resultado
 

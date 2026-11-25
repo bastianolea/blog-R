@@ -259,7 +259,7 @@ mapa_rm +
                 right = 0.3, top = 1)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/mapa_bivariado_adultomayor_propiedad_vivienda_santiago-1.png" width="672" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/mapa_bivariado_adultomayor_propiedad_vivienda_santiago-1.png" width="672" />
 
 Podemos ver que el centro de Santiago presenta menos porcentaje de viviendas propias (color blanco), como en Estación Central y Santiago, y en sus márgenes un mayor porcentaje de adultos mayores (color turquesa) en comunas como Providencia, San Joaquín y Conchalí. En las comunas del norte de la región, como Lampa, Colina, Quilicura y Lo Barnechea vemos los mayores porcentajes de viviendas propias (color fucsia). En las comunas del sector oriente de Santiago, como La Florida, La Reina, Las Condes y Vitacura vemos mayor proporción de adultos mayores mezclada con un porcentaje mayor de viviendas propias. Solamente en las comunas de la zona poniente de la región, como San Pedro y María Pinto, vemos la combinación de alto porcentaje de adultos mayores y alto porcentaje de viviendas propias (azul oscuro).
 
@@ -297,7 +297,7 @@ mapa_valpo +
                 right = 1.1, top = 0.4)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/mapa_bivariado_adultomayor_propiedad_vivienda_valparaiso-1.png" width="672" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/mapa_bivariado_adultomayor_propiedad_vivienda_valparaiso-1.png" width="672" />
 
 En la región de Valparaíso, vemos que las comunas de Papudo, Petorca, Santo Domingo y Olmué presentan una combinación de alto porcentaje de viviendas propias y de adultos mayores en simultáneo. En Zapallar, Puchuncaví y El Tabo vemos alto porcentaje de adultos mayores, y porcentaje medio de viviendas propias, mintras que en comunas del interior, como Panquehue, San Esteban y Calle Larga vemos alto porcentaje de viviendas propias con porcentaje medio de adultos mayores. Finalmente, en comunas del litoral como Algarrobo, El Quisco, Cartagena y Viña del Mar vemos alto porcentaje de envejecimiento con bajo porcentaje de propiedad, lo que puede tener relación a la actividad turística y la población flotante.
 
@@ -334,7 +334,7 @@ mapa_ohiggins +
                 right = 0.2, top = 0.15)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/mapa_bivariado_adultomayor_propiedad_vivienda_ohiggins-1.png" width="672" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/mapa_bivariado_adultomayor_propiedad_vivienda_ohiggins-1.png" width="672" />
 
 En la región de O'Higgins vemos muchas más comunas de alto envejecimiento y alta propiedad de viviendas, sobre todo en el sector de Colchagua y Cardenal Caro, en comunas como Litueche, Paredones, Lolol, Chépica, Marchihue, Pumanque y Pichidegua. En contraposición, en la provincia del Cachapoal se divisa una tendencia hacia menor porcentaje de adultos mayores y porcentaje medianamente alto de viviendas propias, sobre todo en counas como Requínoa, Rengo, Machalí, Graneros y Codegua. En Requínoa vemos un alto porcentaje de viviendas propias con bajo nivel de envejecimiento. En O'Higgins vemos envejecimiento en ciertos territorios y rejuvenecimiento en otros, probablemente relacionado a tendencias laborales (agricultura y minería).
 
@@ -367,7 +367,7 @@ mapa_biobio +
                 right = 1, top = 1.)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/mapa_bivariado_adultomayor_propiedad_vivienda_biobio-1.png" width="672" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/mapa_bivariado_adultomayor_propiedad_vivienda_biobio-1.png" width="672" />
 
 En toda la zona de la costa del Biobío vemos comunas con alto porcentaje de propiedad de las viviendas pero bajo envejecimiento de la población: Coronel, Arauco, Lebu, Los Álamos, Cañete y Tirúa. Solamente en las comunas de Lota y Santa Juana vemos comunas con alto envejecimiento y alto porcentaje de propiedad. En la zona norte de la región vemos una mayor tendencia al medio y alto porcentaje de adultos mayores, con niveles bajos o medios de propiedad de vivienda. Hacia el interior, en comunas como Quilleco y Quilaco y alrededores nuevamente vemos alto envejecimiento con poco porcentaje de propiedad.
 

@@ -6,3 +6,8 @@
 # rutas relativas a la página (evita 404). Debe correr ANTES de Hugo.
 source("R/funciones.R")
 corregir_enlaces_qmd()
+
+# Agrega loading="lazy" a las figuras de chunks (<img> crudo que escribe
+# Quarto en los index.md), para que se descarguen al acercarse a la pantalla.
+# También debe correr ANTES de Hugo, porque el HTML crudo no pasa por hooks.
+agregar_lazy_figuras()

@@ -224,7 +224,7 @@ regiones_ordenadas |>
   geom_col()
 ```
 
-<img src="ordenar_regiones.markdown_strict_files/figure-markdown_strict/unnamed-chunk-10-1.png" width="768" />
+<img loading="lazy" src="ordenar_regiones.markdown_strict_files/figure-markdown_strict/unnamed-chunk-10-1.png" width="768" />
 
 Las regiones nuevamente aparecen desordenadas. ¿Por qué? Porque `{ggplot2}`, la librería de visualización de datos que usamos, así como muchos otros paquetes, no se basan en en el orden de las filas de la base de datos que usemos, sino en el *orden de la variable.* Como la variable `nombre_region` es una variable de texto (tipo *caracter*), no tiene un orden, así que se asume que su orden es alfabético (en el gráfico vemos que abajo están las regiones que empiezan con *A*, porque el eje `y` nace desde el cero que está abajo y aumenta hacia arriba).
 
@@ -251,7 +251,7 @@ regiones_ordenadas_2 |>
   geom_col()
 ```
 
-<img src="ordenar_regiones.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
+<img loading="lazy" src="ordenar_regiones.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
 
 Naturalmente, las regiones aparecen al revés, porque el eje `y` parte desde abajo y aumenta hacia arriba, entonces la primera región (la de más al norte) aparece abajo. Pero sería esperable que las regiones estén ordenadas de norte a sur y de arriba hacia abajo (en el hemisferio sur), así que podemos invertir el orden del factor:
 
@@ -265,7 +265,7 @@ regiones_ordenadas_2 |>
   geom_col()
 ```
 
-<img src="ordenar_regiones.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png" width="768" />
+<img loading="lazy" src="ordenar_regiones.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png" width="768" />
 
 ¡Listo!
 

@@ -86,7 +86,7 @@ iris |>
   scale_color_brewer(palette = "Dark2")
 ```
 
-<img src="ggiraph.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
+<img loading="lazy" src="ggiraph.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
 
 Ahora convertimos el gráfico en interactivo usando `{ggiraph}`. Para ello, identificaremos las [funciones de geometrías](../../../blog/ggplot2/#introducción) del gráfico (en este caso `geom_point()` y la cambiaremos a `geom_point_interactive()`. Esta capa del gráfico seguirá funcionando igual que antes, pero ahora podremos agregarle nuevos argumentos:
 

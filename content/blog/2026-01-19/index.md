@@ -150,15 +150,15 @@ De un total de 521 postulaciones, 60 personas obtuvieron un cupo.
 
 De las 60 personas, 37 son mujeres, y 8 son no binarias.
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
 
 12 personas trans obtuvieron cupo.
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
 
 Finalmente, 27 personas son de Chile, 16 de México, y 17 de otros países de latinoamérica.
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
 
 💜 Gracias a todxs por su interés! En sus correos tendrán la confirmación del cupo, y cerca del día de inicio del curso recibirán el enlace de conexión.
 

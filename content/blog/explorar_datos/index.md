@@ -103,7 +103,7 @@ ggplot2::qplot(Sepal.Length, data = iris, geom = "histogram")
 
     `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
 
 ``` r
 library(ggplot2)
@@ -115,7 +115,7 @@ ggplot(iris) +
 
     `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-2.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-2.png" width="768" />
 
 ``` r
 library(GGally)
@@ -138,6 +138,6 @@ iris |>
     `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
     `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
 
 [Florencia Mangini](https://www.thinkingondata.com/how-to-show-correlations-between-variables/)

@@ -84,7 +84,7 @@ mapa_regiones |>
   geom_sf()
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
 
 {{< relacionada "/blog/mapas_sf" >}}
 
@@ -99,7 +99,7 @@ mapa_regiones |>
            ylim = c(-42, -56))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
 
 Podemos usar el paquete {rmapshaper} para simplificar las geometrías del mapa, bajando así el nivel de detalle de la visualización resultante:
 
@@ -114,7 +114,7 @@ mapa_regiones_simple |>
   geom_sf()
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
 
 ``` r
 mapa_regiones_simple |> 
@@ -125,7 +125,7 @@ mapa_regiones_simple |>
            ylim = c(-42, -56))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-2.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-2.png" width="768" />
 
 En la función `ms_simplify()`, el valor del argumento `keep` define la calidad resultante del mapa. Si el valor es menor, el mapa tendrá menos detalle.
 
@@ -139,7 +139,7 @@ mapa_regiones |>
            ylim = c(-42, -56))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="768" />
 
 En la función `ms_simplify()`, el valor del argumento `keep` define la calidad resultante del mapa. Si el valor es menor, el mapa tendrá menos detalle.
 
@@ -175,7 +175,7 @@ library(patchwork)
 normal + medio + bajo
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-1.png" width="768" />
 
 {{< relacionada "/blog/mapa_chile_triple/" >}}
 

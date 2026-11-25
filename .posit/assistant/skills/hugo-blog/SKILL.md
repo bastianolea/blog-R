@@ -289,6 +289,8 @@ corregir_enlaces_qmd()
 ```
 La contraparte `revisar_enlaces_qmd()` (que solo **detecta** enlaces `](./...)` sin corregir) sigue llamándose desde `R/build2.R` como verificación post-build.
 
+`R/build.R` también corre `agregar_lazy_figuras()` (ver «Carga diferida de figuras de chunks»), que comparte exactamente las mismas limitaciones de cuándo se ejecuta.
+
 **Cuándo corre `build.R` (comprobado empíricamente 2026-08-31):** `build.R` se ejecuta en el build **completo** — es decir, en `blogdown::build_site()` y en el build **inicial** de `blogdown::serve_site()` — pero **no** en los rebuilds **incrementales** que hace `serve_site()` mientras está activo (esos los hace Hugo solo, sin pasar por R). Se verificó instrumentando `build.R` con un marcador con timestamp: aparece una entrada al arrancar `serve_site()`, pero un `quarto render` posterior (con el servidor activo) no agrega otra y el enlace queda roto.
 
 **Ojo con el editing en vivo:** como `blogdown.knit.on_save = TRUE` re-renderiza el `.qmd` al guardar, el `index.md` vuelve a quedar con `./` tras cada guardado, y como el rebuild incremental no corre `build.R`, esos enlaces **no** se auto-corrigen durante la sesión de preview. Por eso: (1) para el sitio publicado, la corrección la garantiza `build.R` durante `build_site()` — pero como Netlify compila con `hugo` directo (ver `netlify.toml`), los `.md` commiteados ya deben estar corregidos: correr `corregir_enlaces_qmd()` (o `build_site()`) antes del `git push`; (2) durante la previsualización, tras guardar hay que volver a correr `corregir_enlaces_qmd()` a mano (o reiniciar `serve_site()`, que sí dispara el build inicial) para ver bien los enlaces internos.
@@ -296,6 +298,17 @@ La contraparte `revisar_enlaces_qmd()` (que solo **detecta** enlaces `](./...)` 
 **Alternativa para casos puntuales:** escribir el enlace interno como HTML crudo (`<a href="/tags/x/">texto</a>`) o dentro de un shortcode, que son inmunes a la reescritura.
 
 > Este es un caso particular de un patrón más general — ver «HTML y bloques crudos en `.qmd`: qué sobrevive y qué no al pasar por Pandoc» más abajo.
+
+
+## Carga diferida de figuras de chunks (`loading="lazy"`)
+
+Implementado 2026-11-25. Quarto escribe las figuras de chunks como HTML crudo en el `index.md` (`<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />`), que no pasa por hooks de render de Hugo (`layouts/_markup/` solo tiene `render-table.html`), y Pandoc descarta atributos de imagen escritos en el `.qmd`. Por eso el atributo se agrega con un post-proceso en R.
+
+- **Función:** `agregar_lazy_figuras()` en `R/funciones.R`. Recorre `content/blog/**/index.md` y reemplaza `<img src="...` por `<img loading="lazy" src="...` solo si la ruta contiene `_files/figure-`. Es idempotente (la etiqueta ya modificada no vuelve a calzar). Primera pasada: 284 figuras en 40 posts.
+- **Cuándo corre:** desde `R/build.R`, después de `corregir_enlaces_qmd()`. Mismas limitaciones (ver «Enlaces internos rotos»): solo en `build_site()` y en el build inicial de `serve_site()`, no en rebuilds incrementales. Al guardar un `.qmd` con `blogdown.knit.on_save`, el `index.md` vuelve a quedar sin el atributo hasta el próximo build completo; como Netlify compila los `.md` commiteados, correr `build_site()` (o la función) antes del `git push`.
+- Las figuras ya traen `width`, así que lazy no produce saltos de diseño. Los shortcodes `imagen*` ya tienen `loading="lazy"` por su cuenta. No afecta los `index.md` para LLMs.
+- **No cubre** figuras escritas con sintaxis Markdown `![](..._files/figure-...)` (8 imágenes en `correlaciones` y `mapa_chile_macrozonas`), que Hugo renderiza sin el atributo, ni los `index.markdown` antiguos.
+- Verificar: `grep -o 'loading=lazy src=[^ ]*figure-' -r public/blog --include=index.html | wc -l` (el HTML está minificado, sin comillas). Ojo: `public/` puede tener carpetas obsoletas de builds viejos (ej. `public/blog/r_introduccion/tutorial_visualizacion_ggplot/`) que aparecen como falsos negativos.
 
 
 ## HTML y bloques crudos en `.qmd`: qué sobrevive y qué no al pasar por Pandoc
@@ -488,7 +501,7 @@ El ícono de lupa en `params.social` (header) también apunta a `/buscar/`.
 
 ## Sección «Los más vistos» (portada)
 
-Partial `layouts/partials/mas_vistos.html`, incluido en `layouts/index.html` bajo las etiquetas. El título «Publicaciones más leídas:» (`.titulo-panel`, con `margin-top: 28px`) vive en `index.html`, envuelto en `{{ with site.Data.mas_vistos }}`; el partial solo dibuja la fila.
+Partial `layouts/partials/mas_vistos.html`, incluido en `layouts/index.html` bajo las etiquetas. El título «Publicaciones más leídas:» (`.titulo-panel`, con `margin-top: 28px`) vive en `index.html`, envuelto en `{{ with hugo.Data.mas_vistos }}`; el partial solo dibuja la fila. (`site.Data`/`.Site.Data` están obsoletos desde Hugo 0.156: usar siempre `hugo.Data`. Ojo: Hugo ejecuta las plantillas aunque estén dentro de `<!-- -->`; para desactivar un partial usar `{{/* */}}`.)
 
 - **Datos:** el partial compartido `layouts/partials/mas_vistos_candidatas.html` (se llama con `partialCached`, una vez por build) lee `data/mas_vistos.yaml` (`publicaciones: [{ruta, visitas}]`), busca cada `ruta` en `site.RegularPages` por `RelPermalink`, **excluye posts cuyo título o ruta contengan «curso»** y devuelve una lista de `{pagina, visitas}`. La portada muestra las primeras 10. Sin el archivo, la sección no se muestra.
 - **Generación:** a mano con `actualizar_mas_vistos()` (`R/funciones.R`), que consulta la API de GoatCounter (`/api/v0/stats/hits`, últimos 12 meses, guarda 60) con `GOATCOUNTER_TOKEN` de `.Renviron`; hay que commitear el YAML. La API exige `start`/`end` con hora (`2025-11-19T00:00:00Z`); con fecha sola responde 404/500.
@@ -559,7 +572,7 @@ Archivo `static/_redirects` para migraciones de URL y dominios. Redirecciones de
 | Redirects | `static/_redirects` |
 | robots.txt (plantilla) | `layouts/robots.txt` |
 | Funciones R custom | `R/funciones.R` |
-| Hook pre-build (corrige enlaces con `corregir_enlaces_qmd()`) | `R/build.R` |
+| Hook pre-build (`corregir_enlaces_qmd()` y `agregar_lazy_figuras()`) | `R/build.R` |
 | Hook post-build (verifica enlaces con `revisar_enlaces_qmd()`) | `R/build2.R` |
 | Instrucciones workflow | `_instrucciones.R` |
 

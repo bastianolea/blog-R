@@ -65,7 +65,7 @@ Para visualizar si es que hay datos perdidos en nuestro dataframe, y además sab
 vis_miss(iris_m)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
 
 `{visdat}` nos muestra visualmente toda la tabla de datos como un rectángulo, destacando los datos perdidos. ¡Súper útil!
 
@@ -75,7 +75,7 @@ Con el argumento `cluster` podemos agrupar los datos perdidos para tener una mej
 vis_miss(iris_m, cluster = TRUE)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="768" />
 
 ## Visualizar el tipo de las columnas
 
@@ -85,7 +85,7 @@ Con `vis_dat()` vemos con colores distintos las columnas que corresponden a tipo
 vis_dat(iris)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-1.png" width="768" />
 
 ## Visualizar los valores de las variables numéricas
 
@@ -97,7 +97,7 @@ iris |>
   vis_value()
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-1.png" width="768" />
 
 ## Visualizar valores numéricos que cumplan una condición
 
@@ -109,7 +109,7 @@ vis_expect(iris, ~.x >= 5)
 
     Warning in Ops.factor(.x, 5): '>=' not meaningful for factors
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="768" />
 
 {{< cafecito >}}
 {{< cursos >}}

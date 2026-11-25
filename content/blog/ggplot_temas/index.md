@@ -59,7 +59,7 @@ grafico <- datos |>
 grafico
 ```
 
-<img src="ggplot_temas.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
+<img loading="lazy" src="ggplot_temas.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
 
 Agreguemos algunas capas extra para mejorar la apariencia de nuestro gráfico:
 
@@ -80,7 +80,7 @@ grafico <- grafico +
 grafico
 ```
 
-<img src="ggplot_temas.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
+<img loading="lazy" src="ggplot_temas.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
 
 ## Cambiar colores de los temas de `{ggplot2}`
 
@@ -99,7 +99,7 @@ grafico +
                 accent = "#9069C0")
 ```
 
-<img src="ggplot_temas.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
+<img loading="lazy" src="ggplot_temas.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
 
 Tan solo con definir tres colores, obtenemos un gráfico con una apariencia mucho mejor! 💜
 
@@ -112,7 +112,7 @@ grafico +
                 accent = "#9069C0")
 ```
 
-<img src="ggplot_temas.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="768" />
+<img loading="lazy" src="ggplot_temas.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="768" />
 
 ## Aplicar temas con `{thematic}`
 
@@ -129,7 +129,7 @@ thematic_on(fg = "#553A74",
 grafico
 ```
 
-<img src="ggplot_temas.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-1.png" width="768" />
+<img loading="lazy" src="ggplot_temas.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-1.png" width="768" />
 
 Solamente con definir dos colores con `thematic_on()` e imprimir el gráfico obtenemos el gráfico con el tema aplicado. Muy lindo 💜
 
@@ -152,7 +152,7 @@ thematic_on(fg = "#51BBAC",
 grafico
 ```
 
-<img src="ggplot_temas.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="768" />
+<img loading="lazy" src="ggplot_temas.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="768" />
 
 ``` r
 thematic_on(fg = "#7FBCC4",
@@ -161,7 +161,7 @@ thematic_on(fg = "#7FBCC4",
 grafico
 ```
 
-<img src="ggplot_temas.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
+<img loading="lazy" src="ggplot_temas.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
 
 ``` r
 thematic_on(fg = "#6E6962",
@@ -170,7 +170,7 @@ thematic_on(fg = "#6E6962",
 grafico
 ```
 
-<img src="ggplot_temas.markdown_strict_files/figure-markdown_strict/unnamed-chunk-10-1.png" width="768" />
+<img loading="lazy" src="ggplot_temas.markdown_strict_files/figure-markdown_strict/unnamed-chunk-10-1.png" width="768" />
 
 Para desactivar la aplicación del tema de colores, usa `thematic_off()` y volverás a la aburrida normalidad.
 
@@ -180,7 +180,7 @@ thematic_off()
 grafico
 ```
 
-<img src="ggplot_temas.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-1.png" width="768" />
+<img loading="lazy" src="ggplot_temas.markdown_strict_files/figure-markdown_strict/unnamed-chunk-11-1.png" width="768" />
 
 ¡Así de simple! Claramente es una forma **básica y rápida** de personalizar la apariencia de las visualizaciones, pero el resultado suele ser positivo considerando el poquísimo esfuerzo necesario para lograrlo. Eficiencia, yey! 🥰
 

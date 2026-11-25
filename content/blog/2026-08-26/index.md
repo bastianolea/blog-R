@@ -50,7 +50,7 @@ datos |>
   geom_histogram(bins = 200)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/distribucion_beta-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/distribucion_beta-1.png" width="768" />
 
 Ahora usamos `getJenksBreaks()` para crear `n` *cortes* en los datos, a partir de los cuales podremos crear `n-1` grupos o categorías. Probemos, como ejemplo, con 5 cortes:
 
@@ -88,7 +88,7 @@ datos_categoricos |>
   scale_fill_discrete(palette = "Dark2")
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/metodo_jenks-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/metodo_jenks-1.png" width="768" />
 
 {{< etiqueta "limpieza-de-datos" >}}
 {{< etiqueta "procesamiento-de-datos" >}}

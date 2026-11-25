@@ -74,7 +74,7 @@ mapa |>
   theme_minimal()
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-1-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-1-1.png" width="768" />
 
 Aquí se nota al tiro el problema: el país es tan delgado y alto 🫦 que si contamos con poco espacio vertical, no se notan los detalles y dejamos márgenes sin uso.
 
@@ -100,7 +100,7 @@ mapa |>
   theme_minimal(base_size = 8)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
 
 Uno de los pasos para el recorte fue *reproyectar* el mapa, dado que vienen con un sistema de coordenadas distinto al que típicamente se usa. Al reproyectar, las coordenadas pasan a estar en grados decimales.
 
@@ -222,7 +222,7 @@ mapa_norte + mapa_centro + mapa_sur +
   theme(axis.text.x = element_blank())
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="1800" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="1800" />
 
 Listo! Ahora el mapa cabe mucho mejor en una hoja, página o imagen.
 
@@ -250,7 +250,7 @@ mapa_norte + mapa_centro + mapa_sur +
   theme(axis.text.x = element_blank())
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
 
 {{< relacionada "blog/tutorial_mapa_urbano/" >}}
 {{< etiqueta "mapas" >}}

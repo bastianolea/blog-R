@@ -45,6 +45,7 @@
           {{ with $thumbnail }}
           <img src="{{ .RelPermalink }}"
                alt="{{ $page.Title }}"
+               loading="lazy"
                style="flex-shrink: 0;
                       width: 52px;
                       height: 38px;

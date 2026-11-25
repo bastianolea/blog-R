@@ -53,7 +53,7 @@ grafico_1 <- kms_año |>
 grafico_1
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png" width="768" />
 
 Efectivamente, la cantidad de kilómetros recorridos para este desafío en cada año ha aumentado de una manera casi lineal.
 
@@ -85,7 +85,7 @@ grafico_1 +
   theme(panel.grid.major.x = element_line())
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
 
 La primera predicción que obtenemos es una predicción de los datos que ya conocemos, pero a partir de la recta ajusta por el modelo. Es decir, son los valores que corresponden a cada punto en el tiempo de acuerdo a la línea de regresión proyectada. Estos valores se asemejan mucho a los valores reales, pero al ser un modelo, no son exactamente iguales, ya que corresponden a una simplificación de la realidad.
 
@@ -218,7 +218,7 @@ kms_año_pred_2 |>
         legend.position.inside = c(.9, .2))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
 
 Considerando los tres años de datos que tenemos de los recorridos en bicicleta de Andrés Arias durante el desafío Rapha Festive 500, podríamos predecir que este año Andrés va a recorrer 1.637 kilómetros entre el 24 y el 31 de diciembre, bajo el supuesto de que cada año Andrés ha aumentado sus kilómetros de forma lineal.
 

@@ -132,7 +132,7 @@ censo_comuna_mapa |>
        caption = "Censo 2024, cartografía censal")
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-7-1.png" width="768" />
 
 <!-- También podemos ver el mapa de manera interactiva con el paquete `{mapview}`: -->
 
@@ -191,7 +191,7 @@ censo_comuna_puntos |>
   scale_color_continuous(palette = "PurpOr")
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="768" />
 
 <!-- Veamos el resultado de forma interactiva:  -->
 
@@ -249,7 +249,7 @@ cuadricula |>
   geom_sf(fill = "#9069C0", color = "#EBD2FA", lwd = 0.8)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/grilla_cuadrada_vacia-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/grilla_cuadrada_vacia-1.png" width="768" />
 
 La cuadrícula usa la misma superficie que el mapa original. Podemos confirmar esto graficando la cuadrícula con los puntos encima:
 
@@ -261,7 +261,7 @@ ggplot() +
           color = "#553A74", alpha = 0.7, size = 1)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/mapa_cuadricula_puntos-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/mapa_cuadricula_puntos-1.png" width="768" />
 
 Con el mapa anterior se entiende mejor el proceso que estamos haciendo: el valor de cada celda va a depender de los puntos que caen dentro de la misma. Para eso, tenemos que cruzar los puntos y las celdas, que hasta ahora son objetos distintos.
 
@@ -409,7 +409,7 @@ censo_comuna_conteo_cuadros |>
        caption = "Censo 2024, cartografía censal")
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-16-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-16-1.png" width="768" />
 
 ¡Queda hermoso! Esta nueva visualización simplifica la complejidad de los datos territoriales originales, representando el espacio en una cuadrícula homogénea que igual permite identificar tendencias en un fenómeno territorial.
 
@@ -436,7 +436,7 @@ hexagonos |>
   geom_sf(fill = "#9069C0", color = "#EBD2FA", lwd = 0.6)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/hexagonos_vacios-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/hexagonos_vacios-1.png" width="768" />
 
 Ahora comparemos la grilla hexagonal con los puntos de las observaciones de nuestros datos, para ver cómo se van a distribuir los valores de los hexágonos en base a los datos de los polígonos territoriales:
 
@@ -448,7 +448,7 @@ ggplot() +
           color = "#553A74", alpha = 0.7, size = 1)
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/mapa_hexagonos_puntos-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/mapa_hexagonos_puntos-1.png" width="768" />
 
 Ahora unimos los datos de dos mapas según su intersección geográfica con un *spatial join* con `st_join()`. Así, se unirán los polígonos correspondientes a los hexágonos con los datos de los puntos cuando ambos compartan la misma ubicación en el territorio. Así, los puntos que caen dentro de una celda se unirán a la fila de esa celda:
 
@@ -555,7 +555,7 @@ censo_comuna_conteo_hex |>
        caption = "Censo 2024, cartografía censal")
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-21-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-21-1.png" width="768" />
 
 ``` r
 censo_comuna_conteo_hex |>
@@ -574,11 +574,11 @@ Podemos repetir el proceso anterior, cambiando el tamaño de las celdas en `st_m
 
 Por ejemplo, podemos hacer los hexágonos más grandes:
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-22-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-22-1.png" width="768" />
 
 ...o hexágonos más chicos:
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-23-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-23-1.png" width="768" />
 
 {{< etiqueta "mapas" >}}
 

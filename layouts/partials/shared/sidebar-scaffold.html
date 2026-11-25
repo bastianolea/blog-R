@@ -2,15 +2,15 @@
 {{ $section := $page.CurrentSection }} <!--save current section-->
 {{ $is_root := eq .CurrentSection .FirstSection }}
 
-<!---
+{{/* desactivados con comentarios de plantilla: dentro de <!-- --> hugo igual ejecuta los partials
 <div style = "padding: 12px;">
 {{ partial "shared/sidebar/sidebar-image.html" $page }}
 </div>
---->
+*/}}
 
 <div class="blog-info ph4 pt4 pb4 pb0-l">
   {{ partial "shared/sidebar/sidebar-header.html" $section }}
-  <!--{{ partial "shared/sidebar/sidebar-link.html" .Params.sidebar }}-->
+  {{/* {{ partial "shared/sidebar/sidebar-link.html" .Params.sidebar }} */}}
 </div>
 
-<!--{{ partial "shared/sidebar/sidebar-adunit.html" .Params.sidebar }}-->
+{{/* {{ partial "shared/sidebar/sidebar-adunit.html" .Params.sidebar }} */}}

@@ -84,7 +84,7 @@ Gracias a `{patchwork}`, unir dos gráficos uno al lado del otro es tan sencillo
 grafico_a + grafico_b
 ```
 
-<img src="patchwork.markdown_strict_files/figure-markdown_strict/plot1-1.png" width="768" />
+<img loading="lazy" src="patchwork.markdown_strict_files/figure-markdown_strict/plot1-1.png" width="768" />
 
 Si queremos ajustar las proporciones de los gráficos, agregamos la función `plot_layout()` para especificar las proporciones. Haremos que uno de los gráficos sea el doble de ancho que el otro:
 
@@ -92,7 +92,7 @@ Si queremos ajustar las proporciones de los gráficos, agregamos la función `pl
 grafico_a + grafico_b + plot_layout(widths = c(1, 2))
 ```
 
-<img src="patchwork.markdown_strict_files/figure-markdown_strict/plot2-1.png" width="768" />
+<img loading="lazy" src="patchwork.markdown_strict_files/figure-markdown_strict/plot2-1.png" width="768" />
 
 ### Combinar dos gráficos uno arriba del otro
 
@@ -102,7 +102,7 @@ Para combinar dos gráficos en disposición vertical; es decir, uno arriba del o
 grafico_a / grafico_b
 ```
 
-<img src="patchwork.markdown_strict_files/figure-markdown_strict/plot3-1.png" width="768" />
+<img loading="lazy" src="patchwork.markdown_strict_files/figure-markdown_strict/plot3-1.png" width="768" />
 
 ### Combinar más de dos gráficos
 
@@ -125,7 +125,7 @@ Teniendo dos gráficos, podemos disponerlos uno al lado dle otro, y el tercer gr
   plot_layout(guides = "collect")
 ```
 
-<img src="patchwork.markdown_strict_files/figure-markdown_strict/plot5-1.png" width="768" />
+<img loading="lazy" src="patchwork.markdown_strict_files/figure-markdown_strict/plot5-1.png" width="768" />
 
 En este caso agregamos una función `plot_layout()` para combinar las leyendas de dos de los gráficos, dado que las leyendas son iguales y sería redundante que cada gráfico las presente por separado.
 
@@ -137,7 +137,7 @@ fila_1 <- grafico_a + grafico_b + plot_layout(widths = c(3, 1))
 fila_1 / grafico_c + plot_layout(guides = "collect")
 ```
 
-<img src="patchwork.markdown_strict_files/figure-markdown_strict/plot6-1.png" width="768" />
+<img loading="lazy" src="patchwork.markdown_strict_files/figure-markdown_strict/plot6-1.png" width="768" />
 
 ## Poner un gráfico dentro de otro
 
@@ -161,7 +161,7 @@ grafico_c + inset_element(grafico_d,
                           left = 0, right = 1)
 ```
 
-<img src="patchwork.markdown_strict_files/figure-markdown_strict/plot7-1.png" width="768" />
+<img loading="lazy" src="patchwork.markdown_strict_files/figure-markdown_strict/plot7-1.png" width="768" />
 
 Notemos que las coordenadas corresponden con el *centro* del área del gráfico, excluyendo el área de la leyenda.
 
@@ -173,7 +173,7 @@ grafico_c + inset_element(grafico_d,
                           left = 0, right = 0.5)
 ```
 
-<img src="patchwork.markdown_strict_files/figure-markdown_strict/plot8-1.png" width="768" />
+<img loading="lazy" src="patchwork.markdown_strict_files/figure-markdown_strict/plot8-1.png" width="768" />
 
 Sabiendo esto, podemos ajustar los argumentos de `inset_element()` para poner el gráfico exactamente donde queremos:
 
@@ -183,7 +183,7 @@ grafico_c + inset_element(grafico_b + guides(fill = guide_none()),
                           left = .2, right = .5)
 ```
 
-<img src="patchwork.markdown_strict_files/figure-markdown_strict/plot9-1.png" width="768" />
+<img loading="lazy" src="patchwork.markdown_strict_files/figure-markdown_strict/plot9-1.png" width="768" />
 
 Naturalmente, podríamos combinar este gráfico con un gráfico insertado con otro gráfico más, o con la cantidad que se nos ocurra:
 
@@ -197,7 +197,7 @@ grafico_c +
   (grafico_a / grafico_a / grafico_a / grafico_a / grafico_a / grafico_a)
 ```
 
-<img src="patchwork.markdown_strict_files/figure-markdown_strict/plot10-1.png" width="768" />
+<img loading="lazy" src="patchwork.markdown_strict_files/figure-markdown_strict/plot10-1.png" width="768" />
 
 Otra forma de insertar un gráfico dentro de otro es ubicándolo a una cierta distancia desde un borde; en este caso, insertaremos un gráfico que solo contiene un texto (el año) en al esquina superior derecha, y para ello, definiremos que el borde izquierdo de la figura insertada `inset_element()` se ubique en el borde izquierdo del gráfico menos 3 centímetros, el borde derecho de la figura insertada en el límite derecho del gráfico, el borde superior en el límite superior del gráfico, y el borde inferior de la figura a 2 centímetros menos del límite superior del gráfico.
 
@@ -215,7 +215,7 @@ grafico_c +
       align_to = "full")
 ```
 
-<img src="patchwork.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="768" />
+<img loading="lazy" src="patchwork.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="768" />
 
 Podemos usar esta técnica para insertar cualquier texto en cualquier posición de un gráfico, incluso fuera de los límites de las escalas (que sería una limitación de hacer lo mismo con `annotate()`.
 

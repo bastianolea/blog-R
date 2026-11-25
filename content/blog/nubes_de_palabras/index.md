@@ -242,7 +242,7 @@ palabras_conteo |>
   scale_size_continuous(range = c(3, 20))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-12-1.png" width="768" />
 
 El beneficio de usar esta estrategia es que te entrega toda la flexibilidad de visualizar datos con `{ggplot2}`. Por ejemplo, podemos agregar un mapeo de la transparencia y el color para crear una nube donde las palabras menos frecuentes sean más transparentes y donde ciertas palabras claves tengan un color distinto:
 
@@ -265,7 +265,7 @@ palabras_conteo |>
   scale_alpha_continuous(range = c(0.4, 1))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-13-1.png" width="768" />
 
 También podemos crear una variable que destaques ciertas palabras específicas dentro de la nube:
 
@@ -295,7 +295,7 @@ palabras_conteo |>
     Warning in wordcloud_boxes(data_points = points_valid_first, boxes = boxes, :
     Some words could not fit on page. They have been removed.
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-14-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-14-1.png" width="768" />
 
 Con esta aproximación podemos crear visualizaciones más personalizadas y complejas a partir de datos de texto, sobre todo si tenemos variables adicionales que nos digan más información sobre las palabras que queremos graficar, cómo puede ser alguna otro criterio de prevalencia de palabras en los documentos, alguna clasificación de las palabras en tópicos o temas, una agrupación de los documentos de donde provienen las palabras, etc.
 

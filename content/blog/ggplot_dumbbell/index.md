@@ -405,7 +405,7 @@ delitos_tasa_clasif |>
   )
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-15-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-15-1.png" width="768" />
 
 Una vez que confirmamos que el gráfico básico funciona como se espera, mejoramos los detalles estéticos del mismo:
 
@@ -455,7 +455,7 @@ delitos_tasa_clasif |>
         plot.title = element_text(face = "bold"))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-16-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-16-1.png" width="768" />
 
 La comparación entre valores funciona, pero ahora veremos una forma distinta de hacerlo.
 
@@ -476,7 +476,7 @@ delitos_tasa_clasif |>
   geom_point()
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-17-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-17-1.png" width="768" />
 
 El argumento `aes(group = delito)` en `geom_line()` le dice a `{ggplot2}` que dibuje una línea por cada tipo de delito, conectando sus dos puntos.
 
@@ -536,7 +536,7 @@ delitos_tasa_clasif |>
         axis.text.y = element_text(face = "bold", color = "#49392A", size = 10))
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-18-1.png" width="768" />
+<img loading="lazy" src="index.markdown_strict_files/figure-markdown_strict/unnamed-chunk-18-1.png" width="768" />
 
 Para cada tipo de delito, vemos que el punto de la izquierda es el menor valor y el de la derecha el mayor, mientras que la línea muestra la brecha.
 

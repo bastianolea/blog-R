@@ -67,7 +67,7 @@ Por defecto, `{ggplot2}` usa las tipografías Helvetica en Mac y Arial en Window
 grafico
 ```
 
-<img src="ggplot_tipografias.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
+<img loading="lazy" src="ggplot_tipografias.markdown_strict_files/figure-markdown_strict/unnamed-chunk-3-1.png" width="768" />
 
 A pesar de no ser malas tipografías, se vuelven aburridas rápidamente.
 
@@ -85,7 +85,7 @@ grafico +
   theme(text = element_text(family = "Menlo"))
 ```
 
-<img src="ggplot_tipografias.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
+<img loading="lazy" src="ggplot_tipografias.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
 
 Si agregamos capas de texto al gráfico (con `geom_text()`, `geom_label()` u otros), tenemos que especificar la tipografía que usaremos en cada capa. En el siguiente ejemplo, agregamos con `geom_text_repel()` una [capa de texto que se repele de los puntos y otras etiquetas de texto automáticamente](../../../blog/ggrepel/).
 
@@ -96,7 +96,7 @@ grafico +
   theme(text = element_text(family = "Menlo"))
 ```
 
-<img src="ggplot_tipografias.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="768" />
+<img loading="lazy" src="ggplot_tipografias.markdown_strict_files/figure-markdown_strict/unnamed-chunk-5-1.png" width="768" />
 
 ## Tipografías web desde Google Fonts
 
@@ -126,7 +126,7 @@ grafico +
   theme(text = element_text(family = "Pacifico"))
 ```
 
-<img src="ggplot_tipografias.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-1.png" width="768" />
+<img loading="lazy" src="ggplot_tipografias.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-1.png" width="768" />
 
 Ahora puedes usar cientos de tipografía con tus gráficos en R! 🥳 Solamente busca la que necesites en [Google Fonts](https://fonts.google.com/) y podrás usarla en `{ggplot2}`.
 
@@ -167,7 +167,7 @@ grafico +
   theme(text = element_text(family = "Arvo"))
 ```
 
-<img src="ggplot_tipografias.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="768" />
+<img loading="lazy" src="ggplot_tipografias.markdown_strict_files/figure-markdown_strict/unnamed-chunk-8-1.png" width="768" />
 
 Este método puede optimizar la ejecución de nuestros scripts, dado que la función `font_add_google()` descarga las tipografías cada vez que ejecutamos la función, mientras que si descargamos los archivos directamente no necesitamos descargar múltiples veces los archivos.
 

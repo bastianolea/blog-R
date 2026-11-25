@@ -88,7 +88,7 @@ mapa_region |>
   coord_sf(xlim = c(-80, -62))
 ```
 
-<img src="mapa_chile_horizontal.markdown_strict_files/figure-markdown_strict/unnamed-chunk-1-1.png" width="768" />
+<img loading="lazy" src="mapa_chile_horizontal.markdown_strict_files/figure-markdown_strict/unnamed-chunk-1-1.png" width="768" />
 
 Cargamos algunos datos regionales para ponerle al mapa, sacados de mi proyecto de [visualización de datos económicos de Chile](https://bastianoleah.shinyapps.io/economia_chile/):
 
@@ -150,7 +150,7 @@ mapa_datos |>
         axis.ticks = element_blank())
 ```
 
-<img src="mapa_chile_horizontal.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
+<img loading="lazy" src="mapa_chile_horizontal.markdown_strict_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="768" />
 
 {{< relacionada "blog/mapa_chile_triple/" >}}
 
@@ -188,7 +188,7 @@ mapa_rotado |>
         axis.ticks = element_blank())
 ```
 
-<img src="mapa_chile_horizontal.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-1.png" width="768" />
+<img loading="lazy" src="mapa_chile_horizontal.markdown_strict_files/figure-markdown_strict/unnamed-chunk-6-1.png" width="768" />
 
 Listo! Revisa el [código completo](https://gist.github.com/bastianolea/8e3dff701fb660ee7cb5091bd1195b5f) en el siguiente botón para poder copiarlo y pegarlo en tu proyecto:
 
