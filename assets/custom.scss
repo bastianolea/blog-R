@@ -585,22 +585,45 @@ $mas-vistos-margen-movil: 4rem;
   text-align: left;
 }
 
+// degradado que se funde con el fondo del sitio; llega a opacidad total antes del
+// borde para tapar del todo el corte del contenido (direccion: right o left)
+@function mas-vistos-degradado($direccion) {
+  @return linear-gradient(to $direccion, rgba($mas-vistos-fondo-sitio, 0), $mas-vistos-fondo-sitio 70%, $mas-vistos-fondo-sitio 90%);
+}
+
 .mas-vistos-contenedor {
   position: relative;
 
-  // degradado en el borde derecho que indica que hay más contenido;
-  // se oculta con js (clase .al-final) al llegar al final del scroll
+  // degradados en los bordes que indican que hay más contenido (js agrega las clases):
+  // el derecho se oculta con .al-final; el izquierdo solo se muestra con .con-scroll
+  &::before,
   &::after {
     content: "";
     position: absolute;
-    right: 0;
     top: 0;
     // 1px más que las tarjetas, que es lo que medía en pantalla
     height: $mas-vistos-alto + 1px;
-    width: 56px;
-    background: linear-gradient(to right, rgba($mas-vistos-fondo-sitio, 0), $mas-vistos-fondo-sitio);
+    width: 60px;
     pointer-events: none;
     transition: opacity 0.2s;
+    // por encima de las tarjetas
+    z-index: 1;
+  }
+
+  &::after {
+    // 2px hacia afuera para que no se vea contenido en el borde
+    right: -2px;
+    background: mas-vistos-degradado(right);
+  }
+
+  &::before {
+    left: -2px;
+    opacity: 0;
+    background: mas-vistos-degradado(left);
+  }
+
+  &.con-scroll::before {
+    opacity: 1;
   }
 
   &.al-final::after {
@@ -638,7 +661,11 @@ $mas-vistos-margen-movil: 4rem;
 // márgenes del sitio y se devuelven como relleno
 @media (max-width: 59.99em) {
   .mas-vistos-contenedor::after {
-    right: -$mas-vistos-margen-movil;
+    right: calc(-#{$mas-vistos-margen-movil} - 2px);
+  }
+
+  .mas-vistos-contenedor::before {
+    left: calc(-#{$mas-vistos-margen-movil} - 2px);
   }
 
   .mas-vistos-fila {
@@ -721,11 +748,11 @@ $populares-margen-movil: 2rem;
   margin: 28px 0 8px;
   text-align: left;
 
+  .mas-vistos-contenedor::before,
   .mas-vistos-contenedor::after {
     // cubrir toda la altura de las tarjetas (sin el padding bajo ellas)
     height: calc(100% - 14px);
     width: 48px;
-    background: linear-gradient(to right, rgba($mas-vistos-fondo-sitio, 0), $mas-vistos-fondo-sitio);
   }
 
   .mas-vistos-fila {
@@ -739,7 +766,11 @@ $populares-margen-movil: 2rem;
 @media (max-width: 59.99em) {
   .populares-relacionadas {
     .mas-vistos-contenedor::after {
-      right: -$populares-margen-movil;
+      right: calc(-#{$populares-margen-movil} - 2px);
+    }
+
+    .mas-vistos-contenedor::before {
+      left: calc(-#{$populares-margen-movil} - 2px);
     }
 
     .mas-vistos-fila {
