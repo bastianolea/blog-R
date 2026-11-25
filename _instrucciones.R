@@ -30,10 +30,10 @@ crear_publicacion(
 
 # crear un post con nombre
 crear_publicacion(
-  title = "Poblador",
-  file = "blog/poblador/index.qmd",
-  tags = c("paquetes", "datos", "Chile"),
-  categories = c("Paquetes")
+  title = "Blog",
+  file = "blog/blog/index.md",
+  tags = c("blog"),
+  # categories = c("Paquetes")
 )
 
 

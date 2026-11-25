@@ -7,6 +7,7 @@ categories: []
 tags:
   - blog
   - Shiny
+  - aplicaciones
 format:
   hugo-md:
     output-file: index
@@ -24,8 +25,6 @@ excerpt: "En este post innecesariamente largo les comento mi irracional alegría
 ---
 
 {{< imagen "buscador-featured.png" >}}
-
-{{< indice >}}
 
 Este blog ya lleva más de 100 publicaciones! 🎉 y si bien [uso las etiquetas](/tags/) para mantener todo organizado y ayudar a descubrir nuevos posts, a veces hasta a mi me cuesta encontrar publicaciones entre tanta cosa 😅
 
@@ -318,5 +317,9 @@ Esto pasa porque, como las apps Shiny tienen un servidor detrás, no pueden esta
 Acabo de contar, y en total (`app.R` + `funciones.R`) la app tiene exactamente 300 líneas de código, que [puedes trajinear en su repositorio](https://github.com/bastianolea/blog_buscador). Me alegra mucho haber resuelto tan rápido este problema que tenía con el sitio, y el resultado se ve lindo y es funcional 🥰 
 
 > Si llegaste hasta aquí leyendo, muchas gracias 💜 Anímate a aprender a programar para que también hagas cosas útiles y bonitas!
+
+{{< relacionada "/blog/shiny/" >}}
+
+{{< etiqueta "shiny" >}}
 
 {{< cursos >}}

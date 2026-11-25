@@ -6,6 +6,7 @@ slug: []
 categories: []
 tags:
   - blog
+  - básico
 format:
   hugo-md:
     output-file: index

@@ -6,7 +6,6 @@ slug: []
 categories: []
 tags:
   - blog
-  - Chile
 format:
   hugo-md:
     output-file: index
@@ -14,7 +13,7 @@ format:
 links:
   - icon: clipboard-list
     icon_pack: fas
-    name: Encuesta
+    name: Participa
     url: https://santiagorusers.github.io/participa.html
   - icon: github
     icon_pack: fab
@@ -22,9 +21,9 @@ links:
     url: https://github.com/bastianolea/encuesta_grupo_r
 ---
 
-{{< info "**Actualización:** el grupo de usuari@s de R ya es una realidad! [Entra al sitio web del grupo](https://santiagorusers.github.io) para más información, o [incríbete para participar](https://santiagorusers.github.io/participa.html) en las reuniones mensuales!" >}}
-
 Me gustaría que existiera un grupo donde gente que use o aprenda R, ya sea en espacios profesionales, académicos o como hobby, puedan conversar, mostrar lo que hacen, compartir aprendizajes y darnos retroalimentación.
+
+{{< info "**Actualización:** el grupo de usuari@s de R ya es una realidad! [Entra al sitio web del grupo](https://santiagorusers.github.io) para más información, o [incríbete para participar](https://santiagorusers.github.io/participa.html) en las reuniones mensuales!" >}}
 
 Así que estoy viendo si existe interés para organizar un **grupo de usuarios/as de R** en Santiago de Chile.
 
