@@ -507,6 +507,11 @@ Partial `layouts/partials/mas_vistos_relacionadas.html`, incluido en el `<footer
 - No requiere variante `.markdown.md` (no es shortcode).
 
 
+## Botón «copiar código» en bloques de código
+
+Implementado 2026-11-25. `static/js/copiar-codigo.js` (cargado con `defer` desde `layouts/_default/baseof.html` si `params.copiar_codigo = true` en `config.toml`) agrega en el navegador un botón (ícono `fas fa-clone`, cambia a `fa-check` al copiar) en la esquina superior derecha de cada `div.highlight`, es decir, solo bloques con lenguaje resaltados por Chroma; las salidas de consola (`pre > code` sin clase, ~890) y el widget `.consola` quedan sin botón a propósito. No modifica los posts ni los `index.md` para LLMs. Copia el `textContent` del `code` con `navigator.clipboard.writeText` (sin respaldo `execCommand`: requiere contexto seguro, que se cumple en https y en `localhost`; si falla, el botón dice «No se pudo copiar»). Todos los `div.highlight` del sitio contienen `code` y ninguno usa tabla de números de línea (`lineNos`); si se activan, habría que tomar solo la última celda. Estilos `.boton-copiar-codigo` en `assets/custom.scss` (junto a los de `.highlight`): invisible hasta hacer hover sobre el bloque; en pantallas táctiles (`hover: none`) siempre visible, tenue. Tooltip `.tooltip-copiar-codigo` («Copiar código» → «¡Copiado!») con el mismo estilo que `.nav-tooltip` de los íconos sociales, pero abre hacia arriba y alineado a la derecha para no tapar el código; en táctiles solo aparece al copiar.
+
+
 ## Precarga del buscador
 
 Al abrir cualquier página, `static/js/precargar-buscador.js` crea (cuando la página terminó de cargar y el navegador está ocioso) un iframe invisible con la app Shiny del buscador, para «calentar» el proceso de R del servidor y que `/buscar/` cargue más rápido. No corre en `/buscar/`, ni con `saveData`, ni en conexiones 2G.
@@ -550,6 +555,7 @@ Archivo `static/_redirects` para migraciones de URL y dominios. Redirecciones de
 | Layout buscador con iframe | `layouts/buscar/list.html` |
 | iframeResizer (script local) | `static/js/iframeResizer.min.js` |
 | Precarga del buscador (setting `params.precargar_buscador`) | `static/js/precargar-buscador.js` + `layouts/_default/baseof.html` |
+| Botón copiar código (setting `params.copiar_codigo`) | `static/js/copiar-codigo.js` + estilos `.boton-copiar-codigo` en `assets/custom.scss` |
 | Redirects | `static/_redirects` |
 | robots.txt (plantilla) | `layouts/robots.txt` |
 | Funciones R custom | `R/funciones.R` |

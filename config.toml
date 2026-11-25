@@ -66,6 +66,9 @@ titleCaseStyle = "firstupper"
   # para que /buscar/ cargue más rápido (static/js/precargar-buscador.js)
   precargar_buscador = false
 
+  # botón para copiar el código de cada bloque de código (static/js/copiar-codigo.js)
+  copiar_codigo = true
+
   # contador de visitas de goatcounter en posts y listados (requiere goatcounter);
   # solo se muestra en publicaciones con más visitas únicas que el mínimo
   [params.contador_visitas]

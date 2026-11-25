@@ -402,6 +402,58 @@ div.cuadros-verticales code {
   opacity: 0.4;
 }
 
+/* botón para copiar código (static/js/copiar-codigo.js) */
+.highlight {
+  position: relative;
+}
+
+.boton-copiar-codigo {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 4px 7px;
+  font-family: inherit;
+  font-size: 11px;
+  line-height: 1;
+  color: #EAD1FA;
+  background-color: #6F5286;
+  border: 1px solid rgba(224, 222, 244, 0.15);
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.highlight:hover .boton-copiar-codigo,
+.boton-copiar-codigo:focus-visible {
+  opacity: 0.85;
+}
+
+.boton-copiar-codigo:hover,
+.boton-copiar-codigo.copiado,
+.boton-copiar-codigo.error {
+  opacity: 1;
+}
+
+.boton-copiar-codigo:hover {
+  background-color: #9069C0;
+}
+
+.boton-copiar-codigo.error {
+  color: #DB56AB;
+}
+
+.texto-copiar-codigo {
+  margin-left: 5px;
+}
+
+/* en pantallas táctiles no hay hover: mostrar siempre, más tenue */
+@media (hover: none) {
+  .boton-copiar-codigo {
+    opacity: 0.6;
+  }
+}
+
 /* color de líneas de código destacadas */
 .chroma .hl {
   background-color: #3b2c46 !important;

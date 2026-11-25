@@ -11,6 +11,9 @@
         {{- end}}
         {{- block "footer" . }}{{- partial "footer.html" . -}}{{- end }}
       </div>
+      {{- if site.Params.copiar_codigo }}
+      <script src="/js/copiar-codigo.js" defer></script>
+      {{- end }}
       {{- if site.Params.precargar_buscador }}
       <script src="/js/precargar-buscador.js" defer></script>
       {{- end }}
