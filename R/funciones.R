@@ -497,32 +497,41 @@ agregar_lazy_figuras <- function(carpeta = "content/blog") {
 
 # publicaciones más vistas ----
 
-# consulta la api de goatcounter y guarda las publicaciones más visitadas en
-# data/mas_vistos.yaml, que hugo usa para la sección "los más vistos" de la portada
-# (layouts/partials/mas_vistos.html). requiere GOATCOUNTER_TOKEN en .Renviron,
-# con permiso de lectura de estadísticas. se ejecuta manualmente.
-actualizar_mas_vistos <- function(cantidad = 100, meses = 12) {
-  token <- Sys.getenv("GOATCOUNTER_TOKEN")
+# consulta la api de goatcounter y guarda las visitas de las publicaciones en
+# data/mas_vistos.yaml. el archivo tiene dos listas:
+# - publicaciones: las más visitadas en los últimos `meses` (hugo las usa para la sección
+#   "los más vistos" de la portada y para las recomendaciones; ver mas_vistos_candidatas.html)
+# - visitas_totales: visitas de todo el tiempo de todas las publicaciones (hugo las usa
+#   para el contador de visitas de los listados; ver page_views_listado.html)
+# requiere GOATCOUNTER_TOKEN en .Renviron, con permiso de lectura de estadísticas.
+# se ejecuta manualmente.
 
-  if (token == "") {
-    cli::cli_alert_danger(
-      "Falta la variable {.envvar GOATCOUNTER_TOKEN} en {.file .Renviron}; no se actualizó el archivo."
-    )
-    return(invisible(NULL))
-  }
+# pide a goatcounter las visitas por ruta entre dos fechas, página por página
+# (la api entrega máximo 100 rutas por consulta y permite excluir las ya recibidas)
+consultar_visitas_goatcounter <- function(token, fecha_inicio, fecha_fin) {
+  visitas <- list()
+  ids_recibidos <- c()
 
-  fecha_fin <- lubridate::today()
-  fecha_inicio <- fecha_fin - lubridate::period(meses, "months")
-
-  respuesta <- tryCatch(
-    httr2::request("https://bastimapache.goatcounter.com/api/v0/stats/hits") |>
+  repeat {
+    consulta <- httr2::request(
+      "https://bastimapache.goatcounter.com/api/v0/stats/hits"
+    ) |>
       httr2::req_auth_bearer_token(token) |>
       httr2::req_url_query(
         # la api exige fechas con hora en formato rfc 3339
         start = paste0(fecha_inicio, "T00:00:00Z"),
         end = paste0(fecha_fin, "T23:59:59Z"),
         limit = 100
-      ) |>
+      )
+
+    if (length(ids_recibidos) > 0) {
+      consulta <- httr2::req_url_query(
+        consulta,
+        exclude_paths = paste(ids_recibidos, collapse = ",")
+      )
+    }
+
+    respuesta <- consulta |>
       # la api de goatcounter falla de forma intermitente (404/500)
       httr2::req_retry(
         max_tries = 4,
@@ -532,23 +541,24 @@ actualizar_mas_vistos <- function(cantidad = 100, meses = 12) {
         backoff = \(intento) 2
       ) |>
       httr2::req_perform() |>
-      httr2::resp_body_json(),
-    error = function(error) {
-      cli::cli_alert_danger(
-        "Error al consultar GoatCounter: {conditionMessage(error)}"
-      )
-      NULL
-    }
-  )
+      httr2::resp_body_json()
 
-  if (is.null(respuesta) || length(respuesta$hits) == 0) {
-    cli::cli_alert_warning(
-      "GoatCounter no entregó resultados; no se actualizó el archivo."
-    )
-    return(invisible(NULL))
+    if (length(respuesta$hits) == 0) {
+      break
+    }
+
+    visitas <- c(visitas, respuesta$hits)
+    ids_recibidos <- c(ids_recibidos, purrr::map_int(respuesta$hits, "path_id"))
+    cli::cli_alert_info("{length(ids_recibidos)} rutas recibidas ({fecha_inicio} a {fecha_fin})")
+
+    if (!isTRUE(respuesta$more)) break
   }
 
-  visitas_por_ruta <- respuesta$hits |>
+  if (length(visitas) == 0) {
+    return(NULL)
+  }
+
+  visitas |>
     purrr::map(\(visita) {
       tibble::tibble(ruta = visita$path, visitas = visita$count)
     }) |>
@@ -564,20 +574,65 @@ actualizar_mas_vistos <- function(cantidad = 100, meses = 12) {
       !stringr::str_detect(ruta, "^/blog/page/")
     ) |>
     dplyr::summarise(visitas = sum(visitas), .by = ruta) |>
-    dplyr::arrange(dplyr::desc(visitas)) |>
+    dplyr::arrange(dplyr::desc(visitas))
+}
+
+actualizar_mas_vistos <- function(cantidad = 100, meses = 6) {
+  token <- Sys.getenv("GOATCOUNTER_TOKEN")
+
+  if (token == "") {
+    cli::cli_alert_danger(
+      "Falta la variable {.envvar GOATCOUNTER_TOKEN} en {.file .Renviron}; no se actualizó el archivo."
+    )
+    return(invisible(NULL))
+  }
+
+  fecha_fin <- lubridate::today()
+  fecha_inicio <- fecha_fin - lubridate::period(meses, "months")
+  # fecha anterior a la creación del blog, para obtener todo el tiempo disponible
+  fecha_inicio_total <- as.Date("2024-11-01")
+
+  visitas <- tryCatch(
+    list(
+      recientes = consultar_visitas_goatcounter(token, fecha_inicio, fecha_fin),
+      totales = consultar_visitas_goatcounter(
+        token,
+        fecha_inicio_total,
+        fecha_fin
+      )
+    ),
+    error = function(error) {
+      cli::cli_alert_danger(
+        "Error al consultar GoatCounter: {conditionMessage(error)}"
+      )
+      NULL
+    }
+  )
+
+  if (
+    is.null(visitas) || is.null(visitas$recientes) || is.null(visitas$totales)
+  ) {
+    cli::cli_alert_warning(
+      "GoatCounter no entregó resultados; no se actualizó el archivo."
+    )
+    return(invisible(NULL))
+  }
+
+  visitas_recientes <- visitas$recientes |>
     dplyr::slice_head(n = cantidad)
 
   datos_yaml <- list(
     actualizado = format(fecha_fin),
     desde = format(fecha_inicio),
-    publicaciones = purrr::transpose(as.list(visitas_por_ruta))
+    publicaciones = purrr::transpose(as.list(visitas_recientes)),
+    visitas_totales = purrr::transpose(as.list(visitas$totales))
   )
 
   yaml::write_yaml(datos_yaml, "data/mas_vistos.yaml")
 
   cli::cli_alert_success(
-    "Se guardaron {nrow(visitas_por_ruta)} publicaciones en {.file data/mas_vistos.yaml}"
+    "Se guardaron {nrow(visitas_recientes)} publicaciones recientes y las visitas totales de {nrow(visitas$totales)} publicaciones en {.file data/mas_vistos.yaml}"
   )
 
-  invisible(visitas_por_ruta)
+  invisible(visitas)
 }

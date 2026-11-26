@@ -66,7 +66,7 @@ Del tema (`themes/hugo-apero/layouts/shortcodes/`): `here`, `panel`, `panelset`.
 - **Markdown handler**: Goldmark (unsafe HTML habilitado)
 - **Comentarios**: Utterances (repo: `bastianolea/blog-R`)
 - **Analytics**: GoatCounter (`bastimapache`) https://bastimapache.goatcounter.com
-- **Math**: KaTeX
+- **Math**: KaTeX, solo se carga en páginas con `math: true` en el front matter (ver «Rendimiento: solicitudes y recursos externos»); hoy ningún post lo usa
 
 ## Estructura de contenido
 
@@ -118,7 +118,7 @@ El cascade en `content/blog/_index.md` aplica por defecto:
 - `show_author_byline: true`
 - `show_comments: true`
 - `show_post_date: true`
-- `show_page_views: false` (medidas con GoatCounter)
+- `show_page_views: true` (contador de visitas con GoatCounter; ver «Contador de visitas»)
 
 
 ## Taxonomías
@@ -504,8 +504,26 @@ El ícono de lupa en `params.social` (header) también apunta a `/buscar/`.
 Partial `layouts/partials/mas_vistos.html`, incluido en `layouts/index.html` bajo las etiquetas. El título «Publicaciones más leídas:» (`.titulo-panel`, con `margin-top: 28px`) vive en `index.html`, envuelto en `{{ with hugo.Data.mas_vistos }}`; el partial solo dibuja la fila. (`site.Data`/`.Site.Data` están obsoletos desde Hugo 0.156: usar siempre `hugo.Data`. Ojo: Hugo ejecuta las plantillas aunque estén dentro de `<!-- -->`; para desactivar un partial usar `{{/* */}}`.)
 
 - **Datos:** el partial compartido `layouts/partials/mas_vistos_candidatas.html` (se llama con `partialCached`, una vez por build) lee `data/mas_vistos.yaml` (`publicaciones: [{ruta, visitas}]`), busca cada `ruta` en `site.RegularPages` por `RelPermalink`, **excluye posts cuyo título o ruta contengan «curso»** y devuelve una lista de `{pagina, visitas}`. La portada muestra las primeras 10. Sin el archivo, la sección no se muestra.
-- **Generación:** a mano con `actualizar_mas_vistos()` (`R/funciones.R`), que consulta la API de GoatCounter (`/api/v0/stats/hits`, últimos 12 meses, guarda 60) con `GOATCOUNTER_TOKEN` de `.Renviron`; hay que commitear el YAML. La API exige `start`/`end` con hora (`2025-11-19T00:00:00Z`); con fecha sola responde 404/500.
+- **Generación:** a mano con `actualizar_mas_vistos()` (`R/funciones.R`), que consulta la API de GoatCounter (`/api/v0/stats/hits`) con `GOATCOUNTER_TOKEN` de `.Renviron`; hay que commitear el YAML. Ver «Contador de visitas» para el formato del archivo. La API exige `start`/`end` con hora (`2025-11-19T00:00:00Z`); con fecha sola responde 404/500.
 - **Interfaz** (estilos `.mas-vistos*` en `assets/custom.scss`, con variables `$mas-vistos-*`): tarjetas de 64 px con fondo morado translúcido y bordes redondeados, imagen `*feature*` completa (sin recortar, redondeada) y texto centrado verticalmente, hasta 3 líneas; último ítem «Ver más >» hacia `/blog/`; barra de scroll delgada morada (estándar + respaldo webkit); degradado en el borde derecho que `static/js/mas-vistos.js` (compartido con las recomendaciones de cada post) oculta al llegar al final (su alto es el de las tarjetas + 1 px). En móvil (< 60 em) la fila se extiende hasta los bordes de la pantalla anulando los 4 rem de márgenes del sitio; en escritorio no, porque a la derecha va la imagen de la portada.
+
+
+## Contador de visitas (listados y posts)
+
+Actualizado 2026-11-26. Antes cada tarjeta de los listados hacía un `XMLHttpRequest` a `goatcounter.com/counter/*.json` (~25 solicitudes en `/blog/`, que PageSpeed marcaba como cadena crítica de 1.930 ms).
+
+- **Listados** (`layouts/partials/shared/summary.html`, ambas ramas con miniatura): usan `layouts/partials/page_views_listado.html`, que imprime el `<span>` con ícono `fa-eye` y «N visitas» **en el build**, sin JS ni solicitudes. Lee `visitas_totales` de `data/mas_vistos.yaml` (visitas de todo el tiempo) y respeta `params.contador_visitas` (`activar`, `visitas_minimas`).
+- **Posts individuales** (`single-sidebar.html`, `_default/single.html`): siguen con `layouts/partials/page_views.html` (1 solicitud en vivo a la API pública `counter/*.json`, cifra acumulada).
+- **`data/mas_vistos.yaml`** tiene dos listas: `publicaciones` (top `cantidad`=100 de los últimos `meses`, por defecto 6; alimenta portada y recomendaciones) y `visitas_totales` (todas las publicaciones, desde 2024-11-01, sin recortar; alimenta el contador de los listados).
+- **Generar:** `actualizar_mas_vistos(cantidad = 100, meses = 6)` en `R/funciones.R` (~30 s). Usa `consultar_visitas_goatcounter()`, que pagina porque la API entrega máximo 100 rutas por consulta: el parámetro es **`exclude_paths`** (ids de `path_id` separados por coma; `exclude` da error 400 «unknown parameter»). Si falla una de las dos consultas no escribe el archivo. Rate limit de la API: 4 solicitudes/s. Fallará en redes que bloqueen `goatcounter.com` (error SSL). Hay que commitear el YAML.
+- **Limitaciones:** las cifras de los listados solo se actualizan al correr la función (no en vivo); un post sin visitas registradas o bajo el umbral no muestra contador. Si el YAML no tiene `visitas_totales`, los listados no muestran contadores.
+- **No** cambiar la fecha de inicio a algo anterior a la creación del blog (2024-11-03): la consulta se vuelve muy lenta.
+
+
+## Rendimiento: solicitudes y recursos externos
+
+- **KaTeX** (`cdn.jsdelivr.net`) solo se carga si la página declara `math: true` en el front matter y `params.math` está en `config.toml`: condición en `layouts/partials/footer.html` (`with and $.Params.math site.Params.math`, que también controla `math-preprocess.html`). Se revisó todo `content/` y ningún post usa fórmulas (`$$`, `` `$x$` ``, `\(...\)`); para un post nuevo con matemáticas, agregar `math: true` (si es `.qmd`, en su YAML).
+- Otros planes de rendimiento (fuentes, caché `immutable`, `defer`) quedaron en `.posit/assistant/plans/2026-11-26-*.md`.
 
 
 ## Publicaciones similares y populares (final de cada post)
@@ -558,6 +576,7 @@ Archivo `static/_redirects` para migraciones de URL y dominios. Redirecciones de
 | Meta/SEO tags (override raíz) | `layouts/partials/meta.html` |
 | Paginación prev/next (override raíz; solo series y páginas sueltas) | `layouts/partials/shared/post-pagination.html` |
 | Candidatas más vistas (compartido) | `layouts/partials/mas_vistos_candidatas.html` |
+| Contador de visitas (listados / posts) | `layouts/partials/page_views_listado.html` / `layouts/partials/page_views.html` |
 | Recomendaciones al final del post | `layouts/partials/mas_vistos_relacionadas.html` |
 | JS del scroll de «más vistos» | `static/js/mas-vistos.js` |
 | Buscador JSON | `layouts/index.json` |

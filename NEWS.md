@@ -3,6 +3,7 @@
 
 - Optimización de carga de tipografías con `swap` para que aparezca contenido incluso antes que se descarguen.
 - Optimización de carga de páginas al hacer menos solicitudes a métricas de GoatCounter.
+- Optimización de carga de páginas al omitir KaTeX si no se usa matemáticas en los posts. Reactivar con `math: true` en YAML.
 
 ## 2026/11/25
 

@@ -1,14 +1,15 @@
 {{/*
   contador de visitas para listados, sin solicitudes en el navegador:
-  usa data/mas_vistos.yaml (visitas de los últimos 12 meses, ver actualizar_mas_vistos() en R/funciones.R).
+  usa las visitas de todo el tiempo de data/mas_vistos.yaml (`visitas_totales`,
+  ver actualizar_mas_vistos() en R/funciones.R).
   umbral: params.contador_visitas.visitas_minimas
 */}}
 {{- $config := site.Params.contador_visitas -}}
 {{- if $config.activar -}}
   {{- $visitas_minimas := $config.visitas_minimas | default 0 -}}
   {{- $ruta := .RelPermalink -}}
-  {{- with hugo.Data.mas_vistos -}}
-    {{- range .publicaciones -}}
+  {{- with hugo.Data.mas_vistos.visitas_totales -}}
+    {{- range . -}}
       {{- if and (eq .ruta $ruta) (gt .visitas $visitas_minimas) -}}
 <span style="font-size: 79%; margin-left: 6px; opacity: .4;"><i class="fas fa-eye" style="margin-right: 3px;"></i>{{ .visitas }} visitas</span>
       {{- end -}}
