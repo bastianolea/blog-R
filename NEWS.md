@@ -1,3 +1,8 @@
+
+## 2026/11/26
+
+- Optimización de carga de tipografías con `swap` para que aparezca contenido incluso antes que se descarguen.
+
 ## 2026/11/25
 
 - Nuevo **botón de _copiar código_** en todos los bloques de código del sitio. Implementado [en este script](https://github.com/bastianolea/blog-R/tree/master/static/js/copiar-codigo.js) y se aplica a todas las páginas del blog al estar [en `baseof.html`](https://github.com/bastianolea/blog-R/tree/master/layouts/_default/baseof.html)
