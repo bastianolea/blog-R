@@ -19,7 +19,8 @@
       {{ end }}
     </div>
   </nav>
-  {{ with site.Params.math }}
+  {{/* las matemáticas (KaTeX) solo se cargan en páginas con `math: true` en el front matter */}}
+  {{ with and $.Params.math site.Params.math }}
     {{ partial "shared/math-preprocess.html" }}
   {{ with .renderer }}
     {{ if eq . "mathjax" }}

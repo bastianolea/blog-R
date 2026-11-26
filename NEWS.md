@@ -2,6 +2,7 @@
 ## 2026/11/26
 
 - Optimización de carga de tipografías con `swap` para que aparezca contenido incluso antes que se descarguen.
+- Optimización de carga de páginas al hacer menos solicitudes a métricas de GoatCounter.
 
 ## 2026/11/25
 

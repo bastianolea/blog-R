@@ -50,7 +50,7 @@
       <!-- contador de visitas -->
         <span>
           {{ if $root.Params.show_page_views }}
-            {{- partial "page_views.html" . -}}
+            {{- partial "page_views_listado.html" . -}}
           {{ end }}
         </span>
       </div>
@@ -91,7 +91,7 @@
       <!-- contador de visitas -->
         <span>
           {{ if $root.Params.show_page_views }}
-        {{- partial "page_views.html" . -}}
+        {{- partial "page_views_listado.html" . -}}
         {{ end }}
         </span>
       </div>
