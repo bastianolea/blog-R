@@ -1,5 +1,5 @@
 ---
-title: Encuentra diferencias entre objetos de R con {waldo}
+title: Encuentra diferencias entre objetos de R con `waldo`
 author: Bastián Olea Herrera
 date: '2025-11-10'
 draft: false
@@ -19,14 +19,14 @@ links:
     name: Paquete
     url: https://waldo.r-lib.org
 excerpt: >-
-  `{waldo}` es un paquete de R para encontrar diferencias entre objetos y
+  `waldo` es un paquete de R para encontrar diferencias entre objetos y
   conjuntos de datos. Es muy útil para solucionarnos problemas comunes que
   generalmente intentamos resolver a mano (o a ojo, jaja). Aprende a usarlo con
   algunos ejemplos prácticos.
 ---
 
 
-[`{waldo}`](https://waldo.r-lib.org) es un paquete de R para encontrar diferencias entre objetos y conjuntos de datos.
+[`waldo` es un paquete de R](https://waldo.r-lib.org) para encontrar diferencias entre objetos y conjuntos de datos.
 
 Creemos dos vectores de datos de ejemplo:
 
@@ -35,7 +35,7 @@ vector_a <- c("a", "b", "c", "d", "e")
 vector_b <- c("a", "b", "c", "f")
 ```
 
-Si los comparamos con la función `all.equal()`, de R base, obtenemos un resultado poco informativo:
+Si los comparamos con la función `all.equal()` de R base obtenemos un resultado poco informativo:
 
 ``` r
 # comparar con base
@@ -51,7 +51,7 @@ Pero si usamos `waldo::compare()`, obtenemos una comparación ordenada y clara d
 
 ``` r
 # comparar con waldo
-waldo::compare(vector_a, vector_b)
+compare(vector_a, vector_b)
 ```
 
 {{< imagen_tamaño "waldo_1.png" "200px" >}}
@@ -91,7 +91,7 @@ iris_c <- iris |> messy::messy()
 compare(head(iris_b), head(iris_c))
 ```
 
-{{< imagen_tamaño "waldo_5.png" "100%">}}
+{{< imagen_tamaño "waldo_5.png" "480px">}}
 
 En este caso te muestra las filas de ambas tablas intercaladas, para que se vean las diferencias, y luego muestra las columnas con los primeros valores distintos.
 
@@ -112,11 +112,11 @@ Para terminar, veamos un ejemplo más práctico: acá hay dos tablas de datos co
 
 | var_ead32 | var_efe23 | var_eea31 | var_edr52 | var_ead30 | var_eae31 |
 |----------:|----------:|----------:|----------:|----------:|----------:|
-| 0.1150604 | 0.7647429 | 0.5429455 | 0.5328345 | 0.2072198 | 0.3364374 |
+| 0.2715286 | 0.1210294 | 0.7176043 | 0.2076723 | 0.2694439 | 0.1075922 |
 
 | var_ead32 | var_efe23 | var_eae31 | var_ede52 | var_ead30 | var_eae30 |
 |----------:|----------:|----------:|----------:|----------:|----------:|
-| 0.8271902 | 0.0638212 | 0.5359525 | 0.9399669 | 0.8877144 |   0.36798 |
+| 0.8332491 |  0.445706 | 0.4351733 | 0.4728819 | 0.3008599 | 0.1886466 |
 
 Así a la rápida es casi imposible saber si las columnas son las mismas, o si no lo son, cuáles sobran y cuáles faltan! 😭
 
@@ -124,9 +124,10 @@ Así a la rápida es casi imposible saber si las columnas son las mismas, o si n
 compare(tabla_a, tabla_b)
 ```
 
-{{< imagen "waldo_3.png" >}}
+{{< imagen "waldo_3.png" "300px" >}}
 
 Así podemos ver claramente que hay tres columnas distintas entre ambas tablas, y cuáles son, en vez de partirnos la cabeza y los ojos comparando nombres de columnas 🤓
 
 {{< cafecito >}}
+{{< etiqueta "consejos" >}}
 {{< cursos >}}
