@@ -469,6 +469,8 @@ El objetivo es llegar a 0 errores, e idealmente a 0 _warnings_ y 0 notas. Recomi
 
 ### Pruebas unitarias
 
+{{< icono-lateral "list-check" >}}
+
 Las pruebas unitarias son pequeños fragmentos de código que **verifican que una función entregue el resultado esperado**. 
 
 La idea es que, en vez de probar una vez que la función funciona, que las pruebas queden guardadas y se ejecuten automáticamente y con frecuencia. De esta forma, cada vez que apliques un cambio, se confirma que no hemos echado a perder nada más, y confirmamos que todo funciona. 
@@ -559,6 +561,56 @@ Las pruebas también se ejecutan como parte de `devtools::check()`, así que cad
 
 {{< relacionada "/blog/validacion_datos/" >}}
 
+
+#### Cobertura de pruebas unitarias
+
+{{< icono-lateral "check-double" >}}
+
+Luego de [escribir pruebas unitarias para validar el código](/blog/validacion_datos/#validación-con-testthat), podemos confirmar si todo el código está _cubierto_ por las pruebas. Con esto nos referimos al **porcentaje de líneas de código revisadas por las pruebas**, ya que si las pruebas no cubren todo el código, significa que podría estar echándose a perder sin que nos demos cuenta.
+
+La cobertura sirve para **encontrar qué partes del paquete aún no tienen pruebas**, y así ir mejorándolas de a poco. Usamos el paquete `{covr}` para revisar la cobertura:
+
+```r
+usethis::use_package("covr", type = "Suggests")
+```
+
+Luego calculamos la cobertura con `package_coverage()`, que ejecuta las pruebas de `tests/testthat/` y registra qué líneas de código se ejecutaron:
+
+```r
+# calcula cobertura ejecutando las pruebas de tests/testthat
+cobertura <- covr::package_coverage()
+```
+
+Con `percent_coverage()` obtenemos el **porcentaje total de cobertura**, y si imprimimos el objeto, aparece el porcentaje de cada archivo, de menor a mayor cobertura:
+
+```
+territorial Coverage: 85.54%
+R/contextualizar.R: 90.41%
+R/agregar_clasificacion.R: 91.43%
+R/acortar_regiones.R: 91.89%
+R/contar_comunas.R: 92.11%
+R/validar_comunas.R: 97.25%
+R/abreviar_comunas.R: 97.50%
+R/agregar_macrozona.R: 97.50%
+R/preposicion_region.R: 97.87%
+R/limpiar_comunas.R: 99.58%
+R/limpiar_regiones.R: 99.59%
+R/actualizar_codigo_comuna.R: 100.00%
+R/agregar_orden_region.R: 100.00%
+R/as_capital_regional.R: 100.00%
+```
+
+Con el ejemplo anterior, nos damos cuenta que a la función `R/contextualizar.R` le falta cobertura; es decir, tiene código que no se pone a prueba nunca!
+
+Para saber exactamente qué falta probar, `zero_coverage(cobertura)` entrega las **líneas sin cobertura**, que no se ejecutaron en ninguna prueba, indicando el archivo y el número de línea. Además, `report(cobertura)` crea un reporte HTML interactivo para revisar el código línea por línea.
+
+Las líneas sin cobertura muchas veces son los casos extremos o los errores que la función debería entregar, que son los que más cuesta recordar al escribir pruebas!
+
+Se recomienda automatizar el cálculo de cobertura para que se ejecute en GitHub cada vez que subamos cambios por medio del servicio [Codecov](https://about.codecov.io):
+
+```r
+usethis::use_github_action("test-coverage")
+```
 
 
 ## Documentación
