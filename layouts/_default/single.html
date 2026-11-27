@@ -9,9 +9,9 @@
         <span>{{ if .Params.show_post_date }}<div class="f7 db mv0 ttu" style="display:inline-block;">{{ .PublishDate.Format "2/1/2006" }} </div>{{ end }}
         
         <!-- contador de visitas -->
-        <span>
+        <span class="f7">
           {{ if .Params.show_page_views }}
-            {{- partial "page_views.html" . -}}
+            {{- partial "page_views_listado.html" . -}}
           {{ end }}
         </span>
         </span>

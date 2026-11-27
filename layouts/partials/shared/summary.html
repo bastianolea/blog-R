@@ -48,7 +48,7 @@
       <div>{{ if $root.Params.show_post_date }}<div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">{{ .PublishDate.Format "2/1/2006" }}</div>{{ end }}
       {{ if ne .Lastmod .PublishDate }}<div class="f7 db mv1" style="display:inline-block; margin-bottom:0; margin-left:8px; opacity:0.4;">Actualizado el {{ .Lastmod.Format "2/1/2006" }}</div>{{ end }}
       <!-- contador de visitas -->
-        <span>
+        <span class="f7">
           {{ if $root.Params.show_page_views }}
             {{- partial "page_views_listado.html" . -}}
           {{ end }}
@@ -89,7 +89,7 @@
       <div>{{ if $root.Params.show_post_date }}<div class="f7 db mv1" style="display:inline-block; margin-bottom:0;">{{ .PublishDate.Format "2/1/2006" }}</div>{{ end }}
       {{ if ne .Lastmod .PublishDate }}<div class="f7 db mv1" style="display:inline-block; margin-bottom:0; margin-left:8px; opacity:0.4;">Actualizado el {{ .Lastmod.Format "2/1/2006" }}</div>{{ end }}
       <!-- contador de visitas -->
-        <span>
+        <span class="f7">
           {{ if $root.Params.show_page_views }}
         {{- partial "page_views_listado.html" . -}}
         {{ end }}

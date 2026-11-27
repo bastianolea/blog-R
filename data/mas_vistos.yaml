@@ -1,20 +1,20 @@
-actualizado: '2026-11-26'
-desde: '2026-05-26'
+actualizado: '2026-11-27'
+desde: '2026-05-27'
 publicaciones:
 - ruta: /blog/colores/
-  visitas: 2726
+  visitas: 2711
 - ruta: /blog/shiny/
-  visitas: 696
+  visitas: 677
 - ruta: /blog/r_introduccion/r_basico/
-  visitas: 603
+  visitas: 596
 - ruta: /blog/shinychat/
   visitas: 569
 - ruta: /blog/rag_ragnar/
   visitas: 521
 - ruta: /blog/tutorial_mapa_chile/
-  visitas: 496
+  visitas: 487
 - ruta: /blog/mapas_sf/
-  visitas: 448
+  visitas: 444
 - ruta: /blog/mapas_mapgl/
   visitas: 424
 - ruta: /blog/curso_r_intro_3/
@@ -22,13 +22,13 @@ publicaciones:
 - ruta: /blog/posit_assistant/
   visitas: 362
 - ruta: /blog/tutorial_mapa_urbano/
-  visitas: 339
+  visitas: 337
 - ruta: /blog/mapas_bivariados/
   visitas: 307
 - ruta: /blog/mapas_censo_2024/
-  visitas: 295
+  visitas: 297
 - ruta: /blog/curso_gratis_r_intro_1/
-  visitas: 288
+  visitas: 287
 - ruta: /blog/quarto_blog/
   visitas: 278
 - ruta: /blog/2026-10-14/
@@ -37,17 +37,17 @@ publicaciones:
   visitas: 263
 - ruta: /blog/ia_r/
   visitas: 240
-- ruta: /blog/curso_gratis_r_intro_2/
-  visitas: 226
 - ruta: /blog/tablas_gt/
   visitas: 225
-- ruta: /blog/r_introduccion/r_intermedio/
-  visitas: 210
+- ruta: /blog/curso_gratis_r_intro_2/
+  visitas: 225
 - ruta: /blog/mapa_chile_macrozonas/
-  visitas: 207
-- ruta: /blog/ellmer/
-  visitas: 198
+  visitas: 209
+- ruta: /blog/r_introduccion/r_intermedio/
+  visitas: 209
 - ruta: /blog/2026-06-26/
+  visitas: 196
+- ruta: /blog/ellmer/
   visitas: 196
 - ruta: /blog/2026-08-03/
   visitas: 179
@@ -55,78 +55,78 @@ publicaciones:
   visitas: 178
 - ruta: /blog/arrow/
   visitas: 169
-- ruta: /blog/mapas_hexagonales/
-  visitas: 166
 - ruta: /blog/r_introduccion/instalar_r/
   visitas: 163
-- ruta: /blog/r_introduccion/recursos_r/
+- ruta: /blog/mapas_hexagonales/
   visitas: 161
 - ruta: /blog/r_introduccion/dplyr_intro/
+  visitas: 159
+- ruta: /blog/r_introduccion/recursos_r/
   visitas: 159
 - ruta: /blog/r_introduccion/tutorial_visualizacion_ggplot/
   visitas: 153
 - ruta: /blog/casen_introduccion/
-  visitas: 148
+  visitas: 146
 - ruta: /blog/censo_2024/
   visitas: 141
 - ruta: /blog/2026-08-21/
   visitas: 130
 - ruta: /blog/tema_morado/
-  visitas: 129
+  visitas: 128
 - ruta: /blog/unpivotr/
   visitas: 117
 - ruta: /blog/r_introduccion/proyectos/
-  visitas: 114
-- ruta: /blog/herramientas_llm/
   visitas: 113
 - ruta: /blog/r_introduccion/tidyr_pivotar/
-  visitas: 112
+  visitas: 111
 - ruta: /blog/quarto_reportes/
-  visitas: 112
+  visitas: 111
 - ruta: /blog/buscar_texto/
   visitas: 108
+- ruta: /blog/herramientas_llm/
+  visitas: 106
 - ruta: /blog/r_introduccion/conectores/
   visitas: 104
 - ruta: /blog/arrow_csv/
   visitas: 98
 - ruta: /blog/btw/
-  visitas: 96
+  visitas: 95
 - ruta: /blog/taller_santiagorusers_sitios/
   visitas: 89
 - ruta: /blog/surveydown_encuestas/
   visitas: 89
 - ruta: /blog/2026-06-16/
   visitas: 88
-- ruta: /blog/datos_estructurados_llm/
-  visitas: 88
-- ruta: /blog/r_introduccion/tutorial_shiny_1/
-  visitas: 88
 - ruta: /blog/2026-07-29/
   visitas: 87
+- ruta: /blog/datos_estructurados_llm/
+  visitas: 87
+- ruta: /blog/r_introduccion/tutorial_shiny_1/
+  visitas: 86
 - ruta: /blog/tutorial_github/
   visitas: 83
-- ruta: /blog/ggplot_extensiones/
-  visitas: 78
 - ruta: /blog/mapa_chile_triple/
   visitas: 78
+- ruta: /blog/ggplot_extensiones/
+  visitas: 75
 - ruta: /blog/r_introduccion/por_que_r/
   visitas: 75
 - ruta: /blog/estudio_brechas_comunales/
-  visitas: 72
+  visitas: 71
 - ruta: /blog/r_introduccion/dplyr_mutate/
-  visitas: 70
+  visitas: 69
 - ruta: /blog/territorial/
   visitas: 68
-- ruta: /blog/funcion_consultar_datos/
-  visitas: 67
 - ruta: /blog/app_censo_mapas/
   visitas: 67
-- ruta: /blog/analisis_sentimiento_llm/
-  visitas: 66
-- ruta: /blog/gander/
-  visitas: 66
 - ruta: /blog/db_supabase/
   visitas: 65
+- ruta: /blog/analisis_sentimiento_llm/
+  visitas: 65
+- ruta: /blog/gander/
+  visitas: 65
+- ruta: /blog/funcion_consultar_datos/
+  visitas: 64
 - ruta: /blog/r_introduccion/dplyr_summarize/
   visitas: 64
 - ruta: /blog/tutorial_gt/
@@ -134,9 +134,9 @@ publicaciones:
 - ruta: /blog/app_densidad_comunas/
   visitas: 59
 - ruta: /blog/ggplot_temas/
-  visitas: 58
+  visitas: 57
 - ruta: /blog/r_introduccion/tutorial_shinyapps/
-  visitas: 58
+  visitas: 57
 - ruta: /blog/delincuencia_prensa/
   visitas: 55
 - ruta: /blog/limpieza_tips/
@@ -145,26 +145,26 @@ publicaciones:
   visitas: 54
 - ruta: /blog/numeros_romanos/
   visitas: 52
-- ruta: /blog/r_introduccion/
-  visitas: 52
 - ruta: /blog/tutorial_shiny_1/
   visitas: 51
 - ruta: /blog/portafolio_trabajos_r/
+  visitas: 51
+- ruta: /blog/r_introduccion/
   visitas: 51
 - ruta: /blog/web_scraping/
   visitas: 50
 - ruta: /blog/indice_brechas_genero/
   visitas: 50
 - ruta: /blog/redactar_texto/
-  visitas: 50
+  visitas: 49
 - ruta: /blog/2025-01-12/
-  visitas: 50
+  visitas: 49
 - ruta: /blog/linea_temporal_r/
   visitas: 48
 - ruta: /blog/quarto_params/
-  visitas: 46
+  visitas: 45
 - ruta: /blog/2025-06-18/
-  visitas: 44
+  visitas: 43
 - ruta: /blog/nubes_de_palabras/
   visitas: 42
 - ruta: /blog/pal_asistentes_llm/
@@ -172,16 +172,16 @@ publicaciones:
 - ruta: /blog/shiny_docker/
   visitas: 41
 - ruta: /blog/ggplot_dumbbell/
-  visitas: 40
-- ruta: /blog/r_introduccion/tutorial_github/
-  visitas: 40
-- ruta: /blog/elecciones_presidenciales_2025/
   visitas: 39
 - ruta: /blog/ggiraph/
   visitas: 39
-- ruta: /blog/mapa_chile_horizontal/
+- ruta: /blog/r_introduccion/tutorial_github/
   visitas: 39
+- ruta: /blog/mapa_chile_horizontal/
+  visitas: 38
 - ruta: /blog/tablas_gt_excel/
+  visitas: 37
+- ruta: /blog/elecciones_presidenciales_2025/
   visitas: 37
 - ruta: /blog/validacion_datos/
   visitas: 36
@@ -197,29 +197,29 @@ publicaciones:
   visitas: 33
 - ruta: /blog/2026-07-24/
   visitas: 33
-- ruta: /blog/2026-07-21/
-  visitas: 32
 - ruta: /blog/webscraping_rvest/
+  visitas: 33
+- ruta: /blog/2026-07-21/
   visitas: 32
 visitas_totales:
 - ruta: /blog/curso_gratis_r_intro_1/
   visitas: 6279
 - ruta: /blog/colores/
-  visitas: 3885
+  visitas: 3886
 - ruta: /blog/curso_gratis_r_intro_2/
   visitas: 3145
 - ruta: /blog/mapas_censo_2024/
-  visitas: 2913
+  visitas: 2916
 - ruta: /blog/tutorial_mapa_urbano/
   visitas: 2218
 - ruta: /blog/r_introduccion/r_basico/
-  visitas: 1553
+  visitas: 1554
 - ruta: /blog/shiny/
   visitas: 1275
 - ruta: /blog/tutorial_mapa_chile/
-  visitas: 1247
+  visitas: 1248
 - ruta: /blog/mapas_sf/
-  visitas: 1065
+  visitas: 1066
 - ruta: /blog/mapas_hexagonales/
   visitas: 996
 - ruta: /blog/gander/
@@ -308,18 +308,18 @@ visitas_totales:
   visitas: 237
 - ruta: /blog/r_introduccion/dplyr_mutate/
   visitas: 231
-- ruta: /blog/tablas_gt/
-  visitas: 225
 - ruta: /blog/r_introduccion/por_que_r/
+  visitas: 226
+- ruta: /blog/tablas_gt/
   visitas: 225
 - ruta: /blog/quarto_reportes/
   visitas: 217
 - ruta: /blog/estadisticos_descriptivos/
   visitas: 210
+- ruta: /blog/mapa_chile_macrozonas/
+  visitas: 209
 - ruta: /blog/repetirse/
   visitas: 209
-- ruta: /blog/mapa_chile_macrozonas/
-  visitas: 207
 - ruta: /blog/pal_asistentes_llm/
   visitas: 206
 - ruta: /blog/2026-06-26/
@@ -423,7 +423,7 @@ visitas_totales:
 - ruta: /blog/territorial/
   visitas: 68
 - ruta: /blog/resumir_texto_llm/
-  visitas: 67
+  visitas: 68
 - ruta: /blog/stringr_texto/
   visitas: 65
 - ruta: /blog/ggplot_dumbbell/
@@ -485,7 +485,7 @@ visitas_totales:
 - ruta: /blog/shiny_temas/
   visitas: 36
 - ruta: /blog/webscraping_rvest/
-  visitas: 34
+  visitas: 35
 - ruta: /blog/2024-12-31/
   visitas: 34
 - ruta: /blog/renv/
@@ -628,6 +628,8 @@ visitas_totales:
   visitas: 8
 - ruta: /blog/simel_scraping/
   visitas: 8
+- ruta: /blog/2026-11-04/
+  visitas: 7
 - ruta: /blog/webscraping_chromote/
   visitas: 7
 - ruta: /blog/app_economia_chile/
@@ -647,8 +649,6 @@ visitas_totales:
 - ruta: /blog/2025-07-11/
   visitas: 7
 - ruta: /blog/poblador/
-  visitas: 6
-- ruta: /blog/2026-11-04/
   visitas: 6
 - ruta: /blog/limpiar_texto_simbolos/
   visitas: 6

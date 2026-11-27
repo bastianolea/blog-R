@@ -5,7 +5,7 @@
 {{ if and $config.activar site.Params.goatcounter }}
 {{ $visitas_minimas := $config.visitas_minimas | default 0 }}
 
-<span id="{{ .File.UniqueID }}" style="font-size: 79%; margin-left: 6px; opacity: .4;" hidden></span>
+<span id="{{ .File.UniqueID }}" style="font-size: 100%; margin-left: 6px; opacity: .4;" hidden></span>
 <script>
     (function() {
         var contador = document.getElementById('{{ .File.UniqueID }}');
